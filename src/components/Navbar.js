@@ -49,7 +49,7 @@ const Navbar = () => {
             to='/dashboard'
             className='h-full flex justify-center items-center'
           >
-            <IoStorefrontOutline className='text-blue-300 font-bold' />
+            <IoStorefrontOutline className='text-slate-800 font-bold' />
             <h2 className='font-black font-sans'>Fruntt</h2>
           </Link>
         </div>
@@ -142,7 +142,7 @@ const Navbar = () => {
         {/* logo section */}
         <div className='text-4xl h-full flex justify-center items-center'>
           <Link to='/' className='h-full flex justify-center items-center'>
-            <IoStorefrontOutline className='text-blue-300 font-bold' />
+            <IoStorefrontOutline className='text-slate-800 font-bold' />
             <h2 className='font-black font-sans'>Fruntt</h2>
           </Link>
         </div>
@@ -165,7 +165,7 @@ const Navbar = () => {
             </p>
           </Link>
           <Link to='/login'>
-            <button className='border-2 border-blue-300 hover:border-blue-500 rounded w-20 h-full'>
+            <button className='border-2 text-slate-800 border-blue-300 hover:bg-blue-300 rounded w-20 h-full'>
               Login
             </button>
           </Link>

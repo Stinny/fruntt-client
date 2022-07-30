@@ -16,19 +16,23 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import DashHome from './pages/Dashboard/DashHome';
 import AddProduct from './pages/Dashboard/AddProduct';
-import EditProduct from './pages/Dashboard/EditProduct';
+import EditItem from './pages/Dashboard/EditItem';
 import Integrations from './pages/Dashboard/Integrations';
 import Orders from './pages/Dashboard/Orders';
+import OrderDetail from './pages/Dashboard/OrderDetail';
 import Customers from './pages/Dashboard/Customers';
-import Customization from './pages/Dashboard/Customization';
+import Design from './pages/Dashboard/Design';
 import Emailing from './pages/Dashboard/Emailing';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 import Pricing from './pages/Pricing';
-import Newsletters from './pages/Dashboard/Newsletters';
 import Marketing from './pages/Dashboard/Marketing';
 import Plans from './pages/Plans';
+import FreePlan from './pages/FreePlan';
 import RequireSubscription from './RequireSubscription';
+import PaidPlan from './pages/PaidPlan';
+import Item from './pages/Dashboard/Item';
+import AddItem from './pages/Dashboard/AddItem';
 
 function App() {
   return (
@@ -47,14 +51,23 @@ function App() {
             {/* routes require user to be logged in */}
             <Route element={<RequireAuth />}>
               <Route path='dashboard/plans' element={<Plans />} />
+              <Route path='dashboard/plans/free' element={<FreePlan />} />
+              <Route path='dashboard/plans/paid' element={<PaidPlan />} />
+
+              {/* routes require user to be subscribed to a plan */}
               <Route element={<RequireSubscription />}>
                 <Route path='settings' element={<Settings />} />
 
                 <Route path='dashboard' element={<DashHome />} />
 
-                <Route path='dashboard/products' element={<Products />} />
+                <Route path='dashboard/item' element={<Item />} />
 
                 <Route path='dashboard/orders' element={<Orders />} />
+
+                <Route
+                  path='dashboard/orders/:orderId'
+                  element={<OrderDetail />}
+                />
 
                 <Route path='dashboard/customers' element={<Customers />} />
 
@@ -63,20 +76,15 @@ function App() {
                   element={<Integrations />}
                 />
 
-                <Route
-                  path='/dashboard/customization'
-                  element={<Customization />}
-                />
-
-                <Route path='dashboard/newsletters' element={<Newsletters />} />
+                <Route path='/dashboard/design' element={<Design />} />
 
                 <Route path='dashboard/marketing' element={<Marketing />} />
 
-                <Route path='dashboard/addproduct' element={<AddProduct />} />
+                <Route path='dashboard/item/add/buynow' element={<AddItem />} />
 
                 <Route
-                  path='dashboard/product/edit/:productId'
-                  element={<EditProduct />}
+                  path='dashboard/item/edit/:productId'
+                  element={<EditItem />}
                 />
               </Route>
             </Route>

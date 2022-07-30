@@ -19,10 +19,37 @@ const Topbar = () => {
           </button>
         </NavLink>
 
+        <NavLink to='/dashboard/item'>
+          <button
+            className={
+              path === '/dashboard/item' ||
+              path === '/dashboard/item/add' ||
+              path === '/dashboard/item/add/buynow'
+                ? activeLink
+                : notActiveLink
+            }
+          >
+            Item
+          </button>
+        </NavLink>
+
+        <NavLink to='/dashboard/design'>
+          <button
+            className={
+              path === '/dashboard/design' ? activeLink : notActiveLink
+            }
+          >
+            Design
+          </button>
+        </NavLink>
+
         <NavLink to='/dashboard/orders'>
           <button
             className={
-              path === '/dashboard/orders' ? activeLink : notActiveLink
+              path === '/dashboard/orders' ||
+              path === '/dashboard/orders/:orderId'
+                ? activeLink
+                : notActiveLink
             }
           >
             Orders
@@ -36,38 +63,6 @@ const Topbar = () => {
             }
           >
             Customers
-          </button>
-        </NavLink>
-
-        <NavLink to='/dashboard/products'>
-          <button
-            className={
-              path === '/dashboard/products' || path === '/dashboard/addproduct'
-                ? activeLink
-                : notActiveLink
-            }
-          >
-            Products
-          </button>
-        </NavLink>
-
-        <NavLink to='/dashboard/customization'>
-          <button
-            className={
-              path === '/dashboard/customization' ? activeLink : notActiveLink
-            }
-          >
-            Design
-          </button>
-        </NavLink>
-
-        <NavLink to='/dashboard/newsletters'>
-          <button
-            className={
-              path === '/dashboard/newsletters' ? activeLink : notActiveLink
-            }
-          >
-            Newsletters
           </button>
         </NavLink>
 

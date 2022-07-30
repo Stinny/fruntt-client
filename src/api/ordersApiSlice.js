@@ -6,7 +6,13 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       query: () => '/orders/store',
       keepUnusedDataFor: 5,
     }),
+    getSingleOrder: builder.query({
+      query: ({ orderId }) => `/orders/${orderId}`,
+    }),
   }),
 });
 
-export const { useGetStoreOrdersQuery } = ordersApiSlice;
+export const {
+  useGetStoreOrdersQuery,
+  useGetSingleOrderQuery,
+} = ordersApiSlice;

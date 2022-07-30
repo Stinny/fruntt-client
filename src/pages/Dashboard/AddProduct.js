@@ -58,7 +58,7 @@ const AddProduct = () => {
         imageData: imagesDataReq.data,
       }).unwrap();
 
-      navigate('/dashboard/products');
+      navigate('/dashboard/item');
     } catch (err) {
       setError('There was an error');
       return;
@@ -84,76 +84,76 @@ const AddProduct = () => {
       <Navbar />
       <Topbar />
       <div className='max-w-6xl mx-auto h-screen'>
-        <div className='w-3/6 mx-auto flex justify-between items-center'>
-          <h2 className='text-xl font-medium'>Add a Product</h2>
+        <div className='w-10/12 mx-auto flex justify-between items-center'>
+          <h2 className='text-xl font-medium'>Add your item</h2>
           <Link
-            to='/dashboard/products'
+            to='/dashboard/item'
             className='flex justify-center items-center text-gray-400 hover:text-gray-500'
           >
-            <p>products</p> <BsArrowRightShort className='text-xl' />
+            <p>item</p> <BsArrowRightShort className='text-xl' />
           </Link>
         </div>
-        <div className='mx-auto'>
+        <div className='mx-auto w-full'>
           {error && (
             <Alert
               severity='error'
               color='error'
-              className='mt-4 mb-4 mx-auto w-3/6'
+              className='mt-4 mb-4 mx-auto w-10/12'
             >
               {error}
             </Alert>
           )}
           <form
-            className='flex flex-col items-center'
+            className='flex flex-col justify-center mx-auto items-center'
             onSubmit={handleAddProduct}
           >
             {/* within this form inputs needed to set above state */}
 
             <input
               type='text'
-              className='border-2 border-slate-200 hover:border-slate-300 w-3/6 rounded-lg mt-4 p-2'
+              className='border-2 border-slate-200 hover:border-slate-300 w-10/12 rounded-lg mt-4 p-2'
               placeholder='Title'
               onChange={(e) => setTitle(e.target.value)}
             />
 
             <textarea
               type='text'
-              className='border-2 border-slate-200 hover:border-slate-300 w-3/6 rounded-lg mt-4 p-2'
+              className='border-2 border-slate-200 hover:border-slate-300 w-10/12 rounded-lg mt-4 p-2'
               placeholder='Description'
               onChange={(e) => setDescription(e.target.value)}
             />
 
             <input
               type='number'
-              className='border-2 border-slate-200 hover:border-slate-300 w-3/6 rounded-lg mt-4 p-2'
+              className='border-2 border-slate-200 hover:border-slate-300 w-10/12 rounded-lg mt-4 p-2'
               placeholder='Price'
               onChange={(e) => setPrice(e.target.value)}
             />
 
             <input
               type='number'
-              className='border-2 border-slate-200 hover:border-slate-300 w-3/6 rounded-lg mt-4 p-2'
+              className='border-2 border-slate-200 hover:border-slate-300 w-10/12 rounded-lg mt-4 p-2'
               placeholder='Stock'
               onChange={(e) => setStock(e.target.value)}
             />
 
-            <div className='w-3/6 flex mt-4'>
+            <div className='w-10/12 flex mt-4'>
               <FormControlLabel
                 control={<Switch onChange={(e) => setPublished(!published)} />}
                 label='Publish to store'
               />
             </div>
 
-            <div className='w-3/6 mt-4 mb-4'>
+            <div className='w-10/12 mt-4 mb-4'>
               <FileUpload fileList={fileList} setFileList={setFileList} />
             </div>
 
             <button
               type='submit'
               disabled={isLoading}
-              className='h-12 w-3/6 border-2 border-stone-800 hover:text-white hover:bg-stone-800 font-medium text-stone-800 rounded-lg text-sm flex justify-center items-center'
+              className='h-12 w-10/12 border-2 border-stone-800 hover:text-white hover:bg-stone-800 font-medium text-stone-800 rounded-lg text-sm flex justify-center items-center'
             >
-              Add Product +
+              Add Item +
             </button>
           </form>
         </div>

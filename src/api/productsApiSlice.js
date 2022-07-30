@@ -25,23 +25,60 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         body: { ...product },
       }),
     }),
-    addProductImages: builder.mutation({
-      query: ({ images }) => ({
-        url: '/products/imageupload',
-        method: 'POST',
-        body: { productImages: images },
-      }),
-    }),
     updateProduct: builder.mutation({
-      query: (product, productId) => ({
-        url: `/products/update/${productId}`,
+      query: ({
+        productId,
+        formTitle,
+        formDescription,
+        formPrice,
+        formStock,
+        formPublished,
+        formWeightUnit,
+        formSizeUnit,
+        formWeight,
+        formHeight,
+        formLength,
+        formWidth,
+        imageData,
+      }) => ({
+        url: `/products/edit/${productId}`,
+        method: 'POST',
+        body: {
+          title: formTitle,
+          description: formDescription,
+          price: formPrice,
+          stock: formStock,
+          published: formPublished,
+          weightUnit: formWeightUnit,
+          sizeUnit: formSizeUnit,
+          weight: formWeight,
+          height: formHeight,
+          width: formWidth,
+          length: formLength,
+          imageData: imageData,
+        },
       }),
     }),
     deleteProduct: builder.mutation({
       query: (productId) => ({
-        url: `/products/delete/:productId`,
-        method: 'POST',
+        url: `/products/delete/${productId}`,
+        method: 'DELETE',
       }),
+    }),
+    deleteItemImage: builder.mutation({
+      query: ({ productId, imgId, key }) => ({
+        url: `/products/image/delete/`,
+        method: 'POST',
+        body: {
+          productId: productId,
+          imgId: imgId,
+          key: key,
+        },
+      }),
+    }),
+    getItemImages: builder.query({
+      query: (productId) => `/products/images/${productId}`,
+      keepUnusedDataFor: 5,
     }),
   }),
 });
@@ -51,6 +88,9 @@ export const {
   useGetProductQuery,
   useAddProductMutation,
   useDeleteProductMutation,
+  useUpdateProductMutation,
+  useDeleteItemImageMutation,
+  useGetItemImagesQuery,
 } = productsApiSlice;
 
 // const selectProductsResult = productsApiSlice.endpoints.getProducts.select();

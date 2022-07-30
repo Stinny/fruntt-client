@@ -131,7 +131,7 @@ const Products = () => {
       products.length > 0 ? (
         <>
           <div className='w-full flex justify-between'>
-            <h2 className='text-3xl font-semibold'>Your Products</h2>
+            <h2 className='text-3xl font-semibold'>Your Item</h2>
             <Link
               to='/dashboard/addproduct'
               className='h-8 w-36 border-2 border-stone-800 hover:text-white hover:bg-stone-800 font-medium text-stone-800 rounded-md text-sm flex justify-center items-center'
@@ -177,12 +177,12 @@ const Products = () => {
       ) : (
         <div className='border-2 border-gray-200 rounded w-full h-full flex flex-col justify-center items-center mt-4'>
           <h2 className='text-xl font-medium'>
-            You have not added any products yet!
+            You have not added an item yet!
           </h2>
           <img src={img} className='w-2/12' />
-          <Link to='/dashboard/addproduct'>
+          <Link to='/dashboard/item/add'>
             <button className='border-2 w-36 h-8 rounded-md border-gray-200 hover:border-gray-400 hover:text-slate-400 text-slate-200 font-semibold mt-4'>
-              Add product +
+              Add item +
             </button>
           </Link>
         </div>

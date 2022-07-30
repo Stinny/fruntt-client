@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 
 //mui
 import Alert from '@mui/material/Alert';
+import { Link } from 'react-router-dom';
 
 const Plans = () => {
   const currentUser = JSON.parse(Cookies.get('currentUser'));
@@ -36,9 +37,14 @@ const Plans = () => {
             <p className='text-3xl'>Free</p>
             <p className='text-4xl font-medium mt-4'>$0/Month</p>
             <div className='w-full h-10 flex justify-center mt-4 mb-4'>
-              <button className='rounded bg-blue-300 hover:bg-blue-400 text-white w-10/12'>
-                Start Now
-              </button>
+              <Link
+                to='/dashboard/plans/free'
+                className='flex justify-center w-full'
+              >
+                <button className='rounded text-white bg-blue-300 w-10/12 hover:bg-blue-400'>
+                  Start Now
+                </button>
+              </Link>
             </div>
             <div>
               <p className='text-xl font-medium'>plan includes:</p>
@@ -55,9 +61,14 @@ const Plans = () => {
             <p className='text-3xl'>Paid</p>
             <p className='text-4xl font-medium mt-4'>$32/Month</p>
             <div className='w-full h-10 flex justify-center mt-4 mb-4'>
-              <button className='rounded text-white bg-blue-300 w-10/12 hover:bg-blue-400'>
-                Start Now
-              </button>
+              <Link
+                to='/dashboard/plans/paid'
+                className='flex justify-center w-full'
+              >
+                <button className='rounded text-white bg-blue-300 w-10/12 hover:bg-blue-400'>
+                  Start Now
+                </button>
+              </Link>
             </div>
             <div>
               <p className='text-xl font-medium'>plan includes:</p>
@@ -70,7 +81,7 @@ const Plans = () => {
                 <li>Email marketing</li>
                 <li>Integrations</li>
                 <li>24/7 email support</li>
-                <li>Remove Kretey branding</li>
+                <li>Remove Fruntt branding</li>
               </ul>
             </div>
           </div>

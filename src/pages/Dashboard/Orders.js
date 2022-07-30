@@ -25,6 +25,8 @@ const Orders = () => {
     refetch();
   }, []);
 
+  const handleSelectedRows = () => {};
+
   //for data grid
   const cols = [
     {
@@ -65,7 +67,7 @@ const Orders = () => {
     {
       field: 'fulfilled',
       headerName: 'Fulfilled',
-      width: 150,
+      width: 200,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
@@ -83,13 +85,13 @@ const Orders = () => {
     {
       field: 'view',
       headerName: 'View',
-      width: 150,
+      width: 200,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
         return (
           <Link
-            to={`/order/${params.row._id}/`}
+            to={`/dashboard/orders/${params.row._id}/`}
             className='w-full mx-auto flex justify-center'
           >
             <button className='border-2 w-3/6 border-gray-400 text-gray-400 text-sm rounded'>
@@ -108,14 +110,16 @@ const Orders = () => {
     content =
       orders.length > 0 ? (
         <div>
-          <div className='w-full flex justify-between'>
+          <div className='w-full flex justify-between border-b-2 p-2'>
             <h2 className='text-3xl font-semibold'>Your Orders</h2>
-            <Link
-              to='/dashboard/addproduct'
-              className='h-8 w-36 border-2 border-stone-800 hover:text-white hover:bg-stone-800 font-medium text-stone-800 rounded-md text-sm flex justify-center items-center'
-            >
-              Fulfill Order(s)
-            </Link>
+            <div className='flex items-center'>
+              <button className='border-2 w-48 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'>
+                Create Shipping Label(s)
+              </button>
+              <button className='border-2 ml-2 w-32 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'>
+                Fullfill Order(s)
+              </button>
+            </div>
           </div>
 
           <div className='w-full mx-auto mt-6'>
@@ -127,9 +131,17 @@ const Orders = () => {
               autoHeight
               disableSelectionOnClick={true}
               disableColumnFilter
+              checkboxSelection
               pageSize={10}
               rowsPerPageOptions={[10]}
               disableExtendRowFullWidth={true}
+              onSelectionModelChange={(ids) => {
+                const selectedIDs = new Set(ids);
+                const selectedRowData = orders.filter((order) =>
+                  selectedIDs.has(order._id.toString())
+                );
+                console.log(selectedRowData); //console logs the selected rows(orders)
+              }}
               components={{
                 noRowsOverlay: () => (
                   <Stack

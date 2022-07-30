@@ -133,7 +133,7 @@ const Register = () => {
           <button
             type='submit'
             disabled={isLoading}
-            className='h-11 w-full bg-blue-300 hover:bg-blue-500 text-white rounded text-xl mt-4'
+            className='h-11 w-full border-2 border-blue-300 hover:bg-blue-300 text-slate-800 rounded text-xl mt-4'
           >
             Start trial
           </button>
@@ -145,7 +145,9 @@ const Register = () => {
   return (
     <>
       <Navbar />
-      <div className='container mx-auto max-w-7xl h-screen'>{content}</div>
+      <div className='mx-auto max-w-7xl h-screen flex justify-center items-center'>
+        {content}
+      </div>
       <Footer />
     </>
   );

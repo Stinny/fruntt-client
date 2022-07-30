@@ -22,6 +22,11 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      setError('Both fields need to be entered');
+      return;
+    }
+
     try {
       const userData = await login({ email, password }).unwrap();
       const currentUser = JSON.stringify(userData.userInfo);
@@ -91,9 +96,9 @@ const Login = () => {
 
           <button
             disabled={isLoading}
-            className='h-11 w-2/6 bg-blue-300 hover:bg-blue-500 text-white rounded text-xl mt-4'
+            className='h-11 w-2/6 border-2 border-blue-300 hover:bg-blue-300 text-slate-800 rounded text-xl mt-4'
           >
-            Go to my store
+            Go to my storefront
           </button>
         </form>
       </div>
@@ -103,7 +108,9 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className='container mx-auto max-w-7xl h-screen'>{content}</div>
+      <div className='mx-auto max-w-7xl h-screen flex justify-center items-center'>
+        {content}
+      </div>
       <Footer />
     </>
   );
