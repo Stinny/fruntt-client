@@ -48,11 +48,33 @@ const Customers = () => {
       align: 'center',
     },
     {
-      field: 'source',
-      headerName: 'Source',
+      field: 'orderId',
+      headerName: 'Order',
       width: 175,
       headerAlign: 'center',
       align: 'center',
+      renderCell: (params) => {
+        return <p>{params.row.orderId}</p>;
+      },
+    },
+    {
+      field: 'Reviewed',
+      headerName: 'View',
+      width: 200,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: (params) => {
+        return (
+          <Link
+            to={`/dashboard/orders/${params.row._id}/`}
+            className='w-full mx-auto flex justify-center'
+          >
+            <button className='border-2 w-10/12 border-gray-400 text-gray-400 text-sm rounded'>
+              Request Review
+            </button>
+          </Link>
+        );
+      },
     },
   ];
 

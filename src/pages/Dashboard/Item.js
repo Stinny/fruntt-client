@@ -12,6 +12,8 @@ import img from '../../media/noProducts.svg';
 import EditItemForm from '../../components/Forms/EditItemForm';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { BiPackage } from 'react-icons/bi';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
+import moment from 'moment';
 
 const Item = () => {
   const {
@@ -68,8 +70,14 @@ const Item = () => {
   } else if (isSuccess) {
     content = product.length ? (
       <div className='w-full'>
-        <div className='w-full flex justify-between items-center mb-10'>
-          <h2 className='text-3xl font-medium'>Your Item</h2>
+        <div className='w-full flex justify-between items-center mb-10 border-b-2 p-2'>
+          <div className='flex flex-col'>
+            <h2 className='text-3xl font-semibold'>Your Item</h2>
+            <p>
+              last edited on{' '}
+              {moment(product[0].updatedOn).format('MMM D, YYYY')}
+            </p>
+          </div>
 
           <div className='flex w-72 justify-between items-center'>
             <button
@@ -87,20 +95,60 @@ const Item = () => {
         </div>
 
         <div className='w-full'>
-          <p className='text-xl font-medium'>Details</p>
-          <div className='w-full p-4'>
-            <p className='text-gray-400 mt-4'>Title</p>
+          <div className='flex items-center'>
+            <p className='text-xl font-medium'>Details</p>
+          </div>
+          <div className='w-full p-4 border-2 rounded-md mt-4'>
+            <p className='text-gray-400 mt-4'>Item Title</p>
             <h2 className='text-3xl mt-4'>{product[0]?.title}</h2>
-            <p className='text-gray-400 mt-4'>Description</p>
+            <p className='text-gray-400 mt-4'>Item Description</p>
             <p className='text-xl mt-4'>{product[0]?.description}</p>
-            <p className='text-gray-400 mt-4'>Price</p>
+            <p className='text-gray-400 mt-4'>Item Price</p>
             <p className='text-2xl mt-4'>${product[0]?.price.toFixed(2)}</p>
-            <p className='text-gray-400 mt-4'>Stock</p>
+            <p className='text-gray-400 mt-4'>Item Stock</p>
             <p className='text-2xl mt-4'>{product[0]?.stock} units</p>
           </div>
 
-          <p className='text-xl font-medium'>Media</p>
-          <div className='p-4 flex flex-wrap w-full'>
+          <p className='text-xl font-medium mt-4'>Package</p>
+          <div className='w-full flex justify-between p-4 border-2 rounded-md mt-4'>
+            <div className='flex flex-col'>
+              <p className='text-gray-400'>Package Weight</p>
+              <p className='text-xl'>
+                {product[0]?.weight}
+                <span>
+                  {' '}
+                  {product[0]?.weightUnit === 'pound' ? 'Lbs' : 'Oz'}
+                </span>
+              </p>
+            </div>
+
+            <div className='flex flex-col'>
+              <p className='text-gray-400'>Package Height</p>
+              <p className='text-xl'>
+                {product[0]?.height}
+                <span> {product[0]?.sizeUnit === 'inches' ? 'In' : 'Cm'}</span>
+              </p>
+            </div>
+
+            <div className='flex flex-col'>
+              <p className='text-gray-400'>Package Width</p>
+              <p className='text-xl'>
+                {product[0]?.width}
+                <span> {product[0]?.sizeUnit === 'inches' ? 'In' : 'Cm'}</span>
+              </p>
+            </div>
+
+            <div className='flex flex-col'>
+              <p className='text-gray-400'>Package Length</p>
+              <p className='text-xl'>
+                {product[0]?.length}
+                <span> {product[0]?.sizeUnit === 'inches' ? 'In' : 'Cm'}</span>
+              </p>
+            </div>
+          </div>
+
+          <p className='text-xl font-medium mt-4'>Media</p>
+          <div className='p-4 flex flex-wrap w-full border-2 rounded-md mt-2'>
             {product[0]?.images.map((img, index) => (
               <img className='w-32' src={img.url} key={index} />
             ))}
@@ -116,7 +164,7 @@ const Item = () => {
     <>
       <Navbar />
       <Topbar />
-      <div className='max-w-6xl mx-auto h-screen'>{content}</div>
+      <div className='max-w-6xl mx-auto h-screen mb-32'>{content}</div>
       <Footer />
     </>
   );

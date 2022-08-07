@@ -36,7 +36,9 @@ const Topbar = () => {
         <NavLink to='/dashboard/design'>
           <button
             className={
-              path === '/dashboard/design' ? activeLink : notActiveLink
+              path === '/dashboard/design' || path === '/dashboard/design/edit'
+                ? activeLink
+                : notActiveLink
             }
           >
             Design

@@ -11,18 +11,15 @@ import {
 import NoAuth from './NoAuth';
 import RequireAuth from './RequireAuth';
 
-import Products from './pages/Dashboard/Products';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import DashHome from './pages/Dashboard/DashHome';
-import AddProduct from './pages/Dashboard/AddProduct';
 import EditItem from './pages/Dashboard/EditItem';
 import Integrations from './pages/Dashboard/Integrations';
 import Orders from './pages/Dashboard/Orders';
 import OrderDetail from './pages/Dashboard/OrderDetail';
 import Customers from './pages/Dashboard/Customers';
 import Design from './pages/Dashboard/Design';
-import Emailing from './pages/Dashboard/Emailing';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 import Pricing from './pages/Pricing';
@@ -33,6 +30,7 @@ import RequireSubscription from './RequireSubscription';
 import PaidPlan from './pages/PaidPlan';
 import Item from './pages/Dashboard/Item';
 import AddItem from './pages/Dashboard/AddItem';
+import EditDesign from './pages/Dashboard/EditDesign';
 
 function App() {
   return (
@@ -77,6 +75,8 @@ function App() {
                 />
 
                 <Route path='/dashboard/design' element={<Design />} />
+
+                <Route path='/dashboard/design/edit' element={<EditDesign />} />
 
                 <Route path='dashboard/marketing' element={<Marketing />} />
 

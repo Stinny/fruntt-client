@@ -3,17 +3,29 @@ import { useGetSingleOrderQuery } from '../../api/ordersApiSlice';
 import Navbar from '../../components/Navbar';
 import Topbar from '../../components/Topbar';
 import Footer from '../../components/Footer';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
+import { useFulfillOrderMutation } from '../../api/ordersApiSlice';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
+import moment from 'moment';
 
 const OrderDetail = () => {
   const { orderId } = useParams();
+  const navigate = useNavigate();
 
-  const { data: order, isLoading, isSuccess } = useGetSingleOrderQuery({
-    orderId,
-  });
+  const { data: order, isLoading, isSuccess, refetch } = useGetSingleOrderQuery(
+    {
+      orderId,
+    }
+  );
+  const [fulfillOrder, result] = useFulfillOrderMutation();
 
-  if (isSuccess) console.log(window.location.pathname);
+  //sends req to server to mark the order as fulfilled
+  const handleFulfillOrder = async (e) => {
+    console.log('fulfilling order...');
+    const fulfillOrderReq = await fulfillOrder(orderId).unwrap();
+    refetch();
+  };
 
   let content;
   if (isLoading) {
@@ -22,14 +34,31 @@ const OrderDetail = () => {
     content = (
       <div className='w-full'>
         <div className='flex justify-between w-full border-b-2 p-2'>
-          <h2 className='text-2xl font-medium'>Viewing Order: {order?._id}</h2>
+          <div className='flex flex-col'>
+            <h2 className='text-2xl font-bold'>
+              Viewing Order: <span className='font-medium'>{order?._id}</span>
+            </h2>
+            <p>
+              Order placed on {moment(order?.placedOn).format('MMM D, YYYY')}
+            </p>
+          </div>
           <div className='flex items-center'>
             <button className='border-2 w-44 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'>
               Create Shipping Label
             </button>
-            <button className='border-2 ml-2 w-32 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'>
-              Fullfill
-            </button>
+            {order.fulfilled ? (
+              <div className='flex items-center ml-2'>
+                <p>Order Fulfilled</p>
+                <AiOutlineCheckCircle className='text-green-600 text-xl' />
+              </div>
+            ) : (
+              <button
+                onClick={handleFulfillOrder}
+                className='border-2 ml-2 w-32 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'
+              >
+                Fulfill Order
+              </button>
+            )}
           </div>
         </div>
 

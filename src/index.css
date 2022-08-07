@@ -1,6 +1,8 @@
 body {
   margin: 0;
-  font-family: system-ui;
+  font-family: system-ui, -apple-system;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {

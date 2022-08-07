@@ -30,12 +30,12 @@ const Home = () => {
             </p>
             <p className='text-xl mt-8 tracking-wider'>
               Single item storefronts that you can deploy, design, and sell from
-              in minutes. Get your customers attention on ONE single item and
-              focus on getting that conversion.
+              in minutes. Get your customers attention on ONE single item. Leave
+              the shopping cart and distractions behind.
             </p>
             <Link to='/signup' className='flex justify-center mt-8'>
               <button className='rounded text-slate-800 w-5/12 h-10 text-xl mt-4 border-blue-300 border-2 hover:bg-blue-300 flex items-center justify-center'>
-                Try now - for free
+                Deploy a Fruntt - for free
               </button>
             </Link>
           </div>

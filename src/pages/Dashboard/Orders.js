@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
@@ -13,6 +13,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Stack from '@mui/material/Stack';
 
 const Orders = () => {
+  const [tableView, setTableView] = useState('all');
   const {
     data: orders,
     isLoading,
@@ -20,6 +21,11 @@ const Orders = () => {
     isError,
     refetch,
   } = useGetStoreOrdersQuery();
+
+  const fulfilledOrders =
+    isSuccess && orders.filter((order) => order.fulfilled === true);
+  const notFulfilledOrders =
+    isSuccess && orders.filter((order) => order.fulfilled === false);
 
   useEffect(() => {
     refetch();
@@ -32,14 +38,14 @@ const Orders = () => {
     {
       field: 'firstName',
       headerName: 'First Name',
-      width: 175,
+      width: 140,
       align: 'center',
       headerAlign: 'center',
     },
     {
       field: 'lastName',
       headerName: 'Last Name',
-      width: 175,
+      width: 140,
       headerAlign: 'center',
       align: 'center',
     },
@@ -47,18 +53,28 @@ const Orders = () => {
       field: 'email',
       headerName: 'Email',
       width: 200,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      field: 'total',
+      headerName: 'Total',
+      width: 100,
       align: 'center',
       headerAlign: 'center',
+      renderCell: (params) => {
+        return <p>${params.row.total.toFixed(2)}</p>;
+      },
     },
     {
       field: 'paid',
       headerName: 'Payment',
-      width: 200,
+      width: 150,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
         return params.row.paid ? (
-          <p className='text-green-500 font-medium'>Payment Successful</p>
+          <p className='text-green-500 font-medium'>Paid</p>
         ) : (
           <p className='text-red-600'>No Payment</p>
         );
@@ -67,7 +83,7 @@ const Orders = () => {
     {
       field: 'fulfilled',
       headerName: 'Fulfilled',
-      width: 200,
+      width: 150,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
@@ -95,7 +111,7 @@ const Orders = () => {
             className='w-full mx-auto flex justify-center'
           >
             <button className='border-2 w-3/6 border-gray-400 text-gray-400 text-sm rounded'>
-              Detials
+              Details
             </button>
           </Link>
         );
@@ -117,52 +133,149 @@ const Orders = () => {
                 Create Shipping Label(s)
               </button>
               <button className='border-2 ml-2 w-32 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'>
-                Fullfill Order(s)
+                Fulfill Order(s)
               </button>
             </div>
           </div>
 
           <div className='w-full mx-auto mt-6'>
-            {/* data grid copied over from old component */}
-            <DataGrid
-              rows={orders}
-              columns={cols}
-              getRowId={(row) => row._id}
-              autoHeight
-              disableSelectionOnClick={true}
-              disableColumnFilter
-              checkboxSelection
-              pageSize={10}
-              rowsPerPageOptions={[10]}
-              disableExtendRowFullWidth={true}
-              onSelectionModelChange={(ids) => {
-                const selectedIDs = new Set(ids);
-                const selectedRowData = orders.filter((order) =>
-                  selectedIDs.has(order._id.toString())
-                );
-                console.log(selectedRowData); //console logs the selected rows(orders)
-              }}
-              components={{
-                noRowsOverlay: () => (
-                  <Stack
-                    height='100%'
-                    alignItems='center'
-                    justifyContent='center'
-                  >
-                    No rows in DataGrid
-                  </Stack>
-                ),
-                noResultsOverlay: () => (
-                  <Stack
-                    height='100%'
-                    alignItems='center'
-                    justifyContent='center'
-                  >
-                    Local filter returns no result
-                  </Stack>
-                ),
-              }}
-            />
+            <div className='flex flex-col'>
+              <p className='text-gray-400'>Filter</p>
+              <select
+                onChange={(e) => setTableView(e.target.value)}
+                className='rounded-md border-2 w-32 h-12 bg-transparent mb-2'
+              >
+                <option value='all'>All</option>
+                <option value='notFulfilled'>Not Fulfilled</option>
+                <option value='fulfilled'>Fulfilled</option>
+              </select>
+            </div>
+
+            {tableView === 'all' && (
+              <DataGrid
+                rows={orders}
+                columns={cols}
+                getRowId={(row) => row._id}
+                autoHeight
+                disableSelectionOnClick={true}
+                disableColumnFilter
+                checkboxSelection
+                pageSize={10}
+                rowsPerPageOptions={[10]}
+                disableExtendRowFullWidth={true}
+                onSelectionModelChange={(ids) => {
+                  const selectedIDs = new Set(ids);
+                  const selectedRowData = orders.filter((order) =>
+                    selectedIDs.has(order._id.toString())
+                  );
+                  console.log(selectedRowData); //console logs the selected rows(orders)
+                }}
+                components={{
+                  noRowsOverlay: () => (
+                    <Stack
+                      height='100%'
+                      alignItems='center'
+                      justifyContent='center'
+                    >
+                      No rows in DataGrid
+                    </Stack>
+                  ),
+                  noResultsOverlay: () => (
+                    <Stack
+                      height='100%'
+                      alignItems='center'
+                      justifyContent='center'
+                    >
+                      Local filter returns no result
+                    </Stack>
+                  ),
+                }}
+              />
+            )}
+
+            {tableView === 'notFulfilled' && (
+              <DataGrid
+                rows={notFulfilledOrders}
+                columns={cols}
+                getRowId={(row) => row._id}
+                autoHeight
+                disableSelectionOnClick={true}
+                disableColumnFilter
+                checkboxSelection
+                pageSize={10}
+                rowsPerPageOptions={[10]}
+                disableExtendRowFullWidth={true}
+                onSelectionModelChange={(ids) => {
+                  const selectedIDs = new Set(ids);
+                  const selectedRowData = orders.filter((order) =>
+                    selectedIDs.has(order._id.toString())
+                  );
+                  console.log(selectedRowData); //console logs the selected rows(orders)
+                }}
+                components={{
+                  noRowsOverlay: () => (
+                    <Stack
+                      height='100%'
+                      alignItems='center'
+                      justifyContent='center'
+                    >
+                      No rows in DataGrid
+                    </Stack>
+                  ),
+                  noResultsOverlay: () => (
+                    <Stack
+                      height='100%'
+                      alignItems='center'
+                      justifyContent='center'
+                    >
+                      Local filter returns no result
+                    </Stack>
+                  ),
+                }}
+              />
+            )}
+
+            {tableView === 'fulfilled' && (
+              <DataGrid
+                rows={fulfilledOrders}
+                columns={cols}
+                getRowId={(row) => row._id}
+                autoHeight
+                disableSelectionOnClick={true}
+                disableColumnFilter
+                checkboxSelection
+                pageSize={10}
+                rowsPerPageOptions={[10]}
+                disableExtendRowFullWidth={true}
+                onSelectionModelChange={(ids) => {
+                  const selectedIDs = new Set(ids);
+                  const selectedRowData = orders.filter((order) =>
+                    selectedIDs.has(order._id.toString())
+                  );
+                  console.log(selectedRowData); //console logs the selected rows(orders)
+                }}
+                components={{
+                  noRowsOverlay: () => (
+                    <Stack
+                      height='100%'
+                      alignItems='center'
+                      justifyContent='center'
+                    >
+                      No rows in DataGrid
+                    </Stack>
+                  ),
+                  noResultsOverlay: () => (
+                    <Stack
+                      height='100%'
+                      alignItems='center'
+                      justifyContent='center'
+                    >
+                      Local filter returns no result
+                    </Stack>
+                  ),
+                }}
+              />
+            )}
           </div>
         </div>
       ) : (

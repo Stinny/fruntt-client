@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { useUpdateProductMutation } from '../../api/productsApiSlice';
 import Media from '../Media';
 import { uploadImageRequest } from '../../api/requests';
+import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 
 //mui
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
+import Tooltip from '@mui/material/Tooltip';
 
 const EditItemForm = ({
   title,
@@ -45,6 +47,14 @@ const EditItemForm = ({
   const [updateProduct, result] = useUpdateProductMutation();
 
   const navigate = useNavigate();
+
+  //info popups for the different fields
+  const detailsInfo =
+    'Item details. These details will be seen on your single item storefront by all your customers. Stock is for us to know when your item is still available or not.';
+  const packageInfo =
+    'Package details. These details allow us to calculate proper shipping rates and generate shipping labels for your orders';
+  const mediaInfo =
+    'Media is needed to showcase your item and can be seen by your customers on your single item storefront.';
 
   const handleSaveEdit = async (e) => {
     console.log('trying to save');
@@ -131,9 +141,22 @@ const EditItemForm = ({
       )}
       <form className='mx-auto' onSubmit={handleSaveEdit}>
         {/* within this form inputs needed to set above state */}
-        <p className='text-xl font-medium'>Details</p>
+        <div className='flex items-center'>
+          <p className='text-xl font-medium'>Details</p>
+          <Tooltip
+            title={<p className='text-lg'>{detailsInfo}</p>}
+            className='ml-2 text-lg'
+            placement='right-end'
+          >
+            <button>
+              <AiOutlineInfoCircle />
+            </button>
+          </Tooltip>
+        </div>
+
         <div className='p-4'>
           <p className='text-gray-400'>Title</p>
+
           <input
             type='text'
             className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
@@ -188,7 +211,18 @@ const EditItemForm = ({
           />
         </div>
 
-        <p className='text-xl font-medium'>Package</p>
+        <div className='flex items-center'>
+          <p className='text-xl font-medium'>Package</p>
+          <Tooltip
+            title={<p className='text-lg'>{packageInfo}</p>}
+            className='ml-2 text-lg'
+            placement='right-end'
+          >
+            <button>
+              <AiOutlineInfoCircle />
+            </button>
+          </Tooltip>
+        </div>
 
         <div className='p-4'>
           <div className='flex justify-between w-6/12'>
@@ -259,7 +293,18 @@ const EditItemForm = ({
           </div>
         </div>
 
-        <p className='text-xl font-medium'>Media</p>
+        <div className='flex items-center'>
+          <p className='text-xl font-medium'>Media</p>
+          <Tooltip
+            title={<p className='text-lg'>{mediaInfo}</p>}
+            className='ml-2'
+            placement='right-end'
+          >
+            <button>
+              <AiOutlineInfoCircle />
+            </button>
+          </Tooltip>
+        </div>
         <Media productId={productId} />
 
         <div className='p-4'>

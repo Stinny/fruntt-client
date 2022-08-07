@@ -6,13 +6,13 @@ import Footer from '../../components/Footer';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAddProductMutation } from '../../api/productsApiSlice';
 import { uploadImageRequest } from '../../api/requests';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 //mui
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import Tooltip from '@mui/material/Tooltip';
 
 const AddItem = () => {
   //hooks
@@ -34,6 +34,14 @@ const AddItem = () => {
   const [error, setError] = useState('');
 
   const [addProduct, { isLoading }] = useAddProductMutation();
+
+  //info popups for the different fields
+  const detailsInfo =
+    'Item details. These details will be seen on your single item storefront by all your customers. Stock is for us to know when your item is still available or not.';
+  const packageInfo =
+    'Package details. These details allow us to calculate proper shipping rates and generate shipping labels for your orders';
+  const mediaInfo =
+    'Media is needed to showcase your item and can be seen by your customers on your single item storefront.';
 
   //handle adding the item to the server
   const handleAddItem = async (e) => {
@@ -114,10 +122,20 @@ const AddItem = () => {
           </Alert>
         )}
         <form className='mx-auto' onSubmit={handleAddItem}>
-          {/* within this form inputs needed to set above state */}
-          <p className='text-xl font-medium'>Details</p>
+          <div className='flex items-center'>
+            <p className='text-xl font-medium'>Details</p>
+            <Tooltip
+              title={<p className='text-lg'>{detailsInfo}</p>}
+              className='ml-2 text-lg'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+          </div>
           <div className='p-4'>
-            <p className='text-gray-400'>Title</p>
+            <p className='text-gray-400'>Item Title</p>
             <input
               type='text'
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
@@ -125,7 +143,7 @@ const AddItem = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
 
-            <p className='text-gray-400 mt-4'>Short Description</p>
+            <p className='text-gray-400 mt-4'>Item Short Description</p>
             <textarea
               type='text'
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
@@ -135,7 +153,7 @@ const AddItem = () => {
 
             <div className='w-full flex justify-between'>
               <div className='flex flex-col w-3/6'>
-                <p className='text-gray-400 mt-4'>Price</p>
+                <p className='text-gray-400 mt-4'>Item Price</p>
                 <input
                   type='number'
                   className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
@@ -145,7 +163,7 @@ const AddItem = () => {
               </div>
 
               <div className='flex flex-col w-3/6 ml-4'>
-                <p className='text-gray-400 mt-4'>Stock</p>
+                <p className='text-gray-400 mt-4'>Item Stock</p>
                 <input
                   type='number'
                   className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
@@ -168,12 +186,23 @@ const AddItem = () => {
             />
           </div>
 
-          <p className='text-xl font-medium'>Package</p>
+          <div className='flex items-center'>
+            <p className='text-xl font-medium'>Package</p>
+            <Tooltip
+              title={<p className='text-lg'>{packageInfo}</p>}
+              className='ml-2 text-lg'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+          </div>
 
           <div className='p-4'>
             <div className='flex justify-between w-6/12'>
               <div>
-                <p className='text-gray-400'>Weight</p>
+                <p className='text-gray-400'>Package Weight</p>
                 <input
                   type='number'
                   className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
@@ -196,7 +225,7 @@ const AddItem = () => {
 
           <div className='p-4 flex justify-between'>
             <div>
-              <p className='text-gray-400'>Height</p>
+              <p className='text-gray-400'>Package Height</p>
               <input
                 type='number'
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
@@ -205,7 +234,7 @@ const AddItem = () => {
             </div>
 
             <div>
-              <p className='text-gray-400'>Width</p>
+              <p className='text-gray-400'>Package Width</p>
               <input
                 type='number'
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
@@ -214,7 +243,7 @@ const AddItem = () => {
             </div>
 
             <div>
-              <p className='text-gray-400'>Length</p>
+              <p className='text-gray-400'>Package Length</p>
               <input
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
                 type='number'
@@ -235,7 +264,18 @@ const AddItem = () => {
             </div>
           </div>
 
-          <p className='text-xl font-medium mt-4'>Media</p>
+          <div className='flex items-center'>
+            <p className='text-xl font-medium'>Media</p>
+            <Tooltip
+              title={<p className='text-lg'>{mediaInfo}</p>}
+              className='ml-2 text-lg'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+          </div>
           {/* <Media productId={productId} /> */}
 
           <div className='p-4 mt-4'>
