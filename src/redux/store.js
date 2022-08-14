@@ -3,6 +3,7 @@ import { apiSlice } from '../api/apiSlice';
 import productReducer from './productRedux';
 import userReducer from './userRedux';
 import errors from './errors';
+import design from './design';
 import Cookies from 'js-cookie';
 
 //middle function for setting local storage
@@ -30,15 +31,11 @@ const rootReducer = combineReducers({
   product: productReducer,
   user: userReducer,
   errors: errors,
+  design: design,
 });
 
 export const store = configureStore({
-  reducer: {
-    [apiSlice.reducerPath]: apiSlice.reducer,
-    product: productReducer,
-    user: userReducer,
-    errors: errors,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authMiddleware, apiSlice.middleware),
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });

@@ -34,7 +34,7 @@ const Integrations = () => {
       <Topbar />
       <div className='max-w-6xl mx-auto h-screen'>
         <Alert severity='info' className='mt-4 mb-4 w-full'>
-          We understand integrations are important to merchants and will be
+          We understand integrations are important to merchants and they will be
           coming very soon. In the meantime, we really appreciate any feedback
           as we continue to develop our product.
         </Alert>

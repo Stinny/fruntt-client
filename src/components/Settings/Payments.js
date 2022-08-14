@@ -52,7 +52,7 @@ const Payments = ({ refetch }) => {
   const connectedToStripe = (
     <>
       <a className='w-full h-20 flex items-center justify-center border-purple-600 border-2 text-purple-600 rounded-md text-md mt-4 p-2'>
-        Connected to Stripe
+        You are connected to Stripe
         <AiOutlineCheckCircle className='text-2xl ml-4' />
       </a>
       <button

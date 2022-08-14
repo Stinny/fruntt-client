@@ -17,8 +17,7 @@ const Register = () => {
   const [register, { isLoading }] = useRegisterMutation();
 
   //component state
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [storeName, setStoreName] = useState('');
@@ -28,14 +27,12 @@ const Register = () => {
     e.preventDefault();
     // register({ firstName, lastName, email, password, storeName }, dispatch);
 
-    if (!firstName || !lastName || !email || !password || !storeName) {
+    if (!email || !password || !storeName) {
       setError('All fields must be filled in');
       return;
     }
     try {
       const registerData = await register({
-        firstName,
-        lastName,
         email,
         password,
         storeName,
@@ -60,7 +57,7 @@ const Register = () => {
 
   useEffect(() => {
     setError('');
-  }, [email, firstName, lastName, storeName, password]);
+  }, [email, storeName, password]);
 
   let content;
 
@@ -68,63 +65,42 @@ const Register = () => {
     content = <Spinner />;
   } else {
     content = (
-      <div className='container flex flex-col items-center justify-center'>
-        <h2 className='text-4xl font-medium'>Start your free trial today</h2>
-        <p className='text-gray-500 text-2xl mt-2'>
-          Have free access to everything for 14 days
-        </p>
+      <div className='container flex flex-col items-center justify-center mx-auto w-full'>
+        <h2 className='text-4xl font-medium'>Deploy your free Fruntt</h2>
+
         {error && (
           <Alert severity='error' color='error' className='mt-4 mb-4 w-5/12'>
             {error}
           </Alert>
         )}
-        <form onSubmit={handleSignup}>
-          <div className='mt-8 flex justify-between'>
-            <input
-              className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 rounded-lg p-2 w-6/12'
-              type='text'
-              placeholder='First'
-              autoFocus
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <input
-              className='border-2 border-slate-200 focus:outline focus:outline-1 focus:outline-slate-300 hover:border-slate-300 rounded-lg p-2 w-6/12 ml-4'
-              type='text'
-              placeholder='Last'
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </div>
+        <form
+          onSubmit={handleSignup}
+          className='flex flex-col items-center w-5/12'
+        >
+          <input
+            type='email'
+            placeholder='Email'
+            className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded-lg p-2 mt-2'
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-          <div className='mt-4'>
-            <input
-              type='email'
-              placeholder='Email'
-              className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded-lg p-2'
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+          <input
+            type='password'
+            placeholder='Password'
+            className='border-2 border-slate-200 focus:outline focus:outline-1 focus:outline-slate-300 hover:border-slate-300 w-full rounded-lg p-2 mt-2'
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-          <div className='mt-4'>
-            <input
-              type='password'
-              placeholder='Password'
-              className='border-2 border-slate-200 focus:outline focus:outline-1 focus:outline-slate-300 hover:border-slate-300 w-full rounded-lg p-2'
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <input
+            type='text'
+            placeholder='Storefront Name'
+            className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded-lg p-2 mt-2'
+            onChange={(e) => setStoreName(e.target.value)}
+          />
 
-          <div className='mt-4'>
-            <input
-              type='text'
-              placeholder='Storefront Name'
-              className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded-lg p-2'
-              onChange={(e) => setStoreName(e.target.value)}
-            />
-          </div>
-
-          <div className='mt-2'>
+          <div className='mt-2 flex w-full'>
             <Link to='/login'>
-              <p className='text-xs text-slate-400 hover:text-slate-800 font-medium'>
+              <p className='text-xs self-start text-slate-400 hover:text-slate-800 font-medium'>
                 Already have a storefront? Login here.
               </p>
             </Link>
@@ -135,7 +111,7 @@ const Register = () => {
             disabled={isLoading}
             className='h-11 w-full border-2 border-blue-300 hover:bg-blue-300 text-slate-800 rounded text-xl mt-4'
           >
-            Start trial
+            Deploy Fruntt
           </button>
         </form>
       </div>

@@ -29,6 +29,54 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
       }),
     }),
+    updateAccountInfo: builder.mutation({
+      query: ({ firstName, lastName, email }) => ({
+        url: '/auth/updateaccountinfo',
+        method: 'POST',
+        body: {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+        },
+      }),
+    }),
+    updateBusinessInfo: builder.mutation({
+      query: ({ name, address, country, state, city, zip }) => ({
+        url: '/auth/updatebusinessinfo',
+        method: 'POST',
+        body: {
+          name: name,
+          address: address,
+          country: country,
+          state: state,
+          city: city,
+          zip: zip,
+        },
+      }),
+    }),
+    updateNotifications: builder.mutation({
+      query: ({
+        sendUpdates,
+        sendItemOutOfStock,
+        sendOrderPlaced,
+        sendReviewCollected,
+      }) => ({
+        url: '/auth/updatenotifications',
+        method: 'POST',
+        body: {
+          sendUpdates: sendUpdates,
+          sendItemOutOfStock: sendItemOutOfStock,
+          sendOrderPlaced: sendOrderPlaced,
+          sendReviewCollected: sendReviewCollected,
+        },
+      }),
+    }),
+    confirmEmail: builder.mutation({
+      query: () => ({
+        url: '/auth/confirmemail',
+        method: 'POST',
+      }),
+    }),
   }),
 });
 
@@ -38,4 +86,8 @@ export const {
   useLazyGetOnboardUrlQuery,
   useGetUpdatedUserQuery,
   useDisconnectStripeMutation,
+  useUpdateAccountInfoMutation,
+  useUpdateBusinessInfoMutation,
+  useUpdateNotificationsMutation,
+  useConfirmEmailMutation,
 } = authApiSlice;

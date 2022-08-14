@@ -55,13 +55,13 @@ const Navbar = () => {
         </div>
 
         {/* links section */}
-        <div className='h-full flex items-center w-60 flex justify-between'>
+        <div className='h-full flex items-center w-64 flex justify-between'>
           <a
-            href={currentUser.store.url}
+            href={currentUser?.store?.url}
             className='flex justify-center items-center'
             target='_blank'
           >
-            Your storefront <FaExternalLinkAlt className='ml-2' />{' '}
+            View your storefront <FaExternalLinkAlt className='ml-2' />{' '}
           </a>
           <MdOutlineNotificationsNone className='text-2xl' />
 
@@ -104,9 +104,7 @@ const Navbar = () => {
             <MenuItem>
               <Avatar />
               <div className='flex justify-between'>
-                <p>{currentUser.firstName}</p>
-                {''}
-                <p className='ml-1'>{currentUser.lastName}</p>
+                {currentUser.firstName && <p>{currentUser?.firstName}</p>}
               </div>
             </MenuItem>
             <Divider />

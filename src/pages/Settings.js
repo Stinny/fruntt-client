@@ -10,6 +10,8 @@ import Cookies from 'js-cookie';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { useGetUpdatedUserQuery } from '../api/authApiSlice';
 import Spinner from '../components/Spinner';
+import Notifications from '../components/Settings/Notifications';
+import BusinessInfo from '../components/Settings/BusinessInfo';
 
 const Settings = () => {
   const {
@@ -34,12 +36,9 @@ const Settings = () => {
     content = (
       <div className='w-full mt-20'>
         <div className='border-b-2 pb-4'>
-          <h2 className='text-4xl font-semibold'>Settings</h2>
           <div className='flex justify-between items-center w-full'>
-            <p className='text-md text-gray-500 mt-2'>
-              Edit your profile info, connect to payment gateway, edit domain,
-              adjust notifications, and manage your billing
-            </p>
+            <h2 className='text-4xl font-semibold'>Settings</h2>
+
             <Link
               to='/dashboard'
               className='flex justify-center items-center text-gray-400 hover:text-gray-500'
@@ -50,17 +49,31 @@ const Settings = () => {
         </div>
 
         <div className='w-full mt-4'>
-          <p className='text-xlg font-medium'>Profile</p>
-          <Profile />
+          <Profile user={user} refetch={refetch} />
         </div>
 
-        <div className='w-full mt-4'>
-          <p className='text-xlg font-medium'>Payment Gateway</p>
+        <div className='w-full mt-10'>
+          <BusinessInfo user={user} refetch={refetch} />
+        </div>
+
+        <div className='w-full mt-10'>
+          <Notifications user={user} refetch={refetch} />
+        </div>
+
+        <div className='w-full mt-10'>
+          <div className='flex justify-between items-center w-full border-b p-2'>
+            <p className='text-xlg font-medium'>Payment Gateway</p>
+          </div>
           <Payments refetch={refetch} />
         </div>
 
-        <div className='w-full mt-4'>
-          <p className='text-xlg font-medium'>Billing</p>
+        <div className='w-full mt-10'>
+          <div className='flex justify-between items-center w-full border-b p-2'>
+            <p className='text-xlg font-medium'>Billing</p>
+            <button className='border-2 rounded w-20 border-gray-400 text-gray-400'>
+              Edit
+            </button>
+          </div>
           <Billing />
         </div>
       </div>

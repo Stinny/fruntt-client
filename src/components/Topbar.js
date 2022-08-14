@@ -9,8 +9,8 @@ const Topbar = () => {
   const notActiveLink = 'text-sm font-medium w-24';
 
   return (
-    <div className='w-full h-16 mb-8 mt-10'>
-      <div className='max-w-6xl h-full mx-auto flex justify-between items-center border-b-2 p-2'>
+    <div className='max-w-6xl mx-auto h-16 mb-8 mt-10'>
+      <div className='w-full h-full mx-auto flex justify-between items-center border-b-2 p-2'>
         <NavLink to='/dashboard'>
           <button
             className={path === '/dashboard' ? activeLink : notActiveLink}
@@ -85,6 +85,14 @@ const Topbar = () => {
             }
           >
             Integrations
+          </button>
+        </NavLink>
+
+        <NavLink to='/dashboard/other'>
+          <button
+            className={path === '/dashboard/other' ? activeLink : notActiveLink}
+          >
+            Config
           </button>
         </NavLink>
       </div>

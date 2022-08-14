@@ -31,6 +31,8 @@ import PaidPlan from './pages/PaidPlan';
 import Item from './pages/Dashboard/Item';
 import AddItem from './pages/Dashboard/AddItem';
 import EditDesign from './pages/Dashboard/EditDesign';
+import ConfirmEmail from './pages/ConfirmEmail';
+import DesignPreview from './pages/DesignPreview';
 
 function App() {
   return (
@@ -51,6 +53,7 @@ function App() {
               <Route path='dashboard/plans' element={<Plans />} />
               <Route path='dashboard/plans/free' element={<FreePlan />} />
               <Route path='dashboard/plans/paid' element={<PaidPlan />} />
+              <Route path='/confirm/:userId' element={<ConfirmEmail />} />
 
               {/* routes require user to be subscribed to a plan */}
               <Route element={<RequireSubscription />}>
@@ -77,6 +80,11 @@ function App() {
                 <Route path='/dashboard/design' element={<Design />} />
 
                 <Route path='/dashboard/design/edit' element={<EditDesign />} />
+
+                <Route
+                  path='/dashboard/design/edit/preview'
+                  element={<DesignPreview />}
+                />
 
                 <Route path='dashboard/marketing' element={<Marketing />} />
 
