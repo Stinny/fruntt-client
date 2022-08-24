@@ -120,11 +120,11 @@ const EditItemForm = ({
 
   return (
     <>
-      <div className='mb-10 flex justify-between'>
+      <div className='mb-10 flex justify-between p-2 border-b-2'>
         <h2 className='text-3xl font-medium'>Edit Your Item</h2>
 
         <button
-          className='w-32 h-30 rounded border-slate-800 border-2'
+          className='w-32 h-10 rounded border-slate-800 border-2'
           onClick={handleSaveEdit}
         >
           SAVE

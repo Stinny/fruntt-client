@@ -5,8 +5,8 @@ const Topbar = () => {
   //for changing nav links according to the page
   const path = window.location.pathname;
   const activeLink =
-    'text-sm font-medium text-white w-24 rounded-xl bg-stone-800';
-  const notActiveLink = 'text-sm font-medium w-24';
+    'text-sm font-medium text-white w-24 rounded-xl bg-slate-800';
+  const notActiveLink = 'text-sm font-medium w-24 text-slate-800';
 
   return (
     <div className='max-w-6xl mx-auto h-16 mb-8 mt-10'>
@@ -42,6 +42,16 @@ const Topbar = () => {
             }
           >
             Design
+          </button>
+        </NavLink>
+
+        <NavLink to='/dashboard/content'>
+          <button
+            className={
+              path === '/dashboard/content' ? activeLink : notActiveLink
+            }
+          >
+            Content
           </button>
         </NavLink>
 

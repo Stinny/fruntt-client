@@ -50,7 +50,7 @@ const Navbar = () => {
             className='h-full flex justify-center items-center'
           >
             <IoStorefrontOutline className='text-slate-800 font-bold' />
-            <h2 className='font-black font-sans'>Fruntt</h2>
+            <h2 className='font-black text-slate-800 font-sans'>Fruntt</h2>
           </Link>
         </div>
 

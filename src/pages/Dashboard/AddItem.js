@@ -43,6 +43,9 @@ const AddItem = () => {
   const mediaInfo =
     'Media is needed to showcase your item and can be seen by your customers on your single item storefront.';
 
+  const handleCancel = () => {
+    navigate('/dashboard/item');
+  };
   //handle adding the item to the server
   const handleAddItem = async (e) => {
     e.preventDefault();
@@ -105,12 +108,20 @@ const AddItem = () => {
         <div className='mb-10 flex justify-between border-b-2 p-2'>
           <h2 className='text-3xl font-medium'>Add Your Item</h2>
 
-          <button
-            className='w-40 h-30 rounded border-slate-800 border-2'
-            onClick={handleAddItem}
-          >
-            ADD ITEM +
-          </button>
+          <div className='flex'>
+            <button
+              className='w-32 h-10 rounded border-red-400 text-red-400 border-2 mr-2'
+              onClick={handleCancel}
+            >
+              CANCEL
+            </button>
+            <button
+              className='w-32 h-10 rounded border-slate-800 border-2'
+              onClick={handleAddItem}
+            >
+              ADD ITEM +
+            </button>
+          </div>
         </div>
         {error && (
           <Alert
@@ -284,10 +295,18 @@ const AddItem = () => {
           </div>
 
           <button
-            className='w-full text-xl border-2 border-slate-800 hover:border-slate-600 h-10 rounded'
+            className='w-full h-14 text-xl border-2 border-slate-800 hover:border-slate-600 rounded'
             type='submit'
           >
             ADD ITEM +
+          </button>
+
+          <button
+            className='w-full text-xl border-2 border-red-400 hover:border-red-400 text-red-400 h-10 rounded mt-2'
+            type='button'
+            onClick={handleCancel}
+          >
+            CANCEL
           </button>
         </form>
       </div>

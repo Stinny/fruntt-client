@@ -36,30 +36,17 @@ const Item = () => {
   }, []);
 
   const noItem = (
-    <div className='border-2 border-gray-200 rounded w-full h-5/6 flex flex-col justify-center items-center mt-4'>
+    <div className='h-screen border-2 border-gray-200 rounded w-full flex flex-col justify-center items-center mt-4'>
       <h2 className='text-2xl font-medium'>You have not added an item yet!</h2>
-      <Link
-        to='/dashboard/item/add/buynow'
-        className='w-full flex justify-center'
-      >
-        <div className='w-5/12 h-32 border-2 rounded mt-4 flex flex-col justify-center items-center hover:border-4'>
-          <HiOutlineShoppingBag className='text-2xl' />
-          <h2 className='text-xl font-medium'>Add Buy Now Item</h2>
-          <p>Offer your customers an item to buy now</p>
-        </div>
-      </Link>
-      <Link to='/' className='w-full flex justify-center'>
-        <div className='w-5/12 h-32 border-2 rounded mt-4 flex flex-col justify-center items-center hover:border-4'>
-          <BiPackage className='text-2xl' />
-          <h2 className='text-xl font-medium'>Add Subscription Item</h2>
-          <p>Offer your customers an item on a subscription basis</p>
-        </div>
-      </Link>
-      {/* <Link to='/dashboard/item/add'>
-        <button className='border-2 w-36 h-8 rounded-md border-gray-200 hover:border-gray-400 hover:text-slate-400 text-slate-200 font-semibold mt-4'>
+      <p className='text-gray-400 text-xl w-8/12 mt-4 text-center'>
+        Add an item to further complete the setup of your Fruntt. Here you can
+        add all details necassary for purchase and handling shipping.
+      </p>
+      <Link to='/dashboard/item/add'>
+        <button className='w-32 h-10 rounded border-2 border-slate-800 text-slate-800 mt-4 font-medium'>
           Add item +
         </button>
-      </Link> */}
+      </Link>
     </div>
   );
 
@@ -81,13 +68,13 @@ const Item = () => {
 
           <div className='flex w-72 justify-between items-center'>
             <button
-              className='w-32 h-30 rounded border-red-500 border-2 text-red-500'
+              className='w-32 h-10 rounded border-red-400 border-2 text-red-400'
               onClick={handleDeleteItem}
             >
               DELETE
             </button>
             <Link to={`/dashboard/item/edit/${product[0]._id}`}>
-              <button className='w-32 h-30 rounded border-slate-800 border-2'>
+              <button className='w-32 h-10 rounded border-slate-800 border-2'>
                 EDIT
               </button>
             </Link>

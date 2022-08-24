@@ -16,6 +16,14 @@ const BusinessInfo = ({ user, refetch }) => {
 
   const [updateBusinessInfo, result] = useUpdateBusinessInfoMutation();
 
+  const businessInfoAvailable =
+    user.business.name &&
+    user.business.country &&
+    user.business.state &&
+    user.business.city &&
+    user.business.zipCode &&
+    user.business.address;
+
   const handleSaveBusinessInfo = async (e) => {
     e.preventDefault();
 
@@ -140,46 +148,63 @@ const BusinessInfo = ({ user, refetch }) => {
             </button>
           </form>
         </Modal>
-        <div className='w-11/12 mx-auto flex justify-between pl-4 mt-2'>
-          <div className='text-left'>
-            <p className='text-lg font-medium'>Business name</p>
-          </div>
-          <div className='text-right'>
-            <p className='text-lg'>{user?.business?.name}</p>
-          </div>
-        </div>
-        <div className='w-11/12 mx-auto p-4 flex items-center'>
-          <p className='font-medium text-gray-400'>Location</p>
-          <Tooltip
-            title={
-              <p className='text-lg'>
-                For generating shipping labels and returns
-              </p>
-            }
-            className='ml-2 text-lg'
-            placement='right-end'
-          >
-            <button>
-              <AiOutlineInfoCircle className='text-gray-400' />
+        {businessInfoAvailable ? (
+          <>
+            <div className='w-11/12 mx-auto flex justify-between pl-4 mt-2'>
+              <div className='text-left'>
+                <p className='text-lg font-medium'>Business name</p>
+              </div>
+              <div className='text-right'>
+                <p className='text-lg'>{user?.business?.name}</p>
+              </div>
+            </div>
+            <div className='w-11/12 mx-auto p-4 flex items-center'>
+              <p className='font-medium text-gray-400'>Location</p>
+              <Tooltip
+                title={
+                  <p className='text-lg'>
+                    For generating shipping labels and returns
+                  </p>
+                }
+                className='ml-2 text-lg'
+                placement='right-end'
+              >
+                <button>
+                  <AiOutlineInfoCircle className='text-gray-400' />
+                </button>
+              </Tooltip>
+            </div>
+            <div className='w-11/12 mx-auto flex justify-between pl-4'>
+              <div className='text-left'>
+                <p className='text-lg font-medium'>Address</p>
+                <p className='text-lg font-medium mt-2'>Country</p>
+                <p className='text-lg font-medium mt-2'>State/province</p>
+                <p className='text-lg font-medium mt-2'>City</p>
+                <p className='text-lg font-medium mt-2'>Zipcode</p>
+              </div>
+              <div className='text-right'>
+                <p className='text-lg'>{user?.business?.address}</p>
+                <p className='text-xl mt-2'>{user?.business?.country}</p>
+                <p className='text-xl mt-2'>{user?.business?.state}</p>
+                <p className='text-xl mt-2'>{user?.business?.city}</p>
+                <p className='text-xl mt-2'>{user?.business?.zipCode}</p>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className='w-11/12 mx-auto border-2 rounded h-28 w-full flex flex-col justify-center items-center mt-4'>
+            <p className='text-lg font-medium text-slate-800'>
+              Business details not completed yet
+            </p>
+            <p className='text-gray-400 text-medium'>
+              These are needed so we can calculate shipping rates properly and
+              generate shipping labels
+            </p>
+            <button onClick={openModal} className='text-gray-400 mt-2'>
+              + add business details
             </button>
-          </Tooltip>
-        </div>
-        <div className='w-11/12 mx-auto flex justify-between pl-4'>
-          <div className='text-left'>
-            <p className='text-lg font-medium'>Address</p>
-            <p className='text-lg font-medium mt-2'>Country</p>
-            <p className='text-lg font-medium mt-2'>State/province</p>
-            <p className='text-lg font-medium mt-2'>City</p>
-            <p className='text-lg font-medium mt-2'>Zipcode</p>
           </div>
-          <div className='text-right'>
-            <p className='text-lg'>{user?.business?.address}</p>
-            <p className='text-xl mt-2'>{user?.business?.country}</p>
-            <p className='text-xl mt-2'>{user?.business?.state}</p>
-            <p className='text-xl mt-2'>{user?.business?.city}</p>
-            <p className='text-xl mt-2'>{user?.business?.zipCode}</p>
-          </div>
-        </div>
+        )}
       </div>
     </>
   );

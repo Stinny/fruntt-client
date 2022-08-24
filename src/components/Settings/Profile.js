@@ -65,7 +65,7 @@ const Profile = ({ user, refetch }) => {
             <input
               type='text'
               className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded-lg p-2'
-              placeholder='First name'
+              placeholder='Enter first name'
               onChange={(e) => setFirstName(e.target.value)}
               value={firstName}
             />
@@ -73,7 +73,7 @@ const Profile = ({ user, refetch }) => {
             <input
               type='text'
               className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded-lg p-2'
-              placeholder='First name'
+              placeholder='Enter last name'
               onChange={(e) => setLastName(e.target.value)}
               value={lastName}
             />
@@ -102,16 +102,33 @@ const Profile = ({ user, refetch }) => {
         </Modal>
 
         <div className='text-left'>
-          <p className='text-lg font-medium'>First name</p>
-          <p className='text-lg font-medium mt-2'>Last name</p>
           <p className='text-lg font-medium mt-2'>Account email</p>
         </div>
         <div className='text-right'>
-          <p className='text-xl'>{user.firstName}</p>
-          <p className='text-xl mt-2'>{user?.lastName}</p>
           <p className='text-xl mt-2'>{user?.email}</p>
         </div>
       </div>
+      {user.firstName && user.lastName ? (
+        <div className='w-11/12 mx-auto flex justify-between p-4'>
+          <div className='text-left'>
+            <p className='text-lg font-medium'>First name</p>
+            <p className='text-lg font-medium mt-2'>Last name</p>
+          </div>
+          <div className='text-right'>
+            <p className='text-xl'>{user?.firstName}</p>
+            <p className='text-xl mt-2'>{user?.lastName}</p>
+          </div>
+        </div>
+      ) : (
+        <div className='w-11/12 mx-auto border-2 rounded h-14 w-full flex flex-col justify-center items-center'>
+          <p className='text-lg font-medium text-slate-800'>
+            Personal details not added yet
+          </p>
+          <button onClick={openModal} className='text-gray-400'>
+            + add personal details
+          </button>
+        </div>
+      )}
     </>
   );
 };

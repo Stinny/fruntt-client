@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 
 const Billing = () => {
   return (
-    <div className='flex justify-center items-center w-full h-40'>
-      <Link to='/dashboard/plans'>
-        <button className='h-20 w-40 rounded border-2 border-gray-400 text-gray-400'>
-          View Plans
-        </button>
-      </Link>
+    <div className='flex justify-center items-center w-full h-32 border-2 rounded mt-2'>
+      <p className='text-slate-800 font-medium'>
+        Pricing for this platform is still being figured out, for now enjoy for
+        free
+      </p>
     </div>
   );
 };

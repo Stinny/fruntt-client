@@ -33,6 +33,7 @@ import AddItem from './pages/Dashboard/AddItem';
 import EditDesign from './pages/Dashboard/EditDesign';
 import ConfirmEmail from './pages/ConfirmEmail';
 import DesignPreview from './pages/DesignPreview';
+import Content from './pages/Dashboard/Content';
 
 function App() {
   return (
@@ -79,6 +80,8 @@ function App() {
 
                 <Route path='/dashboard/design' element={<Design />} />
 
+                <Route path='/dashboard/content' element={<Content />} />
+
                 <Route path='/dashboard/design/edit' element={<EditDesign />} />
 
                 <Route
@@ -88,7 +91,7 @@ function App() {
 
                 <Route path='dashboard/marketing' element={<Marketing />} />
 
-                <Route path='dashboard/item/add/buynow' element={<AddItem />} />
+                <Route path='dashboard/item/add' element={<AddItem />} />
 
                 <Route
                   path='dashboard/item/edit/:productId'

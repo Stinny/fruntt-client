@@ -35,7 +35,7 @@ const Home = () => {
             </p>
             <Link to='/signup' className='flex justify-center mt-8'>
               <button className='rounded text-slate-800 w-5/12 h-10 text-xl mt-4 border-blue-300 border-2 hover:bg-blue-300 flex items-center justify-center'>
-                Deploy a Fruntt - for free
+                Launch a Fruntt - for free
               </button>
             </Link>
           </div>

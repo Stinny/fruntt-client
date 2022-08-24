@@ -2,28 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { HexColorPicker, HexColorInput } from 'react-colorful';
 import { useEditStylesMutation } from '../../api/storefrontApiSlice';
 import { useNavigate, Link } from 'react-router-dom';
-
-import { useDispatch } from 'react-redux';
-import { setPageBckGrnd } from '../../redux/design';
+import DesignPreview from '../../pages/DesignPreview';
 
 //mui
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import DesignPreview from '../../pages/DesignPreview';
+import Switch from '@mui/material/Switch';
 
 const DesignForm = ({ storefront }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [navbarBG, setNavbarBG] = useState(storefront?.style?.navbarBackground);
   const [pageBG, setPageBG] = useState(storefront?.style?.pageBackground);
 
-  const [buttonBG, setButtonBG] = useState(storefront?.style?.buttonBackground);
+  const [buttonColor, setButtonColor] = useState(
+    storefront?.style?.buttonColor
+  );
   const [buttonTextColor, setButtonTextColor] = useState(
     storefront?.style?.buttonTextColor
   );
   const [pageText, setPageText] = useState(storefront?.style?.pageText);
   const [footerBG, setFooterBG] = useState(storefront?.style?.footerBackground);
+  const [buttonStyle, setButtonStyle] = useState(
+    storefront?.style?.buttonStyle
+  );
+  const [socialIcons, setSocialIcons] = useState(
+    storefront?.style?.socialIcons
+  );
+  const [hideNav, setHideNav] = useState(storefront?.style?.hideNav);
+  const [hideFooter, setHideFooter] = useState(storefront?.style?.hideFooter);
 
   //for changing between the edit/preview view
   const [view, setView] = useState('edit');
@@ -34,6 +41,10 @@ const DesignForm = ({ storefront }) => {
     setView(e.target.value);
   };
 
+  const handleBtnStyle = (e) => {
+    setButtonStyle(e.target.value);
+  };
+  console.log(storefront);
   const handleSaveStyles = async (e) => {
     e.preventDefault();
 
@@ -42,11 +53,19 @@ const DesignForm = ({ storefront }) => {
       navbarBG,
       pageBG,
       pageText,
-      buttonBG,
+      buttonColor,
       buttonTextColor,
       footerBG,
+      buttonStyle,
+      hideNav,
+      hideFooter,
+      socialIcons,
     }).unwrap();
     if (editStylesReq === 'Styles saved') navigate('/dashboard/design');
+  };
+
+  const handleCancel = () => {
+    navigate('/dashboard/design');
   };
 
   const designForm = () => {
@@ -63,7 +82,7 @@ const DesignForm = ({ storefront }) => {
                   color={pageBG}
                   onChange={setPageBG}
                   prefixed
-                  className='w-28 h-10 border-2 rounded mr-4 p-2'
+                  className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
                 />
               </div>
               <HexColorPicker
@@ -76,14 +95,22 @@ const DesignForm = ({ storefront }) => {
 
           <div className='w-full flex justify-between items-center p-2 border-b mx-auto'>
             <p className='text-xl font-medium'>Navbar background</p>
+
             <div className='flex justify-between items-center'>
               <div className='flex justify-between items-center'>
+                <div className='flex justify-between items-center mr-10'>
+                  <p className='text-gray-400 mr-2'>Hide navbar</p>
+                  <Switch
+                    checked={hideNav}
+                    onChange={(e) => setHideNav(e.target.checked)}
+                  />
+                </div>
                 <p className='text-gray-400 mr-2'>Hex value:</p>
                 <HexColorInput
                   color={navbarBG}
                   onChange={setNavbarBG}
                   prefixed
-                  className='w-28 h-10 border-2 rounded mr-4 p-2'
+                  className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
                 />
               </div>
               <HexColorPicker
@@ -98,12 +125,19 @@ const DesignForm = ({ storefront }) => {
             <p className='text-xl font-medium'>Footer background</p>
             <div className='flex justify-between items-center'>
               <div className='flex justify-between items-center'>
+                <div className='flex justify-between items-center mr-10'>
+                  <p className='text-gray-400 mr-2'>Hide footer</p>
+                  <Switch
+                    checked={hideFooter}
+                    onChange={(e) => setHideFooter(e.target.checked)}
+                  />
+                </div>
                 <p className='text-gray-400 mr-2'>Hex value:</p>
                 <HexColorInput
                   color={footerBG}
                   onChange={setFooterBG}
                   prefixed
-                  className='w-28 h-10 border-2 rounded mr-4 p-2'
+                  className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
                 />
               </div>
               <HexColorPicker
@@ -123,7 +157,7 @@ const DesignForm = ({ storefront }) => {
                   color={pageText}
                   onChange={setPageText}
                   prefixed
-                  className='w-28 h-10 border-2 rounded mr-4 p-2'
+                  className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
                 />
               </div>
               <HexColorPicker
@@ -134,23 +168,57 @@ const DesignForm = ({ storefront }) => {
             </div>
           </div>
 
-          <p className='text-gray-400 font-medium mt-4'>Button Styles</p>
-
           <div className='w-full flex justify-between items-center p-2 border-b mx-auto'>
-            <p className='text-xl font-medium'>Button background:</p>
+            <p className='text-xl font-medium'>Social icons</p>
+
             <div className='flex justify-between items-center'>
               <div className='flex justify-between items-center'>
                 <p className='text-gray-400 mr-2'>Hex value:</p>
                 <HexColorInput
-                  color={buttonBG}
-                  onChange={setButtonBG}
+                  color={socialIcons}
+                  onChange={setSocialIcons}
                   prefixed
-                  className='w-28 h-10 border-2 rounded mr-4 p-2'
+                  className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
                 />
               </div>
               <HexColorPicker
-                color={buttonBG}
-                onChange={setButtonBG}
+                color={socialIcons}
+                onChange={setSocialIcons}
+                style={{ width: '200px', height: '75px' }}
+              />
+            </div>
+          </div>
+
+          <p className='text-gray-400 font-medium mt-4'>Button Styles</p>
+
+          <div className='w-full flex justify-between items-center p-2 border-b mx-auto'>
+            <p className='text-xl font-medium'>Button style:</p>
+
+            <ToggleButtonGroup
+              value={buttonStyle}
+              exclusive
+              onChange={handleBtnStyle}
+            >
+              <ToggleButton value='filled'>Filled</ToggleButton>
+              <ToggleButton value='outlined'>Outlined</ToggleButton>
+            </ToggleButtonGroup>
+          </div>
+
+          <div className='w-full flex justify-between items-center p-2 border-b mx-auto'>
+            <p className='text-xl font-medium'>Button color:</p>
+            <div className='flex justify-between items-center'>
+              <div className='flex justify-between items-center'>
+                <p className='text-gray-400 mr-2'>Hex value:</p>
+                <HexColorInput
+                  color={buttonColor}
+                  onChange={setButtonColor}
+                  prefixed
+                  className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+                />
+              </div>
+              <HexColorPicker
+                color={buttonColor}
+                onChange={setButtonColor}
                 style={{ width: '200px', height: '75px' }}
               />
             </div>
@@ -165,7 +233,7 @@ const DesignForm = ({ storefront }) => {
                   color={buttonTextColor}
                   onChange={setButtonTextColor}
                   prefixed
-                  className='w-28 h-10 border-2 rounded mr-4 p-2'
+                  className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
                 />
               </div>
               <HexColorPicker
@@ -181,6 +249,12 @@ const DesignForm = ({ storefront }) => {
           className='w-full h-20 border-2 border-slate-800 text-slate-800 rounded text-xl'
         >
           SAVE STYLES
+        </button>
+        <button
+          onClick={handleCancel}
+          className='w-full h-10 rounded border-red-400 text-red-400 border-2 mt-2'
+        >
+          CANCEL
         </button>
       </form>
     );
@@ -198,12 +272,20 @@ const DesignForm = ({ storefront }) => {
           </ToggleButtonGroup>
         </div>
 
-        <button
-          onClick={handleSaveStyles}
-          className='w-32 h-10 rounded border-slate-800 border-2'
-        >
-          SAVE
-        </button>
+        <div className='flex'>
+          <button
+            onClick={handleCancel}
+            className='w-32 h-10 rounded border-red-400 text-red-400 border-2'
+          >
+            CANCEL
+          </button>
+          <button
+            onClick={handleSaveStyles}
+            className='w-32 h-10 rounded border-slate-800 border-2 ml-2'
+          >
+            SAVE
+          </button>
+        </div>
       </div>
       {view === 'edit' ? (
         designForm()
@@ -211,11 +293,16 @@ const DesignForm = ({ storefront }) => {
         <DesignPreview
           pageBG={pageBG}
           navbarBG={navbarBG}
-          buttonBG={buttonBG}
+          buttonColor={buttonColor}
           buttonTextColor={buttonTextColor}
+          buttonStyle={buttonStyle}
           pageText={pageText}
           footerBG={footerBG}
           storefrontId={storefront._id}
+          hideNav={hideNav}
+          socialIcons={socialIcons}
+          hideFooter={hideFooter}
+          storefront={storefront}
         />
       )}
     </div>
