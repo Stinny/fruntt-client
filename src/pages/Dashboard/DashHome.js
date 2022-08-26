@@ -6,11 +6,13 @@ import { Navigate, Link } from 'react-router-dom';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import Cookies from 'js-cookie';
 import Footer from '../../components/Footer';
+import Spinner from '../../components/Spinner';
 
 //mui
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
 import { BsArrowRightShort } from 'react-icons/bs';
+import { useGetStoreStatsQuery } from '../../api/storefrontApiSlice';
 
 const DashHome = () => {
   const currentUser = JSON.parse(Cookies.get('currentUser'));
@@ -19,21 +21,19 @@ const DashHome = () => {
   //(toggle between monthly, weekly, daily)
   //revenue, # of orders, # of customers, recent orders that links to orders page, graph display
 
-  return (
-    <>
-      <Navbar />
-      <Topbar />
-      <div className='max-w-6xl mx-auto h-screen'>
-        {/* {currentUser.trial && (
-          <Alert severity='info' className='mt-4 mb-4 w-full'>
-            While you are in trial mode, checkout will not be available in your
-            storefront. Pick a plan in{' '}
-            <Link to='/settings' className='text-blue-900 font-semibold'>
-              settings
-            </Link>{' '}
-            under billing to open checkout
-          </Alert>
-        )} */}
+  const { data: stats, isLoading, isSuccess } = useGetStoreStatsQuery({
+    storeId: currentUser?.storeId,
+  });
+
+  if (isSuccess) console.log(stats);
+
+  let content;
+
+  if (isLoading) {
+    content = <Spinner />;
+  } else if (isSuccess) {
+    content = (
+      <>
         {!currentUser.stripeOnboard && (
           <Alert severity='error' className='mt-4 mb-4 w-full'>
             <p>
@@ -63,7 +63,7 @@ const DashHome = () => {
               </button>
             </Tooltip>
             <p className='text-xl font-medium'>Revenue</p>
-            <p className='text-4xl font-medium'>$0.00</p>
+            <p className='text-4xl font-medium'>${stats?.revenue.toFixed(2)}</p>
           </div>
 
           <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 ml-4 relative'>
@@ -81,7 +81,7 @@ const DashHome = () => {
               </button>
             </Tooltip>
             <p className='text-xl font-medium'>Number of orders</p>
-            <p className='text-4xl font-medium'>0</p>
+            <p className='text-4xl font-medium'>{stats?.numOfOrders}</p>
           </div>
 
           <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 ml-4 relative'>
@@ -99,7 +99,7 @@ const DashHome = () => {
               </button>
             </Tooltip>
             <p className='text-xl font-medium'>Store visits</p>
-            <p className='text-4xl font-medium'>0</p>
+            <p className='text-4xl font-medium'>{stats?.visits}</p>
           </div>
 
           <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 ml-4 relative'>
@@ -117,7 +117,7 @@ const DashHome = () => {
               </button>
             </Tooltip>
             <p className='text-xl font-medium'>Conversions</p>
-            <p className='text-4xl font-medium'>0%</p>
+            <p className='text-4xl font-medium'>{stats?.conversion}%</p>
           </div>
         </div>
 
@@ -166,7 +166,15 @@ const DashHome = () => {
         <div className='w-full h-72 border-2 mt-4 rounded flex justify-center items-center'>
           <p>Graph going here</p>
         </div>
-      </div>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Navbar />
+      <Topbar />
+      <div className='max-w-6xl mx-auto h-screen'>{content}</div>
       <Footer />
     </>
   );

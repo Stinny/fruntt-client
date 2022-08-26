@@ -8,10 +8,10 @@ import {
   AiOutlineTwitter,
 } from 'react-icons/ai';
 import Spinner from '../components/Spinner';
+import { Link } from 'react-router-dom';
 
 //mui
 import Alert from '@mui/material/Alert';
-import { Link } from 'react-router-dom';
 
 const DesignPreview = ({
   pageBG,
@@ -54,8 +54,8 @@ const DesignPreview = ({
             }}
           >
             <div className='w-11/12 h-full flex items-center mx-auto'>
-              {storefront.logo.url ? (
-                <img src={storefront.logo.url} className='h-10' />
+              {storefront?.logo?.url ? (
+                <img src={storefront?.logo?.url} className='h-10' />
               ) : (
                 <h2
                   style={{ color: pageText }}

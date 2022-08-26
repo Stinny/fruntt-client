@@ -153,7 +153,7 @@ const AddLogo = ({ storefront, refetch }) => {
             .fruntt.com
           </p>
           <p className='text-gray-400 font-medium mt-2'>Logo</p>
-          {storefront.logo.url ? (
+          {storefront?.logo?.url ? (
             <div className=''>
               <img src={storefront?.logo?.url} className='h-16' />
               <button

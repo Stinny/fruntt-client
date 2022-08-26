@@ -5,6 +5,9 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
     getStorefront: builder.query({
       query: () => '/storefront',
     }),
+    getStoreStats: builder.query({
+      query: ({ storeId }) => `/storefront/storestats/${storeId}`,
+    }),
     addSocials: builder.mutation({
       query: ({ storeId, youtube, facebook, instagram, twitter }) => ({
         url: `/storefront/addsocials`,
@@ -78,4 +81,5 @@ export const {
   useAddLogoMutation,
   useDeleteLogoMutation,
   useAddSocialsMutation,
+  useGetStoreStatsQuery,
 } = storefrontApiSlice;
