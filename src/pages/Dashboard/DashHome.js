@@ -126,7 +126,7 @@ const DashHome = () => {
         </div>
 
         <div className='w-full mt-4 mb-4 flex justify between'>
-          <div className='w-8/12 rounded-md h-40 bg-gray-200 p-2'>
+          <div className='w-8/12 drop-shadow-md rounded-md h-40 bg-gray-200 p-2'>
             <p className='text-xl font-medium'>Orders & Item</p>
             {stats?.numOfUnfulfilledOrders ? (
               <p className='text-3xl font-medium mt-2'>
@@ -161,7 +161,7 @@ const DashHome = () => {
               </p>
             )}
           </div>
-          <div className='w-4/12 mx-auto rounded-md bg-gray-200 h-40 ml-4 flex flex-col justify-center p-2'>
+          <div className='w-4/12 drop-shadow-md mx-auto rounded-md bg-gray-200 h-40 ml-4 flex flex-col justify-center p-2'>
             <div className='w-full flex mx-auto justify-between items-center'>
               <Link to='/dashboard/item' className='w-6/12 h-14'>
                 <button className='w-full h-full border-2 border-slate-800 rounded-tl-lg'>
