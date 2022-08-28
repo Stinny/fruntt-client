@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Navbar from '../../components/Navbar';
 import Topbar from '../../components/Topbar';
@@ -21,11 +21,13 @@ const DashHome = () => {
   //(toggle between monthly, weekly, daily)
   //revenue, # of orders, # of customers, recent orders that links to orders page, graph display
 
-  const { data: stats, isLoading, isSuccess } = useGetStoreStatsQuery({
+  const { data: stats, isLoading, isSuccess, refetch } = useGetStoreStatsQuery({
     storeId: currentUser?.storeId,
   });
 
-  if (isSuccess) console.log(stats);
+  useEffect(() => {
+    refetch();
+  }, []);
 
   let content;
 
@@ -116,7 +118,7 @@ const DashHome = () => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-xl font-medium'>Conversions</p>
+            <p className='text-xl font-medium'>Conversion rate</p>
             <p className='text-4xl font-medium'>
               {stats?.conversion.toFixed(2)}%
             </p>
@@ -125,16 +127,39 @@ const DashHome = () => {
 
         <div className='w-full mt-4 mb-4 flex justify between'>
           <div className='w-8/12 rounded-md h-40 bg-gray-200 p-2'>
-            <p className='text-xl font-medium'>Orders</p>
-            <p className='text-3xl font-medium mt-2'>
-              You have no recent orders
-            </p>
+            <p className='text-xl font-medium'>Orders & Item</p>
+            {stats?.numOfUnfulfilledOrders ? (
+              <p className='text-3xl font-medium mt-2'>
+                {stats?.numOfUnfulfilledOrders > 1
+                  ? `You have ${stats?.numOfUnfulfilledOrders} unfulfilled orders`
+                  : `You have ${stats?.numOfUnfulfilledOrders} unfulfilled order`}
+              </p>
+            ) : (
+              <p className='text-3xl font-medium mt-2'>
+                You have no recent orders
+              </p>
+            )}
             <Link to='/dashboard/orders' className='mt-2'>
-              <div className='flex items-center mt-2'>
+              <div className='flex items-center'>
                 <p>View orders</p>
                 <BsArrowRightShort />
               </div>
             </Link>
+            {stats?.itemStock <= 10 ? (
+              <p className='mt-2'>
+                Item stock:{' '}
+                <span className='text-red-400 font-medium'>
+                  {stats?.itemStock} units left
+                </span>
+              </p>
+            ) : (
+              <p className='mt-2'>
+                Item stock:{' '}
+                <span className='text-slate-800 font-medium'>
+                  {stats?.itemStock} units left
+                </span>
+              </p>
+            )}
           </div>
           <div className='w-4/12 mx-auto rounded-md bg-gray-200 h-40 ml-4 flex flex-col justify-center p-2'>
             <div className='w-full flex mx-auto justify-between items-center'>

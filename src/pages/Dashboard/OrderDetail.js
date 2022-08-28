@@ -43,11 +43,13 @@ const OrderDetail = () => {
             </p>
           </div>
           <div className='flex items-center'>
-            <button className='border-2 w-44 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'>
-              Create Shipping Label
-            </button>
+            <a href={order?.labelUrl} target='_blank'>
+              <button className='border-2 w-44 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'>
+                View Shipping Label
+              </button>
+            </a>
             {order.fulfilled ? (
-              <div className='flex items-center ml-2'>
+              <div className='flex items-center justify-center ml-2 border-2 ml-2 w-40 h-10 rounded text-slate-800 border-gray-400 '>
                 <p>Order Fulfilled</p>
                 <AiOutlineCheckCircle className='text-green-600 text-xl' />
               </div>

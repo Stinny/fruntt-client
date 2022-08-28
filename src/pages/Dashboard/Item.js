@@ -93,7 +93,7 @@ const Item = () => {
             <p className='text-gray-400 mt-4'>Item Price</p>
             <p className='text-2xl mt-4'>${product[0]?.price.toFixed(2)}</p>
             <p className='text-gray-400 mt-4'>Item Stock</p>
-            <p className='text-2xl mt-4'>{product[0]?.stock} units</p>
+            <p className='text-2xl mt-4'>{product[0]?.stock} units left</p>
           </div>
 
           <p className='text-xl font-medium mt-4'>Package</p>
