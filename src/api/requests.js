@@ -17,5 +17,6 @@ export const uploadImageRequest = axios.create({
     Authorization: `Bearer ${currentUser?.accessToken}`,
     'Content-Type':
       'multipart/form-data; boundary=----WebKitFormBoundaryyEmKNDsBKjB7QEqu',
+    'Access-Control-Allow-Origin': '*',
   },
 });
