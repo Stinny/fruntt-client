@@ -12,7 +12,7 @@ export const apiRequest = axios.create({
 });
 
 export const uploadImageRequest = axios.create({
-  baseURL: BASE_URL,
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     Authorization: `Bearer ${currentUser?.accessToken}`,
     'Content-Type':
