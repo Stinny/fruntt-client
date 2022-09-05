@@ -33,33 +33,34 @@ const AddLogo = ({ storefront, refetch }) => {
   //this needs to be refactored at some point to better handle errors
   const handleAddLogo = async (e) => {
     e.preventDefault();
-
-    console.log(logoFile[0].file);
-
-    const image = new FormData();
-    image.append('productImages', logoFile[0].file);
+    let logoUrl = '';
+    let logoKey = '';
 
     try {
-      const imageDataReq = await uploadImageRequest.post(
-        '/products/imageupload',
-        image
-      );
-      if (imageDataReq.data) {
-        const addLogoReq = await addLogo({
-          storeId: storefront._id,
-          logoUrl: imageDataReq.data[0].url,
-          logoKey: imageDataReq.data[0].key,
-          name: name,
-        }).unwrap();
+      //if files were added, upload to server and cheange logo url/key
+      if (logoFile.length) {
+        const image = new FormData();
+        image.append('productImages', logoFile[0].file);
+        const imageDataReq = await uploadImageRequest.post(
+          '/products/imageupload',
+          image
+        );
+        logoUrl = imageDataReq.data[0].url;
+        logoKey = imageDataReq.data[0].key;
+      }
 
-        if (addLogoReq === 'Logo added') {
-          refetch();
-          closeModal();
-        } else {
-          refetch();
-          return;
-        }
+      const addLogoReq = await addLogo({
+        storeId: storefront._id,
+        logoUrl: logoUrl,
+        logoKey: logoKey,
+        name: name,
+      }).unwrap();
+
+      if (addLogoReq === 'Logo added') {
+        refetch();
+        closeModal();
       } else {
+        refetch();
         return;
       }
     } catch (err) {
@@ -109,6 +110,8 @@ const AddLogo = ({ storefront, refetch }) => {
               />
               <p>.frunt.com</p>
             </div>
+
+            <p className='font-medium text-center mt-2 mb-2'>OR</p>
           </form>
           <p className='mt-2'>+ add new logo</p>
           <FilePond

@@ -36,7 +36,7 @@ const Content = () => {
 
         <AddSocials storefront={storefront} refetch={refetch} />
 
-        <FAQs />
+        <FAQs storefront={storefront} />
 
         <AddMedia />
       </>

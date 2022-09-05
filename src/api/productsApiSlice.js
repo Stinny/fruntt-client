@@ -80,6 +80,17 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       query: (productId) => `/products/images/${productId}`,
       keepUnusedDataFor: 5,
     }),
+    addFAQ: builder.mutation({
+      query: ({ productId, question, answer }) => ({
+        url: `/products/addfaq`,
+        method: 'POST',
+        body: {
+          productId: productId,
+          question: question,
+          answer: answer,
+        },
+      }),
+    }),
   }),
 });
 
@@ -91,6 +102,7 @@ export const {
   useUpdateProductMutation,
   useDeleteItemImageMutation,
   useGetItemImagesQuery,
+  useAddFAQMutation,
 } = productsApiSlice;
 
 // const selectProductsResult = productsApiSlice.endpoints.getProducts.select();

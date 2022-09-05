@@ -52,7 +52,6 @@ const AddItem = () => {
 
     if (
       !title ||
-      !description ||
       !price ||
       !stock ||
       !weight ||
