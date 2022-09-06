@@ -34,6 +34,7 @@ const DashHome = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
+    console.log(stats);
     content = (
       <>
         {!currentUser.stripeOnboard && (
@@ -191,7 +192,7 @@ const DashHome = () => {
         </div>
 
         <div className='w-full h-72 border-2 mt-4 rounded flex justify-center items-center'>
-          <p>Graph going here</p>
+          <p className='text-gray-400'>Graph display coming soon</p>
         </div>
       </>
     );

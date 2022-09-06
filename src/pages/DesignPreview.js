@@ -134,16 +134,54 @@ const DesignPreview = ({
             {/* Other stuff for the item */}
             <div className='mt-10'>
               <p className='text-2xl' style={{ color: pageText }}>
-                FAQs
+                Customer questions
               </p>
-              <div
-                style={{ borderColor: pageText }}
-                className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
-              >
-                <p className='font-medium text-xl' style={{ color: pageText }}>
-                  FAQs have been asked yet!
-                </p>
+
+              <div className='mt-2'>
+                {item[0]?.faqs.length ? (
+                  item[0]?.faqs.map((faq) => (
+                    <div
+                      className='flex flex-col border-2 rounded p-2 mb-2'
+                      style={{ borderColor: storefront?.style?.pageText }}
+                    >
+                      <p style={{ color: storefront?.style?.pageText }}>
+                        <span
+                          className='font-medium'
+                          style={{ color: storefront?.style?.pageText }}
+                        >
+                          Question:
+                        </span>{' '}
+                        {faq.question}
+                      </p>
+                      <p
+                        className='mt-2'
+                        style={{ color: storefront?.style?.pageText }}
+                      >
+                        <span
+                          className='font-medium'
+                          style={{ color: storefront?.style?.pageText }}
+                        >
+                          Answer:
+                        </span>{' '}
+                        {faq.answer}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <div
+                    style={{ borderColor: storefront?.style?.pageText }}
+                    className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
+                  >
+                    <p
+                      className='font-medium text-xl'
+                      style={{ color: storefront?.style?.pageText }}
+                    >
+                      Customer questions have not been posted yet!
+                    </p>
+                  </div>
+                )}
               </div>
+
               <p className='text-2xl mt-4' style={{ color: pageText }}>
                 Customer Reviews
               </p>

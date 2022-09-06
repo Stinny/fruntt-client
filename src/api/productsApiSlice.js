@@ -91,6 +91,16 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    deleteFAQ: builder.mutation({
+      query: ({ productId, faqId }) => ({
+        url: `/products/deletefaq`,
+        method: 'POST',
+        body: {
+          productId: productId,
+          faqId: faqId,
+        },
+      }),
+    }),
   }),
 });
 
@@ -103,18 +113,5 @@ export const {
   useDeleteItemImageMutation,
   useGetItemImagesQuery,
   useAddFAQMutation,
+  useDeleteFAQMutation,
 } = productsApiSlice;
-
-// const selectProductsResult = productsApiSlice.endpoints.getProducts.select();
-
-// const selectProductsData = createSelector(
-//   selectProductsResult,
-//   (productsResult) => productsResult.data
-// );
-
-// export const {
-//   selectAll: selectAllProducts,
-//   selectById: selectProductById,
-// } = productsAdapter.getSelectors(
-//   (state) => selectProductsData(state) ?? initialState
-// );

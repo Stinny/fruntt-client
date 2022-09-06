@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import {
   useAddFAQMutation,
   useGetProductsQuery,
+  useDeleteFAQMutation,
 } from '../../api/productsApiSlice';
 import { Link } from 'react-router-dom';
 
@@ -14,26 +15,45 @@ const FAQs = () => {
   const [answer, setAnswer] = useState('');
 
   const [addFAQ, result] = useAddFAQMutation();
+  const [deleteFAQ, { result: deleteFAQRes }] = useDeleteFAQMutation();
 
-  const { data: item, isLoading, isSuccess } = useGetProductsQuery();
+  const { data: item, isLoading, isSuccess, refetch } = useGetProductsQuery();
 
   const handleAddFAQ = async (e) => {
     e.preventDefault();
 
     //only if item was retrieved successfully
     if (isSuccess) {
-      console.log(item);
       try {
         const addFAQReq = await addFAQ({
-          productId: item?._id,
+          productId: item[0]?._id,
           question: question,
           answer: answer,
         }).unwrap();
-        console.log(addFAQReq);
+
+        if (addFAQReq === 'FAQ added') {
+          refetch();
+          closeModal();
+        }
       } catch (err) {
         closeModal();
         return;
       }
+    }
+  };
+
+  const handleDeleteFAQ = async (faqId) => {
+    try {
+      const deleteFAQReq = await deleteFAQ({
+        productId: item[0]?._id,
+        faqId: faqId,
+      }).unwrap();
+
+      if (deleteFAQReq === 'FAQ deleted') {
+        refetch();
+      }
+    } catch (err) {
+      return;
     }
   };
 
@@ -115,22 +135,45 @@ const FAQs = () => {
 
         {item?.length ? (
           <div className='p-4'>
-            <div className='w-full mx-auto rounded border-2 flex flex-col justify-center items-center mt-2 p-2'>
-              <p className='text-slate-800 text-xl font-medium'>
-                You have not added any FAQs yet
-              </p>
-              <p className='text-gray-400 w-7/12 text-center mt-2'>
-                These FAQs are visible on your storefront for customers to read.
-                They should relate to whatever item you have added.
-              </p>
-              <button
-                type='button'
-                className='border-2 border-slate-800 rounded text-slate-800 w-32 h-10 mt-2'
-                onClick={openModal}
-              >
-                + Add FAQ
-              </button>
-            </div>
+            {item[0]?.faqs?.length ? (
+              <div className='w-full flex flex-col'>
+                {item[0].faqs.map((faq) => (
+                  <div className='flex flex-col border-2 rounded p-2 mb-2 relative'>
+                    <p>
+                      <span className='font-medium'>Question:</span>{' '}
+                      {faq.question}
+                    </p>
+                    <p className='mt-2'>
+                      <span className='font-medium'>Answer:</span> {faq.answer}
+                    </p>
+                    <button
+                      onClick={(e) => handleDeleteFAQ(faq._id)}
+                      className='absolute right-0 mr-2 text-red-400 hover:text-red-600'
+                      type='button'
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className='w-full mx-auto rounded border-2 flex flex-col justify-center items-center mt-2 p-2'>
+                <p className='text-slate-800 text-xl font-medium'>
+                  You have not added any FAQs yet
+                </p>
+                <p className='text-gray-400 w-7/12 text-center mt-2'>
+                  These FAQs are visible on your storefront for customers to
+                  read. They should relate to whatever item you have added.
+                </p>
+                <button
+                  type='button'
+                  className='border-2 border-slate-800 rounded text-slate-800 w-32 h-10 mt-2'
+                  onClick={openModal}
+                >
+                  + Add FAQ
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <div className='p-4'>
