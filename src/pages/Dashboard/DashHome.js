@@ -34,7 +34,6 @@ const DashHome = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    console.log(stats);
     content = (
       <>
         {!currentUser.stripeOnboard && (
