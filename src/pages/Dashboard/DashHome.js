@@ -121,7 +121,7 @@ const DashHome = () => {
             </Tooltip>
             <p className='text-xl font-medium'>Conversion rate</p>
             <p className='text-4xl font-medium'>
-              {stats?.conversion.toFixed(2)}%
+              {stats?.conversion > 0 ? stats?.conversion.toFixed(2) : '0'}%
             </p>
           </div>
         </div>

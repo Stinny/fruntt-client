@@ -10,9 +10,13 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       query: ({ orderId }) => `/orders/${orderId}`,
     }),
     fulfillOrder: builder.mutation({
-      query: (orderId) => ({
+      query: ({ orderId, trackingNum, fulfillType }) => ({
         url: `/orders/fulfill/${orderId}`,
         method: 'POST',
+        body: {
+          trackingNum: trackingNum,
+          fulfillType: fulfillType,
+        },
       }),
     }),
   }),

@@ -32,6 +32,8 @@ const AddItem = () => {
   const [length, setLength] = useState(0);
   const [fileList, setFileList] = useState([]);
   const [error, setError] = useState('');
+  const [optionName, setOptionName] = useState('');
+  const [options, setOptions] = useState([]);
 
   const [addProduct, { isLoading }] = useAddProductMutation();
 
@@ -41,11 +43,24 @@ const AddItem = () => {
   const packageInfo =
     'Package details. These details allow us to calculate proper shipping rates and generate shipping labels for your orders';
   const mediaInfo =
-    'Media is needed to showcase your item and can be seen by your customers on your single item storefront.';
+    'Media can be better to showcase your item and its use cases to your customers.';
+  const optionsInfo = 'Add options to your item like size, color, etc.';
+  const inventoryInfo =
+    'This address is needed to properly generate shipping labels.';
+
+  const handleAddOption = (optName) => {
+    console.log(optName);
+    setOptions((prevOptions) => [
+      ...prevOptions,
+      { name: optName, values: [] },
+    ]);
+    console.log(options);
+  };
 
   const handleCancel = () => {
     navigate('/dashboard/item');
   };
+
   //handle adding the item to the server
   const handleAddItem = async (e) => {
     e.preventDefault();
@@ -194,6 +209,37 @@ const AddItem = () => {
                 />
               }
             />
+          </div>
+
+          <div className='flex items-center'>
+            <p className='text-xl font-medium'>Options</p>
+            <Tooltip
+              title={<p className='text-lg'>{optionsInfo}</p>}
+              className='ml-2 text-lg'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+          </div>
+
+          <div>
+            <input onChange={(e) => setOptionName(e.target.value)} />
+            <button onClick={(e) => handleAddOption(optionName)}>Add</button>
+          </div>
+
+          <div className='flex items-center'>
+            <p className='text-xl font-medium'>Inventory stored here</p>
+            <Tooltip
+              title={<p className='text-lg'>{inventoryInfo}</p>}
+              className='ml-2 text-lg'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
           </div>
 
           <div className='flex items-center'>

@@ -163,7 +163,7 @@ const Navbar = () => {
             </p>
           </Link>
           <Link to='/login'>
-            <button className='border-2 text-slate-800 border-blue-300 hover:bg-blue-300 rounded w-20 h-full'>
+            <button className='border-2 text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white rounded w-20 h-full'>
               Login
             </button>
           </Link>

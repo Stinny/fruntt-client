@@ -66,7 +66,7 @@ const Register = () => {
   } else {
     content = (
       <div className='container flex flex-col items-center justify-center mx-auto w-full'>
-        <h2 className='text-4xl font-medium'>Deploy your free Fruntt</h2>
+        <h2 className='text-4xl font-medium mb-4'>Launch your Fruntt</h2>
 
         {error && (
           <Alert severity='error' color='error' className='mt-4 mb-4 w-5/12'>
@@ -101,7 +101,7 @@ const Register = () => {
           <div className='mt-2 flex w-full'>
             <Link to='/login'>
               <p className='text-xs self-start text-slate-400 hover:text-slate-800 font-medium'>
-                Already have a storefront? Login here.
+                Already a merchant? Login here.
               </p>
             </Link>
           </div>
@@ -109,9 +109,9 @@ const Register = () => {
           <button
             type='submit'
             disabled={isLoading}
-            className='h-11 w-full border-2 border-blue-300 hover:bg-blue-300 text-slate-800 rounded text-xl mt-4'
+            className='h-11 w-full border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-xl mt-4'
           >
-            Deploy Fruntt
+            Launch Fruntt
           </button>
         </form>
       </div>

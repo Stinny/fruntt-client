@@ -97,7 +97,7 @@ const Login = () => {
 
           <button
             disabled={isLoading}
-            className='h-11 w-2/6 border-2 border-blue-300 hover:bg-blue-300 text-slate-800 rounded text-xl mt-4'
+            className='h-11 w-2/6 border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-xl mt-4'
           >
             Go to my storefront
           </button>

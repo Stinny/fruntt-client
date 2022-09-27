@@ -25,16 +25,14 @@ const Home = () => {
       <div className='mx-auto h-screen max-w-7xl'>
         <div className='w-full h-full flex flex-col items-center justify-around'>
           <div className='flex flex-col w-10/12 text-center mt-20'>
-            <p className='text-5xl font-medium'>
-              One page. One item. More Conversions.
-            </p>
+            <p className='text-5xl font-medium'>One page. One item.</p>
             <p className='text-xl mt-8 tracking-wider'>
-              Single item storefronts that you can deploy, design, and sell from
+              Single item storefronts that you can launch, design, and sell from
               in minutes. Get your customers attention on ONE single item. Leave
               the shopping cart and distractions behind.
             </p>
             <Link to='/signup' className='flex justify-center mt-8'>
-              <button className='rounded text-slate-800 w-5/12 h-10 text-xl mt-4 border-blue-300 border-2 hover:bg-blue-300 flex items-center justify-center'>
+              <button className='rounded text-slate-800 w-5/12 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
                 Launch a Fruntt - for free
               </button>
             </Link>
@@ -42,52 +40,52 @@ const Home = () => {
 
           <div className='mx-auto w-full flex justify-center'>
             <div className='flex w-full justify-between'>
-              <div className='flex flex-col w-4/12 p-4'>
+              <div className='flex flex-col items-center w-4/12 p-4'>
                 <IoStorefrontOutline className='text-4xl' />
-                <p className='text-lg font-medium text-blue-300 mt-2'>
+                <p className='text-lg font-medium text-slate-800 mt-2'>
                   Single item storefronts
                 </p>
-                <p className='mt-2'>
+                <p className='mt-2 text-center'>
                   Easily deploy, design, and manage single item storefronts from
                   one simple dashboard
                 </p>
               </div>
-              <div className='flex flex-col w-4/12 p-4'>
+              <div className='flex flex-col items-center w-4/12 p-4'>
                 <MdOutlineAttachMoney className='text-4xl' />
-                <p className='text-lg font-medium text-blue-300 mt-2'>
+                <p className='text-lg font-medium text-salte-800 mt-2'>
                   Offer items
                 </p>
-                <p className='mt-2'>
+                <p className='mt-2 text-center'>
                   Offer your customers 'Buy Now' items or 'Subscribe Now' items
                   depending on your business
                 </p>
               </div>
-              <div className='flex flex-col w-4/12 p-4'>
+              <div className='flex flex-col items-center w-4/12 p-4'>
                 <AiOutlineMail className='text-4xl' />
-                <p className='text-lg font-medium text-blue-300 mt-2'>
+                <p className='text-lg font-medium text-slate-800 mt-2'>
                   Built in marketing
                 </p>
-                <p className='mt-2'>
+                <p className='mt-2 text-center'>
                   Automated transactional emails and newsletters to send out to
                   your customers
                 </p>
               </div>
-              <div className='flex flex-col w-4/12 p-4'>
+              <div className='flex flex-col items-center w-4/12 p-4'>
                 <BiWorld className='text-4xl' />
-                <p className='text-lg font-medium text-blue-300 mt-2'>
+                <p className='text-lg font-medium text-slate-800 mt-2'>
                   Integrations
                 </p>
-                <p className='mt-2'>
+                <p className='mt-2 text-center'>
                   Connect to other services and sales channels to drive more
                   business and reach more potential customers
                 </p>
               </div>
-              <div className='flex flex-col w-4/12 p-4'>
+              <div className='flex flex-col items-center w-4/12 p-4'>
                 <MdOutlineContactSupport className='text-4xl' />
-                <p className='text-lg font-medium text-blue-300 mt-2'>
+                <p className='text-lg font-medium text-slate-800 mt-2'>
                   24/7 Support
                 </p>
-                <p className='mt-2'>
+                <p className='mt-2 text-center'>
                   Easliy get in touch with us via 24/7 email support
                 </p>
               </div>
