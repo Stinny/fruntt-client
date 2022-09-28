@@ -7,6 +7,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAddProductMutation } from '../../api/productsApiSlice';
 import { uploadImageRequest } from '../../api/requests';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { states } from '../../states.js';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -34,6 +35,9 @@ const AddItem = () => {
   const [error, setError] = useState('');
   const [optionName, setOptionName] = useState('');
   const [options, setOptions] = useState([]);
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [zip, setZip] = useState('');
 
   const [addProduct, { isLoading }] = useAddProductMutation();
 
@@ -230,7 +234,8 @@ const AddItem = () => {
           </div>
 
           <div className='flex items-center'>
-            <p className='text-xl font-medium'>Inventory stored here</p>
+            <p className='text-xl font-medium'>Ships from</p>
+
             <Tooltip
               title={<p className='text-lg'>{inventoryInfo}</p>}
               className='ml-2 text-lg'
@@ -240,6 +245,37 @@ const AddItem = () => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
+          </div>
+          <div className='w-full flex justify-between mt-4 mb-2'>
+            <select className='border-2 border-slate-200 hover:border-slate-300 w-2/6 rounded-lg p-2 outline outline-0 bg-white'>
+              <option>United States</option>
+            </select>
+
+            <input
+              type='text'
+              placeholder='City'
+              className='border-2 border-slate-200 hover:border-slate-300 w-2/6 rounded-lg p-2 outline outline-0 ml-2'
+              onChange={(e) => setCity(e.target.value)}
+            />
+
+            <select
+              onChange={(e) => setState(e.target.value)}
+              className='border-2 border-slate-200 hover:border-slate-300 w-2/6 rounded-lg p-2 ml-2 outline outline-0 bg-white'
+            >
+              <option disabled selected hidden className='text-gray-400'>
+                State
+              </option>
+              {states.map((state, index) => (
+                <option key={index}>{state}</option>
+              ))}
+            </select>
+
+            <input
+              type='text'
+              placeholder='Zipcode'
+              className='border-2 border-slate-200 hover:border-slate-300 w-2/6 rounded-lg p-2 ml-2 outline outline-0'
+              onChange={(e) => setZip(e.target.value)}
+            />
           </div>
 
           <div className='flex items-center'>

@@ -65,7 +65,9 @@ const DashHome = () => {
               </button>
             </Tooltip>
             <p className='text-xl font-medium'>Revenue</p>
-            <p className='text-4xl font-medium'>${stats?.revenue.toFixed(2)}</p>
+            <p className='text-4xl font-medium'>
+              ${stats?.revenue > 0 ? stats?.revenue.toFixed(2) : '0'}
+            </p>
           </div>
 
           <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 ml-4 relative'>
