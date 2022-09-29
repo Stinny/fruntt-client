@@ -66,6 +66,7 @@ const BusinessInfo = ({ user, refetch }) => {
       transform: 'translate(-50%, -50%)',
     },
   };
+
   return (
     <>
       <div className='flex justify-between items-center w-full border-b p-2'>

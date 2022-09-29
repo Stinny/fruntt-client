@@ -14,6 +14,7 @@ import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
+import OptionsForm from '../../components/AddItem/OptionsForm';
 
 const AddItem = () => {
   //hooks
@@ -33,11 +34,14 @@ const AddItem = () => {
   const [length, setLength] = useState(0);
   const [fileList, setFileList] = useState([]);
   const [error, setError] = useState('');
-  const [optionName, setOptionName] = useState('');
-  const [options, setOptions] = useState([]);
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
+
+  //for adding item options
+  const [options, setOptions] = useState([]);
+  const [optionName, setOptionName] = useState('');
+  const [optionVals, setOptionVals] = useState([]);
 
   const [addProduct, { isLoading }] = useAddProductMutation();
 
@@ -52,15 +56,6 @@ const AddItem = () => {
   const inventoryInfo =
     'This address is needed to properly generate shipping labels.';
 
-  const handleAddOption = (optName) => {
-    console.log(optName);
-    setOptions((prevOptions) => [
-      ...prevOptions,
-      { name: optName, values: [] },
-    ]);
-    console.log(options);
-  };
-
   const handleCancel = () => {
     navigate('/dashboard/item');
   };
@@ -69,53 +64,54 @@ const AddItem = () => {
   const handleAddItem = async (e) => {
     e.preventDefault();
 
-    if (
-      !title ||
-      !price ||
-      !stock ||
-      !weight ||
-      !height ||
-      !length ||
-      !width ||
-      !fileList
-    ) {
-      setError('All feilds must be filled in');
-      return;
-    }
+    console.log(options);
+    // if (
+    //   !title ||
+    //   !price ||
+    //   !stock ||
+    //   !weight ||
+    //   !height ||
+    //   !length ||
+    //   !width ||
+    //   !fileList
+    // ) {
+    //   setError('All feilds must be filled in');
+    //   return;
+    // }
 
-    const images = new FormData();
+    // const images = new FormData();
 
-    for (let i = 0; i < fileList.files.length; i++) {
-      images.append('productImages', fileList.files[i]); //appends actual file object to form data
-    }
+    // for (let i = 0; i < fileList.files.length; i++) {
+    //   images.append('productImages', fileList.files[i]); //appends actual file object to form data
+    // }
 
-    //api request for uploading the images to our s3 bucket
-    try {
-      const imagesDataReq = await uploadImageRequest.post(
-        '/products/imageupload',
-        images
-      );
+    // //api request for uploading the images to our s3 bucket
+    // try {
+    //   const imagesDataReq = await uploadImageRequest.post(
+    //     '/products/imageupload',
+    //     images
+    //   );
 
-      const addProductReq = await addProduct({
-        title,
-        description,
-        price,
-        stock,
-        published,
-        weightUnit,
-        sizeUnit,
-        weight,
-        length,
-        width,
-        height,
-        imageData: imagesDataReq.data,
-      }).unwrap();
+    //   const addProductReq = await addProduct({
+    //     title,
+    //     description,
+    //     price,
+    //     stock,
+    //     published,
+    //     weightUnit,
+    //     sizeUnit,
+    //     weight,
+    //     length,
+    //     width,
+    //     height,
+    //     imageData: imagesDataReq.data,
+    //   }).unwrap();
 
-      navigate('/dashboard/item');
-    } catch (err) {
-      setError('There was an error');
-      return;
-    }
+    //   navigate('/dashboard/item');
+    // } catch (err) {
+    //   setError('There was an error');
+    //   return;
+    // }
   };
 
   return (
@@ -228,12 +224,16 @@ const AddItem = () => {
             </Tooltip>
           </div>
 
-          <div>
-            <input onChange={(e) => setOptionName(e.target.value)} />
-            <button onClick={(e) => handleAddOption(optionName)}>Add</button>
-          </div>
+          <OptionsForm
+            options={options}
+            setOptions={setOptions}
+            setOptionName={setOptionName}
+            setOptionVals={setOptionVals}
+            optionName={optionName}
+            optionVals={optionVals}
+          />
 
-          <div className='flex items-center'>
+          <div className='flex items-center mt-4'>
             <p className='text-xl font-medium'>Ships from</p>
 
             <Tooltip
