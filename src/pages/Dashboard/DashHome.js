@@ -149,14 +149,14 @@ const DashHome = () => {
             </Link>
             {stats?.itemStock <= 10 ? (
               <p className='mt-2'>
-                Item stock:{' '}
+                Inventory:{' '}
                 <span className='text-red-400 font-medium'>
-                  {stats?.itemStock} units left
+                  {stats?.itemStock} units
                 </span>
               </p>
             ) : (
               <p className='mt-2'>
-                Item stock:{' '}
+                Inventory:{' '}
                 <span className='text-slate-800 font-medium'>
                   {stats?.itemStock} units left
                 </span>

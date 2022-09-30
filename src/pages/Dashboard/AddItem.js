@@ -34,8 +34,10 @@ const AddItem = () => {
   const [length, setLength] = useState(0);
   const [fileList, setFileList] = useState([]);
   const [error, setError] = useState('');
+  const [country, setCountry] = useState('United States');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
+  const [address, setAddress] = useState('');
   const [zip, setZip] = useState('');
 
   //for adding item options
@@ -65,53 +67,59 @@ const AddItem = () => {
     e.preventDefault();
 
     console.log(options);
-    // if (
-    //   !title ||
-    //   !price ||
-    //   !stock ||
-    //   !weight ||
-    //   !height ||
-    //   !length ||
-    //   !width ||
-    //   !fileList
-    // ) {
-    //   setError('All feilds must be filled in');
-    //   return;
-    // }
+    if (
+      !title ||
+      !price ||
+      !stock ||
+      !weight ||
+      !height ||
+      !length ||
+      !width ||
+      !fileList
+    ) {
+      setError('All feilds must be filled in');
+      return;
+    }
 
-    // const images = new FormData();
+    const images = new FormData();
 
-    // for (let i = 0; i < fileList.files.length; i++) {
-    //   images.append('productImages', fileList.files[i]); //appends actual file object to form data
-    // }
+    for (let i = 0; i < fileList.files.length; i++) {
+      images.append('productImages', fileList.files[i]); //appends actual file object to form data
+    }
 
-    // //api request for uploading the images to our s3 bucket
-    // try {
-    //   const imagesDataReq = await uploadImageRequest.post(
-    //     '/products/imageupload',
-    //     images
-    //   );
+    //api request for uploading the images to our s3 bucket
+    try {
+      const imagesDataReq = await uploadImageRequest.post(
+        '/products/imageupload',
+        images
+      );
 
-    //   const addProductReq = await addProduct({
-    //     title,
-    //     description,
-    //     price,
-    //     stock,
-    //     published,
-    //     weightUnit,
-    //     sizeUnit,
-    //     weight,
-    //     length,
-    //     width,
-    //     height,
-    //     imageData: imagesDataReq.data,
-    //   }).unwrap();
+      const addProductReq = await addProduct({
+        title,
+        description,
+        price,
+        stock,
+        published,
+        city,
+        state,
+        country,
+        zip,
+        address,
+        weightUnit,
+        sizeUnit,
+        weight,
+        length,
+        width,
+        height,
+        options,
+        imageData: imagesDataReq.data,
+      }).unwrap();
 
-    //   navigate('/dashboard/item');
-    // } catch (err) {
-    //   setError('There was an error');
-    //   return;
-    // }
+      navigate('/dashboard/item');
+    } catch (err) {
+      setError('There was an error');
+      return;
+    }
   };
 
   return (
@@ -246,7 +254,14 @@ const AddItem = () => {
               </button>
             </Tooltip>
           </div>
-          <div className='w-full flex justify-between mt-4 mb-2'>
+          <div className='w-full p-4'>
+            <input
+              className='w-full border-2 border-slate-200 hover:border-slate-300 rounded-lg p-2 outline outline-0'
+              type='text'
+              placeholder='Address'
+            />
+          </div>
+          <div className='w-full flex justify-between mb-2 p-4'>
             <select className='border-2 border-slate-200 hover:border-slate-300 w-2/6 rounded-lg p-2 outline outline-0 bg-white'>
               <option>United States</option>
             </select>

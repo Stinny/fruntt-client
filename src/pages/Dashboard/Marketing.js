@@ -13,7 +13,7 @@ const Marketing = () => {
   const [content, setContent] = useState('');
   const [addFeedback, result] = useAddFeedbackMutation();
 
-  const fb1 = Cookies.get('fb1') ? Cookies.get('fb2') : null;
+  const fb1 = Cookies.get('fb1') ? Cookies.get('fb1') : null;
 
   const handleSubmitFeedback = async (e) => {
     e.preventDefault();
