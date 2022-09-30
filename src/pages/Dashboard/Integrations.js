@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
@@ -14,8 +14,15 @@ import Alert from '@mui/material/Alert';
 const Integrations = () => {
   const [content, setContent] = useState('');
   const [addFeedback, result] = useAddFeedbackMutation();
+  const [givenFeedback, setGivenFeedback] = useState(false);
 
-  const fb2 = Cookies.get('fb2') ? Cookies.get('fb2') : null;
+  useEffect(() => {
+    const fb2 = localStorage.getItem('fb2')
+      ? JSON.stringify(localStorage.getItem('fb2'))
+      : null;
+
+    if (fb2) setGivenFeedback(true);
+  }, []);
 
   const handleSubmitFeedback = async (e) => {
     e.preventDefault();
@@ -24,7 +31,8 @@ const Integrations = () => {
       content: content,
     }).unwrap();
     if (addFeedbackReq === 'Feedback submitted') {
-      Cookies.set('fb2', true);
+      localStorage.setItem('fb2', true);
+      setGivenFeedback(true);
     }
   };
 
@@ -46,7 +54,7 @@ const Integrations = () => {
             form below!
           </p>
         </div>
-        {fb2 ? (
+        {givenFeedback ? (
           <div className='w-full mx-auto flex flex-col justify-center items-center border-2 h-32 rounded-md mt-4'>
             <BiSmile className='text-5xl' />
             <p className='text-xl'>

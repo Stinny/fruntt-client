@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import Topbar from '../../components/Topbar';
@@ -12,8 +12,15 @@ import Alert from '@mui/material/Alert';
 const Marketing = () => {
   const [content, setContent] = useState('');
   const [addFeedback, result] = useAddFeedbackMutation();
+  const [givenFeedback, setGivenFeedback] = useState(false);
 
-  const fb1 = Cookies.get('fb1') ? Cookies.get('fb1') : null;
+  useEffect(() => {
+    const fb1 = localStorage.getItem('fb1')
+      ? JSON.stringify(localStorage.getItem('fb1'))
+      : null;
+
+    if (fb1) setGivenFeedback(true);
+  }, []);
 
   const handleSubmitFeedback = async (e) => {
     e.preventDefault();
@@ -22,9 +29,11 @@ const Marketing = () => {
       content: content,
     }).unwrap();
     if (addFeedbackReq === 'Feedback submitted') {
-      Cookies.set('fb1', true);
+      localStorage.setItem('fb1', true);
+      setGivenFeedback(true);
     }
   };
+
   return (
     <>
       <Navbar />
@@ -46,7 +55,7 @@ const Marketing = () => {
             below!
           </p>
         </div>
-        {fb1 ? (
+        {givenFeedback ? (
           <div className='w-full mx-auto flex flex-col justify-center items-center border-2 h-32 rounded-md mt-4'>
             <BiSmile className='text-5xl' />
             <p className='text-xl'>
