@@ -40,6 +40,7 @@ const EditItem = () => {
     content = (
       <div className='w-full'>
         <EditItemForm
+          itemId={product._id}
           title={product.title}
           description={product.description}
           price={product.price}
@@ -52,6 +53,7 @@ const EditItem = () => {
           height={product.height}
           length={product.length}
           width={product.width}
+          options={product.options}
           productId={productId}
           refetch={refetch}
         />

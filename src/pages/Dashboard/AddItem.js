@@ -75,7 +75,7 @@ const AddItem = () => {
       !height ||
       !length ||
       !width ||
-      !fileList
+      !fileList.length > 0
     ) {
       setError('All feilds must be filled in');
       return;
@@ -171,7 +171,7 @@ const AddItem = () => {
             <p className='text-gray-400'>Item Title</p>
             <input
               type='text'
-              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-2 p-2'
               placeholder='Title'
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -179,7 +179,7 @@ const AddItem = () => {
             <p className='text-gray-400 mt-4'>Item Short Description</p>
             <textarea
               type='text'
-              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-2 p-2'
               placeholder='Description'
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -189,7 +189,7 @@ const AddItem = () => {
                 <p className='text-gray-400 mt-4'>Item Price</p>
                 <input
                   type='number'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-2 p-2'
                   placeholder='Price'
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -199,17 +199,17 @@ const AddItem = () => {
                 <p className='text-gray-400 mt-4'>Item Stock</p>
                 <input
                   type='number'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-2 p-2'
                   placeholder='Stock'
                   onChange={(e) => setStock(e.target.value)}
                 />
               </div>
             </div>
           </div>
-          <p className='text-gray-400 p-4'>Publish</p>
-          <div className='w-10/12 flex p-4'>
+          <p className='text-gray-400 pl-4'>Publish</p>
+          <div className='w-10/12 flex p-2 pl-4'>
             <FormControlLabel
-              label='Publish to store'
+              label='Publish to storefront'
               control={
                 <Switch
                   checked={published}
@@ -242,6 +242,25 @@ const AddItem = () => {
           />
 
           <div className='flex items-center mt-4'>
+            <p className='text-xl font-medium'>Media</p>
+            <Tooltip
+              title={<p className='text-lg'>{mediaInfo}</p>}
+              className='ml-2 text-lg'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+          </div>
+          {/* <Media productId={productId} /> */}
+
+          <div className='p-4 mt-4'>
+            <p>+ Add images</p>
+            <FileUpload fileList={fileList} setFileList={setFileList} />
+          </div>
+
+          <div className='flex items-center mt-4'>
             <p className='text-xl font-medium'>Ships from</p>
 
             <Tooltip
@@ -254,43 +273,59 @@ const AddItem = () => {
               </button>
             </Tooltip>
           </div>
+
           <div className='w-full p-4'>
+            <p className='text-gray-400'>Address</p>
             <input
-              className='w-full border-2 border-slate-200 hover:border-slate-300 rounded-lg p-2 outline outline-0'
+              className='w-full border-2 border-slate-200 hover:border-slate-300 rounded-lg p-2 mt-2 outline outline-0'
               type='text'
               placeholder='Address'
+              onChange={(e) => setAddress(e.target.value)}
             />
           </div>
+
           <div className='w-full flex justify-between mb-2 p-4'>
-            <select className='border-2 border-slate-200 hover:border-slate-300 w-2/6 rounded-lg p-2 outline outline-0 bg-white'>
-              <option>United States</option>
-            </select>
+            <div className='flex flex-col w-3/12'>
+              <p className='text-gray-400'>Country</p>
+              <select className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'>
+                <option>United States</option>
+              </select>
+            </div>
 
-            <input
-              type='text'
-              placeholder='City'
-              className='border-2 border-slate-200 hover:border-slate-300 w-2/6 rounded-lg p-2 outline outline-0 ml-2'
-              onChange={(e) => setCity(e.target.value)}
-            />
+            <div className='flex flex-col w-3/12 ml-2'>
+              <p className='text-gray-400'>State</p>
+              <select
+                onChange={(e) => setState(e.target.value)}
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+              >
+                <option disabled selected hidden className='text-gray-400'>
+                  State
+                </option>
+                {states.map((state, index) => (
+                  <option key={index}>{state}</option>
+                ))}
+              </select>
+            </div>
 
-            <select
-              onChange={(e) => setState(e.target.value)}
-              className='border-2 border-slate-200 hover:border-slate-300 w-2/6 rounded-lg p-2 ml-2 outline outline-0 bg-white'
-            >
-              <option disabled selected hidden className='text-gray-400'>
-                State
-              </option>
-              {states.map((state, index) => (
-                <option key={index}>{state}</option>
-              ))}
-            </select>
+            <div className='flex flex-col w-3/12 ml-2'>
+              <p className='text-gray-400'>City</p>
+              <input
+                type='text'
+                placeholder='City'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </div>
 
-            <input
-              type='text'
-              placeholder='Zipcode'
-              className='border-2 border-slate-200 hover:border-slate-300 w-2/6 rounded-lg p-2 ml-2 outline outline-0'
-              onChange={(e) => setZip(e.target.value)}
-            />
+            <div className='flex flex-col w-3/12 ml-2'>
+              <p className='text-gray-400'>Zipcode</p>
+              <input
+                type='text'
+                placeholder='Zipcode'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
+                onChange={(e) => setZip(e.target.value)}
+              />
+            </div>
           </div>
 
           <div className='flex items-center'>
@@ -369,25 +404,6 @@ const AddItem = () => {
                 <option value='centimeters'>Centimeters</option>
               </select>
             </div>
-          </div>
-
-          <div className='flex items-center'>
-            <p className='text-xl font-medium'>Media</p>
-            <Tooltip
-              title={<p className='text-lg'>{mediaInfo}</p>}
-              className='ml-2 text-lg'
-              placement='right-end'
-            >
-              <button>
-                <AiOutlineInfoCircle />
-              </button>
-            </Tooltip>
-          </div>
-          {/* <Media productId={productId} /> */}
-
-          <div className='p-4 mt-4'>
-            <p>+ Add images</p>
-            <FileUpload fileList={fileList} setFileList={setFileList} />
           </div>
 
           <button

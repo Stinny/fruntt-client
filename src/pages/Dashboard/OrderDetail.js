@@ -15,6 +15,8 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
+import Alert from '@mui/material/Alert';
+import ShippingAddress from '../../components/OrderDetail/ShippingAddress';
 
 const OrderDetail = () => {
   const { orderId } = useParams();
@@ -22,26 +24,34 @@ const OrderDetail = () => {
 
   const [fulfillType, setFulfillType] = useState('auto');
   const [trackingNum, setTrackingNum] = useState('');
+  const [error, setError] = useState('');
 
   const { data: order, isLoading, isSuccess, refetch } = useGetSingleOrderQuery(
     {
       orderId,
     }
   );
+
   const [fulfillOrder, result] = useFulfillOrderMutation();
 
   //sends req to server to mark the order as fulfilled
   const handleFulfillOrder = async (e) => {
     e.preventDefault();
-    console.log('fulfilling order...');
-    console.log({ trackNum: trackingNum, fulfillType: fulfillType });
+
     const fulfillOrderReq = await fulfillOrder({
       orderId: orderId,
       trackingNum: trackingNum,
       fulfillType: fulfillType,
     }).unwrap();
-    refetch();
-    closeModal();
+
+    if (fulfillOrderReq === 'Order fulfilled') {
+      refetch();
+      closeModal();
+    } else if (fulfillOrderReq === 'Error') {
+      setError(
+        'There was an error, check if shipping address is a valid address'
+      );
+    }
   };
 
   //modal stuff
@@ -53,6 +63,7 @@ const OrderDetail = () => {
 
   function closeModal() {
     setIsOpen(false);
+    setError('');
   }
 
   const modalStyles = {
@@ -92,6 +103,8 @@ const OrderDetail = () => {
               confirmation email with tracking details and an order summary
             </p>
 
+            {error && <Alert severity='error'>{error}</Alert>}
+
             <RadioGroup
               defaultValue='auto'
               onChange={(e) => setFulfillType(e.target.value)}
@@ -122,18 +135,18 @@ const OrderDetail = () => {
             )}
 
             <button
-              type='button'
-              onClick={closeModal}
-              className='w-full h-8 border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white rounded mt-4'
-            >
-              Cancel
-            </button>
-            <button
               type='submit'
-              className='w-full h-10 border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white rounded mt-4'
+              className='w-full h-14 border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white rounded mt-4'
               onClick={handleFulfillOrder}
             >
               Fulfill Order
+            </button>
+            <button
+              type='button'
+              onClick={closeModal}
+              className='w-full h-10 border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white rounded mt-4'
+            >
+              Cancel
             </button>
           </form>
         </Modal>
@@ -149,14 +162,14 @@ const OrderDetail = () => {
           </div>
           <div className='flex items-center'>
             {order.fulfilled ? (
-              <div className='flex items-center justify-center ml-2 border-2 mr-2 w-40 h-10 rounded text-gray-400 border-gray-400 '>
+              <div className='flex items-center justify-center ml-2 border-2 mr-2 w-40 h-10 rounded text-slate-800 border-slate-800 '>
                 <p>Order Fulfilled</p>
-                <AiOutlineCheckCircle className='text-green-600 text-xl' />
+                <AiOutlineCheckCircle className='text-green-600 text-xl ml-2' />
               </div>
             ) : (
               <button
                 onClick={openModal}
-                className='border-2 mr-2 w-32 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'
+                className='border-2 mr-2 w-32 h-10 rounded text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white'
               >
                 Fulfill Order
               </button>
@@ -165,7 +178,7 @@ const OrderDetail = () => {
             {order.manualTrackingNumber && (
               <button
                 disabled
-                className='border-2 w-72 h-10 rounded text-gray-400 border-gray-400'
+                className='border-2 w-72 h-10 rounded text-slate-800 border-slate-800'
               >
                 Tracking number added manually
               </button>
@@ -173,7 +186,7 @@ const OrderDetail = () => {
 
             {order.labelUrl && (
               <a href={order?.labelUrl} target='_blank'>
-                <button className='border-2 w-60 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'>
+                <button className='border-2 w-60 h-10 rounded border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'>
                   Download Shipping Label
                 </button>
               </a>
@@ -214,31 +227,8 @@ const OrderDetail = () => {
               </p>
             </div>
           </div>
-          <p className='text-xl font-medium border-b'>Shipping item to</p>
-          <div className='w-full p-4 flex justify-between mx-auto'>
-            <div className='flex flex-col justify-between'>
-              <p className='text-gray-400'>Street address:</p>
-              <p className='text-gray-400 mt-2'>Country:</p>
-              <p className='text-gray-400 mt-2'>State:</p>
-              <p className='text-gray-400 mt-2'>City:</p>
-              <p className='text-gray-400 mt-2'>Zipcode:</p>
-            </div>
-            <div className='flex flex-col justify-between text-right'>
-              <p className='text-lg font-medium mt-2'>
-                {order?.shippingAddress?.street}
-              </p>
-              <p className='text-lg font-medium mt-2'>United States</p>
-              <p className='text-lg font-medium mt-2'>
-                {order?.shippingAddress?.city}
-              </p>
-              <p className='text-lg font-medium mt-2'>
-                {order?.shippingAddress?.state}
-              </p>
-              <p className='text-lg font-medium mt-2'>
-                {order?.shippingAddress?.zipcode}
-              </p>
-            </div>
-          </div>
+
+          <ShippingAddress order={order} refetch={refetch} />
         </div>
       </div>
     );

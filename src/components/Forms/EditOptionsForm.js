@@ -5,15 +5,16 @@ import Modal from 'react-modal';
 import Chip from '@mui/material/Chip';
 import Alert from '@mui/material/Alert';
 
-const OptionsForm = ({
-  setOptionName,
-  setOptionVals,
-  setOptions,
-  optionName,
-  optionVals,
-  options,
-}) => {
+const EditOptionsForm = ({ formOptions, setFormOptions }) => {
+  //this component will display any previously added options
+  //give the ability to delete an otpion
+  //also give the ability to add an option
+
+  //when adding an a new option, add to the ones that could be there
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [optionName, setOptionName] = useState('');
   const [optionVal, setOptionVal] = useState('');
+  const [optionVals, setOptionVals] = useState([]);
   const [error, setError] = useState('');
 
   //adds one option to the optionVals
@@ -34,14 +35,11 @@ const OptionsForm = ({
     };
 
     //add the new option to the array of options
-    setOptions([...options, newOpt]);
+    setFormOptions([...formOptions, newOpt]);
     setOptionVals([]);
     setOptionName('');
     closeModal();
   };
-
-  //stuff for modal
-  const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -64,7 +62,7 @@ const OptionsForm = ({
   };
 
   return (
-    <div className='pl-4 pr-4'>
+    <div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -93,18 +91,19 @@ const OptionsForm = ({
                 value={optionVal}
                 placeholder='Enter option variants (ex. small)'
                 onChange={(e) => setOptionVal(e.target.value)}
-                className='border-2 border-slate-200 hover:border-slate-300 w-11/12 rounded-lg p-2 mt-4 outline outline-0'
+                className='w-11/12 border-2 border-slate-200 hover:border-slate-300 rounded-lg p-2 mt-4 outline outline-0'
                 autocomplete='off'
               />
 
               <button
                 type='button'
                 onClick={handleAddOptionVal}
-                className='h-10 border-2 border-slate-800 mt-4 w-1/12 rounded ml-10'
+                className='h-10 border-2 border-slate-800 mt-4 w-1/12 rounded ml-2'
               >
                 +
               </button>
             </div>
+            <p className='text-sm text-gray-400'>Add variants one by one</p>
           </form>
           <div className='w-full flex-flex-wrap bg-gray-100 rounded mt-2'>
             {optionVals.length > 0 ? (
@@ -143,13 +142,13 @@ const OptionsForm = ({
         </div>
       </Modal>
 
-      {options.length > 0 ? (
-        options.map((opt, optIndex) => (
+      {formOptions.length > 0 ? (
+        formOptions.map((opt, optIndex) => (
           <div className='w-full flex flex-col bg-gray-100 p-2 relative mt-2'>
             <button
               className='absolute right-0 mr-2 text-red-500 hover:text-red-700'
               onClick={(e) =>
-                setOptions((options) =>
+                setFormOptions((options) =>
                   options.filter((_, index) => index !== optIndex)
                 )
               }
@@ -171,16 +170,15 @@ const OptionsForm = ({
           <p>Add options like size or color</p>
         </div>
       )}
-
       <button
         className='w-full h-16 border-2 rounded border-slate-800 text-slate-800 mt-4 font-medium'
         onClick={openModal}
         type='button'
       >
-        {options.length > 0 ? '+ Add another option' : '+ Add option'}
+        {formOptions.length > 0 ? '+ Add another option' : '+ Add option'}
       </button>
     </div>
   );
 };
 
-export default OptionsForm;
+export default EditOptionsForm;

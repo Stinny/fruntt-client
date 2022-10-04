@@ -130,8 +130,8 @@ const Design = () => {
             <BsArrowRightShort className='text-2xl font-medium' />
           </a>
           <Link to='/dashboard/design/edit'>
-            <button className='w-32 h-10 rounded border-slate-800 border-2'>
-              EDIT
+            <button className='w-40 h-10 rounded border-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
+              EDIT & PREVIEW
             </button>
           </Link>
         </div>

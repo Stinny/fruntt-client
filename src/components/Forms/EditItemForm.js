@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import FileUpload from '../../pages/Dashboard/FileUpload';
 import { useNavigate } from 'react-router-dom';
-import { useUpdateProductMutation } from '../../api/productsApiSlice';
+import {
+  useUpdateProductMutation,
+  useDeleteProductMutation,
+} from '../../api/productsApiSlice';
 import Media from '../Media';
 import { uploadImageRequest } from '../../api/requests';
 import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
+import EditOptionsForm from '../../components/Forms/EditOptionsForm';
 
 //mui
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
+import OptionsForm from '../AddItem/OptionsForm';
 
 const EditItemForm = ({
+  itemId,
   title,
   description,
   price,
@@ -26,6 +32,7 @@ const EditItemForm = ({
   height,
   length,
   width,
+  options,
   refetch,
 }) => {
   const [formTitle, setFormTitle] = useState(title);
@@ -39,12 +46,14 @@ const EditItemForm = ({
   const [formLength, setFormLength] = useState(length);
   const [formHeight, setFormHeight] = useState(height);
   const [formWidth, setFormWidth] = useState(width);
+  const [formOptions, setFormOptions] = useState(options);
 
   const [fileList, setFileList] = useState([]);
   const [error, setError] = useState('');
 
   //hooks from our apiSlice's
   const [updateProduct, result] = useUpdateProductMutation();
+  const [deleteProduct, { isLoading }] = useDeleteProductMutation();
 
   const navigate = useNavigate();
 
@@ -55,6 +64,11 @@ const EditItemForm = ({
     'Package details. These details allow us to calculate proper shipping rates and generate shipping labels for your orders';
   const mediaInfo =
     'Media is needed to showcase your item and can be seen by your customers on your single item storefront.';
+
+  const handleDeleteItem = async () => {
+    const deleteItemReq = await deleteProduct(itemId);
+    refetch();
+  };
 
   const handleSaveEdit = async (e) => {
     console.log('trying to save');
@@ -76,8 +90,6 @@ const EditItemForm = ({
         );
       }
 
-      // console.log(imagesDataReq.data);
-
       const updateItemReq = await updateProduct({
         productId,
         formTitle,
@@ -91,6 +103,7 @@ const EditItemForm = ({
         formHeight,
         formLength,
         formWidth,
+        formOptions,
         imageData: imagesDataReq ? imagesDataReq.data : [],
       }).unwrap();
 
@@ -115,6 +128,7 @@ const EditItemForm = ({
     formWeightUnit,
     formSizeUnit,
     formStock,
+    options,
     fileList,
   ]);
 
@@ -123,12 +137,20 @@ const EditItemForm = ({
       <div className='mb-10 flex justify-between p-2 border-b-2'>
         <h2 className='text-3xl font-medium'>Edit Your Item</h2>
 
-        <button
-          className='w-32 h-10 rounded border-slate-800 border-2'
-          onClick={handleSaveEdit}
-        >
-          SAVE
-        </button>
+        <div className='flex justify-between'>
+          <button
+            className='w-32 h-10 rounded border-red-400 border-2 text-red-400 mr-2'
+            onClick={handleDeleteItem}
+          >
+            DELETE
+          </button>
+          <button
+            className='w-32 h-10 rounded border-slate-800 border-2'
+            onClick={handleSaveEdit}
+          >
+            SAVE
+          </button>
+        </div>
       </div>
       {error && (
         <Alert
@@ -198,16 +220,27 @@ const EditItemForm = ({
             </div>
           </div>
         </div>
-        <p className='text-gray-400 p-4'>Publish</p>
-        <div className='w-10/12 flex mt-4 p-2'>
-          <FormControlLabel
-            label='Publish to store'
-            control={
-              <Switch
-                checked={formPublished}
-                onChange={(e) => setFormPublished(e.target.checked)}
-              />
-            }
+
+        <div className='p-4'>
+          <p className='text-gray-400'>Publish</p>
+          <div className='w-10/12 flex mt-2'>
+            <FormControlLabel
+              label='Publish to store'
+              control={
+                <Switch
+                  checked={formPublished}
+                  onChange={(e) => setFormPublished(e.target.checked)}
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className='p-4'>
+          <p className='text-gray-400 mt-4'>Item options</p>
+          <EditOptionsForm
+            formOptions={formOptions}
+            setFormOptions={setFormOptions}
           />
         </div>
 
@@ -312,12 +345,14 @@ const EditItemForm = ({
           <FileUpload fileList={fileList} setFileList={setFileList} />
         </div>
 
-        <button
-          className='w-full text-xl border-2 border-slate-800 hover:border-slate-600 h-10 rounded'
-          type='submit'
-        >
-          Save
-        </button>
+        <div className='w-full p-4'>
+          <button
+            className='w-full h-14 text-xl border-2 border-slate-800 hover:border-slate-600 rounded'
+            type='submit'
+          >
+            SAVE ITEM
+          </button>
+        </div>
       </form>
     </>
   );
