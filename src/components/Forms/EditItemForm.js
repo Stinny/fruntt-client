@@ -67,7 +67,7 @@ const EditItemForm = ({
 
   const handleDeleteItem = async () => {
     const deleteItemReq = await deleteProduct(itemId);
-    refetch();
+    navigate('/dashboard/item');
   };
 
   const handleSaveEdit = async (e) => {
@@ -77,11 +77,11 @@ const EditItemForm = ({
     try {
       let imagesDataReq;
 
-      if (fileList?.files?.length) {
+      if (fileList?.length) {
         const images = new FormData();
 
-        for (let i = 0; i < fileList.files.length; i++) {
-          images.append('productImages', fileList.files[i]); //appends actual file object to form data
+        for (let i = 0; i < fileList.length; i++) {
+          images.append('productImages', fileList[i]); //appends actual file object to form data
         }
 
         imagesDataReq = await uploadImageRequest.post(
@@ -245,6 +245,25 @@ const EditItemForm = ({
         </div>
 
         <div className='flex items-center'>
+          <p className='text-xl font-medium'>Media</p>
+          <Tooltip
+            title={<p className='text-lg'>{mediaInfo}</p>}
+            className='ml-2'
+            placement='right-end'
+          >
+            <button>
+              <AiOutlineInfoCircle />
+            </button>
+          </Tooltip>
+        </div>
+        <Media productId={productId} />
+
+        <div className='p-4'>
+          <p>+ Add new images</p>
+          <FileUpload fileList={fileList} setFileList={setFileList} />
+        </div>
+
+        <div className='flex items-center'>
           <p className='text-xl font-medium'>Package</p>
           <Tooltip
             title={<p className='text-lg'>{packageInfo}</p>}
@@ -280,69 +299,6 @@ const EditItemForm = ({
               </select>
             </div>
           </div>
-
-          <div className=' flex justify-between'>
-            <div>
-              <p className='text-gray-400'>Height</p>
-              <input
-                type='number'
-                value={formHeight}
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
-                onChange={(e) => setFormHeight(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <p className='text-gray-400'>Width</p>
-              <input
-                type='number'
-                value={formWidth}
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
-                onChange={(e) => setFormWidth(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <p className='text-gray-400'>Length</p>
-              <input
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
-                type='number'
-                value={formLength}
-                onChange={(e) => setFormLength(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <p className='text-gray-400'>Unit</p>
-              <select
-                className='rounded-md border-2 w-32 h-12'
-                value={formSizeUnit}
-                onChange={(e) => setFormSizeUnit(e.target.value)}
-              >
-                <option value='inches'>Inches</option>
-                <option value='centimeters'>Centimeters</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div className='flex items-center'>
-          <p className='text-xl font-medium'>Media</p>
-          <Tooltip
-            title={<p className='text-lg'>{mediaInfo}</p>}
-            className='ml-2'
-            placement='right-end'
-          >
-            <button>
-              <AiOutlineInfoCircle />
-            </button>
-          </Tooltip>
-        </div>
-        <Media productId={productId} />
-
-        <div className='p-4'>
-          <p>+ Add new images</p>
-          <FileUpload fileList={fileList} setFileList={setFileList} />
         </div>
 
         <div className='w-full p-4'>

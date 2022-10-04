@@ -105,6 +105,7 @@ const OptionsForm = ({
                 +
               </button>
             </div>
+            <p className='text-sm text-gray-400'>Add variants one by one</p>
           </form>
           <div className='w-full flex-flex-wrap bg-gray-100 rounded mt-2'>
             {optionVals.length > 0 ? (

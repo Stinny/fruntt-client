@@ -25,9 +25,7 @@ const FileUpload = ({ fileList, setFileList }) => {
           allowReorder={true}
           name='productImages'
           onupdatefiles={(fileItems) => {
-            setFileList({
-              files: fileItems.map((fileItem) => fileItem.file),
-            });
+            setFileList(fileItems.map((fileItem) => fileItem.file));
           }}
         />
       </div>

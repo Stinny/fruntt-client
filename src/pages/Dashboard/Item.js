@@ -82,8 +82,12 @@ const Item = () => {
           <div className='w-full p-4 border-2 rounded-md mt-4'>
             <p className='text-gray-400 mt-4'>Item Title</p>
             <h2 className='text-3xl mt-4'>{product[0]?.title}</h2>
-            <p className='text-gray-400 mt-4'>Item Description</p>
-            <p className='text-xl mt-4'>{product[0]?.description}</p>
+            {product[0].description && (
+              <div className='flex flex-col'>
+                <p className='text-gray-400 mt-4'>Item Description</p>
+                <p className='text-xl mt-4'>{product[0]?.description}</p>
+              </div>
+            )}
             <p className='text-gray-400 mt-4'>Item Price</p>
             <p className='text-2xl mt-4'>${product[0]?.price.toFixed(2)}</p>
             <p className='text-gray-400 mt-4'>Item Stock</p>

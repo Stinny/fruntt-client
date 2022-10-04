@@ -66,25 +66,16 @@ const AddItem = () => {
   const handleAddItem = async (e) => {
     e.preventDefault();
 
-    console.log(options);
-    if (
-      !title ||
-      !price ||
-      !stock ||
-      !weight ||
-      !height ||
-      !length ||
-      !width ||
-      !fileList.length > 0
-    ) {
+    console.log(fileList.length);
+    if (!title || !price || !stock || !weight || fileList?.length < 1) {
       setError('All feilds must be filled in');
       return;
     }
 
     const images = new FormData();
 
-    for (let i = 0; i < fileList.files.length; i++) {
-      images.append('productImages', fileList.files[i]); //appends actual file object to form data
+    for (let i = 0; i < fileList.length; i++) {
+      images.append('productImages', fileList[i]); //appends actual file object to form data
     }
 
     //api request for uploading the images to our s3 bucket
@@ -171,15 +162,15 @@ const AddItem = () => {
             <p className='text-gray-400'>Item Title</p>
             <input
               type='text'
-              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-2 p-2'
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
               placeholder='Title'
               onChange={(e) => setTitle(e.target.value)}
             />
 
-            <p className='text-gray-400 mt-4'>Item Short Description</p>
+            <p className='text-gray-400 mt-4'>Item Description(optional)</p>
             <textarea
               type='text'
-              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-2 p-2'
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
               placeholder='Description'
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -189,7 +180,7 @@ const AddItem = () => {
                 <p className='text-gray-400 mt-4'>Item Price</p>
                 <input
                   type='number'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-2 p-2'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
                   placeholder='Price'
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -199,7 +190,7 @@ const AddItem = () => {
                 <p className='text-gray-400 mt-4'>Item Stock</p>
                 <input
                   type='number'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-2 p-2'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
                   placeholder='Stock'
                   onChange={(e) => setStock(e.target.value)}
                 />
@@ -343,18 +334,19 @@ const AddItem = () => {
 
           <div className='p-4'>
             <div className='flex justify-between w-6/12'>
-              <div>
+              <div className='w-10/12'>
                 <p className='text-gray-400'>Package Weight</p>
                 <input
                   type='number'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
+                  step='0.1'
+                  className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
                   onChange={(e) => setWeight(e.target.value)}
                 />
               </div>
-              <div>
+              <div className='w-2/12'>
                 <p className='text-gray-400'>Unit</p>
                 <select
-                  className='rounded-md border-2 w-32 h-12'
+                  className='rounded-md border-2 w-full h-10 ml-2'
                   value={weightUnit}
                   onChange={(e) => setWeightUnit(e.target.value)}
                 >
@@ -365,7 +357,7 @@ const AddItem = () => {
             </div>
           </div>
 
-          <div className='p-4 flex justify-between'>
+          {/* <div className='p-4 flex justify-between'>
             <div>
               <p className='text-gray-400'>Package Height</p>
               <input
@@ -404,7 +396,7 @@ const AddItem = () => {
                 <option value='centimeters'>Centimeters</option>
               </select>
             </div>
-          </div>
+          </div> */}
 
           <button
             className='w-full h-14 text-xl border-2 border-slate-800 hover:border-slate-600 rounded'
