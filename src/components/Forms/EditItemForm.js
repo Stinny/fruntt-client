@@ -281,8 +281,11 @@ const EditItemForm = ({
         <div className='w-full flex justify-between mb-2 p-4'>
           <div className='flex flex-col w-3/12'>
             <p className='text-gray-400'>Country</p>
-            <select className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'>
-              <option>United States</option>
+            <select
+              onChange={(e) => setFormCountry(e.target.value)}
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+            >
+              <option value='United States'>United States</option>
             </select>
           </div>
 
