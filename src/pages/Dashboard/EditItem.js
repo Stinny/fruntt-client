@@ -48,6 +48,11 @@ const EditItem = () => {
           images={product.images}
           published={product.published}
           weightUnit={product.weightUnit}
+          address={product.shipsFrom.address}
+          country={product.shipsFrom.country}
+          state={product.shipsFrom.state}
+          city={product.shipsFrom.city}
+          zipcode={product.shipsFrom.zipcode}
           sizeUnit={product.sizeUnit}
           weight={product.weight}
           height={product.height}

@@ -9,6 +9,7 @@ import Media from '../Media';
 import { uploadImageRequest } from '../../api/requests';
 import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 import EditOptionsForm from '../../components/Forms/EditOptionsForm';
+import { states } from '../../states';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -27,11 +28,12 @@ const EditItemForm = ({
   images,
   productId,
   weightUnit,
-  sizeUnit,
+  address,
+  country,
+  state,
+  city,
+  zipcode,
   weight,
-  height,
-  length,
-  width,
   options,
   refetch,
 }) => {
@@ -41,11 +43,12 @@ const EditItemForm = ({
   const [formStock, setFormStock] = useState(stock);
   const [formPublished, setFormPublished] = useState(published);
   const [formWeightUnit, setFormWeightUnit] = useState(weightUnit);
-  const [formSizeUnit, setFormSizeUnit] = useState(sizeUnit);
+  const [formAddress, setFormAddress] = useState(address);
+  const [formCountry, setFormCountry] = useState(country);
+  const [formState, setFormState] = useState(state);
+  const [formCity, setFormCity] = useState(city);
+  const [formZip, setFormZip] = useState(zipcode);
   const [formWeight, setFormWeight] = useState(weight);
-  const [formLength, setFormLength] = useState(length);
-  const [formHeight, setFormHeight] = useState(height);
-  const [formWidth, setFormWidth] = useState(width);
   const [formOptions, setFormOptions] = useState(options);
 
   const [fileList, setFileList] = useState([]);
@@ -97,12 +100,13 @@ const EditItemForm = ({
         formPrice,
         formStock,
         formPublished,
-        formWeightUnit,
-        formSizeUnit,
         formWeight,
-        formHeight,
-        formLength,
-        formWidth,
+        formWeightUnit,
+        formAddress,
+        formCountry,
+        formCity,
+        formState,
+        formZip,
         formOptions,
         imageData: imagesDataReq ? imagesDataReq.data : [],
       }).unwrap();
@@ -122,11 +126,7 @@ const EditItemForm = ({
     formPrice,
     formPublished,
     formWeight,
-    formHeight,
-    formLength,
-    formWidth,
     formWeightUnit,
-    formSizeUnit,
     formStock,
     options,
     fileList,
@@ -261,6 +261,68 @@ const EditItemForm = ({
         <div className='p-4'>
           <p>+ Add new images</p>
           <FileUpload fileList={fileList} setFileList={setFileList} />
+        </div>
+
+        <div className='flex items-center mt-4'>
+          <p className='text-xl font-medium'>Ships from</p>
+        </div>
+
+        <div className='w-full p-4'>
+          <p className='text-gray-400'>Address</p>
+          <input
+            className='w-full border-2 border-slate-200 hover:border-slate-300 rounded-lg p-2 mt-2 outline outline-0'
+            type='text'
+            placeholder='Address'
+            value={formAddress}
+            onChange={(e) => setFormAddress(e.target.value)}
+          />
+        </div>
+
+        <div className='w-full flex justify-between mb-2 p-4'>
+          <div className='flex flex-col w-3/12'>
+            <p className='text-gray-400'>Country</p>
+            <select className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'>
+              <option>United States</option>
+            </select>
+          </div>
+
+          <div className='flex flex-col w-3/12 ml-2'>
+            <p className='text-gray-400'>State</p>
+            <select
+              onChange={(e) => setFormState(e.target.value)}
+              value={formState}
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+            >
+              <option disabled selected hidden className='text-gray-400'>
+                State
+              </option>
+              {states.map((state, index) => (
+                <option key={index}>{state}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className='flex flex-col w-3/12 ml-2'>
+            <p className='text-gray-400'>City</p>
+            <input
+              type='text'
+              placeholder='City'
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
+              onChange={(e) => setFormCity(e.target.value)}
+              value={formCity}
+            />
+          </div>
+
+          <div className='flex flex-col w-3/12 ml-2'>
+            <p className='text-gray-400'>Zipcode</p>
+            <input
+              type='text'
+              placeholder='Zipcode'
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
+              onChange={(e) => setFormZip(e.target.value)}
+              value={formZip}
+            />
+          </div>
         </div>
 
         <div className='flex items-center'>

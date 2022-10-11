@@ -89,6 +89,7 @@ const OrderDetail = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
+    console.log(order);
     content = (
       <div className='w-full'>
         <Modal

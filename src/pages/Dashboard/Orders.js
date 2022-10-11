@@ -110,7 +110,7 @@ const Orders = () => {
             to={`/dashboard/orders/${params.row._id}/`}
             className='w-full mx-auto flex justify-center'
           >
-            <button className='border-2 w-3/6 border-gray-400 text-gray-400 text-sm rounded'>
+            <button className='border-2 w-3/6 border-slate-800 text-slate-800 text-sm rounded'>
               Details
             </button>
           </Link>
@@ -128,12 +128,13 @@ const Orders = () => {
         <div>
           <div className='w-full flex justify-between border-b-2 p-2'>
             <h2 className='text-3xl font-semibold'>Your Orders</h2>
-            <div className='flex items-center'>
-              <button className='border-2 w-48 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'>
-                Create Shipping Label(s)
-              </button>
-              <button className='border-2 ml-2 w-32 h-10 rounded text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'>
-                Fulfill Order(s)
+            <div className='flex justify-between'>
+              <input
+                placeholder='Enter email or  order number'
+                className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+              />
+              <button className='border-2 rounded w-20 ml-2  h-10 border-slate-800 text-slate-800'>
+                Search
               </button>
             </div>
           </div>

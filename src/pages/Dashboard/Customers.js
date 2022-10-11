@@ -7,6 +7,7 @@ import Topbar from '../../components/Topbar';
 import Footer from '../../components/Footer';
 import Spinner from '../../components/Spinner';
 import img from '../../media/customers.svg';
+import moment from 'moment';
 
 //mui
 import { DataGrid } from '@mui/x-data-grid';
@@ -35,30 +36,55 @@ const Customers = () => {
     },
     {
       field: 'firstName',
-      headerName: 'First Name',
-      width: 175,
+      headerName: 'Name',
+      width: 190,
       align: 'center',
       headerAlign: 'center',
+      renderCell: (params) => {
+        return (
+          <p>
+            {params.row.firstName} {params.row.lastName}
+          </p>
+        );
+      },
     },
-    {
-      field: 'lastName',
-      headerName: 'Last Name',
-      width: 175,
-      headerAlign: 'center',
-      align: 'center',
-    },
+
     {
       field: 'orderId',
       headerName: 'Order',
+      width: 210,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      field: 'orderedOn',
+      headerName: 'Ordered On',
       width: 175,
       headerAlign: 'center',
       align: 'center',
       renderCell: (params) => {
-        return <p>{params.row.orderId}</p>;
+        return <p>{moment(params?.row?.orderedOn).format('MMM D, YYYY')}</p>;
       },
     },
     {
-      field: 'Reviewed',
+      field: 'reviewed',
+      headerName: 'Review',
+      width: 175,
+      headerAlign: 'center',
+      align: 'center',
+      renderCell: (params) => {
+        return params.row.reviewed ? (
+          <button className='rounded-lg w-80 text-lime-600 bg-lime-200 font-semibold hover:cursor-default'>
+            Collected
+          </button>
+        ) : (
+          <button className='rounded-lg w-60  bg-red-200 text-red-400 font-semibold hover:cursor-default'>
+            Not collected
+          </button>
+        );
+      },
+    },
+    {
       headerName: 'View',
       width: 200,
       align: 'center',
@@ -69,7 +95,7 @@ const Customers = () => {
             to={`/dashboard/orders/${params.row._id}/`}
             className='w-full mx-auto flex justify-center'
           >
-            <button className='border-2 w-10/12 border-gray-400 text-gray-400 text-sm rounded'>
+            <button className='border-2 w-10/12 border-slate-800 text-slate-800 text-sm rounded'>
               Request Review
             </button>
           </Link>
@@ -86,8 +112,17 @@ const Customers = () => {
     content =
       customers.length > 0 ? (
         <div>
-          <div className='w-full'>
+          <div className='w-full  flex justify-between border-b-2 p-2'>
             <h2 className='text-3xl font-semibold'>Your Customers</h2>
+            <div className='flex justify-between'>
+              <input
+                placeholder='Enter customer email or name'
+                className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+              />
+              <button className='border-2 rounded w-20 ml-2  h-10 border-slate-800 text-slate-800'>
+                Search
+              </button>
+            </div>
           </div>
 
           <div className='w-full mx-auto mt-6'>

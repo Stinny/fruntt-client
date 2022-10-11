@@ -27,11 +27,7 @@ const AddItem = () => {
   const [stock, setStock] = useState(0);
   const [published, setPublished] = useState(false);
   const [weightUnit, setWeightUnit] = useState('pound');
-  const [sizeUnit, setSizeUnit] = useState('inches');
   const [weight, setWeight] = useState(0);
-  const [height, setHeight] = useState(0);
-  const [width, setWidth] = useState(0);
-  const [length, setLength] = useState(0);
   const [fileList, setFileList] = useState([]);
   const [error, setError] = useState('');
   const [country, setCountry] = useState('United States');
@@ -67,7 +63,18 @@ const AddItem = () => {
     e.preventDefault();
 
     console.log(fileList.length);
-    if (!title || !price || !stock || !weight || fileList?.length < 1) {
+    if (
+      !title ||
+      !price ||
+      !stock ||
+      !weight ||
+      !country ||
+      !address ||
+      !zip ||
+      !city ||
+      !state ||
+      fileList?.length < 1
+    ) {
       setError('All feilds must be filled in');
       return;
     }
@@ -97,11 +104,7 @@ const AddItem = () => {
         zip,
         address,
         weightUnit,
-        sizeUnit,
         weight,
-        length,
-        width,
-        height,
         options,
         imageData: imagesDataReq.data,
       }).unwrap();
@@ -356,47 +359,6 @@ const AddItem = () => {
               </div>
             </div>
           </div>
-
-          {/* <div className='p-4 flex justify-between'>
-            <div>
-              <p className='text-gray-400'>Package Height</p>
-              <input
-                type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
-                onChange={(e) => setHeight(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <p className='text-gray-400'>Package Width</p>
-              <input
-                type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
-                onChange={(e) => setWidth(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <p className='text-gray-400'>Package Length</p>
-              <input
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
-                type='number'
-                onChange={(e) => setLength(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <p className='text-gray-400'>Unit</p>
-              <select
-                className='rounded-md border-2 w-32 h-12'
-                value={sizeUnit}
-                onChange={(e) => setSizeUnit(e.target.value)}
-              >
-                <option value='inches'>Inches</option>
-                <option value='centimeters'>Centimeters</option>
-              </select>
-            </div>
-          </div> */}
 
           <button
             className='w-full h-14 text-xl border-2 border-slate-800 hover:border-slate-600 rounded'

@@ -90,7 +90,7 @@ const Item = () => {
             )}
             <p className='text-gray-400 mt-4'>Item Price</p>
             <p className='text-2xl mt-4'>${product[0]?.price.toFixed(2)}</p>
-            <p className='text-gray-400 mt-4'>Item Stock</p>
+            <p className='text-gray-400 mt-4'>Item Inventory</p>
             <p className='text-2xl mt-4'>{product[0]?.stock} units left</p>
             <p className='text-gray-400 mt-4'>Item Options</p>
             {product[0].options.length > 0 ? (
@@ -112,8 +112,15 @@ const Item = () => {
             )}
           </div>
 
+          <p className='text-xl font-medium mt-4'>Media</p>
+          <div className='p-4 flex flex-wrap w-full border-2 rounded-md mt-2'>
+            {product[0]?.images.map((img, index) => (
+              <img className='w-32' src={img.url} key={index} />
+            ))}
+          </div>
+
           <div className='w-full flex justify-between'>
-            <div className='flex flex-col w-8/12'>
+            <div className='flex flex-col w-4/12'>
               <p className='text-xl font-medium mt-4'>Package</p>
               <div className='w-full flex justify-between p-4 border-2 rounded-md mt-4 h-32'>
                 <div className='flex flex-col'>
@@ -126,39 +133,14 @@ const Item = () => {
                     </span>
                   </p>
                 </div>
+              </div>
+            </div>
 
-                <div className='flex flex-col'>
-                  <p className='text-gray-400'>Package Height</p>
-                  <p className='text-xl'>
-                    {product[0]?.height}
-                    <span>
-                      {' '}
-                      {product[0]?.sizeUnit === 'inches' ? 'In' : 'Cm'}
-                    </span>
-                  </p>
-                </div>
-
-                <div className='flex flex-col'>
-                  <p className='text-gray-400'>Package Width</p>
-                  <p className='text-xl'>
-                    {product[0]?.width}
-                    <span>
-                      {' '}
-                      {product[0]?.sizeUnit === 'inches' ? 'In' : 'Cm'}
-                    </span>
-                  </p>
-                </div>
-
-                <div className='flex flex-col'>
-                  <p className='text-gray-400'>Package Length</p>
-                  <p className='text-xl'>
-                    {product[0]?.length}
-                    <span>
-                      {' '}
-                      {product[0]?.sizeUnit === 'inches' ? 'In' : 'Cm'}
-                    </span>
-                  </p>
-                </div>
+            <div className='flex flex-col w-4/12 ml-2'>
+              <p className='text-xl font-medium mt-4'>Processing time</p>
+              <div className='w-full flex flex-col p-4 border-2 rounded-md mt-4 h-32'>
+                <p className='text-gray-400'>Time it takes to pack orders</p>
+                <p className='text-xl'>2 days</p>
               </div>
             </div>
 
@@ -173,13 +155,6 @@ const Item = () => {
                 <p className='text-xl'>{product[0]?.shipsFrom?.country}</p>
               </div>
             </div>
-          </div>
-
-          <p className='text-xl font-medium mt-4'>Media</p>
-          <div className='p-4 flex flex-wrap w-full border-2 rounded-md mt-2'>
-            {product[0]?.images.map((img, index) => (
-              <img className='w-32' src={img.url} key={index} />
-            ))}
           </div>
         </div>
       </div>
