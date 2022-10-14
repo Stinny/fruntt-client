@@ -19,6 +19,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
     getOnboardUrl: builder.query({
       query: () => '/auth/onboard',
     }),
+    getSetupIntent: builder.query({
+      query: () => '/auth/getsetupintent',
+    }),
     getUpdatedUser: builder.query({
       query: () => '/auth/updateduser',
       keepUnusedDataFor: 5,
@@ -26,6 +29,21 @@ export const authApiSlice = apiSlice.injectEndpoints({
     disconnectStripe: builder.mutation({
       query: () => ({
         url: '/auth/disconnectstripe',
+        method: 'POST',
+      }),
+    }),
+    addPaymentMethod: builder.mutation({
+      query: ({ paymentMethodId }) => ({
+        url: '/auth/addpayment',
+        method: 'POST',
+        body: {
+          paymentMethodId: paymentMethodId,
+        },
+      }),
+    }),
+    deletePaymentMethod: builder.mutation({
+      query: () => ({
+        url: '/auth/deletepayment',
         method: 'POST',
       }),
     }),
@@ -90,4 +108,7 @@ export const {
   useUpdateBusinessInfoMutation,
   useUpdateNotificationsMutation,
   useConfirmEmailMutation,
+  useLazyGetSetupIntentQuery,
+  useAddPaymentMethodMutation,
+  useDeletePaymentMethodMutation,
 } = authApiSlice;

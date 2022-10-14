@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, Link } from 'react-router-dom';
-import { useGetCustomersQuery } from '../../api/customersApiSlice';
+import {
+  useGetCustomersQuery,
+  useSendReviewEmailMutation,
+} from '../../api/customersApiSlice';
 import Navbar from '../../components/Navbar';
 import Topbar from '../../components/Topbar';
 import Footer from '../../components/Footer';
@@ -21,9 +24,22 @@ const Customers = () => {
     refetch,
   } = useGetCustomersQuery();
 
+  const [sendReviewEmail, result] = useSendReviewEmailMutation();
+
   useEffect(() => {
     refetch();
   }, []);
+
+  const handleSendReviewEmail = async ({ customerId, storeId }) => {
+    console.log(customerId);
+    try {
+      const sendReviewEmailReq = await sendReviewEmail({
+        customerId: customerId,
+        storeId: storeId,
+      }).unwrap();
+      console.log(sendReviewEmailReq);
+    } catch {}
+  };
 
   //for data grid
   const cols = [
@@ -91,14 +107,17 @@ const Customers = () => {
       headerAlign: 'center',
       renderCell: (params) => {
         return (
-          <Link
-            to={`/dashboard/orders/${params.row._id}/`}
-            className='w-full mx-auto flex justify-center'
+          <button
+            className='border-2 w-10/12 border-slate-800 text-slate-800 text-sm rounded'
+            onClick={(e) =>
+              handleSendReviewEmail({
+                customerId: params.row._id,
+                storeId: params.row.storeId,
+              })
+            }
           >
-            <button className='border-2 w-10/12 border-slate-800 text-slate-800 text-sm rounded'>
-              Request Review
-            </button>
-          </Link>
+            Request Review
+          </button>
         );
       },
     },

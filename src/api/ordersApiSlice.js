@@ -9,6 +9,9 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
     getSingleOrder: builder.query({
       query: ({ orderId }) => `/orders/${orderId}`,
     }),
+    getShippingRates: builder.query({
+      query: ({ orderId }) => `/orders/rates/${orderId}`,
+    }),
     fulfillOrder: builder.mutation({
       query: ({ orderId, trackingNum, fulfillType }) => ({
         url: `/orders/fulfill/${orderId}`,
@@ -16,6 +19,17 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         body: {
           trackingNum: trackingNum,
           fulfillType: fulfillType,
+        },
+      }),
+    }),
+    getShippingLabel: builder.mutation({
+      query: ({ orderId, rateId, amount }) => ({
+        url: `/orders/shippinglabel`,
+        method: 'POST',
+        body: {
+          rateId: rateId,
+          orderId: orderId,
+          amount: amount,
         },
       }),
     }),
@@ -39,6 +53,8 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetStoreOrdersQuery,
   useGetSingleOrderQuery,
+  useGetShippingRatesQuery,
   useFulfillOrderMutation,
   useEditShippingAddressMutation,
+  useGetShippingLabelMutation,
 } = ordersApiSlice;

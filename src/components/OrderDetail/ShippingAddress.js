@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import { states } from '../../states';
 import { useEditShippingAddressMutation } from '../../api/ordersApiSlice';
 
-const ShippingAddress = ({ order, refetch }) => {
+const ShippingAddress = ({ order, refetch, refetchRates }) => {
   const [country, setCountry] = useState(order?.shippingAddress?.country);
   const [state, setState] = useState(order?.shippingAddress?.state);
   const [city, setCity] = useState(order?.shippingAddress?.city);
@@ -26,6 +26,7 @@ const ShippingAddress = ({ order, refetch }) => {
       }).unwrap();
       if (updateShippingReq === 'Shipping address updated') {
         refetch();
+        refetchRates();
         closeModal();
       }
     } catch (err) {

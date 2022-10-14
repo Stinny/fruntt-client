@@ -70,9 +70,10 @@ const Payments = ({ refetch }) => {
   } else if (currentUser.stripeOnboard) {
     content = connectedToStripe;
   }
+
   return (
     <div>
-      <div className='w-full'>{content}</div>
+      <div className='w-full p-4'>{content}</div>
     </div>
   );
 };

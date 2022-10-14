@@ -1,158 +1,96 @@
 import React, { useEffect, useState } from 'react';
-import { useGetSingleOrderQuery } from '../../api/ordersApiSlice';
+import {
+  useGetSingleOrderQuery,
+  useGetShippingRatesQuery,
+} from '../../api/ordersApiSlice';
 import Navbar from '../../components/Navbar';
 import Topbar from '../../components/Topbar';
 import Footer from '../../components/Footer';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
 import { useFulfillOrderMutation } from '../../api/ordersApiSlice';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import moment from 'moment';
 import Modal from 'react-modal';
-
-//mui
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import Alert from '@mui/material/Alert';
+import { BsArrowLeftShort } from 'react-icons/bs';
 import ShippingAddress from '../../components/OrderDetail/ShippingAddress';
+import LabelModal from '../../components/OrderDetail/LabelModal';
+import FulfillModal from '../../components/OrderDetail/FulfillModal';
 
 const OrderDetail = () => {
   const { orderId } = useParams();
-  const navigate = useNavigate();
 
-  const [fulfillType, setFulfillType] = useState('auto');
-  const [trackingNum, setTrackingNum] = useState('');
-  const [error, setError] = useState('');
-
+  //gets the order
   const { data: order, isLoading, isSuccess, refetch } = useGetSingleOrderQuery(
     {
       orderId,
     }
   );
 
-  const [fulfillOrder, result] = useFulfillOrderMutation();
+  //gets the shipping rates
+  const {
+    data: rates,
+    isLoading: gettingRates,
+    isSuccess: gotRates,
+    refetch: refetchRates,
+  } = useGetShippingRatesQuery({
+    orderId,
+  });
 
-  //sends req to server to mark the order as fulfilled
-  const handleFulfillOrder = async (e) => {
-    e.preventDefault();
+  const [labelModaIsOpen, setLabelModalIsOpen] = useState(false);
+  const [fulfillModalIsOpen, setFulfillModalIsOpen] = useState(false);
 
-    const fulfillOrderReq = await fulfillOrder({
-      orderId: orderId,
-      trackingNum: trackingNum,
-      fulfillType: fulfillType,
-    }).unwrap();
-
-    if (fulfillOrderReq === 'Order fulfilled') {
-      refetch();
-      closeModal();
-    } else if (fulfillOrderReq === 'Error') {
-      setError(
-        'There was an error, check if shipping address is a valid address'
-      );
-    }
-  };
-
-  //modal stuff
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
+  function openLabelModal() {
+    setLabelModalIsOpen(true);
   }
 
-  function closeModal() {
-    setIsOpen(false);
-    setError('');
+  function closeLabelModal() {
+    setLabelModalIsOpen(false);
   }
 
-  const modalStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
+  function openFulfillModal() {
+    setFulfillModalIsOpen(true);
+  }
+
+  function closeFulfillModal() {
+    setFulfillModalIsOpen(false);
+  }
 
   useEffect(() => {
     refetch();
   }, []);
 
-  useEffect(() => {
-    console.log(fulfillType);
-  }, [fulfillType]);
-
   let content;
-  if (isLoading) {
+  if (isLoading || gettingRates) {
     content = <Spinner />;
-  } else if (isSuccess) {
-    console.log(order);
+  } else if (isSuccess && gotRates) {
     content = (
       <div className='w-full'>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={modalStyles}
+        <LabelModal
+          closeLabelModal={closeLabelModal}
+          openLabelModal={openLabelModal}
+          labelModalIsOpen={labelModaIsOpen}
+          order={order}
+          rates={rates}
+          refetch={refetch}
+        />
+
+        <FulfillModal
+          closeFulfillModal={closeFulfillModal}
+          order={order}
+          fulfillModalIsOpen={fulfillModalIsOpen}
+          refetch={refetch}
+        />
+
+        <Link
+          to='/dashboard/orders'
+          className='flex items-center text-gray-400 text-lg hover:text-gray-600 w-4/12'
         >
-          <form>
-            <p className='text-xl font-medium'>Fulfilling order: {order._id}</p>
-            <p className='text-gray-400 mb-4'>
-              Fulfilling the order will send the customer a shipping
-              confirmation email with tracking details and an order summary
-            </p>
-
-            {error && <Alert severity='error'>{error}</Alert>}
-
-            <RadioGroup
-              defaultValue='auto'
-              onChange={(e) => setFulfillType(e.target.value)}
-            >
-              <FormControlLabel
-                control={<Radio />}
-                value='auto'
-                label='Have us generate shipping label and tracking number'
-              />
-
-              <FormControlLabel
-                value='manu'
-                control={<Radio />}
-                label='Manually enter tracking number'
-              />
-            </RadioGroup>
-
-            {fulfillType === 'manu' && (
-              <div style={{ display: fulfillType === 'auto' ? 'none' : '' }}>
-                <input
-                  type='text'
-                  className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded-lg p-2'
-                  placeholder='Enter tracking number'
-                  onChange={(e) => setTrackingNum(e.target.value)}
-                  // value={name}
-                />
-              </div>
-            )}
-
-            <button
-              type='submit'
-              className='w-full h-14 border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white rounded mt-4'
-              onClick={handleFulfillOrder}
-            >
-              Fulfill Order
-            </button>
-            <button
-              type='button'
-              onClick={closeModal}
-              className='w-full h-10 border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white rounded mt-4'
-            >
-              Cancel
-            </button>
-          </form>
-        </Modal>
-
-        <div className='flex justify-between w-full border-b-2 p-2'>
+          {' '}
+          <BsArrowLeftShort />
+          Back to orders
+        </Link>
+        <div className='flex justify-between items-center w-full border-b-2 p-2'>
           <div className='flex flex-col'>
             <h2 className='text-2xl font-bold'>
               Viewing Order: <span className='font-medium'>{order?._id}</span>
@@ -169,8 +107,9 @@ const OrderDetail = () => {
               </div>
             ) : (
               <button
-                onClick={openModal}
+                onClick={openFulfillModal}
                 className='border-2 mr-2 w-32 h-10 rounded text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white'
+                type='button'
               >
                 Fulfill Order
               </button>
@@ -185,12 +124,25 @@ const OrderDetail = () => {
               </button>
             )}
 
-            {order.labelUrl && (
+            {order.labelUrl ? (
               <a href={order?.labelUrl} target='_blank'>
                 <button className='border-2 w-60 h-10 rounded border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'>
                   Download Shipping Label
                 </button>
               </a>
+            ) : (
+              ''
+            )}
+
+            {!order.labelUrl && !order.manualTrackingNumber ? (
+              <button
+                onClick={openLabelModal}
+                className='border-2 w-60 h-10 rounded border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
+              >
+                Get Shipping Label
+              </button>
+            ) : (
+              ''
             )}
           </div>
         </div>
@@ -229,7 +181,11 @@ const OrderDetail = () => {
             </div>
           </div>
 
-          <ShippingAddress order={order} refetch={refetch} />
+          <ShippingAddress
+            order={order}
+            refetch={refetch}
+            refetchRates={refetchRates}
+          />
         </div>
       </div>
     );
@@ -238,9 +194,7 @@ const OrderDetail = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-
-      <div className='max-w-6xl mx-auto'>{content}</div>
+      <div className='max-w-6xl mx-auto mt-10'>{content}</div>
       <Footer />
     </>
   );

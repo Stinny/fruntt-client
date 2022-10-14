@@ -69,7 +69,7 @@ const Item = () => {
           </div>
 
           <Link to={`/dashboard/item/edit/${product[0]._id}`}>
-            <button className='w-32 h-10 rounded border-slate-800 border-2'>
+            <button className='w-32 h-10 rounded border-slate-800 text-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
               EDIT ITEM
             </button>
           </Link>

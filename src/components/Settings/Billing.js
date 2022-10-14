@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Modal from 'react-modal';
+import Spinner from '../../components/Spinner';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import BillingForm from './BillingForm';
 
-const Billing = () => {
+const stripeLoader = loadStripe('pk_test_KnpiRgRMVGvh1Tu8cjzphjmP00L66ieGNQ');
+
+const Billing = ({ user, refetch }) => {
   return (
-    <div className='flex justify-center items-center w-full h-32 border-2 rounded mt-2'>
-      <p className='text-slate-800 font-medium'>
-        Pricing for this platform is still being figured out, for now enjoy for
-        free
-      </p>
+    <div className='w-full h-32 mt-2'>
+      <Elements stripe={stripeLoader}>
+        <BillingForm user={user} refetch={refetch} />
+      </Elements>
     </div>
   );
 };

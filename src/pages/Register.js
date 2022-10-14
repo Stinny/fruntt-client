@@ -42,7 +42,7 @@ const Register = () => {
       Cookies.set('currentUser', currentUser, { sameSite: 'Lax' });
       Cookies.set('aToken', registerData.accessToken, { sameSite: 'Lax' });
       Cookies.set('rToken', registerData.refreshToken, { sameSite: 'Lax' });
-      navigate('/dashboard');
+      navigate('/storefront/launching');
     } catch (err) {
       if (!err?.status) {
         setError('Server not responding');

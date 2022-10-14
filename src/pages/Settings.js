@@ -68,13 +68,14 @@ const Settings = () => {
         </div>
 
         <div className='w-full mt-10'>
-          <div className='flex justify-between items-center w-full border-b p-2'>
-            <p className='text-xlg font-medium'>Billing</p>
-            <button className='border-2 rounded w-20 border-gray-400 text-gray-400'>
-              Edit
-            </button>
+          <div className='flex flex-col w-full border-b p-2'>
+            <p className='text-xlg font-medium'>Billing & Shipping Labels</p>
+            <p className='text-gray-400 font-medium'>
+              Add a payment method for monthly billing and purchasing shipping
+              labels
+            </p>
           </div>
-          <Billing />
+          <Billing user={user} refetch={refetch} />
         </div>
       </div>
     );

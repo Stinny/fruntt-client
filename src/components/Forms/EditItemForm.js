@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FileUpload from '../../pages/Dashboard/FileUpload';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   useUpdateProductMutation,
   useDeleteProductMutation,
@@ -10,6 +10,7 @@ import { uploadImageRequest } from '../../api/requests';
 import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 import EditOptionsForm from '../../components/Forms/EditOptionsForm';
 import { states } from '../../states';
+import { BsArrowLeftShort } from 'react-icons/bs';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -111,7 +112,12 @@ const EditItemForm = ({
         imageData: imagesDataReq ? imagesDataReq.data : [],
       }).unwrap();
 
-      navigate('/dashboard/item');
+      if (updateItemReq === 'Invalid address') {
+        setError('The "Ships from" address you entered is invalid.');
+        return;
+      } else if (updateItemReq === 'Item updated') {
+        navigate('/dashboard/item');
+      }
     } catch (err) {
       setError(err.message);
       return;
@@ -134,8 +140,18 @@ const EditItemForm = ({
 
   return (
     <>
-      <div className='mb-10 flex justify-between p-2 border-b-2'>
-        <h2 className='text-3xl font-medium'>Edit Your Item</h2>
+      <Link
+        to='/dashboard/item'
+        className='flex items-center text-lg text-gray-400 hover:text-gray-600 w-2/12'
+      >
+        {' '}
+        <BsArrowLeftShort />
+        Back to item
+      </Link>
+      <div className='mb-10 flex justify-between items-center p-2 border-b-2'>
+        <div className='flex flex-col'>
+          <h2 className='text-4xl font-medium'>Edit Your Item</h2>
+        </div>
 
         <div className='flex justify-between'>
           <button
@@ -284,8 +300,9 @@ const EditItemForm = ({
             <select
               onChange={(e) => setFormCountry(e.target.value)}
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+              value={formCountry}
             >
-              <option value='United States'>United States</option>
+              <option value='US'>United States</option>
             </select>
           </div>
 

@@ -69,8 +69,8 @@ const EditItem = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-      <div className='max-w-6xl mx-auto h-fit'>{content}</div>
+      {/* <Topbar /> */}
+      <div className='max-w-6xl mx-auto h-fit mt-10'>{content}</div>
       <Footer />
     </>
   );
