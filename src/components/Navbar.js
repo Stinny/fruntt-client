@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdOutlineNotificationsNone } from 'react-icons/md';
 import { FiSettings } from 'react-icons/fi';
@@ -51,6 +51,17 @@ const Navbar = () => {
     handleLogoutUser(navigate); //logout function in utils
   };
 
+  useEffect(() => {
+    const firstTime = () => {
+      setTimeout(() => setIsOpen(true), 2.5 * 1000);
+      localStorage.setItem('firstTime', true);
+    };
+
+    const isFirstTime = localStorage.getItem('firstTime');
+
+    if (!isFirstTime) firstTime();
+  }, []);
+
   return currentUser ? (
     <nav className='w-full h-16 border-b-2'>
       <HelpModal
@@ -67,6 +78,18 @@ const Navbar = () => {
           >
             <IoStorefrontOutline className='text-slate-800 font-bold' />
             <h2 className='font-black text-slate-800 font-sans'>Fruntt</h2>
+          </Link>
+        </div>
+
+        <div className='flex items-center h-full'>
+          <select className='rounded border-2 w-72 h-10'>
+            <option>{currentUser?.store?.url}</option>
+          </select>
+          <Link
+            to='/dashboard'
+            className='ml-2 text-gray-400 hover:text-gray-800'
+          >
+            + Add storefront
           </Link>
         </div>
 

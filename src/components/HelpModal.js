@@ -32,22 +32,22 @@ const HelpModal = ({ isOpen, handleCloseModal }) => {
             />
           </button>
           <div className='w-full border-b-2 p-2'>
-            <p className='text-2xl font-medium'>Getting started</p>
+            <p className='text-4xl font-medium'>Getting started</p>
             <p className='text-gray-400 mt-2 font-medium text-lg'>
-              Here a few simple steps to get your storefront up and running!
+              Heres a few simple steps to get your storefront up and running!
             </p>
           </div>
           <div className='p-2'>
             <p className='w-full mt-4 text-lg'>
-              You can always find this help box by clicking the help cirlce icon
-              on the navbar.
+              You can always find this help box by clicking the help icon on the
+              navbar: <BiHelpCircle />
             </p>
 
             <p className='font-medium mt-4 text-xl'>Steps:</p>
 
-            <p className='text-lg'>
-              <span className='font-medium'>1.</span> Before taking any orders,
-              you must connect to a payment provider in{' '}
+            <p className='text-lg mt-4'>
+              <span className='font-medium'>1.</span> Before your storefront can
+              take any orders, you must connect to a payment gateway in{' '}
               <Link
                 to='/settings'
                 className='font-medium border-b-2 border-slate-800'
@@ -55,7 +55,7 @@ const HelpModal = ({ isOpen, handleCloseModal }) => {
                 settings
               </Link>
             </p>
-            <p className='mt-2 text-lg'>
+            <p className='mt-4 text-lg'>
               <span className='font-medium'>2.</span> Go to{' '}
               <Link to='/dashboard/item'>
                 <button className='text-sm font-medium text-white w-24 rounded-xl bg-slate-800'>
@@ -64,13 +64,39 @@ const HelpModal = ({ isOpen, handleCloseModal }) => {
               </Link>{' '}
               tab for adding an item to your storefront
             </p>
-            <p className='mt-2 text-lg'>
+            <p className='mt-4 text-lg'>
               <span className='font-medium'>3.</span> Go to{' '}
-              <button className='text-sm font-medium text-white w-24 rounded-xl bg-slate-800'>
-                Design
-              </button>{' '}
-              tab for designing your storefront how you like and to match your
-              brand
+              <Link to='/dashboard/design'>
+                <button className='text-sm font-medium text-white w-24 rounded-xl bg-slate-800'>
+                  Design
+                </button>
+              </Link>{' '}
+              tab for designing your storefront to your liking
+            </p>
+            <p className='mt-4 text-lg'>
+              <span className='font-medium'>4.</span> Go to{' '}
+              <Link to='/dashboard/content'>
+                <button className='text-sm font-medium text-white w-24 rounded-xl bg-slate-800'>
+                  Content
+                </button>
+              </Link>{' '}
+              tab to add other content to your storefront like customer
+              questions and social links
+            </p>
+            <p className='mt-4 text-lg'>
+              <span className='font-medium'>5.</span> Go to{' '}
+              <Link to='/dashboard/orders'>
+                <button className='text-sm font-medium text-white w-24 rounded-xl bg-slate-800'>
+                  Orders
+                </button>
+              </Link>{' '}
+              and{' '}
+              <Link to='/dashboard/customers'>
+                <button className='text-sm font-medium text-white w-24 rounded-xl bg-slate-800'>
+                  Customers
+                </button>
+              </Link>{' '}
+              tab to manage your orders and customers
             </p>
           </div>
         </div>

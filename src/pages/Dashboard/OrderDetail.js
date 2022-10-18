@@ -178,14 +178,16 @@ const OrderDetail = () => {
               <p className='text-gray-400'>Item:</p>
               <p className='text-gray-400 mt-2'>Options:</p>
               <p className='text-gray-400 mt-2'>Quantity:</p>
-              <p className='text-gray-400 mt-2'>SKU:</p>
+              <p className='text-gray-400 mt-2'>Shipping price:</p>
               <p className='text-gray-400 mt-2'>Total:</p>
             </div>
             <div className='flex flex-col justify-between text-right'>
               <p className='text-lg font-medium mt-2'>{order?.item?.title}</p>
               <p className='text-lg font-medium mt-2'>Medium, Black</p>
               <p className='text-lg font-medium mt-2'>{order?.qty}</p>
-              <p className='text-lg font-medium mt-2'>BLK-MED-G123-GUC</p>
+              <p className='text-lg font-medium mt-2'>
+                ${order?.item?.shippingPrice}
+              </p>
               <p className='text-lg font-medium mt-2'>
                 ${order?.total?.toFixed(2)}
               </p>

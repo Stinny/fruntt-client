@@ -171,7 +171,7 @@ const EditOptionsForm = ({ formOptions, setFormOptions }) => {
         </div>
       )}
       <button
-        className='w-full h-16 border-2 rounded border-slate-800 text-slate-800 mt-4 font-medium'
+        className='w-full h-16 border-2 rounded border-slate-800 text-slate-800 mt-4 font-medium hover:text-white hover:bg-slate-800'
         onClick={openModal}
         type='button'
       >

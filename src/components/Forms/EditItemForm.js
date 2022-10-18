@@ -200,7 +200,7 @@ const EditItemForm = ({
 
           <input
             type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
+            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
             placeholder='Title'
             value={formTitle}
             onChange={(e) => setFormTitle(e.target.value)}
@@ -209,7 +209,7 @@ const EditItemForm = ({
           <p className='text-gray-400 mt-4'>Description</p>
           <textarea
             type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
+            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
             placeholder='Description'
             value={formDescription}
             onChange={(e) => setFormDescription(e.target.value)}
@@ -220,7 +220,7 @@ const EditItemForm = ({
               <p className='text-gray-400 mt-4'>Price</p>
               <input
                 type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
                 placeholder='Price'
                 value={formPrice}
                 onChange={(e) => setFormPrice(e.target.value)}
@@ -231,7 +231,7 @@ const EditItemForm = ({
               <p className='text-gray-400 mt-4'>Stock</p>
               <input
                 type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
                 placeholder='Stock'
                 value={formStock}
                 onChange={(e) => setFormStock(e.target.value)}
@@ -407,7 +407,7 @@ const EditItemForm = ({
 
           <div className='w-3/6'>
             <div className='flex items-center'>
-              <p className='text-xl font-medium'>Shipping</p>
+              <p className='text-xl font-medium'>Shipping price</p>
               <Tooltip
                 title={
                   <p className='text-lg'>

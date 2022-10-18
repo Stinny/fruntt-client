@@ -83,10 +83,7 @@ function App() {
                   element={<CustomerDetail />}
                 />
 
-                <Route
-                  path='dashboard/integrations'
-                  element={<Integrations />}
-                />
+                <Route path='dashboard/addons' element={<Integrations />} />
 
                 <Route path='/dashboard/design' element={<Design />} />
 

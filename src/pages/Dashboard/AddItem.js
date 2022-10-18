@@ -128,14 +128,14 @@ const AddItem = () => {
 
           <div className='flex'>
             <button
-              className='w-32 h-10 rounded border-red-400 text-red-400 border-2 mr-2'
+              className='w-32 h-10 rounded border-red-400 text-red-400 border-2 mr-2 hover:text-white hover:bg-red-400'
               onClick={handleCancel}
               type='button'
             >
               CANCEL
             </button>
             <button
-              className='w-32 h-10 rounded border-slate-800 border-2'
+              className='w-32 h-10 rounded border-slate-800 border-2 hover:text-white hover:bg-slate-800'
               onClick={handleAddItem}
               type='button'
             >
@@ -370,7 +370,7 @@ const AddItem = () => {
 
             <div className='w-3/6'>
               <div className='flex items-center'>
-                <p className='text-xl font-medium'>Shipping</p>
+                <p className='text-xl font-medium'>Shipping price</p>
                 <Tooltip
                   title={
                     <p className='text-lg'>
@@ -405,14 +405,14 @@ const AddItem = () => {
           </div>
 
           <button
-            className='w-full h-14 text-xl border-2 border-slate-800 hover:border-slate-600 rounded'
+            className='w-full h-14 text-xl border-2 border-slate-800 hover:bg-slate-800 hover:text-white rounded'
             type='submit'
           >
             ADD ITEM +
           </button>
 
           <button
-            className='w-full text-xl border-2 border-red-400 hover:border-red-400 text-red-400 h-10 rounded mt-2'
+            className='w-full text-xl border-2 border-red-400 hover:bg-red-400 hover:text-white text-red-400 h-10 rounded mt-2'
             type='button'
             onClick={handleCancel}
           >

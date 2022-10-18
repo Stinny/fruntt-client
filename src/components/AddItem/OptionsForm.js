@@ -128,7 +128,7 @@ const OptionsForm = ({
 
           <button
             onClick={handleAddOption}
-            className='w-full h-14 border-2 rounded border-slate-800 text-slate-800 mt-4'
+            className='w-full h-14 border-2 rounded border-slate-800 text-slate-800 mt-4 hover:bg-slate-800 hover:text-white'
             type='button'
           >
             Add Option
@@ -136,7 +136,7 @@ const OptionsForm = ({
 
           <button
             onClick={closeModal}
-            className='w-full h-10 border-2 rounded border-red-400 text-red-400 mt-2'
+            className='w-full h-10 border-2 rounded border-red-400 text-red-400 mt-2 hover:bg-red-400 hover:text-white'
             type='button'
           >
             Cancel

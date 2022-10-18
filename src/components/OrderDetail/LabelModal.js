@@ -83,7 +83,7 @@ const LabelModal = ({
             ''
           )}
           <Alert severity='info' className='w-full mt-2 mb-2'>
-            Your customer paid $7.24 for shipping
+            Your customer paid ${order?.item?.shippingPrice} for shipping
           </Alert>
 
           <select

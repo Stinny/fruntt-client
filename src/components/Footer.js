@@ -19,24 +19,24 @@ const Footer = () => {
         </div>
 
         <div className='flex justify-between items-center w-72'>
-          <Link to='/' className='text-gray-400 hover:text-blue-400'>
+          <Link to='/' className='text-gray-400 hover:text-slate-800'>
             About
           </Link>
-          <Link to='/' className='text-gray-400 hover:text-blue-400'>
+          <Link to='/' className='text-gray-400 hover:text-slate-800'>
             Contact
           </Link>
-          <Link to='/' className='text-gray-400 hover:text-blue-400'>
+          <Link to='/' className='text-gray-400 hover:text-slate-800'>
             Privacy Policy
           </Link>
-          <Link to='/' className='text-gray-400 hover:text-blue-400'>
+          <Link to='/' className='text-gray-400 hover:text-slate-800'>
             Terms
           </Link>
         </div>
 
         <div className='flex w-40 justify-between text-4xl'>
-          <AiOutlineFacebook className='text-gray-400 hover:text-blue-400' />
-          <AiOutlineInstagram className='text-gray-400 hover:text-blue-400' />
-          <AiOutlineYoutube className='text-gray-400 hover:text-blue-400' />
+          <AiOutlineFacebook className='text-gray-400 hover:text-slate-800' />
+          <AiOutlineInstagram className='text-gray-400 hover:text-slate-800' />
+          <AiOutlineYoutube className='text-gray-400 hover:text-slate-800' />
         </div>
       </div>
     </footer>

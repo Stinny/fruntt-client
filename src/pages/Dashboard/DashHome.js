@@ -49,6 +49,15 @@ const DashHome = () => {
             </p>
           </Alert>
         )}
+        <Alert severity='info' className='mt-4 mb-4 w-full'>
+          <p>
+            Welcome merchants! As we onboard beta users, collect feedback, and
+            develop a pricing plan merchants will be restricted to only one
+            storefront. We will be collecting a small 2% fee for successful
+            orders to help us cover infrastructure costs. We encourage and
+            appreaciate all feedback!
+          </p>
+        </Alert>
 
         <div className='flex justify-end w-full mb-2'>
           <a
@@ -85,7 +94,7 @@ const DashHome = () => {
             <Tooltip
               title={
                 <p className='text-lg'>
-                  Amount of orders your storefront has received
+                  Total orders your storefront has received
                 </p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'

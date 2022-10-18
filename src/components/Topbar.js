@@ -88,13 +88,13 @@ const Topbar = () => {
           </button>
         </NavLink>
 
-        <NavLink to='/dashboard/integrations'>
+        <NavLink to='/dashboard/addons'>
           <button
             className={
-              path === '/dashboard/integrations' ? activeLink : notActiveLink
+              path === '/dashboard/addons' ? activeLink : notActiveLink
             }
           >
-            Integrations
+            Add-ons
           </button>
         </NavLink>
 

@@ -120,7 +120,7 @@ const Design = () => {
       <Topbar />
       <div className='max-w-6xl mx-auto'>
         <div className='mb-10 flex justify-between border-b-2 p-2'>
-          <h2 className='text-3xl font-medium'>Storefront styles</h2>
+          <h2 className='text-3xl font-medium'>Storefront design</h2>
           <a
             href={storefront?.url}
             target='_blank'
