@@ -30,7 +30,7 @@ const LabelModal = ({
     e.preventDefault();
 
     if (!rateId || !packTime) {
-      setError('Please select a shipping rate');
+      setError('Please select both a pack time and shipping rate');
       return;
     }
 
@@ -43,7 +43,7 @@ const LabelModal = ({
     }).unwrap();
 
     if (getLabelReq.error) {
-      setError('There was an error with payment');
+      setError(getLabelReq.msg);
     } else if (getLabelReq.msg === 'Label created') {
       refetch();
       closeLabelModal();
