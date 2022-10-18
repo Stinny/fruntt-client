@@ -6,6 +6,10 @@ export const customersApiSlice = apiSlice.injectEndpoints({
       query: () => '/customers',
       keepUnusedDataFor: 5,
     }),
+    getCustomer: builder.query({
+      query: ({ customerId }) => `/customers/singlecustomer/${customerId}`,
+      keepUnusedDataFor: 5,
+    }),
     sendReviewEmail: builder.mutation({
       query: ({ customerId, storeId }) => ({
         url: '/customers/sendreviewemail',
@@ -22,4 +26,5 @@ export const customersApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetCustomersQuery,
   useSendReviewEmailMutation,
+  useGetCustomerQuery,
 } = customersApiSlice;

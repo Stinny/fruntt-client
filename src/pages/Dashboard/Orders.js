@@ -7,7 +7,8 @@ import Footer from '../../components/Footer';
 import { useGetStoreOrdersQuery } from '../../api/ordersApiSlice';
 import Spinner from '../../components/Spinner';
 import img from '../../media/noOrders.svg';
-
+import { FiDownload } from 'react-icons/fi';
+import moment from 'moment';
 //mui
 import { DataGrid } from '@mui/x-data-grid';
 import Stack from '@mui/material/Stack';
@@ -37,17 +38,17 @@ const Orders = () => {
   const cols = [
     {
       field: 'firstName',
-      headerName: 'First Name',
-      width: 140,
+      headerName: 'Name',
+      width: 180,
       align: 'center',
       headerAlign: 'center',
-    },
-    {
-      field: 'lastName',
-      headerName: 'Last Name',
-      width: 140,
-      headerAlign: 'center',
-      align: 'center',
+      renderCell: (params) => {
+        return (
+          <p>
+            {params.row.firstName} {params.row.lastName}
+          </p>
+        );
+      },
     },
     {
       field: 'email',
@@ -55,6 +56,16 @@ const Orders = () => {
       width: 200,
       headerAlign: 'center',
       align: 'center',
+    },
+    {
+      field: 'placedOn',
+      headerName: 'Ordered on',
+      width: 100,
+      headerAlign: 'center',
+      align: 'center',
+      renderCell: (params) => {
+        return <p>{moment(params?.row?.placedOn).format('MMM D, YYYY')}</p>;
+      },
     },
     {
       field: 'total',
@@ -69,7 +80,7 @@ const Orders = () => {
     {
       field: 'paid',
       headerName: 'Payment',
-      width: 150,
+      width: 100,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
@@ -81,9 +92,29 @@ const Orders = () => {
       },
     },
     {
+      field: 'labelUrl',
+      headerName: 'Label',
+      width: 150,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: (params) => {
+        return params.row.labelUrl ? (
+          <a
+            href={params.row.labelUrl}
+            target='_blank'
+            className='text-blue-600 flex justify-between items-center'
+          >
+            Download label <FiDownload className='ml-2' />
+          </a>
+        ) : (
+          <p className='text-red-600'>No label</p>
+        );
+      },
+    },
+    {
       field: 'fulfilled',
       headerName: 'Fulfilled',
-      width: 150,
+      width: 140,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
@@ -101,7 +132,7 @@ const Orders = () => {
     {
       field: 'view',
       headerName: 'View',
-      width: 200,
+      width: 130,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {

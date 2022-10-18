@@ -50,6 +50,7 @@ const ShippingAddress = ({ order, refetch, refetchRates }) => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      width: '500px',
     },
   };
 
@@ -61,6 +62,9 @@ const ShippingAddress = ({ order, refetch, refetchRates }) => {
         style={modalStyles}
       >
         <form className='flex flex-col' onSubmit={handleSaveAddress}>
+          <div className='border-b p-2 w-full mb-4'>
+            <p className='text-xl font-medium'>Editing shipping address</p>
+          </div>
           <p className='text-gray-400'>Address</p>
           <input
             className='w-full border-2 border-slate-200 hover:border-slate-300 rounded-lg p-2 outline outline-0'
@@ -107,14 +111,14 @@ const ShippingAddress = ({ order, refetch, refetchRates }) => {
             value={zip}
           />
           <button
-            className='w-full h-14 text-xl border-2 border-slate-800 hover:border-slate-600 rounded mt-2'
+            className='w-full h-14 text-xl border-2 border-slate-800 hover:border-slate-600 rounded mt-2 hover:bg-slate-800 hover:text-white'
             type='submit'
           >
             SAVE
           </button>
 
           <button
-            className='w-full text-xl border-2 border-red-400 hover:border-red-400 text-red-400 h-10 rounded mt-2'
+            className='w-full text-xl border-2 border-red-400 hover:border-red-400 text-red-400 hover:bg-red-400 hover:text-white h-10 rounded mt-2'
             type='button'
             onClick={closeModal}
           >
@@ -127,9 +131,9 @@ const ShippingAddress = ({ order, refetch, refetchRates }) => {
         <p className='text-xl font-medium'>Shipping item to</p>
         <button
           onClick={openModal}
-          className='border-2 rounded border-gray-400 text-gray-400 w-14'
+          className='border-2 rounded border-slate-800 text-slate-800 w-44 hover:text-white hover:bg-slate-800'
         >
-          Edit
+          Edit shipping address
         </button>
       </div>
       <div className='w-full p-4 flex justify-between mx-auto'>
@@ -144,7 +148,9 @@ const ShippingAddress = ({ order, refetch, refetchRates }) => {
           <p className='text-lg font-medium mt-2'>
             {order?.shippingAddress?.street}
           </p>
-          <p className='text-lg font-medium mt-2'>United States</p>
+          <p className='text-lg font-medium mt-2'>
+            {order?.shippingAddress?.country}
+          </p>
           <p className='text-lg font-medium mt-2'>
             {order?.shippingAddress?.city}
           </p>

@@ -35,6 +35,7 @@ const AddItem = () => {
   const [state, setState] = useState('');
   const [address, setAddress] = useState('');
   const [zip, setZip] = useState('');
+  const [shippingPrice, setShippingPrice] = useState(0);
 
   //for adding item options
   const [options, setOptions] = useState([]);
@@ -106,6 +107,7 @@ const AddItem = () => {
         weightUnit,
         weight,
         options,
+        shippingPrice,
         imageData: imagesDataReq.data,
       }).unwrap();
 
@@ -128,12 +130,14 @@ const AddItem = () => {
             <button
               className='w-32 h-10 rounded border-red-400 text-red-400 border-2 mr-2'
               onClick={handleCancel}
+              type='button'
             >
               CANCEL
             </button>
             <button
               className='w-32 h-10 rounded border-slate-800 border-2'
               onClick={handleAddItem}
+              type='button'
             >
               ADD ITEM +
             </button>
@@ -156,7 +160,7 @@ const AddItem = () => {
               className='ml-2 text-lg'
               placement='right-end'
             >
-              <button>
+              <button type='button' disabled>
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
@@ -220,7 +224,7 @@ const AddItem = () => {
               className='ml-2 text-lg'
               placement='right-end'
             >
-              <button>
+              <button type='button' disabled>
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
@@ -242,7 +246,7 @@ const AddItem = () => {
               className='ml-2 text-lg'
               placement='right-end'
             >
-              <button>
+              <button type='button' disabled>
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
@@ -262,7 +266,7 @@ const AddItem = () => {
               className='ml-2 text-lg'
               placement='right-end'
             >
-              <button>
+              <button type='button' disabled>
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
@@ -322,40 +326,80 @@ const AddItem = () => {
             </div>
           </div>
 
-          <div className='flex items-center'>
-            <p className='text-xl font-medium'>Package</p>
-            <Tooltip
-              title={<p className='text-lg'>{packageInfo}</p>}
-              className='ml-2 text-lg'
-              placement='right-end'
-            >
-              <button>
-                <AiOutlineInfoCircle />
-              </button>
-            </Tooltip>
-          </div>
-
-          <div className='p-4'>
-            <div className='flex justify-between w-6/12'>
-              <div className='w-10/12'>
-                <p className='text-gray-400'>Package Weight</p>
-                <input
-                  type='number'
-                  step='0.1'
-                  className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
-                  onChange={(e) => setWeight(e.target.value)}
-                />
-              </div>
-              <div className='w-2/12'>
-                <p className='text-gray-400'>Unit</p>
-                <select
-                  className='rounded-md border-2 w-full h-10 ml-2'
-                  value={weightUnit}
-                  onChange={(e) => setWeightUnit(e.target.value)}
+          <div className='flex justify-between'>
+            <div className='w-3/6'>
+              <div className='flex items-center'>
+                <p className='text-xl font-medium'>Package</p>
+                <Tooltip
+                  title={<p className='text-lg'>{packageInfo}</p>}
+                  className='ml-2 text-lg'
+                  placement='right-end'
                 >
-                  <option value='pound'>Pounds</option>
-                  <option value='ounce'>Ounces</option>
-                </select>
+                  <button type='button' disabled>
+                    <AiOutlineInfoCircle />
+                  </button>
+                </Tooltip>
+              </div>
+
+              <div className='p-4'>
+                <div className='flex justify-between w-full'>
+                  <div className='flex justify-between'>
+                    <div>
+                      <p className='text-gray-400'>Weight</p>
+                      <input
+                        type='number'
+                        className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2 outline outline-0'
+                        onChange={(e) => setWeight(e.target.value)}
+                        step='0.1'
+                      />
+                    </div>
+                    <div className='ml-2'>
+                      <p className='text-gray-400'>Unit</p>
+                      <select
+                        className='rounded-md border-2 w-32 h-12'
+                        onChange={(e) => setWeightUnit(e.target.value)}
+                      >
+                        <option value='pound'>Pounds</option>
+                        <option value='ounce'>Ounces</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='w-3/6'>
+              <div className='flex items-center'>
+                <p className='text-xl font-medium'>Shipping</p>
+                <Tooltip
+                  title={
+                    <p className='text-lg'>
+                      The price customers will pay for shipping
+                    </p>
+                  }
+                  className='ml-2 text-lg'
+                  placement='right-end'
+                >
+                  <button type='button' disabled>
+                    <AiOutlineInfoCircle />
+                  </button>
+                </Tooltip>
+              </div>
+
+              <div className='p-4'>
+                <div className='flex justify-between w-full'>
+                  <div className='flex justify-between'>
+                    <div>
+                      <p className='text-gray-400'>Price</p>
+                      <input
+                        type='number'
+                        className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2 outline outline-0'
+                        onChange={(e) => setShippingPrice(e.target.value)}
+                        step='0.01'
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

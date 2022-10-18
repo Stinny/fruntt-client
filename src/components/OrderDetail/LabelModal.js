@@ -15,17 +15,21 @@ const LabelModal = ({
 }) => {
   const [rateId, setRateId] = useState('');
   const [error, setError] = useState('');
+  const [packTime, setPackTime] = useState('');
+  const [amount, setAmount] = useState('');
 
   const [getShippingLabel, result] = useGetShippingLabelMutation();
 
   useEffect(() => {
     setError('');
+    const getSelectedRate = rates.filter((rate) => rate.rateId === rateId);
+    setAmount(getSelectedRate[0]?.amount);
   }, [rateId]);
 
   const handleGetShippingLabel = async (e) => {
     e.preventDefault();
 
-    if (!rateId) {
+    if (!rateId || !packTime) {
       setError('Please select a shipping rate');
       return;
     }
@@ -81,9 +85,22 @@ const LabelModal = ({
           <Alert severity='info' className='w-full mt-2 mb-2'>
             Your customer paid $7.24 for shipping
           </Alert>
+
+          <select
+            onChange={(e) => setPackTime(e.target.value)}
+            className='w-8/12 h-14 rounded p-2'
+          >
+            <option disabled selected hidden>
+              When will you fill the order?
+            </option>
+            <option value='today'>Today</option>
+            <option value='twoDays'>In 2 days</option>
+            <option value='threeDays'>In 3 days</option>
+          </select>
+
           <select
             onChange={(e) => setRateId(e.target.value)}
-            className='w-8/12 h-14 rounded p-2'
+            className='w-8/12 h-14 rounded p-2 mt-2'
           >
             <option disabled selected hidden>
               Pick a shipping rate
@@ -97,10 +114,10 @@ const LabelModal = ({
 
           <button
             type='submit'
-            className='w-full h-14 border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white rounded mt-4'
+            className='w-full text-lg h-14 border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white rounded mt-4'
             onClick={handleGetShippingLabel}
           >
-            Buy Label
+            Buy Label {amount ? `($${amount})` : ''}
           </button>
           <button
             type='button'

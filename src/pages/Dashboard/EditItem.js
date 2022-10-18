@@ -59,6 +59,7 @@ const EditItem = () => {
           length={product?.length}
           width={product?.width}
           options={product?.options}
+          shippingPrice={product?.shippingPrice}
           productId={productId}
           refetch={refetch}
         />

@@ -36,6 +36,7 @@ import DesignPreview from './pages/DesignPreview';
 import Content from './pages/Dashboard/Content';
 import Launching from './pages/Launching';
 import PaymentMethod from './pages/PaymentMethod';
+import CustomerDetail from './pages/Dashboard/CustomerDetail';
 
 function App() {
   return (
@@ -76,6 +77,11 @@ function App() {
                 />
 
                 <Route path='dashboard/customers' element={<Customers />} />
+
+                <Route
+                  path='dashboard/customers/:customerId'
+                  element={<CustomerDetail />}
+                />
 
                 <Route
                   path='dashboard/integrations'

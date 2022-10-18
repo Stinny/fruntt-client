@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdOutlineNotificationsNone } from 'react-icons/md';
 import { FiSettings } from 'react-icons/fi';
 import { CgProfile } from 'react-icons/cg';
-import { FaExternalLinkAlt } from 'react-icons/fa';
 import { IoStorefrontOutline } from 'react-icons/io5';
+import { BiHelpCircle } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
 import handleLogoutUser from '../utils/logout';
 import Cookies from 'js-cookie';
@@ -18,9 +18,11 @@ import Settings from '@mui/icons-material/Settings';
 import Dashboard from '@mui/icons-material/Dashboard';
 import Logout from '@mui/icons-material/Logout';
 import Avatar from '@mui/material/Avatar';
+import HelpModal from './HelpModal';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
@@ -29,6 +31,15 @@ const Navbar = () => {
   //for dropdown
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -42,6 +53,11 @@ const Navbar = () => {
 
   return currentUser ? (
     <nav className='w-full h-16 border-b-2'>
+      <HelpModal
+        isOpen={isOpen}
+        handleOpenModal={handleOpenModal}
+        handleCloseModal={handleCloseModal}
+      />
       <div className='max-w-7xl h-full mx-auto flex justify-between items-center'>
         {/* logo section */}
         <div className='text-4xl h-full flex justify-center items-center'>
@@ -55,17 +71,20 @@ const Navbar = () => {
         </div>
 
         {/* links section */}
-        <div className='h-full flex items-center w-64 flex justify-between'>
-          <a
-            href={currentUser?.store?.url}
-            className='flex justify-center items-center'
-            target='_blank'
-          >
-            View your storefront <FaExternalLinkAlt className='ml-2' />{' '}
-          </a>
-          <MdOutlineNotificationsNone className='text-2xl' />
+        <div className='h-full flex items-center w-56 flex justify-between'>
+          <Link to='/'>Give Feedback</Link>
 
-          <CgProfile className='text-2xl' onClick={handleClick} />
+          <BiHelpCircle
+            className='text-2xl hover:cursor-pointer'
+            onClick={handleOpenModal}
+          />
+
+          <MdOutlineNotificationsNone className='text-2xl hover:cursor-pointer' />
+
+          <CgProfile
+            className='text-2xl hover:cursor-pointer'
+            onClick={handleClick}
+          />
           <Menu
             anchorEl={anchorEl}
             id='account-menu'
@@ -100,6 +119,7 @@ const Navbar = () => {
             }}
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            className='hover:cursor-pointer'
           >
             <MenuItem>
               <Avatar />

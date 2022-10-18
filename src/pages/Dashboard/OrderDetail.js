@@ -16,6 +16,7 @@ import { BsArrowLeftShort } from 'react-icons/bs';
 import ShippingAddress from '../../components/OrderDetail/ShippingAddress';
 import LabelModal from '../../components/OrderDetail/LabelModal';
 import FulfillModal from '../../components/OrderDetail/FulfillModal';
+import { FiDownload } from 'react-icons/fi';
 
 const OrderDetail = () => {
   const { orderId } = useParams();
@@ -93,7 +94,7 @@ const OrderDetail = () => {
         <div className='flex justify-between items-center w-full border-b-2 p-2'>
           <div className='flex flex-col'>
             <h2 className='text-2xl font-bold'>
-              Viewing Order: <span className='font-medium'>{order?._id}</span>
+              Viewing order: <span className='font-medium'>{order?._id}</span>
             </h2>
             <p>
               Order placed on {moment(order?.placedOn).format('MMM D, YYYY')}
@@ -126,8 +127,8 @@ const OrderDetail = () => {
 
             {order.labelUrl ? (
               <a href={order?.labelUrl} target='_blank'>
-                <button className='border-2 w-60 h-10 rounded border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'>
-                  Download Shipping Label
+                <button className='border-2 w-60 h-10 rounded border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white flex justify-around items-center'>
+                  Download Shipping Label <FiDownload />
                 </button>
               </a>
             ) : (
@@ -148,7 +149,15 @@ const OrderDetail = () => {
         </div>
 
         <div className='w-11/12 mx-auto mt-10'>
-          <p className='text-xl font-medium border-b'>Customer info</p>
+          <div className='w-full flex justify-between border-b p-2'>
+            <p className='text-xl font-medium'>Customer info</p>
+            <Link
+              to={`/dashboard/customers/${order.customerId}`}
+              className='border-2 w-32 flex justify-center items-center rounded text-slate-800 border-slate-800 hover:text-white hover:bg-slate-800'
+            >
+              View customer
+            </Link>
+          </div>
           <div className='w-full p-4 flex justify-between mx-auto'>
             <div className='flex flex-col justify-between'>
               <p className='text-gray-400'>Email:</p>
@@ -161,7 +170,9 @@ const OrderDetail = () => {
               <p className='text-lg font-medium mt-2'>{order?.lastName}</p>
             </div>
           </div>
-          <p className='text-xl font-medium border-b'>What they got</p>
+          <div className='border-b p-2'>
+            <p className='text-xl font-medium'>What they got</p>
+          </div>
           <div className='w-full h-72 p-4 flex justify-between mx-auto'>
             <div className='flex flex-col justify-between'>
               <p className='text-gray-400'>Item:</p>

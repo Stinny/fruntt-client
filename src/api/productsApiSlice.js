@@ -41,6 +41,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         formState,
         formZip,
         formOptions,
+        formShippingPrice,
         imageData,
       }) => ({
         url: `/products/edit/${productId}`,
@@ -59,6 +60,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
           state: formState,
           city: formCity,
           zipcode: formZip,
+          shippingPrice: formShippingPrice,
           imageData: imageData,
         },
       }),

@@ -7,6 +7,7 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 import Cookies from 'js-cookie';
 import Footer from '../../components/Footer';
 import Spinner from '../../components/Spinner';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -48,6 +49,16 @@ const DashHome = () => {
             </p>
           </Alert>
         )}
+
+        <div className='flex justify-end w-full mb-2'>
+          <a
+            href={currentUser?.store?.url}
+            className='flex justify-center items-center text-xl text-slate-800'
+            target='_blank'
+          >
+            View your storefront <FaExternalLinkAlt className='ml-2' />{' '}
+          </a>
+        </div>
 
         <div className='flex justify-between'>
           <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 relative'>

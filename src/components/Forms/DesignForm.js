@@ -275,13 +275,13 @@ const DesignForm = ({ storefront }) => {
         <div className='flex'>
           <button
             onClick={handleCancel}
-            className='w-32 h-10 rounded border-red-400 text-red-400 border-2'
+            className='w-32 h-10 rounded border-red-400 text-red-400 hover:bg-red-400 hover:text-white border-2'
           >
             CANCEL
           </button>
           <button
             onClick={handleSaveStyles}
-            className='w-32 h-10 rounded border-slate-800 border-2 ml-2'
+            className='w-32 h-10 rounded text-slate-800 border-slate-800 border-2 ml-2 hover:bg-slate-800 hover:text-white'
           >
             SAVE
           </button>

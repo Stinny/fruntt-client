@@ -11,6 +11,7 @@ import Footer from '../../components/Footer';
 import Spinner from '../../components/Spinner';
 import img from '../../media/customers.svg';
 import moment from 'moment';
+import { BiMailSend } from 'react-icons/bi';
 
 //mui
 import { DataGrid } from '@mui/x-data-grid';
@@ -31,14 +32,15 @@ const Customers = () => {
   }, []);
 
   const handleSendReviewEmail = async ({ customerId, storeId }) => {
-    console.log(customerId);
     try {
       const sendReviewEmailReq = await sendReviewEmail({
         customerId: customerId,
         storeId: storeId,
       }).unwrap();
-      console.log(sendReviewEmailReq);
-    } catch {}
+      refetch();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   //for data grid
@@ -65,13 +67,6 @@ const Customers = () => {
       },
     },
 
-    {
-      field: 'orderId',
-      headerName: 'Order',
-      width: 210,
-      headerAlign: 'center',
-      align: 'center',
-    },
     {
       field: 'orderedOn',
       headerName: 'Ordered On',
@@ -101,14 +96,20 @@ const Customers = () => {
       },
     },
     {
-      headerName: 'View',
+      field: 'emailSent',
+      headerName: 'Collect',
       width: 200,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
-        return (
+        return params.row.emailSent ? (
+          <div className='flex items-center'>
+            <p className='font-medium text-blue-600'>Email sent</p>
+            <BiMailSend className='text-lg ml-2 text-blue-600' />
+          </div>
+        ) : (
           <button
-            className='border-2 w-10/12 border-slate-800 text-slate-800 text-sm rounded'
+            className='border-2 w-10/12 border-gray-400 text-gray-400 text-sm rounded'
             onClick={(e) =>
               handleSendReviewEmail({
                 customerId: params.row._id,
@@ -118,6 +119,25 @@ const Customers = () => {
           >
             Request Review
           </button>
+        );
+      },
+    },
+    {
+      field: ' ',
+      headerName: 'View',
+      width: 200,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: (params) => {
+        return (
+          <Link
+            className='w-full flex justify-center items-center'
+            to={`/dashboard/customers/${params.row._id}`}
+          >
+            <button className='border-2 w-3/6 border-slate-800 text-slate-800 text-sm rounded'>
+              Details
+            </button>
+          </Link>
         );
       },
     },
@@ -153,6 +173,10 @@ const Customers = () => {
               autoHeight
               disableSelectionOnClick={true}
               disableColumnFilter
+              disableColumnMenu
+              disableColumnSelector
+              disableDensitySelector
+              disableVirtualization
               pageSize={10}
               rowsPerPageOptions={[10]}
               disableExtendRowFullWidth={true}

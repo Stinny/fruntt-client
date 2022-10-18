@@ -36,6 +36,7 @@ const EditItemForm = ({
   zipcode,
   weight,
   options,
+  shippingPrice,
   refetch,
 }) => {
   const [formTitle, setFormTitle] = useState(title);
@@ -51,6 +52,7 @@ const EditItemForm = ({
   const [formZip, setFormZip] = useState(zipcode);
   const [formWeight, setFormWeight] = useState(weight);
   const [formOptions, setFormOptions] = useState(options);
+  const [formShippingPrice, setFormShippingPrice] = useState(shippingPrice);
 
   const [fileList, setFileList] = useState([]);
   const [error, setError] = useState('');
@@ -63,9 +65,9 @@ const EditItemForm = ({
 
   //info popups for the different fields
   const detailsInfo =
-    'Item details. These details will be seen on your single item storefront by all your customers. Stock is for us to know when your item is still available or not.';
+    'These details will be seen on your single item storefront by all your customers. Stock is for us to know when your item is still available or not.';
   const packageInfo =
-    'Package details. These details allow us to calculate proper shipping rates and generate shipping labels for your orders';
+    'Package weight is needed to calculate shipping rates and create labels';
   const mediaInfo =
     'Media is needed to showcase your item and can be seen by your customers on your single item storefront.';
 
@@ -109,6 +111,7 @@ const EditItemForm = ({
         formState,
         formZip,
         formOptions,
+        formShippingPrice,
         imageData: imagesDataReq ? imagesDataReq.data : [],
       }).unwrap();
 
@@ -155,13 +158,13 @@ const EditItemForm = ({
 
         <div className='flex justify-between'>
           <button
-            className='w-32 h-10 rounded border-red-400 border-2 text-red-400 mr-2'
+            className='w-32 h-10 rounded border-red-400 border-2 text-red-400 hover:bg-red-400 hover:text-white mr-2'
             onClick={handleDeleteItem}
           >
             DELETE
           </button>
           <button
-            className='w-32 h-10 rounded border-slate-800 border-2'
+            className='w-32 h-10 rounded border-slate-800 border-2 text-slate-800 hover:text-white hover:bg-slate-800'
             onClick={handleSaveEdit}
           >
             SAVE
@@ -279,8 +282,21 @@ const EditItemForm = ({
           <FileUpload fileList={fileList} setFileList={setFileList} />
         </div>
 
-        <div className='flex items-center mt-4'>
+        <div className='flex items-center'>
           <p className='text-xl font-medium'>Ships from</p>
+          <Tooltip
+            title={
+              <p className='text-lg'>
+                The address that is used on shipping labels
+              </p>
+            }
+            className='ml-2 text-lg'
+            placement='right-end'
+          >
+            <button>
+              <AiOutlineInfoCircle />
+            </button>
+          </Tooltip>
         </div>
 
         <div className='w-full p-4'>
@@ -345,51 +361,85 @@ const EditItemForm = ({
           </div>
         </div>
 
-        <div className='flex items-center'>
-          <p className='text-xl font-medium'>Package</p>
-          <Tooltip
-            title={<p className='text-lg'>{packageInfo}</p>}
-            className='ml-2 text-lg'
-            placement='right-end'
-          >
-            <button>
-              <AiOutlineInfoCircle />
-            </button>
-          </Tooltip>
-        </div>
-
-        <div className='p-4'>
-          <div className='flex justify-between w-6/12'>
-            <div>
-              <p className='text-gray-400'>Weight</p>
-              <input
-                type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2'
-                value={formWeight}
-                onChange={(e) => setFormWeight(e.target.value)}
-              />
-            </div>
-            <div>
-              <p className='text-gray-400'>Unit</p>
-              <select
-                className='rounded-md border-2 w-32 h-12'
-                value={formWeightUnit}
-                onChange={(e) => setFormWeightUnit(e.target.value)}
+        <div className='flex justify-between'>
+          <div className='w-3/6'>
+            <div className='flex items-center'>
+              <p className='text-xl font-medium'>Package</p>
+              <Tooltip
+                title={<p className='text-lg'>{packageInfo}</p>}
+                className='ml-2 text-lg'
+                placement='right-end'
               >
-                <option value='pound'>Pounds</option>
-                <option value='ounce'>Ounces</option>
-              </select>
+                <button>
+                  <AiOutlineInfoCircle />
+                </button>
+              </Tooltip>
+            </div>
+
+            <div className='p-4'>
+              <div className='flex justify-between w-full'>
+                <div className='flex justify-between'>
+                  <div>
+                    <p className='text-gray-400'>Weight</p>
+                    <input
+                      type='number'
+                      className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2 outline outline-0'
+                      value={formWeight}
+                      onChange={(e) => setFormWeight(e.target.value)}
+                      step='0.1'
+                    />
+                  </div>
+                  <div className='ml-2'>
+                    <p className='text-gray-400'>Unit</p>
+                    <select
+                      className='rounded-md border-2 w-32 h-12'
+                      value={formWeightUnit}
+                      onChange={(e) => setFormWeightUnit(e.target.value)}
+                    >
+                      <option value='pound'>Pounds</option>
+                      <option value='ounce'>Ounces</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className='w-full p-4'>
-          <button
-            className='w-full h-14 text-xl border-2 border-slate-800 hover:border-slate-600 rounded'
-            type='submit'
-          >
-            SAVE ITEM
-          </button>
+          <div className='w-3/6'>
+            <div className='flex items-center'>
+              <p className='text-xl font-medium'>Shipping</p>
+              <Tooltip
+                title={
+                  <p className='text-lg'>
+                    The price customers will pay for shipping
+                  </p>
+                }
+                className='ml-2 text-lg'
+                placement='right-end'
+              >
+                <button>
+                  <AiOutlineInfoCircle />
+                </button>
+              </Tooltip>
+            </div>
+
+            <div className='p-4'>
+              <div className='flex justify-between w-full'>
+                <div className='flex justify-between'>
+                  <div>
+                    <p className='text-gray-400'>Price</p>
+                    <input
+                      type='number'
+                      className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2 outline outline-0'
+                      value={formShippingPrice}
+                      onChange={(e) => setFormShippingPrice(e.target.value)}
+                      step='0.01'
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </form>
     </>

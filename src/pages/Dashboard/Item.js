@@ -129,7 +129,7 @@ const Item = () => {
                     {product[0]?.weight}
                     <span>
                       {' '}
-                      {product[0]?.weightUnit === 'pound' ? 'Lbs' : 'Oz'}
+                      {product[0]?.weightUnit === 'pound' ? 'Lbs' : 'Ounces'}
                     </span>
                   </p>
                 </div>
@@ -137,10 +137,12 @@ const Item = () => {
             </div>
 
             <div className='flex flex-col w-4/12 ml-2'>
-              <p className='text-xl font-medium mt-4'>Processing time</p>
+              <p className='text-xl font-medium mt-4'>Shipping</p>
               <div className='w-full flex flex-col p-4 border-2 rounded-md mt-4 h-32'>
-                <p className='text-gray-400'>Time it takes to pack orders</p>
-                <p className='text-xl'>2 days</p>
+                <p className='text-gray-400'>
+                  Price customers will pay for shipping
+                </p>
+                <p className='text-xl'>${product[0]?.shippingPrice}</p>
               </div>
             </div>
 
