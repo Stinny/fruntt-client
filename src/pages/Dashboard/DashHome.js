@@ -59,7 +59,21 @@ const DashHome = () => {
           </p>
         </Alert>
 
-        <div className='flex justify-end w-full mb-2'>
+        <div className='flex justify-between w-full mb-2'>
+          <div className='flex justify-between w-40'>
+            <button className='text-sm font-medium text-white w-10 rounded-xl bg-slate-800'>
+              All
+            </button>
+            <button className='text-sm font-medium text-slate-800 w-10 rounded-xl'>
+              Day
+            </button>
+            <button className='text-sm font-medium text-slate-800 w-10 rounded-xl '>
+              Week
+            </button>
+            <button className='text-sm font-medium text-slate-800 w-10 rounded-xl'>
+              Year
+            </button>
+          </div>
           <a
             href={currentUser?.store?.url}
             className='flex justify-center items-center text-xl text-slate-800'
@@ -213,7 +227,7 @@ const DashHome = () => {
         </div>
 
         <div className='w-full h-72 border-2 mt-4 rounded flex justify-center items-center'>
-          <p className='text-gray-400'>Graph display coming soon</p>
+          <p className='text-gray-400'>More display coming soon</p>
         </div>
       </>
     );
