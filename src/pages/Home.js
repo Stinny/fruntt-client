@@ -2,10 +2,6 @@ import React from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import img from '../media/shoppingImg.svg';
-import imgTwo from '../media/shopping2img.svg';
-import OfferSection from '../components/Home/OfferSection';
-import SignupStripe from '../components/Home/SignupStripe';
 import Cookies from 'js-cookie';
 import { IoStorefrontOutline } from 'react-icons/io5';
 import { MdOutlineAttachMoney, MdOutlineContactSupport } from 'react-icons/md';
@@ -26,14 +22,16 @@ const Home = () => {
         <div className='w-full h-full flex flex-col items-center justify-around'>
           <div className='flex flex-col w-10/12 text-center mt-20'>
             <p className='text-5xl font-medium'>One page. One item.</p>
-            <p className='text-xl mt-8 tracking-wider'>
-              Single item storefronts that you can launch, design, and sell from
-              in minutes. Get your customers attention on ONE single item. Leave
-              the shopping cart and distractions behind.
+            <p className='text-3xl font-medium mt-8 text-gray-400'>
+              An eCommerce platform that understands simplicity
+            </p>
+            <p className='text-2xl mt-8 tracking-wider'>
+              Single item storefronts that you can launch, design, and manage
+              from one simple dashboard. Start selling in minutes.
             </p>
             <Link to='/signup' className='flex justify-center mt-8'>
               <button className='rounded text-slate-800 w-5/12 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
-                Launch a Fruntt - for free
+                Launch a storefront - for free
               </button>
             </Link>
           </div>
@@ -43,41 +41,39 @@ const Home = () => {
               <div className='flex flex-col items-center w-4/12 p-4'>
                 <IoStorefrontOutline className='text-4xl' />
                 <p className='text-lg font-medium text-slate-800 mt-2'>
-                  Single item storefronts
+                  Hosted storefronts
                 </p>
                 <p className='mt-2 text-center'>
-                  Easily deploy, design, and manage single item storefronts from
-                  one simple dashboard
+                  Never worry about hosting, storefronts are hosted by us
                 </p>
               </div>
               <div className='flex flex-col items-center w-4/12 p-4'>
                 <MdOutlineAttachMoney className='text-4xl' />
                 <p className='text-lg font-medium text-salte-800 mt-2'>
-                  Offer items
+                  Custom notifications
                 </p>
                 <p className='mt-2 text-center'>
-                  Offer your customers 'Buy Now' items or 'Subscribe Now' items
-                  depending on your business
+                  Set notifications to receive emails about storefront events
                 </p>
               </div>
               <div className='flex flex-col items-center w-4/12 p-4'>
                 <AiOutlineMail className='text-4xl' />
                 <p className='text-lg font-medium text-slate-800 mt-2'>
-                  Built in marketing
+                  Built in emailing
                 </p>
                 <p className='mt-2 text-center'>
-                  Automated transactional emails and newsletters to send out to
-                  your customers
+                  We will handle emailing and notifying customers about order
+                  details and more
                 </p>
               </div>
               <div className='flex flex-col items-center w-4/12 p-4'>
                 <BiWorld className='text-4xl' />
                 <p className='text-lg font-medium text-slate-800 mt-2'>
-                  Integrations
+                  Add-ons
                 </p>
                 <p className='mt-2 text-center'>
                   Connect to other services and sales channels to drive more
-                  business and reach more potential customers
+                  business.
                 </p>
               </div>
               <div className='flex flex-col items-center w-4/12 p-4'>

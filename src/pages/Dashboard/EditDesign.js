@@ -20,7 +20,7 @@ const EditDesign = () => {
     <>
       <Navbar />
       <Topbar />
-      <div className='max-w-6xl mx-auto'>{content}</div>
+      <div className='max-w-7xl mx-auto'>{content}</div>
       <Footer />
     </>
   );

@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 const Launching = () => {
-  const [progress, setProgress] = React.useState(15);
+  const [progress, setProgress] = React.useState(65);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -54,9 +54,11 @@ const Launching = () => {
             </Typography>
           </Box>
         </Box>
-        <p className='mt-2 text-xl font-medium'>Storefront launching...</p>
+        <p className='mt-2 text-xl font-medium'>
+          Your storefront is launching...
+        </p>
         <p className='text-gray-400 mt-2 font-medium'>
-          This will only take 1-2 minutes
+          This will only take about a minute
         </p>
       </div>
     </div>

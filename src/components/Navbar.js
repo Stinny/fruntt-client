@@ -59,7 +59,7 @@ const Navbar = () => {
 
     const isFirstTime = localStorage.getItem('firstTime');
 
-    if (!isFirstTime) firstTime();
+    if (!isFirstTime && currentUser) firstTime();
   }, []);
 
   return currentUser ? (
@@ -191,12 +191,10 @@ const Navbar = () => {
         {/* links section */}
         <div className='h-full flex items-center w-72 flex justify-between'>
           <Link to='/'>
-            <p className='font-medium text-stone-800 hover:text-blue-300'>
-              How To?
-            </p>
+            <p className='font-medium text-slate-800'>How To?</p>
           </Link>
           <Link to='/'>
-            <p className='font-medium text-stone-800 hover:text-blue-300'>
+            <p className='font-medium text-slate-800 hover:text-blue-300'>
               About
             </p>
           </Link>

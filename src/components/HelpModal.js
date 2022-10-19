@@ -38,10 +38,12 @@ const HelpModal = ({ isOpen, handleCloseModal }) => {
             </p>
           </div>
           <div className='p-2'>
-            <p className='w-full mt-4 text-lg'>
-              You can always find this help box by clicking the help icon on the
-              navbar: <BiHelpCircle />
-            </p>
+            <div className='w-full flex items-center'>
+              <h2 className='w-full mt-4 text-lg'>
+                You can always find this help box by clicking the help icon on
+                the navbar: <BiHelpCircle />
+              </h2>
+            </div>
 
             <p className='font-medium mt-4 text-xl'>Steps:</p>
 
@@ -62,7 +64,7 @@ const HelpModal = ({ isOpen, handleCloseModal }) => {
                   Item
                 </button>
               </Link>{' '}
-              tab for adding an item to your storefront
+              tab for adding an item to your storefront like custom merch
             </p>
             <p className='mt-4 text-lg'>
               <span className='font-medium'>3.</span> Go to{' '}
@@ -71,7 +73,7 @@ const HelpModal = ({ isOpen, handleCloseModal }) => {
                   Design
                 </button>
               </Link>{' '}
-              tab for designing your storefront to your liking
+              tab for easily designing your storefront to your liking
             </p>
             <p className='mt-4 text-lg'>
               <span className='font-medium'>4.</span> Go to{' '}
@@ -80,7 +82,7 @@ const HelpModal = ({ isOpen, handleCloseModal }) => {
                   Content
                 </button>
               </Link>{' '}
-              tab to add other content to your storefront like customer
+              tab to add other content to your storefront like a logo, customer
               questions and social links
             </p>
             <p className='mt-4 text-lg'>
@@ -88,7 +90,8 @@ const HelpModal = ({ isOpen, handleCloseModal }) => {
               <Link to='/dashboard/orders'>
                 <button className='text-sm font-medium text-white w-24 rounded-xl bg-slate-800'>
                   Orders
-                </button>
+                </button>{' '}
+                tab for order fulfillment and purchasing shipping labels
               </Link>{' '}
               and{' '}
               <Link to='/dashboard/customers'>
@@ -96,7 +99,7 @@ const HelpModal = ({ isOpen, handleCloseModal }) => {
                   Customers
                 </button>
               </Link>{' '}
-              tab to manage your orders and customers
+              tab for viewing all customers and requesting reviews
             </p>
           </div>
         </div>

@@ -66,7 +66,9 @@ const Register = () => {
   } else {
     content = (
       <div className='container flex flex-col items-center justify-center mx-auto w-full'>
-        <h2 className='text-4xl font-medium mb-4'>Launch your Fruntt</h2>
+        <h2 className='text-4xl font-medium mb-4'>
+          Launch your first storefront
+        </h2>
 
         {error && (
           <Alert severity='error' color='error' className='mt-4 mb-4 w-5/12'>
@@ -111,7 +113,7 @@ const Register = () => {
             disabled={isLoading}
             className='h-11 w-full border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-xl mt-4'
           >
-            Launch Fruntt
+            Launch Storefront
           </button>
         </form>
       </div>

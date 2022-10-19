@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 
 //mui
 import Alert from '@mui/material/Alert';
+import Rating from '@mui/material/Rating';
 
 const DesignPreview = ({
   pageBG,
@@ -24,9 +25,14 @@ const DesignPreview = ({
   storefront,
   hideNav,
   hideFooter,
+  headerColor,
+  borderColor,
   socialIcons,
+  faqBackground,
 }) => {
   const { data: item, isLoading, isSuccess, refetch } = useGetProductsQuery();
+
+  console.log(item);
 
   useEffect(() => {
     refetch();
@@ -92,14 +98,17 @@ const DesignPreview = ({
                 >
                   ${item[0].price.toFixed(2)}
                 </p>
+                <div>
+                  <p>{item[0].options[0].name}</p>
+                  <select className='rounded-md border-2 w-32 h-10 mt-2'>
+                    <option>{item[0]?.options[0]?.values[0]}</option>
+                  </select>
+                </div>
                 <form>
                   <div className='w-8/12 flex items-center mt-4'>
-                    <div className='flex justify-center items-center border-2 w-28 h-10 rounded-xl'>
-                      <p style={{ color: pageText }}>8/10</p>
-                      <AiFillStar className='text-yellow-400' />
-                    </div>
+                    <Rating value={4.5} precision={0.5} readOnly />
                     <p className='ml-2' style={{ color: pageText }}>
-                      23 reviews
+                      (4) reviews
                     </p>
                   </div>
 
@@ -108,7 +117,7 @@ const DesignPreview = ({
                       <p style={{ color: pageText }}>Qty:</p>
                       <select
                         className='rounded-xl border-2 bg-transparent w-12 h-10 ml-2'
-                        style={{ color: pageText }}
+                        style={{ color: pageText, borderColor: borderColor }}
                       >
                         <option value={1}>1</option>
                       </select>
@@ -133,7 +142,7 @@ const DesignPreview = ({
 
             {/* Other stuff for the item */}
             <div className='mt-10'>
-              <p className='text-2xl' style={{ color: pageText }}>
+              <p className='text-2xl' style={{ color: headerColor }}>
                 Customer questions
               </p>
 
@@ -141,8 +150,10 @@ const DesignPreview = ({
                 {item[0]?.faqs.length ? (
                   item[0]?.faqs.map((faq) => (
                     <div
-                      className='flex flex-col border-2 rounded p-2 mb-2'
-                      style={{ borderColor: storefront?.style?.pageText }}
+                      className='flex flex-col rounded p-2 mb-2'
+                      style={{
+                        backgroundColor: faqBackground,
+                      }}
                     >
                       <p style={{ color: storefront?.style?.pageText }}>
                         <span
@@ -169,7 +180,7 @@ const DesignPreview = ({
                   ))
                 ) : (
                   <div
-                    style={{ borderColor: storefront?.style?.pageText }}
+                    style={{ borderColor: borderColor }}
                     className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
                   >
                     <p
@@ -182,11 +193,11 @@ const DesignPreview = ({
                 )}
               </div>
 
-              <p className='text-2xl mt-4' style={{ color: pageText }}>
+              <p className='text-2xl mt-4' style={{ color: headerColor }}>
                 Customer Reviews
               </p>
               <div
-                style={{ borderColor: pageText }}
+                style={{ borderColor: borderColor }}
                 className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
               >
                 <p className='font-medium text-xl' style={{ color: pageText }}>

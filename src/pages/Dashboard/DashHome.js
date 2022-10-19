@@ -40,8 +40,7 @@ const DashHome = () => {
         {!currentUser.stripeOnboard && (
           <Alert severity='error' className='mt-4 mb-4 w-full'>
             <p>
-              Finish adding business details and connecting to payment gateway
-              in{' '}
+              Connect to payment gateway in{' '}
               <Link to='/settings' className='text-red-900 font-semibold'>
                 settings
               </Link>{' '}
