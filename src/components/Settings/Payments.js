@@ -12,9 +12,12 @@ import Spinner from '../Spinner';
 const Payments = ({ refetch }) => {
   const dispatch = useDispatch();
 
-  const currentUser = JSON.parse(Cookies.get('currentUser'));
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
   const aToken = Cookies.get('aToken');
   const [onboardUrl, setOnboardUrl] = useState('');
+  const [gettingUrl, setGettingUrl] = useState(false);
   // const [isLoading, setIsLoading] = useState('false');
   const [getOnboardUrl, result] = useLazyGetOnboardUrlQuery();
   const [
@@ -24,12 +27,12 @@ const Payments = ({ refetch }) => {
 
   useEffect(() => {
     const fetchOnboardUrl = async () => {
-      if (!currentUser.stripeOnboard) {
-        const urlReq = await getOnboardUrl().unwrap();
-
-        setOnboardUrl(urlReq.url);
-      }
+      setGettingUrl(true);
+      const urlReq = await getOnboardUrl().unwrap();
+      setGettingUrl(false);
     };
+
+    if (!currentUser.stripeOnboard) fetchOnboardUrl();
 
     fetchOnboardUrl();
   }, []);
@@ -38,16 +41,6 @@ const Payments = ({ refetch }) => {
     const respon = await disconnectStripe().unwrap();
     refetch();
   };
-
-  const notConnectedToStripe = (
-    <a
-      href={onboardUrl}
-      className='w-full h-20 flex items-center justify-center bg-purple-500 border-2 border-purple-600 hover:bg-purple-600 text-white rounded-lg text-md mt-4 p-2'
-    >
-      Connect to Stripe
-      <FaStripeS className='text-2xl ml-4' />
-    </a>
-  );
 
   const connectedToStripe = (
     <>
@@ -66,7 +59,17 @@ const Payments = ({ refetch }) => {
 
   let content;
   if (!currentUser.stripeOnboard) {
-    content = result.isLoading ? <Spinner /> : notConnectedToStripe;
+    content = gettingUrl ? (
+      <Spinner />
+    ) : (
+      <a
+        href={result?.data?.url}
+        className='w-full h-20 flex items-center justify-center bg-purple-500 border-2 border-purple-600 hover:bg-purple-600 text-white rounded-lg text-md mt-4 p-2'
+      >
+        Connect to Stripe
+        <FaStripeS className='text-2xl ml-4' />
+      </a>
+    );
   } else if (currentUser.stripeOnboard) {
     content = connectedToStripe;
   }

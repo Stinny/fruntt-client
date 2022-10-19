@@ -29,6 +29,7 @@ const Design = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
+    console.log(storefront.style);
     content = (
       <div className='w-full mx-auto flex'>
         <div className='flex w-5/12 flex-col overflow-scroll'>
@@ -46,7 +47,10 @@ const Design = () => {
               className='w-10/12 h-14 border-2 rounded'
               style={{ backgroundColor: storefront?.style?.navbarBackground }}
             ></div>
-            <Switch checked={storefront?.style?.hideNav} disabled />
+            <div className='flex items-center'>
+              <p>Hide</p>
+              <Switch checked={storefront?.style?.hideNav} disabled />
+            </div>
           </div>
 
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
@@ -55,7 +59,10 @@ const Design = () => {
               className='w-10/12 h-14 border-2 rounded'
               style={{ backgroundColor: storefront?.style?.footerBackground }}
             ></div>
-            <Switch checked={storefront?.style?.hideFooter} disabled />
+            <div className='flex items-center'>
+              <p>Hide</p>
+              <Switch checked={storefront?.style?.hideFooter} disabled />
+            </div>
           </div>
 
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
@@ -119,7 +126,7 @@ const Design = () => {
         </div>
 
         <DesignPreview
-          pageBG={storefront?.style?.pageBG}
+          pageBG={storefront?.style?.pageBackground}
           navbarBG={storefront?.style?.navbarBackground}
           buttonColor={storefront?.style?.buttonColor}
           buttonTextColor={storefront?.style?.buttonTextColor}
@@ -133,6 +140,8 @@ const Design = () => {
           headerColor={storefront?.style?.headerColor}
           borderColor={storefront?.style?.borderColor}
           storefront={storefront}
+          faqBackground={storefront?.style?.faqBackground}
+          reviewBackground={storefront?.style?.reviewBackground}
         />
       </div>
     );

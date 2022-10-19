@@ -9,10 +9,12 @@ import {
 } from 'react-icons/ai';
 import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 //mui
 import Alert from '@mui/material/Alert';
 import Rating from '@mui/material/Rating';
+import { useGetReviewsAndProductQuery } from '../api/customersApiSlice';
 
 const DesignPreview = ({
   pageBG,
@@ -29,10 +31,16 @@ const DesignPreview = ({
   borderColor,
   socialIcons,
   faqBackground,
+  reviewBackground,
 }) => {
-  const { data: item, isLoading, isSuccess, refetch } = useGetProductsQuery();
+  // const { data: item, isLoading, isSuccess, refetch } = useGetProductsQuery();
 
-  console.log(item);
+  const {
+    data: itemAndReviews,
+    isLoading,
+    isSuccess,
+    refetch,
+  } = useGetReviewsAndProductQuery({ storeId: storefront._id });
 
   useEffect(() => {
     refetch();
@@ -45,8 +53,9 @@ const DesignPreview = ({
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
+    console.log(itemAndReviews);
     content =
-      item.length > 0 ? (
+      Object.entries(itemAndReviews.item).length > 0 ? (
         <div
           className='w-full mx-auto h-fit border'
           style={{ backgroundColor: pageBG }}
@@ -79,7 +88,10 @@ const DesignPreview = ({
               style={{ backgroundColor: pageBG }}
             >
               <div className='w-3/6'>
-                <img className='w-11/12' src={item[0].images[0].url} />
+                <img
+                  className='w-11/12'
+                  src={itemAndReviews?.item?.images[0].url}
+                />
               </div>
 
               <div className='w-3/6 flex flex-col pl-10'>
@@ -87,21 +99,23 @@ const DesignPreview = ({
                   className='text-2xl font-medium w-11/12'
                   style={{ color: pageText }}
                 >
-                  {item[0].title}
+                  {itemAndReviews?.item?.title}
                 </h2>
                 <p className='text-xl mt-4 w-11/12' style={{ color: pageText }}>
-                  {item[0].description}
+                  {itemAndReviews?.item?.description}
                 </p>
                 <p
                   className='text-4xl font-medium mt-4'
                   style={{ color: pageText }}
                 >
-                  ${item[0].price.toFixed(2)}
+                  ${itemAndReviews?.item?.price.toFixed(2)}
                 </p>
                 <div>
-                  <p>{item[0].options[0].name}</p>
+                  <p>{itemAndReviews?.item?.options[0].name}</p>
                   <select className='rounded-md border-2 w-32 h-10 mt-2'>
-                    <option>{item[0]?.options[0]?.values[0]}</option>
+                    <option>
+                      {itemAndReviews?.item?.options[0]?.values[0]}
+                    </option>
                   </select>
                 </div>
                 <form>
@@ -147,8 +161,8 @@ const DesignPreview = ({
               </p>
 
               <div className='mt-2'>
-                {item[0]?.faqs.length ? (
-                  item[0]?.faqs.map((faq) => (
+                {itemAndReviews?.item?.faqs.length ? (
+                  itemAndReviews?.item?.faqs.map((faq) => (
                     <div
                       className='flex flex-col rounded p-2 mb-2'
                       style={{
@@ -196,14 +210,54 @@ const DesignPreview = ({
               <p className='text-2xl mt-4' style={{ color: headerColor }}>
                 Customer Reviews
               </p>
-              <div
-                style={{ borderColor: borderColor }}
-                className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
-              >
-                <p className='font-medium text-xl' style={{ color: pageText }}>
-                  Item has not been reviewed yet!
-                </p>
-              </div>
+              {itemAndReviews?.reviews.length > 0 ? (
+                itemAndReviews?.reviews.map((review) => (
+                  <div
+                    className='flex flex-col bg-gray-200 p-4 rounded mt-2'
+                    style={{
+                      backgroundColor: reviewBackground,
+                    }}
+                  >
+                    <div className='flex w-3/12'>
+                      <p
+                        className='font-medium mr-2'
+                        style={{ color: storefront?.style?.pageText }}
+                      >
+                        {review?.customerName}
+                      </p>
+                      <p style={{ color: storefront?.style?.pageText }}>
+                        {moment(review?.reviewedOn).format('MMM D, YYYY')}
+                      </p>
+                    </div>
+
+                    <Rating
+                      value={review.rating}
+                      readOnly
+                      size='medium'
+                      className='mt-2'
+                      precision={0.5}
+                    />
+                    <p
+                      className='mt-2'
+                      style={{ color: storefront?.style?.pageText }}
+                    >
+                      {review.review}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <div
+                  style={{ borderColor: borderColor }}
+                  className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
+                >
+                  <p
+                    className='font-medium text-xl'
+                    style={{ color: pageText }}
+                  >
+                    Item has not been reviewed yet!
+                  </p>
+                </div>
+              )}
             </div>
           </div>
 

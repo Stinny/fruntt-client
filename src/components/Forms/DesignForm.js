@@ -328,6 +328,7 @@ const DesignForm = ({ storefront }) => {
           headerColor={header}
           borderColor={borders}
           faqBackground={faqBackground}
+          reviewBackground={reviewBackground}
         />
       </div>
     </div>

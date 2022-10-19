@@ -194,14 +194,10 @@ const Navbar = () => {
             <p className='font-medium text-slate-800'>How To?</p>
           </Link>
           <Link to='/'>
-            <p className='font-medium text-slate-800 hover:text-blue-300'>
-              About
-            </p>
+            <p className='font-medium text-slate-800'>About</p>
           </Link>
           <Link to='/pricing'>
-            <p className='font-medium text-stone-800 hover:text-blue-300'>
-              Pricing
-            </p>
+            <p className='font-medium text-slate-800'>Pricing</p>
           </Link>
           <Link to='/login'>
             <button className='border-2 text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white rounded w-20 h-full'>

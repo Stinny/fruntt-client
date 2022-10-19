@@ -10,9 +10,6 @@ export const productsApiSlice = apiSlice.injectEndpoints({
     getProducts: builder.query({
       query: () => '/products',
       keepUnusedDataFor: 5,
-      // transformResponse: (responData) => {
-      //   return productsAdapter.setAll(initialState, responData);
-      // },
     }),
     getProduct: builder.query({
       query: ({ productId }) => `/products/${productId}`,
