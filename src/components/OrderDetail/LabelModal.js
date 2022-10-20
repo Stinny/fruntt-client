@@ -17,6 +17,7 @@ const LabelModal = ({
   const [error, setError] = useState('');
   const [packTime, setPackTime] = useState('');
   const [amount, setAmount] = useState('');
+  const [buyingLabel, setBuyingLabel] = useState(false);
 
   const [getShippingLabel, result] = useGetShippingLabelMutation();
 
@@ -28,9 +29,11 @@ const LabelModal = ({
 
   const handleGetShippingLabel = async (e) => {
     e.preventDefault();
+    setBuyingLabel(true);
 
     if (!rateId || !packTime) {
       setError('Please select both a pack time and shipping rate');
+      setBuyingLabel(false);
       return;
     }
 
@@ -44,8 +47,10 @@ const LabelModal = ({
 
     if (getLabelReq.error) {
       setError(getLabelReq.msg);
+      setBuyingLabel(false);
     } else if (getLabelReq.msg === 'Label created') {
       refetch();
+      setBuyingLabel(false);
       closeLabelModal();
     }
   };
@@ -82,6 +87,15 @@ const LabelModal = ({
           ) : (
             ''
           )}
+
+          {rates.length < 1 ? (
+            <Alert severity='error' className='w-full mt-2 mb-2'>
+              No available rates, please check shipping address
+            </Alert>
+          ) : (
+            ''
+          )}
+
           <Alert severity='info' className='w-full mt-2 mb-2'>
             Your customer paid ${order?.item?.shippingPrice} for shipping
           </Alert>
@@ -116,8 +130,11 @@ const LabelModal = ({
             type='submit'
             className='w-full text-lg h-14 border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white rounded mt-4'
             onClick={handleGetShippingLabel}
+            disabled={buyingLabel || rates.length < 1}
           >
-            Buy Label {amount ? `($${amount})` : ''}
+            {buyingLabel
+              ? 'Buying label...'
+              : `Buy Label ($${amount ? amount : ''})`}
           </button>
           <button
             type='button'

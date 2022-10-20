@@ -135,7 +135,7 @@ const BillingForm = ({ user, refetch }) => {
         </div>
       ) : (
         <form
-          className='w-5/12 border-2 p-2 rounded'
+          className='w-8/12 border-2 p-2 rounded'
           onSubmit={handleAddingPaymentMethod}
         >
           {error ? (
@@ -148,6 +148,7 @@ const BillingForm = ({ user, refetch }) => {
           <CardElement options={CARD_ELEMENT_OPTIONS} />
           <button
             type='submit'
+            disabled={addingPayment}
             className='h-14 w-full mt-4 border-2 border-slate-800 text-slate-800 rounded hover:bg-slate-800 hover:text-white'
           >
             {addingPayment ? 'Adding payment method...' : 'Add payment method'}

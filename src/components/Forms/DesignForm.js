@@ -37,7 +37,7 @@ const DesignForm = ({ storefront }) => {
     storefront?.style?.faqBackground
   );
   const [reviewBackground, setReviewBackground] = useState(
-    storefront?.style?.faqBackground
+    storefront?.style?.reviewBackground
   );
   const [editStyles, result] = useEditStylesMutation();
 

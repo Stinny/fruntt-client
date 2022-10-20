@@ -14,7 +14,7 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginImageResize from 'filepond-plugin-image-resize';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
-const AddLogo = ({ storefront, refetch }) => {
+const AddLogo = ({ storefront, refetch, setInfo }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [logoFile, setLogoFile] = useState([]);
   const [name, setName] = useState(storefront?.name);
@@ -58,6 +58,9 @@ const AddLogo = ({ storefront, refetch }) => {
 
       if (addLogoReq === 'Logo added') {
         refetch();
+        setInfo(
+          'Please log out and log back in for name or logo change to take place'
+        );
         closeModal();
       } else {
         refetch();
@@ -84,6 +87,7 @@ const AddLogo = ({ storefront, refetch }) => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      width: '500px',
     },
   };
 
@@ -94,7 +98,7 @@ const AddLogo = ({ storefront, refetch }) => {
         onRequestClose={closeModal}
         style={modalStyles}
       >
-        <div className='w-72 mx-auto'>
+        <div className='w-11/12 mx-auto'>
           <p className='text-lg font-medium text-slate-800 mb-4 border-b'>
             Edit storefront name & logo
           </p>
@@ -123,14 +127,14 @@ const AddLogo = ({ storefront, refetch }) => {
           />
           <button
             onClick={handleAddLogo}
-            className='h-14 w-full border-slate-800 border-2 rounded mt-2'
+            className='h-14 w-full border-slate-800 border-2 rounded mt-2 hover:bg-slate-800 hover:text-white'
           >
             Save
           </button>
 
           <button
             onClick={closeModal}
-            className='h-10 w-full border-red-400 text-red-400 border-2 rounded mt-2'
+            className='h-10 w-full border-red-400 text-red-400 border-2 rounded mt-2 hover:bg-red-400 hover:text-white'
             type='button'
           >
             Cancel
@@ -140,9 +144,11 @@ const AddLogo = ({ storefront, refetch }) => {
 
       <div className='border-b mb-4'>
         <div className='w-full flex justify-between items-center mt-4'>
-          <p className='text-slate-800 font-medium '>Storefront name & logo</p>
+          <p className='text-slate-800 font-medium text-xl'>
+            Storefront name & logo
+          </p>
           <button
-            className='border-2 rounded w-20 h-8 border-gray-400 text-gray-400'
+            className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
             onClick={openModal}
           >
             Edit

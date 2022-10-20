@@ -4,9 +4,9 @@ const AddMedia = () => {
   return (
     <div>
       <div className='w-full flex justify-between items-center mt-4'>
-        <p className='text-slate-800 font-medium '>Video & media</p>
+        <p className='text-slate-800 font-medium text-xl'>Video & media</p>
         <button
-          className='border-2 rounded w-20 h-8 border-gray-400 text-gray-400'
+          className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
           //   onClick={openModal}
         >
           Edit
@@ -20,7 +20,7 @@ const AddMedia = () => {
           </p>
           <p className='text-gray-400 w-7/12 text-center mt-2'>
             Here you will be able to link to a youtube video or something
-            similar to add video to your fruntt page
+            similar to add video to your single item storefront
           </p>
         </div>
       </div>

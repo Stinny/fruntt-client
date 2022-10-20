@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../../components/Footer';
 import Topbar from '../../components/Topbar';
 import Navbar from '../../components/Navbar';
@@ -9,6 +9,9 @@ import Spinner from '../../components/Spinner';
 import AddSocials from '../../components/Content/AddSocials';
 import AddMedia from '../../components/Content/AddMedia';
 
+//mui
+import Alert from '@mui/material/Alert';
+
 const Content = () => {
   const {
     data: storefront,
@@ -17,8 +20,11 @@ const Content = () => {
     refetch,
   } = useGetStorefrontQuery();
 
+  const [nameChangedInfo, setInfo] = useState('');
+
   useEffect(() => {
     refetch();
+    setInfo('');
   }, []);
 
   let content;
@@ -32,7 +38,13 @@ const Content = () => {
           <h2 className='text-3xl font-semibold'>Content</h2>
         </div>
 
-        <AddLogo storefront={storefront} refetch={refetch} />
+        {nameChangedInfo && (
+          <Alert severity='info' className='w-full mt-4'>
+            {nameChangedInfo}
+          </Alert>
+        )}
+
+        <AddLogo storefront={storefront} refetch={refetch} setInfo={setInfo} />
 
         <AddSocials storefront={storefront} refetch={refetch} />
 

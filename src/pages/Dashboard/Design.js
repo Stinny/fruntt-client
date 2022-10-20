@@ -48,7 +48,7 @@ const Design = () => {
               style={{ backgroundColor: storefront?.style?.navbarBackground }}
             ></div>
             <div className='flex items-center'>
-              <p>Hide</p>
+              <p>Hidden</p>
               <Switch checked={storefront?.style?.hideNav} disabled />
             </div>
           </div>
@@ -60,7 +60,7 @@ const Design = () => {
               style={{ backgroundColor: storefront?.style?.footerBackground }}
             ></div>
             <div className='flex items-center'>
-              <p>Hide</p>
+              <p>Hidden</p>
               <Switch checked={storefront?.style?.hideFooter} disabled />
             </div>
           </div>

@@ -56,6 +56,7 @@ const AddSocials = ({ storefront, refetch }) => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      width: '700px',
     },
   };
   return (
@@ -116,14 +117,14 @@ const AddSocials = ({ storefront, refetch }) => {
 
             <button
               onClick={handleAddSocials}
-              className='h-14 w-full border-slate-800 border-2 rounded mt-2'
+              className='h-14 w-full border-slate-800 border-2 rounded mt-2 hover:bg-slate-800 hover:text-white'
             >
               Save
             </button>
 
             <button
               onClick={closeModal}
-              className='h-10 w-full border-red-400 text-red-400 border-2 rounded mt-2'
+              className='h-10 w-full border-red-400 text-red-400 border-2 rounded mt-2 hover:bg-red-400 hover:text-white'
               type='button'
             >
               Cancel
@@ -134,14 +135,14 @@ const AddSocials = ({ storefront, refetch }) => {
 
       <div className='w-full flex justify-between items-center'>
         <div className='flex flex-col'>
-          <p className='text-slate-800 font-medium'>Social Links</p>
+          <p className='text-slate-800 font-medium text-xl'>Social Links</p>
           <p className='text-gray-400 text-sm'>
             Social links appear in the footer of your storefront and only when a
             link is provided
           </p>
         </div>
         <button
-          className='border-2 rounded w-20 h-8 border-gray-400 text-gray-400'
+          className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
           onClick={openModal}
         >
           Edit

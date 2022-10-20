@@ -122,7 +122,10 @@ const DesignPreview = ({
                   <div className='w-8/12 flex items-center mt-4'>
                     <Rating value={4.5} precision={0.5} readOnly />
                     <p className='ml-2' style={{ color: pageText }}>
-                      (4) reviews
+                      ({itemAndReviews?.reviews?.length}){' '}
+                      {itemAndReviews?.reviews?.length === 1
+                        ? 'review'
+                        : 'reviews'}
                     </p>
                   </div>
 
