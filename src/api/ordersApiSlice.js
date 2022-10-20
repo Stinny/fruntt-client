@@ -47,6 +47,20 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    editShipsFromAddress: builder.mutation({
+      query: ({ orderId, address, country, state, city, zipcode }) => ({
+        url: '/orders/update/shipsfrom',
+        method: 'POST',
+        body: {
+          orderId: orderId,
+          country: country,
+          address: address,
+          state: state,
+          city: city,
+          zipcode: zipcode,
+        },
+      }),
+    }),
   }),
 });
 
@@ -57,4 +71,5 @@ export const {
   useFulfillOrderMutation,
   useEditShippingAddressMutation,
   useGetShippingLabelMutation,
+  useEditShipsFromAddressMutation,
 } = ordersApiSlice;

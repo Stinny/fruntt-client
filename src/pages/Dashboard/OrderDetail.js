@@ -17,6 +17,7 @@ import ShippingAddress from '../../components/OrderDetail/ShippingAddress';
 import LabelModal from '../../components/OrderDetail/LabelModal';
 import FulfillModal from '../../components/OrderDetail/FulfillModal';
 import { FiDownload } from 'react-icons/fi';
+import FromAddress from '../../components/OrderDetail/FromAddress';
 
 const OrderDetail = () => {
   const { orderId } = useParams();
@@ -183,7 +184,13 @@ const OrderDetail = () => {
             </div>
             <div className='flex flex-col justify-between text-right'>
               <p className='text-lg font-medium mt-2'>{order?.item?.title}</p>
-              <p className='text-lg font-medium mt-2'>Medium, Black</p>
+              <div className='mt-2'>
+                {Object.entries(order.options).map(([key, value]) => (
+                  <p>
+                    {key}: {value}
+                  </p>
+                ))}
+              </div>
               <p className='text-lg font-medium mt-2'>{order?.qty}</p>
               <p className='text-lg font-medium mt-2'>
                 ${order?.item?.shippingPrice}
@@ -195,6 +202,12 @@ const OrderDetail = () => {
           </div>
 
           <ShippingAddress
+            order={order}
+            refetch={refetch}
+            refetchRates={refetchRates}
+          />
+
+          <FromAddress
             order={order}
             refetch={refetch}
             refetchRates={refetchRates}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FileUpload from './FileUpload';
 import Topbar from '../../components/Topbar';
 import Navbar from '../../components/Navbar';
@@ -30,7 +30,7 @@ const AddItem = () => {
   const [weight, setWeight] = useState(0);
   const [fileList, setFileList] = useState([]);
   const [error, setError] = useState('');
-  const [country, setCountry] = useState('United States');
+  const [country, setCountry] = useState('US');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [address, setAddress] = useState('');
@@ -58,6 +58,23 @@ const AddItem = () => {
   const handleCancel = () => {
     navigate('/dashboard/item');
   };
+
+  useEffect(() => {
+    setError('');
+  }, [
+    title,
+    description,
+    stock,
+    price,
+    weight,
+    shippingPrice,
+    address,
+    city,
+    state,
+    zip,
+    country,
+    published,
+  ]);
 
   //handle adding the item to the server
   const handleAddItem = async (e) => {
@@ -111,9 +128,16 @@ const AddItem = () => {
         imageData: imagesDataReq.data,
       }).unwrap();
 
-      navigate('/dashboard/item');
+      if (addProductReq === 'Item added') {
+        navigate('/dashboard/item');
+      } else if (addProductReq === 'Invalid address') {
+        setError('Invalid ships from address');
+        return;
+      } else {
+        setError('There was a server error');
+      }
     } catch (err) {
-      setError('There was an error');
+      setError('There was a server error');
       return;
     }
   };
@@ -139,7 +163,7 @@ const AddItem = () => {
               onClick={handleAddItem}
               type='button'
             >
-              ADD ITEM +
+              + ADD ITEM
             </button>
           </div>
         </div>
@@ -404,7 +428,7 @@ const AddItem = () => {
             </div>
           </div>
 
-          <button
+          {/* <button
             className='w-full h-14 text-xl border-2 border-slate-800 hover:bg-slate-800 hover:text-white rounded'
             type='submit'
           >
@@ -417,7 +441,7 @@ const AddItem = () => {
             onClick={handleCancel}
           >
             CANCEL
-          </button>
+          </button> */}
         </form>
       </div>
       <Footer />

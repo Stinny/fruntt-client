@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { states } from '../../states';
-import { useEditShippingAddressMutation } from '../../api/ordersApiSlice';
+import { useEditShipsFromAddressMutation } from '../../api/ordersApiSlice';
 
-const ShippingAddress = ({ order, refetch, refetchRates }) => {
-  const [country, setCountry] = useState(order?.shippingAddress?.country);
-  const [state, setState] = useState(order?.shippingAddress?.state);
-  const [city, setCity] = useState(order?.shippingAddress?.city);
-  const [zip, setZip] = useState(order?.shippingAddress?.zipcode);
-  const [address, setAddress] = useState(order?.shippingAddress?.address);
+const FromAddress = ({ order, refetch, refetchRates }) => {
+  const [country, setCountry] = useState(order?.shipsFrom?.country);
+  const [state, setState] = useState(order?.shipsFrom?.state);
+  const [city, setCity] = useState(order?.shipsFrom?.city);
+  const [zip, setZip] = useState(order?.shipsFrom?.zipcode);
+  const [address, setAddress] = useState(order?.shipsFrom?.address);
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  const [editShippingAddress, result] = useEditShippingAddressMutation();
+  const [editShipsFromAddress, result] = useEditShipsFromAddressMutation();
 
   const handleSaveAddress = async (e) => {
     e.preventDefault();
     try {
-      const updateShippingReq = await editShippingAddress({
+      const updateShipsFromReq = await editShipsFromAddress({
         orderId: order._id,
         country: country,
         address: address,
@@ -24,7 +24,8 @@ const ShippingAddress = ({ order, refetch, refetchRates }) => {
         city: city,
         zipcode: zip,
       }).unwrap();
-      if (updateShippingReq === 'Shipping address updated') {
+      console.log(updateShipsFromReq);
+      if (updateShipsFromReq === 'Address updated') {
         refetch();
         refetchRates();
         closeModal();
@@ -128,12 +129,12 @@ const ShippingAddress = ({ order, refetch, refetchRates }) => {
       </Modal>
 
       <div className='flex justify-between items-center border-b p-2'>
-        <p className='text-xl font-medium'>Shipping item to</p>
+        <p className='text-xl font-medium'>Return address</p>
         <button
           onClick={openModal}
           className='border-2 rounded border-slate-800 text-slate-800 w-44 hover:text-white hover:bg-slate-800'
         >
-          Edit shipping address
+          Edit return address
         </button>
       </div>
       <div className='w-full p-4 flex justify-between mx-auto'>
@@ -146,19 +147,15 @@ const ShippingAddress = ({ order, refetch, refetchRates }) => {
         </div>
         <div className='flex flex-col justify-between text-right'>
           <p className='text-lg font-medium mt-2'>
-            {order?.shippingAddress?.address}
+            {order?.shipsFrom?.address}
           </p>
           <p className='text-lg font-medium mt-2'>
-            {order?.shippingAddress?.country}
+            {order?.shipsFrom?.country}
           </p>
+          <p className='text-lg font-medium mt-2'>{order?.shipsFrom?.state}</p>
+          <p className='text-lg font-medium mt-2'>{order?.shipsFrom?.city}</p>
           <p className='text-lg font-medium mt-2'>
-            {order?.shippingAddress?.state}
-          </p>
-          <p className='text-lg font-medium mt-2'>
-            {order?.shippingAddress?.city}
-          </p>
-          <p className='text-lg font-medium mt-2'>
-            {order?.shippingAddress?.zipcode}
+            {order?.shipsFrom?.zipcode}
           </p>
         </div>
       </div>
@@ -166,4 +163,4 @@ const ShippingAddress = ({ order, refetch, refetchRates }) => {
   );
 };
 
-export default ShippingAddress;
+export default FromAddress;

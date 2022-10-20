@@ -80,6 +80,7 @@ const LabelModal = ({
           <p className='text-gray-400 mb-4'>
             Select the rate that is best for you
           </p>
+
           {error ? (
             <Alert severity='error' className='w-full mt-2 mb-2'>
               {error}
@@ -90,7 +91,8 @@ const LabelModal = ({
 
           {rates.length < 1 ? (
             <Alert severity='error' className='w-full mt-2 mb-2'>
-              No available rates, please check shipping address
+              No available rates, please check shipping address and return
+              address are valid
             </Alert>
           ) : (
             ''

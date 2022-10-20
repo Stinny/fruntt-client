@@ -93,16 +93,19 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <input
-            type='text'
-            placeholder='Storefront Name'
-            className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded-lg p-2 mt-2'
-            onChange={(e) => setStoreName(e.target.value)}
-          />
+          <div className='flex w-full'>
+            <input
+              type='text'
+              placeholder='Storefront Name'
+              className='w-5/6 border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded-lg p-2 mt-2'
+              onChange={(e) => setStoreName(e.target.value)}
+            />
+            <p className='font-medium text-xl mt-6'>.fruntt.com</p>
+          </div>
 
           <div className='mt-2 flex w-full'>
             <Link to='/login'>
-              <p className='text-xs self-start text-slate-400 hover:text-slate-800 font-medium'>
+              <p className='text-sm self-start text-slate-400 hover:text-slate-800 font-medium'>
                 Already a merchant? Login here.
               </p>
             </Link>
