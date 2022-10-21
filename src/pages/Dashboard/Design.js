@@ -29,10 +29,9 @@ const Design = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    console.log(storefront.style);
     content = (
       <div className='w-full mx-auto flex'>
-        <div className='flex w-5/12 flex-col overflow-scroll'>
+        <div className='flex w-3/12 flex-col overflow-scroll'>
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
             <p className='text-lg font-medium'>Page background</p>
             <div

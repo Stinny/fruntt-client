@@ -84,12 +84,12 @@ const Login = () => {
           />
           <div className='w-2/6 flex justify-between mt-2'>
             <Link to='/signup'>
-              <p className='text-xs text-slate-400 hover:text-slate-800 font-medium'>
+              <p className='text-sm text-slate-400 hover:text-slate-800 font-medium'>
                 Don't have a storefront yet?
               </p>
             </Link>
             <Link to='/signup'>
-              <p className='text-xs text-slate-400 hover:text-slate-800 font-medium'>
+              <p className='text-sm text-slate-400 hover:text-slate-800 font-medium'>
                 Forgot your password?
               </p>
             </Link>

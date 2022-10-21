@@ -20,7 +20,7 @@ const Pricing = () => {
             beta users. As we do this and collect feedback, please enjoy our
             platform for free.
           </Alert>
-          <p className='text-4xl font-medium mt-8'>Pricing</p>
+          <p className='text-5xl font-medium mt-8'>Pricing</p>
 
           <div className='border-2 rounded w-full h-full p-4 mt-4'>
             <p className='font-medium text-3xl'>
@@ -44,6 +44,8 @@ const Pricing = () => {
                 - Automated customer emailing (order confirmation, order
                 shipped, etc.)
               </p>
+              <p className='mt-4'>- Order tracking for customers</p>
+
               <p className='mt-4'>- Easily collect reviews from customers</p>
               <p className='mt-4'>
                 - Connect your storefront to socials and other sales channels

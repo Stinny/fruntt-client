@@ -54,34 +54,31 @@ const DesignPreview = ({
     content = <Spinner />;
   } else if (isSuccess) {
     console.log(itemAndReviews);
-    content =
-      Object.entries(itemAndReviews.item).length > 0 ? (
+    content = (
+      <div
+        className='w-full h-full mx-auto border'
+        style={{ backgroundColor: pageBG }}
+      >
+        {/* Navabar */}
         <div
-          className='w-full mx-auto h-fit border'
-          style={{ backgroundColor: pageBG }}
+          className='w-full h-14 mb-10 mx-auto'
+          style={{
+            backgroundColor: navbarBG,
+            display: hideNav ? 'none' : '',
+          }}
         >
-          {/* Navabar */}
-          <div
-            className='w-full h-14 mb-10 mx-auto'
-            style={{
-              backgroundColor: navbarBG,
-              display: hideNav ? 'none' : '',
-            }}
-          >
-            <div className='w-11/12 h-full flex items-center mx-auto'>
-              {storefront?.logo?.url ? (
-                <img src={storefront?.logo?.url} className='h-10' />
-              ) : (
-                <h2
-                  style={{ color: pageText }}
-                  className='text-2xl font-medium'
-                >
-                  {storefront?.name}
-                </h2>
-              )}
-            </div>
+          <div className='w-11/12 h-full flex items-center mx-auto'>
+            {storefront?.logo?.url ? (
+              <img src={storefront?.logo?.url} className='h-10' />
+            ) : (
+              <h2 style={{ color: pageText }} className='text-2xl font-medium'>
+                {storefront?.name}
+              </h2>
+            )}
           </div>
+        </div>
 
+        {Object.entries(itemAndReviews?.item).length > 0 ? (
           <div className='p-14'>
             <div
               className='w-full flex justify-between mx-auto'
@@ -110,17 +107,23 @@ const DesignPreview = ({
                 >
                   ${itemAndReviews?.item?.price.toFixed(2)}
                 </p>
-                <div>
-                  <p>{itemAndReviews?.item?.options[0].name}</p>
-                  <select className='rounded-md border-2 w-32 h-10 mt-2'>
-                    <option>
-                      {itemAndReviews?.item?.options[0]?.values[0]}
-                    </option>
-                  </select>
-                </div>
+                {itemAndReviews?.item?.options?.length > 0
+                  ? itemAndReviews.item.options.map((option) => (
+                      <>
+                        <p>{option.name}</p>
+                        <select className='rounded-md border-2 w-32 h-10 mt-2'>
+                          <option>{option.values[0]}</option>
+                        </select>
+                      </>
+                    ))
+                  : ''}
                 <form>
                   <div className='w-8/12 flex items-center mt-4'>
-                    <Rating value={4.5} precision={0.5} readOnly />
+                    <Rating
+                      value={itemAndReviews?.totalRating}
+                      precision={0.5}
+                      readOnly
+                    />
                     <p className='ml-2' style={{ color: pageText }}>
                       ({itemAndReviews?.reviews?.length}){' '}
                       {itemAndReviews?.reviews?.length === 1
@@ -164,7 +167,7 @@ const DesignPreview = ({
               </p>
 
               <div className='mt-2'>
-                {itemAndReviews?.item?.faqs.length ? (
+                {itemAndReviews?.item?.faqs?.length ? (
                   itemAndReviews?.item?.faqs.map((faq) => (
                     <div
                       className='flex flex-col rounded p-2 mb-2'
@@ -213,7 +216,7 @@ const DesignPreview = ({
               <p className='text-2xl mt-4' style={{ color: headerColor }}>
                 Customer Reviews
               </p>
-              {itemAndReviews?.reviews.length > 0 ? (
+              {itemAndReviews?.reviews?.length > 0 ? (
                 itemAndReviews?.reviews.map((review) => (
                   <div
                     className='flex flex-col bg-gray-200 p-4 rounded mt-2'
@@ -263,67 +266,78 @@ const DesignPreview = ({
               )}
             </div>
           </div>
-
-          {/* Footer */}
-          <div
-            className='w-full h-28 mt-24 flex items-center justify-center'
-            style={{
-              backgroundColor: footerBG,
-              display: hideFooter ? 'none' : '',
-            }}
-          >
+        ) : (
+          <div className='w-full mx-auto'>
             <div
-              className='flex w-44 justify-between text-4xl'
-              style={{
-                backgroundColor: footerBG,
-              }}
+              className='mx-auto w-9/12 border-2 rounded flex flex-col justify-center items-center'
+              style={{ borderColor: storefront?.style?.borderColor }}
             >
-              {storefront.links.facebook && (
-                <AiOutlineFacebook
-                  style={{ color: socialIcons }}
-                  className='text-gray-400 hover:text-blue-400'
-                />
-              )}
-
-              {storefront.links.instagram && (
-                <AiOutlineInstagram
-                  style={{ color: socialIcons }}
-                  className='text-gray-400 hover:text-blue-400'
-                />
-              )}
-
-              {storefront.links.twitter && (
-                <AiOutlineTwitter
-                  style={{ color: socialIcons }}
-                  className='text-gray-400 hover:text-blue-400'
-                />
-              )}
-
-              {storefront.links.youtube && (
-                <AiOutlineYoutube
-                  style={{ color: socialIcons }}
-                  className='text-gray-400 hover:text-blue-400'
-                />
-              )}
+              <div className='h-60'></div>
+              <p
+                className='font-medium text-lg'
+                style={{ borderColor: storefront?.style?.pageText }}
+              >
+                This single item storefront is empty
+              </p>
+              <Link
+                to='/dashboard/additem'
+                className='border-2 rounded border-slate-800 text-slate-800 w-28 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
+              >
+                + Add item
+              </Link>
+              <div className='h-60'></div>
             </div>
           </div>
+        )}
+
+        {/* Footer */}
+        <div
+          className='w-full h-28 mt-24 flex items-center justify-center'
+          style={{
+            backgroundColor: footerBG,
+            display: hideFooter ? 'none' : '',
+          }}
+        >
+          <div
+            className='flex w-44 justify-between text-4xl'
+            style={{
+              backgroundColor: footerBG,
+            }}
+          >
+            {storefront.links.facebook && (
+              <AiOutlineFacebook
+                style={{ color: socialIcons }}
+                className='text-gray-400 hover:text-blue-400'
+              />
+            )}
+
+            {storefront.links.instagram && (
+              <AiOutlineInstagram
+                style={{ color: socialIcons }}
+                className='text-gray-400 hover:text-blue-400'
+              />
+            )}
+
+            {storefront.links.twitter && (
+              <AiOutlineTwitter
+                style={{ color: socialIcons }}
+                className='text-gray-400 hover:text-blue-400'
+              />
+            )}
+
+            {storefront.links.youtube && (
+              <AiOutlineYoutube
+                style={{ color: socialIcons }}
+                className='text-gray-400 hover:text-blue-400'
+              />
+            )}
+          </div>
         </div>
-      ) : (
-        <div className='w-full h-72 border-2 rounded mt-4 flex flex-col justify-center items-center'>
-          <p>
-            An item has not been added to this Fruntt yet. Add an item to
-            preview your styles.
-          </p>
-          <Link to='/dashboard/item'>
-            <button className='h-10 w-28 border-2 rounded border-slate-800 mt-4'>
-              Add item +
-            </button>
-          </Link>
-        </div>
-      );
+      </div>
+    );
   }
   return (
-    <div>
+    <div className='w-9/12 h-fit'>
       <Alert severity='info' className='mt-2 mb-4'>
         This is just a preview, not your actual storefront. This is just so you
         can see the design changes before you decide to save.

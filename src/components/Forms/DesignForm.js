@@ -74,7 +74,7 @@ const DesignForm = ({ storefront }) => {
 
   const designForm = () => {
     return (
-      <form className='w-5/12 mx-auto'>
+      <form className='w-3/12 mx-auto'>
         <div className='p-4 w-full mx-auto scroll-smooth overflow-scroll h-3/6'>
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
             <p className='text-lg font-medium mb-2'>Page background</p>

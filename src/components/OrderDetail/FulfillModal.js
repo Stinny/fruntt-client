@@ -8,6 +8,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import Alert from '@mui/material/Alert';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const FulfillModal = ({
   fulfillModalIsOpen,
@@ -17,6 +19,7 @@ const FulfillModal = ({
 }) => {
   const [fulfillType, setFulfillType] = useState('auto');
   const [trackingNum, setTrackingNum] = useState('');
+  const [carrierCode, setCarrierCode] = useState('ups');
   const [error, setError] = useState('');
 
   const [fulfillOrder, result] = useFulfillOrderMutation();
@@ -29,6 +32,7 @@ const FulfillModal = ({
       orderId: order._id,
       trackingNum: trackingNum,
       fulfillType: fulfillType,
+      carrierCode: carrierCode,
     }).unwrap();
 
     if (fulfillOrderReq === 'Order fulfilled') {
@@ -98,6 +102,20 @@ const FulfillModal = ({
                 onChange={(e) => setTrackingNum(e.target.value)}
                 // value={name}
               />
+
+              <ToggleButtonGroup
+                value={carrierCode}
+                exclusive
+                onChange={(e) => setCarrierCode(e.target.value)}
+                aria-label='Platform'
+                className='mt-2'
+              >
+                <ToggleButton value='ups'>UPS</ToggleButton>
+                <ToggleButton value='usps'>USPS</ToggleButton>
+                <ToggleButton value='fedex'>FEDEX</ToggleButton>
+                <ToggleButton value='stamps_com'>STAMPS</ToggleButton>
+                <ToggleButton value='dhl_express'>DHL EXPRESS</ToggleButton>
+              </ToggleButtonGroup>
             </div>
           )}
 
