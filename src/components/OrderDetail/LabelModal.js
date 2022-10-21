@@ -91,7 +91,7 @@ const LabelModal = ({
 
           {rates.length < 1 ? (
             <Alert severity='error' className='w-full mt-2 mb-2'>
-              No available rates, please check shipping address and return
+              No rates available, please check shipping address and return
               address are valid
             </Alert>
           ) : (
