@@ -51,10 +51,10 @@ const Settings = () => {
         <div className='w-full mt-4'>
           <Profile user={user} refetch={refetch} />
         </div>
-
+        {/* 
         <div className='w-full mt-10'>
           <BusinessInfo user={user} refetch={refetch} />
-        </div>
+        </div> */}
 
         <div className='w-full mt-10'>
           <Notifications user={user} refetch={refetch} />
