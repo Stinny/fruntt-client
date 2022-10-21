@@ -28,6 +28,11 @@ const FulfillModal = ({
   const handleFulfillOrder = async (e) => {
     e.preventDefault();
 
+    if (fulfillType === 'manu' && trackingNum === '') {
+      setError('Enter tracking number');
+      return;
+    }
+
     const fulfillOrderReq = await fulfillOrder({
       orderId: order._id,
       trackingNum: trackingNum,
