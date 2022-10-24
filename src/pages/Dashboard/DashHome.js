@@ -48,7 +48,13 @@ const DashHome = () => {
             </p>
           </Alert>
         )}
-        <Alert severity='info' className='mt-4 mb-4 w-full'>
+
+        {!currentUser.confirmEmail && (
+          <Alert severity='error' className='mt-2 mb-4 w-full'>
+            <p>Please check your inbox to confirm your email</p>
+          </Alert>
+        )}
+        <Alert severity='info' className='mt-2 mb-4 w-full'>
           <p>
             Welcome merchants! As we onboard beta users, collect feedback, and
             develop a pricing plan merchants will be restricted to only one
@@ -107,7 +113,7 @@ const DashHome = () => {
             <Tooltip
               title={
                 <p className='text-lg'>
-                  Total orders your storefront has received
+                  Total sales your storefront has generated
                 </p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
@@ -117,7 +123,7 @@ const DashHome = () => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-xl font-medium'>Number of orders</p>
+            <p className='text-xl font-medium'>Number of Sales</p>
             <p className='text-4xl font-medium'>{stats?.numOfOrders}</p>
           </div>
 

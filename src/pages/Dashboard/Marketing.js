@@ -39,12 +39,6 @@ const Marketing = () => {
       <Navbar />
       <Topbar />
       <div className='max-w-6xl h-screen mx-auto'>
-        <Alert severity='info' className='mt-4 mb-4 w-full'>
-          We want to get our marketing features right for you merchants, so we
-          appreciate all the feedback we can get. Marketing features will be
-          coming very soon.
-        </Alert>
-
         <div className='flex flex-col'>
           <h2 className='text-3xl font-medium'>
             Marketing features coming soon!
@@ -71,7 +65,7 @@ const Marketing = () => {
               onChange={(e) => setContent(e.target.value)}
             />
             <button
-              className='w-full h-14 border-2 border-slate-800 rounded text-lg mt-4'
+              className='w-full h-14 border-2 border-slate-800 rounded text-lg mt-4 hover:text-white hover:bg-slate-800'
               type='submit'
             >
               Submit feedback

@@ -37,6 +37,8 @@ import Content from './pages/Dashboard/Content';
 import Launching from './pages/Launching';
 import PaymentMethod from './pages/PaymentMethod';
 import CustomerDetail from './pages/Dashboard/CustomerDetail';
+import Config from './pages/Dashboard/Config';
+import Feedback from './pages/Feedback';
 
 function App() {
   return (
@@ -85,18 +87,22 @@ function App() {
 
                 <Route path='dashboard/addons' element={<Integrations />} />
 
-                <Route path='/dashboard/design' element={<Design />} />
+                <Route path='dashboard/config' element={<Config />} />
 
-                <Route path='/dashboard/content' element={<Content />} />
+                <Route path='dashboard/design' element={<Design />} />
 
-                <Route path='/dashboard/design/edit' element={<EditDesign />} />
+                <Route path='dashboard/content' element={<Content />} />
+
+                <Route path='dashboard/design/edit' element={<EditDesign />} />
 
                 <Route
-                  path='/dashboard/design/edit/preview'
+                  path='dashboard/design/edit/preview'
                   element={<DesignPreview />}
                 />
 
                 <Route path='dashboard/marketing' element={<Marketing />} />
+
+                <Route path='feedback/' element={<Feedback />} />
 
                 <Route path='dashboard/item/add' element={<AddItem />} />
 

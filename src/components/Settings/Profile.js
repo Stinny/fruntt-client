@@ -29,6 +29,7 @@ const Profile = ({ user, refetch }) => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      width: '500px',
     },
   };
 
@@ -47,7 +48,7 @@ const Profile = ({ user, refetch }) => {
       <div className='flex justify-between items-center w-full border-b p-2'>
         <p className='text-xlg font-medium'>Account Details</p>
         <button
-          className='border-2 rounded w-20 border-gray-400 text-gray-400'
+          className='border-2 rounded w-20 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
           onClick={openModal}
         >
           Edit
@@ -69,7 +70,7 @@ const Profile = ({ user, refetch }) => {
               onChange={(e) => setFirstName(e.target.value)}
               value={firstName}
             />
-            <p className='text-gray-400'>Last name</p>
+            <p className='text-gray-400 mt-2'>Last name</p>
             <input
               type='text'
               className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded-lg p-2'
@@ -77,7 +78,7 @@ const Profile = ({ user, refetch }) => {
               onChange={(e) => setLastName(e.target.value)}
               value={lastName}
             />
-            <p className='text-gray-400'>Email</p>
+            <p className='text-gray-400 mt-2'>Email</p>
             <input
               type='text'
               className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded-lg p-2'
@@ -88,13 +89,13 @@ const Profile = ({ user, refetch }) => {
             <button
               type='button'
               onClick={closeModal}
-              className='w-full h-10 border-2 border-red-500 text-red-500 rounded mt-4'
+              className='w-full h-10 border-2 border-red-500 text-red-400 rounded mt-4 hover:text-white hover:bg-red-400'
             >
               Cancel
             </button>
             <button
               type='submit'
-              className='w-full h-10 border-2 border-slate-800 text-slate-800 rounded mt-4'
+              className='w-full h-14 border-2 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 rounded mt-4'
             >
               Save
             </button>
@@ -120,11 +121,14 @@ const Profile = ({ user, refetch }) => {
           </div>
         </div>
       ) : (
-        <div className='w-11/12 mx-auto border-2 rounded h-14 w-full flex flex-col justify-center items-center'>
+        <div className='w-11/12 mx-auto border-2 rounded h-36 w-full flex flex-col justify-center items-center'>
           <p className='text-lg font-medium text-slate-800'>
             Personal details not added yet
           </p>
-          <button onClick={openModal} className='text-gray-400'>
+          <p className='text-md mt-2 font-medium text-slate-800'>
+            add to further personalize your dashboard
+          </p>
+          <button onClick={openModal} className='text-gray-400 mt-2'>
             + add personal details
           </button>
         </div>

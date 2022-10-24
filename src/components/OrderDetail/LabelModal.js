@@ -25,7 +25,7 @@ const LabelModal = ({
     setError('');
     const getSelectedRate = rates.filter((rate) => rate.rateId === rateId);
     setAmount(getSelectedRate[0]?.amount);
-  }, [rateId]);
+  }, [rateId, packTime]);
 
   const handleGetShippingLabel = async (e) => {
     e.preventDefault();
@@ -39,19 +39,24 @@ const LabelModal = ({
 
     const getSelectedRate = rates.filter((rate) => rate.rateId === rateId);
 
-    const getLabelReq = await getShippingLabel({
-      rateId: rateId,
-      orderId: order._id,
-      amount: getSelectedRate[0].amount,
-    }).unwrap();
+    try {
+      const getLabelReq = await getShippingLabel({
+        rateId: rateId,
+        orderId: order._id,
+        amount: getSelectedRate[0].amount,
+      }).unwrap();
 
-    if (getLabelReq.error) {
-      setError(getLabelReq.msg);
+      if (getLabelReq.error) {
+        setError(getLabelReq.msg);
+        setBuyingLabel(false);
+      } else if (getLabelReq.msg === 'Label created') {
+        refetch();
+        setBuyingLabel(false);
+        closeLabelModal();
+      }
+    } catch (err) {
+      setError('There was an error, check payment method');
       setBuyingLabel(false);
-    } else if (getLabelReq.msg === 'Label created') {
-      refetch();
-      setBuyingLabel(false);
-      closeLabelModal();
     }
   };
 

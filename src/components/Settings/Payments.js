@@ -49,7 +49,7 @@ const Payments = ({ refetch }) => {
         <AiOutlineCheckCircle className='text-2xl ml-4' />
       </a>
       <button
-        className='w-full h-10 border-2 text-md rounded-md mt-4 text-gray-400 border-gray-400 hover:border-gray-600 hover:text-gray-600'
+        className='w-full h-10 border-2 text-md rounded-md mt-4 text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white'
         onClick={handleDisconnectStripe}
       >
         Disconnect

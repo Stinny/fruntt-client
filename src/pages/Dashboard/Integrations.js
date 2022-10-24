@@ -8,9 +8,6 @@ import { useAddFeedbackMutation } from '../../api/feedbackApiSlice';
 import Cookies from 'js-cookie';
 import { BiSmile } from 'react-icons/bi';
 
-//mui
-import Alert from '@mui/material/Alert';
-
 const Integrations = () => {
   const [content, setContent] = useState('');
   const [addFeedback, result] = useAddFeedbackMutation();
@@ -41,17 +38,12 @@ const Integrations = () => {
       <Navbar />
       <Topbar />
       <div className='max-w-6xl mx-auto h-screen'>
-        <Alert severity='info' className='mt-4 mb-4 w-full'>
-          We understand integrations are important for merchants and they will
-          be coming very soon. In the meantime, we really appreciate any
-          feedback as we continue to develop our product.
-        </Alert>
         <div className='flex flex-col'>
           <h2 className='text-3xl font-medium'>Add-ons coming soon!</h2>
           <p className='text-lg mt-2'>
-            We would love and appreciate some feedback on storefront
-            integrations (ex. Google analytics, Facebook, Shopify) you think
-            would be best. Just submit them in the form below!
+            We would love and appreciate some feedback on storefront add-ons
+            (ex. Google analytics, Facebook, Shopify) you think would be best.
+            Just submit them in the form below!
           </p>
         </div>
         {givenFeedback ? (
@@ -70,7 +62,7 @@ const Integrations = () => {
               onChange={(e) => setContent(e.target.value)}
             />
             <button
-              className='w-full h-14 border-2 border-slate-800 rounded text-lg mt-4'
+              className='w-full h-14 border-2 border-slate-800 rounded text-lg mt-4 hover:text-white hover:bg-slate-800'
               type='submit'
             >
               Submit feedback

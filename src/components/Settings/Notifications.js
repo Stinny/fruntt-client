@@ -44,6 +44,7 @@ const Notifications = ({ user, refetch }) => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      width: '500px',
     },
   };
 
@@ -63,7 +64,7 @@ const Notifications = ({ user, refetch }) => {
         <p className='text-xlg font-medium'>Notifications</p>
         <button
           onClick={openModal}
-          className='border-2 rounded w-20 border-gray-400 text-gray-400'
+          className='border-2 rounded w-20 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
         >
           Edit
         </button>
@@ -103,13 +104,13 @@ const Notifications = ({ user, refetch }) => {
             <button
               type='button'
               onClick={closeModal}
-              className='w-full h-10 border-2 border-red-500 text-red-500 rounded mt-4'
+              className='w-full h-10 border-2 border-red-500 text-red-400 hover:text-white hover:bg-red-400 rounded mt-4'
             >
               Cancel
             </button>
             <button
               type='submit'
-              className='w-full h-10 border-2 border-slate-800 text-slate-800 rounded mt-4'
+              className='w-full h-14 border-2 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 rounded mt-4'
             >
               Save
             </button>

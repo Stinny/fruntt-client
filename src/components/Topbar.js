@@ -98,9 +98,11 @@ const Topbar = () => {
           </button>
         </NavLink>
 
-        <NavLink to='/dashboard/other'>
+        <NavLink to='/dashboard/config'>
           <button
-            className={path === '/dashboard/other' ? activeLink : notActiveLink}
+            className={
+              path === '/dashboard/config' ? activeLink : notActiveLink
+            }
           >
             Config
           </button>

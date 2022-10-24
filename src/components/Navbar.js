@@ -95,7 +95,7 @@ const Navbar = () => {
 
         {/* links section */}
         <div className='h-full flex items-center w-56 flex justify-between'>
-          <Link to='/'>Give Feedback</Link>
+          <Link to='/feedback'>Give Feedback</Link>
 
           <BiHelpCircle
             className='text-2xl hover:cursor-pointer'
