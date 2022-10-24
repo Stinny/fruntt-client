@@ -280,7 +280,7 @@ const DesignPreview = ({
                 This single item storefront is empty
               </p>
               <Link
-                to='/dashboard/additem'
+                to='/dashboard/item/add'
                 className='border-2 rounded border-slate-800 text-slate-800 w-28 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
               >
                 + Add item

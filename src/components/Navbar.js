@@ -82,6 +82,7 @@ const Navbar = () => {
         </div>
 
         <div className='flex items-center h-full'>
+          <p className='font-medium mr-2'>Viewing:</p>
           <select className='rounded border-2 w-72 h-10'>
             <option>{currentUser?.store?.url}</option>
           </select>

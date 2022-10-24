@@ -149,7 +149,7 @@ const OrderDetail = () => {
           </div>
         </div>
 
-        <div className='w-11/12 mx-auto mt-10'>
+        <div className='w-11/12 mx-auto mt-10 border-2 rounded p-2'>
           <div className='w-full flex justify-between border-b p-2'>
             <p className='text-xl font-medium'>Customer info</p>
             <Link
@@ -177,7 +177,11 @@ const OrderDetail = () => {
           <div className='w-full h-72 p-4 flex justify-between mx-auto'>
             <div className='flex flex-col justify-between'>
               <p className='text-gray-400'>Item:</p>
-              <p className='text-gray-400 mt-2'>Options:</p>
+              {order?.options?.length > 0 ? (
+                <p className='text-gray-400 mt-2'>Options:</p>
+              ) : (
+                ''
+              )}
               <p className='text-gray-400 mt-2'>Quantity:</p>
               <p className='text-gray-400 mt-2'>Shipping price:</p>
               <p className='text-gray-400 mt-2'>Total:</p>

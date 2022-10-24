@@ -60,7 +60,8 @@ const DashHome = () => {
           <p>
             Welcome merchants! As we onboard public beta users, collect
             feedback, and develop a pricing plan merchants will be restricted to
-            only one storefront. We encourage and appreaciate all feedback!
+            launching only one storefront. We encourage and appreaciate all
+            feedback!
           </p>
         </Alert>
 
@@ -105,7 +106,13 @@ const DashHome = () => {
             </Tooltip>
             <p className='text-xl font-medium'>Revenue</p>
             <p className='text-4xl font-medium'>
-              ${stats?.revenue > 0 ? stats?.revenue.toFixed(2) : '0'}
+              $
+              {stats?.revenue > 0
+                ? stats?.revenue.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })
+                : '0'}
             </p>
           </div>
 

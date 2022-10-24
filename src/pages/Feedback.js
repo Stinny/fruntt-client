@@ -85,7 +85,9 @@ const Feedback = () => {
           className='flex flex-col w-9/12 mx-auto'
           onSubmit={handleAddFeedBack}
         >
-          <p className='font-medium mb-2 text-gray-400'>Leave feedback on:</p>
+          <p className='font-medium mb-2 text-gray-400 mt-10'>
+            Leave feedback on:
+          </p>
           <select
             className='w-6/12 h-10 border rounded'
             onChange={(e) => setType(e.target.value)}

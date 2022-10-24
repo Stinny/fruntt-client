@@ -107,6 +107,7 @@ const LabelModal = ({
             Your customer paid ${order?.item?.shippingPrice} for shipping
           </Alert>
 
+          <p className=' mt-2'>When will you fill order?</p>
           <select
             onChange={(e) => setPackTime(e.target.value)}
             className='w-8/12 h-14 rounded p-2'
@@ -118,10 +119,10 @@ const LabelModal = ({
             <option value='twoDays'>In 2 days</option>
             <option value='threeDays'>In 3 days</option>
           </select>
-
+          <p className='mt-2'>Select rate</p>
           <select
             onChange={(e) => setRateId(e.target.value)}
-            className='w-8/12 h-14 rounded p-2 mt-2'
+            className='w-8/12 h-14 rounded p-2'
           >
             <option disabled selected hidden>
               Pick a shipping rate
