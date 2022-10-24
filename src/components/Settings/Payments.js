@@ -63,7 +63,7 @@ const Payments = ({ refetch }) => {
   let content;
   if (!currentUser.stripeOnboard) {
     content = gettingUrl ? (
-      <CircularProgress className='mt-4' />
+      <CircularProgress className='mt-4 mx-auto' />
     ) : (
       <a
         href={result?.data?.url}
