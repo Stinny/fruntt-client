@@ -19,6 +19,7 @@ import Dashboard from '@mui/icons-material/Dashboard';
 import Logout from '@mui/icons-material/Logout';
 import Avatar from '@mui/material/Avatar';
 import HelpModal from './HelpModal';
+import Tooltip from '@mui/material/Tooltip';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -86,12 +87,15 @@ const Navbar = () => {
           <select className='rounded border-2 w-72 h-10'>
             <option>{currentUser?.store?.url}</option>
           </select>
-          <Link
-            to='/dashboard'
-            className='ml-2 text-gray-400 hover:text-gray-800'
-          >
-            + Add storefront
-          </Link>
+          <Tooltip title='Coming soon' className='ml-2' placement='bottom'>
+            <button
+              type='button'
+              disabled
+              className='ml-2 text-gray-400 hover:text-gray-800'
+            >
+              + Add storefront
+            </button>
+          </Tooltip>
         </div>
 
         {/* links section */}
