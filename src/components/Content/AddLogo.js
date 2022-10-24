@@ -59,7 +59,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
       if (addLogoReq === 'Logo added') {
         refetch();
         setInfo(
-          'Please log out and log back in for name or logo change to take place'
+          'Please log out and log back in for name or logo change to fully take place'
         );
         closeModal();
       } else {

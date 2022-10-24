@@ -44,23 +44,23 @@ const DashHome = () => {
               <Link to='/settings' className='text-red-900 font-semibold'>
                 settings
               </Link>{' '}
-              to make checkout available to customers in your storefront
+              to enable checkout
             </p>
           </Alert>
         )}
 
-        {!currentUser.confirmEmail && (
+        {!currentUser.emailConfirmed && (
           <Alert severity='error' className='mt-2 mb-4 w-full'>
-            <p>Please check your inbox to confirm your email</p>
+            <p>
+              Please check your inbox to confirm your email and enable checkout
+            </p>
           </Alert>
         )}
         <Alert severity='info' className='mt-2 mb-4 w-full'>
           <p>
-            Welcome merchants! As we onboard beta users, collect feedback, and
-            develop a pricing plan merchants will be restricted to only one
-            storefront. We will be collecting a small 2% fee for successful
-            orders to help us cover infrastructure costs. We encourage and
-            appreaciate all feedback!
+            Welcome merchants! As we onboard public beta users, collect
+            feedback, and develop a pricing plan merchants will be restricted to
+            only one storefront. We encourage and appreaciate all feedback!
           </p>
         </Alert>
 
