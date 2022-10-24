@@ -9,6 +9,9 @@ import { AiOutlineCheckCircle } from 'react-icons/ai';
 import Cookies from 'js-cookie';
 import Spinner from '../Spinner';
 
+//mui
+import CircularProgress from '@mui/material/CircularProgress';
+
 const Payments = ({ refetch }) => {
   const dispatch = useDispatch();
 
@@ -60,7 +63,7 @@ const Payments = ({ refetch }) => {
   let content;
   if (!currentUser.stripeOnboard) {
     content = gettingUrl ? (
-      <Spinner />
+      <CircularProgress className='mt-4' />
     ) : (
       <a
         href={result?.data?.url}

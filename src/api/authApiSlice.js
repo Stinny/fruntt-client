@@ -103,6 +103,7 @@ export const {
   useRegisterMutation,
   useLazyGetOnboardUrlQuery,
   useGetUpdatedUserQuery,
+  useLazyGetUpdatedUserQuery,
   useDisconnectStripeMutation,
   useUpdateAccountInfoMutation,
   useUpdateBusinessInfoMutation,

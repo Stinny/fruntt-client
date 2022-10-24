@@ -52,7 +52,8 @@ const DashHome = () => {
         {!currentUser.emailConfirmed && (
           <Alert severity='error' className='mt-2 mb-4 w-full'>
             <p>
-              Please check your inbox to confirm your email and enable checkout
+              Please check your inbox to confirm your email so you can enable
+              checkout
             </p>
           </Alert>
         )}

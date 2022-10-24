@@ -5,19 +5,32 @@ import { useParams, Link } from 'react-router-dom';
 import { useConfirmEmailMutation } from '../api/authApiSlice';
 import { BsArrowRightShort } from 'react-icons/bs';
 import img from '../media/check.svg';
-import { useGetUpdatedUserQuery } from '../api/authApiSlice';
+import { useLazyGetUpdatedUserQuery } from '../api/authApiSlice';
+import Cookies from 'js-cookie';
 
 const ConfirmEmail = () => {
   const { userId } = useParams();
   const [confirmed, setConfirmed] = useState(false);
 
-  const { data: user, isLoading, isSuccess } = useGetUpdatedUserQuery();
+  const [
+    getUpdatedUser,
+    { isLoading, isSuccess },
+  ] = useLazyGetUpdatedUserQuery();
   const [confirmEmail, result] = useConfirmEmailMutation();
 
   useEffect(() => {
     const confirm = async () => {
-      const confirmEmailReq = await confirmEmail(userId).unwrap();
-      if (confirmEmailReq === 'User updated') setConfirmed(true);
+      try {
+        const confirmEmailReq = await confirmEmail(userId).unwrap();
+        if (confirmEmailReq === 'User updated') {
+          const user = await getUpdatedUser().unwrap();
+          const updatedUser = JSON.stringify(user);
+          Cookies.set('currentUser', updatedUser, { sameSite: 'Lax' });
+          setConfirmed(true);
+        }
+      } catch (err) {
+        setConfirmed(false);
+      }
     };
     confirm();
   }, []);
