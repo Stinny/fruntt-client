@@ -177,7 +177,7 @@ const OrderDetail = () => {
           <div className='w-full h-72 p-4 flex justify-between mx-auto'>
             <div className='flex flex-col justify-between'>
               <p className='text-gray-400'>Item:</p>
-              {order?.options?.length > 0 ? (
+              {Object.entries(order.options).length > 0 ? (
                 <p className='text-gray-400 mt-2'>Options:</p>
               ) : (
                 ''
