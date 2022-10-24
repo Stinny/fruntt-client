@@ -82,7 +82,7 @@ const DashHome = () => {
           </div>
           <a
             href={currentUser?.store?.url}
-            className='flex justify-center items-center text-xl text-slate-800'
+            className='flex justify-center items-center text-xl text-slate-800 font-medium'
             target='_blank'
           >
             View your storefront <FaExternalLinkAlt className='ml-2' />{' '}

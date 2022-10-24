@@ -200,7 +200,11 @@ const OrderDetail = () => {
                 ${order?.item?.shippingPrice}
               </p>
               <p className='text-lg font-medium mt-2'>
-                ${order?.total?.toFixed(2)}
+                $
+                {order?.total?.toLocaleString('en-US', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
               </p>
             </div>
           </div>
