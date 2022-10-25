@@ -24,8 +24,8 @@ const Config = () => {
           <div className='p-2 border-b mt-4 flex flex-col'>
             <p className='text-xl font-medium'>Maintenance mode</p>
             <p className='text-gray-400 font-medium'>
-              Turn on maintenance mode if you ever need to make changes while
-              not taking orders
+              Turn on maintenance mode if you ever need to make changes and do
+              not want to take orders
             </p>
           </div>
           <p className='font-medium text-lg mt-4'>Turn on maintenance mode</p>
