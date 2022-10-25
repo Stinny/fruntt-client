@@ -89,7 +89,7 @@ const Notifications = ({ user, refetch }) => {
               onChange={(e) => setSendOrderPlaced(e.target.checked)}
             />
 
-            <p className='text-gray-400 mt-2'>An item out of stock</p>
+            <p className='text-gray-400 mt-2'>Your item goes out of stock</p>
             <Switch
               checked={sendItemOutOfStock}
               onChange={(e) => setSendItemOutOfStock(e.target.checked)}
