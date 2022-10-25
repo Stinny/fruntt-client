@@ -6,7 +6,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import BillingForm from './BillingForm';
 
-const stripeLoader = loadStripe('pk_test_KnpiRgRMVGvh1Tu8cjzphjmP00L66ieGNQ');
+const stripeLoader = loadStripe('pk_live_eWcmPkgRoGeR0yn9gKf7wopL00xb4WlY4M');
 
 const Billing = ({ user, refetch }) => {
   return (
