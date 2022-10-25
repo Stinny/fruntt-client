@@ -76,6 +76,21 @@ const EditItemForm = ({
     navigate('/dashboard/item');
   };
 
+  useEffect(() => {
+    setError('');
+  }, [
+    formTitle,
+    formDescription,
+    formPrice,
+    formStock,
+    formAddress,
+    formCity,
+    formState,
+    formCountry,
+    formShippingPrice,
+    formWeight,
+  ]);
+
   const handleSaveEdit = async (e) => {
     console.log('trying to save');
     e.preventDefault();
