@@ -12,7 +12,7 @@ const SalesGraph = () => {
         label: 'Sales',
         backgroundColor: '#000000',
         borderColor: '#000000',
-        data: [0, 10, 5, 2, 20, 30, 45],
+        data: [0, 0, 0, 0, 0, 0, 0],
       },
     ],
   };
