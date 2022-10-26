@@ -30,9 +30,11 @@ const Item = () => {
 
   const noItem = (
     <div className='h-screen border-2 border-gray-200 rounded w-full flex flex-col justify-center items-center mt-4'>
-      <h2 className='text-2xl font-medium'>You have not added an item yet!</h2>
+      <h2 className='text-2xl font-medium'>
+        You have not added a product yet!
+      </h2>
       <p className='text-gray-400 text-xl w-8/12 mt-4 text-center'>
-        Add item details, adjust your inventory, set shipping price and more
+        Add product details, adjust your inventory, set shipping price and more
       </p>
       <Link to='/dashboard/item/add'>
         <button className='w-40 h-10 rounded border-2 border-slate-800 text-slate-800 mt-4 font-medium hover:bg-slate-800 hover:text-white'>

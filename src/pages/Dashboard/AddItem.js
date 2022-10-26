@@ -190,7 +190,7 @@ const AddItem = () => {
             </Tooltip>
           </div>
           <div className='p-4'>
-            <p className='text-gray-400'>Item Title</p>
+            <p className='text-gray-400'>Product Title</p>
             <input
               type='text'
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
@@ -198,7 +198,7 @@ const AddItem = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
 
-            <p className='text-gray-400 mt-4'>Item Description(optional)</p>
+            <p className='text-gray-400 mt-4'>Product Description(optional)</p>
             <textarea
               type='text'
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
@@ -208,7 +208,7 @@ const AddItem = () => {
 
             <div className='w-full flex justify-between'>
               <div className='flex flex-col w-3/6'>
-                <p className='text-gray-400 mt-4'>Item Price</p>
+                <p className='text-gray-400 mt-4'>Product Price</p>
                 <input
                   type='number'
                   className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
@@ -218,7 +218,7 @@ const AddItem = () => {
               </div>
 
               <div className='flex flex-col w-3/6 ml-4'>
-                <p className='text-gray-400 mt-4'>Item Stock</p>
+                <p className='text-gray-400 mt-4'>Product Stock</p>
                 <input
                   type='number'
                   className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'

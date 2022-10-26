@@ -168,7 +168,7 @@ const EditItemForm = ({
       </Link>
       <div className='mb-10 flex justify-between items-center p-2 border-b-2'>
         <div className='flex flex-col'>
-          <h2 className='text-4xl font-medium'>Edit Your Item</h2>
+          <h2 className='text-4xl font-medium'>Edit your product</h2>
         </div>
 
         <div className='flex justify-between'>
@@ -211,7 +211,7 @@ const EditItemForm = ({
         </div>
 
         <div className='p-4'>
-          <p className='text-gray-400'>Title</p>
+          <p className='text-gray-400'>Product Title</p>
 
           <input
             type='text'
@@ -221,7 +221,7 @@ const EditItemForm = ({
             onChange={(e) => setFormTitle(e.target.value)}
           />
 
-          <p className='text-gray-400 mt-4'>Description</p>
+          <p className='text-gray-400 mt-4'>Product Description(optional)</p>
           <textarea
             type='text'
             className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
@@ -232,7 +232,7 @@ const EditItemForm = ({
 
           <div className='w-full flex justify-between'>
             <div className='flex flex-col w-3/6'>
-              <p className='text-gray-400 mt-4'>Price</p>
+              <p className='text-gray-400 mt-4'>Product Price</p>
               <input
                 type='number'
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
@@ -243,7 +243,7 @@ const EditItemForm = ({
             </div>
 
             <div className='flex flex-col w-3/6 ml-4'>
-              <p className='text-gray-400 mt-4'>Stock</p>
+              <p className='text-gray-400 mt-4'>Product Stock</p>
               <input
                 type='number'
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
