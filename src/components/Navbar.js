@@ -8,6 +8,7 @@ import { BiHelpCircle } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
 import handleLogoutUser from '../utils/logout';
 import Cookies from 'js-cookie';
+import { BsDiscord } from 'react-icons/bs';
 
 //mui
 import Menu from '@mui/material/Menu';
@@ -196,14 +197,19 @@ const Navbar = () => {
         {/* links section */}
         <div className='h-full flex items-center w-72 flex justify-between'>
           <Link to='/'>
-            <p className='font-medium text-slate-800'>How To?</p>
-          </Link>
-          <Link to='/'>
             <p className='font-medium text-slate-800'>About</p>
           </Link>
           <Link to='/pricing'>
             <p className='font-medium text-slate-800'>Pricing</p>
           </Link>
+          <a
+            href='https://discord.gg/6GHYR2xn'
+            target='_blank'
+            className='font-medium'
+            style={{ color: '#738adb' }}
+          >
+            <BsDiscord className='text-3xl' />
+          </a>
           <Link to='/login'>
             <button className='border-2 text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white rounded w-20 h-full'>
               Login

@@ -6,6 +6,7 @@ import {
   AiOutlineYoutube,
   AiOutlineFacebook,
 } from 'react-icons/ai';
+import { BsDiscord } from 'react-icons/bs';
 
 const Footer = () => {
   return (
@@ -34,8 +35,10 @@ const Footer = () => {
         </div>
 
         <div className='flex w-40 justify-between text-4xl'>
+          <a href='https://discord.gg/6GHYR2xn' target='_blank'>
+            <BsDiscord className='text-gray-400 hover:text-slate-800' />
+          </a>
           <AiOutlineFacebook className='text-gray-400 hover:text-slate-800' />
-          <AiOutlineInstagram className='text-gray-400 hover:text-slate-800' />
           <AiOutlineYoutube className='text-gray-400 hover:text-slate-800' />
         </div>
       </div>
