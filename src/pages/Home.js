@@ -79,7 +79,8 @@ const Home = () => {
                   Secure payments
                 </p>
                 <p className='mt-2 text-center'>
-                  Sucurely accept payments and get paid instantly
+                  Sucurely accept different kinds of payment and get paid
+                  instantly
                 </p>
               </div>
               <div className='flex flex-col items-center w-4/12 p-4'>
