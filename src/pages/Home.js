@@ -99,7 +99,7 @@ const Home = () => {
                   24/7 Support
                 </p>
                 <p className='mt-2 text-center'>
-                  Easliy get in touch with us via 24/7 email support
+                  Easily get in touch with us via 24/7 email support
                 </p>
               </div>
             </div>
