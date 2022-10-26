@@ -29,7 +29,7 @@ const Topbar = () => {
                 : notActiveLink
             }
           >
-            Item
+            Product
           </button>
         </NavLink>
 

@@ -159,11 +159,11 @@ const AddItem = () => {
               CANCEL
             </button>
             <button
-              className='w-32 h-10 rounded border-slate-800 border-2 hover:text-white hover:bg-slate-800'
+              className='w-40 h-10 rounded border-slate-800 border-2 hover:text-white hover:bg-slate-800'
               onClick={handleAddItem}
               type='button'
             >
-              + ADD ITEM
+              + ADD PRODUCT
             </button>
           </div>
         </div>

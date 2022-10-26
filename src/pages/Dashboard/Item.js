@@ -35,8 +35,8 @@ const Item = () => {
         Add item details, adjust your inventory, set shipping price and more
       </p>
       <Link to='/dashboard/item/add'>
-        <button className='w-32 h-10 rounded border-2 border-slate-800 text-slate-800 mt-4 font-medium hover:bg-slate-800 hover:text-white'>
-          + Add item
+        <button className='w-40 h-10 rounded border-2 border-slate-800 text-slate-800 mt-4 font-medium hover:bg-slate-800 hover:text-white'>
+          + Add Product
         </button>
       </Link>
     </div>
@@ -59,8 +59,8 @@ const Item = () => {
           </div>
 
           <Link to={`/dashboard/item/edit/${product[0]._id}`}>
-            <button className='w-32 h-10 rounded border-slate-800 text-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
-              EDIT ITEM
+            <button className='w-40 h-10 rounded border-slate-800 text-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
+              EDIT PRODUCT
             </button>
           </Link>
         </div>
