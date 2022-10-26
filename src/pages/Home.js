@@ -9,7 +9,7 @@ import {
   MdOutlineContactSupport,
   MdOutlineNotificationsActive,
 } from 'react-icons/md';
-import { AiOutlineMail } from 'react-icons/ai';
+import { AiOutlineMail, AiOutlineCloudServer } from 'react-icons/ai';
 import { BiWorld } from 'react-icons/bi';
 import { RiSecurePaymentLine } from 'react-icons/ri';
 
@@ -26,13 +26,14 @@ const Home = () => {
       <div className='mx-auto h-screen max-w-8xl'>
         <div className='w-full h-full flex flex-col items-center justify-around'>
           <div className='flex flex-col w-6/12 text-center mt-20'>
-            <p className='text-5xl font-medium'>One page. One item.</p>
+            <p className='text-5xl font-medium'>One page. One product.</p>
             <p className='text-3xl font-medium mt-8 text-gray-400'>
               An eCommerce platform that understands simplicity
             </p>
-            <p className='text-2xl mt-8 tracking-wider'>
-              Single item storefronts that you can launch, design, and manage
-              from one simple dashboard. Start selling in minutes.
+            <p className='text-2xl mt-8 tracking-wider font-medium'>
+              Launch, design, and manage single product storefronts from one
+              simple dashboard. Your customers will only be TWO clicks away from
+              a purchase.
             </p>
             <Link to='/signup' className='flex justify-center mt-8'>
               <button className='rounded text-slate-800 w-5/12 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
@@ -43,9 +44,9 @@ const Home = () => {
           <div className='mx-auto w-10/12 flex justify-center'>
             <div className='flex w-full justify-between'>
               <div className='flex flex-col items-center w-4/12 p-4'>
-                <IoStorefrontOutline className='text-4xl' />
+                <AiOutlineCloudServer className='text-4xl' />
                 <p className='text-lg font-medium text-slate-800 mt-2'>
-                  Hosted storefronts
+                  Hosting on us
                 </p>
                 <p className='mt-2 text-center'>
                   Never worry about hosting, storefronts are hosted and
