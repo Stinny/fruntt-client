@@ -163,7 +163,7 @@ const FAQs = () => {
                 </p>
                 <p className='text-gray-400 w-7/12 text-center mt-2'>
                   These FAQs are visible on your storefront for customers to
-                  read. They should relate to whatever item you have added.
+                  read. They should relate to whatever product you have added.
                 </p>
                 <button
                   type='button'
@@ -179,10 +179,10 @@ const FAQs = () => {
           <div className='p-4'>
             <div className='w-full mx-auto rounded border-2 flex flex-col justify-center items-center mt-2 p-2'>
               <p className='text-slate-800 text-xl font-medium'>
-                You have not added an item yet
+                You have not added a product yet
               </p>
               <p className='text-gray-400 w-7/12 text-center mt-2'>
-                In order to add FAQs, you need to add an item.
+                In order to add FAQs, you need to add a product.
               </p>
               <Link to='/dashboard/item'>+ add an item</Link>
             </div>
