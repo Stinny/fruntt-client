@@ -184,7 +184,7 @@ const FAQs = () => {
               <p className='text-gray-400 w-7/12 text-center mt-2'>
                 In order to add FAQs, you need to add a product.
               </p>
-              <Link to='/dashboard/item'>+ add an item</Link>
+              <Link to='/dashboard/item'>+ add a product</Link>
             </div>
           </div>
         )}
