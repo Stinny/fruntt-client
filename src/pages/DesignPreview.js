@@ -71,10 +71,10 @@ const DesignPreview = ({
             {storefront?.logo?.url ? (
               <img src={storefront?.logo?.url} className='h-10' />
             ) : (
-              <h2 style={{ color: pageText }} className='text-2xl font-medium'>
-                {storefront?.name}
-              </h2>
-            )}
+                <h2 style={{ color: pageText }} className='text-2xl font-medium'>
+                  {storefront?.name}
+                </h2>
+              )}
           </div>
         </div>
 
@@ -109,13 +109,13 @@ const DesignPreview = ({
                 </p>
                 {itemAndReviews?.item?.options?.length > 0
                   ? itemAndReviews.item.options.map((option) => (
-                      <>
-                        <p>{option.name}</p>
-                        <select className='rounded-md border-2 w-32 h-10 mt-2'>
-                          <option>{option.values[0]}</option>
-                        </select>
-                      </>
-                    ))
+                    <>
+                      <p>{option.name}</p>
+                      <select className='rounded-md border-2 w-32 h-10 mt-2'>
+                        <option>{option.values[0]}</option>
+                      </select>
+                    </>
+                  ))
                   : ''}
                 <form>
                   <div className='w-8/12 flex items-center mt-4'>
@@ -199,18 +199,18 @@ const DesignPreview = ({
                     </div>
                   ))
                 ) : (
-                  <div
-                    style={{ borderColor: borderColor }}
-                    className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
-                  >
-                    <p
-                      className='font-medium text-xl'
-                      style={{ color: storefront?.style?.pageText }}
+                    <div
+                      style={{ borderColor: borderColor }}
+                      className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
                     >
-                      Customer questions have not been posted yet!
+                      <p
+                        className='font-medium text-xl'
+                        style={{ color: storefront?.style?.pageText }}
+                      >
+                        Customer questions have not been posted yet!
                     </p>
-                  </div>
-                )}
+                    </div>
+                  )}
               </div>
 
               <p className='text-2xl mt-4' style={{ color: headerColor }}>
@@ -252,43 +252,43 @@ const DesignPreview = ({
                   </div>
                 ))
               ) : (
-                <div
-                  style={{ borderColor: borderColor }}
-                  className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
-                >
-                  <p
-                    className='font-medium text-xl'
-                    style={{ color: pageText }}
+                  <div
+                    style={{ borderColor: borderColor }}
+                    className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
                   >
-                    Item has not been reviewed yet!
+                    <p
+                      className='font-medium text-xl'
+                      style={{ color: pageText }}
+                    >
+                      Item has not been reviewed yet!
                   </p>
-                </div>
-              )}
+                  </div>
+                )}
             </div>
           </div>
         ) : (
-          <div className='w-full mx-auto'>
-            <div
-              className='mx-auto w-9/12 border-2 rounded flex flex-col justify-center items-center'
-              style={{ borderColor: storefront?.style?.borderColor }}
-            >
-              <div className='h-60'></div>
-              <p
-                className='font-medium text-lg'
-                style={{ borderColor: storefront?.style?.pageText }}
+            <div className='w-full mx-auto'>
+              <div
+                className='mx-auto w-9/12 border-2 rounded flex flex-col justify-center items-center'
+                style={{ borderColor: storefront?.style?.borderColor }}
               >
-                This single product storefront is empty
+                <div className='h-60'></div>
+                <p
+                  className='font-medium text-lg'
+                  style={{ borderColor: storefront?.style?.pageText }}
+                >
+                  This single product storefront is empty
               </p>
-              <Link
-                to='/dashboard/item/add'
-                className='border-2 rounded border-slate-800 text-slate-800 w-28 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
-              >
-                + Add product
+                <Link
+                  to='/dashboard/item/add'
+                  className='border-2 rounded border-slate-800 text-slate-800 w-28 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
+                >
+                  + Add product
               </Link>
-              <div className='h-60'></div>
+                <div className='h-60'></div>
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
         {/* Footer */}
         <div

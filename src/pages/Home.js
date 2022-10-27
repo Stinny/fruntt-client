@@ -12,6 +12,7 @@ import {
 import { AiOutlineMail, AiOutlineCloudServer } from 'react-icons/ai';
 import { BiWorld } from 'react-icons/bi';
 import { RiSecurePaymentLine } from 'react-icons/ri';
+import SampleStore from '../components/Home/SampleStore';
 
 const Home = () => {
   const currentUser = Cookies.get('currentUser')
@@ -23,17 +24,17 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className='mx-auto h-screen max-w-8xl'>
+      <div className='mx-auto h-fit max-w-8xl'>
         <div className='w-full h-full flex flex-col items-center justify-around'>
-          <div className='flex flex-col w-6/12 text-center mt-20'>
+          <div className='flex flex-col w-6/12 text-center mt-40'>
             <p className='text-5xl font-medium'>One page. One product.</p>
             <p className='text-3xl font-medium mt-8 text-gray-400'>
               An eCommerce platform that understands simplicity
             </p>
             <p className='text-2xl mt-8 tracking-wider font-medium'>
               Launch, design, and manage single product storefronts from one
-              simple dashboard. Your customers will only be TWO clicks away from
-              a purchase.
+              simple dashboard. Bring your customers TWO clicks away from a
+              purchase.
             </p>
             <Link to='/signup' className='flex justify-center mt-8'>
               <button className='rounded text-slate-800 w-5/12 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
@@ -41,7 +42,7 @@ const Home = () => {
               </button>
             </Link>
           </div>
-          <div className='mx-auto w-10/12 flex justify-center'>
+          <div className='mx-auto w-10/12 flex justify-center mt-14'>
             <div className='flex w-full justify-between'>
               <div className='flex flex-col items-center w-4/12 p-4'>
                 <AiOutlineCloudServer className='text-4xl' />
@@ -105,6 +106,7 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <SampleStore />
       </div>
 
       <Footer />
