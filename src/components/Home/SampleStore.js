@@ -1,8 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import img from '../../media/storefrontGreen.png';
 import { BsArrow90DegDown } from 'react-icons/bs';
+import { useEmailSignupMutation } from '../../api/feedbackApiSlice';
+
+//mui
+import Alert from '@mui/material/Alert';
 
 const SampleStore = () => {
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [email, setEmail] = useState('');
+
+  const [emailSignup, result] = useEmailSignupMutation();
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+    try {
+      const signUpReq = await emailSignup({ email: email }).unwrap();
+
+      if (signUpReq === 'Signed up') {
+        setSuccess('Thank you for signing up!');
+        setEmail('');
+      } else {
+        setError('There was an error');
+      }
+    } catch (err) {
+      setError('There was an error');
+    }
+  };
+
   return (
     <div className='mt-20 mx-auto'>
       <div className='w-10/12 flex justify-between items-center mx-auto'>
@@ -10,21 +37,33 @@ const SampleStore = () => {
           <p className='text-5xl font-medium w-10/12 leading-tight'>
             Easily gather everything needed to sell ONE product on ONE page.
           </p>
-          <p className='text-4xl  mt-8 w-10/12 leading-tight'>
+          <p className='text-4xl  mt-8 w-10/12 leading-tight font-normal'>
             Get rid of all the plugins and clutter, make it easy for you AND the
             customer.
           </p>
           <p className='mt-10 font-medium'>
             Sign up to receive the latest news & updates
           </p>
-          <form className='flex items-center'>
+          {success && (
+            <Alert severity='success' className='w-10/12 mt-2 mb-2'>
+              {success}
+            </Alert>
+          )}
+          {error && (
+            <Alert severity='error' className='w-10/12 mt-2 mb-2'>
+              {error}
+            </Alert>
+          )}
+          <form className='flex items-center' onSubmit={handleSignup}>
             <input
               className='h-10 border-2 rounded p-2 outline outline-0'
               type='email'
               placeholder='Enter email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <button
-              type='button'
+              type='submit'
               className='h-10 border-slate-800 border-2 rounded w-32 font-medium hover:text-white hover:bg-slate-800 ml-2'
             >
               SIGN UP

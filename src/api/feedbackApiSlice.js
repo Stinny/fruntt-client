@@ -13,7 +13,19 @@ const feedbackApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    emailSignup: builder.mutation({
+      query: ({ email }) => ({
+        url: '/feedback/emailsignup',
+        method: 'POST',
+        body: {
+          email: email,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useAddFeedbackMutation } = feedbackApiSlice;
+export const {
+  useAddFeedbackMutation,
+  useEmailSignupMutation,
+} = feedbackApiSlice;
