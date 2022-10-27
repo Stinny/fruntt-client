@@ -224,7 +224,7 @@ const DesignPreview = ({
                       backgroundColor: reviewBackground,
                     }}
                   >
-                    <div className='flex w-3/12'>
+                    <div className='flex w-4/12'>
                       <p
                         className='font-medium mr-2'
                         style={{ color: storefront?.style?.pageText }}
