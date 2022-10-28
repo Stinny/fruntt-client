@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import img from '../../media/storefrontGreen.png';
+import img from '../../media/browserStorefront-1.png';
 import { BsArrow90DegDown } from 'react-icons/bs';
 import { useEmailSignupMutation } from '../../api/feedbackApiSlice';
 
