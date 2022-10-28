@@ -5,6 +5,7 @@ import { useEmailSignupMutation } from '../../api/feedbackApiSlice';
 
 //mui
 import Alert from '@mui/material/Alert';
+import { Link } from 'react-router-dom';
 
 const SampleStore = () => {
   const [error, setError] = useState('');
@@ -37,10 +38,15 @@ const SampleStore = () => {
           <p className='text-5xl font-medium w-10/12 leading-tight'>
             Easily gather everything needed to sell ONE product on ONE page.
           </p>
-          <p className='text-4xl  mt-8 w-10/12 leading-tight font-normal'>
-            Get rid of all the plugins and clutter, make it easy for you AND the
+          <p className='text-4xl  mt-4 w-10/12 leading-tight font-normal'>
+            No need for plugins and clutter, make it easy for you AND the
             customer.
           </p>
+          <Link to='/signup'>
+            <button className='h-10 w-5/12 border-2 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 font-medium rounded mt-4'>
+              Launch a storefront - for free
+            </button>
+          </Link>
           <p className='mt-10 font-medium'>
             Sign up to receive the latest news & updates
           </p>
@@ -56,7 +62,7 @@ const SampleStore = () => {
           )}
           <form className='flex items-center' onSubmit={handleSignup}>
             <input
-              className='h-10 border-2 rounded p-2 outline outline-0'
+              className='h-10 border-2 rounded p-2 outline outline-0 hover:border-gray-400 focus:border-gray-400'
               type='email'
               placeholder='Enter email'
               value={email}
