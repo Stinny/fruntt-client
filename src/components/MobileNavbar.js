@@ -52,11 +52,11 @@ const MobileNavbar = ({ currentUser }) => {
           <AiOutlineCloseCircle className='text-3xl' onClick={closeMenu} />
         </button>
 
-        <div className='flex flex-col w-full h-full justify-around mx-auto items-center'>
-          <Link to='/pricing' className='text-xl font-medium mt-20'>
+        <div className='flex flex-col w-full h-full mx-auto items-center'>
+          <Link to='/pricing' className='text-2xl font-medium mt-20'>
             About
           </Link>
-          <Link to='/pricing' className='text-xl font-medium mt-10'>
+          <Link to='/pricing' className='text-2xl font-medium mt-20'>
             Pricing
           </Link>
           <a
@@ -64,12 +64,13 @@ const MobileNavbar = ({ currentUser }) => {
             target='_blank'
             className='font-medium'
             style={{ color: '#738adb' }}
+            className='mt-20'
           >
             <BsDiscord className='text-4xl' />
           </a>
 
-          <Link to='/login' className='w-full flex justify-center'>
-            <button className='w-10/12 h-14 border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'>
+          <Link to='/login' className='w-full flex justify-center mt-20'>
+            <button className='w-10/12 h-14 border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 text-xl'>
               Login
             </button>
           </Link>
