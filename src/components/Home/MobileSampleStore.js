@@ -42,7 +42,7 @@ const MobileSampleStore = () => {
           </div>
           <img src={img} className='w-full border-2 rounded' />
         </div>
-        <div className='flex flex-col w-11/12 text-left mx-auto mt-2'>
+        <div className='flex flex-col w-11/12 text-left mx-auto mt-10'>
           <p className='text-2xl font-medium leading-tight'>
             Easily gather everything needed to sell ONE product on ONE page.
           </p>
@@ -55,7 +55,7 @@ const MobileSampleStore = () => {
               Launch a storefront - for free
             </button>
           </Link>
-          <p className='mt-10 font-medium w-full text-left text-sm'>
+          <p className='mt-10 font-medium w-full text-left text-sm mt-20'>
             Sign up to receive the latest news & updates
           </p>
           {success && (
@@ -68,7 +68,10 @@ const MobileSampleStore = () => {
               {error}
             </Alert>
           )}
-          <form className='flex items-center w-full' onSubmit={handleSignup}>
+          <form
+            className='flex items-center w-full mb-10'
+            onSubmit={handleSignup}
+          >
             <input
               className='h-10 border-2 rounded p-2 outline outline-0 hover:border-gray-400 focus:border-gray-400'
               type='email'

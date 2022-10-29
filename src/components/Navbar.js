@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { MdOutlineNotificationsNone } from 'react-icons/md';
 import { FiSettings } from 'react-icons/fi';
 import { CgProfile } from 'react-icons/cg';
@@ -9,6 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import handleLogoutUser from '../utils/logout';
 import Cookies from 'js-cookie';
 import { BsDiscord } from 'react-icons/bs';
+import { isMobile } from 'react-device-detect';
+import MobileNavbar from './MobileNavbar';
 
 //mui
 import Menu from '@mui/material/Menu';
@@ -64,7 +65,9 @@ const Navbar = () => {
     if (!isFirstTime && currentUser) firstTime();
   }, []);
 
-  return currentUser ? (
+  return isMobile ? (
+    <MobileNavbar currentUser={currentUser} />
+  ) : currentUser ? (
     <nav className='w-full h-16 border-b-2'>
       <HelpModal
         isOpen={isOpen}
