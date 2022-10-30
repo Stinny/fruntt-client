@@ -40,7 +40,7 @@ const MobileSampleStore = () => {
             <BsArrow90DegDown className='font-medium' />
             <p className='text-xl font-medium mb-2 ml-2'>Sample storefront</p>
           </div>
-          <img src={img} className='w-full border-2 rounded' />
+          <img src={img} className='w-full border-2 rounded drop-shadow-md' />
         </div>
         <div className='flex flex-col w-11/12 text-left mx-auto mt-10'>
           <p className='text-2xl font-medium leading-tight'>

@@ -6,9 +6,11 @@ import Navbar from '../components/Navbar';
 import Cookies from 'js-cookie';
 import Spinner from '../components/Spinner';
 import Footer from '../components/Footer';
+import { isMobile } from 'react-device-detect';
 
 //mui
 import Alert from '@mui/material/Alert';
+import RegisterMobile from './Mobile/RegisterMobile';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -64,7 +66,16 @@ const Register = () => {
   if (isLoading) {
     content = <Spinner />;
   } else {
-    content = (
+    content = isMobile ? (
+      <RegisterMobile
+        error={error}
+        setEmail={setEmail}
+        setPassword={setPassword}
+        handleSignup={handleSignup}
+        setStoreName={setStoreName}
+        isLoading={isLoading}
+      />
+    ) : (
       <div className='container flex flex-col items-center justify-center mx-auto w-full'>
         <h2 className='text-4xl font-medium mb-4'>
           Launch your first storefront

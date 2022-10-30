@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Navigate, Link, useNavigate } from 'react-router-dom';
-
+import { isMobile } from 'react-device-detect';
 import { useLoginMutation } from '../api/authApiSlice';
 import Navbar from '../components/Navbar';
 import Cookies from 'js-cookie';
 import Spinner from '../components/Spinner';
 import Footer from '../components/Footer';
+import LoginMobile from './Mobile/LoginMobile';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -56,7 +57,15 @@ const Login = () => {
   if (isLoading) {
     content = <Spinner />;
   } else {
-    content = (
+    content = isMobile ? (
+      <LoginMobile
+        handleLogin={handleLogin}
+        isLoading={isLoading}
+        setEmail={setEmail}
+        setPassword={setPassword}
+        error={error}
+      />
+    ) : (
       <div className='flex flex-col items-center mx-auto justify-center w-full'>
         <h2 className='text-4xl font-bold'>Login</h2>
         {error && (

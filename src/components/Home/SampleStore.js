@@ -81,7 +81,7 @@ const SampleStore = () => {
             <BsArrow90DegDown className='font-medium' />
             <p className='text-2xl font-medium mb-2 ml-2'>Sample storefront</p>
           </div>
-          <img src={img} className='w-full border-2 rounded' />
+          <img src={img} className='w-full border-2 rounded drop-shadow-md' />
         </div>
       </div>
     </div>

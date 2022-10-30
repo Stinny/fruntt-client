@@ -53,11 +53,14 @@ const MobileNavbar = ({ currentUser }) => {
         </button>
 
         <div className='flex flex-col w-full h-full mx-auto items-center'>
-          <Link to='/pricing' className='text-2xl font-medium mt-20'>
+          <Link to='/pricing' className='text-2xl font-medium mt-20 border-b-2'>
             About
           </Link>
-          <Link to='/pricing' className='text-2xl font-medium mt-20'>
+          <Link to='/pricing' className='text-2xl font-medium mt-20 border-b-2'>
             Pricing
+          </Link>
+          <Link to='/signup' className='text-2xl font-medium mt-20 border-b-2'>
+            Launch a storefront
           </Link>
           <a
             href='https://discord.gg/6GHYR2xn'
@@ -66,7 +69,7 @@ const MobileNavbar = ({ currentUser }) => {
             style={{ color: '#738adb' }}
             className='mt-20'
           >
-            <BsDiscord className='text-4xl' />
+            <BsDiscord className='text-4xl border-b-2' />
           </a>
 
           <Link to='/login' className='w-full flex justify-center mt-20'>
