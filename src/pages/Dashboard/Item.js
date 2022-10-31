@@ -11,9 +11,11 @@ import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { BiPackage } from 'react-icons/bi';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import moment from 'moment';
+import { isMobile } from 'react-device-detect';
 
 //mui
 import Chip from '@mui/material/Chip';
+import ProductMobile from '../Mobile/Dashboard/ProductMobile';
 
 const Item = () => {
   const {
@@ -49,11 +51,13 @@ const Item = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    content = product.length ? (
+    content = isMobile ? (
+      <ProductMobile product={product[0]} />
+    ) : product.length ? (
       <div className='w-full'>
         <div className='w-full flex justify-between items-center mb-10 border-b-2 p-2'>
           <div className='flex flex-col'>
-            <h2 className='text-3xl font-semibold'>Your Item</h2>
+            <h2 className='text-3xl font-semibold'>Your product</h2>
             <p>
               last edited on{' '}
               {moment(product[0].updatedOn).format('MMM D, YYYY')}
@@ -72,19 +76,19 @@ const Item = () => {
             <p className='text-xl font-medium'>Details</p>
           </div>
           <div className='w-full p-4 border-2 rounded-md mt-4'>
-            <p className='text-gray-400 mt-4'>Item Title</p>
+            <p className='text-gray-400 mt-4'>Product Title</p>
             <h2 className='text-3xl mt-4'>{product[0]?.title}</h2>
             {product[0].description && (
               <div className='flex flex-col'>
-                <p className='text-gray-400 mt-4'>Item Description</p>
+                <p className='text-gray-400 mt-4'>Product Description</p>
                 <p className='text-xl mt-4'>{product[0]?.description}</p>
               </div>
             )}
-            <p className='text-gray-400 mt-4'>Item Price</p>
+            <p className='text-gray-400 mt-4'>Product Price</p>
             <p className='text-2xl mt-4'>${product[0]?.price.toFixed(2)}</p>
-            <p className='text-gray-400 mt-4'>Item Inventory</p>
+            <p className='text-gray-400 mt-4'>Product Inventory</p>
             <p className='text-2xl mt-4'>{product[0]?.stock} units left</p>
-            <p className='text-gray-400 mt-4'>Item Options</p>
+            <p className='text-gray-400 mt-4'>Product Options</p>
             {product[0].options.length > 0 ? (
               product[0].options.map((opt, optIndex) => (
                 <div className='w-full flex flex-col bg-gray-100 p-2 relative mt-2'>

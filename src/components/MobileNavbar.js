@@ -6,7 +6,7 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { HiMenu } from 'react-icons/hi';
 import { BsDiscord } from 'react-icons/bs';
 
-const MobileNavbar = ({ currentUser }) => {
+const MobileNavbar = ({ currentUser, handleLogout }) => {
   const [menuW, setW] = useState('w-0');
   const [menuH, setH] = useState('h-0');
   const [menuDisplay, setDisplay] = useState('none');
@@ -27,10 +27,8 @@ const MobileNavbar = ({ currentUser }) => {
   };
 
   return currentUser ? (
-    <nav className='w-full h-16 border-b-2'></nav>
-  ) : (
     <>
-      <nav className='w-full h-16 border-b-2 fixed bg-white'>
+      <nav className='w-full h-16 border-b-2 bg-white'>
         <div className='w-11/12 h-full mx-auto flex justify-between items-center'>
           <div className='text-4xl h-full flex justify-center items-center'>
             <Link to='/' className='h-full flex justify-center items-center'>
@@ -45,7 +43,57 @@ const MobileNavbar = ({ currentUser }) => {
         </div>
       </nav>
       <div
-        className={`fixed z-90 ${menuW} ${menuH} bg-white`}
+        className={`fixed z-50 ${menuW} ${menuH} bg-white`}
+        style={{ display: menuDisplay }}
+      >
+        <button className='text-red-400 font-medium absolute top-0 right-0 mr-4 mt-4'>
+          <AiOutlineCloseCircle className='text-3xl' onClick={closeMenu} />
+        </button>
+
+        <div className='flex flex-col w-full h-full mx-auto items-center'>
+          <Link to='/profile' className='text-2xl font-medium mt-20 border-b-2'>
+            Profile
+          </Link>
+          <Link
+            to='/settings'
+            className='text-2xl font-medium mt-20 border-b-2'
+          >
+            Settings
+          </Link>
+          <Link
+            to='/dashboard'
+            className='text-2xl font-medium mt-20 border-b-2'
+          >
+            Give feedback
+          </Link>
+
+          <button
+            className='w-10/12 h-14 border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 text-xl mt-20'
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </>
+  ) : (
+    <>
+      <nav className='w-full h-16 border-b-2 bg-white'>
+        <div className='w-11/12 h-full mx-auto flex justify-between items-center'>
+          <div className='text-4xl h-full flex justify-center items-center'>
+            <Link to='/' className='h-full flex justify-center items-center'>
+              <IoStorefrontOutline className='text-slate-800 font-bold' />
+              <h2 className='font-black font-sans'>Fruntt</h2>
+            </Link>
+          </div>
+
+          <div className='flex items-center h-full'>
+            <HiMenu className='text-2xl font-black' onClick={openMenu} />
+          </div>
+        </div>
+      </nav>
+      <div
+        className={`fixed z-50 ${menuW} ${menuH} bg-white`}
         style={{ display: menuDisplay }}
       >
         <button className='text-red-400 font-medium absolute top-0 right-0 mr-4 mt-4'>

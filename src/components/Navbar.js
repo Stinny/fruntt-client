@@ -66,7 +66,7 @@ const Navbar = () => {
   }, []);
 
   return isMobile ? (
-    <MobileNavbar currentUser={currentUser} />
+    <MobileNavbar currentUser={currentUser} handleLogout={handleLogout} />
   ) : currentUser ? (
     <nav className='w-full h-16 border-b-2'>
       <HelpModal

@@ -8,13 +8,15 @@ import Cookies from 'js-cookie';
 import Footer from '../../components/Footer';
 import Spinner from '../../components/Spinner';
 import { FaExternalLinkAlt } from 'react-icons/fa';
+import { isMobile } from 'react-device-detect';
+import { BsArrowRightShort } from 'react-icons/bs';
+import { useGetStoreStatsQuery } from '../../api/storefrontApiSlice';
+import SalesGraph from '../../components/SalesGraph';
+import DashHomeMobile from '../Mobile/Dashboard/DashHomeMobile';
 
 //mui
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
-import { BsArrowRightShort } from 'react-icons/bs';
-import { useGetStoreStatsQuery } from '../../api/storefrontApiSlice';
-import SalesGraph from '../../components/SalesGraph';
 
 const DashHome = () => {
   const currentUser = JSON.parse(Cookies.get('currentUser'));
@@ -36,7 +38,9 @@ const DashHome = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    content = (
+    content = isMobile ? (
+      <DashHomeMobile currentUser={currentUser} stats={stats} />
+    ) : (
       <>
         {!currentUser.stripeOnboard && (
           <Alert severity='error' className='mt-4 mb-4 w-full'>

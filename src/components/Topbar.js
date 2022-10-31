@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { isMobile } from 'react-device-detect';
+import TopbarMobile from './TopbarMobile';
 
 const Topbar = () => {
   //for changing nav links according to the page
@@ -8,7 +10,9 @@ const Topbar = () => {
     'text-sm font-medium text-white w-24 rounded-xl bg-slate-800';
   const notActiveLink = 'text-sm font-medium w-24 text-slate-800';
 
-  return (
+  return isMobile ? (
+    <TopbarMobile />
+  ) : (
     <div className='max-w-6xl mx-auto h-16 mb-8 mt-10'>
       <div className='w-full h-full mx-auto flex justify-between items-center border-b-2 p-2'>
         <NavLink to='/dashboard'>
