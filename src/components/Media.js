@@ -4,6 +4,7 @@ import {
   useDeleteItemImageMutation,
 } from '../api/productsApiSlice';
 import Spinner from './Spinner';
+import { isMobile } from 'react-device-detect';
 
 const Media = ({ productId }) => {
   const { data: images, isLoading, isSuccess, refetch } = useGetItemImagesQuery(
@@ -29,24 +30,43 @@ const Media = ({ productId }) => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    content = images.map((img) => (
-      <div className='flex flex-col'>
-        <img src={img.url} className='w-40' />
-        <button
-          type='button'
-          className='text-red-500 hover:text-red-700'
-          onClick={(e) =>
-            handleDeleteImage({
-              productId: productId,
-              imgId: img._id,
-              key: img.key,
-            })
-          }
-        >
-          Delete
-        </button>
-      </div>
-    ));
+    content = isMobile
+      ? images.map((img) => (
+          <div className='flex flex-col w-3/12'>
+            <img src={img.url} className='w-full' />
+            <button
+              type='button'
+              className='text-red-500 hover:text-red-700'
+              onClick={(e) =>
+                handleDeleteImage({
+                  productId: productId,
+                  imgId: img._id,
+                  key: img.key,
+                })
+              }
+            >
+              Delete
+            </button>
+          </div>
+        ))
+      : images.map((img) => (
+          <div className='flex flex-col'>
+            <img src={img.url} className='w-40' />
+            <button
+              type='button'
+              className='text-red-500 hover:text-red-700'
+              onClick={(e) =>
+                handleDeleteImage({
+                  productId: productId,
+                  imgId: img._id,
+                  key: img.key,
+                })
+              }
+            >
+              Delete
+            </button>
+          </div>
+        ));
   }
 
   return (

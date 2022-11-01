@@ -7,9 +7,8 @@ import {
 } from '../../api/productsApiSlice';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
-import Topbar from '../../components/Topbar';
-import FileUpload from './FileUpload';
 import { productSlice } from '../../redux/productRedux';
+import { isMobile } from 'react-device-detect';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -17,6 +16,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
 import Spinner from '../../components/Spinner';
 import EditItemForm from '../../components/Forms/EditItemForm';
+import EditItemFormMobile from '../../components/Forms/EditItemFormMobile';
 
 const EditItem = () => {
   const { productId } = useParams();
@@ -39,30 +39,57 @@ const EditItem = () => {
   } else if (isSuccess) {
     content = (
       <div className='w-full'>
-        <EditItemForm
-          itemId={product?._id}
-          title={product?.title}
-          description={product?.description}
-          price={product?.price}
-          stock={product?.stock}
-          images={product?.images}
-          published={product?.published}
-          weightUnit={product?.weightUnit}
-          address={product.shipsFrom?.address}
-          country={product.shipsFrom?.country}
-          state={product.shipsFrom?.state}
-          city={product.shipsFrom?.city}
-          zipcode={product.shipsFrom?.zipcode}
-          sizeUnit={product.sizeUnit}
-          weight={product?.weight}
-          height={product?.height}
-          length={product?.length}
-          width={product?.width}
-          options={product?.options}
-          shippingPrice={product?.shippingPrice}
-          productId={productId}
-          refetch={refetch}
-        />
+        {isMobile ? (
+          <EditItemFormMobile
+            itemId={product?._id}
+            title={product?.title}
+            description={product?.description}
+            price={product?.price}
+            stock={product?.stock}
+            images={product?.images}
+            published={product?.published}
+            weightUnit={product?.weightUnit}
+            address={product.shipsFrom?.address}
+            country={product.shipsFrom?.country}
+            state={product.shipsFrom?.state}
+            city={product.shipsFrom?.city}
+            zipcode={product.shipsFrom?.zipcode}
+            sizeUnit={product.sizeUnit}
+            weight={product?.weight}
+            height={product?.height}
+            length={product?.length}
+            width={product?.width}
+            options={product?.options}
+            shippingPrice={product?.shippingPrice}
+            productId={productId}
+            refetch={refetch}
+          />
+        ) : (
+          <EditItemForm
+            itemId={product?._id}
+            title={product?.title}
+            description={product?.description}
+            price={product?.price}
+            stock={product?.stock}
+            images={product?.images}
+            published={product?.published}
+            weightUnit={product?.weightUnit}
+            address={product.shipsFrom?.address}
+            country={product.shipsFrom?.country}
+            state={product.shipsFrom?.state}
+            city={product.shipsFrom?.city}
+            zipcode={product.shipsFrom?.zipcode}
+            sizeUnit={product.sizeUnit}
+            weight={product?.weight}
+            height={product?.height}
+            length={product?.length}
+            width={product?.width}
+            options={product?.options}
+            shippingPrice={product?.shippingPrice}
+            productId={productId}
+            refetch={refetch}
+          />
+        )}
       </div>
     );
   }

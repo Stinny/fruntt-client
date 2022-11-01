@@ -82,7 +82,7 @@ const Topbar = () => {
           </button>
         </NavLink>
 
-        <NavLink to='/dashboard/marketing'>
+        {/* <NavLink to='/dashboard/marketing'>
           <button
             className={
               path === '/dashboard/marketing' ? activeLink : notActiveLink
@@ -90,7 +90,7 @@ const Topbar = () => {
           >
             Marketing
           </button>
-        </NavLink>
+        </NavLink> */}
 
         <NavLink to='/dashboard/addons'>
           <button

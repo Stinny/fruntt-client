@@ -7,11 +7,9 @@ import Chip from '@mui/material/Chip';
 
 const ProductMobile = ({ product }) => {
   const noItem = (
-    <div className='h-screen border-2 border-gray-200 rounded w-full flex flex-col justify-center items-center mt-4'>
-      <h2 className='text-2xl font-medium'>
-        You have not added a product yet!
-      </h2>
-      <p className='text-gray-400 text-xl w-8/12 mt-4 text-center'>
+    <div className='h-screen mx-auto border-2 border-gray-200 rounded w-11/12 flex flex-col justify-center items-center mt-4'>
+      <h2 className='text-xl font-medium'>You have not added a product yet!</h2>
+      <p className='text-gray-400 text-lg w-8/12 mt-4 text-center'>
         Add product details, adjust your inventory, set shipping price and more
       </p>
       <Link to='/dashboard/item/add'>

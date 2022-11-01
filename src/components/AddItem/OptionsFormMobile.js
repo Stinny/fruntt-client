@@ -1,58 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from 'react-modal';
-import { isMobile } from 'react-device-detect';
-import OptionsFormMobile from './OptionsFormMobile';
 
 //mui
 import Chip from '@mui/material/Chip';
 import Alert from '@mui/material/Alert';
 
-const OptionsForm = ({
+const OptionsFormMobile = ({
+  modalIsOpen,
+  closeModal,
   setOptionName,
-  setOptionVals,
-  setOptions,
+  error,
   optionName,
-  optionVals,
+  setOptions,
   options,
+  setOptionVal,
+  setOptionVals,
+  optionVal,
+  optionVals,
+  handleAddOption,
+  handleAddOptionVal,
+  openModal,
 }) => {
-  const [optionVal, setOptionVal] = useState('');
-  const [error, setError] = useState('');
-
-  //adds one option to the optionVals
-  const handleAddOptionVal = (e) => {
-    setOptionVals([...optionVals, optionVal]);
-    setOptionVal('');
-  };
-
-  //adds option(name and vals) to the array of options
-  const handleAddOption = () => {
-    if (optionName === '' || optionVals.length < 1) {
-      setError('Fill in option name and add at least one variant');
-    }
-
-    const newOpt = {
-      name: optionName,
-      values: optionVals,
-    };
-
-    //add the new option to the array of options
-    setOptions([...options, newOpt]);
-    setOptionVals([]);
-    setOptionName('');
-    closeModal();
-  };
-
-  //stuff for modal
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
   const modalStyles = {
     content: {
       top: '50%',
@@ -61,27 +29,11 @@ const OptionsForm = ({
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      width: '500px',
+      width: '90%',
     },
   };
 
-  return isMobile ? (
-    <OptionsFormMobile
-      modalIsOpen={modalIsOpen}
-      closeModal={closeModal}
-      setOptionName={setOptionName}
-      optionName={optionName}
-      options={options}
-      optionVals={optionVals}
-      setOptionVals={setOptionVals}
-      setOptions={setOptions}
-      setOptionVal={setOptionVal}
-      optionVal={optionVal}
-      handleAddOption={handleAddOption}
-      handleAddOptionVal={handleAddOptionVal}
-      openModal={openModal}
-    />
-  ) : (
+  return (
     <div className='pl-2 pr-2'>
       <Modal
         isOpen={modalIsOpen}
@@ -89,8 +41,8 @@ const OptionsForm = ({
         style={modalStyles}
       >
         <div className='flex flex-col'>
-          <p className='mb-4 text-xl font-medium border-b p-2'>
-            Add an option to your item
+          <p className='mb-4 text-lg font-medium border-b p-2'>
+            Add an option to your product
           </p>
           {error && <Alert severity='error'>{error}</Alert>}
           <form>
@@ -99,26 +51,26 @@ const OptionsForm = ({
               type='text'
               onChange={(e) => setOptionName(e.target.value)}
               value={optionName}
-              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
+              className='text-sm border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
               placeholder='Enter option name (ex. Size)'
               autocomplete='off'
             />
 
-            <div className='flex items-center'>
+            <div className='flex items-center justify-between'>
               <input
                 id='optionVal'
                 type='text'
                 value={optionVal}
                 placeholder='Enter option variants (ex. small)'
                 onChange={(e) => setOptionVal(e.target.value)}
-                className='border-2 border-slate-200 hover:border-slate-300 w-11/12 rounded-lg p-2 mt-4 outline outline-0'
+                className='border-2 text-sm border-slate-200 hover:border-slate-300 w-10/12 rounded-lg p-2 mt-4 outline outline-0'
                 autocomplete='off'
               />
 
               <button
                 type='button'
                 onClick={handleAddOptionVal}
-                className='h-10 border-2 border-slate-800 mt-4 w-1/12 rounded ml-10'
+                className='h-10 border-2 border-slate-800 mt-4 w-2/12 rounded ml-2'
               >
                 +
               </button>
@@ -202,4 +154,4 @@ const OptionsForm = ({
   );
 };
 
-export default OptionsForm;
+export default OptionsFormMobile;

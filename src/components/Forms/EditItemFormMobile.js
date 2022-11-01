@@ -1,42 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import FileUpload from '../../pages/Dashboard/FileUpload';
 import { useNavigate, Link } from 'react-router-dom';
+import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
+import FileUpload from '../../pages/Dashboard/FileUpload';
 import {
   useUpdateProductMutation,
   useDeleteProductMutation,
 } from '../../api/productsApiSlice';
 import Media from '../Media';
-import { uploadImageRequest } from '../../api/requests';
-import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
-import EditOptionsForm from '../../components/Forms/EditOptionsForm';
 import { states } from '../../states';
 import { BsArrowLeftShort } from 'react-icons/bs';
+import { uploadImageRequest } from '../../api/requests';
+import EditOptionsFormMobile from './EditOptionsFormMobile';
 
 //mui
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
-import OptionsForm from '../AddItem/OptionsForm';
 
-const EditItemForm = ({
+const EditItemFormMobile = ({
   itemId,
   title,
   description,
   price,
   stock,
-  published,
   images,
-  productId,
+  published,
   weightUnit,
   address,
   country,
   state,
   city,
   zipcode,
+  sizeUnit,
   weight,
+  height,
+  length,
+  width,
   options,
   shippingPrice,
+  productId,
   refetch,
 }) => {
   const [formTitle, setFormTitle] = useState(title);
@@ -71,11 +74,6 @@ const EditItemForm = ({
   const mediaInfo =
     'Media is needed to showcase your item and can be seen by your customers on your single item storefront.';
 
-  const handleDeleteItem = async () => {
-    const deleteItemReq = await deleteProduct(itemId);
-    navigate('/dashboard/item');
-  };
-
   useEffect(() => {
     setError('');
   }, [
@@ -90,6 +88,11 @@ const EditItemForm = ({
     formShippingPrice,
     formWeight,
   ]);
+
+  const handleDeleteItem = async () => {
+    const deleteItemReq = await deleteProduct(itemId);
+    navigate('/dashboard/item');
+  };
 
   const handleSaveEdit = async (e) => {
     console.log('trying to save');
@@ -146,30 +149,15 @@ const EditItemForm = ({
     <>
       <Link
         to='/dashboard/item'
-        className='flex items-center text-lg text-gray-400 hover:text-gray-600 w-2/12'
+        className='flex items-center text-md text-gray-400 hover:text-gray-600 w-5/12'
       >
         {' '}
         <BsArrowLeftShort />
         Back to product
       </Link>
-      <div className='mb-10 flex justify-between items-center p-2 border-b-2'>
+      <div className='flex justify-between items-center p-2 border-b-2'>
         <div className='flex flex-col'>
-          <h2 className='text-4xl font-medium'>Edit your product</h2>
-        </div>
-
-        <div className='flex justify-between'>
-          <button
-            className='w-32 h-10 rounded border-red-400 border-2 text-red-400 hover:bg-red-400 hover:text-white mr-2'
-            onClick={handleDeleteItem}
-          >
-            DELETE
-          </button>
-          <button
-            className='w-32 h-10 rounded border-slate-800 border-2 text-slate-800 hover:text-white hover:bg-slate-800'
-            onClick={handleSaveEdit}
-          >
-            SAVE
-          </button>
+          <h2 className='text-2xl font-medium'>Edit your product</h2>
         </div>
       </div>
       {error && (
@@ -181,7 +169,7 @@ const EditItemForm = ({
           {error}
         </Alert>
       )}
-      <form className='mx-auto' onSubmit={handleSaveEdit}>
+      <form className='mx-auto p-2' onSubmit={handleSaveEdit}>
         {/* within this form inputs needed to set above state */}
         <div className='flex items-center'>
           <p className='text-xl font-medium'>Details</p>
@@ -196,12 +184,12 @@ const EditItemForm = ({
           </Tooltip>
         </div>
 
-        <div className='p-4'>
-          <p className='text-gray-400'>Product Title</p>
+        <div>
+          <p className='text-gray-400 mt-4'>Product Title</p>
 
           <input
             type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
+            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
             placeholder='Title'
             value={formTitle}
             onChange={(e) => setFormTitle(e.target.value)}
@@ -210,7 +198,7 @@ const EditItemForm = ({
           <p className='text-gray-400 mt-4'>Product Description(optional)</p>
           <textarea
             type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
+            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
             placeholder='Description'
             value={formDescription}
             onChange={(e) => setFormDescription(e.target.value)}
@@ -221,7 +209,7 @@ const EditItemForm = ({
               <p className='text-gray-400 mt-4'>Product Price</p>
               <input
                 type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
                 placeholder='Price'
                 value={formPrice}
                 onChange={(e) => setFormPrice(e.target.value)}
@@ -232,7 +220,7 @@ const EditItemForm = ({
               <p className='text-gray-400 mt-4'>Product Stock</p>
               <input
                 type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
                 placeholder='Stock'
                 value={formStock}
                 onChange={(e) => setFormStock(e.target.value)}
@@ -241,7 +229,7 @@ const EditItemForm = ({
           </div>
         </div>
 
-        <div className='p-4'>
+        <div>
           <p className='text-gray-400'>Publish</p>
           <div className='w-10/12 flex mt-2'>
             <FormControlLabel
@@ -256,15 +244,15 @@ const EditItemForm = ({
           </div>
         </div>
 
-        <div className='p-4'>
+        <div>
           <p className='text-gray-400 mt-4'>Product options</p>
-          <EditOptionsForm
+          <EditOptionsFormMobile
             formOptions={formOptions}
             setFormOptions={setFormOptions}
           />
         </div>
 
-        <div className='flex items-center'>
+        <div className='flex items-center mt-2'>
           <p className='text-xl font-medium'>Media</p>
           <Tooltip
             title={<p className='text-lg'>{mediaInfo}</p>}
@@ -276,9 +264,10 @@ const EditItemForm = ({
             </button>
           </Tooltip>
         </div>
+
         <Media productId={productId} />
 
-        <div className='p-4'>
+        <div>
           <p>+ Add new images</p>
           <FileUpload fileList={fileList} setFileList={setFileList} />
         </div>
@@ -300,10 +289,10 @@ const EditItemForm = ({
           </Tooltip>
         </div>
 
-        <div className='w-full p-4'>
+        <div className='w-full mt-2'>
           <p className='text-gray-400'>Address</p>
           <input
-            className='w-full border-2 border-slate-200 hover:border-slate-300 rounded-lg p-2 mt-2 outline outline-0'
+            className='w-full border-2 border-slate-200 hover:border-slate-300 rounded-lg p-2 outline outline-0'
             type='text'
             placeholder='Address'
             value={formAddress}
@@ -311,7 +300,7 @@ const EditItemForm = ({
           />
         </div>
 
-        <div className='w-full flex justify-between mb-2 p-4'>
+        <div className='w-full flex justify-between mb-2 mt-2'>
           <div className='flex flex-col w-3/12'>
             <p className='text-gray-400'>Country</p>
             <select
@@ -362,8 +351,8 @@ const EditItemForm = ({
           </div>
         </div>
 
-        <div className='flex justify-between'>
-          <div className='w-3/6'>
+        <div className='flex flex-col mt-4'>
+          <div className='w-full'>
             <div className='flex items-center'>
               <p className='text-xl font-medium'>Package</p>
               <Tooltip
@@ -377,7 +366,7 @@ const EditItemForm = ({
               </Tooltip>
             </div>
 
-            <div className='p-4'>
+            <div>
               <div className='flex justify-between w-full'>
                 <div className='flex justify-between'>
                   <div>
@@ -406,7 +395,7 @@ const EditItemForm = ({
             </div>
           </div>
 
-          <div className='w-3/6'>
+          <div className='w-full mt-4'>
             <div className='flex items-center'>
               <p className='text-xl font-medium'>Shipping price</p>
               <Tooltip
@@ -424,7 +413,7 @@ const EditItemForm = ({
               </Tooltip>
             </div>
 
-            <div className='p-4'>
+            <div>
               <div className='flex justify-between w-full'>
                 <div className='flex justify-between'>
                   <div>
@@ -442,9 +431,23 @@ const EditItemForm = ({
             </div>
           </div>
         </div>
+        <div className='flex flex-col mt-4'>
+          <button
+            className='w-full h-10 rounded border-red-400 border-2 text-red-400 hover:bg-red-400 hover:text-white mr-2'
+            onClick={handleDeleteItem}
+          >
+            DELETE
+          </button>
+          <button
+            className='w-full h-14 mt-2 rounded border-slate-800 border-2 text-slate-800 hover:text-white hover:bg-slate-800'
+            onClick={handleSaveEdit}
+          >
+            SAVE
+          </button>
+        </div>
       </form>
     </>
   );
 };
 
-export default EditItemForm;
+export default EditItemFormMobile;

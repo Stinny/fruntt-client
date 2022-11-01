@@ -79,7 +79,7 @@ const TopbarMobile = () => {
             </button>
           </NavLink>
 
-          <NavLink to='/dashboard/marketing'>
+          {/* <NavLink to='/dashboard/marketing'>
             <button
               className={
                 path === '/dashboard/marketing' ? activeLink : notActiveLink
@@ -87,7 +87,7 @@ const TopbarMobile = () => {
             >
               Marketing
             </button>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink to='/dashboard/addons'>
             <button
