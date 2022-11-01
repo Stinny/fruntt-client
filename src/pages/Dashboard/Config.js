@@ -16,7 +16,7 @@ const Config = () => {
           <div className='p-2 border-b'>
             <p className='text-xl font-medium'>Domain name</p>
           </div>
-          <div className='w-full h-32 flex flex-col justify-center items-center border-2 rounded mt-2'>
+          <div className='w-full h-32 flex flex-col justify-center items-center border-2 rounded mt-2 text-center'>
             <p className='font-medium'>
               Adding your own domain name will be available very soon
             </p>

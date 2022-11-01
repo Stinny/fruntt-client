@@ -8,10 +8,12 @@ import { useGetStorefrontQuery } from '../../api/storefrontApiSlice';
 import Spinner from '../../components/Spinner';
 import { BsArrowRightShort } from 'react-icons/bs';
 import moment from 'moment';
+import { isMobile } from 'react-device-detect';
+import DesignPreview from '../DesignPreview';
+import DesignMobile from '../Mobile/Dashboard/DesignMobile';
 
 //mui
 import Switch from '@mui/material/Switch';
-import DesignPreview from '../DesignPreview';
 
 const Design = () => {
   const {
@@ -29,7 +31,9 @@ const Design = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    content = (
+    content = isMobile ? (
+      <DesignMobile storefront={storefront} />
+    ) : (
       <div className='w-full mx-auto flex'>
         <div className='flex w-3/12 flex-col overflow-scroll'>
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
@@ -150,31 +154,59 @@ const Design = () => {
     <>
       <Navbar />
       <Topbar />
-      <div className='max-w-7xl mx-auto'>
-        <div className='mb-10 flex justify-between items-center border-b-2 p-2'>
-          <div className='flex flex-col'>
-            <h2 className='text-3xl font-medium'>Storefront design</h2>
-            <p>
-              last edited on{' '}
-              {moment(storefront?.lastEdited).format('MMM D, YYYY')}
-            </p>
+      {isMobile ? (
+        <div className='w-full mx-auto h-fit'>
+          <div className='flex justify-between border-b-2 p-2'>
+            <div className='flex flex-col'>
+              <h2 className='text-2xl font-medium'>Storefront design</h2>
+              <p>
+                last designed on{' '}
+                {moment(storefront?.lastEdited).format('MMM D, YYYY')}
+              </p>
+            </div>
+            {/* <a
+              href={storefront?.url}
+              target='_blank'
+              className='flex items-center'
+            >
+              <p className='font-medium text-xl'>View your storefront</p>
+              <BsArrowRightShort className='text-2xl font-medium' />
+            </a> */}
+            <Link to='/dashboard/design/edit'>
+              <button className='w-20 text-sm h-10 rounded border-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
+                EDIT
+              </button>
+            </Link>
           </div>
-          <a
-            href={storefront?.url}
-            target='_blank'
-            className='flex items-center'
-          >
-            <p className='font-medium text-xl'>View your storefront</p>
-            <BsArrowRightShort className='text-2xl font-medium' />
-          </a>
-          <Link to='/dashboard/design/edit'>
-            <button className='w-40 h-10 rounded border-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
-              EDIT
-            </button>
-          </Link>
+          {content}
         </div>
-        {content}
-      </div>
+      ) : (
+        <div className='max-w-7xl mx-auto'>
+          <div className='mb-10 flex justify-between items-center border-b-2 p-2'>
+            <div className='flex flex-col'>
+              <h2 className='text-3xl font-medium'>Storefront design</h2>
+              <p>
+                last designed on{' '}
+                {moment(storefront?.lastEdited).format('MMM D, YYYY')}
+              </p>
+            </div>
+            <a
+              href={storefront?.url}
+              target='_blank'
+              className='flex items-center'
+            >
+              <p className='font-medium text-xl'>View your storefront</p>
+              <BsArrowRightShort className='text-2xl font-medium' />
+            </a>
+            <Link to='/dashboard/design/edit'>
+              <button className='w-40 h-10 rounded border-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
+                EDIT
+              </button>
+            </Link>
+          </div>
+          {content}
+        </div>
+      )}
       <Footer />
     </>
   );

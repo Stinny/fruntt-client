@@ -50,18 +50,29 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
           <AiOutlineCloseCircle className='text-3xl' onClick={closeMenu} />
         </button>
 
-        <div className='flex flex-col w-full h-full mx-auto items-center'>
-          <Link to='/profile' className='text-2xl font-medium mt-20 border-b-2'>
-            Profile
-          </Link>
+        <div className='flex flex-col w-10/12 mx-auto items-center mt-20'>
+          <div className='flex flex-col w-full h-full'>
+            <p className='font-medium mr-2 '>Viewing:</p>
+            <select className='rounded border-2 w-full h-10'>
+              <option>{currentUser?.store?.url}</option>
+            </select>
+
+            <button
+              type='button'
+              disabled
+              className='ml-2 text-gray-400 hover:text-gray- mt-2'
+            >
+              + Add storefront
+            </button>
+          </div>
           <Link
             to='/settings'
-            className='text-2xl font-medium mt-20 border-b-2'
+            className='text-2xl font-medium mt-10 border-b-2'
           >
             Settings
           </Link>
           <Link
-            to='/dashboard'
+            to='/feedback'
             className='text-2xl font-medium mt-20 border-b-2'
           >
             Give feedback

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useGetProductsQuery } from '../api/productsApiSlice';
+import { useGetProductsQuery } from '../../../api/productsApiSlice';
 import { AiFillStar } from 'react-icons/ai';
 import {
   AiOutlineInstagram,
@@ -7,16 +7,16 @@ import {
   AiOutlineFacebook,
   AiOutlineTwitter,
 } from 'react-icons/ai';
-import Spinner from '../components/Spinner';
+import Spinner from '../../../components/Spinner';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 //mui
 import Alert from '@mui/material/Alert';
 import Rating from '@mui/material/Rating';
-import { useGetReviewsAndProductQuery } from '../api/customersApiSlice';
+import { useGetReviewsAndProductQuery } from '../../../api/customersApiSlice';
 
-const DesignPreview = ({
+const DesignPreviewMobile = ({
   pageBG,
   navbarBG,
   buttonColor,
@@ -78,32 +78,29 @@ const DesignPreview = ({
         </div>
 
         {Object.entries(itemAndReviews?.item).length > 0 ? (
-          <div className='p-14'>
+          <div className=''>
             <div
-              className='w-full flex justify-between mx-auto'
+              className='w-full flex flex-col mx-auto'
               style={{ backgroundColor: pageBG }}
             >
-              <div className='w-3/6'>
+              <div className='w-full mx-auto'>
                 <img
-                  className='w-11/12'
+                  className='w-full'
                   src={itemAndReviews?.item?.images[0].url}
                 />
               </div>
 
-              <div className='w-3/6 flex flex-col pl-10'>
+              <div className='w-full flex flex-col p-2'>
                 <h2
-                  className='text-2xl font-medium w-11/12'
+                  className='text-xl font-medium w-full'
                   style={{ color: pageText }}
                 >
                   {itemAndReviews?.item?.title}
                 </h2>
-                <p className='text-xl mt-4 w-11/12' style={{ color: pageText }}>
+                <p className='text-lg w-11/12' style={{ color: pageText }}>
                   {itemAndReviews?.item?.description}
                 </p>
-                <p
-                  className='text-4xl font-medium mt-4'
-                  style={{ color: pageText }}
-                >
+                <p className='text-xl font-medium' style={{ color: pageText }}>
                   ${itemAndReviews?.item?.price.toFixed(2)}
                 </p>
                 {itemAndReviews?.item?.options?.length > 0
@@ -117,7 +114,7 @@ const DesignPreview = ({
                     ))
                   : ''}
                 <form>
-                  <div className='w-8/12 flex items-center mt-4'>
+                  <div className='w-8/12 flex mt-2'>
                     <Rating
                       value={itemAndReviews?.totalRating}
                       precision={0.5}
@@ -131,11 +128,11 @@ const DesignPreview = ({
                     </p>
                   </div>
 
-                  <div className='flex justify-between w-11/12 items-center mt-4'>
+                  <div className='flex justify-between w-full items-center mt-4'>
                     <div className='flex items-center'>
                       <p style={{ color: pageText }}>Qty:</p>
                       <select
-                        className='rounded-xl border-2 bg-transparent w-12 h-10 ml-2'
+                        className='rounded-xl border-2 bg-transparent w-10 h-10 ml-2'
                         style={{ color: pageText, borderColor: borderColor }}
                       >
                         <option value={1}>1</option>
@@ -145,7 +142,7 @@ const DesignPreview = ({
                     <button
                       type='button'
                       disabled
-                      className='w-9/12 h-10 text-2xl border-2 border-slate-800 rounded'
+                      className='w-9/12 h-10 ml-2 border-2 border-slate-800 rounded'
                       style={{
                         color: buttonTextColor,
                         backgroundColor: btnStyle,
@@ -161,7 +158,7 @@ const DesignPreview = ({
 
             {/* Other stuff for the item */}
             <div className='mt-10'>
-              <p className='text-2xl' style={{ color: headerColor }}>
+              <p className='text-xl' style={{ color: headerColor }}>
                 Customer questions
               </p>
 
@@ -200,10 +197,10 @@ const DesignPreview = ({
                 ) : (
                   <div
                     style={{ borderColor: borderColor }}
-                    className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
+                    className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center p-4'
                   >
                     <p
-                      className='font-medium text-xl'
+                      className='font-medium text-lg text-center'
                       style={{ color: storefront?.style?.pageText }}
                     >
                       Customer questions have not been posted yet!
@@ -212,7 +209,7 @@ const DesignPreview = ({
                 )}
               </div>
 
-              <p className='text-2xl mt-4' style={{ color: headerColor }}>
+              <p className='text-xl mt-4' style={{ color: headerColor }}>
                 Customer Reviews
               </p>
               {itemAndReviews?.reviews?.length > 0 ? (
@@ -256,7 +253,7 @@ const DesignPreview = ({
                   className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
                 >
                   <p
-                    className='font-medium text-xl'
+                    className='font-medium text-lg'
                     style={{ color: pageText }}
                   >
                     Item has not been reviewed yet!
@@ -298,7 +295,7 @@ const DesignPreview = ({
           }}
         >
           <div
-            className='flex w-44 justify-between text-4xl'
+            className='flex w-44 justify-between text-3xl'
             style={{
               backgroundColor: footerBG,
             }}
@@ -336,14 +333,14 @@ const DesignPreview = ({
     );
   }
   return (
-    <div className='w-9/12 h-fit'>
+    <div className='w-full h-fit mx-auto p-2'>
       <Alert severity='info' className='mt-2 mb-4'>
-        This is just a preview, not your actual storefront. This is just so you
-        can see the design changes before you decide to save.
+        This is just a preview, not your actual storefront. See changes before
+        you save.
       </Alert>
       {content}
     </div>
   );
 };
 
-export default DesignPreview;
+export default DesignPreviewMobile;

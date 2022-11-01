@@ -40,10 +40,10 @@ const DashHomeMobile = ({ stats, currentUser }) => {
         </p>
       </Alert>
 
-      <div className='flex justify-between w-11/12 mb-2 mx-auto'>
+      <div className='flex w-11/12 mx-auto'>
         <a
           href={currentUser?.store?.url}
-          className='flex justify-center items-center text-lg text-slate-800 font-medium'
+          className='flex items-center text-lg text-slate-800 font-medium'
           target='_blank'
         >
           View your storefront <FaExternalLinkAlt className='ml-2' />{' '}
@@ -51,86 +51,90 @@ const DashHomeMobile = ({ stats, currentUser }) => {
       </div>
 
       <div className='flex flex-col items-center'>
-        <div className='drop-shadow-md w-11/12 h-28 bg-gray-200 rounded-md p-2 relative'>
-          <Tooltip
-            title={
-              <p className='text-lg'>
-                Total revenue your storefront has generated
-              </p>
-            }
-            className='ml-2 text-lg absolute right-0 mr-2'
-            placement='right-end'
-          >
-            <button>
-              <AiOutlineInfoCircle />
-            </button>
-          </Tooltip>
-          <p className='text-xl font-medium'>Revenue</p>
-          <p className='text-4xl font-medium'>
-            $
-            {stats?.revenue > 0
-              ? stats?.revenue.toLocaleString('en-US', {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })
-              : '0'}
-          </p>
+        <div className='w-11/12 flex'>
+          <div className='drop-shadow-md w-11/12 h-28 bg-gray-200 rounded-md p-2 relative'>
+            <Tooltip
+              title={
+                <p className='text-lg'>
+                  Total revenue your storefront has generated
+                </p>
+              }
+              className='ml-2 text-lg absolute right-0 mr-2'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+            <p className='text-lg font-medium'>Revenue</p>
+            <p className='text-2xl font-medium'>
+              $
+              {stats?.revenue > 0
+                ? stats?.revenue.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })
+                : '0'}
+            </p>
+          </div>
+
+          <div className='drop-shadow-md w-11/12 h-28 bg-gray-200 rounded-md p-2 relative ml-2'>
+            <Tooltip
+              title={
+                <p className='text-lg'>
+                  Total sales your storefront has generated
+                </p>
+              }
+              className='ml-2 text-lg absolute right-0 mr-2'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+            <p className='text-lg font-medium'>Sales</p>
+            <p className='text-2xl font-medium'>{stats?.numOfOrders}</p>
+          </div>
         </div>
 
-        <div className='drop-shadow-md w-11/12 h-28 bg-gray-200 rounded-md p-2 relative mt-2'>
-          <Tooltip
-            title={
-              <p className='text-lg'>
-                Total sales your storefront has generated
-              </p>
-            }
-            className='ml-2 text-lg absolute right-0 mr-2'
-            placement='right-end'
-          >
-            <button>
-              <AiOutlineInfoCircle />
-            </button>
-          </Tooltip>
-          <p className='text-xl font-medium'>Number of Sales</p>
-          <p className='text-4xl font-medium'>{stats?.numOfOrders}</p>
-        </div>
+        <div className='w-11/12 flex'>
+          <div className='drop-shadow-md w-6/12 h-28 mt-2 bg-gray-200 rounded-md p-2 relative'>
+            <Tooltip
+              title={
+                <p className='text-lg'>
+                  Amount of users who have visted your storefront
+                </p>
+              }
+              className='ml-2 text-lg absolute right-0 mr-2'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+            <p className='text-lg font-medium'>Store visits</p>
+            <p className='text-2xl font-medium'>{stats?.visits}</p>
+          </div>
 
-        <div className='drop-shadow-md w-11/12 h-28 mt-2 bg-gray-200 rounded-md p-2 relative'>
-          <Tooltip
-            title={
-              <p className='text-lg'>
-                Amount of users who have visted your storefront
-              </p>
-            }
-            className='ml-2 text-lg absolute right-0 mr-2'
-            placement='right-end'
-          >
-            <button>
-              <AiOutlineInfoCircle />
-            </button>
-          </Tooltip>
-          <p className='text-xl font-medium'>Store visits</p>
-          <p className='text-4xl font-medium'>{stats?.visits}</p>
-        </div>
-
-        <div className='drop-shadow-md w-11/12 h-28 mt-2 bg-gray-200 rounded-md p-2 relative'>
-          <Tooltip
-            title={
-              <p className='text-lg'>
-                Percentage of customers who visit and make a purchase
-              </p>
-            }
-            className='ml-2 text-lg absolute right-0 mr-2'
-            placement='right-end'
-          >
-            <button>
-              <AiOutlineInfoCircle />
-            </button>
-          </Tooltip>
-          <p className='text-xl font-medium'>Conversion rate</p>
-          <p className='text-4xl font-medium'>
-            {stats?.conversion > 0 ? stats?.conversion.toFixed(2) : '0'}%
-          </p>
+          <div className='drop-shadow-md w-6/12 h-28 mt-2 ml-2 bg-gray-200 rounded-md p-2 relative'>
+            <Tooltip
+              title={
+                <p className='text-lg'>
+                  Percentage of customers who visit and make a purchase
+                </p>
+              }
+              className='ml-2 text-lg absolute right-0 mr-2'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+            <p className='text-lg font-medium'>Conversion rate</p>
+            <p className='text-2xl font-medium'>
+              {stats?.conversion > 0 ? stats?.conversion.toFixed(2) : '0'}%
+            </p>
+          </div>
         </div>
       </div>
 

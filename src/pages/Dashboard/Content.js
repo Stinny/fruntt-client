@@ -8,6 +8,7 @@ import { useGetStorefrontQuery } from '../../api/storefrontApiSlice';
 import Spinner from '../../components/Spinner';
 import AddSocials from '../../components/Content/AddSocials';
 import AddMedia from '../../components/Content/AddMedia';
+import { isMobile } from 'react-device-detect';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -38,11 +39,17 @@ const Content = () => {
           <h2 className='text-3xl font-semibold'>Content</h2>
         </div>
 
-        {nameChangedInfo && (
-          <Alert severity='info' className='w-full mt-4'>
-            {nameChangedInfo}
-          </Alert>
-        )}
+        {isMobile
+          ? nameChangedInfo && (
+              <Alert severity='info' className='w-11/12 mt-2 mx-auto'>
+                {nameChangedInfo}
+              </Alert>
+            )
+          : nameChangedInfo && (
+              <Alert severity='info' className='w-full mt-4'>
+                {nameChangedInfo}
+              </Alert>
+            )}
 
         <AddLogo storefront={storefront} refetch={refetch} setInfo={setInfo} />
 

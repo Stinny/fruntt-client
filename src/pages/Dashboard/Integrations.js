@@ -37,7 +37,7 @@ const Integrations = () => {
     <>
       <Navbar />
       <Topbar />
-      <div className='max-w-6xl mx-auto h-screen'>
+      <div className='max-w-6xl mx-auto h-screen p-2'>
         <div className='flex flex-col'>
           <h2 className='text-3xl font-medium'>Add-ons coming soon!</h2>
           <p className='text-lg mt-2'>
@@ -58,7 +58,7 @@ const Integrations = () => {
             <textarea
               type='text'
               className='border-2 border-gray-300 hover:border-gray-300 w-full h-28 focus:outline focus:outline-1 focus:outline-gray-400 rounded-lg mt-4 p-2'
-              placeholder='Enter feedback here, ex. shopify, ship station, social platforms'
+              placeholder='Enter feedback here...'
               onChange={(e) => setContent(e.target.value)}
             />
             <button

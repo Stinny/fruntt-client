@@ -5,6 +5,8 @@ import Topbar from '../../components/Topbar';
 import Footer from '../../components/Footer';
 import { useGetStorefrontQuery } from '../../api/storefrontApiSlice';
 import Spinner from '../../components/Spinner';
+import { isMobile } from 'react-device-detect';
+import DesignFormMobile from '../../components/Forms/DesignFormMobile';
 
 const EditDesign = () => {
   const { data: storefront, isLoading, isSuccess } = useGetStorefrontQuery();
@@ -13,7 +15,11 @@ const EditDesign = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    content = <DesignForm storefront={storefront} />;
+    content = isMobile ? (
+      <DesignFormMobile storefront={storefront} />
+    ) : (
+      <DesignForm storefront={storefront} />
+    );
   }
 
   return (

@@ -7,6 +7,7 @@ import {
 } from 'react-icons/ai';
 import Modal from 'react-modal';
 import { useAddSocialsMutation } from '../../api/storefrontApiSlice';
+import { isMobile } from 'react-device-detect';
 
 const AddSocials = ({ storefront, refetch }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -48,17 +49,30 @@ const AddSocials = ({ storefront, refetch }) => {
     setIsOpen(false);
   }
 
-  const modalStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      width: '700px',
-    },
-  };
+  const modalStyles = isMobile
+    ? {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          width: '90%',
+        },
+      }
+    : {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          width: '700px',
+        },
+      };
+
   return (
     <div className='mb-4 border-b'>
       <Modal
@@ -70,7 +84,7 @@ const AddSocials = ({ storefront, refetch }) => {
           <p className='text-lg font-medium text-slate-800 mb-4 border-b'>
             Add social links
           </p>
-          <form className='p-2'>
+          <form>
             <div className='w-full flex justify-between items-center'>
               <AiOutlineFacebook className='text-4xl' />
               <input
@@ -133,21 +147,39 @@ const AddSocials = ({ storefront, refetch }) => {
         </div>
       </Modal>
 
-      <div className='w-full flex justify-between items-center'>
-        <div className='flex flex-col'>
-          <p className='text-slate-800 font-medium text-xl'>Social Links</p>
-          <p className='text-gray-400 text-sm'>
-            Social links appear in the footer of your storefront and only when a
-            link is provided
-          </p>
+      {isMobile ? (
+        <div className='w-full flex justify-between items-center p-2'>
+          <div className='flex flex-col w-4/6'>
+            <p className='text-slate-800 font-medium text-lg'>Social Links</p>
+            <p className='text-gray-400 text-sm'>
+              Social links appear in the footer of your storefront and only when
+              a link is provided
+            </p>
+          </div>
+          <button
+            className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
+            onClick={openModal}
+          >
+            Edit
+          </button>
         </div>
-        <button
-          className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
-          onClick={openModal}
-        >
-          Edit
-        </button>
-      </div>
+      ) : (
+        <div className='w-full flex justify-between items-center'>
+          <div className='flex flex-col'>
+            <p className='text-slate-800 font-medium text-xl'>Social Links</p>
+            <p className='text-gray-400 text-sm'>
+              Social links appear in the footer of your storefront and only when
+              a link is provided
+            </p>
+          </div>
+          <button
+            className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
+            onClick={openModal}
+          >
+            Edit
+          </button>
+        </div>
+      )}
 
       <div className='p-4'>
         <div className='w-full flex justify-between items-center'>
