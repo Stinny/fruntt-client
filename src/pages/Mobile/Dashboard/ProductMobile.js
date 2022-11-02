@@ -4,6 +4,8 @@ import moment from 'moment';
 
 //mui
 import Chip from '@mui/material/Chip';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const ProductMobile = ({ product }) => {
   const noItem = (
@@ -43,23 +45,23 @@ const ProductMobile = ({ product }) => {
         </div>
         <div className='w-full p-4 border-2 rounded-md'>
           <p className='text-gray-400 mt-4'>Product Title</p>
-          <h2 className='text-2xl mt-4'>{product?.title}</h2>
+          <h2 className='text-2xl'>{product?.title}</h2>
           {product.description && (
             <div className='flex flex-col'>
               <p className='text-gray-400 mt-4'>Product Description</p>
-              <p className='text-lg mt-4'>{product?.description}</p>
+              <p className='text-lg'>{product?.description}</p>
             </div>
           )}
           <p className='text-gray-400 mt-4'>Product Price</p>
-          <p className='text-xl mt-4'>${product?.price.toFixed(2)}</p>
+          <p className='text-xl'>${product?.price.toFixed(2)}</p>
           <p className='text-gray-400 mt-4'>Product Inventory</p>
-          <p className='text-xl mt-4'>{product?.stock} units left</p>
+          <p className='text-xl'>{product?.stock} units left</p>
           <p className='text-gray-400 mt-4'>Product Options</p>
           {product.options.length > 0 ? (
             product.options.map((opt, optIndex) => (
               <div className='w-full flex flex-col bg-gray-100 p-2 relative mt-2'>
                 <p className='text-lg'>{opt?.name}</p>
-                <div className='w-full flex flex-wrap mt-2'>
+                <div className='w-full flex flex-wrap'>
                   {opt.values.map((value) => (
                     <Chip label={value} className='ml-2' />
                   ))}
@@ -72,6 +74,12 @@ const ProductMobile = ({ product }) => {
               <p>Add options like size or color</p>
             </div>
           )}
+
+          <FormControlLabel
+            label='Published to storefront'
+            control={<Switch checked={product?.published} disabled />}
+            className='mt-2'
+          />
         </div>
 
         <p className='text-xl font-medium mt-4'>Media</p>

@@ -16,6 +16,8 @@ import { isMobile } from 'react-device-detect';
 //mui
 import Chip from '@mui/material/Chip';
 import ProductMobile from '../Mobile/Dashboard/ProductMobile';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const Item = () => {
   const {
@@ -106,6 +108,11 @@ const Item = () => {
                 <p>Add options like size or color</p>
               </div>
             )}
+            <FormControlLabel
+              label='Published to storefront'
+              control={<Switch checked={product[0]?.published} disabled />}
+              className='mt-2'
+            />
           </div>
 
           <p className='text-xl font-medium mt-4'>Media</p>
