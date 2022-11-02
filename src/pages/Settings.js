@@ -12,6 +12,7 @@ import { useGetUpdatedUserQuery } from '../api/authApiSlice';
 import Spinner from '../components/Spinner';
 import Notifications from '../components/Settings/Notifications';
 import BusinessInfo from '../components/Settings/BusinessInfo';
+import { isMobile } from 'react-device-detect';
 
 const Settings = () => {
   const {
@@ -34,19 +35,36 @@ const Settings = () => {
     const updatedUser = JSON.stringify(user);
     Cookies.set('currentUser', updatedUser, { sameSite: 'Lax' });
     content = (
-      <div className='w-full mt-20'>
-        <div className='border-b-2 pb-4'>
-          <div className='flex justify-between items-center w-full'>
-            <h2 className='text-4xl font-semibold'>Settings</h2>
+      <div className='w-full'>
+        {isMobile ? (
+          <div className='border-b-2 pb-2'>
+            <div className='flex justify-between items-center w-full'>
+              <h2 className='text-3xl font-semibold'>Settings</h2>
 
-            <Link
-              to='/dashboard'
-              className='flex justify-center items-center text-gray-400 hover:text-gray-500'
-            >
-              <p>Back to dashboard</p> <BsArrowRightShort className='text-xl' />
-            </Link>
+              <Link
+                to='/dashboard'
+                className='flex justify-center items-center text-gray-400 hover:text-gray-500'
+              >
+                <p>Back to dashboard</p>{' '}
+                <BsArrowRightShort className='text-xl' />
+              </Link>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className='border-b-2 pb-4 mt-20'>
+            <div className='flex justify-between items-center w-full'>
+              <h2 className='text-4xl font-semibold'>Settings</h2>
+
+              <Link
+                to='/dashboard'
+                className='flex justify-center items-center text-gray-400 hover:text-gray-500'
+              >
+                <p>Back to dashboard</p>{' '}
+                <BsArrowRightShort className='text-xl' />
+              </Link>
+            </div>
+          </div>
+        )}
 
         <div className='w-full mt-4'>
           <Profile user={user} refetch={refetch} />
@@ -60,9 +78,9 @@ const Settings = () => {
           <Notifications user={user} refetch={refetch} />
         </div>
 
-        <div className='w-full mt-10'>
+        <div className='w-full mt-4'>
           <div className='flex justify-between items-center w-full border-b p-2'>
-            <p className='text-xlg font-medium'>Payment Gateway</p>
+            <p className='text-lg font-medium'>Payment Gateway</p>
           </div>
           <Payments refetch={refetch} />
         </div>

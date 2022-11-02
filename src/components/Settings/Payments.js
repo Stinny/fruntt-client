@@ -7,7 +7,7 @@ import {
 import { FaPaypal, FaStripeS } from 'react-icons/fa';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import Cookies from 'js-cookie';
-import Spinner from '../Spinner';
+import { isMobile } from 'react-device-detect';
 
 //mui
 import CircularProgress from '@mui/material/CircularProgress';
@@ -45,12 +45,26 @@ const Payments = ({ refetch }) => {
     refetch();
   };
 
-  const connectedToStripe = (
+  const connectedToStripe = isMobile ? (
     <>
-      <a className='w-full h-20 flex items-center justify-center border-purple-600 border-2 text-purple-600 rounded-md text-md mt-4 p-2'>
+      {' '}
+      <div className='w-full h-20 flex items-center justify-center border-purple-600 border-2 text-purple-600 rounded-md text-md mt-2 p-2'>
         You are connected to Stripe
         <AiOutlineCheckCircle className='text-2xl ml-4' />
-      </a>
+      </div>
+      <button
+        className='w-full h-10 border-2 text-md rounded-md mt-4 text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white'
+        onClick={handleDisconnectStripe}
+      >
+        Disconnect
+      </button>
+    </>
+  ) : (
+    <>
+      <div className='w-full h-20 flex items-center justify-center border-purple-600 border-2 text-purple-600 rounded-md text-md mt-4 p-2'>
+        You are connected to Stripe
+        <AiOutlineCheckCircle className='text-2xl ml-4' />
+      </div>
       <button
         className='w-full h-10 border-2 text-md rounded-md mt-4 text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white'
         onClick={handleDisconnectStripe}

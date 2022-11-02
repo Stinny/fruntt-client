@@ -187,7 +187,7 @@ const Navbar = () => {
       </div>
     </nav>
   ) : (
-    <nav className='w-full h-16 border-b-2 fixed bg-white'>
+    <nav className='w-full h-16 border-b-2 bg-white'>
       <div className='max-w-7xl h-full mx-auto flex justify-between items-center'>
         {/* logo section */}
         <div className='text-4xl h-full flex justify-center items-center'>

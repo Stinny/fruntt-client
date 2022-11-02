@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { isMobile } from 'react-device-detect';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -36,17 +37,29 @@ const Notifications = ({ user, refetch }) => {
     }
   };
 
-  const modalStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      width: '500px',
-    },
-  };
+  const modalStyles = isMobile
+    ? {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          width: '90%',
+        },
+      }
+    : {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          width: '500px',
+        },
+      };
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -60,76 +73,110 @@ const Notifications = ({ user, refetch }) => {
 
   return (
     <>
-      <div className='flex justify-between items-center w-full border-b p-2'>
-        <p className='text-xlg font-medium'>Notifications</p>
-        <button
-          onClick={openModal}
-          className='border-2 rounded w-20 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
-        >
-          Edit
-        </button>
-      </div>
-      <div className='w-11/12 mx-auto flex justify-between items-center p-4'>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={modalStyles}
-        >
-          <form onSubmit={handleSaveNotifications}>
-            <p className='text-xl font-medium mb-4'>Notifications</p>
-            <p className='text-gray-400'>Fruntt news & updates</p>
-            <Switch
-              checked={sendUpdates}
-              onChange={(e) => setSendUpdates(e.target.checked)}
-            />
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={modalStyles}
+      >
+        <form onSubmit={handleSaveNotifications}>
+          <p className='text-xl font-medium mb-4'>Notifications</p>
+          <p className='text-gray-400'>Fruntt news & updates</p>
+          <Switch
+            checked={sendUpdates}
+            onChange={(e) => setSendUpdates(e.target.checked)}
+          />
 
-            <p className='text-gray-400 mt-2'>An order has been placed</p>
-            <Switch
-              checked={sendOrderPlaced}
-              onChange={(e) => setSendOrderPlaced(e.target.checked)}
-            />
+          <p className='text-gray-400 mt-2'>An order has been placed</p>
+          <Switch
+            checked={sendOrderPlaced}
+            onChange={(e) => setSendOrderPlaced(e.target.checked)}
+          />
 
-            <p className='text-gray-400 mt-2'>Your item goes out of stock</p>
-            <Switch
-              checked={sendItemOutOfStock}
-              onChange={(e) => setSendItemOutOfStock(e.target.checked)}
-            />
+          <p className='text-gray-400 mt-2'>Your item goes out of stock</p>
+          <Switch
+            checked={sendItemOutOfStock}
+            onChange={(e) => setSendItemOutOfStock(e.target.checked)}
+          />
 
-            <p className='text-gray-400 mt-2'>Customer leaves a review</p>
-            <Switch
-              checked={sendReviewCollected}
-              onChange={(e) => setSendReviewCollected(e.target.checked)}
-            />
+          <p className='text-gray-400 mt-2'>Customer leaves a review</p>
+          <Switch
+            checked={sendReviewCollected}
+            onChange={(e) => setSendReviewCollected(e.target.checked)}
+          />
 
-            <button
-              type='button'
-              onClick={closeModal}
-              className='w-full h-10 border-2 border-red-500 text-red-400 hover:text-white hover:bg-red-400 rounded mt-4'
-            >
-              Cancel
-            </button>
-            <button
-              type='submit'
-              className='w-full h-14 border-2 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 rounded mt-4'
-            >
-              Save
-            </button>
-          </form>
-        </Modal>
-        <div className='flex flex-col'>
-          <p className='text-lg font-medium'>Fruntt news & updates</p>
-          <p className='text-lg font-medium mt-4'>An order was placed</p>
-          <p className='text-lg font-medium mt-4'>An item goes out of stock</p>
-          <p className='text-lg font-medium mt-4'>Customer leaves a review</p>
+          <button
+            type='button'
+            onClick={closeModal}
+            className='w-full h-10 border-2 border-red-500 text-red-400 hover:text-white hover:bg-red-400 rounded mt-4'
+          >
+            Cancel
+          </button>
+          <button
+            type='submit'
+            className='w-full h-14 border-2 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 rounded mt-4'
+          >
+            Save
+          </button>
+        </form>
+      </Modal>
+      {isMobile ? (
+        <div className='flex justify-between items-center w-full border-b p-2'>
+          <p className='text-lg font-medium'>Notifications</p>
+          <button
+            onClick={openModal}
+            className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
+          >
+            Edit
+          </button>
         </div>
-
-        <div className='flex flex-col'>
-          <Switch checked={user?.sendUpdates} />
-          <Switch checked={user?.sendOrderPlaced} className='mt-4' />
-          <Switch checked={user?.sendItemOutOfStock} className='mt-4' />
-          <Switch checked={user?.sendReviewCollected} className='mt-4' />
+      ) : (
+        <div className='flex justify-between items-center w-full border-b p-2'>
+          <p className='text-xlg font-medium'>Notifications</p>
+          <button
+            onClick={openModal}
+            className='border-2 rounded w-20 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
+          >
+            Edit
+          </button>
         </div>
-      </div>
+      )}
+      {isMobile ? (
+        <div className='w-11/12 mx-auto flex justify-between items-center p-2'>
+          <div className='flex flex-col'>
+            <p className='text-lg font-medium'>Fruntt news & updates</p>
+            <p className='text-lg font-medium mt-4'>An order was placed</p>
+            <p className='text-lg font-medium mt-4'>
+              An item goes out of stock
+            </p>
+            <p className='text-lg font-medium mt-4'>Customer leaves a review</p>
+          </div>
+
+          <div className='flex flex-col'>
+            <Switch checked={user?.sendUpdates} />
+            <Switch checked={user?.sendOrderPlaced} className='mt-4' />
+            <Switch checked={user?.sendItemOutOfStock} className='mt-4' />
+            <Switch checked={user?.sendReviewCollected} className='mt-4' />
+          </div>
+        </div>
+      ) : (
+        <div className='w-11/12 mx-auto flex justify-between items-center p-4'>
+          <div className='flex flex-col'>
+            <p className='text-lg font-medium'>Fruntt news & updates</p>
+            <p className='text-lg font-medium mt-4'>An order was placed</p>
+            <p className='text-lg font-medium mt-4'>
+              An item goes out of stock
+            </p>
+            <p className='text-lg font-medium mt-4'>Customer leaves a review</p>
+          </div>
+
+          <div className='flex flex-col'>
+            <Switch checked={user?.sendUpdates} />
+            <Switch checked={user?.sendOrderPlaced} className='mt-4' />
+            <Switch checked={user?.sendItemOutOfStock} className='mt-4' />
+            <Switch checked={user?.sendReviewCollected} className='mt-4' />
+          </div>
+        </div>
+      )}
     </>
   );
 };
