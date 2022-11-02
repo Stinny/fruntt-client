@@ -68,11 +68,11 @@ const EditItemFormMobile = ({
 
   //info popups for the different fields
   const detailsInfo =
-    'These details will be seen on your single item storefront by all your customers. Stock is for us to know when your item is still available or not.';
+    'These details will be seen on your storefront by your customers. Stock is for us to know when your item is still available or not.';
   const packageInfo =
     'Package weight is needed to calculate shipping rates and create labels';
   const mediaInfo =
-    'Media is needed to showcase your item and can be seen by your customers on your single item storefront.';
+    'Media is needed to showcase your product and give a better experience to your customers';
 
   useEffect(() => {
     setError('');
@@ -176,9 +176,11 @@ const EditItemFormMobile = ({
           <Tooltip
             title={<p className='text-lg'>{detailsInfo}</p>}
             className='ml-2 text-lg'
-            placement='right-end'
+            placement='bottom'
+            enterTouchDelay={10}
+            leaveTouchDelay={5000}
           >
-            <button>
+            <button type='button'>
               <AiOutlineInfoCircle />
             </button>
           </Tooltip>
@@ -257,9 +259,11 @@ const EditItemFormMobile = ({
           <Tooltip
             title={<p className='text-lg'>{mediaInfo}</p>}
             className='ml-2'
-            placement='right-end'
+            placement='bottom'
+            enterTouchDelay={10}
+            leaveTouchDelay={5000}
           >
-            <button>
+            <button type='button'>
               <AiOutlineInfoCircle />
             </button>
           </Tooltip>
@@ -282,8 +286,9 @@ const EditItemFormMobile = ({
             }
             className='ml-2 text-lg'
             placement='right-end'
+            leaveTouchDelay={5000}
           >
-            <button>
+            <button type='button'>
               <AiOutlineInfoCircle />
             </button>
           </Tooltip>
@@ -358,9 +363,11 @@ const EditItemFormMobile = ({
               <Tooltip
                 title={<p className='text-lg'>{packageInfo}</p>}
                 className='ml-2 text-lg'
-                placement='right-end'
+                placement='bottom'
+                enterTouchDelay={10}
+                leaveTouchDelay={5000}
               >
-                <button>
+                <button type='button'>
                   <AiOutlineInfoCircle />
                 </button>
               </Tooltip>
@@ -405,9 +412,11 @@ const EditItemFormMobile = ({
                   </p>
                 }
                 className='ml-2 text-lg'
-                placement='right-end'
+                placement='bottom'
+                enterTouchDelay={10}
+                leaveTouchDelay={5000}
               >
-                <button>
+                <button type='button'>
                   <AiOutlineInfoCircle />
                 </button>
               </Tooltip>

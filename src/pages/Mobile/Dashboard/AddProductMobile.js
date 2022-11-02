@@ -84,7 +84,8 @@ const AddProductMobile = ({
           <Tooltip
             title={<p className='text-lg'>{detailsInfo}</p>}
             className='ml-2 text-lg'
-            placement='right-end'
+            placement='bottom'
+            enterTouchDelay={10}
           >
             <button type='button' disabled>
               <AiOutlineInfoCircle />
@@ -148,7 +149,8 @@ const AddProductMobile = ({
           <Tooltip
             title={<p className='text-lg'>{optionsInfo}</p>}
             className='ml-2 text-lg'
-            placement='right-end'
+            placement='bottom'
+            enterTouchDelay={10}
           >
             <button type='button' disabled>
               <AiOutlineInfoCircle />
@@ -170,7 +172,8 @@ const AddProductMobile = ({
           <Tooltip
             title={<p className='text-lg'>{mediaInfo}</p>}
             className='ml-2 text-lg'
-            placement='right-end'
+            placement='bottom'
+            enterTouchDelay={10}
           >
             <button type='button' disabled>
               <AiOutlineInfoCircle />
@@ -190,7 +193,8 @@ const AddProductMobile = ({
           <Tooltip
             title={<p className='text-lg'>{inventoryInfo}</p>}
             className='ml-2 text-lg'
-            placement='right-end'
+            placement='bottom'
+            enterTouchDelay={10}
           >
             <button type='button' disabled>
               <AiOutlineInfoCircle />
@@ -259,7 +263,8 @@ const AddProductMobile = ({
               <Tooltip
                 title={<p className='text-lg'>{packageInfo}</p>}
                 className='ml-2 text-lg'
-                placement='right-end'
+                placement='bottom'
+                enterTouchDelay={10}
               >
                 <button type='button' disabled>
                   <AiOutlineInfoCircle />
@@ -304,7 +309,8 @@ const AddProductMobile = ({
                   </p>
                 }
                 className='ml-2 text-lg'
-                placement='right-end'
+                placement='bottom'
+                enterTouchDelay={10}
               >
                 <button type='button' disabled>
                   <AiOutlineInfoCircle />

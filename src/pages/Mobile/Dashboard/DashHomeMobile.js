@@ -60,7 +60,8 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 </p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
-              placement='right-end'
+              placement='bottom'
+              enterTouchDelay={10}
             >
               <button>
                 <AiOutlineInfoCircle />
@@ -86,7 +87,8 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 </p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
-              placement='right-end'
+              placement='bottom'
+              enterTouchDelay={10}
             >
               <button>
                 <AiOutlineInfoCircle />
@@ -106,7 +108,8 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 </p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
-              placement='right-end'
+              placement='bottom'
+              enterTouchDelay={10}
             >
               <button>
                 <AiOutlineInfoCircle />
@@ -124,7 +127,8 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 </p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
-              placement='right-end'
+              placement='bottom'
+              enterTouchDelay={10}
             >
               <button>
                 <AiOutlineInfoCircle />

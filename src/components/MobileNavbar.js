@@ -5,12 +5,24 @@ import { IoStorefrontOutline } from 'react-icons/io5';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { HiMenu } from 'react-icons/hi';
 import { BsDiscord } from 'react-icons/bs';
+import HelpModal from '../components/HelpModal';
 
 const MobileNavbar = ({ currentUser, handleLogout }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const [menuW, setW] = useState('w-0');
   const [menuH, setH] = useState('h-0');
   const [menuDisplay, setDisplay] = useState('none');
   const [opacity, setOpactity] = useState('opacity-0');
+
+  const handleOpenModal = () => {
+    setIsOpen(true);
+    closeMenu();
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
 
   const closeMenu = () => {
     setH('h-0');
@@ -28,6 +40,11 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
 
   return currentUser ? (
     <>
+      <HelpModal
+        isOpen={isOpen}
+        handleOpenModal={handleOpenModal}
+        handleCloseModal={handleCloseModal}
+      />
       <nav className='w-full h-16 border-b-2 bg-white'>
         <div className='w-11/12 h-full mx-auto flex justify-between items-center'>
           <div className='text-4xl h-full flex justify-center items-center'>
@@ -65,6 +82,12 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
               + Add storefront
             </button>
           </div>
+          <button
+            onClick={handleOpenModal}
+            className='text-2xl font-medium mt-10 border-b-2'
+          >
+            Help
+          </button>
           <Link
             to='/settings'
             className='text-2xl font-medium mt-10 border-b-2'
@@ -73,7 +96,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
           </Link>
           <Link
             to='/feedback'
-            className='text-2xl font-medium mt-20 border-b-2'
+            className='text-2xl font-medium mt-10 border-b-2'
           >
             Give feedback
           </Link>
