@@ -33,7 +33,9 @@ const PricingMobile = () => {
               - Easily Launch, design, and manage multiple single product
               storefronts
             </p>
-            <p className='mt-4'>- Get shipping rates & directly from us</p>
+            <p className='mt-4'>
+              - Get shipping labels & rates directly from us
+            </p>
             <p className='mt-4'>
               - Automated customer emailing (order confirmation, order shipped,
               etc.)

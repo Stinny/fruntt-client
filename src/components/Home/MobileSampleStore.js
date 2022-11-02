@@ -81,7 +81,7 @@ const MobileSampleStore = () => {
             />
             <button
               type='submit'
-              className='h-10 border-slate-800 border-2 rounded w-14 font-medium hover:text-white hover:bg-slate-800 ml-2 flex justify-center items-center'
+              className='h-10 border-slate-800 border-2 rounded w-16 font-medium hover:text-white hover:bg-slate-800 ml-2 flex justify-center items-center'
             >
               <BiRightArrowAlt />
             </button>
