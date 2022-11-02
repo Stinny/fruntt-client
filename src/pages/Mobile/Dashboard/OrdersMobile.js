@@ -2,6 +2,7 @@ import React from 'react';
 import img from '../../../media/noOrders.svg';
 import { FiDownload } from 'react-icons/fi';
 import moment from 'moment';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 //mui
 import { DataGrid } from '@mui/x-data-grid';
@@ -18,19 +19,19 @@ const OrdersMobile = ({
   return orders.length > 0 ? (
     <div>
       <div className='w-full flex justify-between border-b-2 p-2'>
-        <h2 className='text-3xl font-semibold'>Your Orders</h2>
+        <h2 className='text-2xl font-semibold'>Your Orders</h2>
         <div className='flex justify-between'>
-          <input
+          {/* <input
             placeholder='Enter email or  order number'
-            className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-          />
-          <button className='border-2 rounded w-20 ml-2  h-10 border-slate-800 text-slate-800'>
-            Search
+            className='border-2 h-8 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+          /> */}
+          <button className='border-2 rounded w-16 ml-2  h-8 border-slate-800 text-slate-800 flex items-center justify-center'>
+            <AiOutlineSearch />
           </button>
         </div>
       </div>
 
-      <div className='w-full mx-auto mt-6'>
+      <div className='w-full mx-auto mt-6 p-2'>
         <div className='flex flex-col'>
           <p className='text-gray-400'>Filter</p>
           <select

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { useFulfillOrderMutation } from '../../api/ordersApiSlice';
+import { isMobile } from 'react-device-detect';
 
 //mui
 import Checkbox from '@mui/material/Checkbox';
@@ -50,16 +51,28 @@ const FulfillModal = ({
     }
   };
 
-  const modalStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
+  const modalStyles = isMobile
+    ? {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          width: '90%',
+        },
+      }
+    : {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      };
 
   return (
     <div>

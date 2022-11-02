@@ -14,7 +14,7 @@ const HomeMobile = () => {
   return (
     <div className='mx-auto h-fit'>
       <div className='w-full h-full flex flex-col items-center justify-around'>
-        <div className='flex flex-col w-11/12 text-center mt-40'>
+        <div className='flex flex-col w-11/12 text-center mt-20'>
           <p className='text-3xl font-medium'>One page. One product.</p>
           <p className='text-2xl font-medium mt-4 text-gray-400'>
             An eCommerce platform that understands simplicity

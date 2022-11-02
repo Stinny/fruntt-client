@@ -6,9 +6,11 @@ import { useGetCustomerQuery } from '../../api/customersApiSlice';
 import Spinner from '../../components/Spinner';
 import { Link } from 'react-router-dom';
 import { BsArrowLeftShort } from 'react-icons/bs';
+import { isMobile } from 'react-device-detect';
 
 //mui
 import Rating from '@mui/material/Rating';
+import CustomerDetailMobile from '../Mobile/Dashboard/CustomerDetailMobile';
 
 const CustomerDetail = () => {
   const { customerId } = useParams();
@@ -28,7 +30,9 @@ const CustomerDetail = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    content = (
+    content = isMobile ? (
+      <CustomerDetailMobile customer={customer} />
+    ) : (
       <div>
         <Link
           to='/dashboard/customers'
@@ -50,9 +54,10 @@ const CustomerDetail = () => {
             to={`/dashboard/orders/${customer?.customer?.orderId}`}
             className='border-2 w-32 flex justify-center items-center rounded text-slate-800 border-slate-800 hover:text-white hover:bg-slate-800'
           >
-            View order
+            View their order
           </Link>
         </div>
+
         <div className='w-full p-4 flex justify-between mx-auto p-4'>
           <div className='flex flex-col justify-between'>
             <p className='text-gray-400'>Email:</p>

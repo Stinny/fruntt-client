@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { useGetShippingLabelMutation } from '../../api/ordersApiSlice';
+import { isMobile } from 'react-device-detect';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -60,16 +61,28 @@ const LabelModal = ({
     }
   };
 
-  const modalStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
+  const modalStyles = isMobile
+    ? {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          width: '90%',
+        },
+      }
+    : {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      };
 
   return (
     <div className='w-full'>
@@ -110,7 +123,7 @@ const LabelModal = ({
           <p className=' mt-2'>When will you fill order?</p>
           <select
             onChange={(e) => setPackTime(e.target.value)}
-            className='w-8/12 h-14 rounded p-2'
+            className='w-full h-14 rounded p-2'
           >
             <option disabled selected hidden>
               When will you fill the order?
@@ -122,7 +135,7 @@ const LabelModal = ({
           <p className='mt-2'>Select rate</p>
           <select
             onChange={(e) => setRateId(e.target.value)}
-            className='w-8/12 h-14 rounded p-2'
+            className='w-full h-14 rounded p-2'
           >
             <option disabled selected hidden>
               Pick a shipping rate

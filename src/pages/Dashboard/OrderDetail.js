@@ -18,6 +18,8 @@ import LabelModal from '../../components/OrderDetail/LabelModal';
 import FulfillModal from '../../components/OrderDetail/FulfillModal';
 import { FiDownload } from 'react-icons/fi';
 import FromAddress from '../../components/OrderDetail/FromAddress';
+import OrderDetailMobile from '../Mobile/Dashboard/OrderDetailMobile';
+import { isMobile } from 'react-device-detect';
 
 const OrderDetail = () => {
   const { orderId } = useParams();
@@ -66,7 +68,20 @@ const OrderDetail = () => {
   if (isLoading || gettingRates) {
     content = <Spinner />;
   } else if (isSuccess && gotRates) {
-    content = (
+    content = isMobile ? (
+      <OrderDetailMobile
+        order={order}
+        closeFulfillModal={closeFulfillModal}
+        openFulfillModal={openFulfillModal}
+        closeLabelModal={closeLabelModal}
+        openLabelModal={openLabelModal}
+        rates={rates}
+        refetch={refetch}
+        refetchRates={refetchRates}
+        labelModaIsOpen={labelModaIsOpen}
+        fulfillModalIsOpen={fulfillModalIsOpen}
+      />
+    ) : (
       <div className='w-full'>
         <LabelModal
           closeLabelModal={closeLabelModal}

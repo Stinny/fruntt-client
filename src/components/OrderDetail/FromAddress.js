@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { states } from '../../states';
 import { useEditShipsFromAddressMutation } from '../../api/ordersApiSlice';
+import { isMobile } from 'react-device-detect';
 
 const FromAddress = ({ order, refetch, refetchRates }) => {
   const [country, setCountry] = useState(order?.shipsFrom?.country);
@@ -43,20 +44,32 @@ const FromAddress = ({ order, refetch, refetchRates }) => {
     setIsOpen(false);
   }
 
-  const modalStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      width: '500px',
-    },
-  };
+  const modalStyles = isMobile
+    ? {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          width: '90%',
+        },
+      }
+    : {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          width: '500px',
+        },
+      };
 
   return (
-    <div>
+    <>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -127,39 +140,30 @@ const FromAddress = ({ order, refetch, refetchRates }) => {
           </button>
         </form>
       </Modal>
-
-      <div className='flex justify-between items-center border-b p-2'>
-        <p className='text-xl font-medium'>Return address</p>
-        <button
-          onClick={openModal}
-          className='border-2 rounded border-slate-800 text-slate-800 w-44 hover:text-white hover:bg-slate-800'
-        >
-          Edit return address
-        </button>
-      </div>
-      <div className='w-full p-4 flex justify-between mx-auto'>
-        <div className='flex flex-col justify-between'>
+      <div>
+        <div className='flex justify-between items-center border-b p-2'>
+          <p className='text-xl font-medium'>Return address</p>
+          <button
+            onClick={openModal}
+            className='border-2 rounded border-slate-800 text-slate-800 w-16 h-8 hover:text-white hover:bg-slate-800'
+          >
+            Edit
+          </button>
+        </div>
+        <div className='w-full p-4 flex flex-col mx-auto'>
           <p className='text-gray-400'>Street address:</p>
+          <p className='text-lg font-medium'>{order?.shipsFrom?.address}</p>
           <p className='text-gray-400 mt-2'>Country:</p>
+          <p className='text-lg font-medium'>{order?.shipsFrom?.country}</p>
           <p className='text-gray-400 mt-2'>State:</p>
+          <p className='text-lg font-medium'>{order?.shipsFrom?.state}</p>
           <p className='text-gray-400 mt-2'>City:</p>
+          <p className='text-lg font-medium'>{order?.shipsFrom?.city}</p>
           <p className='text-gray-400 mt-2'>Zipcode:</p>
-        </div>
-        <div className='flex flex-col justify-between text-right'>
-          <p className='text-lg font-medium mt-2'>
-            {order?.shipsFrom?.address}
-          </p>
-          <p className='text-lg font-medium mt-2'>
-            {order?.shipsFrom?.country}
-          </p>
-          <p className='text-lg font-medium mt-2'>{order?.shipsFrom?.state}</p>
-          <p className='text-lg font-medium mt-2'>{order?.shipsFrom?.city}</p>
-          <p className='text-lg font-medium mt-2'>
-            {order?.shipsFrom?.zipcode}
-          </p>
+          <p className='text-lg font-medium'>{order?.shipsFrom?.zipcode}</p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

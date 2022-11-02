@@ -151,7 +151,7 @@ const Customers = () => {
     content = <Spinner />;
   } else if (isSuccess) {
     content = isMobile ? (
-      <CustomersMobile customers={customers} />
+      <CustomersMobile customers={customers} cols={cols} />
     ) : customers.length > 0 ? (
       <div>
         <div className='w-full  flex justify-between border-b-2 p-2'>
