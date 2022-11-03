@@ -127,7 +127,7 @@ const Profile = ({ user, refetch }) => {
       )}
 
       {isMobile ? (
-        <div className='w-11/12 mx-auto flex flex-col p-4'>
+        <div className='w-11/12 mx-auto flex flex-col p-2'>
           <p className='text-lg font-medium mt-2 text-gray-400'>
             Account email
           </p>
@@ -139,18 +139,18 @@ const Profile = ({ user, refetch }) => {
             <p className='text-lg font-medium mt-2'>Account email</p>
           </div>
           <div className='text-right'>
-            <p className='text-xl mt-2'>{user?.email}</p>
+            <p className='text-xl'>{user?.email}</p>
           </div>
         </div>
       )}
 
       {user.firstName && user.lastName ? (
         isMobile ? (
-          <div className='w-11/12 mx-auto flex flex-col p-4'>
+          <div className='w-11/12 mx-auto flex flex-col p-2'>
             <p className='text-lg font-medium text-gray-400'>First name</p>
             <p className='text-xl'>{user?.firstName}</p>
             <p className='text-lg font-medium mt-2 text-gray-400'>Last name</p>
-            <p className='text-xl mt-2'>{user?.lastName}</p>
+            <p className='text-xl'>{user?.lastName}</p>
           </div>
         ) : (
           <div className='w-11/12 mx-auto flex justify-between p-4'>
