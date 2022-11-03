@@ -30,7 +30,7 @@ const PricingMobile = () => {
           </p>
           <div className='w-full text-slate-800 text-lg p-2'>
             <p className='mt-2'>
-              - Easily Launch, design, and manage multiple single product
+              - Easily launch, design, and manage multiple single product
               storefronts
             </p>
             <p className='mt-4'>
@@ -42,7 +42,7 @@ const PricingMobile = () => {
             </p>
             <p className='mt-4'>- Order tracking for customers</p>
 
-            <p className='mt-4'>- Easily collect reviews from customers</p>
+            <p className='mt-4'>- Collect reviews from customers</p>
             <p className='mt-4'>
               - Connect your storefront to socials and other sales channels
             </p>
