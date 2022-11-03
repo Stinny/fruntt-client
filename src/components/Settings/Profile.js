@@ -133,7 +133,7 @@ const Profile = ({ user, refetch }) => {
           <p className='text-xl mt-2'>{user?.email}</p>
         </div>
       ) : (
-        <div className='w-11/12 mx-auto flex p-4'>
+        <div className='w-11/12 mx-auto flex justify-between p-4'>
           <div className='text-left'>
             <p className='text-lg font-medium mt-2'>Account email</p>
           </div>
