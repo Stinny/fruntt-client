@@ -45,6 +45,19 @@ const Home = () => {
                   Launch a storefront - for free
                 </button>
               </Link>
+              <a
+                href='https://www.producthunt.com/posts/fruntt?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-fruntt'
+                target='_blank'
+                className='mx-auto mt-4'
+              >
+                <img
+                  src='https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=365879&theme=neutral'
+                  alt='Fruntt - Easily&#0032;launch&#0044;&#0032;design&#0044;&#0032;and&#0032;manage&#0032;single&#0032;product&#0032;storefronts | Product Hunt'
+                  style={{ width: '250px', height: '54px' }}
+                  width='250'
+                  height='54'
+                />
+              </a>
             </div>
             <div className='mx-auto w-10/12 flex justify-center mt-14'>
               <div className='flex w-full justify-between'>
