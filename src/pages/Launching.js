@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 const Launching = () => {
-  const [progress, setProgress] = React.useState(65);
+  const [progress, setProgress] = React.useState(58);
   const navigate = useNavigate();
 
   React.useEffect(() => {
