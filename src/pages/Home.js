@@ -38,8 +38,7 @@ const Home = () => {
               </p>
               <p className='text-2xl mt-8 tracking-wider font-medium'>
                 Launch, design, and manage single product storefronts from one
-                simple dashboard. Bring your customers TWO clicks away from a
-                purchase.
+                simple dashboard. No need for extra plugins or clutter.
               </p>
               <Link to='/signup' className='flex justify-center mt-8'>
                 <button className='rounded text-slate-800 w-5/12 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
@@ -75,7 +74,7 @@ const Home = () => {
                     Built in emailing
                   </p>
                   <p className='mt-2 text-center'>
-                    Automated emailing and notifying customers about order
+                    Automated emailing and contacting customers about order
                     details and more
                   </p>
                 </div>

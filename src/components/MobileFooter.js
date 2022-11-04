@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   AiOutlineInstagram,
   AiOutlineYoutube,
+  AiOutlineTwitter,
   AiOutlineFacebook,
 } from 'react-icons/ai';
 import { BsDiscord } from 'react-icons/bs';
@@ -24,7 +25,9 @@ const MobileFooter = () => {
             <BsDiscord className='text-gray-400 hover:text-slate-800' />
           </a>
           <AiOutlineFacebook className='text-gray-400 hover:text-slate-800' />
-          <AiOutlineYoutube className='text-gray-400 hover:text-slate-800' />
+          <a href='https://twitter.com/frunttecomm' target='_blank'>
+            <AiOutlineTwitter className='text-gray-400 hover:text-slate-800' />
+          </a>
         </div>
 
         <div className='flex justify-between items-center w-10/12 mt-4'>

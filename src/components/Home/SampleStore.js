@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import img from '../../media/browserStorefront-1.png';
+import img from '../../media/browserStorefrontREDO-1.png';
 import { BsArrow90DegDown } from 'react-icons/bs';
 import { useEmailSignupMutation } from '../../api/feedbackApiSlice';
 
@@ -39,8 +39,7 @@ const SampleStore = () => {
             Easily gather everything needed to sell ONE product on ONE page.
           </p>
           <p className='text-4xl  mt-4 w-10/12 leading-tight font-normal'>
-            No need for plugins and clutter, make it easy for you AND the
-            customer.
+            Make it easy for you AND the customer.
           </p>
           <Link to='/signup'>
             <button className='h-10 w-5/12 border-2 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 font-medium rounded mt-4'>
