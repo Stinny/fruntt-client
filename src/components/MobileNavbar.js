@@ -79,7 +79,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
               disabled
               className='ml-2 text-gray-400 hover:text-gray- mt-2'
             >
-              + Add storefront
+              + Add page
             </button>
           </div>
           <button

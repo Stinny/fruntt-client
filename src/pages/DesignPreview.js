@@ -10,6 +10,7 @@ import {
 import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import AliItemPrev from '../components/AliItemPrev';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -78,122 +79,198 @@ const DesignPreview = ({
         </div>
 
         {Object.entries(itemAndReviews?.item).length > 0 ? (
-          <div className='p-14'>
-            <div
-              className='w-full flex justify-between mx-auto'
-              style={{ backgroundColor: pageBG }}
-            >
-              <div className='w-3/6'>
-                <img
-                  className='w-11/12'
-                  src={itemAndReviews?.item?.images[0].url}
-                />
-              </div>
+          itemAndReviews?.item?.ali ? (
+            <AliItemPrev
+              item={itemAndReviews?.item}
+              pageBG={pageBG}
+              navbarBG={navbarBG}
+              buttonColor={buttonColor}
+              buttonTextColor={buttonTextColor}
+              buttonStyle={buttonStyle}
+              pageText={pageText}
+              footerBG={footerBG}
+              storefront={storefront}
+              hideNav={hideNav}
+              hideFooter={hideFooter}
+              headerColor={headerColor}
+              borderColor={borderColor}
+              socialIcons={socialIcons}
+              faqBackground={faqBackground}
+              reviewBackground={reviewBackground}
+            />
+          ) : (
+            <div className='p-14'>
+              <div
+                className='w-full flex justify-between mx-auto'
+                style={{ backgroundColor: pageBG }}
+              >
+                <div className='w-3/6'>
+                  <img
+                    className='w-11/12'
+                    src={itemAndReviews?.item?.images[0].url}
+                  />
+                </div>
 
-              <div className='w-3/6 flex flex-col pl-10'>
-                <h2
-                  className='text-2xl font-medium w-11/12'
-                  style={{ color: pageText }}
-                >
-                  {itemAndReviews?.item?.title}
-                </h2>
-                <p className='text-xl mt-4 w-11/12' style={{ color: pageText }}>
-                  {itemAndReviews?.item?.description}
-                </p>
-                <p
-                  className='text-4xl font-medium mt-4'
-                  style={{ color: pageText }}
-                >
-                  ${itemAndReviews?.item?.price.toFixed(2)}
-                </p>
-                {itemAndReviews?.item?.options?.length > 0
-                  ? itemAndReviews.item.options.map((option) => (
-                      <>
-                        <p>{option.name}</p>
-                        <select className='rounded-md border-2 w-32 h-10 mt-2'>
-                          <option>{option.values[0]}</option>
-                        </select>
-                      </>
-                    ))
-                  : ''}
-                <form>
-                  <div className='w-8/12 flex items-center mt-4'>
-                    <Rating
-                      value={itemAndReviews?.totalRating}
-                      precision={0.5}
-                      readOnly
-                    />
-                    <p className='ml-2' style={{ color: pageText }}>
-                      ({itemAndReviews?.reviews?.length}){' '}
-                      {itemAndReviews?.reviews?.length === 1
-                        ? 'review'
-                        : 'reviews'}
-                    </p>
-                  </div>
-
-                  <div className='flex justify-between w-11/12 items-center mt-4'>
-                    <div className='flex items-center'>
-                      <p style={{ color: pageText }}>Qty:</p>
-                      <select
-                        className='rounded-xl border-2 bg-transparent w-12 h-10 ml-2'
-                        style={{ color: pageText, borderColor: borderColor }}
-                      >
-                        <option value={1}>1</option>
-                      </select>
+                <div className='w-3/6 flex flex-col pl-10'>
+                  <h2
+                    className='text-2xl font-medium w-11/12'
+                    style={{ color: pageText }}
+                  >
+                    {itemAndReviews?.item?.title}
+                  </h2>
+                  <p
+                    className='text-xl mt-4 w-11/12'
+                    style={{ color: pageText }}
+                  >
+                    {itemAndReviews?.item?.description}
+                  </p>
+                  <p
+                    className='text-4xl font-medium mt-4'
+                    style={{ color: pageText }}
+                  >
+                    ${itemAndReviews?.item?.price.toFixed(2)}
+                  </p>
+                  {itemAndReviews?.item?.options?.length > 0
+                    ? itemAndReviews.item.options.map((option) => (
+                        <>
+                          <p>{option.name}</p>
+                          <select className='rounded-md border-2 w-32 h-10 mt-2'>
+                            <option>{option.values[0]}</option>
+                          </select>
+                        </>
+                      ))
+                    : ''}
+                  <form>
+                    <div className='w-8/12 flex items-center mt-4'>
+                      <Rating
+                        value={itemAndReviews?.totalRating}
+                        precision={0.5}
+                        readOnly
+                      />
+                      <p className='ml-2' style={{ color: pageText }}>
+                        ({itemAndReviews?.reviews?.length}){' '}
+                        {itemAndReviews?.reviews?.length === 1
+                          ? 'review'
+                          : 'reviews'}
+                      </p>
                     </div>
 
-                    <button
-                      type='button'
-                      disabled
-                      className='w-9/12 h-10 text-2xl border-2 border-slate-800 rounded'
-                      style={{
-                        color: buttonTextColor,
-                        backgroundColor: btnStyle,
-                        borderColor: buttonColor,
-                      }}
-                    >
-                      Buy Now
-                    </button>
-                  </div>
-                </form>
+                    <div className='flex justify-between w-11/12 items-center mt-4'>
+                      <div className='flex items-center'>
+                        <p style={{ color: pageText }}>Qty:</p>
+                        <select
+                          className='rounded-xl border-2 bg-transparent w-12 h-10 ml-2'
+                          style={{ color: pageText, borderColor: borderColor }}
+                        >
+                          <option value={1}>1</option>
+                        </select>
+                      </div>
+
+                      <button
+                        type='button'
+                        disabled
+                        className='w-9/12 h-10 text-2xl border-2 border-slate-800 rounded'
+                        style={{
+                          color: buttonTextColor,
+                          backgroundColor: btnStyle,
+                          borderColor: buttonColor,
+                        }}
+                      >
+                        Buy Now
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
-            </div>
 
-            {/* Other stuff for the item */}
-            <div className='mt-10'>
-              <p className='text-2xl' style={{ color: headerColor }}>
-                Customer questions
-              </p>
+              {/* Other stuff for the item */}
+              <div className='mt-10'>
+                <p className='text-2xl' style={{ color: headerColor }}>
+                  Customer questions
+                </p>
 
-              <div className='mt-2'>
-                {itemAndReviews?.item?.faqs?.length ? (
-                  itemAndReviews?.item?.faqs.map((faq) => (
-                    <div
-                      className='flex flex-col rounded p-2 mb-2'
-                      style={{
-                        backgroundColor: faqBackground,
-                      }}
-                    >
-                      <p style={{ color: storefront?.style?.pageText }}>
-                        <span
-                          className='font-medium'
+                <div className='mt-2'>
+                  {itemAndReviews?.item?.faqs?.length ? (
+                    itemAndReviews?.item?.faqs.map((faq) => (
+                      <div
+                        className='flex flex-col rounded p-2 mb-2'
+                        style={{
+                          backgroundColor: faqBackground,
+                        }}
+                      >
+                        <p style={{ color: storefront?.style?.pageText }}>
+                          <span
+                            className='font-medium'
+                            style={{ color: storefront?.style?.pageText }}
+                          >
+                            Question:
+                          </span>{' '}
+                          {faq.question}
+                        </p>
+                        <p
+                          className='mt-2'
                           style={{ color: storefront?.style?.pageText }}
                         >
-                          Question:
-                        </span>{' '}
-                        {faq.question}
+                          <span
+                            className='font-medium'
+                            style={{ color: storefront?.style?.pageText }}
+                          >
+                            Answer:
+                          </span>{' '}
+                          {faq.answer}
+                        </p>
+                      </div>
+                    ))
+                  ) : (
+                    <div
+                      style={{ borderColor: borderColor }}
+                      className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
+                    >
+                      <p
+                        className='font-medium text-xl'
+                        style={{ color: storefront?.style?.pageText }}
+                      >
+                        Customer questions have not been posted yet!
                       </p>
+                    </div>
+                  )}
+                </div>
+
+                <p className='text-2xl mt-4' style={{ color: headerColor }}>
+                  Customer Reviews
+                </p>
+                {itemAndReviews?.reviews?.length > 0 ? (
+                  itemAndReviews?.reviews.map((review) => (
+                    <div
+                      className='flex flex-col bg-gray-200 p-4 rounded mt-2'
+                      style={{
+                        backgroundColor: reviewBackground,
+                      }}
+                    >
+                      <div className='flex w-4/12'>
+                        <p
+                          className='font-medium mr-2'
+                          style={{ color: storefront?.style?.pageText }}
+                        >
+                          {review?.customerName}
+                        </p>
+                        <p style={{ color: storefront?.style?.pageText }}>
+                          {moment(review?.reviewedOn).format('MMM D, YYYY')}
+                        </p>
+                      </div>
+
+                      <Rating
+                        value={review.rating}
+                        readOnly
+                        size='medium'
+                        className='mt-2'
+                        precision={0.5}
+                      />
                       <p
                         className='mt-2'
                         style={{ color: storefront?.style?.pageText }}
                       >
-                        <span
-                          className='font-medium'
-                          style={{ color: storefront?.style?.pageText }}
-                        >
-                          Answer:
-                        </span>{' '}
-                        {faq.answer}
+                        {review.review}
                       </p>
                     </div>
                   ))
@@ -204,67 +281,15 @@ const DesignPreview = ({
                   >
                     <p
                       className='font-medium text-xl'
-                      style={{ color: storefront?.style?.pageText }}
+                      style={{ color: pageText }}
                     >
-                      Customer questions have not been posted yet!
+                      Item has not been reviewed yet!
                     </p>
                   </div>
                 )}
               </div>
-
-              <p className='text-2xl mt-4' style={{ color: headerColor }}>
-                Customer Reviews
-              </p>
-              {itemAndReviews?.reviews?.length > 0 ? (
-                itemAndReviews?.reviews.map((review) => (
-                  <div
-                    className='flex flex-col bg-gray-200 p-4 rounded mt-2'
-                    style={{
-                      backgroundColor: reviewBackground,
-                    }}
-                  >
-                    <div className='flex w-4/12'>
-                      <p
-                        className='font-medium mr-2'
-                        style={{ color: storefront?.style?.pageText }}
-                      >
-                        {review?.customerName}
-                      </p>
-                      <p style={{ color: storefront?.style?.pageText }}>
-                        {moment(review?.reviewedOn).format('MMM D, YYYY')}
-                      </p>
-                    </div>
-
-                    <Rating
-                      value={review.rating}
-                      readOnly
-                      size='medium'
-                      className='mt-2'
-                      precision={0.5}
-                    />
-                    <p
-                      className='mt-2'
-                      style={{ color: storefront?.style?.pageText }}
-                    >
-                      {review.review}
-                    </p>
-                  </div>
-                ))
-              ) : (
-                <div
-                  style={{ borderColor: borderColor }}
-                  className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
-                >
-                  <p
-                    className='font-medium text-xl'
-                    style={{ color: pageText }}
-                  >
-                    Item has not been reviewed yet!
-                  </p>
-                </div>
-              )}
             </div>
-          </div>
+          )
         ) : (
           <div className='w-full mx-auto'>
             <div
@@ -276,11 +301,11 @@ const DesignPreview = ({
                 className='font-medium text-lg'
                 style={{ borderColor: storefront?.style?.pageText }}
               >
-                This single product storefront is empty
+                This product page is empty
               </p>
               <Link
                 to='/dashboard/item/add'
-                className='border-2 rounded border-slate-800 text-slate-800 w-28 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
+                className='border-2 rounded border-slate-800 text-slate-800 w-32 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
               >
                 + Add product
               </Link>
@@ -338,8 +363,8 @@ const DesignPreview = ({
   return (
     <div className='w-9/12 h-fit'>
       <Alert severity='info' className='mt-2 mb-4'>
-        This is just a preview, not your actual storefront. This is just so you
-        can see the design changes before you decide to save.
+        This is just a preview, not your actual page. This is just so you can
+        see the design changes before you decide to save.
       </Alert>
       {content}
     </div>

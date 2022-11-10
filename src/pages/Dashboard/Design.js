@@ -158,7 +158,7 @@ const Design = () => {
         <div className='w-full mx-auto h-fit'>
           <div className='flex justify-between border-b-2 p-2'>
             <div className='flex flex-col'>
-              <h2 className='text-2xl font-medium'>Storefront design</h2>
+              <h2 className='text-2xl font-medium'>Page design</h2>
               <p>
                 last designed on{' '}
                 {moment(storefront?.lastEdited).format('MMM D, YYYY')}
@@ -184,7 +184,7 @@ const Design = () => {
         <div className='max-w-7xl mx-auto'>
           <div className='mb-10 flex justify-between items-center border-b-2 p-2'>
             <div className='flex flex-col'>
-              <h2 className='text-3xl font-medium'>Storefront design</h2>
+              <h2 className='text-3xl font-medium'>Page design</h2>
               <p>
                 last designed on{' '}
                 {moment(storefront?.lastEdited).format('MMM D, YYYY')}
@@ -195,7 +195,7 @@ const Design = () => {
               target='_blank'
               className='flex items-center'
             >
-              <p className='font-medium text-xl'>View your storefront</p>
+              <p className='font-medium text-xl'>View your page</p>
               <BsArrowRightShort className='text-2xl font-medium' />
             </a>
             <Link to='/dashboard/design/edit'>

@@ -37,12 +37,12 @@ const Home = () => {
                 An eCommerce platform that understands simplicity
               </p>
               <p className='text-2xl mt-8 tracking-wider font-medium'>
-                Launch, design, and manage single product storefronts from one
-                simple dashboard. No need for extra plugins or clutter.
+                Easily launch, design, and manage product pages from one simple
+                dashboard. No need for extra plugins or clutter.
               </p>
-              <Link to='/signup' className='flex justify-center mt-8'>
+              <Link to='/pricing' className='flex justify-center mt-8'>
                 <button className='rounded text-slate-800 w-5/12 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
-                  Launch a storefront - for free
+                  Launch a product page - for $9
                 </button>
               </Link>
               <a
@@ -67,8 +67,8 @@ const Home = () => {
                     Hosting on us
                   </p>
                   <p className='mt-2 text-center'>
-                    Never worry about hosting, storefronts are hosted and
-                    maintained by us
+                    Never worry about hosting, pages are hosted and maintained
+                    by us
                   </p>
                 </div>
                 <div className='flex flex-col items-center w-4/12 p-4'>
@@ -77,8 +77,8 @@ const Home = () => {
                     Custom notifications
                   </p>
                   <p className='mt-2 text-center'>
-                    Set notifications to receive emails about storefront events
-                    like orders placed or inventory running low
+                    Set notifications to receive emails about page events like
+                    orders placed or inventory running low
                   </p>
                 </div>
                 <div className='flex flex-col items-center w-4/12 p-4'>
@@ -97,7 +97,7 @@ const Home = () => {
                     Secure payments
                   </p>
                   <p className='mt-2 text-center'>
-                    Sucurely accept different kinds of payment and get paid
+                    Sucurely accept different kinds of payment and be paid
                     instantly
                   </p>
                 </div>

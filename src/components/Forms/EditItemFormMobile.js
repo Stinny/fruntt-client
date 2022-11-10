@@ -18,44 +18,23 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
 
-const EditItemFormMobile = ({
-  itemId,
-  title,
-  description,
-  price,
-  stock,
-  images,
-  published,
-  weightUnit,
-  address,
-  country,
-  state,
-  city,
-  zipcode,
-  sizeUnit,
-  weight,
-  height,
-  length,
-  width,
-  options,
-  shippingPrice,
-  productId,
-  refetch,
-}) => {
-  const [formTitle, setFormTitle] = useState(title);
-  const [formDescription, setFormDescription] = useState(description);
-  const [formPrice, setFormPrice] = useState(price);
-  const [formStock, setFormStock] = useState(stock);
-  const [formPublished, setFormPublished] = useState(published);
-  const [formWeightUnit, setFormWeightUnit] = useState(weightUnit);
-  const [formAddress, setFormAddress] = useState(address);
-  const [formCountry, setFormCountry] = useState(country);
-  const [formState, setFormState] = useState(state);
-  const [formCity, setFormCity] = useState(city);
-  const [formZip, setFormZip] = useState(zipcode);
-  const [formWeight, setFormWeight] = useState(weight);
-  const [formOptions, setFormOptions] = useState(options);
-  const [formShippingPrice, setFormShippingPrice] = useState(shippingPrice);
+const EditItemFormMobile = ({ product, productId }) => {
+  const [formTitle, setFormTitle] = useState(product?.title);
+  const [formDescription, setFormDescription] = useState(product?.description);
+  const [formPrice, setFormPrice] = useState(product?.price);
+  const [formStock, setFormStock] = useState(product?.stock);
+  const [formPublished, setFormPublished] = useState(product?.published);
+  const [formWeightUnit, setFormWeightUnit] = useState(product?.weightUnit);
+  const [formAddress, setFormAddress] = useState(product?.address);
+  const [formCountry, setFormCountry] = useState(product?.country);
+  const [formState, setFormState] = useState(product?.state);
+  const [formCity, setFormCity] = useState(product?.city);
+  const [formZip, setFormZip] = useState(product?.zipcode);
+  const [formWeight, setFormWeight] = useState(product?.weight);
+  const [formOptions, setFormOptions] = useState(product?.options);
+  const [formShippingPrice, setFormShippingPrice] = useState(
+    product?.shippingPrice
+  );
 
   const [fileList, setFileList] = useState([]);
   const [error, setError] = useState('');
@@ -90,7 +69,7 @@ const EditItemFormMobile = ({
   ]);
 
   const handleDeleteItem = async () => {
-    const deleteItemReq = await deleteProduct(itemId);
+    const deleteItemReq = await deleteProduct(productId);
     navigate('/dashboard/item');
   };
 

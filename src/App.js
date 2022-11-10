@@ -39,6 +39,7 @@ import PaymentMethod from './pages/PaymentMethod';
 import CustomerDetail from './pages/Dashboard/CustomerDetail';
 import Config from './pages/Dashboard/Config';
 import Feedback from './pages/Feedback';
+import AliItem from './pages/Dashboard/AliItem';
 
 function App() {
   return (
@@ -105,6 +106,8 @@ function App() {
                 <Route path='feedback/' element={<Feedback />} />
 
                 <Route path='dashboard/item/add' element={<AddItem />} />
+
+                <Route path='dashboard/item/add/ali' element={<AliItem />} />
 
                 <Route
                   path='dashboard/item/edit/:productId'

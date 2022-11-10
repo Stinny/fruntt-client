@@ -101,7 +101,7 @@ const Navbar = () => {
               disabled
               className='ml-2 text-gray-400 hover:text-gray-800'
             >
-              + Add storefront
+              + Add page
             </button>
           </Tooltip>
         </div>

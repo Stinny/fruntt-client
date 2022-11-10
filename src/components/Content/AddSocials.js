@@ -152,8 +152,8 @@ const AddSocials = ({ storefront, refetch }) => {
           <div className='flex flex-col w-4/6'>
             <p className='text-slate-800 font-medium text-lg'>Social Links</p>
             <p className='text-gray-400 text-sm'>
-              Social links appear in the footer of your storefront and only when
-              a link is provided
+              Social links appear in the footer of your page and only when a
+              link is provided
             </p>
           </div>
           <button
@@ -168,8 +168,8 @@ const AddSocials = ({ storefront, refetch }) => {
           <div className='flex flex-col'>
             <p className='text-slate-800 font-medium text-xl'>Social Links</p>
             <p className='text-gray-400 text-sm'>
-              Social links appear in the footer of your storefront and only when
-              a link is provided
+              Social links appear in the footer of your page and only when a
+              link is provided
             </p>
           </div>
           <button

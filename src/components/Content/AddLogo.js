@@ -113,7 +113,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
       >
         <div className='w-11/12 mx-auto'>
           <p className='text-lg font-medium text-slate-800 mb-4 border-b'>
-            Edit storefront name & logo
+            Edit page name & logo
           </p>
           <form>
             <p>Name</p>
@@ -159,7 +159,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
         <div className='border-b mb-4 p-2'>
           <div className='w-full flex justify-between items-center mt-4'>
             <p className='text-slate-800 font-medium text-lg'>
-              Storefront name & logo
+              Page name & logo
             </p>
 
             <button
@@ -193,7 +193,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
                   You have not added a logo yet
                 </p>
                 <p className='text-gray-400 text-center'>
-                  Your storefront name will appear on your navbar instead
+                  Your page name will appear on your navbar instead
                 </p>
               </div>
             )}
@@ -203,7 +203,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
         <div className='border-b mb-4'>
           <div className='w-full flex justify-between items-center mt-4'>
             <p className='text-slate-800 font-medium text-xl'>
-              Storefront name & logo
+              Page name & logo
             </p>
             <button
               className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
@@ -236,7 +236,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
                   You have not added a logo yet
                 </p>
                 <p className='text-gray-400 w-7/12 text-center mt-2'>
-                  Your storefront name will appear on your navbar instead
+                  Your page name will appear on your navbar instead
                 </p>
               </div>
             )}

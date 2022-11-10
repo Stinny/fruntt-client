@@ -66,8 +66,7 @@ const DashHome = () => {
           <p>
             Welcome merchants! As we onboard public beta users, collect
             feedback, and develop a pricing plan merchants will be restricted to
-            launching only one storefront. We encourage and appreaciate all
-            feedback!
+            launching only one page. We encourage and appreaciate all feedback!
           </p>
         </Alert>
 
@@ -77,7 +76,7 @@ const DashHome = () => {
             className='flex justify-center items-center text-xl text-slate-800 font-medium'
             target='_blank'
           >
-            View your storefront <FaExternalLinkAlt className='ml-2' />{' '}
+            View your page <FaExternalLinkAlt className='ml-2' />{' '}
           </a>
         </div>
 
@@ -85,9 +84,7 @@ const DashHome = () => {
           <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 relative'>
             <Tooltip
               title={
-                <p className='text-lg'>
-                  Total revenue your storefront has generated
-                </p>
+                <p className='text-lg'>Total revenue your page has generated</p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
               placement='right-end'
@@ -111,9 +108,7 @@ const DashHome = () => {
           <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 ml-4 relative'>
             <Tooltip
               title={
-                <p className='text-lg'>
-                  Total sales your storefront has generated
-                </p>
+                <p className='text-lg'>Total sales your page has generated</p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
               placement='right-end'
@@ -130,7 +125,7 @@ const DashHome = () => {
             <Tooltip
               title={
                 <p className='text-lg'>
-                  Amount of users who have visted your storefront
+                  Amount of users who have visted your page
                 </p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
@@ -140,7 +135,7 @@ const DashHome = () => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-xl font-medium'>Store visits</p>
+            <p className='text-xl font-medium'>Page visits</p>
             <p className='text-4xl font-medium'>{stats?.visits}</p>
           </div>
 

@@ -40,7 +40,7 @@ const LoginMobile = ({
         <div className='w-full flex justify-between mt-2'>
           <Link to='/signup'>
             <p className='text-xs text-slate-400 hover:text-slate-800 font-medium'>
-              Don't have a storefront yet?
+              Don't have a page yet?
             </p>
           </Link>
           <Link to='/signup'>
@@ -54,7 +54,7 @@ const LoginMobile = ({
           disabled={isLoading}
           className='h-10 w-full border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-lg mt-4'
         >
-          Go to my storefront
+          Go to my page
         </button>
       </form>
     </div>

@@ -292,7 +292,7 @@ const DesignFormMobile = ({ storefront }) => {
   return (
     <div className='w-full mx-auto'>
       <div className='flex justify-between items-center border-b-2 p-2'>
-        <h2 className='text-xl font-medium'>Design your storefront</h2>
+        <h2 className='text-xl font-medium'>Design your page</h2>
 
         <div className='flex'>
           <button

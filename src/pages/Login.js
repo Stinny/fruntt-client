@@ -94,7 +94,7 @@ const Login = () => {
           <div className='w-2/6 flex justify-between mt-2'>
             <Link to='/signup'>
               <p className='text-sm text-slate-400 hover:text-slate-800 font-medium'>
-                Don't have a storefront yet?
+                Don't have a page yet?
               </p>
             </Link>
             <Link to='/signup'>
@@ -108,7 +108,7 @@ const Login = () => {
             disabled={isLoading}
             className='h-11 w-2/6 border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-xl mt-4'
           >
-            Go to my storefront
+            Go to my page
           </button>
         </form>
       </div>

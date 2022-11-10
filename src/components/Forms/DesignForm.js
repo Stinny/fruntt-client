@@ -292,7 +292,7 @@ const DesignForm = ({ storefront }) => {
   return (
     <div className='w-full mx-auto'>
       <div className='mb-10 flex justify-between items-center border-b-2 p-2'>
-        <h2 className='text-3xl font-medium'>Designing your storefront</h2>
+        <h2 className='text-3xl font-medium'>Designing your page</h2>
 
         <div className='flex'>
           <button

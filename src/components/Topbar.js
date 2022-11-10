@@ -28,7 +28,7 @@ const Topbar = () => {
             className={
               path === '/dashboard/item' ||
               path === '/dashboard/item/add' ||
-              path === '/dashboard/item/add/buynow'
+              path === '/dashboard/item/add/ali'
                 ? activeLink
                 : notActiveLink
             }

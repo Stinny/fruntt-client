@@ -273,11 +273,11 @@ const DesignPreviewMobile = ({
                 className='font-medium text-lg'
                 style={{ borderColor: storefront?.style?.pageText }}
               >
-                This single product storefront is empty
+                This product page is empty
               </p>
               <Link
                 to='/dashboard/item/add'
-                className='border-2 rounded border-slate-800 text-slate-800 w-28 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
+                className='border-2 rounded border-slate-800 text-slate-800 w-32 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
               >
                 + Add product
               </Link>
@@ -335,8 +335,8 @@ const DesignPreviewMobile = ({
   return (
     <div className='w-full h-fit mx-auto p-2'>
       <Alert severity='info' className='mt-2 mb-4'>
-        This is just a preview, not your actual storefront. See changes before
-        you save.
+        This is just a preview, not your actual page. See changes before you
+        save.
       </Alert>
       {content}
     </div>

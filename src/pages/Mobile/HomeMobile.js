@@ -20,12 +20,13 @@ const HomeMobile = () => {
             An eCommerce platform that understands simplicity
           </p>
           <p className='text-md mt-4 tracking-wider font-medium'>
-            Launch, design, and manage single product storefronts from one
-            simple dashboard. No need for extra plugins or clutter.
+            Easily launch, design, and manage product pages from one simple
+            dashboard. No need for extra plugins or clutter.
           </p>
-          <Link to='/signup' className='flex justify-center mt-8'>
-            <button className='rounded text-slate-800 w-9/12 h-10 text-lg mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
-              Launch a storefront - for free
+
+          <Link to='/pricing' className='flex justify-center mt-8'>
+            <button className='rounded text-slate-800 w-10/12 h-10 text-lg border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
+              Launch a product page - for $9
             </button>
           </Link>
           <a
@@ -50,8 +51,7 @@ const HomeMobile = () => {
                 Hosting on us
               </p>
               <p className='mt-2 text-center'>
-                Never worry about hosting, storefronts are hosted and maintained
-                by us
+                Never worry about hosting, pages are hosted and maintained by us
               </p>
             </div>
             <div className='flex flex-col items-center w-full p-4'>
@@ -60,7 +60,7 @@ const HomeMobile = () => {
                 Custom notifications
               </p>
               <p className='mt-2 text-center'>
-                Set notifications to receive emails about storefront events like
+                Set notifications to receive emails about page events like
                 orders placed or inventory running low
               </p>
             </div>
@@ -80,8 +80,7 @@ const HomeMobile = () => {
                 Secure payments
               </p>
               <p className='mt-2 text-center'>
-                Sucurely accept different kinds of payment and get paid
-                instantly
+                Sucurely accept different kinds of payment and be paid instantly
               </p>
             </div>
             <div className='flex flex-col items-center w-full p-4'>

@@ -11,48 +11,32 @@ import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 import EditOptionsForm from '../../components/Forms/EditOptionsForm';
 import { states } from '../../states';
 import { BsArrowLeftShort } from 'react-icons/bs';
+import OptionsForm from '../AddItem/OptionsForm';
+import EditAliItem from './EditAliItem';
 
 //mui
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
-import OptionsForm from '../AddItem/OptionsForm';
 
-const EditItemForm = ({
-  itemId,
-  title,
-  description,
-  price,
-  stock,
-  published,
-  images,
-  productId,
-  weightUnit,
-  address,
-  country,
-  state,
-  city,
-  zipcode,
-  weight,
-  options,
-  shippingPrice,
-  refetch,
-}) => {
-  const [formTitle, setFormTitle] = useState(title);
-  const [formDescription, setFormDescription] = useState(description);
-  const [formPrice, setFormPrice] = useState(price);
-  const [formStock, setFormStock] = useState(stock);
-  const [formPublished, setFormPublished] = useState(published);
-  const [formWeightUnit, setFormWeightUnit] = useState(weightUnit);
-  const [formAddress, setFormAddress] = useState(address);
-  const [formCountry, setFormCountry] = useState(country);
-  const [formState, setFormState] = useState(state);
-  const [formCity, setFormCity] = useState(city);
-  const [formZip, setFormZip] = useState(zipcode);
-  const [formWeight, setFormWeight] = useState(weight);
-  const [formOptions, setFormOptions] = useState(options);
-  const [formShippingPrice, setFormShippingPrice] = useState(shippingPrice);
+const EditItemForm = ({ product, productId }) => {
+  const [formTitle, setFormTitle] = useState(product?.title);
+  const [formDescription, setFormDescription] = useState(product?.description);
+  const [formPrice, setFormPrice] = useState(product?.price);
+  const [formStock, setFormStock] = useState(product?.stock);
+  const [formPublished, setFormPublished] = useState(product?.published);
+  const [formWeightUnit, setFormWeightUnit] = useState(product?.weightUnit);
+  const [formAddress, setFormAddress] = useState(product?.shipsFrom?.address);
+  const [formCountry, setFormCountry] = useState(product?.shipsFrom?.country);
+  const [formState, setFormState] = useState(product?.shipsFrom?.state);
+  const [formCity, setFormCity] = useState(product?.shipsFrom?.city);
+  const [formZip, setFormZip] = useState(product?.shipsFrom?.zipcode);
+  const [formWeight, setFormWeight] = useState(product?.weight);
+  const [formOptions, setFormOptions] = useState(product?.options);
+  const [formShippingPrice, setFormShippingPrice] = useState(
+    product?.shippingPrice
+  );
 
   const [fileList, setFileList] = useState([]);
   const [error, setError] = useState('');
@@ -72,7 +56,7 @@ const EditItemForm = ({
     'Media is needed to showcase your item and can be seen by your customers on your single item storefront.';
 
   const handleDeleteItem = async () => {
-    const deleteItemReq = await deleteProduct(itemId);
+    const deleteItemReq = await deleteProduct(productId);
     navigate('/dashboard/item');
   };
 
@@ -142,7 +126,9 @@ const EditItemForm = ({
     }
   };
 
-  return (
+  return product.ali ? (
+    <EditAliItem product={product} handleDeleteItem={handleDeleteItem} />
+  ) : (
     <>
       <Link
         to='/dashboard/item'

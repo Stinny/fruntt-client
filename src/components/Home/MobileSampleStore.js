@@ -38,7 +38,7 @@ const MobileSampleStore = () => {
         <div className='w-full flex flex-col'>
           <div className='flex w-full justify-end items-center'>
             <BsArrow90DegDown className='font-medium' />
-            <p className='text-xl font-medium mb-2 ml-2'>Sample storefront</p>
+            <p className='text-xl font-medium mb-2 ml-2'>Sample product page</p>
           </div>
           <img src={img} className='w-full border-2 rounded drop-shadow-md' />
         </div>
@@ -51,7 +51,7 @@ const MobileSampleStore = () => {
           </p>
           <Link to='/signup'>
             <button className='h-10 w-full border-2 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 font-medium rounded mt-4'>
-              Launch a storefront - for free
+              Launch a product page
             </button>
           </Link>
           <p className='mt-10 font-medium w-full text-left text-sm mt-20'>

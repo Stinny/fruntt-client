@@ -55,7 +55,7 @@ const Launching = () => {
           </Box>
         </Box>
         <p className='mt-2 text-xl font-medium'>
-          Your storefront is launching...
+          Your product page is launching...
         </p>
         <p className='text-gray-400 mt-2 font-medium'>
           This will only take about a minute
