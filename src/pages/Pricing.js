@@ -22,21 +22,21 @@ const Pricing = () => {
         <div className='w-full mx-auto max-w-7xl h-fit'>
           <div className='w-8/12 mx-auto flex flex-col items-center'>
             <p className='text-5xl font-medium mt-8'>Pricing</p>
-            <Alert severity='info' className='mt-2'>
+            {/* <Alert severity='info' className='mt-2'>
               Welcome early bird merchants! We are very excited to offer our
               early bird special. Launch your first product page during our
               early bird special and only pay $9/mo!
-            </Alert>
+            </Alert> */}
             <div className='border-2 rounded w-full h-full p-4 mt-4'>
-              <div className='flex items-center mb-2'>
+              {/* <div className='flex items-center mb-2'>
                 <p className='text-3xl font-medium'>Early bird special</p>
                 <FaEarlybirds className='text-3xl' />
-              </div>
+              </div> */}
               <p className='font-medium text-4xl'>
-                <span className='text-6xl'>$9</span>/mo
+                <span className='text-6xl'>$TBD</span>/mo
               </p>
               <p className='font-medium text-gray-400 text-xl'>
-                For first product page
+                Per product page
               </p>
               <p className='mt-8 text-xl text-slate-800 font-medium'>
                 Platform includes:
@@ -61,7 +61,7 @@ const Pricing = () => {
               </div>
               <Link to='/signup' className='w-full'>
                 <button className='w-full mt-4 h-14 text-xl border-2 border-slate-800 text-slate-800 rounded hover:text-white hover:bg-slate-800'>
-                  Launch a product page - $9
+                  Launch a product page - free
                 </button>
               </Link>
             </div>

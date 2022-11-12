@@ -26,7 +26,7 @@ const HomeMobile = () => {
 
           <Link to='/pricing' className='flex justify-center mt-8'>
             <button className='rounded text-slate-800 w-10/12 h-10 text-lg border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
-              Launch a product page - for $9
+              Launch a product page - for free
             </button>
           </Link>
           <a

@@ -17,6 +17,7 @@ import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
+import EditAliItemMobile from './EditAliItemMobile';
 
 const EditItemFormMobile = ({ product, productId }) => {
   const [formTitle, setFormTitle] = useState(product?.title);
@@ -124,7 +125,9 @@ const EditItemFormMobile = ({ product, productId }) => {
     }
   };
 
-  return (
+  return product?.ali ? (
+    <EditAliItemMobile product={product} />
+  ) : (
     <>
       <Link
         to='/dashboard/item'
