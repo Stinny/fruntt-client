@@ -100,13 +100,14 @@ const Item = () => {
         </button>
       </Link>
 
-      {/* <p className='mt-2 font-medium text-xl'>OR</p>
+      <p className='mt-2 font-medium text-xl'>OR</p>
 
       {error && (
         <Alert severity='error' className='mx-auto mt-2 mb-2 w-7/12'>
           {error}
         </Alert>
       )}
+
       <div className='flex items-center w-7/12 mt-2'>
         <input
           type='text'
@@ -123,12 +124,13 @@ const Item = () => {
           {importing ? 'Importing...' : 'Import from Aliexpress'}
         </button>
       </div>
+
       <Link
         to='/'
         className='text-gray-400 self-start w-7/12 mx-auto text-sm hover:text-gray-600'
       >
         Can find the product ID?
-      </Link> */}
+      </Link>
     </div>
   );
 

@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar';
 import Topbar from '../../components/Topbar';
 import moment from 'moment';
 import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
+import { SiAliexpress } from 'react-icons/si';
 import AliOptions from '../../components/AddItem/AliOptions';
 import { useAddAliProductMutation } from '../../api/productsApiSlice';
 
@@ -96,12 +97,20 @@ const AliItem = () => {
       <Topbar />
       <div className='max-w-6xl mx-auto h-fit'>
         <div className='w-full p-2 border-b-2 flex items-center justify-between'>
-          <p className='text-2xl font-medium'>
-            Importing product from Aliexpress
-          </p>
+          <div className='flex flex-col'>
+            <p className='text-2xl font-medium'>
+              Importing product from Aliexpress
+            </p>
+            <p className='text-gray-400 font-medium w-10/12'>
+              When importing a product from Aliexpress, keep in mind that when
+              your product page recieves orders, you will have to manually
+              fulfill orders on Aliexpress as well
+            </p>
+          </div>
+
           <button
             onClick={handleAddAliItem}
-            className='border-2 border-slate-800 rounded w-32 h-10 text-slate-800 hover:text-white hover:bg-slate-800'
+            className='border-2 border-slate-800 rounded w-36 h-10 text-slate-800 hover:text-white hover:bg-slate-800'
           >
             + Add product
           </button>
@@ -149,17 +158,19 @@ const AliItem = () => {
 
             <div className='w-full flex justify-between'>
               <div className='flex flex-col w-2/6'>
-                <p className='text-gray-400 mt-4'>Set Product Price</p>
+                <p className='text-gray-400 mt-4'>Set your price</p>
                 <input
                   type='number'
                   className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
-                  placeholder='Enter price'
+                  placeholder='Enter your price'
                   onChange={(e) => setProductPrice(e.target.value)}
                 />
               </div>
 
               <div className='flex flex-col w-2/6 ml-4'>
-                <p className='text-gray-400 mt-4'>Set Product Stock</p>
+                <p className='text-gray-400 mt-4'>
+                  How many would you like to sell?
+                </p>
                 <input
                   type='number'
                   className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
@@ -169,13 +180,10 @@ const AliItem = () => {
               </div>
 
               <div className='flex flex-col w-2/6 ml-4'>
-                <p className='text-gray-400 mt-4'>Number of sales</p>
-                <input
-                  type='number'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
-                  value={numOfSales}
-                  disabled
-                />
+                <p className='text-gray-400 mt-4'>
+                  Number of sales(from Aliexpress)
+                </p>
+                <p className='flex text-3xl font-medium'>{numOfSales}</p>
               </div>
             </div>
           </div>
@@ -203,7 +211,11 @@ const AliItem = () => {
           <div className='flex items-center mt-2'>
             <p className='text-xl font-medium'>Media</p>
             <Tooltip
-              title={<p className='text-lg'></p>}
+              title={
+                <p className='text-lg'>
+                  Images that are imported from Aliexpress
+                </p>
+              }
               className='ml-2'
               placement='bottom'
               enterTouchDelay={10}
