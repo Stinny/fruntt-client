@@ -141,7 +141,7 @@ const ShippingAddress = ({ order, refetch, refetchRates }) => {
       </Modal>
       {isMobile ? (
         <div>
-          <div className='flex justify-between items-center border-b p-2'>
+          <div className='flex justify-between items-center border-b p-2 mt-10'>
             <p className='text-xl font-medium'>Shipping to</p>
             <button
               onClick={openModal}

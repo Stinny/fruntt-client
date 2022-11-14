@@ -8,6 +8,7 @@ import moment from 'moment';
 import { FiDownload } from 'react-icons/fi';
 import ShippingAddress from '../../../components/OrderDetail/ShippingAddress';
 import FromAddress from '../../../components/OrderDetail/FromAddress';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const OrderDetailMobile = ({
   order,
@@ -70,6 +71,18 @@ const OrderDetailMobile = ({
             </button>
           )}
 
+          {order?.item?.ali && !order.fulfilled ? (
+            <a
+              href={order?.item?.aliUrl}
+              target='_blank'
+              className='w-56 border-2 rounded border-slate-800 text-slate-800 h-10 flex justify-center items-center hover:bg-slate-800 hover:text-white'
+            >
+              Place order on Aliexpress <FaExternalLinkAlt className='ml-2' />
+            </a>
+          ) : (
+            ''
+          )}
+
           {order.manualTrackingNumber && (
             <button
               disabled
@@ -89,7 +102,9 @@ const OrderDetailMobile = ({
             ''
           )}
 
-          {!order.labelUrl && !order.manualTrackingNumber ? (
+          {!order.labelUrl &&
+          !order.manualTrackingNumber &&
+          !order?.item?.ali ? (
             <button
               onClick={openLabelModal}
               className='border-2 w-60 h-10 rounded border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
@@ -159,11 +174,15 @@ const OrderDetailMobile = ({
           refetchRates={refetchRates}
         />
 
-        <FromAddress
-          order={order}
-          refetch={refetch}
-          refetchRates={refetchRates}
-        />
+        {order?.item?.ali ? (
+          ''
+        ) : (
+          <FromAddress
+            order={order}
+            refetch={refetch}
+            refetchRates={refetchRates}
+          />
+        )}
       </div>
     </div>
   );
