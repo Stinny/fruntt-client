@@ -25,16 +25,13 @@ const AliItemPrev = ({
   const btnStyle = buttonStyle === 'filled' ? buttonColor : '';
 
   return (
-    <div className='p-14'>
-      <div
-        className='w-full flex justify-between mx-auto'
-        style={{ backgroundColor: pageBG }}
-      >
-        <div className='w-3/6'>
-          <img className='w-11/12' src={item?.aliImages[0]} />
+    <div className='p-2'>
+      <div className='w-full flex flex-col' style={{ backgroundColor: pageBG }}>
+        <div className='w-full'>
+          <img className='w-full' src={item?.aliImages[0]} />
         </div>
 
-        <div className='w-3/6 flex flex-col pl-10'>
+        <div className='w-full flex flex-col'>
           <h2
             className='text-2xl font-medium w-11/12'
             style={{ color: pageText }}
@@ -69,7 +66,7 @@ const AliItemPrev = ({
               </p>
             </div>
 
-            <div className='flex justify-between w-11/12 items-center mt-4'>
+            <div className='flex justify-between w-full items-center mt-4'>
               <div className='flex items-center'>
                 <p style={{ color: pageText }}>Qty:</p>
                 <select
@@ -83,7 +80,7 @@ const AliItemPrev = ({
               <button
                 type='button'
                 disabled
-                className='w-9/12 h-10 text-2xl border-2 border-slate-800 rounded'
+                className='w-9/12 h-10 text-2xl border-2 border-slate-800 rounded ml-2'
                 style={{
                   color: buttonTextColor,
                   backgroundColor: btnStyle,
