@@ -40,10 +40,10 @@ const AliItem = () => {
   const [options, setOptions] = useState(product?.item?.sku?.props);
   const [numOfSales, setNumOfSales] = useState(product?.item?.sales);
   const [published, setPublished] = useState(true);
-  const [freeShipping, setFreeShipping] = useState(false);
   const [shippingPrice, setShippingPrice] = useState(0);
   const [stock, setStock] = useState(0);
   const [productPrice, setProductPrice] = useState(0);
+  const [estimatedDelivery, setEstimatedDelivery] = useState('');
 
   //reviews
   const [prodReviews, setProdReviews] = useState(reviews);
@@ -78,7 +78,8 @@ const AliItem = () => {
         itemUrl,
         options,
         images,
-        freeShipping,
+        shippingPrice,
+        estimatedDelivery,
       }).unwrap();
 
       if (addProductReq === 'Item added') {
@@ -125,7 +126,12 @@ const AliItem = () => {
           <div className='flex items-center'>
             <p className='text-xl font-medium'>Details</p>
             <Tooltip
-              title={<p className='text-lg'></p>}
+              title={
+                <p className='text-lg'>
+                  All these details will be visible to customers on your product
+                  page
+                </p>
+              }
               className='ml-2 text-lg'
               placement='bottom'
               enterTouchDelay={10}
@@ -162,7 +168,7 @@ const AliItem = () => {
                 <input
                   type='number'
                   className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
-                  placeholder='Enter your price'
+                  placeholder='Enter price'
                   onChange={(e) => setProductPrice(e.target.value)}
                 />
               </div>
@@ -246,55 +252,9 @@ const AliItem = () => {
             ''
           )} */}
 
-          <div className='flex justify-between w-full mt-4'>
-            <div className='flex flex-col w-3/6'>
-              <p className='text-xl font-medium'>Ships from</p>
-              <input
-                type='text'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
-                value={shippingFrom}
-                disabled
-              />
-            </div>
-            <div className='flex flex-col w-3/6'>
-              <p className='text-xl font-medium'>Ships to</p>
-              <input
-                type='text'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 ml-2'
-                value={shippingTo}
-                disabled
-              />
-            </div>
-          </div>
-
-          <div className='w-full flex flex-col mt-4'>
-            <p className='text-xl font-medium'>Set your shipping price</p>
-            <p className='text-gray-400'>
-              This is also the price you pay for shipping on Aliexpress
-            </p>
-            <select className='w-5/12 h-10 p-2 rounded'>
-              {shippingList.map((ship) => (
-                <option className='bg-gray-200'>
-                  Price: ${ship?.shippingFee} Estimated delivery:{' '}
-                  {moment(ship?.estimateDeliveryDate).format('MMM D, YYYY')}
-                </option>
-              ))}
-            </select>
-            <p className='font-medium mt-2 text-xl'>OR</p>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={freeShipping}
-                  onChange={(e) => setFreeShipping(e.target.checked)}
-                />
-              }
-              label='Offer free shipping on this product'
-            />
-          </div>
-
           {prodReviews.length > 0 ? (
             <>
-              <p className='text-xl font-medium'>
+              <p className='text-xl font-medium mt-4'>
                 Reviews being imported({prodReviews.length})
               </p>
               <div className='flex items-center'>
@@ -339,6 +299,74 @@ const AliItem = () => {
               <p>This product has no reviews</p>
             </div>
           )}
+
+          <div className='flex justify-between w-full mt-4'>
+            <div className='flex flex-col w-3/6'>
+              <p className='text-xl font-medium'>Ships from</p>
+              <input
+                type='text'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
+                value={shippingFrom}
+                disabled
+              />
+            </div>
+            <div className='flex flex-col w-3/6'>
+              <p className='text-xl font-medium'>Ships to</p>
+              <input
+                type='text'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 ml-2'
+                value={shippingTo}
+                disabled
+              />
+            </div>
+          </div>
+
+          <div className='w-full flex flex-col mt-4'>
+            <div className='flex flex-col border-b p-2'>
+              <p className='text-xl font-medium'>
+                Set shipping price & estimated delivery
+              </p>
+              <p className='text-gray-400'>
+                Base your price and estimated delivery on what you will pay when
+                placing the order on Aliexpress. References shown below.
+              </p>
+            </div>
+
+            <div className='w-full flex justify-between mt-2'>
+              <div className='flex flex-col w-3/6'>
+                <p className='text-gray-400'>
+                  Price (keep 0 to offer free shipping)
+                </p>
+                <input
+                  type='number'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
+                  value={shippingPrice}
+                  onChange={(e) => setShippingPrice(e.target.value)}
+                />
+              </div>
+              <div className='flex flex-col w-3/6 ml-2'>
+                <p className='text-gray-400'>Estimated delivery</p>
+                <input
+                  type='date'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
+                  onChange={(e) => setEstimatedDelivery(e.target.value)}
+                />
+              </div>
+            </div>
+            <p className='font-medium mt-4'>What you'll pay on Aliexpress</p>
+            <div className='w-full flex flex-wrap'>
+              {shippingList.map((ship) => (
+                <div className='w-3/12 ml-2 mt-2 bg-gray-200 p-2 flex flex-col rounded'>
+                  <p className='font-medium'>Price:</p>
+                  <p>${ship?.shippingFee}</p>
+                  <p className='font-medium'>Estimated delivery:</p>
+                  <p>
+                    {moment(ship?.estimateDeliveryDate).format('MMM D, YYYY')}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
 
           {error && (
             <Alert severity='error' className='mt-2 mb-2'>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 import { useUpdateAliProductMutation } from '../../api/productsApiSlice';
+import moment from 'moment';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -25,8 +26,8 @@ const EditAliItem = ({ product, handleDeleteItem }) => {
   const [formShippingPrice, setFormShippingPrice] = useState(
     product?.shippingPrice
   );
-  const [formFreeShipping, setFormFreeShipping] = useState(
-    product?.freeShipping
+  const [formEstimatedDelivery, setFormEstimatedDelivery] = useState(
+    product?.aliEstimatedDelivery
   );
 
   const [error, setError] = useState('');
@@ -46,7 +47,7 @@ const EditAliItem = ({ product, handleDeleteItem }) => {
         formStock,
         formPublished,
         formShippingPrice,
-        formFreeShipping,
+        formEstimatedDelivery,
       }).unwrap();
 
       if (updateItemReq === 'Item updated') {
@@ -200,23 +201,29 @@ const EditAliItem = ({ product, handleDeleteItem }) => {
           ''
         )}
 
-        <div className='w-full flex flex-col'>
-          <p className='text-xl font-medium'>Change shipping price</p>
-          <input
-            type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-8/12 rounded p-2 outline outline-0'
-            value={shippingPrice}
-          />
-          <p className='font-medium mt-2 text-xl'>OR</p>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={formFreeShipping}
-                onChange={(e) => setFormFreeShipping(e.target.checked)}
+        <div className='flex w-full mt-4'>
+          <div className='w-3/6 flex flex-col'>
+            <p className='text-xl font-medium'>Change shipping price</p>
+            <div className='flex items-center w-full'>
+              <p className='font-medium text-lg mr-2'>$</p>
+              <input
+                type='number'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
+                value={formShippingPrice}
+                onChange={(e) => setFormShippingPrice(e.target.value)}
               />
-            }
-            label='Offer free shipping on this product'
-          />
+            </div>
+          </div>
+          <div className='w-3/6 flex flex-col ml-2'>
+            <p className='text-xl font-medium'>Change estimated delivery</p>
+
+            <input
+              type='date'
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
+              value={moment.utc(formEstimatedDelivery).format('YYYY-MM-DD')}
+              onChange={(e) => setFormEstimatedDelivery(e.target.value)}
+            />
+          </div>
         </div>
 
         <div className='w-full flex justify-between'>

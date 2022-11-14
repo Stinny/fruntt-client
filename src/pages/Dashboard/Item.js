@@ -151,7 +151,7 @@ const Item = () => {
               <h2 className='text-3xl font-semibold'>Your product</h2>
               <p>
                 last edited on{' '}
-                {moment(product[0].updatedOn).format('MMM D, YYYY')}
+                {moment.utc(product[0].updatedOn).format('MMM D, YYYY')}
               </p>
             </div>
 

@@ -82,7 +82,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         formStock,
         formPublished,
         formShippingPrice,
-        formFreeShipping,
+        formEstimatedDelivery,
       }) => ({
         url: `/products/edit/ali/${productId}`,
         method: 'POST',
@@ -92,7 +92,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
           price: formPrice,
           stock: formStock,
           published: formPublished,
-          freeShipping: formFreeShipping,
+          estimatedDelivery: formEstimatedDelivery,
           shippingPrice: formShippingPrice,
         },
       }),
