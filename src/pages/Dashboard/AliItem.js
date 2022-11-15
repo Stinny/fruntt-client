@@ -102,11 +102,6 @@ const AliItem = () => {
             <p className='text-2xl font-medium'>
               Importing product from Aliexpress
             </p>
-            <p className='text-gray-400 font-medium w-10/12'>
-              When importing a product from Aliexpress, keep in mind that when
-              your product page recieves orders, you will have to manually
-              fulfill orders on Aliexpress as well
-            </p>
           </div>
 
           <button
@@ -337,12 +332,15 @@ const AliItem = () => {
                 <p className='text-gray-400'>
                   Price (keep 0 to offer free shipping)
                 </p>
-                <input
-                  type='number'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
-                  value={shippingPrice}
-                  onChange={(e) => setShippingPrice(e.target.value)}
-                />
+                <div className='flex items-center'>
+                  <p className='font-medium text-xl mr-2'>$</p>
+                  <input
+                    type='number'
+                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
+                    value={shippingPrice}
+                    onChange={(e) => setShippingPrice(e.target.value)}
+                  />
+                </div>
               </div>
               <div className='flex flex-col w-3/6 ml-2'>
                 <p className='text-gray-400'>Estimated delivery</p>
@@ -353,7 +351,9 @@ const AliItem = () => {
                 />
               </div>
             </div>
-            <p className='font-medium mt-4'>What you'll pay on Aliexpress</p>
+            <p className='font-medium mt-4'>
+              Copy these rates on Aliexpress for best customer experience
+            </p>
             <div className='w-full flex flex-wrap'>
               {shippingList.map((ship) => (
                 <div className='w-3/12 ml-2 mt-2 bg-gray-200 p-2 flex flex-col rounded'>

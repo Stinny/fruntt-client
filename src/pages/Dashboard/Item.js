@@ -39,49 +39,6 @@ const Item = () => {
     refetch,
   } = useGetProductsQuery();
 
-  const [getAliProduct, result] = useLazyGetAliProductQuery();
-
-  const handleGetProduct = async (e) => {
-    e.preventDefault();
-
-    setImporting(true);
-
-    if (!aliProductId) {
-      setError('Please enter Aliexpress product ID');
-      setImporting(false);
-      return;
-    }
-
-    try {
-      const aliProductReq = await getAliProduct({
-        productId: aliProductId,
-      }).unwrap();
-
-      if (aliProductReq.success) {
-        console.log(aliProductReq.product);
-        setImporting(false);
-        navigate(`/dashboard/item/add/ali`, {
-          state: {
-            product: aliProductReq.product,
-            reviews: aliProductReq?.reviews,
-            aliRating: aliProductReq?.aliRating,
-          },
-        });
-      } else {
-        setImporting(false);
-        setError(aliProductReq?.msg);
-      }
-    } catch (err) {
-      console.log(err);
-      setImporting(false);
-      setError('There was a server error');
-    }
-  };
-
-  useEffect(() => {
-    setError('');
-  }, [aliProductId]);
-
   useEffect(() => {
     refetch();
   }, []);
@@ -94,43 +51,22 @@ const Item = () => {
       <p className='text-gray-400 text-xl w-8/12 mt-4 text-center'>
         Add product details, adjust your inventory, set shipping price and more
       </p>
-      <Link to='/dashboard/item/add'>
-        <button className='w-40 h-10 rounded border-2 border-slate-800 text-slate-800 mt-4 font-medium hover:bg-slate-800 hover:text-white'>
-          + Add Product
-        </button>
-      </Link>
-
-      <p className='mt-2 font-medium text-xl'>OR</p>
-
-      {error && (
-        <Alert severity='error' className='mx-auto mt-2 mb-2 w-7/12'>
-          {error}
-        </Alert>
-      )}
-
-      <div className='flex items-center w-7/12 mt-2'>
-        <input
-          type='text'
-          className='border-2 h-10 border-slate-200 hover:border-slate-300 w-10/12 rounded p-2 outline outline-0 bg-white'
-          placeholder='Enter Aliexpress product ID'
-          onChange={(e) => setAliProductId(e.target.value)}
-        />
-        <button
-          type='button'
-          onClick={handleGetProduct}
-          className='h-10 w-60 border-2 border-slate-800 rounded ml-2 hover:text-white hover:bg-slate-800'
-          disabled={importing}
-        >
-          {importing ? 'Importing...' : 'Import from Aliexpress'}
-        </button>
+      <div className='flex justify-center w-6/12 mt-4'>
+        <Link to='/dashboard/item/add' className='w-3/6'>
+          <div className='flex flex-col border-2 rounded border-slate-800 p-2 h-24'>
+            <p className='font-medium text-lg'>Physical product</p>
+            <p className='text-gray-400'>
+              Something that would require shipping on your end
+            </p>
+          </div>
+        </Link>
+        <Link to='/dashboard/item/import' className='w-3/6 ml-2 h-32'>
+          <div className='flex flex-col border-2 rounded border-slate-800 p-2 h-24'>
+            <p className='font-medium text-lg'>Import a product</p>
+            <p className='text-gray-400'>Import a product from Aliexpress</p>
+          </div>
+        </Link>
       </div>
-
-      <Link
-        to='/'
-        className='text-gray-400 self-start w-7/12 mx-auto text-sm hover:text-gray-600'
-      >
-        Can find the product ID?
-      </Link>
     </div>
   );
 

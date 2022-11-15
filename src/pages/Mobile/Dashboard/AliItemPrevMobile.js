@@ -4,7 +4,7 @@ import moment from 'moment';
 //mui
 import Rating from '@mui/material/Rating';
 
-const AliItemPrev = ({
+const AliItemPrevMobile = ({
   item,
   pageBG,
   navbarBG,
@@ -26,15 +26,12 @@ const AliItemPrev = ({
 
   return (
     <div className='p-2'>
-      <div
-        className='w-full flex justify-between items-center'
-        style={{ backgroundColor: pageBG }}
-      >
-        <div className='w-3/6'>
+      <div className='w-full flex flex-col' style={{ backgroundColor: pageBG }}>
+        <div className='w-full'>
           <img className='w-full' src={item?.aliImages[0]} />
         </div>
 
-        <div className='w-3/6 flex flex-col'>
+        <div className='w-full flex flex-col'>
           <h2
             className='text-2xl font-medium w-11/12'
             style={{ color: pageText }}
@@ -61,7 +58,7 @@ const AliItemPrev = ({
               ))
             : ''}
           <form>
-            <div className='w-8/12 flex items-center mt-4'>
+            <div className='w-full flex items-center mt-4'>
               <Rating value={item?.aliRating} precision={0.1} readOnly />
               <p className='ml-2' style={{ color: pageText }}>
                 ({item?.aliReviews?.length}){' '}
@@ -138,10 +135,10 @@ const AliItemPrev = ({
           ) : (
             <div
               style={{ borderColor: borderColor }}
-              className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
+              className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center text-center'
             >
               <p
-                className='font-medium text-xl'
+                className='font-medium text-lg'
                 style={{ color: storefront?.style?.pageText }}
               >
                 Customer questions have not been posted yet!
@@ -199,4 +196,4 @@ const AliItemPrev = ({
   );
 };
 
-export default AliItemPrev;
+export default AliItemPrevMobile;

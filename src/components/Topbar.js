@@ -27,6 +27,7 @@ const Topbar = () => {
           <button
             className={
               path === '/dashboard/item' ||
+              path === '/dashboard/item/import' ||
               path === '/dashboard/item/add' ||
               path === '/dashboard/item/add/ali'
                 ? activeLink

@@ -40,6 +40,7 @@ import CustomerDetail from './pages/Dashboard/CustomerDetail';
 import Config from './pages/Dashboard/Config';
 import Feedback from './pages/Feedback';
 import AliItem from './pages/Dashboard/AliItem';
+import ImportAli from './pages/Dashboard/ImportAli';
 
 function App() {
   return (
@@ -106,6 +107,8 @@ function App() {
                 <Route path='feedback/' element={<Feedback />} />
 
                 <Route path='dashboard/item/add' element={<AddItem />} />
+
+                <Route path='dashboard/item/import' element={<ImportAli />} />
 
                 <Route path='dashboard/item/add/ali' element={<AliItem />} />
 

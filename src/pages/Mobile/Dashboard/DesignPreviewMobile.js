@@ -10,12 +10,12 @@ import {
 import Spinner from '../../../components/Spinner';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { useGetReviewsAndProductQuery } from '../../../api/customersApiSlice';
+import AliItemPrevMobile from './AliItemPrevMobile';
 
 //mui
 import Alert from '@mui/material/Alert';
 import Rating from '@mui/material/Rating';
-import { useGetReviewsAndProductQuery } from '../../../api/customersApiSlice';
-import AliItemPrev from '../../../components/AliItemPrev';
 
 const DesignPreviewMobile = ({
   pageBG,
@@ -78,7 +78,7 @@ const DesignPreviewMobile = ({
 
         {Object.entries(itemAndReviews?.item).length > 0 ? (
           itemAndReviews?.item?.ali ? (
-            <AliItemPrev
+            <AliItemPrevMobile
               item={itemAndReviews?.item}
               pageBG={pageBG}
               navbarBG={navbarBG}
