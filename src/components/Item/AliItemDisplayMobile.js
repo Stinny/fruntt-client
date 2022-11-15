@@ -126,7 +126,7 @@ const AliItemDisplayMobile = ({ product }) => {
 
           <div className='flex flex-col w-full'>
             <p className='text-xl font-medium mt-4'>Estimated Delivery</p>
-            <div className='w-full flex flex-col p-2 border-2 rounded-md mt-4 h-28'>
+            <div className='w-full flex flex-col p-2 border-2 rounded-md mt-2 h-28'>
               <p className='text-gray-400'>
                 The estimated delivery date from Aliexpress
               </p>

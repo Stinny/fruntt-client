@@ -223,6 +223,13 @@ const EditAliItem = ({ product, handleDeleteItem }) => {
               value={moment.utc(formEstimatedDelivery).format('YYYY-MM-DD')}
               onChange={(e) => setFormEstimatedDelivery(e.target.value)}
             />
+            <a
+              className='border-slate-800 border-2 rounded flex items-center justify-center text-slate-800 w-full mt-2 hover:text-white hover:bg-slate-800'
+              href={product?.aliUrl}
+              target='_blank'
+            >
+              View on Aliexpress
+            </a>
           </div>
         </div>
 

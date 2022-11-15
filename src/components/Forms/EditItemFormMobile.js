@@ -126,7 +126,11 @@ const EditItemFormMobile = ({ product, productId }) => {
   };
 
   return product?.ali ? (
-    <EditAliItemMobile product={product} />
+    <EditAliItemMobile
+      product={product}
+      productId={productId}
+      handleDeleteItem={handleDeleteItem}
+    />
   ) : (
     <>
       <Link

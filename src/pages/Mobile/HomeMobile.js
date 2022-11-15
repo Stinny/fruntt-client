@@ -21,7 +21,7 @@ const HomeMobile = () => {
           </p>
           <p className='text-md mt-4 tracking-wider font-medium'>
             Easily launch, design, and manage product pages from one simple
-            dashboard. Avoid the hastle of managing an entire storefront.
+            dashboard. Avoid the hassle of managing an entire storefront.
           </p>
 
           <Link to='/pricing' className='flex justify-center mt-8'>

@@ -4,6 +4,7 @@ import AliOptions from '../../components/AddItem/AliOptions';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import { useUpdateAliProductMutation } from '../../api/productsApiSlice';
 import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
+import moment from 'moment';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -27,8 +28,8 @@ const EditAliItemMobile = ({ product, handleDeleteItem }) => {
   const [formShippingPrice, setFormShippingPrice] = useState(
     product?.shippingPrice
   );
-  const [formFreeShipping, setFormFreeShipping] = useState(
-    product?.freeShipping
+  const [formEstimatedDelivery, setFormEstimatedDelivery] = useState(
+    product?.aliEstimatedDelivery
   );
 
   const [error, setError] = useState('');
@@ -46,7 +47,6 @@ const EditAliItemMobile = ({ product, handleDeleteItem }) => {
         formStock,
         formPublished,
         formShippingPrice,
-        formFreeShipping,
       }).unwrap();
 
       if (updateItemReq === 'Item updated') {
@@ -65,30 +65,15 @@ const EditAliItemMobile = ({ product, handleDeleteItem }) => {
     <>
       <Link
         to='/dashboard/item'
-        className='flex items-center text-lg text-gray-400 hover:text-gray-600 w-2/12'
+        className='flex items-center text-lg text-gray-400 hover:text-gray-600 w-8/12'
       >
         {' '}
         <BsArrowLeftShort />
         Back to product
       </Link>
-      <div className='mb-10 flex justify-between items-center p-2 border-b-2'>
+      <div className='mb-4 flex justify-between items-center p-2 border-b-2'>
         <div className='flex flex-col'>
           <h2 className='text-4xl font-medium'>Edit your product</h2>
-        </div>
-
-        <div className='flex justify-between'>
-          <button
-            className='w-32 h-10 rounded border-red-400 border-2 text-red-400 hover:bg-red-400 hover:text-white mr-2'
-            onClick={handleDeleteItem}
-          >
-            DELETE
-          </button>
-          <button
-            className='w-32 h-10 rounded border-slate-800 border-2 text-slate-800 hover:text-white hover:bg-slate-800'
-            onClick={handleSaveEdit}
-          >
-            SAVE
-          </button>
         </div>
       </div>
       {error && (
@@ -100,7 +85,7 @@ const EditAliItemMobile = ({ product, handleDeleteItem }) => {
           {error}
         </Alert>
       )}
-      <form className='mx-auto' onSubmit={handleSaveEdit}>
+      <form className='mx-auto p-2' onSubmit={handleSaveEdit}>
         {/* within this form inputs needed to set above state */}
         <div className='flex items-center'>
           <p className='text-xl font-medium'>Details</p>
@@ -115,12 +100,12 @@ const EditAliItemMobile = ({ product, handleDeleteItem }) => {
           </Tooltip>
         </div>
 
-        <div className='p-4'>
+        <div>
           <p className='text-gray-400'>Product Title</p>
 
           <input
             type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
+            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded mt-2 p-2 outline outline-0'
             placeholder='Title'
             value={formTitle}
             onChange={(e) => setFormTitle(e.target.value)}
@@ -129,7 +114,7 @@ const EditAliItemMobile = ({ product, handleDeleteItem }) => {
           <p className='text-gray-400 mt-4'>Product Description(optional)</p>
           <textarea
             type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
+            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded mt-2 p-2 outline outline-0 h-32'
             placeholder='Description'
             value={formDescription}
             onChange={(e) => setFormDescription(e.target.value)}
@@ -138,20 +123,23 @@ const EditAliItemMobile = ({ product, handleDeleteItem }) => {
           <div className='w-full flex justify-between'>
             <div className='flex flex-col w-3/6'>
               <p className='text-gray-400 mt-4'>Product Price</p>
-              <input
-                type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
-                placeholder='Price'
-                value={formPrice}
-                onChange={(e) => setFormPrice(e.target.value)}
-              />
+              <div className='flex items-center'>
+                <p className='text-xl mt-2 font-medium mr-2'>$</p>
+                <input
+                  type='number'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded mt-2 p-2 outline outline-0'
+                  placeholder='Price'
+                  value={formPrice}
+                  onChange={(e) => setFormPrice(e.target.value)}
+                />
+              </div>
             </div>
 
             <div className='flex flex-col w-3/6 ml-4'>
               <p className='text-gray-400 mt-4'>Product Stock</p>
               <input
                 type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg mt-4 p-2 outline outline-0'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded mt-2 p-2 outline outline-0'
                 placeholder='Stock'
                 value={formStock}
                 onChange={(e) => setFormStock(e.target.value)}
@@ -160,8 +148,8 @@ const EditAliItemMobile = ({ product, handleDeleteItem }) => {
           </div>
         </div>
 
-        <div className='p-4'>
-          <p className='text-gray-400'>Publish</p>
+        <div>
+          <p className='text-gray-400 mt-2'>Publish</p>
           <div className='w-10/12 flex mt-2'>
             <FormControlLabel
               label='Publish to store'
@@ -175,9 +163,10 @@ const EditAliItemMobile = ({ product, handleDeleteItem }) => {
           </div>
         </div>
 
+        <p className='text-gray-400 mt-2'>Options</p>
         <AliOptions options={product.options} />
 
-        <div className='flex items-center'>
+        <div className='flex items-center mt-2'>
           <p className='text-xl font-medium'>Media</p>
           <Tooltip
             title={<p className='text-lg'></p>}
@@ -193,36 +182,49 @@ const EditAliItemMobile = ({ product, handleDeleteItem }) => {
         {product?.aliImages.length > 0 ? (
           <div className='flex flex-wrap w-full'>
             {product?.aliImages.map((img, index) => (
-              <img src={img} className='w-32' key={index} />
+              <img src={img} className='w-3/12' key={index} />
             ))}
           </div>
         ) : (
           ''
         )}
 
-        <div className='w-full flex flex-col'>
-          <p className='text-xl font-medium'>Change shipping price</p>
-          <input
-            type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-8/12 rounded p-2 outline outline-0'
-            value={shippingPrice}
-          />
-          <p className='font-medium mt-2 text-xl'>OR</p>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={formFreeShipping}
-                onChange={(e) => setFormFreeShipping(e.target.checked)}
+        <div className='flex flex-col w-full mt-4'>
+          <div className='w-full flex flex-col'>
+            <p className='text-xl font-medium'>Change shipping price</p>
+            <div className='flex items-center w-full'>
+              <p className='font-medium text-lg mr-2'>$</p>
+              <input
+                type='number'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
+                value={formShippingPrice}
+                onChange={(e) => setFormShippingPrice(e.target.value)}
               />
-            }
-            label='Offer free shipping on this product'
-          />
+            </div>
+          </div>
+          <div className='w-full flex flex-col mt-4'>
+            <p className='text-xl font-medium'>Change estimated delivery</p>
+            <p className='text-gray-400'>This is copied from Aliexpress</p>
+            <input
+              type='date'
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
+              value={moment.utc(formEstimatedDelivery).format('YYYY-MM-DD')}
+              onChange={(e) => setFormEstimatedDelivery(e.target.value)}
+            />
+            <a
+              className='border-slate-800 border-2 rounded flex items-center justify-center text-slate-800 w-full mt-2 hover:text-white hover:bg-slate-800'
+              href={product?.aliUrl}
+              target='_blank'
+            >
+              View on Aliexpress
+            </a>
+          </div>
         </div>
 
-        <div className='w-full flex justify-between'>
-          <div className='flex flex-col w-6/12'>
+        <div className='w-full flex flex-col'>
+          <div className='flex flex-col w-full'>
             <p className='text-xl font-medium mt-4'>Shipping from</p>
-            <div className='w-full flex flex-col p-4 border-2 rounded-md mt-4 h-32'>
+            <div className='w-full flex flex-col p-4 border-2 rounded-md mt-2 h-24'>
               <p className='text-gray-400'>
                 Aliexpress ships this product from
               </p>
@@ -230,13 +232,28 @@ const EditAliItemMobile = ({ product, handleDeleteItem }) => {
             </div>
           </div>
 
-          <div className='flex flex-col w-6/12 ml-2'>
+          <div className='flex flex-col w-full'>
             <p className='text-xl font-medium mt-4'>Shipping to</p>
-            <div className='w-full flex flex-col p-4 border-2 rounded-md mt-4 h-32'>
+            <div className='w-full flex flex-col p-4 border-2 rounded-md mt-2 h-24'>
               <p className='text-gray-400'>Aliexpress ships this product to</p>
               <p className='text-xl'>{product?.aliShipsTo}</p>
             </div>
           </div>
+        </div>
+
+        <div className='flex flex-col mt-4'>
+          <button
+            className='w-full h-10 rounded border-red-400 border-2 text-red-400 hover:bg-red-400 hover:text-white mr-2'
+            onClick={handleDeleteItem}
+          >
+            DELETE
+          </button>
+          <button
+            className='w-full h-14 mt-2 rounded border-slate-800 border-2 text-slate-800 hover:text-white hover:bg-slate-800'
+            onClick={handleSaveEdit}
+          >
+            SAVE
+          </button>
         </div>
       </form>
     </>
