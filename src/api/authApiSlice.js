@@ -48,13 +48,40 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     updateAccountInfo: builder.mutation({
-      query: ({ firstName, lastName, email }) => ({
+      query: ({ email }) => ({
         url: '/auth/updateaccountinfo',
+        method: 'POST',
+        body: {
+          email: email,
+        },
+      }),
+    }),
+    updateSellerProfile: builder.mutation({
+      query: ({
+        firstName,
+        lastName,
+        bio,
+        facebook,
+        youtube,
+        twitter,
+        instagram,
+        tiktok,
+        profilePicUrl,
+        profilePicKey,
+      }) => ({
+        url: '/auth/updatesellerprofile',
         method: 'POST',
         body: {
           firstName: firstName,
           lastName: lastName,
-          email: email,
+          bio: bio,
+          facebook: facebook,
+          youtube: youtube,
+          twitter: twitter,
+          instagram: instagram,
+          tiktok: tiktok,
+          profilePicUrl: profilePicUrl,
+          profilePicKey: profilePicKey,
         },
       }),
     }),
@@ -112,4 +139,5 @@ export const {
   useLazyGetSetupIntentQuery,
   useAddPaymentMethodMutation,
   useDeletePaymentMethodMutation,
+  useUpdateSellerProfileMutation,
 } = authApiSlice;

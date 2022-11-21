@@ -94,55 +94,6 @@ const DesignForm = ({ storefront }) => {
           </div>
 
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Header background</p>
-
-            <HexColorPicker
-              color={navbarBG}
-              onChange={setNavbarBG}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={navbarBG}
-              onChange={setNavbarBG}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-            <div className='flex items-center'>
-              <p>hide</p>
-              <Switch
-                checked={hideNav}
-                onChange={(e) => setHideNav(e.target.checked)}
-              />
-            </div>
-          </div>
-
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Footer background</p>
-
-            <HexColorPicker
-              color={footerBG}
-              onChange={setFooterBG}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={footerBG}
-              onChange={setFooterBG}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-
-            <div className='flex items-center'>
-              <p>hide</p>
-              <Switch
-                checked={hideFooter}
-                onChange={(e) => setHideFooter(e.target.checked)}
-              />
-            </div>
-          </div>
-
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
             <p className='text-lg font-medium mb-2'>Page text</p>
 
             <HexColorPicker
@@ -196,23 +147,6 @@ const DesignForm = ({ storefront }) => {
             <HexColorInput
               color={buttonTextColor}
               onChange={setButtonTextColor}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-          </div>
-
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Social icons</p>
-
-            <HexColorPicker
-              color={socialIcons}
-              onChange={setSocialIcons}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={socialIcons}
-              onChange={setSocialIcons}
               prefixed
               className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
             />

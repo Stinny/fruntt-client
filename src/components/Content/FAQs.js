@@ -137,9 +137,9 @@ const FAQs = () => {
       </Modal>
 
       {isMobile ? (
-        <div className='border-b mb-4'>
-          <div className='w-full flex justify-between items-center p-2'>
-            <p className='text-slate-800 font-medium'>FAQs</p>
+        <div className='mb-4'>
+          <div className='w-full flex justify-between items-center p-2 border-b'>
+            <p className='text-slate-800 font-medium'>Customer questions</p>
             <button
               className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
               onClick={openModal}
@@ -178,8 +178,9 @@ const FAQs = () => {
                     You have not added any FAQs yet
                   </p>
                   <p className='text-gray-400 text-center mt-2'>
-                    These FAQs are visible on your storefront for customers to
-                    read. They should relate to whatever product you have added.
+                    These FAQs are visible on your product page for customers to
+                    read. They should relate to whatever product you are
+                    offering.
                   </p>
                   <button
                     type='button'
@@ -206,9 +207,11 @@ const FAQs = () => {
           )}
         </div>
       ) : (
-        <div className='border-b mb-4'>
-          <div className='w-full flex justify-between items-center'>
-            <p className='text-slate-800 font-medium'>FAQs</p>
+        <div className=' mb-4'>
+          <div className='w-full flex justify-between items-center border-b p-2'>
+            <p className='text-slate-800 font-medium text-xl'>
+              Customer questions
+            </p>
             <button
               className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
               onClick={openModal}
@@ -244,11 +247,12 @@ const FAQs = () => {
               ) : (
                 <div className='w-full mx-auto rounded border-2 flex flex-col justify-center items-center mt-2 p-2'>
                   <p className='text-slate-800 text-xl font-medium'>
-                    You have not added any FAQs yet
+                    You have not added any customer questions yet
                   </p>
                   <p className='text-gray-400 w-7/12 text-center mt-2'>
                     These FAQs are visible on your storefront for customers to
-                    read. They should relate to whatever product you have added.
+                    read. They should relate to whatever product you are
+                    offering.
                   </p>
                   <button
                     type='button'
@@ -267,7 +271,7 @@ const FAQs = () => {
                   You have not added a product yet
                 </p>
                 <p className='text-gray-400 w-7/12 text-center mt-2'>
-                  In order to add FAQs, you need to add a product.
+                  In order to add customer questions, you need to add a product.
                 </p>
                 <Link to='/dashboard/item'>+ add a product</Link>
               </div>

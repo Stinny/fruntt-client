@@ -13,8 +13,6 @@ const Profile = ({ user, refetch }) => {
   const handleSaveAccountInfo = async (e) => {
     e.preventDefault();
     const updateAccountInfoReq = await updateAccountInfo({
-      firstName,
-      lastName,
       email,
     }).unwrap();
     refetch();
@@ -63,24 +61,11 @@ const Profile = ({ user, refetch }) => {
         style={modalStyles}
       >
         <form onSubmit={handleSaveAccountInfo}>
-          <p className='text-xl font-medium mb-4'>Account Details</p>
-          <p className='text-gray-400'>First name</p>
-          <input
-            type='text'
-            className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded-lg p-2'
-            placeholder='Enter first name'
-            onChange={(e) => setFirstName(e.target.value)}
-            value={firstName}
-          />
-          <p className='text-gray-400 mt-2'>Last name</p>
-          <input
-            type='text'
-            className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded-lg p-2'
-            placeholder='Enter last name'
-            onChange={(e) => setLastName(e.target.value)}
-            value={lastName}
-          />
-          <p className='text-gray-400 mt-2'>Email</p>
+          <p className='text-xl font-medium mb-4 border-b'>Account Details</p>
+          <p className='text-xl font-medium mt-2'>Email</p>
+          <p className='text-gray-400'>
+            This email will be used accross all product pages
+          </p>
           <input
             type='text'
             className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded-lg p-2'
@@ -141,40 +126,6 @@ const Profile = ({ user, refetch }) => {
           <div className='text-right'>
             <p className='text-xl'>{user?.email}</p>
           </div>
-        </div>
-      )}
-
-      {user.firstName && user.lastName ? (
-        isMobile ? (
-          <div className='w-11/12 mx-auto flex flex-col p-2'>
-            <p className='text-lg font-medium text-gray-400'>First name</p>
-            <p className='text-xl'>{user?.firstName}</p>
-            <p className='text-lg font-medium mt-2 text-gray-400'>Last name</p>
-            <p className='text-xl'>{user?.lastName}</p>
-          </div>
-        ) : (
-          <div className='w-11/12 mx-auto flex justify-between p-4'>
-            <div className='text-left'>
-              <p className='text-lg font-medium'>First name</p>
-              <p className='text-lg font-medium mt-2'>Last name</p>
-            </div>
-            <div className='text-right'>
-              <p className='text-xl'>{user?.firstName}</p>
-              <p className='text-xl mt-2'>{user?.lastName}</p>
-            </div>
-          </div>
-        )
-      ) : (
-        <div className='w-11/12 mx-auto border-2 rounded h-36 w-full flex flex-col justify-center items-center'>
-          <p className='text-lg font-medium text-slate-800'>
-            Personal details not added yet
-          </p>
-          <p className='text-md mt-2 font-medium text-slate-800'>
-            add to further personalize your dashboard
-          </p>
-          <button onClick={openModal} className='text-gray-400 mt-2'>
-            + add personal details
-          </button>
         </div>
       )}
     </>

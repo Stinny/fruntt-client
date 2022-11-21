@@ -28,7 +28,7 @@ const AddMedia = () => {
     </div>
   ) : (
     <div>
-      <div className='w-full flex justify-between items-center mt-4'>
+      <div className='w-full flex justify-between items-center mt-4 border-b p-2'>
         <p className='text-slate-800 font-medium text-xl'>Video & media</p>
         <button
           className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'

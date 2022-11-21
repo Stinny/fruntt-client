@@ -25,7 +25,7 @@ const AliItemPrev = ({
   const btnStyle = buttonStyle === 'filled' ? buttonColor : '';
 
   return (
-    <div className='p-2'>
+    <div className='p-4'>
       <div
         className='w-full flex justify-between items-center'
         style={{ backgroundColor: pageBG }}
@@ -34,7 +34,7 @@ const AliItemPrev = ({
           <img className='w-full' src={item?.aliImages[0]} />
         </div>
 
-        <div className='w-3/6 flex flex-col'>
+        <div className='w-3/6 flex flex-col ml-2'>
           <h2
             className='text-2xl font-medium w-11/12'
             style={{ color: pageText }}
@@ -54,7 +54,7 @@ const AliItemPrev = ({
             ? item.options.map((option) => (
                 <>
                   <p>{option.name}</p>
-                  <select className='rounded-md border-2 w-32 h-10'>
+                  <select className='rounded-md border-2 w-8/12 h-10'>
                     <option>{option.values[0].name}</option>
                   </select>
                 </>
@@ -112,23 +112,14 @@ const AliItemPrev = ({
                   backgroundColor: faqBackground,
                 }}
               >
-                <p style={{ color: storefront?.style?.pageText }}>
-                  <span
-                    className='font-medium'
-                    style={{ color: storefront?.style?.pageText }}
-                  >
+                <p style={{ color: pageText }}>
+                  <span className='font-medium' style={{ color: pageText }}>
                     Question:
                   </span>{' '}
                   {faq.question}
                 </p>
-                <p
-                  className='mt-2'
-                  style={{ color: storefront?.style?.pageText }}
-                >
-                  <span
-                    className='font-medium'
-                    style={{ color: storefront?.style?.pageText }}
-                  >
+                <p className='mt-2' style={{ color: pageText }}>
+                  <span className='font-medium' style={{ color: pageText }}>
                     Answer:
                   </span>{' '}
                   {faq.answer}
@@ -140,10 +131,7 @@ const AliItemPrev = ({
               style={{ borderColor: borderColor }}
               className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
             >
-              <p
-                className='font-medium text-xl'
-                style={{ color: storefront?.style?.pageText }}
-              >
+              <p className='font-medium text-xl' style={{ color: pageText }}>
                 Customer questions have not been posted yet!
               </p>
             </div>
@@ -163,7 +151,7 @@ const AliItemPrev = ({
                 }}
               >
                 <div className='flex w-4/12'>
-                  <p style={{ color: storefront?.style?.pageText }}>
+                  <p style={{ color: pageText }}>
                     {moment(review?.date).format('MMM D, YYYY')}
                   </p>
                 </div>
@@ -175,10 +163,7 @@ const AliItemPrev = ({
                   className='mt-2'
                   precision={0.5}
                 />
-                <p
-                  className='mt-2'
-                  style={{ color: storefront?.style?.pageText }}
-                >
+                <p className='mt-2' style={{ color: pageText }}>
                   {review.content}
                 </p>
               </div>

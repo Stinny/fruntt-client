@@ -13,6 +13,7 @@ import Spinner from '../components/Spinner';
 import Notifications from '../components/Settings/Notifications';
 import BusinessInfo from '../components/Settings/BusinessInfo';
 import { isMobile } from 'react-device-detect';
+import SellerProfile from '../components/Settings/SellerProfile';
 
 const Settings = () => {
   const {
@@ -67,8 +68,13 @@ const Settings = () => {
         )}
 
         <div className='w-full mt-4'>
+          <SellerProfile user={user} refetch={refetch} />
+        </div>
+
+        <div className='w-full mt-4'>
           <Profile user={user} refetch={refetch} />
         </div>
+
         {/* 
         <div className='w-full mt-10'>
           <BusinessInfo user={user} refetch={refetch} />

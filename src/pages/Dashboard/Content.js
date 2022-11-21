@@ -53,7 +53,7 @@ const Content = () => {
 
         <AddLogo storefront={storefront} refetch={refetch} setInfo={setInfo} />
 
-        <AddSocials storefront={storefront} refetch={refetch} />
+        {/* <AddSocials storefront={storefront} refetch={refetch} /> */}
 
         <FAQs storefront={storefront} />
 

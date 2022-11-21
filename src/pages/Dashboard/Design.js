@@ -45,30 +45,6 @@ const Design = () => {
           </div>
 
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium'>Header background</p>
-            <div
-              className='w-10/12 h-14 border-2 rounded'
-              style={{ backgroundColor: storefront?.style?.navbarBackground }}
-            ></div>
-            <div className='flex items-center'>
-              <p>Hidden</p>
-              <Switch checked={storefront?.style?.hideNav} disabled />
-            </div>
-          </div>
-
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium'>Footer background</p>
-            <div
-              className='w-10/12 h-14 border-2 rounded'
-              style={{ backgroundColor: storefront?.style?.footerBackground }}
-            ></div>
-            <div className='flex items-center'>
-              <p>Hidden</p>
-              <Switch checked={storefront?.style?.hideFooter} disabled />
-            </div>
-          </div>
-
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
             <p className='text-lg font-medium'>Page text</p>
             <div
               className='w-10/12 h-14 border-2 rounded'
@@ -160,7 +136,7 @@ const Design = () => {
             <div className='flex flex-col'>
               <h2 className='text-2xl font-medium'>Page design</h2>
               <p>
-                last designed on{' '}
+                Page last designed on{' '}
                 {moment(storefront?.lastEdited).format('MMM D, YYYY')}
               </p>
             </div>
@@ -186,7 +162,7 @@ const Design = () => {
             <div className='flex flex-col'>
               <h2 className='text-3xl font-medium'>Page design</h2>
               <p>
-                last designed on{' '}
+                Page last designed on{' '}
                 {moment(storefront?.lastEdited).format('MMM D, YYYY')}
               </p>
             </div>
@@ -195,7 +171,7 @@ const Design = () => {
               target='_blank'
               className='flex items-center'
             >
-              <p className='font-medium text-xl'>View your page</p>
+              <p className='font-medium text-xl'>View your live page</p>
               <BsArrowRightShort className='text-2xl font-medium' />
             </a>
             <Link to='/dashboard/design/edit'>

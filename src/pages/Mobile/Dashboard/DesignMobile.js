@@ -15,30 +15,6 @@ const DesignMobile = ({ storefront }) => {
         </div>
 
         <div className='w-28 h-full flex flex-col p-2 mx-auto ml-2'>
-          <p className='text-md font-medium'>Header</p>
-          <div
-            className='w-28 h-12 border-2 rounded'
-            style={{ backgroundColor: storefront?.style?.navbarBackground }}
-          ></div>
-          <div className='flex items-center'>
-            <p>Hidden</p>
-            <Switch checked={storefront?.style?.hideNav} disabled />
-          </div>
-        </div>
-
-        <div className='w-28 h-full flex flex-col p-2 mx-auto ml-2'>
-          <p className='text-md font-medium'>Footer</p>
-          <div
-            className='w-28 h-12 border-2 rounded'
-            style={{ backgroundColor: storefront?.style?.footerBackground }}
-          ></div>
-          <div className='flex items-center'>
-            <p>Hidden</p>
-            <Switch checked={storefront?.style?.hideFooter} disabled />
-          </div>
-        </div>
-
-        <div className='w-28 h-full flex flex-col p-2 mx-auto ml-2'>
           <p className='text-md font-medium'>Page text</p>
           <div
             className='w-28 h-12 border-2 rounded'

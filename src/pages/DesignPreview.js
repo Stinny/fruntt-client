@@ -11,11 +11,13 @@ import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import AliItemPrev from '../components/AliItemPrev';
+import { BsArrow90DegDown } from 'react-icons/bs';
+import { useGetReviewsAndProductQuery } from '../api/customersApiSlice';
+import SellerPro from '../components/DesignPrev/SellerPro';
 
 //mui
 import Alert from '@mui/material/Alert';
 import Rating from '@mui/material/Rating';
-import { useGetReviewsAndProductQuery } from '../api/customersApiSlice';
 
 const DesignPreview = ({
   pageBG,
@@ -34,8 +36,6 @@ const DesignPreview = ({
   faqBackground,
   reviewBackground,
 }) => {
-  // const { data: item, isLoading, isSuccess, refetch } = useGetProductsQuery();
-
   const {
     data: itemAndReviews,
     isLoading,
@@ -59,24 +59,12 @@ const DesignPreview = ({
         className='w-full h-full mx-auto border'
         style={{ backgroundColor: pageBG }}
       >
-        {/* Navabar */}
-        <div
-          className='w-full h-14 mb-10 mx-auto'
-          style={{
-            backgroundColor: navbarBG,
-            display: hideNav ? 'none' : '',
-          }}
-        >
-          <div className='w-11/12 h-full flex items-center mx-auto'>
-            {storefront?.logo?.url ? (
-              <img src={storefront?.logo?.url} className='h-10' />
-            ) : (
-              <h2 style={{ color: pageText }} className='text-2xl font-medium'>
-                {storefront?.name}
-              </h2>
-            )}
-          </div>
-        </div>
+        <SellerPro
+          pageBG={pageBG}
+          pageText={pageText}
+          borderColor={borderColor}
+          headers={headerColor}
+        />
 
         {Object.entries(itemAndReviews?.item).length > 0 ? (
           itemAndReviews?.item?.ali ? (
@@ -313,59 +301,17 @@ const DesignPreview = ({
             </div>
           </div>
         )}
-
-        {/* Footer */}
-        <div
-          className='w-full h-28 mt-24 flex items-center justify-center'
-          style={{
-            backgroundColor: footerBG,
-            display: hideFooter ? 'none' : '',
-          }}
-        >
-          <div
-            className='flex w-44 justify-between text-4xl'
-            style={{
-              backgroundColor: footerBG,
-            }}
-          >
-            {storefront.links.facebook && (
-              <AiOutlineFacebook
-                style={{ color: socialIcons }}
-                className='text-gray-400 hover:text-blue-400'
-              />
-            )}
-
-            {storefront.links.instagram && (
-              <AiOutlineInstagram
-                style={{ color: socialIcons }}
-                className='text-gray-400 hover:text-blue-400'
-              />
-            )}
-
-            {storefront.links.twitter && (
-              <AiOutlineTwitter
-                style={{ color: socialIcons }}
-                className='text-gray-400 hover:text-blue-400'
-              />
-            )}
-
-            {storefront.links.youtube && (
-              <AiOutlineYoutube
-                style={{ color: socialIcons }}
-                className='text-gray-400 hover:text-blue-400'
-              />
-            )}
-          </div>
-        </div>
       </div>
     );
   }
   return (
     <div className='w-9/12 h-fit'>
-      <Alert severity='info' className='mt-2 mb-4'>
-        This is just a preview, not your actual page. This is just so you can
-        see the design changes before you decide to save.
-      </Alert>
+      <div className='w-full flex justify-end'>
+        <div className='flex items-center'>
+          <BsArrow90DegDown className='text-xl mt-2' />
+          <p className='font-medium text-2xl'>Preview product page</p>
+        </div>
+      </div>
       {content}
     </div>
   );

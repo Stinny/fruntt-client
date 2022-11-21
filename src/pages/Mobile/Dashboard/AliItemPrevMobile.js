@@ -31,14 +31,11 @@ const AliItemPrevMobile = ({
           <img className='w-full' src={item?.aliImages[0]} />
         </div>
 
-        <div className='w-full flex flex-col'>
-          <h2
-            className='text-2xl font-medium w-11/12'
-            style={{ color: pageText }}
-          >
+        <div className='w-full flex flex-col mt-4'>
+          <h2 className='text-2xl font-medium' style={{ color: pageText }}>
             {item?.title}
           </h2>
-          <p className='text-xl mt-4 w-11/12' style={{ color: pageText }}>
+          <p className='text-xl mt-4' style={{ color: pageText }}>
             {item?.description}
           </p>
           <p
@@ -51,7 +48,7 @@ const AliItemPrevMobile = ({
             ? item.options.map((option) => (
                 <>
                   <p>{option.name}</p>
-                  <select className='rounded-md border-2 w-32 h-10'>
+                  <select className='rounded-md border-2 w-9/12 h-10'>
                     <option>{option.values[0].name}</option>
                   </select>
                 </>

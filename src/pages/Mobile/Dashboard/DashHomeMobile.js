@@ -24,6 +24,22 @@ const DashHomeMobile = ({ stats, currentUser }) => {
         </Alert>
       )}
 
+      {!currentUser.firstName ||
+      !currentUser.lastName ||
+      !currentUser?.sellerProfile?.bio ||
+      !currentUser?.sellerProfile?.picture?.url ? (
+        <Alert severity='error' className='mt-4 mb-4 w-full'>
+          <p>
+            Finish setting up your seller profile in{' '}
+            <Link to='/settings' className='text-red-900 font-semibold'>
+              settings!
+            </Link>
+          </p>
+        </Alert>
+      ) : (
+        ''
+      )}
+
       {!currentUser.emailConfirmed && (
         <Alert severity='error' className='mt-2 mb-4 w-11/12 mx-auto'>
           <p>
@@ -46,7 +62,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
           className='flex items-center text-lg text-slate-800 font-medium'
           target='_blank'
         >
-          View your storefront <FaExternalLinkAlt className='ml-2' />{' '}
+          View your product page <FaExternalLinkAlt className='ml-2' />{' '}
         </a>
       </div>
 
