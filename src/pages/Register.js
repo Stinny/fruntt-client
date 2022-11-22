@@ -54,7 +54,7 @@ const Register = () => {
     let profilePicUrl = '';
     let profilePicKey = '';
 
-    if (!email || !password || !storeName || firstName) {
+    if (!email || !password || !storeName || !firstName || !lastName) {
       setError('All required fields must be filled in');
       return;
     }
@@ -118,8 +118,8 @@ const Register = () => {
         isLoading={isLoading}
       />
     ) : (
-      <div className='container flex justify-between items-center mx-auto w-full'>
-        <div className='flex flex-col w-2/6 mr-10'>
+      <div className='container flex justify-between mx-auto w-full'>
+        <div className='flex flex-col w-2/6 mr-10 mt-10'>
           <h2 className='text-3xl font-medium mb-4 border-b-2'>
             Launch your first product page
           </h2>
@@ -132,19 +132,19 @@ const Register = () => {
 
           <form
             onSubmit={handleSignup}
-            className='flex flex-col items-center w-full mb-44 bg-gray-100 p-2 rounded'
+            className='flex flex-col items-center w-full bg-gray-100 p-2 rounded'
           >
             <input
               type='email'
               placeholder='Email'
-              className='border-2 border-gray-300 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
+              className='border-2 border-gray-300 hover:border-slate-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
               onChange={(e) => setEmail(e.target.value)}
             />
 
             <input
               type='password'
               placeholder='Password'
-              className='border-2 border-gray-300 focus:outline focus:outline-1 focus:outline-gray-400 hover:border-slate-300 w-full rounded p-2 mt-2'
+              className='border-2 border-gray-300 focus:outline focus:outline-1 hover:border-gray-400 focus:outline-gray-400 hover:border-slate-300 w-full rounded p-2 mt-2'
               onChange={(e) => setPassword(e.target.value)}
             />
 
@@ -199,7 +199,7 @@ const Register = () => {
             <div className='flex w-full'>
               <input
                 type='text'
-                placeholder='Page Name'
+                placeholder='Page name & url'
                 className='w-5/6 border-2 border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 mt-2'
                 onChange={(e) => setStoreName(e.target.value)}
               />
