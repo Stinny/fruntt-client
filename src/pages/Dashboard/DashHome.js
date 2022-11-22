@@ -73,19 +73,11 @@ const DashHome = () => {
         {!currentUser.emailConfirmed && (
           <Alert severity='error' className='mt-2 mb-4 w-full'>
             <p>
-              Please check your inbox to confirm your email so you can enable
-              checkout
+              Please check your email inbox to confirm your email address so you
+              can enable checkout
             </p>
           </Alert>
         )}
-        <Alert severity='info' className='mt-2 mb-4 w-full'>
-          <p>
-            Welcome merchants! As we onboard public beta users, collect
-            feedback, and develop a pricing plan merchants will be restricted to
-            launching only one page. We encourage and appreaciate all feedback!
-          </p>
-        </Alert>
-
         <div className='flex justify-between w-full mb-2'>
           <a
             href={currentUser?.store?.url}

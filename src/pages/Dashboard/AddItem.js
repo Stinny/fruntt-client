@@ -27,7 +27,7 @@ const AddItem = () => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
   const [stock, setStock] = useState(0);
-  const [published, setPublished] = useState(false);
+  const [published, setPublished] = useState(true);
   const [weightUnit, setWeightUnit] = useState('pound');
   const [weight, setWeight] = useState(0);
   const [fileList, setFileList] = useState([]);
@@ -223,7 +223,7 @@ const AddItem = () => {
               <p className='text-gray-400'>Product Title</p>
               <input
                 type='text'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                 placeholder='Title'
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -233,7 +233,7 @@ const AddItem = () => {
               </p>
               <textarea
                 type='text'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                 placeholder='Description'
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -243,7 +243,7 @@ const AddItem = () => {
                   <p className='text-gray-400 mt-4'>Product Price</p>
                   <input
                     type='number'
-                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                     placeholder='Price'
                     onChange={(e) => setPrice(e.target.value)}
                   />
@@ -253,7 +253,7 @@ const AddItem = () => {
                   <p className='text-gray-400 mt-4'>Product Stock</p>
                   <input
                     type='number'
-                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                     placeholder='Stock'
                     onChange={(e) => setStock(e.target.value)}
                   />
@@ -331,7 +331,7 @@ const AddItem = () => {
             <div className='w-full p-4'>
               <p className='text-gray-400'>Address</p>
               <input
-                className='w-full border-2 border-slate-200 hover:border-slate-300 rounded-lg p-2 mt-2 outline outline-0'
+                className='w-full border-2 border-slate-200 hover:border-slate-300 rounded p-2 mt-2 outline outline-0'
                 type='text'
                 placeholder='Address'
                 onChange={(e) => setAddress(e.target.value)}
@@ -341,7 +341,7 @@ const AddItem = () => {
             <div className='w-full flex justify-between mb-2 p-4'>
               <div className='flex flex-col w-3/12'>
                 <p className='text-gray-400'>Country</p>
-                <select className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'>
+                <select className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'>
                   <option>United States</option>
                 </select>
               </div>
@@ -350,7 +350,7 @@ const AddItem = () => {
                 <p className='text-gray-400'>State</p>
                 <select
                   onChange={(e) => setState(e.target.value)}
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                 >
                   <option disabled selected hidden className='text-gray-400'>
                     State
@@ -366,7 +366,7 @@ const AddItem = () => {
                 <input
                   type='text'
                   placeholder='City'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
                   onChange={(e) => setCity(e.target.value)}
                 />
               </div>
@@ -376,7 +376,7 @@ const AddItem = () => {
                 <input
                   type='text'
                   placeholder='Zipcode'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
                   onChange={(e) => setZip(e.target.value)}
                 />
               </div>
@@ -404,7 +404,7 @@ const AddItem = () => {
                         <p className='text-gray-400'>Weight</p>
                         <input
                           type='number'
-                          className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2 outline outline-0'
+                          className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
                           onChange={(e) => setWeight(e.target.value)}
                           step='0.1'
                         />
@@ -424,8 +424,8 @@ const AddItem = () => {
                 </div>
               </div>
 
-              <div className='w-3/6'>
-                <div className='flex items-center'>
+              <div className='w-full'>
+                <div className='flex items-center w-3/6'>
                   <p className='text-xl font-medium'>Shipping price</p>
                   <Tooltip
                     title={
@@ -443,16 +443,19 @@ const AddItem = () => {
                 </div>
 
                 <div className='p-4'>
-                  <div className='flex justify-between w-full'>
+                  <div className='flex justify-between w-3/6'>
                     <div className='flex justify-between'>
-                      <div>
-                        <p className='text-gray-400'>Price</p>
-                        <input
-                          type='number'
-                          className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2 outline outline-0'
-                          onChange={(e) => setShippingPrice(e.target.value)}
-                          step='0.01'
-                        />
+                      <div className='flex flex-col'>
+                        <p className='text-gray-400 ml-4'>Price</p>
+                        <div className='flex justify-between w-full items-center'>
+                          <p className='font-medium text-2xl'>$</p>
+                          <input
+                            type='number'
+                            className='border-2 border-slate-200 hover:border-slate-300 w-full ml-2 rounded p-2 outline outline-0'
+                            onChange={(e) => setShippingPrice(e.target.value)}
+                            step='0.01'
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>

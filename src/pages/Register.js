@@ -39,7 +39,6 @@ const Register = () => {
   const [register, { isLoading }] = useRegisterMutation();
 
   //component state
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [storeName, setStoreName] = useState('');

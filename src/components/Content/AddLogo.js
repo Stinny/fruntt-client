@@ -107,7 +107,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
                 onChange={(e) => setName(e.target.value)}
                 value={name}
               />
-              <p>.frunt.com</p>
+              <p className='font-medium'>.fruntt.com</p>
             </div>
           </form>
           <button

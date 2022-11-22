@@ -48,24 +48,27 @@ const Item = () => {
       <h2 className='text-2xl font-medium'>
         You have not added a product yet!
       </h2>
-      <p className='text-gray-400 text-xl w-8/12 mt-4 text-center'>
-        Add product details, adjust your inventory, set shipping price and more
+      <p className='text-gray-400 text-xl w-8/12 mt-4 text-center font-medium'>
+        Pick what kind of product you want to offer on your product page
       </p>
       <div className='flex justify-center w-6/12 mt-4'>
-        <Link to='/dashboard/item/add' className='w-3/6'>
-          <div className='flex flex-col border-2 rounded border-slate-800 p-2 h-24'>
-            <p className='font-medium text-lg'>Physical product</p>
-            <p className='text-gray-400'>
-              Something that would require shipping on your end
-            </p>
+        <Link to='/dashboard/item/add' className='w-2/6'>
+          <div className='flex flex-col border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white'>
+            <p className='font-medium'>+ Physical product</p>
+            <p>Something that would require shipping on your end</p>
           </div>
         </Link>
-        <Link to='/dashboard/item/import' className='w-3/6 ml-2 h-32'>
-          <div className='flex flex-col border-2 rounded border-slate-800 p-2 h-24'>
-            <p className='font-medium text-lg'>Import a product</p>
-            <p className='text-gray-400'>Import a product from Aliexpress</p>
+        <Link to='/dashboard/item/import' className='w-2/6 ml-2 h-32'>
+          <div className='flex flex-col border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white'>
+            <p className='font-medium'>+ Import a product</p>
+            <p>Import a product from Aliexpress</p>
           </div>
         </Link>
+
+        <div className='w-2/6 ml-2 flex flex-col border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white'>
+          <p className='font-medium'>+ Digital product</p>
+          <p>This will be available soon!</p>
+        </div>
       </div>
     </div>
   );
