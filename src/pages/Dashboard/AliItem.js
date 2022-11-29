@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
 import Topbar from '../../components/Topbar';
@@ -20,6 +21,8 @@ import Rating from '@mui/material/Rating';
 const AliItem = () => {
   const { state } = useLocation(); //pulls out the state data
   const { product, reviews, aliRating } = state;
+
+  const currentStoreID = useSelector((state) => state.user.selectedStore);
 
   const navigate = useNavigate();
 
@@ -80,6 +83,7 @@ const AliItem = () => {
         images,
         shippingPrice,
         estimatedDelivery,
+        storeId: currentStoreID,
       }).unwrap();
 
       if (addProductReq === 'Item added') {

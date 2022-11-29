@@ -279,9 +279,9 @@ const DesignPreview = ({
             </div>
           )
         ) : (
-          <div className='w-full mx-auto'>
+          <div className='w-full mx-auto p-10'>
             <div
-              className='mx-auto w-9/12 border-2 rounded flex flex-col justify-center items-center'
+              className='mx-auto w-10/12 border-2 rounded flex flex-col justify-center items-center'
               style={{ borderColor: storefront?.style?.borderColor }}
             >
               <div className='h-60'></div>
@@ -293,9 +293,9 @@ const DesignPreview = ({
               </p>
               <Link
                 to='/dashboard/item/add'
-                className='border-2 rounded border-slate-800 text-slate-800 w-32 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
+                className='border-2 rounded border-slate-800 text-slate-800 w-36 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
               >
-                + Add product
+                + Add a product
               </Link>
               <div className='h-60'></div>
             </div>

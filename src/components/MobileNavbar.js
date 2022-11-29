@@ -1,19 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { IoStorefrontOutline } from 'react-icons/io5';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { HiMenu } from 'react-icons/hi';
 import { BsDiscord } from 'react-icons/bs';
 import HelpModal from '../components/HelpModal';
+import { useLazyGetStorefrontByIDQuery } from '../api/storefrontApiSlice';
+import { setSelectedStore, setSelectedStoreUrl } from '../redux/userRedux';
 
 const MobileNavbar = ({ currentUser, handleLogout }) => {
+  const dispatch = useDispatch();
+
+  //holds the url of the page being viewed
+  const selectedStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
+
+  const [pageInView, setPageInView] = useState(currentUser?.store?.url);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const [menuW, setW] = useState('w-0');
   const [menuH, setH] = useState('h-0');
   const [menuDisplay, setDisplay] = useState('none');
   const [opacity, setOpactity] = useState('opacity-0');
+
+  const [getStorefrontByID, result] = useLazyGetStorefrontByIDQuery();
+
+  const filteredStores = currentUser?.storeIds.filter(
+    (store) => store.url !== pageInView
+  );
+
+  useEffect(() => {
+    const getStore = async () => {
+      const selectedStore = currentUser?.storeIds.filter(
+        (store) => store.url === pageInView
+      );
+
+      dispatch(setSelectedStore(selectedStore[0].id));
+      dispatch(setSelectedStoreUrl(pageInView));
+
+      const storeReq = await getStorefrontByID({
+        storeId: selectedStore[0].id,
+      }).unwrap();
+
+      currentUser.store = storeReq.storefront;
+
+      const newUser = JSON.stringify(currentUser);
+      Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
+    };
+
+    if (currentUser) getStore();
+  }, [pageInView]);
+
+  useEffect(() => {
+    closeMenu();
+  }, [pageInView]);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -70,8 +112,18 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
         <div className='flex flex-col w-10/12 mx-auto items-center mt-20'>
           <div className='flex flex-col w-full h-full'>
             <p className='font-medium mr-2 '>Viewing:</p>
-            <select className='rounded border-2 w-full h-10'>
-              <option>{currentUser?.store?.url}</option>
+
+            <select
+              className='rounded border-2 w-full h-10'
+              onChange={(e) => setPageInView(e.target.value)}
+              value={selectedStoreUrl}
+            >
+              <option selected disabled>
+                {selectedStoreUrl}
+              </option>
+              {filteredStores?.map((store) => (
+                <option value={store?.url}>{store?.url}</option>
+              ))}
             </select>
 
             <button

@@ -17,6 +17,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import Stack from '@mui/material/Stack';
 
 const Orders = () => {
+  const currentStoreID = useSelector((state) => state.user.selectedStore);
+
   const [tableView, setTableView] = useState('all');
   const {
     data: orders,
@@ -24,7 +26,7 @@ const Orders = () => {
     isSuccess,
     isError,
     refetch,
-  } = useGetStoreOrdersQuery();
+  } = useGetStoreOrdersQuery({ storeId: currentStoreID });
 
   const fulfilledOrders =
     isSuccess && orders.filter((order) => order.fulfilled === true);
@@ -34,6 +36,10 @@ const Orders = () => {
   useEffect(() => {
     refetch();
   }, []);
+
+  useEffect(() => {
+    refetch();
+  }, [currentStoreID]);
 
   //for data grid
   const cols = [

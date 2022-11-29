@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Navbar from '../../components/Navbar';
 import Topbar from '../../components/Topbar';
 import Footer from '../../components/Footer';
@@ -17,6 +18,7 @@ import moment from 'moment';
 import { isMobile } from 'react-device-detect';
 import AliItemDisplay from '../../components/Item/AliItemDisplay';
 import ProductMobile from '../Mobile/Dashboard/ProductMobile';
+import Cookies from 'js-cookie';
 
 //mui
 import Chip from '@mui/material/Chip';
@@ -25,11 +27,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
 
 const Item = () => {
-  const [aliProductId, setAliProductId] = useState('');
-  const [error, setError] = useState('');
-  const [importing, setImporting] = useState(false);
-
-  const navigate = useNavigate();
+  const currentStoreID = useSelector((state) => state.user.selectedStore);
+  const currentUser = JSON.parse(Cookies.get('currentUser'));
 
   const {
     data: product,
@@ -37,11 +36,15 @@ const Item = () => {
     isSuccess,
     isError,
     refetch,
-  } = useGetProductsQuery();
+  } = useGetProductsQuery({ storeId: currentStoreID });
 
   useEffect(() => {
     refetch();
   }, []);
+
+  useEffect(() => {
+    refetch();
+  }, [currentStoreID]);
 
   const noItem = (
     <div className='h-screen border-2 border-gray-200 rounded w-full flex flex-col justify-center items-center mt-4'>

@@ -3,10 +3,31 @@ import { apiSlice } from './apiSlice';
 export const storefrontApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getStorefront: builder.query({
-      query: () => '/storefront',
+      query: ({ storeId }) => `/storefront/store/${storeId}`,
+    }),
+    getStorefrontByID: builder.query({
+      query: ({ storeId }) => `/storefront/get/${storeId}`,
     }),
     getStoreStats: builder.query({
       query: ({ storeId }) => `/storefront/storestats/${storeId}`,
+    }),
+    addStore: builder.mutation({
+      query: ({ pageName }) => ({
+        url: `/storefront/addpage`,
+        method: 'POST',
+        body: {
+          pageName: pageName,
+        },
+      }),
+    }),
+    deleteStore: builder.mutation({
+      query: ({ storeId }) => ({
+        url: `/storefront/delete`,
+        method: 'POST',
+        body: {
+          storeId: storeId,
+        },
+      }),
     }),
     addSocials: builder.mutation({
       query: ({ storeId, youtube, facebook, instagram, twitter }) => ({
@@ -90,4 +111,7 @@ export const {
   useDeleteLogoMutation,
   useAddSocialsMutation,
   useGetStoreStatsQuery,
+  useAddStoreMutation,
+  useLazyGetStorefrontByIDQuery,
+  useDeleteStoreMutation,
 } = storefrontApiSlice;

@@ -11,21 +11,28 @@ import moment from 'moment';
 import { isMobile } from 'react-device-detect';
 import DesignPreview from '../DesignPreview';
 import DesignMobile from '../Mobile/Dashboard/DesignMobile';
+import Cookies from 'js-cookie';
 
 //mui
 import Switch from '@mui/material/Switch';
 
 const Design = () => {
+  const currentStoreID = useSelector((state) => state.user.selectedStore);
+
   const {
     data: storefront,
     isLoading,
     isSuccess,
     refetch,
-  } = useGetStorefrontQuery();
+  } = useGetStorefrontQuery({ storeId: currentStoreID });
 
   useEffect(() => {
     refetch();
   }, []);
+
+  useEffect(() => {
+    refetch();
+  }, [currentStoreID]);
 
   let content;
   if (isLoading) {

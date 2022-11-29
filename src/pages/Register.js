@@ -8,6 +8,7 @@ import Spinner from '../components/Spinner';
 import Footer from '../components/Footer';
 import { isMobile } from 'react-device-detect';
 import { uploadImageRequest } from '../api/requests';
+import { setStoreIds } from '../redux/userRedux';
 import {
   AiOutlineInstagram,
   AiOutlineYoutube,
@@ -16,6 +17,7 @@ import {
 } from 'react-icons/ai';
 import img from '../media/shirt.jpg';
 import { BsArrow90DegDown } from 'react-icons/bs';
+
 //mui
 import Avatar from '@mui/material/Avatar';
 import Rating from '@mui/material/Rating';
@@ -23,9 +25,6 @@ import Rating from '@mui/material/Rating';
 //filepond
 import { FilePond, registerPlugin } from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
-import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-import FilePondPluginImageResize from 'filepond-plugin-image-resize';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
 //mui
@@ -86,6 +85,8 @@ const Register = () => {
       Cookies.set('currentUser', currentUser, { sameSite: 'Lax' });
       Cookies.set('aToken', registerData.accessToken, { sameSite: 'Lax' });
       Cookies.set('rToken', registerData.refreshToken, { sameSite: 'Lax' });
+      dispatch(setStoreIds(currentUser?.storeIds));
+
       navigate('/storefront/launching');
     } catch (err) {
       if (!err?.status) {
@@ -115,7 +116,16 @@ const Register = () => {
         setPassword={setPassword}
         handleSignup={handleSignup}
         setStoreName={setStoreName}
+        storeName={storeName}
+        bio={bio}
+        setBio={setBio}
+        firstName={firstName}
+        lastName={lastName}
+        setLastName={setLastName}
+        setFirstName={setFirstName}
         isLoading={isLoading}
+        profilePic={profilePic}
+        setProfilePic={setProfilePic}
       />
     ) : (
       <div className='container flex justify-between mx-auto w-full'>

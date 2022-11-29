@@ -8,6 +8,7 @@ import Cookies from 'js-cookie';
 import Spinner from '../components/Spinner';
 import Footer from '../components/Footer';
 import LoginMobile from './Mobile/LoginMobile';
+import { setStoreIds, setSelectedStoreUrl } from '../redux/userRedux';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -35,6 +36,7 @@ const Login = () => {
       Cookies.set('currentUser', currentUser, { sameSite: 'Lax' });
       Cookies.set('aToken', userData.accessToken, { sameSite: 'Lax' });
       Cookies.set('rToken', userData.refreshToken, { sameSite: 'Lax' });
+      dispatch(setSelectedStoreUrl(userData?.userInfo?.store?.url));
       navigate('/dashboard');
     } catch (err) {
       if (!err?.status) {

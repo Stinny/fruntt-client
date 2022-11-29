@@ -20,18 +20,24 @@ import { DataGrid } from '@mui/x-data-grid';
 import Stack from '@mui/material/Stack';
 
 const Customers = () => {
+  const currentStoreID = useSelector((state) => state.user.selectedStore);
+
   const {
     data: customers,
     isLoading,
     isSuccess,
     refetch,
-  } = useGetCustomersQuery();
+  } = useGetCustomersQuery({ storeId: currentStoreID });
 
   const [sendReviewEmail, result] = useSendReviewEmailMutation();
 
   useEffect(() => {
     refetch();
   }, []);
+
+  useEffect(() => {
+    refetch();
+  }, [currentStoreID]);
 
   const handleSendReviewEmail = async ({ customerId, storeId }) => {
     try {

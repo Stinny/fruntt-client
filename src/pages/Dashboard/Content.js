@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Footer from '../../components/Footer';
 import Topbar from '../../components/Topbar';
 import Navbar from '../../components/Navbar';
@@ -9,17 +10,23 @@ import Spinner from '../../components/Spinner';
 import AddSocials from '../../components/Content/AddSocials';
 import AddMedia from '../../components/Content/AddMedia';
 import { isMobile } from 'react-device-detect';
+import Cookies from 'js-cookie';
 
 //mui
 import Alert from '@mui/material/Alert';
 
 const Content = () => {
+  const currentStoreID = useSelector((state) => state.user.selectedStore);
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
+
   const {
     data: storefront,
     isLoading,
     isSuccess,
     refetch,
-  } = useGetStorefrontQuery();
+  } = useGetStorefrontQuery({ storeId: currentUser?.store?._id });
 
   const [nameChangedInfo, setInfo] = useState('');
 
@@ -27,6 +34,10 @@ const Content = () => {
     refetch();
     setInfo('');
   }, []);
+
+  useEffect(() => {
+    refetch();
+  }, [currentStoreID]);
 
   let content;
 
@@ -55,7 +66,7 @@ const Content = () => {
 
         {/* <AddSocials storefront={storefront} refetch={refetch} /> */}
 
-        <FAQs storefront={storefront} />
+        <FAQs currentUser={currentUser} />
 
         <AddMedia />
       </>

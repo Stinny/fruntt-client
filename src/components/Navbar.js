@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineNotificationsNone } from 'react-icons/md';
 import { FiSettings } from 'react-icons/fi';
 import { CgProfile } from 'react-icons/cg';
@@ -10,6 +11,12 @@ import Cookies from 'js-cookie';
 import { BsDiscord } from 'react-icons/bs';
 import { isMobile } from 'react-device-detect';
 import MobileNavbar from './MobileNavbar';
+import { useLazyGetStorefrontByIDQuery } from '../api/storefrontApiSlice';
+import {
+  setSelectedStore,
+  setStoreIds,
+  setSelectedStoreUrl,
+} from '../redux/userRedux';
 
 //mui
 import Menu from '@mui/material/Menu';
@@ -25,11 +32,46 @@ import Tooltip from '@mui/material/Tooltip';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  //holds the url of the page being viewed
+  const selectedStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
+
+  const [pageInView, setPageInView] = useState(currentUser?.store?.url);
+
+  const [getStorefrontByID, result] = useLazyGetStorefrontByIDQuery();
+
+  const filteredStores = currentUser?.storeIds.filter(
+    (store) => store.url !== pageInView
+  );
+
+  useEffect(() => {
+    const getStore = async () => {
+      const selectedStore = currentUser?.storeIds.filter(
+        (store) => store.url === pageInView
+      );
+
+      dispatch(setSelectedStore(selectedStore[0].id));
+      dispatch(setSelectedStoreUrl(pageInView));
+
+      const storeReq = await getStorefrontByID({
+        storeId: selectedStore[0].id,
+      }).unwrap();
+
+      currentUser.store = storeReq.storefront;
+
+      const newUser = JSON.stringify(currentUser);
+      Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
+    };
+
+    if (currentUser) getStore();
+  }, [pageInView]);
 
   //for dropdown
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -92,18 +134,27 @@ const Navbar = () => {
 
         <div className='flex items-center h-full'>
           <p className='font-medium mr-2'>Viewing:</p>
-          <select className='rounded border-2 w-72 h-10'>
-            <option>{currentUser?.store?.url}</option>
+          <select
+            className='rounded border-2 w-72 h-10'
+            onChange={(e) => setPageInView(e.target.value)}
+            value={selectedStoreUrl}
+          >
+            <option selected disabled>
+              {selectedStoreUrl}
+            </option>
+            {filteredStores?.map((store) => (
+              <option value={store?.url}>{store?.url}</option>
+            ))}
           </select>
-          <Tooltip title='Coming soon' className='ml-2' placement='bottom'>
-            <button
-              type='button'
-              disabled
-              className='ml-2 text-gray-400 hover:text-gray-800'
-            >
-              + Add page
-            </button>
-          </Tooltip>
+
+          <Link
+            to='/addpage'
+            type='button'
+            disabled
+            className='ml-2 text-gray-400 hover:text-gray-800'
+          >
+            + Add page
+          </Link>
         </div>
 
         {/* links section */}

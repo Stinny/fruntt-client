@@ -202,7 +202,7 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
           }
         />
 
-        <div className='flex flex-col w-96'>
+        <div className='flex flex-col w-64'>
           <p
             className='text-xl font-medium'
             style={{

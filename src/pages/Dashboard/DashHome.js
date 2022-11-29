@@ -20,18 +20,19 @@ import Tooltip from '@mui/material/Tooltip';
 
 const DashHome = () => {
   const currentUser = JSON.parse(Cookies.get('currentUser'));
-  //this component will display many ananlytics of sorts
-  //relating to their store
-  //(toggle between monthly, weekly, daily)
-  //revenue, # of orders, # of customers, recent orders that links to orders page, graph display
+  const currentStoreID = useSelector((state) => state.user.selectedStore);
 
   const { data: stats, isLoading, isSuccess, refetch } = useGetStoreStatsQuery({
-    storeId: currentUser?.storeId,
+    storeId: currentStoreID,
   });
 
   useEffect(() => {
     refetch();
   }, []);
+
+  useEffect(() => {
+    refetch();
+  }, [currentStoreID]);
 
   let content;
 
@@ -233,7 +234,7 @@ const DashHome = () => {
           </div>
         </div>
 
-        <SalesGraph />
+        {/* <SalesGraph /> */}
       </>
     );
   }

@@ -41,6 +41,7 @@ import Config from './pages/Dashboard/Config';
 import Feedback from './pages/Feedback';
 import AliItem from './pages/Dashboard/AliItem';
 import ImportAli from './pages/Dashboard/ImportAli';
+import AddPage from './pages/AddPage';
 
 function App() {
   return (
@@ -63,7 +64,8 @@ function App() {
               <Route path='dashboard/plans/paid' element={<PaidPlan />} />
               <Route path='confirm/:userId' element={<ConfirmEmail />} />
               <Route path='storefront/launching' element={<Launching />} />
-              <Route path='addpayment/' element={<PaymentMethod />} />
+              <Route path='addpayment' element={<PaymentMethod />} />
+              <Route path='addpage' element={<AddPage />} />
 
               {/* routes require user to be subscribed to a plan */}
               <Route element={<RequireSubscription />}>

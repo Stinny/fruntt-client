@@ -48,15 +48,8 @@ const DashHomeMobile = ({ stats, currentUser }) => {
           </p>
         </Alert>
       )}
-      <Alert severity='info' className='mt-2 mb-4 w-11/12 mx-auto'>
-        <p>
-          Welcome merchants! As we onboard public beta users, collect feedback,
-          and develop a pricing plan merchants will be restricted to launching
-          only one storefront. We encourage and appreaciate all feedback!
-        </p>
-      </Alert>
 
-      <div className='flex w-11/12 mx-auto'>
+      <div className='flex w-11/12 mx-auto mt-4 mb-2'>
         <a
           href={currentUser?.store?.url}
           className='flex items-center text-lg text-slate-800 font-medium'
@@ -71,9 +64,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
           <div className='drop-shadow-md w-11/12 h-28 bg-gray-200 rounded-md p-2 relative'>
             <Tooltip
               title={
-                <p className='text-lg'>
-                  Total revenue your storefront has generated
-                </p>
+                <p className='text-lg'>Total revenue your page has generated</p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
               placement='bottom'
@@ -98,9 +89,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
           <div className='drop-shadow-md w-11/12 h-28 bg-gray-200 rounded-md p-2 relative ml-2'>
             <Tooltip
               title={
-                <p className='text-lg'>
-                  Total sales your storefront has generated
-                </p>
+                <p className='text-lg'>Total sales your page has generated</p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
               placement='bottom'
@@ -120,7 +109,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
             <Tooltip
               title={
                 <p className='text-lg'>
-                  Amount of users who have visted your storefront
+                  Amount of users who have visted your page
                 </p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
@@ -227,7 +216,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
         </div>
       </div>
 
-      <SalesGraph />
+      {/* <SalesGraph /> */}
     </>
   );
 };

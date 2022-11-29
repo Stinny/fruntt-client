@@ -5,6 +5,7 @@ import Topbar from '../../components/Topbar';
 
 //mui
 import Switch from '@mui/material/Switch';
+import DeletePage from '../../components/Config/DeletePage';
 
 const Config = () => {
   return (
@@ -30,6 +31,7 @@ const Config = () => {
           </div>
           <p className='font-medium text-lg mt-4'>Turn on maintenance mode</p>
           <Switch className='mt-4' />
+          <DeletePage />
         </div>
       </div>
       <Footer />

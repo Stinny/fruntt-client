@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import FileUpload from './FileUpload';
 import Topbar from '../../components/Topbar';
 import Navbar from '../../components/Navbar';
@@ -21,6 +22,8 @@ import Tooltip from '@mui/material/Tooltip';
 const AddItem = () => {
   //hooks
   const navigate = useNavigate();
+
+  const currentStoreID = useSelector((state) => state.user.selectedStore);
 
   //component state
   const [title, setTitle] = useState('');
@@ -128,6 +131,7 @@ const AddItem = () => {
         options,
         shippingPrice,
         imageData: imagesDataReq.data,
+        storeId: currentStoreID,
       }).unwrap();
 
       if (addProductReq === 'Item added') {
@@ -178,7 +182,7 @@ const AddItem = () => {
       ) : (
         <div className='max-w-6xl mx-auto'>
           <div className='mb-10 flex justify-between border-b-2 p-2'>
-            <h2 className='text-3xl font-medium'>Add Your Item</h2>
+            <h2 className='text-3xl font-medium'>Add your product</h2>
 
             <div className='flex'>
               <button

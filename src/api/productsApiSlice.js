@@ -1,14 +1,10 @@
 import { apiSlice } from './apiSlice';
 import { createSelector, createEntityAdapter } from '@reduxjs/toolkit';
 
-// const productsAdapter = createEntityAdapter();
-
-// const initialState = productsAdapter.getInitialState();
-
 export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => '/products',
+      query: ({ storeId }) => `/products/client/${storeId}`,
       keepUnusedDataFor: 5,
     }),
     getProduct: builder.query({
