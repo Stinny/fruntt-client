@@ -41,7 +41,7 @@ const RegisterMobile = ({
       <div className='flex flex-col w-full mt-10'>
         <h2 className='text-2xl font-medium'>Launch your first product page</h2>
         <p className='border-b-2 text-gray-400 font-medium mb-4 text-lg'>
-          Launch a product page and explore the platform for FREE for 7 days
+          Launch a product page and explore the platform for FREE
         </p>
 
         {error && (
@@ -52,19 +52,19 @@ const RegisterMobile = ({
 
         <form
           onSubmit={handleSignup}
-          className='flex flex-col items-center w-full bg-gray-100 p-2 rounded'
+          className='flex flex-col items-center w-full bg-gray-100 p-2 rounded border-2 border-gray-300'
         >
           <input
             type='email'
             placeholder='Email'
-            className='border-2 border-gray-300 hover:border-slate-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
+            className='border-2 text-sm border-gray-300 hover:border-slate-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
             onChange={(e) => setEmail(e.target.value)}
           />
 
           <input
             type='password'
             placeholder='Password'
-            className='border-2 border-gray-300 focus:outline focus:outline-1 hover:border-gray-400 focus:outline-gray-400 hover:border-slate-300 w-full rounded p-2 mt-2'
+            className='border-2 text-sm border-gray-300 focus:outline focus:outline-1 hover:border-gray-400 focus:outline-gray-400 hover:border-slate-300 w-full rounded p-2 mt-2'
             onChange={(e) => setPassword(e.target.value)}
           />
 
@@ -80,7 +80,7 @@ const RegisterMobile = ({
               <input
                 type='text'
                 placeholder='First name or business name'
-                className='border-2 border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2'
+                className='border-2 text-sm border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2'
                 onChange={(e) => setFirstName(e.target.value)}
                 value={firstName}
               />
@@ -89,12 +89,12 @@ const RegisterMobile = ({
                 placeholder='Last name (optional)'
                 onChange={(e) => setLastName(e.target.value)}
                 value={lastName}
-                className='border-2 border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 ml-2'
+                className='border-2 text-sm border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 ml-2'
               />
             </div>
             <textarea
               placeholder='A little about you, your business, or what you sell...'
-              className='w-full h-20 border-2 rounded border-gray-300 hover:border-gray-400 outline outline-0 p-2 mt-2'
+              className='w-full text-sm h-20 border-2 rounded border-gray-300 hover:border-gray-400 outline outline-0 p-2 mt-2'
               onChange={(e) => setBio(e.target.value)}
               value={bio}
             />
@@ -120,7 +120,7 @@ const RegisterMobile = ({
             <input
               type='text'
               placeholder='Page name & url'
-              className='w-5/6 border-2 border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 mt-2'
+              className='w-5/6 border-2 text-sm border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 mt-2'
               onChange={(e) => setStoreName(e.target.value)}
             />
             <p className='font-medium text-xl mt-6'>.fruntt.com</p>
@@ -131,7 +131,7 @@ const RegisterMobile = ({
             disabled={isLoading}
             className='h-11 w-full border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-xl mt-4'
           >
-            Start your trial - $0
+            Launch product page
           </button>
           <div className='mt-2 flex w-full'>
             <Link to='/login'>

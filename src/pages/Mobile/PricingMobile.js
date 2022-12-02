@@ -11,24 +11,24 @@ import Alert from '@mui/material/Alert';
 const PricingMobile = () => {
   return (
     <div className='w-full mx-auto h-fit'>
-      <div className='w-10/12 mx-auto flex flex-col items-center'>
+      <div className='w-full mx-auto flex flex-col items-center p-2'>
         <p className='text-3xl font-medium mt-8'>Pricing</p>
-        {/* <Alert severity='info' className='mt-2'>
-          Welcome early bird merchants! We are very excited to offer our early
-          bird special. Launch your first product page during our early bird
-          special and pay $9/mo!
-        </Alert> */}
+        <Alert severity='info' className='mt-2'>
+          Welcome merchants! We are very excited to finally be onboarding users.
+          Please enjoy our platform for FREE while we collect feedback and
+          develop a pricing plan.
+        </Alert>
 
         <div className='border-2 rounded w-full h-full p-4 mt-4'>
           {/* <div className='flex items-center mb-2'>
             <p className='text-2xl font-medium'>Early bird special</p>
             <FaEarlybirds className='text-2xl' />
           </div> */}
-          <p className='font-medium text-2xl'>
+          <p className='font-medium text-3xl'>
             <span className='text-4xl'>TBD</span>/mo
           </p>
           <p className='font-medium text-gray-400 text-lg'>Per product page</p>
-          <p className='mt-8 text-xl text-slate-800 font-medium'>
+          <p className='mt-4 text-xl text-slate-800 font-medium'>
             Platform includes:
           </p>
           <div className='w-full text-slate-800 text-lg p-2'>

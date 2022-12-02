@@ -155,7 +155,7 @@ const Register = () => {
           />
         </Elements>
 
-        <div className='w-7/12'>
+        <div className='w-8/12'>
           <div className='w-full flex justify-between items-center'>
             <div className='flex items-center mt-10'>
               <p className='font-medium'>Page url:</p>
