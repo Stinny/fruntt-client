@@ -57,7 +57,7 @@ const Integrations = () => {
           <form className='mt-4' onSubmit={handleSubmitFeedback}>
             <textarea
               type='text'
-              className='border-2 border-gray-300 hover:border-gray-300 w-full h-28 focus:outline focus:outline-1 focus:outline-gray-400 rounded-lg mt-4 p-2'
+              className='border-2 border-gray-300 hover:border-gray-300 w-full h-28 focus:outline focus:outline-1 focus:outline-gray-400 rounded mt-4 p-2'
               placeholder='Enter feedback here...'
               onChange={(e) => setContent(e.target.value)}
             />
