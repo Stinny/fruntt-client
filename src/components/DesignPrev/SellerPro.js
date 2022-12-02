@@ -148,14 +148,7 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
               borderColor: borderColor,
             }}
           >
-            <option
-              value={1}
-              style={{
-                color: pageText,
-              }}
-            >
-              luxurywatch.fruntt.com
-            </option>
+            <option>{currentUser?.store?.url}</option>
           </select>
         </div>
       </div>
