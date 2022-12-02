@@ -42,7 +42,7 @@ const Home = () => {
               </p>
               <Link to='/pricing' className='flex justify-center mt-8'>
                 <button className='rounded text-slate-800 w-5/12 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
-                  Launch a product page - for free
+                  Launch a product page - for FREE
                 </button>
               </Link>
               <a

@@ -17,6 +17,8 @@ import {
 } from 'react-icons/ai';
 import img from '../media/shirt.jpg';
 import { BsArrow90DegDown } from 'react-icons/bs';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 //mui
 import Avatar from '@mui/material/Avatar';
@@ -30,6 +32,10 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 //mui
 import Alert from '@mui/material/Alert';
 import RegisterMobile from './Mobile/RegisterMobile';
+import CardForm from '../components/Forms/CardForm';
+import RegisterForm from '../components/Forms/RegisterForm';
+
+const stripeLoader = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -129,112 +135,27 @@ const Register = () => {
       />
     ) : (
       <div className='container flex justify-between mx-auto w-full'>
-        <div className='flex flex-col w-2/6 mr-10 mt-10'>
-          <h2 className='text-3xl font-medium mb-4 border-b-2'>
-            Launch your first product page
-          </h2>
+        <Elements stripe={stripeLoader}>
+          <RegisterForm
+            error={error}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            handleSignup={handleSignup}
+            setStoreName={setStoreName}
+            storeName={storeName}
+            bio={bio}
+            setBio={setBio}
+            firstName={firstName}
+            lastName={lastName}
+            setLastName={setLastName}
+            setFirstName={setFirstName}
+            isLoading={isLoading}
+            profilePic={profilePic}
+            setProfilePic={setProfilePic}
+          />
+        </Elements>
 
-          {error && (
-            <Alert severity='error' color='error' className='mt-4 mb-4 w-full'>
-              {error}
-            </Alert>
-          )}
-
-          <form
-            onSubmit={handleSignup}
-            className='flex flex-col items-center w-full bg-gray-100 p-2 rounded'
-          >
-            <input
-              type='email'
-              placeholder='Email'
-              className='border-2 border-gray-300 hover:border-slate-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
-              onChange={(e) => setEmail(e.target.value)}
-            />
-
-            <input
-              type='password'
-              placeholder='Password'
-              className='border-2 border-gray-300 focus:outline focus:outline-1 hover:border-gray-400 focus:outline-gray-400 hover:border-slate-300 w-full rounded p-2 mt-2'
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <div className='w-full flex-col mt-2'>
-              <div className='flex flex-col border-b mb-2'>
-                <p className='font-medium'>Seller profile</p>
-                <p className='text-gray-400 font-medium'>
-                  This appears at the top of all your product pages
-                </p>
-              </div>
-
-              <div className='flex justify-between w-full'>
-                <input
-                  type='text'
-                  placeholder='First name or business name'
-                  className='border-2 border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2'
-                  onChange={(e) => setFirstName(e.target.value)}
-                  value={firstName}
-                />
-                <input
-                  type='text'
-                  placeholder='Last name (optional)'
-                  onChange={(e) => setLastName(e.target.value)}
-                  value={lastName}
-                  className='border-2 border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 ml-2'
-                />
-              </div>
-              <textarea
-                placeholder='A little about you, your business, or what you sell...'
-                className='w-full h-20 border-2 border-gray-300 hover:border-gray-400 outline outline-0 p-2 mt-2'
-                onChange={(e) => setBio(e.target.value)}
-                value={bio}
-              />
-              <p className='text-gray-400 font-medium mt-2'>
-                + add profile picture
-              </p>
-              <FilePond
-                file={profilePic}
-                imageResizeTargetWidth={200}
-                allowReorder={true}
-                name='productImages'
-                onupdatefiles={(file) => setProfilePic(file)}
-              />
-            </div>
-
-            <div className='w-full mt-2'>
-              <p className='font-medium border-b'>
-                Give your product page a name
-              </p>
-            </div>
-
-            <div className='flex w-full'>
-              <input
-                type='text'
-                placeholder='Page name & url'
-                className='w-5/6 border-2 border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 mt-2'
-                onChange={(e) => setStoreName(e.target.value)}
-              />
-              <p className='font-medium text-xl mt-6'>.fruntt.com</p>
-            </div>
-
-            <div className='mt-2 flex w-full'>
-              <Link to='/login'>
-                <p className='text-sm self-start text-slate-400 hover:text-slate-800 font-medium'>
-                  Already have a page? Login here.
-                </p>
-              </Link>
-            </div>
-
-            <button
-              type='submit'
-              disabled={isLoading}
-              className='h-11 w-full border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-xl mt-4'
-            >
-              Launch product page
-            </button>
-          </form>
-        </div>
-
-        <div className=' w-4/6'>
+        <div className='w-7/12'>
           <div className='w-full flex justify-between items-center'>
             <div className='flex items-center mt-10'>
               <p className='font-medium'>Page url:</p>
@@ -250,7 +171,7 @@ const Register = () => {
             </div>
           </div>
 
-          <div className='border-2 rounded'>
+          <div className='border-2 rounded bg-blue-200'>
             <div className='flex flex-col p-2'>
               <div className='w-full border-b'>
                 <p className='text-xl font-medium'>The seller</p>
@@ -271,10 +192,14 @@ const Register = () => {
                       {firstName} {lastName}
                     </p>
                   ) : (
-                    ''
+                    <p className='text-2xl font-medium'>John Smith</p>
                   )}
 
-                  {bio ? <p>{bio}</p> : ''}
+                  {bio ? (
+                    <p>{bio}</p>
+                  ) : (
+                    <p>This is your bio, try to be creative and catchy</p>
+                  )}
                 </div>
 
                 <div className='flex flex-col items-center'>
@@ -307,7 +232,7 @@ const Register = () => {
               </div>
             </div>
 
-            <div className='flex flex-col p-2'>
+            <div className='flex flex-col p-4'>
               <div className='flex'>
                 <img src={img} className='w-3/6' />
                 <div className='w-3/6 ml-4'>

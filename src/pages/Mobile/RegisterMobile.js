@@ -39,9 +39,10 @@ const RegisterMobile = ({
   return (
     <div className='container flex flex-col mx-auto w-full p-2'>
       <div className='flex flex-col w-full mt-10'>
-        <h2 className='text-2xl font-medium mb-4 border-b-2'>
-          Launch your first product page
-        </h2>
+        <h2 className='text-2xl font-medium'>Launch your first product page</h2>
+        <p className='border-b-2 text-gray-400 font-medium mb-4 text-lg'>
+          Launch a product page and explore the platform for FREE for 7 days
+        </p>
 
         {error && (
           <Alert severity='error' color='error' className='mt-4 mb-4 w-full'>
@@ -125,6 +126,13 @@ const RegisterMobile = ({
             <p className='font-medium text-xl mt-6'>.fruntt.com</p>
           </div>
 
+          <button
+            type='submit'
+            disabled={isLoading}
+            className='h-11 w-full border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-xl mt-4'
+          >
+            Start your trial - $0
+          </button>
           <div className='mt-2 flex w-full'>
             <Link to='/login'>
               <p className='text-sm self-start text-slate-400 hover:text-slate-800 font-medium'>
@@ -132,14 +140,6 @@ const RegisterMobile = ({
               </p>
             </Link>
           </div>
-
-          <button
-            type='submit'
-            disabled={isLoading}
-            className='h-11 w-full border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-xl mt-4'
-          >
-            Launch product page
-          </button>
         </form>
       </div>
 

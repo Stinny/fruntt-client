@@ -25,7 +25,7 @@ const PricingMobile = () => {
             <FaEarlybirds className='text-2xl' />
           </div> */}
           <p className='font-medium text-2xl'>
-            <span className='text-4xl'>$TBD</span>/mo
+            <span className='text-4xl'>TBD</span>/mo
           </p>
           <p className='font-medium text-gray-400 text-lg'>Per product page</p>
           <p className='mt-8 text-xl text-slate-800 font-medium'>
@@ -52,7 +52,7 @@ const PricingMobile = () => {
           </div>
           <Link to='/signup' className='w-full'>
             <button className='w-full mt-4 h-14 text-lg border-2 border-slate-800 text-slate-800 rounded hover:text-white hover:bg-slate-800'>
-              Launch a product page - free
+              Launch product page
             </button>
           </Link>
         </div>

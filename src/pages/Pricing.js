@@ -33,7 +33,7 @@ const Pricing = () => {
                 <FaEarlybirds className='text-3xl' />
               </div> */}
               <p className='font-medium text-4xl'>
-                <span className='text-6xl'>$TBD</span>/mo
+                <span className='text-6xl'>TBD</span>/mo
               </p>
               <p className='font-medium text-gray-400 text-xl'>
                 Per product page
@@ -61,7 +61,7 @@ const Pricing = () => {
               </div>
               <Link to='/signup' className='w-full'>
                 <button className='w-full mt-4 h-14 text-xl border-2 border-slate-800 text-slate-800 rounded hover:text-white hover:bg-slate-800'>
-                  Launch a product page - free
+                  Launch product page
                 </button>
               </Link>
             </div>
