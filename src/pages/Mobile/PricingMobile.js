@@ -9,6 +9,13 @@ import { FaEarlybirds } from 'react-icons/fa';
 import Alert from '@mui/material/Alert';
 
 const PricingMobile = () => {
+  //auto scrolls the page to the top
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+
   return (
     <div className='w-full mx-auto h-fit'>
       <div className='w-full mx-auto flex flex-col items-center p-2'>

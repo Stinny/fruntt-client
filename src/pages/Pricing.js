@@ -13,6 +13,13 @@ import { FaEarlybirds } from 'react-icons/fa';
 import Alert from '@mui/material/Alert';
 
 const Pricing = () => {
+  //auto scrolls the page to the top
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+
   return (
     <>
       <Navbar />
