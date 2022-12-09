@@ -152,15 +152,6 @@ const RegisterMobile = ({
 
       <div className='w-full'>
         <div className='w-full flex flex-col'>
-          <div className='flex flex-col mt-10 w-full'>
-            <p className='font-medium'>Page url:</p>
-
-            {storeName && (
-              <p className='text-xl font-medium break-words'>
-                https://{storeName}.fruntt.com
-              </p>
-            )}
-          </div>
           <div className='flex mt-10 items-center'>
             <BsArrow90DegDown />
             <p className='font-medium text-xl'>Sample product page</p>
