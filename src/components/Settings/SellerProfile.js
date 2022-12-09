@@ -100,6 +100,7 @@ const SellerProfile = ({ user, refetch }) => {
           marginRight: '-50%',
           transform: 'translate(-50%, -50%)',
           width: '90%',
+          height: '95%',
         },
       }
     : {
@@ -121,8 +122,11 @@ const SellerProfile = ({ user, refetch }) => {
         style={modalStyles}
       >
         <form className='flex flex-col' onSubmit={handleUpdateProfile}>
-          <p className='text-xl font-medium text-slate-800 mb-4 border-b'>
+          <p className='text-xl font-medium text-slate-800'>
             Edit seller profile
+          </p>
+          <p className=' font-medium text-gray-400 mb-4 border-b'>
+            This appears at the top of all your product pages
           </p>
           <p className='text-lg font-medium mt-2 mb-2'>about you</p>
 
@@ -228,10 +232,9 @@ const SellerProfile = ({ user, refetch }) => {
       <div>
         {isMobile ? (
           <div className='flex justify-between items-center w-full border-b p-2'>
-            <p className='text-lg font-medium'>Seller profile</p>
-            <p className='text-gray-400'>
-              Your seller profile appears at the top of all your product pages
-            </p>
+            <div className='flex flex-col'>
+              <p className='text-xlg font-medium'>Seller profile</p>
+            </div>
             <button
               className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
               onClick={openModal}
@@ -298,27 +301,27 @@ const SellerProfile = ({ user, refetch }) => {
               <div className='flex items-center text-3xl mt-4'>
                 {user?.sellerProfile?.facebook && (
                   <a href={user?.sellerProfile?.facebook} target='_blank'>
-                    <AiOutlineFacebook className='text-gray-400' />
+                    <AiOutlineFacebook className='text-slate-800' />
                   </a>
                 )}
                 {user?.sellerProfile?.instagram && (
                   <a href={user?.sellerProfile?.instagram} target='_blank'>
-                    <AiOutlineInstagram className='text-gray-400 ml-2' />
+                    <AiOutlineInstagram className='text-slate-800 ml-2' />
                   </a>
                 )}
                 {user?.sellerProfile?.twitter && (
                   <a href={user?.sellerProfile?.twitter} target='_blank'>
-                    <AiOutlineTwitter className='text-gray-400 ml-2' />
+                    <AiOutlineTwitter className='text-slate-800 ml-2' />
                   </a>
                 )}
                 {user?.sellerProfile?.youtube && (
                   <a href={user?.sellerProfile?.youtube} target='_blank'>
-                    <AiOutlineYoutube className='text-gray-400 ml-2' />
+                    <AiOutlineYoutube className='text-slate-800 ml-2' />
                   </a>
                 )}
                 {user?.sellerProfile?.tiktok && (
                   <a href={user?.sellerProfile?.tiktok} target='_blank'>
-                    <FaTiktok className='text-gray-400 ml-2' />
+                    <FaTiktok className='text-slate-800 ml-2' />
                   </a>
                 )}
               </div>

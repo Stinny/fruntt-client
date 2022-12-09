@@ -46,7 +46,7 @@ const EditItem = () => {
             refetch={refetch}
           />
         ) : (
-          <EditItemForm product={product} productId={product?._id} />
+          <EditItemForm product={product} productId={productId} />
         )}
       </div>
     );

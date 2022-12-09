@@ -126,13 +126,12 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
               ))}
             </select>
 
-            <button
-              type='button'
-              disabled
+            <Link
+              to='/addpage'
               className='ml-2 text-gray-400 hover:text-gray- mt-2'
             >
               + Add page
-            </button>
+            </Link>
           </div>
           <button
             onClick={handleOpenModal}
