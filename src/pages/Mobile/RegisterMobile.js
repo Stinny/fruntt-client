@@ -36,6 +36,13 @@ const RegisterMobile = ({
   storeName,
   isLoading,
 }) => {
+  //auto scrolls to top of page
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+
   return (
     <div className='container flex flex-col mx-auto w-full p-2'>
       <div className='flex flex-col w-full mt-10'>
@@ -143,7 +150,7 @@ const RegisterMobile = ({
         </form>
       </div>
 
-      <div className=' w-full'>
+      <div className='w-full'>
         <div className='w-full flex flex-col'>
           <div className='flex flex-col mt-10 w-full'>
             <p className='font-medium'>Page url:</p>
@@ -160,7 +167,7 @@ const RegisterMobile = ({
           </div>
         </div>
 
-        <div className='border-2 rounded'>
+        <div className='border-2 rounded bg-blue-200'>
           <div className='flex flex-col p-2'>
             <div className='w-full border-b'>
               <p className='text-xl font-medium'>The seller</p>

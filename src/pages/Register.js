@@ -110,6 +110,12 @@ const Register = () => {
     setError('');
   }, [email, storeName, password]);
 
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+
   let content;
 
   if (isLoading) {
