@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { RiSecurePaymentFill } from 'react-icons/ri';
@@ -14,11 +14,13 @@ import Alert from '@mui/material/Alert';
 
 const Pricing = () => {
   //auto scrolls the page to the top
-  window.scroll({
-    top: 0,
-    left: 0,
-    behavior: 'smooth',
-  });
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, []);
 
   return (
     <>

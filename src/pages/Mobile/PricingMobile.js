@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { RiSecurePaymentFill } from 'react-icons/ri';
 import { MdMobileFriendly } from 'react-icons/md';
@@ -10,11 +10,13 @@ import Alert from '@mui/material/Alert';
 
 const PricingMobile = () => {
   //auto scrolls the page to the top
-  window.scroll({
-    top: 0,
-    left: 0,
-    behavior: 'smooth',
-  });
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, []);
 
   return (
     <div className='w-full mx-auto h-fit'>

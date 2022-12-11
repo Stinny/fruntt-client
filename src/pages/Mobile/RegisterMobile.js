@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   AiOutlineInstagram,
@@ -37,11 +37,13 @@ const RegisterMobile = ({
   isLoading,
 }) => {
   //auto scrolls to top of page
-  window.scroll({
-    top: 0,
-    left: 0,
-    behavior: 'smooth',
-  });
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, []);
 
   return (
     <div className='container flex flex-col mx-auto w-full p-2'>
