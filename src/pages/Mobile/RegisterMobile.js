@@ -49,8 +49,8 @@ const RegisterMobile = ({
     <div className='container flex flex-col mx-auto w-full p-2'>
       <div className='flex flex-col w-full mt-10'>
         <h2 className='text-2xl font-medium'>Launch your first product page</h2>
-        <p className='border-b-2 text-gray-400 font-medium mb-4 text-lg'>
-          Launch a product page and explore the platform for FREE
+        <p className='border-b-2 text-gray-400 font-medium mb-4'>
+          See sample product page below
         </p>
 
         {error && (
@@ -68,6 +68,7 @@ const RegisterMobile = ({
             placeholder='Email'
             className='border-2 text-sm border-gray-300 hover:border-slate-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
             onChange={(e) => setEmail(e.target.value)}
+            autoFocus
           />
 
           <input

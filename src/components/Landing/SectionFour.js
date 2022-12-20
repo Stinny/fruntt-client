@@ -23,7 +23,7 @@ const SectionFour = () => {
         Bring your customers only TWO clicks from a purchase, lead them straight
         to the product not an entire online storefront!
       </p>
-      <Link to='/pricing' className='flex justify-center mt-8 w-96'>
+      <Link to='/signup' className='flex justify-center mt-8 w-96'>
         <button className='rounded text-slate-800 w-full h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
           Launch a FREE product page
         </button>

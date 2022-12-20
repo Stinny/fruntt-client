@@ -15,7 +15,7 @@ const Hero = () => {
         launching an entire storefront.
       </p>
 
-      <Link to='/pricing' className='flex justify-center mt-8'>
+      <Link to='/signup' className='flex justify-center mt-8'>
         <button className='rounded text-slate-800 w-10/12 h-10 text-lg border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
           Launch a product page - for FREE
         </button>
@@ -35,7 +35,7 @@ const Hero = () => {
         Easily launch, design, and manage product pages. Avoid the hassle of
         launching an entire storefront.
       </p>
-      <Link to='/pricing' className='flex justify-center mt-8'>
+      <Link to='/signup' className='flex justify-center mt-8'>
         <button className='rounded text-slate-800 w-96 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
           Launch a product page - for FREE
         </button>

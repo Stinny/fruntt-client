@@ -12,8 +12,13 @@ const LoginMobile = ({
   isLoading,
 }) => {
   return (
-    <div className='flex flex-col items-center mx-auto justify-center w-full'>
-      <h2 className='text-4xl font-bold'>Login</h2>
+    <div className='flex flex-col items-center mx-auto justify-center w-full p-2'>
+      <div className='w-full flex flex-col border-b-2 items-center'>
+        <h2 className='text-4xl font-medium'>Login</h2>
+        <p className='text-gray-400 font-medium text-center'>
+          Welcome back! Please enter your details below.
+        </p>
+      </div>
       {error && (
         <Alert severity='error' className='mt-2 mb-2 w-10/12 bg-red-300'>
           {error}
@@ -21,12 +26,12 @@ const LoginMobile = ({
       )}
       <form
         onSubmit={handleLogin}
-        className='w-10/12 flex flex-col items-center'
+        className='flex flex-col w-full items-center bg-gray-100 p-2 rounded border-2 border-gray-300 mt-2'
       >
         <input
           type='email'
           placeholder='Email'
-          className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded-lg mt-4 p-2'
+          className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
           autoFocus
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -34,7 +39,7 @@ const LoginMobile = ({
         <input
           type='password'
           placeholder='Password'
-          className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded-lg mt-4 p-2'
+          className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
           onChange={(e) => setPassword(e.target.value)}
         />
         <div className='w-full flex justify-between mt-2'>
@@ -54,7 +59,7 @@ const LoginMobile = ({
           disabled={isLoading}
           className='h-10 w-full border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-lg mt-4'
         >
-          Go to my page
+          Go to my page(s)
         </button>
       </form>
     </div>
