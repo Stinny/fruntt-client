@@ -48,11 +48,11 @@ const Item = () => {
 
   const noItem = (
     <div className='h-screen border-2 border-gray-200 rounded w-full flex flex-col justify-center items-center mt-4'>
-      <h2 className='text-2xl font-medium'>
+      <h2 className='text-2xl font-medium text-slate-800'>
         You have not added a product yet!
       </h2>
       <p className='text-gray-400 text-xl w-8/12 mt-4 text-center font-medium'>
-        Pick what kind of product you want to offer on your product page
+        What kind of product you want to offer on your product page?
       </p>
       <div className='flex justify-center w-6/12 mt-4'>
         <Link to='/dashboard/item/add' className='w-2/6'>
@@ -61,14 +61,14 @@ const Item = () => {
             <p>Something that would require shipping on your end</p>
           </div>
         </Link>
-        <Link to='/dashboard/item/import' className='w-2/6 ml-2 h-32'>
+        {/* <Link to='/dashboard/item/import' className='w-2/6 ml-2 h-32'>
           <div className='flex flex-col border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white'>
             <p className='font-medium'>+ Import a product</p>
             <p>Import a product from Aliexpress</p>
           </div>
-        </Link>
+        </Link> */}
 
-        <div className='w-2/6 ml-2 flex flex-col border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white'>
+        <div className='w-2/6 ml-6 flex flex-col border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white'>
           <p className='font-medium'>+ Digital product</p>
           <p>This will be available soon!</p>
         </div>

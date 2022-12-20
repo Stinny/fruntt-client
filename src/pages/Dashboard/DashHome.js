@@ -17,9 +17,13 @@ import DashHomeMobile from '../Mobile/Dashboard/DashHomeMobile';
 //mui
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 const DashHome = () => {
-  const currentUser = JSON.parse(Cookies.get('currentUser'));
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
   const currentStoreID = useSelector((state) => state.user.selectedStore);
 
   const { data: stats, isLoading, isSuccess, refetch } = useGetStoreStatsQuery({
@@ -102,8 +106,8 @@ const DashHome = () => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-xl font-medium'>Revenue</p>
-            <p className='text-4xl font-medium'>
+            <p className='text-xl font-medium text-slate-800'>Revenue</p>
+            <p className='text-4xl font-medium text-slate-800'>
               $
               {stats?.revenue > 0
                 ? stats?.revenue.toLocaleString('en-US', {
@@ -126,8 +130,12 @@ const DashHome = () => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-xl font-medium'>Number of Sales</p>
-            <p className='text-4xl font-medium'>{stats?.numOfOrders}</p>
+            <p className='text-xl font-medium text-slate-800'>
+              Number of Sales
+            </p>
+            <p className='text-4xl font-medium text-slate-800'>
+              {stats?.numOfOrders}
+            </p>
           </div>
 
           <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 ml-4 relative'>
@@ -144,8 +152,10 @@ const DashHome = () => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-xl font-medium'>Page visits</p>
-            <p className='text-4xl font-medium'>{stats?.visits}</p>
+            <p className='text-xl font-medium text-slate-800'>Page visits</p>
+            <p className='text-4xl font-medium text-slate-800'>
+              {stats?.visits}
+            </p>
           </div>
 
           <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 ml-4 relative'>
@@ -171,15 +181,17 @@ const DashHome = () => {
 
         <div className='w-full mt-4 mb-4 flex justify between'>
           <div className='w-8/12 drop-shadow-md rounded-md h-40 bg-gray-200 p-2'>
-            <p className='text-xl font-medium'>Orders & Inventory</p>
+            <p className='text-xl font-medium text-slate-800'>
+              Orders & Inventory
+            </p>
             {stats?.numOfUnfulfilledOrders ? (
-              <p className='text-3xl font-medium mt-2'>
+              <p className='text-3xl font-medium mt-2 text-slate-800'>
                 {stats?.numOfUnfulfilledOrders > 1
                   ? `You have ${stats?.numOfUnfulfilledOrders} unfulfilled orders`
                   : `You have ${stats?.numOfUnfulfilledOrders} unfulfilled order`}
               </p>
             ) : (
-              <p className='text-3xl font-medium mt-2'>
+              <p className='text-3xl font-medium mt-2 text-slate-800'>
                 You have no recent orders
               </p>
             )}
@@ -231,6 +243,58 @@ const DashHome = () => {
                 </button>
               </Link>
             </div>
+          </div>
+        </div>
+
+        <div className='w-full h-28 bg-gray-200 rounded-md drop-shadow-md flex flex-col p-2'>
+          <p className='text-xl font-medium text-slate-800'>
+            Is your product page ready for customers?
+          </p>
+
+          <div className='w-full flex justify-between mt-2'>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={currentUser?.emailConfirmed}
+                  color='default'
+                  disabled
+                />
+              }
+              label='Confirmed your email'
+            />
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={currentUser?.stripeOnboard}
+                  color='default'
+                  disabled
+                />
+              }
+              label='Connected to payment gateway'
+            />
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={currentUser?.store?.productAdded}
+                  color='default'
+                  disabled
+                />
+              }
+              label='Added a product'
+            />
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={currentUser?.store?.designAdded}
+                  color='default'
+                  disabled
+                />
+              }
+              label='Designed your page'
+            />
           </div>
         </div>
 

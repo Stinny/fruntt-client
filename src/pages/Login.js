@@ -69,7 +69,12 @@ const Login = () => {
       />
     ) : (
       <div className='flex flex-col items-center mx-auto justify-center w-full'>
-        <h2 className='text-4xl font-bold'>Login</h2>
+        <div className='w-96 flex flex-col border-b-2 items-center'>
+          <h2 className='text-4xl font-medium'>Login</h2>
+          <p className='text-gray-400 font-medium text-center'>
+            Welcome back! Please enter your details below.
+          </p>
+        </div>
         {error && (
           <Alert severity='error' className='mt-4 mb-4 w-2/6 bg-red-300'>
             {error}
@@ -77,12 +82,12 @@ const Login = () => {
         )}
         <form
           onSubmit={handleLogin}
-          className='w-full flex flex-col items-center'
+          className='flex flex-col items-center w-96 bg-gray-100 p-2 rounded border-2 border-gray-300 mt-2'
         >
           <input
             type='email'
             placeholder='Email'
-            className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-2/6 rounded-lg mt-4 p-2'
+            className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
             autoFocus
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -90,10 +95,10 @@ const Login = () => {
           <input
             type='password'
             placeholder='Password'
-            className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-2/6 rounded-lg mt-4 p-2'
+            className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className='w-2/6 flex justify-between mt-2'>
+          <div className='w-full flex justify-between mt-2'>
             <Link to='/signup'>
               <p className='text-sm text-slate-400 hover:text-slate-800 font-medium'>
                 Don't have a page yet?
@@ -108,9 +113,9 @@ const Login = () => {
 
           <button
             disabled={isLoading}
-            className='h-11 w-2/6 border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-xl mt-4'
+            className='h-11 w-full border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-xl mt-4'
           >
-            Go to my page
+            Go to my page(s)
           </button>
         </form>
       </div>

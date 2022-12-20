@@ -134,13 +134,22 @@ const DeletePage = () => {
               not want to take orders
             </p> */}
       </div>
-      <button
-        type='button'
-        onClick={openModal}
-        className='w-full h-16 border-red-400 border-2 rounded text-red-400 font-medium text-2xl hover:bg-red-400 hover:text-white mt-4'
-      >
-        Delete product page
-      </button>
+      {currentUser.storeIds.length > 1 ? (
+        <button
+          type='button'
+          onClick={openModal}
+          className='w-full h-16 border-red-400 border-2 rounded text-red-400 font-medium text-2xl hover:bg-red-400 hover:text-white mt-4'
+        >
+          Delete product page
+        </button>
+      ) : (
+        <div className='w-full h-32 flex flex-col justify-center items-center border-2 rounded mt-2 text-center'>
+          <p className='font-medium'>
+            You can't delete your free product page. Go into settings if you
+            want to delete your account.
+          </p>
+        </div>
+      )}
     </>
   );
 };

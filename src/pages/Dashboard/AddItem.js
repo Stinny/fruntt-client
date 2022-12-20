@@ -12,6 +12,7 @@ import { states } from '../../states.js';
 import { isMobile } from 'react-device-detect';
 import OptionsForm from '../../components/AddItem/OptionsForm';
 import AddProductMobile from '../Mobile/Dashboard/AddProductMobile';
+import Cookies from 'js-cookie';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -20,9 +21,11 @@ import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
 
 const AddItem = () => {
-  //hooks
   const navigate = useNavigate();
 
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
   const currentStoreID = useSelector((state) => state.user.selectedStore);
 
   //component state
@@ -134,7 +137,10 @@ const AddItem = () => {
         storeId: currentStoreID,
       }).unwrap();
 
-      if (addProductReq === 'Item added') {
+      if (addProductReq.msg === 'Item added') {
+        currentUser.store = addProductReq.store;
+        const newUser = JSON.stringify(currentUser);
+        Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
         navigate('/dashboard/item');
       } else if (addProductReq === 'Invalid address') {
         setError('Invalid ships from address');

@@ -51,8 +51,8 @@ const RegisterForm = ({
   return (
     <div className='flex flex-col w-4/12 mr-10 mt-10'>
       <h2 className='text-3xl font-medium'>Launch your first product page</h2>
-      <p className='border-b-2 text-gray-400 font-medium mb-4 text-lg'>
-        Launch a product page and explore the platform for FREE
+      <p className='border-b-2 text-gray-400 font-medium mb-4'>
+        Launch your first product page for FREE and explore the platform
       </p>
 
       {error && (
@@ -70,6 +70,7 @@ const RegisterForm = ({
           placeholder='Email'
           className='border-2 border-gray-300 hover:border-slate-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
           onChange={(e) => setEmail(e.target.value)}
+          autoFocus
         />
 
         <input

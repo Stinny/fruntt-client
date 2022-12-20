@@ -248,6 +248,7 @@ const SellerProfile = ({ user, refetch }) => {
               <p className='text-xlg font-medium'>Seller profile</p>
               <p className='text-gray-400'>
                 Your seller profile appears at the top of all your product pages
+                for customers to see
               </p>
             </div>
 
@@ -349,14 +350,12 @@ const SellerProfile = ({ user, refetch }) => {
               </div>
 
               <div className='flex flex-col items-center'>
-                <p className='text-sm font-medium'>Seller score</p>
-                <p className='font-medium text-green-500 text-4xl'>10</p>
-                <p>
+                <p className='font-medium text-4xl'>
                   {user?.SellerProfile?.numberOfSales
                     ? user?.sellerProfile?.numberOfSales
                     : '0'}{' '}
-                  sales
                 </p>
+                <p>sales</p>
               </div>
 
               <div className='flex items-center text-3xl'>

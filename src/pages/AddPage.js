@@ -7,6 +7,8 @@ import Cookies from 'js-cookie';
 import { setSelectedStoreUrl } from '../redux/userRedux';
 import { useNavigate } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
+import { Link } from 'react-router-dom';
+import { BsArrowRightShort } from 'react-icons/bs';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -43,6 +45,12 @@ const AddPage = () => {
         Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
         setAddingPage(false);
         navigate('/storefront/launching');
+      } else if (addStoreReq.msg === 'Already exists') {
+        setAddingPage(false);
+        setError('Page name already in use');
+      } else if (addStoreReq.msg === 'Payment failed') {
+        setAddingPage(false);
+        setError('There was an error with the payment');
       } else {
         setError('There was an error, try again');
         setAddingPage(false);
@@ -59,11 +67,29 @@ const AddPage = () => {
       <div className='h-screen max-w-6xl mx-auto'>
         {isMobile ? (
           <div className='flex flex-col items-center justify-center h-full p-2'>
-            <div className='w-full mx-auto text-center border-b-2 p-2'>
-              <p className='font-medium text-xl'>
+            <div className='w-full mx-auto flex flex-col border-b-2 p-2'>
+              <p className='font-medium text-2xl'>
                 Launch another product page!
               </p>
+              <div className='w-full mx-auto flex flex-col'>
+                <p className='font-medium text-gray-400'>
+                  You will be charged $5 now and your monthly bill will increase
+                  by $5
+                </p>
+              </div>
             </div>
+
+            {!currentUser?.paymentAdded ? (
+              <Alert severity='error' className='w-full mt-2 mb-2'>
+                You need to add a payment method in{' '}
+                <Link to='/settings' className='text-red-900 font-semibold'>
+                  settings
+                </Link>{' '}
+                before add additional product pages!
+              </Alert>
+            ) : (
+              ''
+            )}
             <form
               className='flex flex-col mt-4 w-full mb-44'
               onSubmit={handleAddPage}
@@ -80,24 +106,61 @@ const AddPage = () => {
               <button
                 type='submit'
                 className=' text-lg font-medium border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 h-14 mt-4 w-full'
-                disabled={addingPage}
+                disabled={addingPage || !currentUser?.paymentAdded}
               >
-                Launch product page
+                {addingPage ? 'Launching page...' : 'Launch product page - $5'}
               </button>
+
+              <Link
+                to='/dashboard'
+                className=' text-lg font-medium border-2 rounded border-gray-400 text-gray-400 hover:text-white hover:bg-gray-400 h-10 mt-4 w-full flex items-center justify-center'
+              >
+                Back to dashboard
+              </Link>
             </form>
           </div>
         ) : (
           <div className='flex flex-col items-center justify-center h-full'>
-            <div className='w-5/12 mx-auto text-center border-b-2 p-2'>
-              <p className='font-medium text-3xl'>
+            <div className='w-8/12 mx-auto flex flex-col border-b-2 p-2'>
+              <p className='font-medium text-2xl'>
                 Launch another product page!
               </p>
+              <div className='w-full mx-auto flex justify-between'>
+                <p className='font-medium text-gray-400'>
+                  You will be charged $5 now and your monthly bill will increase
+                  by $5
+                </p>
+                <Link
+                  to='/dashboard'
+                  className='flex justify-center items-center text-gray-400 hover:text-gray-500'
+                >
+                  <p>Back to dashboard</p>{' '}
+                  <BsArrowRightShort className='text-xl' />
+                </Link>
+              </div>
             </div>
+            {!currentUser?.paymentAdded ? (
+              <Alert severity='error' className='w-8/12 mt-2 mb-2'>
+                You need to add a payment method in{' '}
+                <Link to='/settings' className='text-red-900 font-semibold'>
+                  settings
+                </Link>{' '}
+                before add additional product pages!
+              </Alert>
+            ) : (
+              ''
+            )}
+
+            {error && (
+              <Alert severity='error' className='w-8/12 mt-2 mb-2'>
+                {error}
+              </Alert>
+            )}
             <form
               className='flex flex-col mt-4 w-5/12 mb-44'
               onSubmit={handleAddPage}
             >
-              <div className='flex items-center'>
+              <div className='flex items-center mt-6'>
                 <input
                   type='text'
                   className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
@@ -108,10 +171,10 @@ const AddPage = () => {
               </div>
               <button
                 type='submit'
-                className=' text-lg font-medium border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 h-14 mt-4 w-full'
-                disabled={addingPage}
+                className=' text-lg font-medium border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 h-14 mt-6 w-full'
+                disabled={addingPage || !currentUser?.paymentAdded}
               >
-                Launch product page
+                {addingPage ? 'Launching page...' : 'Launch product page - $5'}
               </button>
             </form>
           </div>
