@@ -8,6 +8,8 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 //mui
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 const DashHomeMobile = ({ stats, currentUser }) => {
   return (
@@ -213,6 +215,58 @@ const DashHomeMobile = ({ stats, currentUser }) => {
               </button>
             </Link>
           </div>
+        </div>
+      </div>
+
+      <div className='w-11/12 mx-auto bg-gray-200 rounded-md drop-shadow-md flex flex-col p-2'>
+        <p className='text-xl font-medium text-slate-800'>
+          Is your product page ready for customers?
+        </p>
+
+        <div className='w-full flex flex-col mt-2'>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={currentUser?.emailConfirmed}
+                color='default'
+                disabled
+              />
+            }
+            label='Confirmed your email'
+          />
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={currentUser?.stripeOnboard}
+                color='default'
+                disabled
+              />
+            }
+            label='Connected to payment gateway'
+          />
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={currentUser?.store?.productAdded}
+                color='default'
+                disabled
+              />
+            }
+            label='Added a product'
+          />
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={currentUser?.store?.designAdded}
+                color='default'
+                disabled
+              />
+            }
+            label='Designed your page'
+          />
         </div>
       </div>
 

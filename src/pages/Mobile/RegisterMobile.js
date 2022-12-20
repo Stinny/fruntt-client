@@ -68,7 +68,6 @@ const RegisterMobile = ({
             placeholder='Email'
             className='border-2 text-sm border-gray-300 hover:border-slate-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
             onChange={(e) => setEmail(e.target.value)}
-            autoFocus
           />
 
           <input

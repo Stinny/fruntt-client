@@ -32,7 +32,6 @@ const LoginMobile = ({
           type='email'
           placeholder='Email'
           className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
-          autoFocus
           onChange={(e) => setEmail(e.target.value)}
         />
 

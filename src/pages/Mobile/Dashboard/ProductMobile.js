@@ -12,8 +12,8 @@ const ProductMobile = ({ product }) => {
   const noItem = (
     <div className='h-screen mx-auto border-2 border-gray-200 rounded w-11/12 flex flex-col justify-center items-center mt-4'>
       <h2 className='text-xl font-medium'>You have not added a product yet!</h2>
-      <p className='text-gray-400 text-lg w-10/12 mt-4 text-center'>
-        Pick what kind of product you want to offer on your product page
+      <p className='text-gray-400 text-lg w-full mt-4 text-center'>
+        What kind of product you want to offer on your product page?
       </p>
       <div className='flex flex-col w-10/12 mt-4 mx-auto'>
         <Link to='/dashboard/item/add' className='w-full'>
@@ -22,12 +22,12 @@ const ProductMobile = ({ product }) => {
             <p>Something that would require shipping on your end</p>
           </div>
         </Link>
-        <Link to='/dashboard/item/import' className='w-full mt-2'>
+        {/* <Link to='/dashboard/item/import' className='w-full mt-2'>
           <div className='flex flex-col border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white'>
             <p className='font-medium'>+ Import a product</p>
             <p>Import a product from Aliexpress</p>
           </div>
-        </Link>
+        </Link> */}
 
         <div className='w-full mt-2 flex flex-col border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white'>
           <p className='font-medium'>+ Digital product</p>
