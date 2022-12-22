@@ -60,7 +60,6 @@ const DashHome = () => {
         )}
 
         {!currentUser.firstName ||
-        !currentUser.lastName ||
         !currentUser?.sellerProfile?.bio ||
         !currentUser?.sellerProfile?.picture?.url ? (
           <Alert severity='error' className='mt-4 mb-4 w-full'>

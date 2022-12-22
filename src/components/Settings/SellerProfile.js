@@ -265,18 +265,17 @@ const SellerProfile = ({ user, refetch }) => {
           <div className='w-full mx-auto p-2'>
             <div className='max-w-6xl flex flex-col mx-auto'>
               <div className='flex justify-between mt-2'>
-                <Avatar sx={{ width: 62, height: 62 }}>J</Avatar>
+                <Avatar
+                  sx={{ width: 62, height: 62 }}
+                  src={user?.sellerProfile?.picture?.url}
+                />
                 <div className='flex flex-col items-center'>
-                  <p className='text-sm font-medium'>Seller score</p>
-                  <p className='font-medium text-green-500 ml-2 text-4xl'>
-                    9.7
-                  </p>
-                  <p>
+                  <p className='font-medium text-4xl'>
                     {user?.SellerProfile?.numberOfSales
                       ? user?.sellerProfile?.numberOfSales
                       : '0'}{' '}
-                    sales
                   </p>
+                  <p>sales</p>
                 </div>
               </div>
 
@@ -299,30 +298,41 @@ const SellerProfile = ({ user, refetch }) => {
                   <option value={1}>luxurywatch.fruntt.com</option>
                 </select>
               </div>
-              <div className='flex items-center text-3xl mt-4'>
+              <div className='flex items-center mt-4'>
+                {user?.sellerProfile?.facebook === '' &&
+                  user?.sellerProfile?.instagram === '' &&
+                  user?.sellerProfile?.twitter === '' &&
+                  user?.sellerProfile?.youtube === '' &&
+                  user?.sellerProfile?.tiktok === '' && (
+                    <div className='w-full h-16 w-full border-2 flex items-center justify-center rounded'>
+                      <p className='text-md font-medium'>
+                        You have not added any social links!
+                      </p>
+                    </div>
+                  )}
                 {user?.sellerProfile?.facebook && (
                   <a href={user?.sellerProfile?.facebook} target='_blank'>
-                    <AiOutlineFacebook className='text-slate-800' />
+                    <AiOutlineFacebook className='text-slate-800 text-3xl' />
                   </a>
                 )}
                 {user?.sellerProfile?.instagram && (
                   <a href={user?.sellerProfile?.instagram} target='_blank'>
-                    <AiOutlineInstagram className='text-slate-800 ml-2' />
+                    <AiOutlineInstagram className='text-slate-800 ml-2 text-3xl' />
                   </a>
                 )}
                 {user?.sellerProfile?.twitter && (
                   <a href={user?.sellerProfile?.twitter} target='_blank'>
-                    <AiOutlineTwitter className='text-slate-800 ml-2' />
+                    <AiOutlineTwitter className='text-slate-800 ml-2 text-3xl' />
                   </a>
                 )}
                 {user?.sellerProfile?.youtube && (
                   <a href={user?.sellerProfile?.youtube} target='_blank'>
-                    <AiOutlineYoutube className='text-slate-800 ml-2' />
+                    <AiOutlineYoutube className='text-slate-800 ml-2 text-3xl' />
                   </a>
                 )}
                 {user?.sellerProfile?.tiktok && (
                   <a href={user?.sellerProfile?.tiktok} target='_blank'>
-                    <FaTiktok className='text-slate-800 ml-2' />
+                    <FaTiktok className='text-slate-800 ml-2 text-3xl' />
                   </a>
                 )}
               </div>
@@ -358,30 +368,42 @@ const SellerProfile = ({ user, refetch }) => {
                 <p>sales</p>
               </div>
 
-              <div className='flex items-center text-3xl'>
+              <div className='flex items-center'>
+                {user?.sellerProfile?.facebook === '' &&
+                  user?.sellerProfile?.instagram === '' &&
+                  user?.sellerProfile?.twitter === '' &&
+                  user?.sellerProfile?.youtube === '' &&
+                  user?.sellerProfile?.tiktok === '' && (
+                    <div className='w-full h-16 w-full border-2 flex items-center justify-center rounded p-2'>
+                      <p className='text-md font-medium'>
+                        You have not added any social links!
+                      </p>
+                    </div>
+                  )}
+
                 {user?.sellerProfile?.facebook && (
                   <a href={user?.sellerProfile?.facebook} target='_blank'>
-                    <AiOutlineFacebook className='text-slate-800' />
+                    <AiOutlineFacebook className='text-slate-800 text-3xl' />
                   </a>
                 )}
                 {user?.sellerProfile?.instagram && (
                   <a href={user?.sellerProfile?.instagram} target='_blank'>
-                    <AiOutlineInstagram className='text-slate-800 ml-2' />
+                    <AiOutlineInstagram className='text-slate-800 ml-2 text-3xl' />
                   </a>
                 )}
                 {user?.sellerProfile?.twitter && (
                   <a href={user?.sellerProfile?.twitter} target='_blank'>
-                    <AiOutlineTwitter className='text-slate-800 ml-2' />
+                    <AiOutlineTwitter className='text-slate-800 ml-2 text-3xl' />
                   </a>
                 )}
                 {user?.sellerProfile?.youtube && (
                   <a href={user?.sellerProfile?.youtube} target='_blank'>
-                    <AiOutlineYoutube className='text-slate-800 ml-2' />
+                    <AiOutlineYoutube className='text-slate-800 ml-2 text-3xl' />
                   </a>
                 )}
                 {user?.sellerProfile?.tiktok && (
                   <a href={user?.sellerProfile?.tiktok} target='_blank'>
-                    <FaTiktok className='text-slate-800 ml-2' />
+                    <FaTiktok className='text-slate-800 ml-2 text-3xl' />
                   </a>
                 )}
               </div>

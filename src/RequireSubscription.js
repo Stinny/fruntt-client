@@ -11,7 +11,7 @@ const RequireSubscription = () => {
 
   let content;
 
-  if (currentUser.trial || currentUser.subscribed) {
+  if (!currentUser.trial || currentUser.subscribed) {
     content = <Outlet />;
   } else {
     content = <Navigate to='/dashboard/plans' />;

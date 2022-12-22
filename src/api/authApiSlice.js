@@ -16,6 +16,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: { ...credentials },
       }),
     }),
+    deleteAccount: builder.mutation({
+      query: () => ({
+        url: '/auth/deleteaccount',
+        method: 'POST',
+      }),
+    }),
     getOnboardUrl: builder.query({
       query: () => '/auth/onboard',
     }),
@@ -140,4 +146,5 @@ export const {
   useAddPaymentMethodMutation,
   useDeletePaymentMethodMutation,
   useUpdateSellerProfileMutation,
+  useDeleteAccountMutation,
 } = authApiSlice;

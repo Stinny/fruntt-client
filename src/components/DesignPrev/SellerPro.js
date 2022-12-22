@@ -50,22 +50,12 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
             }
           />
           <div className='flex flex-col items-center'>
-            <p
-              className='text-sm font-medium'
-              style={{
-                color: pageText,
-              }}
-            >
-              Seller score
+            <p className='font-medium text-3xl'>
+              {currentUser?.sellerProfile?.numberOfSales > 0
+                ? currentUser?.sellerProfile.numberOfSales
+                : '0'}{' '}
             </p>
-            <p className='font-medium text-green-500 text-4xl'>10</p>
-            <p
-              style={{
-                color: pageText,
-              }}
-            >
-              10 sales
-            </p>
+            <p>sales</p>
           </div>
         </div>
 
@@ -87,49 +77,40 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
         </div>
 
         <div className='flex items-center text-3xl mt-4'>
-          <a href='#' target='_blank'>
-            <AiOutlineFacebook
-              style={{
-                color: pageText,
-              }}
-            />
-          </a>
-
-          <a href='#' target='_blank'>
-            <AiOutlineInstagram
-              className='ml-2'
-              style={{
-                color: pageText,
-              }}
-            />
-          </a>
-
-          <a href='#' target='_blank'>
-            <AiOutlineTwitter
-              className='ml-2'
-              style={{
-                color: pageText,
-              }}
-            />
-          </a>
-
-          <a href='#' target='_blank'>
-            <AiOutlineYoutube
-              className='ml-2'
-              style={{
-                color: pageText,
-              }}
-            />
-          </a>
-
-          <a href='#' target='_blank'>
-            <FaTiktok
-              className='ml-2'
-              style={{
-                color: pageText,
-              }}
-            />
-          </a>
+          {currentUser?.sellerProfile?.facebook && (
+            <a href={currentUser?.sellerProfile?.facebook} target='_blank'>
+              <AiOutlineFacebook style={{ color: pageText }} />
+            </a>
+          )}
+          {currentUser?.sellerProfile?.instagram && (
+            <a href={currentUser?.sellerProfile?.instagram} target='_blank'>
+              <AiOutlineInstagram
+                style={{ color: pageText }}
+                className=' ml-2'
+              />
+            </a>
+          )}
+          {currentUser?.sellerProfile?.twitter && (
+            <a href={currentUser?.sellerProfile?.twitter} target='_blank'>
+              <AiOutlineTwitter style={{ color: pageText }} className='ml-2' />
+            </a>
+          )}
+          {currentUser?.sellerProfile?.youtube && (
+            <a href={currentUser?.sellerProfile?.youtube} target='_blank'>
+              <AiOutlineYoutube
+                style={{ color: pageText }}
+                className='text-gray-400 hover:text-blue-400 ml-2'
+              />
+            </a>
+          )}
+          {currentUser?.sellerProfile?.tiktok && (
+            <a href={currentUser?.sellerProfile?.tiktok} target='_blank'>
+              <FaTiktok
+                style={{ color: pageText }}
+                className='text-gray-400 hover:text-blue-400 ml-2'
+              />
+            </a>
+          )}
         </div>
 
         <div className='flex flex-col mt-4'>

@@ -48,8 +48,8 @@ const AddProductMobile = ({
     'This address is needed to properly generate shipping labels.';
 
   return (
-    <div className='w-11/12 mx-auto'>
-      <div className='mb-10 flex justify-between border-b-2 p-2'>
+    <div className='w-full mx-auto p-2'>
+      <div className='mb-10 flex justify-between border-b-2'>
         <h2 className='text-xl font-medium'>Add a product</h2>
 
         <div className='flex'>
@@ -92,11 +92,11 @@ const AddProductMobile = ({
             </button>
           </Tooltip>
         </div>
-        <div className='p-2'>
+        <div>
           <p className='text-gray-400'>Product Title</p>
           <input
             type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
             placeholder='Title'
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -104,7 +104,7 @@ const AddProductMobile = ({
           <p className='text-gray-400 mt-4'>Product Description(optional)</p>
           <textarea
             type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
             placeholder='Description'
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -114,7 +114,7 @@ const AddProductMobile = ({
               <p className='text-gray-400 mt-4'>Product Price</p>
               <input
                 type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                 placeholder='Price'
                 onChange={(e) => setPrice(e.target.value)}
               />
@@ -124,7 +124,7 @@ const AddProductMobile = ({
               <p className='text-gray-400 mt-4'>Product Stock</p>
               <input
                 type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                 placeholder='Stock'
                 onChange={(e) => setStock(e.target.value)}
               />
@@ -202,20 +202,20 @@ const AddProductMobile = ({
           </Tooltip>
         </div>
 
-        <div className='w-full p-2'>
+        <div className='w-full'>
           <p className='text-gray-400'>Address</p>
           <input
-            className='w-full border-2 border-slate-200 hover:border-slate-300 rounded-lg p-2 mt-2 outline outline-0'
+            className='w-full border-2 border-slate-200 hover:border-slate-300 rounded p-2 mt-2 outline outline-0'
             type='text'
             placeholder='Address'
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
 
-        <div className='w-full flex justify-between mb-2 p-2'>
+        <div className='w-full flex justify-between mb-2'>
           <div className='flex flex-col w-3/12'>
             <p className='text-gray-400'>Country</p>
-            <select className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'>
+            <select className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'>
               <option>United States</option>
             </select>
           </div>
@@ -224,7 +224,7 @@ const AddProductMobile = ({
             <p className='text-gray-400'>State</p>
             <select
               onChange={(e) => setState(e.target.value)}
-              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white'
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
             >
               <option disabled selected hidden className='text-gray-400'>
                 State
@@ -240,7 +240,7 @@ const AddProductMobile = ({
             <input
               type='text'
               placeholder='City'
-              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
@@ -250,7 +250,7 @@ const AddProductMobile = ({
             <input
               type='text'
               placeholder='Zipcode'
-              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0'
+              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
               onChange={(e) => setZip(e.target.value)}
             />
           </div>
@@ -272,14 +272,14 @@ const AddProductMobile = ({
               </Tooltip>
             </div>
 
-            <div className='p-2'>
+            <div>
               <div className='flex justify-between w-full'>
                 <div className='flex justify-between'>
                   <div>
                     <p className='text-gray-400'>Weight</p>
                     <input
                       type='number'
-                      className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2 outline outline-0'
+                      className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
                       onChange={(e) => setWeight(e.target.value)}
                       step='0.1'
                     />
@@ -318,12 +318,12 @@ const AddProductMobile = ({
               </Tooltip>
             </div>
 
-            <div className='p-2'>
+            <div>
               <div>
                 <p className='text-gray-400'>Price</p>
                 <input
                   type='number'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-md p-2 outline outline-0'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0'
                   onChange={(e) => setShippingPrice(e.target.value)}
                   step='0.01'
                 />

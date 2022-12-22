@@ -3,18 +3,6 @@ import { Link, Navigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Cookies from 'js-cookie';
-import { IoStorefrontOutline } from 'react-icons/io5';
-import {
-  MdOutlineAttachMoney,
-  MdOutlineContactSupport,
-  MdOutlineNotificationsActive,
-} from 'react-icons/md';
-import { AiOutlineMail, AiOutlineCloudServer } from 'react-icons/ai';
-import { BiWorld } from 'react-icons/bi';
-import { RiSecurePaymentLine } from 'react-icons/ri';
-import SampleStore from '../components/Home/SampleStore';
-import { isMobile } from 'react-device-detect';
-import HomeMobile from './Mobile/HomeMobile';
 import Hero from '../components/Landing/Hero';
 import SectionOne from '../components/Landing/SectionOne';
 import SectionTwo from '../components/Landing/SectionTwo';

@@ -31,7 +31,6 @@ const Email = () => {
 
   useEffect(() => {
     setError('');
-    setSuccess('');
   }, [email]);
 
   return (

@@ -28,26 +28,6 @@ const RegisterForm = ({
   profilePic,
   setProfilePic,
 }) => {
-  const CARD_ELEMENT_OPTIONS = {
-    style: {
-      base: {
-        color: '#000000',
-        backgroundColor: '#ffffff',
-        height: '50px',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '20px',
-        '::placeholder': {
-          color: '#000000',
-        },
-      },
-      invalid: {
-        color: '#fa755a',
-        iconColor: 'red',
-      },
-    },
-  };
-
   return (
     <div className='flex flex-col w-4/12 mr-10 mt-10'>
       <h2 className='text-3xl font-medium'>Launch your first product page</h2>

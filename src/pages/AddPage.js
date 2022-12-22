@@ -85,7 +85,7 @@ const AddPage = () => {
                 <Link to='/settings' className='text-red-900 font-semibold'>
                   settings
                 </Link>{' '}
-                before add additional product pages!
+                before adding additional product pages!
               </Alert>
             ) : (
               ''
@@ -145,7 +145,7 @@ const AddPage = () => {
                 <Link to='/settings' className='text-red-900 font-semibold'>
                   settings
                 </Link>{' '}
-                before add additional product pages!
+                before adding additional product pages!
               </Alert>
             ) : (
               ''
@@ -172,7 +172,7 @@ const AddPage = () => {
               <button
                 type='submit'
                 className=' text-lg font-medium border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 h-14 mt-6 w-full'
-                disabled={addingPage || !currentUser?.paymentAdded}
+                disabled={addingPage || !currentUser.paymentAdded}
               >
                 {addingPage ? 'Launching page...' : 'Launch product page - $5'}
               </button>

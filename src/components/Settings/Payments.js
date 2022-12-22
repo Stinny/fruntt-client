@@ -36,8 +36,6 @@ const Payments = ({ refetch }) => {
     };
 
     if (!currentUser.stripeOnboard) fetchOnboardUrl();
-
-    fetchOnboardUrl();
   }, []);
 
   const handleDisconnectStripe = async () => {

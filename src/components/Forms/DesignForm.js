@@ -3,13 +3,9 @@ import { HexColorPicker, HexColorInput } from 'react-colorful';
 import { useEditStylesMutation } from '../../api/storefrontApiSlice';
 import { useNavigate, Link } from 'react-router-dom';
 import DesignPreview from '../../pages/DesignPreview';
+import Cookies from 'js-cookie';
 
-//mui
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Switch from '@mui/material/Switch';
-
-const DesignForm = ({ storefront }) => {
+const DesignForm = ({ storefront, currentUser }) => {
   const navigate = useNavigate();
 
   const [navbarBG, setNavbarBG] = useState(storefront?.style?.navbarBackground);
@@ -65,7 +61,12 @@ const DesignForm = ({ storefront }) => {
       reviewBackground,
       faqBackground,
     }).unwrap();
-    if (editStylesReq === 'Styles saved') navigate('/dashboard/design');
+    if (editStylesReq.msg === 'Styles saved') {
+      currentUser.store = editStylesReq.store;
+      const newUser = JSON.stringify(currentUser);
+      Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
+      navigate('/dashboard/design');
+    }
   };
 
   const handleCancel = () => {

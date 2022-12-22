@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { HexColorPicker, HexColorInput } from 'react-colorful';
 import DesignPreviewMobile from '../../pages/Mobile/Dashboard/DesignPreviewMobile';
 import { useEditStylesMutation } from '../../api/storefrontApiSlice';
+import Cookies from 'js-cookie';
 
 //mui
 import Switch from '@mui/material/Switch';
 
-const DesignFormMobile = ({ storefront }) => {
+const DesignFormMobile = ({ storefront, currentUser }) => {
   const navigate = useNavigate();
 
   const [navbarBG, setNavbarBG] = useState(storefront?.style?.navbarBackground);
@@ -64,7 +65,12 @@ const DesignFormMobile = ({ storefront }) => {
       reviewBackground,
       faqBackground,
     }).unwrap();
-    if (editStylesReq === 'Styles saved') navigate('/dashboard/design');
+    if (editStylesReq.msg === 'Styles saved') {
+      currentUser.store = editStylesReq.store;
+      const newUser = JSON.stringify(currentUser);
+      Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
+      navigate('/dashboard/design');
+    }
   };
 
   const handleCancel = () => {

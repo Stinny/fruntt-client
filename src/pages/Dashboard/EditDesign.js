@@ -38,9 +38,9 @@ const EditDesign = () => {
     content = <Spinner />;
   } else if (isSuccess) {
     content = isMobile ? (
-      <DesignFormMobile storefront={storefront} />
+      <DesignFormMobile storefront={storefront} currentUser={currentUser} />
     ) : (
-      <DesignForm storefront={storefront} />
+      <DesignForm storefront={storefront} currentUser={currentUser} />
     );
   }
 

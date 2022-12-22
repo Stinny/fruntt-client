@@ -59,7 +59,7 @@ const Register = () => {
     let profilePicUrl = '';
     let profilePicKey = '';
 
-    if (!email || !password || !storeName || !firstName || !lastName) {
+    if (!email || !password || !storeName || !firstName) {
       setError('All required fields must be filled in');
       return;
     }
@@ -91,7 +91,8 @@ const Register = () => {
       Cookies.set('currentUser', currentUser, { sameSite: 'Lax' });
       Cookies.set('aToken', registerData.accessToken, { sameSite: 'Lax' });
       Cookies.set('rToken', registerData.refreshToken, { sameSite: 'Lax' });
-      dispatch(setStoreIds(currentUser?.storeIds));
+      console.log(registerData.userInfo.storeIds);
+      // dispatch(setStoreIds(registerData?.userInfo?.storeIds));
 
       navigate('/storefront/launching');
     } catch (err) {
@@ -143,25 +144,23 @@ const Register = () => {
       />
     ) : (
       <div className='container flex justify-between mx-auto w-full'>
-        <Elements stripe={stripeLoader}>
-          <RegisterForm
-            error={error}
-            setEmail={setEmail}
-            setPassword={setPassword}
-            handleSignup={handleSignup}
-            setStoreName={setStoreName}
-            storeName={storeName}
-            bio={bio}
-            setBio={setBio}
-            firstName={firstName}
-            lastName={lastName}
-            setLastName={setLastName}
-            setFirstName={setFirstName}
-            isLoading={isLoading}
-            profilePic={profilePic}
-            setProfilePic={setProfilePic}
-          />
-        </Elements>
+        <RegisterForm
+          error={error}
+          setEmail={setEmail}
+          setPassword={setPassword}
+          handleSignup={handleSignup}
+          setStoreName={setStoreName}
+          storeName={storeName}
+          bio={bio}
+          setBio={setBio}
+          firstName={firstName}
+          lastName={lastName}
+          setLastName={setLastName}
+          setFirstName={setFirstName}
+          isLoading={isLoading}
+          profilePic={profilePic}
+          setProfilePic={setProfilePic}
+        />
 
         <div className='w-8/12'>
           <div className='w-full flex justify-between items-center'>

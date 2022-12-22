@@ -68,7 +68,7 @@ const Login = () => {
         error={error}
       />
     ) : (
-      <div className='flex flex-col items-center mx-auto justify-center w-full'>
+      <div className='flex flex-col items-center mx-auto justify-center w-full mb-56'>
         <div className='w-96 flex flex-col border-b-2 items-center'>
           <h2 className='text-4xl font-medium'>Login</h2>
           <p className='text-gray-400 font-medium text-center'>
@@ -76,7 +76,7 @@ const Login = () => {
           </p>
         </div>
         {error && (
-          <Alert severity='error' className='mt-4 mb-4 w-2/6 bg-red-300'>
+          <Alert severity='error' className='mt-4 mb-4 w-96 bg-red-300'>
             {error}
           </Alert>
         )}
