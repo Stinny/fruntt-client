@@ -104,16 +104,29 @@ const DeleteAccount = () => {
         </div>
       </Modal>
 
-      <div className='w-full h-32 mt-2'>
-        <button
-          type='button'
-          disabled={deletingAccount}
-          onClick={openModal}
-          className='w-full h-14 border-2 border-red-400 text-red-400 text-xl font-medium hover:bg-red-400 hover:text-white rounded'
-        >
-          {deletingAccount ? 'Deleting account...' : 'Delete account'}
-        </button>
-      </div>
+      {isMobile ? (
+        <div className='w-full h-32 p-2'>
+          <button
+            type='button'
+            disabled={deletingAccount}
+            onClick={openModal}
+            className='w-full h-14 border-2 border-red-400 text-red-400 text-xl font-medium hover:bg-red-400 hover:text-white rounded'
+          >
+            {deletingAccount ? 'Deleting account...' : 'Delete account'}
+          </button>
+        </div>
+      ) : (
+        <div className='w-full h-32 mt-2'>
+          <button
+            type='button'
+            disabled={deletingAccount}
+            onClick={openModal}
+            className='w-full h-14 border-2 border-red-400 text-red-400 text-xl font-medium hover:bg-red-400 hover:text-white rounded'
+          >
+            {deletingAccount ? 'Deleting account...' : 'Delete account'}
+          </button>
+        </div>
+      )}
     </>
   );
 };

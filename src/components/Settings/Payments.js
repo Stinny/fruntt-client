@@ -21,7 +21,7 @@ const Payments = ({ refetch }) => {
   const aToken = Cookies.get('aToken');
   const [onboardUrl, setOnboardUrl] = useState('');
   const [gettingUrl, setGettingUrl] = useState(false);
-  // const [isLoading, setIsLoading] = useState('false');
+
   const [getOnboardUrl, result] = useLazyGetOnboardUrlQuery();
   const [
     disconnectStripe,

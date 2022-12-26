@@ -14,44 +14,46 @@ import Checkbox from '@mui/material/Checkbox';
 const DashHomeMobile = ({ stats, currentUser }) => {
   return (
     <>
-      {!currentUser.stripeOnboard && (
-        <Alert severity='error' className='mt-4 mb-4 w-11/12 mx-auto'>
-          <p>
-            Connect to payment gateway in{' '}
-            <Link to='/settings' className='text-red-900 font-semibold'>
-              settings
-            </Link>{' '}
-            to enable checkout
-          </p>
-        </Alert>
-      )}
+      <div className='w-full p-2 flex flex-col'>
+        {!currentUser.stripeOnboard && (
+          <Alert severity='error' className='mt-2 mb-2 w-full mx-auto'>
+            <p>
+              Connect to payment gateway in{' '}
+              <Link to='/settings' className='text-red-900 font-semibold'>
+                settings
+              </Link>{' '}
+              to enable checkout
+            </p>
+          </Alert>
+        )}
 
-      {!currentUser.firstName ||
-      !currentUser.lastName ||
-      !currentUser?.sellerProfile?.bio ||
-      !currentUser?.sellerProfile?.picture?.url ? (
-        <Alert severity='error' className='mt-4 mb-4 w-full'>
-          <p>
-            Finish setting up your seller profile in{' '}
-            <Link to='/settings' className='text-red-900 font-semibold'>
-              settings!
-            </Link>
-          </p>
-        </Alert>
-      ) : (
-        ''
-      )}
+        {!currentUser.firstName ||
+        !currentUser.lastName ||
+        !currentUser?.sellerProfile?.bio ||
+        !currentUser?.sellerProfile?.picture?.url ? (
+          <Alert severity='error' className='mt-2 mb-2 w-full mx-auto'>
+            <p>
+              Finish setting up your seller profile in{' '}
+              <Link to='/settings' className='text-red-900 font-semibold'>
+                settings!
+              </Link>
+            </p>
+          </Alert>
+        ) : (
+          ''
+        )}
 
-      {!currentUser.emailConfirmed && (
-        <Alert severity='error' className='mt-2 mb-4 w-11/12 mx-auto'>
-          <p>
-            Please check your inbox to confirm your email so you can enable
-            checkout
-          </p>
-        </Alert>
-      )}
+        {!currentUser.emailConfirmed && (
+          <Alert severity='error' className='mt-2 mb-2 w-full mx-auto'>
+            <p>
+              Please check your inbox to confirm your email so you can enable
+              checkout
+            </p>
+          </Alert>
+        )}
+      </div>
 
-      <div className='flex w-11/12 mx-auto mt-4 mb-2'>
+      <div className='flex w-full mx-auto mt-4 pl-2'>
         <a
           href={currentUser?.store?.url}
           className='flex items-center text-lg text-slate-800 font-medium'
@@ -61,9 +63,9 @@ const DashHomeMobile = ({ stats, currentUser }) => {
         </a>
       </div>
 
-      <div className='flex flex-col items-center'>
-        <div className='w-11/12 flex'>
-          <div className='drop-shadow-md w-11/12 h-28 bg-gray-200 rounded-md p-2 relative'>
+      <div className='flex flex-col items-center w-full p-2'>
+        <div className='w-full flex'>
+          <div className='drop-shadow-md w-6/12 h-28 bg-gray-200 rounded-md p-2 relative'>
             <Tooltip
               title={
                 <p className='text-lg'>Total revenue your page has generated</p>
@@ -88,7 +90,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-11/12 h-28 bg-gray-200 rounded-md p-2 relative ml-2'>
+          <div className='drop-shadow-md w-6/12 h-28 bg-gray-200 rounded-md p-2 relative ml-2'>
             <Tooltip
               title={
                 <p className='text-lg'>Total sales your page has generated</p>
@@ -106,7 +108,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
           </div>
         </div>
 
-        <div className='w-11/12 flex'>
+        <div className='w-full flex'>
           <div className='drop-shadow-md w-6/12 h-28 mt-2 bg-gray-200 rounded-md p-2 relative'>
             <Tooltip
               title={
@@ -149,8 +151,8 @@ const DashHomeMobile = ({ stats, currentUser }) => {
         </div>
       </div>
 
-      <div className='w-full mt-2 mb-4 flex flex-col items-center mx-auto'>
-        <div className='w-11/12 drop-shadow-md rounded-md h-40 bg-gray-200 p-2'>
+      <div className='w-full flex flex-col items-center mx-auto p-2'>
+        <div className='w-full drop-shadow-md rounded-md h-40 bg-gray-200 p-2'>
           <p className='text-xl font-medium'>Orders & Inventory</p>
           {stats?.numOfUnfulfilledOrders ? (
             <p className='text-2xl font-medium mt-2'>
@@ -186,10 +188,10 @@ const DashHomeMobile = ({ stats, currentUser }) => {
           )}
         </div>
 
-        <div className='w-11/12 mx-auto mt-2'>
+        <div className='w-full mx-auto mt-2'>
           <p className='font-medium text-lg'>Quick navigation</p>
         </div>
-        <div className='w-11/12 drop-shadow-md mx-auto rounded-md bg-gray-200 h-40 flex flex-col justify-center p-2 mt-2'>
+        <div className='w-full p-2 drop-shadow-md mx-auto rounded-md bg-gray-200 h-40 flex flex-col justify-center'>
           <div className='w-full flex mx-auto justify-between items-center'>
             <Link to='/dashboard/item' className='w-6/12 h-14'>
               <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
@@ -218,55 +220,57 @@ const DashHomeMobile = ({ stats, currentUser }) => {
         </div>
       </div>
 
-      <div className='w-11/12 mx-auto bg-gray-200 rounded-md drop-shadow-md flex flex-col p-2'>
-        <p className='text-xl font-medium text-slate-800'>
-          Is your product page ready for customers?
-        </p>
+      <div className='w-full p-2'>
+        <div className='w-full mx-auto bg-gray-200 rounded-md drop-shadow-md flex flex-col p-2'>
+          <p className='text-xl font-medium text-slate-800'>
+            Is your product page ready for customers?
+          </p>
 
-        <div className='w-full flex flex-col mt-2'>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={currentUser?.emailConfirmed}
-                color='default'
-                disabled
-              />
-            }
-            label='Confirmed your email'
-          />
+          <div className='w-full flex flex-col mt-2'>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={currentUser?.emailConfirmed}
+                  color='default'
+                  disabled
+                />
+              }
+              label='Confirmed your email'
+            />
 
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={currentUser?.stripeOnboard}
-                color='default'
-                disabled
-              />
-            }
-            label='Connected to payment gateway'
-          />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={currentUser?.stripeOnboard}
+                  color='default'
+                  disabled
+                />
+              }
+              label='Connected to payment gateway'
+            />
 
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={currentUser?.store?.productAdded}
-                color='default'
-                disabled
-              />
-            }
-            label='Added a product'
-          />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={currentUser?.store?.productAdded}
+                  color='default'
+                  disabled
+                />
+              }
+              label='Added a product'
+            />
 
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={currentUser?.store?.designAdded}
-                color='default'
-                disabled
-              />
-            }
-            label='Designed your page'
-          />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={currentUser?.store?.designAdded}
+                  color='default'
+                  disabled
+                />
+              }
+              label='Designed your page'
+            />
+          </div>
         </div>
       </div>
 

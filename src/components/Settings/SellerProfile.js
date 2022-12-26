@@ -136,12 +136,14 @@ const SellerProfile = ({ user, refetch }) => {
               className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-6/12 rounded p-2'
               onChange={(e) => setFirstName(e.target.value)}
               value={firstName}
+              placeholder='First name'
             />
             <input
               type='text'
               className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-6/12 rounded p-2 ml-2'
               onChange={(e) => setLastName(e.target.value)}
               value={lastName}
+              placeholder='Last name'
             />
           </div>
           <textarea
@@ -286,14 +288,14 @@ const SellerProfile = ({ user, refetch }) => {
                 </p>
 
                 <p>
-                  {user?.SellerProfile?.bio
+                  {user?.sellerProfile?.bio
                     ? user?.sellerProfile?.bio
                     : 'This is your bio.'}
                 </p>
               </div>
 
               <div className='flex flex-col mt-2'>
-                <p className='font-medium'>Their other pages:</p>
+                <p className='font-medium'>Your other pages:</p>
                 <select className='rounded border-2 bg-transparent h-8'>
                   <option value={1}>luxurywatch.fruntt.com</option>
                 </select>

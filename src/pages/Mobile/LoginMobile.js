@@ -12,7 +12,7 @@ const LoginMobile = ({
   isLoading,
 }) => {
   return (
-    <div className='flex flex-col items-center mx-auto justify-center w-full p-2'>
+    <div className='flex flex-col mx-auto w-full p-2'>
       <div className='w-full flex flex-col border-b-2 items-center'>
         <h2 className='text-4xl font-medium'>Login</h2>
         <p className='text-gray-400 font-medium text-center'>
@@ -26,7 +26,7 @@ const LoginMobile = ({
       )}
       <form
         onSubmit={handleLogin}
-        className='flex flex-col w-full items-center bg-gray-100 p-2 rounded border-2 border-gray-300 mt-2'
+        className='flex flex-col w-full items-center bg-gray-100 p-2 rounded border-2 border-gray-300 mt-2 mb-44'
       >
         <input
           type='email'
