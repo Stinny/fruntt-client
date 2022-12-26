@@ -10,7 +10,7 @@ const stripeLoader = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 const Billing = ({ user, refetch }) => {
   return (
-    <div className='w-full h-32 mt-2'>
+    <div className='w-full mt-2'>
       <Elements stripe={stripeLoader}>
         <BillingForm user={user} refetch={refetch} />
       </Elements>

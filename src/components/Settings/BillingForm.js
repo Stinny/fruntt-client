@@ -9,11 +9,16 @@ import {
 import { Alert } from '@mui/material';
 import { AiFillCreditCard } from 'react-icons/ai';
 import { isMobile } from 'react-device-detect';
+import Cookies from 'js-cookie';
 
 const BillingForm = ({ user, refetch }) => {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [addingPayment, setAddingPayment] = useState(false);
+
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
 
   const [getSetupIntent, result] = useLazyGetSetupIntentQuery();
   const [
@@ -111,98 +116,128 @@ const BillingForm = ({ user, refetch }) => {
   };
 
   return isMobile ? (
-    <div className='w-full h-full mx-auto'>
-      {user.paymentAdded ? (
-        <div className='w-full flex flex-col p-2'>
-          <div className='w-full border-2 rounded flex justify-around items-center'>
-            <AiFillCreditCard className=' text-4xl' />
-            <div className='flex flex-col w-40'>
-              <p>
-                <span className='font-medium'>Brand:</span>{' '}
-                {user?.paymentMethod?.brand}
-              </p>
-              <p>
-                <span className='font-medium'>Last Four:</span>{' '}
-                {user?.paymentMethod?.lastFour}
-              </p>
+    <div className='flex flex-col p-2'>
+      <div className='w-full'>
+        <p className='font-medium text-lg'>Your monthly bill is</p>
+        <p className='font-medium text-3xl'>
+          $
+          {currentUser.storeIds.length > 1
+            ? (currentUser.storeIds.length - 1) * 3
+            : 0}
+          /mo
+        </p>
+        <p>{currentUser.storeIds.length} product pages launched</p>
+      </div>
+      <div className='w-full h-full mx-auto'>
+        {user.paymentAdded ? (
+          <div className='w-full flex flex-col'>
+            <div className='w-full border-2 rounded flex justify-around items-center'>
+              <AiFillCreditCard className=' text-4xl' />
+              <div className='flex flex-col w-40'>
+                <p>
+                  <span className='font-medium'>Brand:</span>{' '}
+                  {user?.paymentMethod?.brand}
+                </p>
+                <p>
+                  <span className='font-medium'>Last Four:</span>{' '}
+                  {user?.paymentMethod?.lastFour}
+                </p>
+              </div>
             </div>
+            <button
+              className='text-red-500 mt-2 w-full border-2 border-red-400 text-red-400 hover:text-white hover:bg-red-400 rounded'
+              onClick={handleDeletePaymentMethod}
+            >
+              Delete payment method
+            </button>
           </div>
-          <button
-            className='text-red-500 mt-2 w-full border-2 border-red-400 text-red-400 hover:text-white hover:bg-red-400 rounded'
-            onClick={handleDeletePaymentMethod}
+        ) : (
+          <form
+            className='w-6/12 border-2 p-2 rounded'
+            onSubmit={handleAddingPaymentMethod}
           >
-            Delete payment method
-          </button>
-        </div>
-      ) : (
-        <form
-          className='w-full border-2 p-2 rounded'
-          onSubmit={handleAddingPaymentMethod}
-        >
-          {error ? (
-            <Alert severity='error' className='w-full mt-2 mb-2'>
-              {error}
-            </Alert>
-          ) : (
-            ''
-          )}
-          <CardElement options={CARD_ELEMENT_OPTIONS} />
-          <button
-            type='submit'
-            disabled={addingPayment}
-            className='h-14 w-full mt-4 border-2 border-slate-800 text-slate-800 rounded hover:bg-slate-800 hover:text-white'
-          >
-            {addingPayment ? 'Adding payment method...' : 'Add payment method'}
-          </button>
-        </form>
-      )}
+            {error ? (
+              <Alert severity='error' className='w-full mt-2 mb-2'>
+                {error}
+              </Alert>
+            ) : (
+              ''
+            )}
+            <CardElement options={CARD_ELEMENT_OPTIONS} />
+            <button
+              type='submit'
+              disabled={addingPayment}
+              className='h-14 w-full mt-4 border-2 border-slate-800 text-slate-800 rounded hover:bg-slate-800 hover:text-white'
+            >
+              {addingPayment
+                ? 'Adding payment method...'
+                : 'Add payment method'}
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   ) : (
-    <div className='w-full h-full mx-auto'>
-      {user.paymentAdded ? (
-        <div className='w-4/12 flex flex-col'>
-          <div className='w-full border-2 rounded flex justify-around items-center'>
-            <AiFillCreditCard className=' text-4xl' />
-            <div className='flex flex-col w-40'>
-              <p>
-                <span className='font-medium'>Brand:</span>{' '}
-                {user?.paymentMethod?.brand}
-              </p>
-              <p>
-                <span className='font-medium'>Last Four:</span>{' '}
-                {user?.paymentMethod?.lastFour}
-              </p>
+    <div className='flex items-center justify-between'>
+      <div className='w-6/12'>
+        <p className='font-medium text-lg'>Your monthly bill is</p>
+        <p className='font-medium text-3xl'>
+          $
+          {currentUser.storeIds.length > 1
+            ? (currentUser.storeIds.length - 1) * 3
+            : 0}
+          /mo
+        </p>
+        <p>{currentUser.storeIds.length} product pages launched</p>
+      </div>
+      <div className='w-6/12 h-full mx-auto'>
+        {user.paymentAdded ? (
+          <div className='w-full flex flex-col'>
+            <div className='w-full border-2 rounded flex justify-around items-center'>
+              <AiFillCreditCard className=' text-4xl' />
+              <div className='flex flex-col w-40'>
+                <p>
+                  <span className='font-medium'>Brand:</span>{' '}
+                  {user?.paymentMethod?.brand}
+                </p>
+                <p>
+                  <span className='font-medium'>Last Four:</span>{' '}
+                  {user?.paymentMethod?.lastFour}
+                </p>
+              </div>
             </div>
+            <button
+              className='text-red-500 mt-2 w-full border-2 border-red-400 text-red-400 hover:text-white hover:bg-red-400 rounded'
+              onClick={handleDeletePaymentMethod}
+            >
+              Delete payment method
+            </button>
           </div>
-          <button
-            className='text-red-500 mt-2 w-full border-2 border-red-400 text-red-400 hover:text-white hover:bg-red-400 rounded'
-            onClick={handleDeletePaymentMethod}
+        ) : (
+          <form
+            className='w-6/12 border-2 p-2 rounded'
+            onSubmit={handleAddingPaymentMethod}
           >
-            Delete payment method
-          </button>
-        </div>
-      ) : (
-        <form
-          className='w-8/12 border-2 p-2 rounded'
-          onSubmit={handleAddingPaymentMethod}
-        >
-          {error ? (
-            <Alert severity='error' className='w-full mt-2 mb-2'>
-              {error}
-            </Alert>
-          ) : (
-            ''
-          )}
-          <CardElement options={CARD_ELEMENT_OPTIONS} />
-          <button
-            type='submit'
-            disabled={addingPayment}
-            className='h-14 w-full mt-4 border-2 border-slate-800 text-slate-800 rounded hover:bg-slate-800 hover:text-white'
-          >
-            {addingPayment ? 'Adding payment method...' : 'Add payment method'}
-          </button>
-        </form>
-      )}
+            {error ? (
+              <Alert severity='error' className='w-full mt-2 mb-2'>
+                {error}
+              </Alert>
+            ) : (
+              ''
+            )}
+            <CardElement options={CARD_ELEMENT_OPTIONS} />
+            <button
+              type='submit'
+              disabled={addingPayment}
+              className='h-14 w-full mt-4 border-2 border-slate-800 text-slate-800 rounded hover:bg-slate-800 hover:text-white'
+            >
+              {addingPayment
+                ? 'Adding payment method...'
+                : 'Add payment method'}
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 };
