@@ -5,10 +5,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  -moz-appearance: none;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

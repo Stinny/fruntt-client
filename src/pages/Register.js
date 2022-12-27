@@ -210,17 +210,16 @@ const Register = () => {
                 </div>
 
                 <div className='flex flex-col items-center'>
-                  <p className='text-sm font-medium border-b'>Seller score</p>
-                  <p className='font-medium text-green-500 text-xl'>9.8/10</p>
-                  <p>88 sales</p>
+                  <p className='font-medium text-2xl'>208</p>
+                  <p className='text-lg'>sales</p>
                 </div>
 
-                {/* <div className='flex flex-col mt-2'>
+                <div className='flex flex-col mt-2'>
                   <p className='font-medium'>Their other pages:</p>
-                  <select className='rounded border-2 bg-transparent h-8'>
-                    <option value={1}>luxurywatch.fruntt.com</option>
+                  <select className='rounded border-2 h-8 w-56'>
+                    <option value={1}>shirt.fruntt.com</option>
                   </select>
-                </div> */}
+                </div>
 
                 <div className='flex items-center text-3xl'>
                   <a target='_blank'>
@@ -250,7 +249,7 @@ const Register = () => {
                   </p>
                   <p className='font-medium text-3xl mt-4'>$45.00</p>
                   <p className='mt-4'>Size:</p>
-                  <select className='rounded border-2 bg-transparent h-8'>
+                  <select className='rounded border-2 w-32 h-8'>
                     <option value={1}>Medium</option>
                   </select>
 
@@ -261,7 +260,7 @@ const Register = () => {
 
                   <div className='flex items-center w-full mt-4'>
                     <p>Qty:</p>
-                    <select className='rounded-xl border-2 bg-transparent h-8 w-20'>
+                    <select className='rounded border-2 h-8 w-20'>
                       <option value={1}>1</option>
                     </select>
                     <button className='border-2 rounded border-slate-800 w-4/6 ml-2 h-10'>
