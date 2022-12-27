@@ -235,7 +235,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                   disabled
                 />
               }
-              label='Confirmed your email'
+              label='Confirm your email'
             />
 
             <FormControlLabel
@@ -246,7 +246,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                   disabled
                 />
               }
-              label='Connected to payment gateway'
+              label='Connect to payment gateway'
             />
 
             <FormControlLabel
@@ -257,7 +257,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                   disabled
                 />
               }
-              label='Added a product'
+              label='Add a product'
             />
 
             <FormControlLabel
@@ -268,7 +268,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                   disabled
                 />
               }
-              label='Designed your page'
+              label='Design your page'
             />
           </div>
         </div>

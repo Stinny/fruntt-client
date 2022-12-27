@@ -259,7 +259,7 @@ const DashHome = () => {
                   disabled
                 />
               }
-              label='Confirmed your email'
+              label='Confirm your email'
             />
 
             <FormControlLabel
@@ -270,7 +270,7 @@ const DashHome = () => {
                   disabled
                 />
               }
-              label='Connected to payment gateway'
+              label='Connect to payment gateway'
             />
 
             <FormControlLabel
@@ -281,7 +281,7 @@ const DashHome = () => {
                   disabled
                 />
               }
-              label='Added a product'
+              label='Add a product'
             />
 
             <FormControlLabel
@@ -292,7 +292,7 @@ const DashHome = () => {
                   disabled
                 />
               }
-              label='Designed your page'
+              label='Design your page'
             />
           </div>
         </div>
