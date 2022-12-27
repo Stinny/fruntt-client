@@ -161,10 +161,10 @@ const Navbar = () => {
         <div className='h-full flex items-center w-56 flex justify-between'>
           <Link to='/feedback'>Give Feedback</Link>
 
-          <BiHelpCircle
+          {/* <BiHelpCircle
             className='text-2xl hover:cursor-pointer'
             onClick={handleOpenModal}
-          />
+          /> */}
 
           <MdOutlineNotificationsNone className='text-2xl hover:cursor-pointer' />
 

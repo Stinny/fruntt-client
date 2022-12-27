@@ -133,12 +133,12 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
               + Add page
             </Link>
           </div>
-          <button
+          {/* <button
             onClick={handleOpenModal}
             className='text-2xl font-medium mt-10 border-b-2'
           >
             Help
-          </button>
+          </button> */}
           <Link
             to='/settings'
             className='text-2xl font-medium mt-10 border-b-2'
@@ -192,9 +192,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
           <Link to='/pricing' className='text-2xl font-medium mt-20 border-b-2'>
             Pricing
           </Link>
-          <Link to='/signup' className='text-2xl font-medium mt-20 border-b-2'>
-            Launch a storefront
-          </Link>
+
           <a
             href='https://discord.gg/6GHYR2xn'
             target='_blank'
