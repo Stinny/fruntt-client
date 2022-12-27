@@ -220,7 +220,7 @@ const DashHome = () => {
             <div className='w-full flex mx-auto justify-between items-center'>
               <Link to='/dashboard/item' className='w-6/12 h-14'>
                 <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
-                  Item
+                  Product
                 </button>
               </Link>
               <Link to='/dashboard/design' className='w-6/12 h-14 ml-2'>
