@@ -215,7 +215,7 @@ const BillingForm = ({ user, refetch }) => {
           </div>
         ) : (
           <form
-            className='w-6/12 border-2 p-2 rounded'
+            className='w-full border-2 p-2 rounded'
             onSubmit={handleAddingPaymentMethod}
           >
             {error ? (
