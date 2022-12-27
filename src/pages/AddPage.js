@@ -73,8 +73,8 @@ const AddPage = () => {
               </p>
               <div className='w-full mx-auto flex flex-col'>
                 <p className='font-medium text-gray-400'>
-                  You will be charged $5 now and your monthly bill will increase
-                  by $5
+                  You will be charged $3 now and your monthly bill will increase
+                  by $3
                 </p>
               </div>
             </div>
@@ -108,7 +108,7 @@ const AddPage = () => {
                 className=' text-lg font-medium border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 h-14 mt-4 w-full'
                 disabled={addingPage || !currentUser?.paymentAdded}
               >
-                {addingPage ? 'Launching page...' : 'Launch product page - $5'}
+                {addingPage ? 'Launching page...' : 'Launch product page - $3'}
               </button>
 
               <Link
@@ -127,8 +127,8 @@ const AddPage = () => {
               </p>
               <div className='w-full mx-auto flex justify-between'>
                 <p className='font-medium text-gray-400'>
-                  You will be charged $5 now and your monthly bill will increase
-                  by $5
+                  You will be charged $3 now and your monthly bill will increase
+                  by $3
                 </p>
                 <Link
                   to='/dashboard'
@@ -174,7 +174,7 @@ const AddPage = () => {
                 className=' text-lg font-medium border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 h-14 mt-6 w-full'
                 disabled={addingPage || !currentUser.paymentAdded}
               >
-                {addingPage ? 'Launching page...' : 'Launch product page - $5'}
+                {addingPage ? 'Launching page...' : 'Launch product page - $3'}
               </button>
             </form>
           </div>
