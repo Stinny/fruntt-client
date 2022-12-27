@@ -188,7 +188,11 @@ const BillingForm = ({ user, refetch }) => {
             : 0}
           /mo
         </p>
-        <p>{currentUser.storeIds.length} product pages launched</p>
+        {currentUser.storeIds.length > 1 ? (
+          <p>{currentUser?.storeIds.length} product pages launched</p>
+        ) : (
+          <p>1 product page launched (FREE)</p>
+        )}
       </div>
       <div className='w-6/12 h-full mx-auto'>
         {user.paymentAdded ? (
