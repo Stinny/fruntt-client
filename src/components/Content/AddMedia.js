@@ -20,8 +20,8 @@ const AddMedia = () => {
             Adding video content will be available soon!
           </p>
           <p className='text-gray-400 text-center mt-2'>
-            Here you will be able to link to a youtube video or something
-            similar to add video to your single item storefront
+            Here you will be able to link to or upload video content to your
+            product page
           </p>
         </div>
       </div>
@@ -41,11 +41,11 @@ const AddMedia = () => {
       <div className='p-4'>
         <div className='w-full mx-auto rounded border-2 flex flex-col justify-center items-center mt-2 p-2'>
           <p className='text-slate-800 text-xl font-medium'>
-            Adding video content will be available Oct 28th
+            Adding video content will be available soon!
           </p>
           <p className='text-gray-400 w-7/12 text-center mt-2'>
-            Here you will be able to link to a youtube video or something
-            similar to add video to your single item storefront
+            Here you will be able to link to or upload video content to your
+            product page
           </p>
         </div>
       </div>

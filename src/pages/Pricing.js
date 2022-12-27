@@ -33,21 +33,24 @@ const Pricing = () => {
             <p className='text-5xl font-medium mt-8'>Pricing</p>
 
             <div className='w-full mt-4 flex justify-between'>
-              <div className='border-2 rounded w-5/12 flex items-center justify-center'>
-                <p className='text-2xl font-medium border-b border-slate-800 text-slate-800'>
+              <div className='border-2 rounded w-5/12 flex flex-col items-center justify-center'>
+                <p className='text-2xl font-medium text-slate-800'>
                   First product page FREE
+                </p>
+                <p className='text-gray-400 font-medium'>
+                  No credit card required
                 </p>
               </div>
               <div className='w-2/12 flex flex-col items-center justify-center'>
-                <p>additional pages</p>
+                <p className='font-medium'>After that</p>
                 <FaLongArrowAltRight className='text-3xl' />
               </div>
               <div className='border-2 rounded w-5/12 flex flex-col items-center justify-center p-2'>
                 <p className='font-medium text-4xl'>
                   <span className='text-4xl'>$3</span>/mo
                 </p>
-                <p className='font-medium text-gray-400 text-xl'>
-                  Per additional product page
+                <p className='font-medium text-gray-400'>
+                  Per additional product page you launch
                 </p>
               </div>
             </div>
@@ -78,7 +81,7 @@ const Pricing = () => {
               </div>
               <Link to='/signup' className='w-full'>
                 <button className='w-full mt-4 h-14 text-xl border-2 border-slate-800 text-slate-800 rounded hover:text-white hover:bg-slate-800'>
-                  Launch product page
+                  Launch FREE product page
                 </button>
               </Link>
             </div>

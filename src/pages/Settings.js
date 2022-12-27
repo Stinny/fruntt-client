@@ -94,10 +94,10 @@ const Settings = () => {
 
         <div className='w-full mt-10'>
           <div className='flex flex-col w-full border-b p-2'>
-            <p className='text-lg font-medium'>Billing & Shipping Labels</p>
+            <p className='text-lg font-medium'>Billing & Payment Method</p>
             <p className='text-gray-400 font-medium'>
-              Add a payment method for monthly billing and purchasing shipping
-              labels
+              Add a payment method for monthly billing, adding pages, and
+              purchasing shipping labels
             </p>
           </div>
           <Billing user={user} refetch={refetch} />

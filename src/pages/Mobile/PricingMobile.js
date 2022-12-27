@@ -23,13 +23,14 @@ const PricingMobile = () => {
       <div className='w-full mx-auto flex flex-col items-center p-2'>
         <p className='text-3xl font-medium mt-8 border-b'>Pricing</p>
         <div className='w-full mt-4 flex flex-col'>
-          <div className='border-2 rounded w-full flex items-center justify-center h-24'>
+          <div className='border-2 rounded w-full flex flex-col items-center justify-center h-24'>
             <p className='text-2xl font-medium text-slate-800'>
               First product page FREE
             </p>
+            <p className='text-gray-400 font-medium'>No credit card required</p>
           </div>
           <div className='w-full flex flex-col items-center justify-center mt-2 mb-2'>
-            <p className='font-medium'>additional pages</p>
+            <p className='font-medium'>After that</p>
             <FaLongArrowAltDown className='text-3xl' />
           </div>
           <div className='border-2 rounded w-full flex flex-col items-center justify-center p-2'>
@@ -37,7 +38,7 @@ const PricingMobile = () => {
               <span className='text-4xl'>$3</span>/mo
             </p>
             <p className='font-medium text-gray-400'>
-              Per additional product page
+              Per additional product page you launch
             </p>
           </div>
         </div>
@@ -63,7 +64,7 @@ const PricingMobile = () => {
           </div>
           <Link to='/signup' className='w-full'>
             <button className='w-full mt-4 h-14 text-lg border-2 border-slate-800 text-slate-800 rounded hover:text-white hover:bg-slate-800'>
-              Launch product page
+              Launch FREE product page
             </button>
           </Link>
         </div>
@@ -74,7 +75,7 @@ const PricingMobile = () => {
             <GrStripe className='text-3xl' />
             <p className='font-medium text-xl mt-2'>Secure payments</p>
             <p className='mt-2 text-lg'>
-              Securley accept many forms of payment using Stripe
+              Securley accept several forms of payment using Stripe
             </p>
           </div>
           <div className='w-full border-2 mt-2 rounded p-2'>

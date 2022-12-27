@@ -100,10 +100,11 @@ const Feedback = () => {
               <option disabled selected>
                 Select feedback type
               </option>
-              <option value='design'>Designing your storefront</option>
+              <option value='design'>Designing your product page</option>
               <option value='orders'>Order management</option>
               <option value='customers'>Customer management</option>
               <option value='feature'>Request a feature</option>
+              <option value='pricing'>Pricing</option>
               <option value='other'>Other</option>
             </select>
 
