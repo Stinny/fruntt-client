@@ -11,13 +11,13 @@ import Spinner from '../../../components/Spinner';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { useGetReviewsAndProductQuery } from '../../../api/customersApiSlice';
-import AliItemPrevMobile from './AliItemPrevMobile';
 import { BsArrow90DegDown } from 'react-icons/bs';
+import SellerPro from '../../../components/DesignPrev/SellerPro';
+import DigitalPreviewMobile from '../../../components/DesignPrev/DigitalPreviewMobile';
 
 //mui
 import Alert from '@mui/material/Alert';
 import Rating from '@mui/material/Rating';
-import SellerPro from '../../../components/DesignPrev/SellerPro';
 
 const DesignPreviewMobile = ({
   pageBG,
@@ -67,24 +67,25 @@ const DesignPreviewMobile = ({
         />
 
         {Object.entries(itemAndReviews?.item).length > 0 ? (
-          itemAndReviews?.item?.ali ? (
-            <AliItemPrevMobile
-              item={itemAndReviews?.item}
-              pageBG={pageBG}
-              navbarBG={navbarBG}
-              buttonColor={buttonColor}
-              buttonTextColor={buttonTextColor}
-              buttonStyle={buttonStyle}
-              pageText={pageText}
-              footerBG={footerBG}
+          itemAndReviews?.item?.type === 'digital' ? (
+            <DigitalPreviewMobile
+              itemAndReviews={itemAndReviews}
+              pageBG={storefront?.style?.pageBackground}
+              navbarBG={storefront?.style?.navbarBackground}
+              buttonColor={storefront?.style?.buttonColor}
+              buttonTextColor={storefront?.style?.buttonTextColor}
+              buttonStyle={storefront?.style?.buttonStyle}
+              pageText={storefront?.style?.pageText}
+              footerBG={storefront?.style?.footerBackground}
+              storefrontId={storefront?._id}
+              hideNav={storefront?.style?.hideNav}
+              socialIcons={storefront?.style?.socialIcons}
+              hideFooter={storefront?.style?.hideFooter}
+              headerColor={storefront?.style?.headerColor}
+              borderColor={storefront?.style?.borderColor}
               storefront={storefront}
-              hideNav={hideNav}
-              hideFooter={hideFooter}
-              headerColor={headerColor}
-              borderColor={borderColor}
-              socialIcons={socialIcons}
-              faqBackground={faqBackground}
-              reviewBackground={reviewBackground}
+              faqBackground={storefront?.style?.faqBackground}
+              reviewBackground={storefront?.style?.reviewBackground}
             />
           ) : (
             <div className=''>

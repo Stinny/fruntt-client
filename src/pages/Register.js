@@ -17,8 +17,6 @@ import {
 } from 'react-icons/ai';
 import img from '../media/shirt.jpg';
 import { BsArrow90DegDown } from 'react-icons/bs';
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 
 //mui
 import Avatar from '@mui/material/Avatar';
@@ -34,8 +32,6 @@ import Alert from '@mui/material/Alert';
 import RegisterMobile from './Mobile/RegisterMobile';
 import CardForm from '../components/Forms/CardForm';
 import RegisterForm from '../components/Forms/RegisterForm';
-
-const stripeLoader = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -91,8 +87,6 @@ const Register = () => {
       Cookies.set('currentUser', currentUser, { sameSite: 'Lax' });
       Cookies.set('aToken', registerData.accessToken, { sameSite: 'Lax' });
       Cookies.set('rToken', registerData.refreshToken, { sameSite: 'Lax' });
-      console.log(registerData.userInfo.storeIds);
-      // dispatch(setStoreIds(registerData?.userInfo?.storeIds));
 
       navigate('/storefront/launching');
     } catch (err) {

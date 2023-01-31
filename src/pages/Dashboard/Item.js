@@ -14,9 +14,9 @@ import EditItemForm from '../../components/Forms/EditItemForm';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import { BiPackage } from 'react-icons/bi';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { MdOutlineFileDownload } from 'react-icons/md';
 import moment from 'moment';
 import { isMobile } from 'react-device-detect';
-import AliItemDisplay from '../../components/Item/AliItemDisplay';
 import ProductMobile from '../Mobile/Dashboard/ProductMobile';
 import Cookies from 'js-cookie';
 
@@ -25,6 +25,8 @@ import Chip from '@mui/material/Chip';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
+import AddDigitalProd from './AddDigitalProd';
+import DigitalProduct from './DigitalProduct';
 
 const Item = () => {
   const currentStoreID = useSelector((state) => state.user.selectedStore);
@@ -52,26 +54,28 @@ const Item = () => {
         You have not added a product yet!
       </h2>
       <p className='text-gray-400 text-xl w-8/12 mt-4 text-center font-medium'>
-        What kind of product you want to offer on your product page?
+        What kind of product do you want to offer on your product page?
       </p>
-      <div className='flex justify-center w-6/12 mt-4'>
-        <Link to='/dashboard/item/add' className='w-2/6'>
-          <div className='flex flex-col border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white'>
-            <p className='font-medium'>+ Physical product</p>
-            <p>Something that would require shipping on your end</p>
+      <div className='flex flex-col w-6/12 mt-4'>
+        <Link to='/dashboard/item/add' className='w-full'>
+          <div className='flex justify-between items-center border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white pl-8 pr-8'>
+            <div className='flex flex-col'>
+              <p className='font-medium text-lg'>+ Physical product</p>
+              <p>Something that would require shipping on your end</p>
+            </div>
+            <BiPackage className='text-5xl' />
           </div>
         </Link>
-        {/* <Link to='/dashboard/item/import' className='w-2/6 ml-2 h-32'>
-          <div className='flex flex-col border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white'>
-            <p className='font-medium'>+ Import a product</p>
-            <p>Import a product from Aliexpress</p>
+        <Link to='/dashboard/item/digital' className='w-full'>
+          <div className='w-full flex justify-between items-center border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white pl-8 pr-8 mt-2'>
+            <div className='flex flex-col'>
+              <p className='font-medium text-lg'>+ Digital product</p>
+              <p>Sell courses, ebooks, photography, etc.</p>
+              <p className='font-medium'>COMING SOON</p>
+            </div>
+            <MdOutlineFileDownload className='text-5xl' />
           </div>
-        </Link> */}
-
-        <div className='w-2/6 ml-6 flex flex-col border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white'>
-          <p className='font-medium'>+ Digital product</p>
-          <p>This will be available soon!</p>
-        </div>
+        </Link>
       </div>
     </div>
   );
@@ -84,8 +88,8 @@ const Item = () => {
     content = isMobile ? (
       <ProductMobile product={product[0]} />
     ) : product.length ? (
-      product[0].ali ? (
-        <AliItemDisplay product={product[0]} />
+      product[0].type === 'digital' ? (
+        <DigitalProduct product={product[0]} />
       ) : (
         <div className='w-full'>
           <div className='w-full flex justify-between items-center mb-10 border-b-2 p-2'>
@@ -95,6 +99,11 @@ const Item = () => {
                 last edited on{' '}
                 {moment.utc(product[0].updatedOn).format('MMM D, YYYY')}
               </p>
+            </div>
+
+            <div className='flex items-center'>
+              <p className='font-medium mr-2'>This is a physical product</p>
+              <BiPackage className='text-3xl' />
             </div>
 
             <Link to={`/dashboard/item/edit/${product[0]._id}`}>
@@ -140,7 +149,7 @@ const Item = () => {
                 </div>
               )}
               <FormControlLabel
-                label='Published to storefront'
+                label='Published to product page'
                 control={<Switch checked={product[0]?.published} disabled />}
                 className='mt-2'
               />

@@ -5,15 +5,9 @@ export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: ({ storeId }) => `/products/client/${storeId}`,
-      keepUnusedDataFor: 5,
     }),
     getProduct: builder.query({
       query: ({ productId }) => `/products/${productId}`,
-      keepUnusedDataFor: 5,
-    }),
-    getAliProduct: builder.query({
-      query: ({ productId }) => `/ali/product/${productId}`,
-      keepUnusedDataFor: 5,
     }),
     addProduct: builder.mutation({
       query: (product) => ({
@@ -22,9 +16,9 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         body: { ...product },
       }),
     }),
-    addAliProduct: builder.mutation({
+    addDigitalProduct: builder.mutation({
       query: (product) => ({
-        url: '/products/create/ali',
+        url: '/products/create/digital',
         method: 'POST',
         body: { ...product },
       }),
@@ -69,27 +63,29 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
-    updateAliProduct: builder.mutation({
+    updateDigitalProduct: builder.mutation({
       query: ({
         productId,
-        formTitle,
-        formDescription,
-        formPrice,
-        formStock,
-        formPublished,
-        formShippingPrice,
-        formEstimatedDelivery,
+        price,
+        title,
+        description,
+        published,
+        coverImageUrl,
+        coverImageKey,
+        files,
+        digitalType,
       }) => ({
-        url: `/products/edit/ali/${productId}`,
+        url: `/products/editdigital/${productId}`,
         method: 'POST',
         body: {
-          title: formTitle,
-          description: formDescription,
-          price: formPrice,
-          stock: formStock,
-          published: formPublished,
-          estimatedDelivery: formEstimatedDelivery,
-          shippingPrice: formShippingPrice,
+          title: title,
+          description: description,
+          price: price,
+          published: published,
+          coverImageUrl: coverImageUrl,
+          coverImageKey: coverImageKey,
+          files: files,
+          digitalType: digitalType,
         },
       }),
     }),
@@ -110,9 +106,26 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    deleteFile: builder.mutation({
+      query: ({ productId, fileId, key }) => ({
+        url: `/products/file/delete/`,
+        method: 'POST',
+        body: {
+          productId: productId,
+          fileId: fileId,
+          key: key,
+        },
+      }),
+    }),
     getItemImages: builder.query({
       query: (productId) => `/products/images/${productId}`,
       keepUnusedDataFor: 5,
+    }),
+    getCoverImage: builder.query({
+      query: (productId) => `/products/coverimage/${productId}`,
+    }),
+    getFiles: builder.query({
+      query: (productId) => `/products/files/${productId}`,
     }),
     addFAQ: builder.mutation({
       query: ({ productId, question, answer }) => ({
@@ -141,14 +154,16 @@ export const productsApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetProductsQuery,
   useGetProductQuery,
-  useLazyGetAliProductQuery,
   useAddProductMutation,
-  useAddAliProductMutation,
+  useAddDigitalProductMutation,
   useDeleteProductMutation,
   useUpdateProductMutation,
-  useUpdateAliProductMutation,
+  useUpdateDigitalProductMutation,
   useDeleteItemImageMutation,
   useGetItemImagesQuery,
+  useGetCoverImageQuery,
   useAddFAQMutation,
   useDeleteFAQMutation,
+  useGetFilesQuery,
+  useDeleteFileMutation,
 } = productsApiSlice;

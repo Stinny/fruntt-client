@@ -39,9 +39,9 @@ import PaymentMethod from './pages/PaymentMethod';
 import CustomerDetail from './pages/Dashboard/CustomerDetail';
 import Config from './pages/Dashboard/Config';
 import Feedback from './pages/Feedback';
-import AliItem from './pages/Dashboard/AliItem';
-import ImportAli from './pages/Dashboard/ImportAli';
 import AddPage from './pages/AddPage';
+import AddDigitalProd from './pages/Dashboard/AddDigitalProd';
+import Download from './pages/Download';
 
 function App() {
   return (
@@ -56,6 +56,8 @@ function App() {
             <Route path='login' element={<Login />} />
 
             <Route path='signup' element={<Register />} />
+
+            <Route path='order/digital/:orderId' element={<Download />} />
 
             {/* routes require user to be logged in */}
             <Route element={<RequireAuth />}>
@@ -110,9 +112,10 @@ function App() {
 
                 <Route path='dashboard/item/add' element={<AddItem />} />
 
-                <Route path='dashboard/item/import' element={<ImportAli />} />
-
-                <Route path='dashboard/item/add/ali' element={<AliItem />} />
+                <Route
+                  path='dashboard/item/digital'
+                  element={<AddDigitalProd />}
+                />
 
                 <Route
                   path='dashboard/item/edit/:productId'

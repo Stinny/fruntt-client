@@ -14,14 +14,11 @@ const Media = ({ productId }) => {
   const [deleteItemImage, result] = useDeleteItemImageMutation();
 
   const handleDeleteImage = async ({ productId, imgId, key }) => {
-    console.log(key);
-    console.log('deleting image');
     const deleteImgReq = await deleteItemImage({
       productId,
       imgId,
       key,
     }).unwrap();
-    console.log('Image deleted');
     refetch();
   };
 

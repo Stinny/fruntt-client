@@ -11,8 +11,15 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 import { isMobile } from 'react-device-detect';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { useGetStoreStatsQuery } from '../../api/storefrontApiSlice';
-import SalesGraph from '../../components/SalesGraph';
 import DashHomeMobile from '../Mobile/Dashboard/DashHomeMobile';
+import {
+  FacebookIcon,
+  TwitterIcon,
+  PinterestIcon,
+  LinkedinIcon,
+  WhatsappIcon,
+  TelegramIcon,
+} from 'react-share';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -151,7 +158,7 @@ const DashHome = () => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-xl font-medium text-slate-800'>Page visits</p>
+            <p className='text-xl font-medium text-slate-800'>Page views</p>
             <p className='text-4xl font-medium text-slate-800'>
               {stats?.visits}
             </p>
@@ -294,6 +301,21 @@ const DashHome = () => {
               }
               label='Design your page'
             />
+          </div>
+        </div>
+
+        <div className='w-full h-28 bg-gray-200 rounded-md drop-shadow-md flex flex-col p-2 mt-4'>
+          <p className='text-xl font-medium text-slate-800'>
+            Share your product page with your people!
+          </p>
+
+          <div className='w-8/12 flex justify-between mt-2'>
+            <FacebookIcon borderRadius={5} size={50} />
+            <TwitterIcon borderRadius={5} size={50} />
+            <PinterestIcon borderRadius={5} size={50} />
+            <LinkedinIcon borderRadius={5} size={50} />
+            <WhatsappIcon borderRadius={5} size={50} />
+            <TelegramIcon borderRadius={5} size={50} />
           </div>
         </div>
 

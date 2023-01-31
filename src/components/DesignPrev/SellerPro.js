@@ -50,12 +50,23 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
             }
           />
           <div className='flex flex-col items-center'>
-            <p className='font-medium text-3xl'>
+            <p
+              className='font-medium text-3xl'
+              style={{
+                color: pageText,
+              }}
+            >
               {currentUser?.sellerProfile?.numberOfSales > 0
                 ? currentUser?.sellerProfile.numberOfSales
                 : '0'}{' '}
             </p>
-            <p>sales</p>
+            <p
+              style={{
+                color: pageText,
+              }}
+            >
+              sales
+            </p>
           </div>
         </div>
 

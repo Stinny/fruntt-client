@@ -82,6 +82,8 @@ const OrderDetail = () => {
         labelModaIsOpen={labelModaIsOpen}
         fulfillModalIsOpen={fulfillModalIsOpen}
       />
+    ) : order?.item?.type === 'digital' ? (
+      <div>dig order detail</div>
     ) : (
       <div className='w-full'>
         <LabelModal
@@ -133,18 +135,6 @@ const OrderDetail = () => {
               </button>
             )}
 
-            {order?.item?.ali && !order.fulfilled ? (
-              <a
-                href={order?.item?.aliUrl}
-                target='_blank'
-                className='w-56 border-2 rounded border-slate-800 text-slate-800 h-10 flex justify-center items-center hover:bg-slate-800 hover:text-white'
-              >
-                Place order on Aliexpress <FaExternalLinkAlt className='ml-2' />
-              </a>
-            ) : (
-              ''
-            )}
-
             {order.manualTrackingNumber && (
               <button
                 disabled
@@ -164,9 +154,7 @@ const OrderDetail = () => {
               ''
             )}
 
-            {!order.labelUrl &&
-            !order.manualTrackingNumber &&
-            !order?.item?.ali ? (
+            {!order.labelUrl && !order.manualTrackingNumber ? (
               <button
                 onClick={openLabelModal}
                 className='border-2 w-60 h-10 rounded border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
@@ -245,15 +233,11 @@ const OrderDetail = () => {
             refetchRates={refetchRates}
           />
 
-          {order?.item?.ali ? (
-            ''
-          ) : (
-            <FromAddress
-              order={order}
-              refetch={refetch}
-              refetchRates={refetchRates}
-            />
-          )}
+          <FromAddress
+            order={order}
+            refetch={refetch}
+            refetchRates={refetchRates}
+          />
         </div>
       </div>
     );

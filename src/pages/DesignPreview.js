@@ -10,7 +10,6 @@ import {
 import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import AliItemPrev from '../components/AliItemPrev';
 import { BsArrow90DegDown } from 'react-icons/bs';
 import { useGetReviewsAndProductQuery } from '../api/customersApiSlice';
 import SellerPro from '../components/DesignPrev/SellerPro';
@@ -18,6 +17,7 @@ import SellerPro from '../components/DesignPrev/SellerPro';
 //mui
 import Alert from '@mui/material/Alert';
 import Rating from '@mui/material/Rating';
+import DigitalPreview from '../components/DesignPrev/DigitalPreview';
 
 const DesignPreview = ({
   pageBG,
@@ -67,22 +67,19 @@ const DesignPreview = ({
         />
 
         {Object.entries(itemAndReviews?.item).length > 0 ? (
-          itemAndReviews?.item?.ali ? (
-            <AliItemPrev
-              item={itemAndReviews?.item}
+          itemAndReviews?.item?.type === 'digital' ? (
+            <DigitalPreview
+              itemAndReviews={itemAndReviews}
               pageBG={pageBG}
               navbarBG={navbarBG}
               buttonColor={buttonColor}
               buttonTextColor={buttonTextColor}
               buttonStyle={buttonStyle}
               pageText={pageText}
-              footerBG={footerBG}
-              storefront={storefront}
-              hideNav={hideNav}
-              hideFooter={hideFooter}
+              storefrontId={storefront?._id}
               headerColor={headerColor}
               borderColor={borderColor}
-              socialIcons={socialIcons}
+              storefront={storefront}
               faqBackground={faqBackground}
               reviewBackground={reviewBackground}
             />
@@ -92,14 +89,17 @@ const DesignPreview = ({
                 className='w-full flex justify-between mx-auto'
                 style={{ backgroundColor: pageBG }}
               >
-                <div className='w-3/6'>
+                <div className='w-3/6' style={{ backgroundColor: pageBG }}>
                   <img
                     className='w-11/12'
                     src={itemAndReviews?.item?.images[0].url}
                   />
                 </div>
 
-                <div className='w-3/6 flex flex-col pl-10'>
+                <div
+                  className='w-3/6 flex flex-col pl-10'
+                  style={{ backgroundColor: pageBG }}
+                >
                   <h2
                     className='text-2xl font-medium w-11/12'
                     style={{ color: pageText }}

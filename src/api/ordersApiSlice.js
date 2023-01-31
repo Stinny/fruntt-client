@@ -9,6 +9,9 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
     getSingleOrder: builder.query({
       query: ({ orderId }) => `/orders/${orderId}`,
     }),
+    getDigitalOrder: builder.query({
+      query: ({ orderId }) => `/orders/digital/${orderId}`,
+    }),
     getShippingRates: builder.query({
       query: ({ orderId }) => `/orders/rates/${orderId}`,
     }),
@@ -68,6 +71,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetStoreOrdersQuery,
   useGetSingleOrderQuery,
+  useGetDigitalOrderQuery,
   useGetShippingRatesQuery,
   useFulfillOrderMutation,
   useEditShippingAddressMutation,

@@ -124,7 +124,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-lg font-medium'>Store visits</p>
+            <p className='text-lg font-medium'>Page views</p>
             <p className='text-2xl font-medium'>{stats?.visits}</p>
           </div>
 

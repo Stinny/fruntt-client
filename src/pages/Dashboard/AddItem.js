@@ -54,7 +54,7 @@ const AddItem = () => {
 
   //info popups for the different fields
   const detailsInfo =
-    'Item details. These details will be seen on your single item storefront by all your customers. Stock is for us to know when your item is still available or not.';
+    'Item details. These details will be seen by all your customers. Stock is for us to know when your item is still available or not.';
   const packageInfo =
     'Package details. These details allow us to calculate proper shipping rates and generate shipping labels for your orders';
   const mediaInfo =
@@ -188,7 +188,7 @@ const AddItem = () => {
       ) : (
         <div className='max-w-6xl mx-auto'>
           <div className='mb-10 flex justify-between border-b-2 p-2'>
-            <h2 className='text-3xl font-medium'>Add your product</h2>
+            <h2 className='text-3xl font-medium'>Add your physical product</h2>
 
             <div className='flex'>
               <button

@@ -11,8 +11,8 @@ const Hero = () => {
         An eCommerce platform that understands simplicity
       </p>
       <p className='text-md mt-4 tracking-wider font-medium'>
-        Easily launch, design, and manage product pages. Avoid the hassle of
-        launching an entire storefront.
+        Customizable product pages you can sell from in minutes. Avoid the
+        hassle of launching an entire storefront.
       </p>
 
       <Link to='/signup' className='flex justify-center mt-8'>
@@ -32,8 +32,8 @@ const Hero = () => {
         An eCommerce platform that understands simplicity
       </p>
       <p className='text-2xl mt-8 tracking-wider font-medium'>
-        Easily launch, design, and manage product pages. Avoid the hassle of
-        launching an entire storefront.
+        Customizable product pages you can sell from in minutes. Avoid the
+        hassle of launching an entire storefront.
       </p>
       <Link to='/signup' className='flex justify-center mt-8'>
         <button className='rounded text-slate-800 w-96 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>

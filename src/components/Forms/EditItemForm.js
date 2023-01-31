@@ -12,7 +12,6 @@ import EditOptionsForm from '../../components/Forms/EditOptionsForm';
 import { states } from '../../states';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import OptionsForm from '../AddItem/OptionsForm';
-import EditAliItem from './EditAliItem';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -126,9 +125,7 @@ const EditItemForm = ({ product, productId }) => {
     }
   };
 
-  return product.ali ? (
-    <EditAliItem product={product} handleDeleteItem={handleDeleteItem} />
-  ) : (
+  return (
     <>
       <Link
         to='/dashboard/item'
