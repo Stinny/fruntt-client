@@ -174,15 +174,11 @@ const OrderDetailMobile = ({
           refetchRates={refetchRates}
         />
 
-        {order?.item?.ali ? (
-          ''
-        ) : (
-          <FromAddress
-            order={order}
-            refetch={refetch}
-            refetchRates={refetchRates}
-          />
-        )}
+        <FromAddress
+          order={order}
+          refetch={refetch}
+          refetchRates={refetchRates}
+        />
       </div>
     </div>
   );

@@ -21,6 +21,7 @@ import FromAddress from '../../components/OrderDetail/FromAddress';
 import OrderDetailMobile from '../Mobile/Dashboard/OrderDetailMobile';
 import { isMobile } from 'react-device-detect';
 import { FaExternalLinkAlt } from 'react-icons/fa';
+import DigitalDetail from '../../components/OrderDetail/DigitalDetail';
 
 const OrderDetail = () => {
   const { orderId } = useParams();
@@ -83,7 +84,7 @@ const OrderDetail = () => {
         fulfillModalIsOpen={fulfillModalIsOpen}
       />
     ) : order?.item?.type === 'digital' ? (
-      <div>dig order detail</div>
+      <DigitalDetail order={order} />
     ) : (
       <div className='w-full'>
         <LabelModal

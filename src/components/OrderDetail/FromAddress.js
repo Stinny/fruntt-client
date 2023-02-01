@@ -140,29 +140,69 @@ const FromAddress = ({ order, refetch, refetchRates }) => {
           </button>
         </form>
       </Modal>
-      <div>
-        <div className='flex justify-between items-center border-b p-2'>
-          <p className='text-xl font-medium'>Return address</p>
-          <button
-            onClick={openModal}
-            className='border-2 rounded border-slate-800 text-slate-800 w-16 h-8 hover:text-white hover:bg-slate-800'
-          >
-            Edit
-          </button>
+      {isMobile ? (
+        <div>
+          <div className='flex justify-between items-center border-b p-2'>
+            <p className='text-xl font-medium'>Return address</p>
+            <button
+              onClick={openModal}
+              className='border-2 rounded border-slate-800 text-slate-800 w-16 h-8 hover:text-white hover:bg-slate-800'
+            >
+              Edit
+            </button>
+          </div>
+          <div className='w-full p-4 flex flex-col mx-auto'>
+            <p className='text-gray-400'>Street address:</p>
+            <p className='text-lg font-medium'>{order?.shipsFrom?.address}</p>
+            <p className='text-gray-400 mt-2'>Country:</p>
+            <p className='text-lg font-medium'>{order?.shipsFrom?.country}</p>
+            <p className='text-gray-400 mt-2'>State:</p>
+            <p className='text-lg font-medium'>{order?.shipsFrom?.state}</p>
+            <p className='text-gray-400 mt-2'>City:</p>
+            <p className='text-lg font-medium'>{order?.shipsFrom?.city}</p>
+            <p className='text-gray-400 mt-2'>Zipcode:</p>
+            <p className='text-lg font-medium'>{order?.shipsFrom?.zipcode}</p>
+          </div>
         </div>
-        <div className='w-full p-4 flex flex-col mx-auto'>
-          <p className='text-gray-400'>Street address:</p>
-          <p className='text-lg font-medium'>{order?.shipsFrom?.address}</p>
-          <p className='text-gray-400 mt-2'>Country:</p>
-          <p className='text-lg font-medium'>{order?.shipsFrom?.country}</p>
-          <p className='text-gray-400 mt-2'>State:</p>
-          <p className='text-lg font-medium'>{order?.shipsFrom?.state}</p>
-          <p className='text-gray-400 mt-2'>City:</p>
-          <p className='text-lg font-medium'>{order?.shipsFrom?.city}</p>
-          <p className='text-gray-400 mt-2'>Zipcode:</p>
-          <p className='text-lg font-medium'>{order?.shipsFrom?.zipcode}</p>
+      ) : (
+        <div>
+          <div className='flex justify-between items-center border-b p-2'>
+            <p className='text-xl font-medium'>Return address</p>
+            <button
+              onClick={openModal}
+              className='border-2 rounded border-slate-800 text-slate-800 w-44 hover:text-white hover:bg-slate-800'
+            >
+              Edit return address
+            </button>
+          </div>
+          <div className='w-full p-4 flex justify-between mx-auto'>
+            <div className='flex flex-col justify-between'>
+              <p className='text-gray-400'>Street address:</p>
+              <p className='text-gray-400 mt-2'>Country:</p>
+              <p className='text-gray-400 mt-2'>State:</p>
+              <p className='text-gray-400 mt-2'>City:</p>
+              <p className='text-gray-400 mt-2'>Zipcode:</p>
+            </div>
+            <div className='flex flex-col justify-between text-right'>
+              <p className='text-lg font-medium mt-2'>
+                {order?.shipsFrom?.address}
+              </p>
+              <p className='text-lg font-medium mt-2'>
+                {order?.shipsFrom?.country}
+              </p>
+              <p className='text-lg font-medium mt-2'>
+                {order?.shipsFrom?.state}
+              </p>
+              <p className='text-lg font-medium mt-2'>
+                {order?.shipsFrom?.city}
+              </p>
+              <p className='text-lg font-medium mt-2'>
+                {order?.shipsFrom?.zipcode}
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

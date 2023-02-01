@@ -11,6 +11,8 @@ import { FiDownload } from 'react-icons/fi';
 import moment from 'moment';
 import OrdersMobile from '../Mobile/Dashboard/OrdersMobile';
 import { isMobile } from 'react-device-detect';
+import { MdOutlineFileDownload } from 'react-icons/md';
+import { BiPackage } from 'react-icons/bi';
 
 //mui
 import { DataGrid } from '@mui/x-data-grid';
@@ -60,7 +62,7 @@ const Orders = () => {
     {
       field: 'email',
       headerName: 'Email',
-      width: 200,
+      width: 225,
       headerAlign: 'center',
       align: 'center',
     },
@@ -77,11 +79,31 @@ const Orders = () => {
     {
       field: 'total',
       headerName: 'Total',
-      width: 100,
+      width: 125,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
         return <p>${params.row.total.toFixed(2)}</p>;
+      },
+    },
+    {
+      field: 'type',
+      headerName: 'Type',
+      width: 125,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: (params) => {
+        return params.row.item.type === 'physical' ? (
+          <div className='flex items-center'>
+            <p className='font-medium'>Physical</p>
+            <BiPackage className='ml-2' />
+          </div>
+        ) : (
+          <div className='flex items-center'>
+            <p className='font-medium'>Digital</p>
+            <MdOutlineFileDownload className='ml-2' />
+          </div>
+        );
       },
     },
     {
@@ -99,33 +121,13 @@ const Orders = () => {
       },
     },
     {
-      field: 'labelUrl',
-      headerName: 'Label',
-      width: 150,
-      align: 'center',
-      headerAlign: 'center',
-      renderCell: (params) => {
-        return params.row.labelUrl ? (
-          <a
-            href={params.row.labelUrl}
-            target='_blank'
-            className='text-blue-600 flex justify-between items-center'
-          >
-            Download label <FiDownload className='ml-2' />
-          </a>
-        ) : (
-          <p className='text-red-600'>No label</p>
-        );
-      },
-    },
-    {
       field: 'fulfilled',
       headerName: 'Fulfilled',
       width: 140,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
-        return params.row.fulfilled ? (
+        return params.row.fulfilled || params.row.item.type === 'digital' ? (
           <button className='rounded-lg w-80 text-lime-600 bg-lime-200 font-semibold hover:cursor-default'>
             Fulfilled
           </button>
