@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { isMobile } from 'react-device-detect';
-import EditMobile from '../../components/DigitalProd/EditMobile';
+import EditMobile from '../../components/DigitalProd/EditDigitalMobile';
 import EditDesktop from '../../components/DigitalProd/EditDesktop';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -95,9 +95,7 @@ const EditDigital = ({ product, refetch }) => {
     navigate('/dashboard/item');
   };
 
-  return isMobile ? (
-    <EditMobile product={product} />
-  ) : (
+  return (
     <EditDesktop
       product={product}
       title={title}

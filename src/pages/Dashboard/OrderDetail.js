@@ -203,6 +203,7 @@ const OrderDetail = () => {
               )}
               <p className='text-gray-400 mt-2'>Quantity:</p>
               <p className='text-gray-400 mt-2'>Shipping price:</p>
+
               <p className='text-gray-400 mt-2'>Total:</p>
             </div>
             <div className='flex flex-col justify-between text-right'>
@@ -218,7 +219,7 @@ const OrderDetail = () => {
               <p className='text-lg font-medium mt-2'>
                 ${order?.item?.shippingPrice}
               </p>
-              <p className='text-lg font-medium mt-2'>
+              <p className='text-xl mt-2 font-medium'>
                 $
                 {order?.total?.toLocaleString('en-US', {
                   minimumFractionDigits: 2,

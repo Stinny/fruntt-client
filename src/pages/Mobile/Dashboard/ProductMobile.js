@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import AliItemDisplayMobile from '../../../components/Item/AliItemDisplayMobile';
 import { BiPackage } from 'react-icons/bi';
 import { MdOutlineFileDownload } from 'react-icons/md';
+import DigitalProductMobile from '../../../components/DigitalProd/DigitalProductMobile';
 
 //mui
 import Chip from '@mui/material/Chip';
@@ -28,20 +28,22 @@ const ProductMobile = ({ product }) => {
           </div>
         </Link>
 
-        <div className='w-full flex justify-between items-center border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white pl-8 pr-8 mt-2'>
-          <div className='flex flex-col'>
-            <p className='font-medium text-lg'>+ Digital product</p>
-            <p>Any set of files to download or stream</p>
+        <Link to='/dashboard/item/digital' className='w-full'>
+          <div className='w-full flex justify-between items-center border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white pl-8 pr-8 mt-2'>
+            <div className='flex flex-col'>
+              <p className='font-medium text-lg'>+ Digital product</p>
+              <p>Sell courses, ebooks, printables, and more</p>
+            </div>
+            <MdOutlineFileDownload className='text-5xl' />
           </div>
-          <MdOutlineFileDownload className='text-5xl' />
-        </div>
+        </Link>
       </div>
     </div>
   );
 
   return product ? (
-    product.ali ? (
-      <AliItemDisplayMobile product={product} />
+    product?.type === 'digital' ? (
+      <DigitalProductMobile product={product} />
     ) : (
       <div className='w-full'>
         <div className='w-full flex justify-between items-center mb-10 border-b-2 p-2'>

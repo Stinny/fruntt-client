@@ -15,9 +15,7 @@ import { HiOutlineBookOpen } from 'react-icons/hi';
 import { BsFillMicFill } from 'react-icons/bs';
 
 const DigitalDetail = ({ order }) => {
-  return isMobile ? (
-    <MobileDigitalDetail />
-  ) : (
+  return (
     <div className='w-full'>
       <Link
         to='/dashboard/orders'

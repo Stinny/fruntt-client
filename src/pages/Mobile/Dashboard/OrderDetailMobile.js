@@ -9,6 +9,7 @@ import { FiDownload } from 'react-icons/fi';
 import ShippingAddress from '../../../components/OrderDetail/ShippingAddress';
 import FromAddress from '../../../components/OrderDetail/FromAddress';
 import { FaExternalLinkAlt } from 'react-icons/fa';
+import MobileDigitalDetail from '../../../components/OrderDetail/MobileDigitalDetail';
 
 const OrderDetailMobile = ({
   order,
@@ -22,7 +23,9 @@ const OrderDetailMobile = ({
   labelModaIsOpen,
   fulfillModalIsOpen,
 }) => {
-  return (
+  return order?.item?.type === 'digital' ? (
+    <MobileDigitalDetail order={order} />
+  ) : (
     <div className='w-full'>
       <LabelModal
         closeLabelModal={closeLabelModal}

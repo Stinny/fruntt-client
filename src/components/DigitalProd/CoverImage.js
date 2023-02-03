@@ -45,7 +45,7 @@ const CoverImage = ({
   } else if (isSuccess) {
     content = coverImage?.url ? (
       <>
-        <p className='text-gray-400 mt-4'>Current cover photo</p>
+        <p className='text-gray-400 mt-4'>Current cover image</p>
         <img src={coverImage?.url} className='rounded w-10/12' />
         <button
           type='button'

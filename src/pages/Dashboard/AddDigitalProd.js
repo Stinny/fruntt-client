@@ -111,6 +111,7 @@ const AddDigitalProd = () => {
             setPrice={setPrice}
             setPublished={setPublished}
             published={published}
+            setDigitalType={setDigitalType}
           />
         ) : (
           <DesktopForm
