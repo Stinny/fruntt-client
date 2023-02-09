@@ -117,17 +117,6 @@ const BillingForm = ({ user, refetch }) => {
 
   return isMobile ? (
     <div className='flex flex-col p-2'>
-      <div className='w-full'>
-        <p className='font-medium text-lg'>Your monthly bill is</p>
-        <p className='font-medium text-3xl'>
-          $
-          {currentUser.storeIds.length > 1
-            ? (currentUser.storeIds.length - 1) * 3
-            : 0}
-          /mo
-        </p>
-        <p>{currentUser.storeIds.length} product pages launched</p>
-      </div>
       <div className='w-full h-full mx-auto'>
         {user.paymentAdded ? (
           <div className='w-full flex flex-col'>
@@ -178,23 +167,8 @@ const BillingForm = ({ user, refetch }) => {
       </div>
     </div>
   ) : (
-    <div className='flex items-center justify-between'>
-      <div className='w-6/12'>
-        <p className='font-medium text-lg'>Your monthly bill is</p>
-        <p className='font-medium text-3xl'>
-          $
-          {currentUser.storeIds.length > 1
-            ? (currentUser.storeIds.length - 1) * 3
-            : 0}
-          /mo
-        </p>
-        {currentUser.storeIds.length > 1 ? (
-          <p>{currentUser?.storeIds.length} product pages launched</p>
-        ) : (
-          <p>1 product page launched (FREE)</p>
-        )}
-      </div>
-      <div className='w-6/12 h-full mx-auto'>
+    <div className='flex'>
+      <div className='w-6/12 h-full'>
         {user.paymentAdded ? (
           <div className='w-full flex flex-col'>
             <div className='w-full border-2 rounded flex justify-around items-center'>

@@ -273,9 +273,7 @@ const SellerProfile = ({ user, refetch }) => {
                 />
                 <div className='flex flex-col items-center'>
                   <p className='font-medium text-4xl'>
-                    {user?.SellerProfile?.numberOfSales
-                      ? user?.sellerProfile?.numberOfSales
-                      : '0'}{' '}
+                    {user?.sellerProfile?.numberOfSales}
                   </p>
                   <p>sales</p>
                 </div>
@@ -363,9 +361,7 @@ const SellerProfile = ({ user, refetch }) => {
 
               <div className='flex flex-col items-center'>
                 <p className='font-medium text-4xl'>
-                  {user?.SellerProfile?.numberOfSales
-                    ? user?.sellerProfile?.numberOfSales
-                    : '0'}{' '}
+                  {user?.sellerProfile?.numberOfSales}
                 </p>
                 <p>sales</p>
               </div>

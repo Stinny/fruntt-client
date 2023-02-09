@@ -10,6 +10,7 @@ import SectionThree from '../components/Landing/SectionThree';
 import SectionFour from '../components/Landing/SectionFour';
 import PHunt from '../components/Landing/PHunt';
 import Email from '../components/Landing/Email';
+import Banner from '../components/Home/Banner';
 
 const Home = () => {
   const currentUser = Cookies.get('currentUser')
@@ -25,6 +26,7 @@ const Home = () => {
       <div className='mx-auto h-fit max-w-8xl'>
         <div className='w-full mx-auto h-full flex flex-col items-center'>
           <Hero />
+          <Banner />
           <SectionOne />
           <SectionTwo />
           <SectionThree />

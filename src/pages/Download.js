@@ -13,6 +13,8 @@ import {
 } from 'react-icons/md';
 import { HiOutlineBookOpen } from 'react-icons/hi';
 import { BsFillMicFill } from 'react-icons/bs';
+import { isMobile } from 'react-device-detect';
+import MobileDownload from './Mobile/MobileDownload';
 
 const Download = () => {
   const { orderId } = useParams();
@@ -29,7 +31,10 @@ const Download = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    content = (
+    console.log('got order');
+    content = isMobile ? (
+      <MobileDownload orderAndStore={orderAndStore} />
+    ) : (
       <div className='mx-auto'>
         <div className='w-full border-b-2 mt-20'>
           <p className='text-2xl font-medium'>Your Recent Digital Purchase</p>
@@ -40,7 +45,7 @@ const Download = () => {
         <div className='w-full border-b mt-4'>
           <p className='font-medium text-slate-800 text-xl'>Purchase details</p>
         </div>
-        <div className='flex justify-between items-center mt-8 w-11/12 mx-auto'>
+        <div className='flex justify-between items-center mt-8 w-11/12 mx-auto border-2 rounded p-2'>
           <div className='w-6/12 flex flex-col'>
             <p className='font-medium mt-2'>What you got:</p>
             {orderAndStore?.order?.item?.digitalType === 'video' ? (

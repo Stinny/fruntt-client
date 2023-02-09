@@ -127,8 +127,8 @@ const AddPage = () => {
               </p>
               <div className='w-full mx-auto flex justify-between'>
                 <p className='font-medium text-gray-400'>
-                  You will be charged $3 now and your monthly bill will increase
-                  by $3
+                  Have something else to offer? Add another page to your
+                  collection
                 </p>
                 <Link
                   to='/dashboard'
@@ -174,7 +174,7 @@ const AddPage = () => {
                 className=' text-lg font-medium border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 h-14 mt-6 w-full'
                 disabled={addingPage || !currentUser.paymentAdded}
               >
-                {addingPage ? 'Launching page...' : 'Launch product page - $3'}
+                {addingPage ? 'Launching page...' : 'Launch product page'}
               </button>
             </form>
           </div>

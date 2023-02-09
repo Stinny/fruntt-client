@@ -152,10 +152,18 @@ const Notifications = ({ user, refetch }) => {
           </div>
 
           <div className='flex flex-col'>
-            <Switch checked={user?.sendUpdates} />
-            <Switch checked={user?.sendOrderPlaced} className='mt-4' />
-            <Switch checked={user?.sendItemOutOfStock} className='mt-4' />
-            <Switch checked={user?.sendReviewCollected} className='mt-4' />
+            <Switch checked={user?.sendUpdates} disabled />
+            <Switch checked={user?.sendOrderPlaced} className='mt-4' disabled />
+            <Switch
+              checked={user?.sendItemOutOfStock}
+              className='mt-4'
+              disabled
+            />
+            <Switch
+              checked={user?.sendReviewCollected}
+              className='mt-4'
+              disabled
+            />
           </div>
         </div>
       ) : (
@@ -170,10 +178,18 @@ const Notifications = ({ user, refetch }) => {
           </div>
 
           <div className='flex flex-col'>
-            <Switch checked={user?.sendUpdates} />
-            <Switch checked={user?.sendOrderPlaced} className='mt-4' />
-            <Switch checked={user?.sendItemOutOfStock} className='mt-4' />
-            <Switch checked={user?.sendReviewCollected} className='mt-4' />
+            <Switch checked={user?.sendUpdates} disabled />
+            <Switch checked={user?.sendOrderPlaced} className='mt-4' disabled />
+            <Switch
+              checked={user?.sendItemOutOfStock}
+              className='mt-4'
+              disabled
+            />
+            <Switch
+              checked={user?.sendReviewCollected}
+              className='mt-4'
+              disabled
+            />
           </div>
         </div>
       )}

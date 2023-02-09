@@ -21,33 +21,19 @@ const PricingMobile = () => {
   return (
     <div className='w-full mx-auto h-fit'>
       <div className='w-full mx-auto flex flex-col items-center p-2'>
-        <p className='text-3xl font-medium mt-8 border-b'>Pricing</p>
-        <div className='w-full mt-4 flex flex-col'>
-          <div className='border-2 rounded w-full flex flex-col items-center justify-center h-24'>
-            <p className='text-2xl font-medium text-slate-800'>
-              First product page FREE
-            </p>
-            <p className='text-gray-400 font-medium'>No credit card required</p>
-          </div>
-          <div className='w-full flex flex-col items-center justify-center mt-2 mb-2'>
-            <p className='font-medium'>After that</p>
-            <FaLongArrowAltDown className='text-3xl' />
-          </div>
-          <div className='border-2 rounded w-full flex flex-col items-center justify-center p-2'>
-            <p className='font-medium text-4xl'>
-              <span className='text-4xl'>$3</span>/mo
-            </p>
-            <p className='font-medium text-gray-400'>
-              Per additional product page you launch
-            </p>
-          </div>
+        <p className='text-2xl font-medium mt-8'>Pricing</p>
+        <div className='w-full mt-4 flex flex-col items-center justify-center border-2 rounded h-32 p-2'>
+          <p className='font-bold text-4xl'>8% flat fee</p>
+          <p className='text-gray-400 text-md font-medium text-center'>
+            Never pay on a monthly basis, we just take a mini cut of every sale.
+          </p>
         </div>
 
         <div className='border-2 rounded w-full h-full p-4 mt-4'>
           <p className='mt-4 text-xl text-slate-800 font-medium'>
             Platform includes:
           </p>
-          <div className='w-full text-slate-800 text-lg p-2'>
+          <div className='w-full text-slate-800 text-md p-2'>
             <p className='mt-2'>
               - Easily launch, design, and manage product pages
             </p>
@@ -55,7 +41,9 @@ const PricingMobile = () => {
             <p className='mt-4'>
               - Get shipping labels & rates directly from us
             </p>
-            <p className='mt-4'>- No transaction fees</p>
+            <p className='mt-4'>
+              - Storage for any files included in digital goods
+            </p>
             <p className='mt-4'>
               - Automated customer emailing and order tracking
             </p>
@@ -87,7 +75,7 @@ const PricingMobile = () => {
           </div>
           <div className='w-full border-2 mt-2 rounded p-2'>
             <GrHostMaintenance className='text-3xl' />
-            <p className='font-medium text-lg mt-2'>Hosted by us</p>
+            <p className='font-medium text-lg mt-2'>Hosting on us</p>
             <p className='mt-2 text-lg'>
               Never worry about hosting, pages are hosted and maintained by us
             </p>
