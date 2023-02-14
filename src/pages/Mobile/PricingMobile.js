@@ -25,7 +25,8 @@ const PricingMobile = () => {
         <div className='w-full mt-4 flex flex-col items-center justify-center border-2 rounded h-32 p-2'>
           <p className='font-bold text-4xl'>8% flat fee</p>
           <p className='text-gray-400 text-md font-medium text-center'>
-            Never pay on a monthly basis, we just take a mini cut of every sale.
+            Never pay on a monthly basis, we just take a little cut of every
+            sale.
           </p>
         </div>
 
