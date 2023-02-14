@@ -50,27 +50,21 @@ const Pricing = () => {
                 Platform includes:
               </p>
               <div className='w-full text-slate-800 text-xl p-2'>
-                <p className='mt-2 underline underline-offset-8'>
+                <p className='mt-2 '>
                   - Easily launch, design, and manage product pages
                 </p>
-                <p className='mt-4 underline underline-offset-8'>
-                  - Offer physical or digital goods
-                </p>
-                <p className='mt-4 underline underline-offset-8'>
+                <p className='mt-4 '>- Offer physical or digital goods</p>
+                <p className='mt-4 '>
                   - Get shipping labels & rates directly from us
                 </p>
-                <p className='mt-4 underline underline-offset-8'>
+                <p className='mt-4 '>
                   - Storage for any files included in digital goods
                 </p>
-                <p className='mt-4 underline underline-offset-8'>
+                <p className='mt-4 '>
                   - Automated customer emailing and order tracking
                 </p>
-                <p className='mt-4 underline underline-offset-8'>
-                  - Collect reviews from customers
-                </p>
-                <p className='mt-4 underline underline-offset-8'>
-                  - Connect your own domain to pages
-                </p>
+                <p className='mt-4 '>- Collect reviews from customers</p>
+                <p className='mt-4'>- Connect your own domain to pages</p>
               </div>
               <Link to='/signup' className='w-full'>
                 <button className='w-full mt-4 h-14 text-xl border-2 border-slate-800 text-slate-800 rounded hover:text-white hover:bg-slate-800'>

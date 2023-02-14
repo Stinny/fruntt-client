@@ -12,7 +12,7 @@ const SectionOne = () => {
         <p className='text-xl mt-2 font-medium text-gray-400'>
           Easily setup your product page to offer physical or digital goods.
           Sell anything from t-shirts to blog posts. Start by selling one
-          product on your FREE page and grow from there!
+          product on your page and grow from there!
         </p>
       </div>
       <img src={img} className='w-full bg-gray-100 mt-2' />
@@ -26,7 +26,7 @@ const SectionOne = () => {
         <p className='text-2xl mt-6 font-medium text-gray-400'>
           Easily setup your product page to offer physical or digital goods.
           Sell anything from t-shirts to blog posts. Start by selling one
-          product on your FREE page and grow from there!
+          product on your page and grow from there!
         </p>
       </div>
       <img src={img} className='w-3/6 bg-gray-100' />

@@ -32,7 +32,7 @@ const RegisterForm = ({
     <div className='flex flex-col w-4/12 mr-10 mt-10'>
       <h2 className='text-3xl font-medium'>Launch your first product page</h2>
       <p className='border-b-2 text-gray-400 font-medium mb-4'>
-        Launch your first product page for FREE and explore the platform
+        Launch your first product page and explore the platform
       </p>
 
       {error && (

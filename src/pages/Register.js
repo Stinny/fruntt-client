@@ -266,22 +266,22 @@ const Register = () => {
               <p className='font-medium text-xl'>Customer Questions</p>
               <div className='flex flex-col rounded p-2 mb-2 bg-gray-200'>
                 <p>
-                  <span className='font-medium'>Question:</span> This is the
-                  question?
+                  <span className='font-medium'>Question:</span> Does this shirt
+                  come with extra buttons?
                 </p>
                 <p className='mt-2'>
-                  <span className='font-medium'>Answer:</span> This is the
-                  answer to the question
+                  <span className='font-medium'>Answer:</span> Yes! This shirt
+                  comes with 4 extra buttons if one falls off.
                 </p>
               </div>
               <div className='flex flex-col rounded p-2 mb-2 bg-gray-200'>
                 <p>
-                  <span className='font-medium'>Question:</span> This is the
-                  question?
+                  <span className='font-medium'>Question:</span> What material
+                  is this shirt?
                 </p>
                 <p className='mt-2'>
-                  <span className='font-medium'>Answer:</span> This is the
-                  answer to the question
+                  <span className='font-medium'>Answer:</span> This shirt is 80%
+                  cotton and 20% polyester.
                 </p>
               </div>
               <p className='font-medium text-xl'>Customer Reviews (8)</p>
