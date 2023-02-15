@@ -292,7 +292,7 @@ const DesignPreview = ({
                 This product page is empty
               </p>
               <Link
-                to='/dashboard/item/add'
+                to='/dashboard/item'
                 className='border-2 rounded border-slate-800 text-slate-800 w-36 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
               >
                 + Add a product
