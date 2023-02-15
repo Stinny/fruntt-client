@@ -1,6 +1,11 @@
 import React from 'react';
 import { IoShirtOutline } from 'react-icons/io5';
-import { AiOutlineFormatPainter, AiOutlineLink } from 'react-icons/ai';
+import {
+  AiOutlineFormatPainter,
+  AiOutlineLink,
+  AiOutlineStar,
+  AiOutlineTrophy,
+} from 'react-icons/ai';
 import {
   MdOutlineFileDownload,
   MdOutlineVideoLibrary,
@@ -55,6 +60,25 @@ const Banner = () => {
           <p className='font-medium'>Private links</p>
         </div>
       </div>
+
+      <div className='flex flex-col items-center mt-20'>
+        <div className='flex items-center'>
+          <AiOutlineTrophy className='text-4xl mr-2' />
+          <p className='text-4xl font-medium'>Top 25 collection</p>
+          <AiOutlineTrophy className='text-4xl ml-2' />
+        </div>
+        <p className='text-gray-400 font-medium mt-4 text-center'>
+          Browse the top 25 selling and most viewed product pages on the
+          platform each month!
+        </p>
+        <button
+          type='button'
+          disabled
+          className='rounded text-slate-800 w-8/12 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'
+        >
+          COMING SOON
+        </button>
+      </div>
     </div>
   ) : (
     <div className='w-full flex flex-col items-center mb-44 border-t-2 border-b-2 p-2'>
@@ -94,6 +118,25 @@ const Banner = () => {
           <AiOutlineLink className='text-5xl' />
           <p className='text-xl font-medium'>Private links</p>
         </div>
+      </div>
+
+      <div className='flex flex-col items-center mt-20'>
+        <div className='flex items-center'>
+          <AiOutlineTrophy className='text-4xl mr-2' />
+          <p className='text-4xl font-medium'>Top 25 collection</p>
+          <AiOutlineTrophy className='text-4xl ml-2' />
+        </div>
+        <p className='text-xl text-gray-400 font-medium mt-4'>
+          Browse the top 25 selling and most viewed product pages on the
+          platform each month!
+        </p>
+        <button
+          type='button'
+          disabled
+          className='rounded text-slate-800 w-72 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'
+        >
+          COMING SOON
+        </button>
       </div>
     </div>
   );
