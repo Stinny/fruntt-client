@@ -71,7 +71,6 @@ const Item = () => {
             <div className='flex flex-col'>
               <p className='font-medium text-lg'>+ Digital product</p>
               <p>Sell courses, ebooks, photography, etc.</p>
-              <p className='font-medium'>COMING SOON</p>
             </div>
             <MdOutlineFileDownload className='text-5xl' />
           </div>
