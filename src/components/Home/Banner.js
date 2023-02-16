@@ -5,6 +5,7 @@ import {
   AiOutlineLink,
   AiOutlineStar,
   AiOutlineTrophy,
+  AiOutlineCode,
 } from 'react-icons/ai';
 import {
   MdOutlineFileDownload,
@@ -12,14 +13,14 @@ import {
   MdLocalPrintshop,
   MdOutlinePermMedia,
 } from 'react-icons/md';
-import { HiOutlineBookOpen } from 'react-icons/hi';
+import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill } from 'react-icons/bs';
 import { isMobile } from 'react-device-detect';
 
 const Banner = () => {
   return isMobile ? (
     <div className='w-full flex flex-col items-center justify-center mb-44 border-t-2 border-b-2 p-2'>
-      <p className='mb-8 text-xl text-center font-medium'>
+      <p className='mb-8 text-2xl text-center font-medium'>
         Sell just about anything from your page!
       </p>
       <div className='w-full mx-auto flex flex-col p-4'>
@@ -53,11 +54,16 @@ const Banner = () => {
             <p className='font-medium'>Podcasts</p>
           </div>
         </div>
-        <div className='flex items-center justify-between mt-2'></div>
+        <div className='flex items-center justify-around mt-4'>
+          <div className='flex flex-col items-center'>
+            <HiOutlineTemplate className='text-4xl' />
+            <p className='font-medium'>Templates</p>
+          </div>
 
-        <div className='flex flex-col items-center mt-4'>
-          <AiOutlineLink className='text-4xl' />
-          <p className='font-medium'>Private links</p>
+          <div className='flex flex-col items-center'>
+            <AiOutlineCode className='text-4xl' />
+            <p className='font-medium'>Code</p>
+          </div>
         </div>
       </div>
 
@@ -115,8 +121,13 @@ const Banner = () => {
         </div>
 
         <div className='flex flex-col items-center'>
-          <AiOutlineLink className='text-5xl' />
-          <p className='text-xl font-medium'>Private links</p>
+          <HiOutlineTemplate className='text-5xl' />
+          <p className='text-xl font-medium'>Templates</p>
+        </div>
+
+        <div className='flex flex-col items-center'>
+          <AiOutlineCode className='text-5xl' />
+          <p className='text-xl font-medium'>Code</p>
         </div>
       </div>
 
