@@ -87,6 +87,7 @@ const RegisterMobile = ({
 
             <div className='flex justify-between w-full'>
               <input
+                maxLength='25'
                 type='text'
                 placeholder='First name or business name'
                 className='border-2 text-sm border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2'
@@ -95,18 +96,23 @@ const RegisterMobile = ({
               />
               <input
                 type='text'
+                maxLength='25'
                 placeholder='Last name (optional)'
                 onChange={(e) => setLastName(e.target.value)}
                 value={lastName}
                 className='border-2 text-sm border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 ml-2'
               />
             </div>
-            <textarea
-              placeholder='A little about you, your business, or what you sell...'
-              className='w-full text-sm h-20 border-2 rounded border-gray-300 hover:border-gray-400 outline outline-0 p-2 mt-2'
-              onChange={(e) => setBio(e.target.value)}
-              value={bio}
-            />
+            <div className='flex flex-col'>
+              <textarea
+                maxLength='100'
+                placeholder='A little about you, your business, or what you sell...'
+                className='w-full h-20 border-2 rounded border-gray-300 hover:border-gray-400 outline outline-0 p-2 mt-2'
+                onChange={(e) => setBio(e.target.value)}
+                value={bio}
+              />
+              <p className='text-sm text-right'>{bio.length}/100</p>
+            </div>
             <p className='text-gray-400 font-medium mt-2'>
               + add profile picture
             </p>
