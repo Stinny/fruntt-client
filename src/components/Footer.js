@@ -38,11 +38,11 @@ const Footer = () => {
           </Link>
         </div>
 
-        <div className='flex w-40 justify-between text-4xl'>
+        <div className='flex w-24 justify-between text-4xl'>
           <a href='https://linkedin.com/company/fruntt' target='_blank'>
             <AiOutlineLinkedin className='text-gray-400 hover:text-slate-800' />
           </a>
-          <AiOutlineFacebook className='text-gray-400 hover:text-slate-800' />
+
           <a href='https://twitter.com/fruntt_' target='_blank'>
             <AiOutlineTwitter className='text-gray-400 hover:text-slate-800' />
           </a>

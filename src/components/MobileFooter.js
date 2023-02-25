@@ -5,6 +5,7 @@ import {
   AiOutlineYoutube,
   AiOutlineTwitter,
   AiOutlineFacebook,
+  AiOutlineLinkedin,
 } from 'react-icons/ai';
 import { BsDiscord } from 'react-icons/bs';
 import { IoStorefrontOutline } from 'react-icons/io5';
@@ -20,17 +21,16 @@ const MobileFooter = () => {
           </Link>
         </div>
 
-        <div className='flex w-40 justify-between text-3xl mt-4'>
-          <a href='https://discord.gg/6GHYR2xn' target='_blank'>
-            <BsDiscord className='text-gray-400 hover:text-slate-800' />
+        <div className='flex w-20 justify-between text-2xl mt-4'>
+          <a href='https://linkedin.com/company/fruntt' target='_blank'>
+            <AiOutlineLinkedin className='text-gray-400 hover:text-slate-800' />
           </a>
-          <AiOutlineFacebook className='text-gray-400 hover:text-slate-800' />
-          <a href='https://twitter.com/frunttecomm' target='_blank'>
+          <a href='https://twitter.com/fruntt_' target='_blank'>
             <AiOutlineTwitter className='text-gray-400 hover:text-slate-800' />
           </a>
         </div>
 
-        <div className='flex justify-between items-center w-10/12 mt-4'>
+        <div className='flex justify-between items-center w-10/12 mt-4 text-sm'>
           <Link to='/' className='text-gray-400 hover:text-slate-800'>
             About
           </Link>
