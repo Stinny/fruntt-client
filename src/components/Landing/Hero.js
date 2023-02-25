@@ -6,7 +6,7 @@ import PageSamp from './PageSamp';
 
 const Hero = () => {
   return isMobile ? (
-    <div className='flex flex-col w-11/12 text-center mt-20 h-screen'>
+    <div className='flex flex-col w-11/12 text-center mt-20'>
       <div className='flex flex-col w-full'>
         <p className='text-3xl font-medium'>
           Bring your digital products to LIFE.
