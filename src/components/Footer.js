@@ -3,7 +3,7 @@ import { IoStorefrontOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import {
   AiOutlineTwitter,
-  AiOutlineYoutube,
+  AiOutlineLinkedin,
   AiOutlineFacebook,
 } from 'react-icons/ai';
 import { BsDiscord } from 'react-icons/bs';
@@ -39,11 +39,11 @@ const Footer = () => {
         </div>
 
         <div className='flex w-40 justify-between text-4xl'>
-          <a href='https://discord.gg/6GHYR2xn' target='_blank'>
-            <BsDiscord className='text-gray-400 hover:text-slate-800' />
+          <a href='https://linkedin.com/company/fruntt' target='_blank'>
+            <AiOutlineLinkedin className='text-gray-400 hover:text-slate-800' />
           </a>
           <AiOutlineFacebook className='text-gray-400 hover:text-slate-800' />
-          <a href='https://twitter.com/frunttecomm' target='_blank'>
+          <a href='https://twitter.com/fruntt_' target='_blank'>
             <AiOutlineTwitter className='text-gray-400 hover:text-slate-800' />
           </a>
         </div>

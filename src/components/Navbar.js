@@ -253,21 +253,17 @@ const Navbar = () => {
         </div>
 
         {/* links section */}
-        <div className='h-full flex items-center w-72 flex justify-between'>
-          <Link to='/'>
-            <p className='font-medium text-slate-800'>About</p>
+        <div className='h-full flex items-center w-36 flex justify-between'>
+          <Link to='/signup'>
+            <p className='font-medium text-slate-800'>Sell</p>
           </Link>
-          <Link to='/pricing'>
-            <p className='font-medium text-slate-800'>Pricing</p>
-          </Link>
+
           <a
             href='https://discord.gg/6GHYR2xn'
             target='_blank'
             className='font-medium'
             style={{ color: '#738adb' }}
-          >
-            <BsDiscord className='text-3xl' />
-          </a>
+          ></a>
           <Link to='/login'>
             <button className='border-2 text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white rounded w-20 h-full'>
               Login

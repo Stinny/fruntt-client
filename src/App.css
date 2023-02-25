@@ -1,0 +1,33 @@
+.samp-bg {
+  background-color: #d4ffde;
+  animation-name: colorChange;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes colorChange {
+  from {
+    background-color: #d4ffde;
+  }
+  to {
+    background-color: #e0f0ff;
+  }
+}
+
+.samp-item-bg {
+  background-color: #fddafb;
+  animation-name: colorChangeTwo;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes colorChangeTwo {
+  from {
+    background-color: #fddafb;
+  }
+  to {
+    background-color: #f6e6ce;
+  }
+}

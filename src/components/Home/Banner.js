@@ -19,8 +19,8 @@ import { isMobile } from 'react-device-detect';
 
 const Banner = () => {
   return isMobile ? (
-    <div className='w-full flex flex-col items-center justify-center mb-44 border-t-2 border-b-2 p-2'>
-      <p className='mb-8 text-2xl text-center font-medium'>
+    <div className='w-full flex flex-col items-center justify-center mb-44 mt-44 border-t-2 border-b-2 p-2'>
+      {/* <p className='mb-8 text-2xl text-center font-medium'>
         Sell just about anything from your page!
       </p>
       <div className='w-full mx-auto flex flex-col p-4'>
@@ -65,22 +65,20 @@ const Banner = () => {
             <p className='font-medium'>Code</p>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className='flex flex-col items-center mt-20'>
+      <div className='flex flex-col items-center'>
         <div className='flex items-center'>
-          <AiOutlineTrophy className='text-4xl mr-2' />
-          <p className='text-4xl font-medium'>Top 25 collection</p>
-          <AiOutlineTrophy className='text-4xl ml-2' />
+          <p className='text-4xl font-medium'>Fruntt Marketplace</p>
         </div>
-        <p className='text-gray-400 font-medium mt-4 text-center'>
-          Browse the top 25 selling and most viewed product pages on the
-          platform each month!
+        <p className='text-xl text-gray-400 font-medium mt-4 text-center'>
+          Browse through your favorite pages, products, and creators on the
+          platform.
         </p>
         <button
           type='button'
           disabled
-          className='rounded text-slate-800 w-8/12 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'
+          className='rounded text-slate-800 w-72 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'
         >
           COMING SOON
         </button>
@@ -88,7 +86,7 @@ const Banner = () => {
     </div>
   ) : (
     <div className='w-full flex flex-col items-center mb-44 border-t-2 border-b-2 p-2'>
-      <p className='mb-8 text-2xl font-medium'>
+      {/* <p className='mb-8 text-2xl font-medium'>
         Sell just about anything from your page!
       </p>
       <div className='w-8/12 mx-auto flex justify-between'>
@@ -129,17 +127,15 @@ const Banner = () => {
           <AiOutlineCode className='text-5xl' />
           <p className='text-xl font-medium'>Code</p>
         </div>
-      </div>
+      </div> */}
 
-      <div className='flex flex-col items-center mt-20'>
+      <div className='flex flex-col items-center'>
         <div className='flex items-center'>
-          <AiOutlineTrophy className='text-4xl mr-2' />
-          <p className='text-4xl font-medium'>Top 25 collection</p>
-          <AiOutlineTrophy className='text-4xl ml-2' />
+          <p className='text-4xl font-medium'>Fruntt Marketplace</p>
         </div>
         <p className='text-xl text-gray-400 font-medium mt-4'>
-          Browse the top 25 selling and most viewed product pages on the
-          platform each month!
+          Browse through your favorite pages, products, and creators on the
+          platform.
         </p>
         <button
           type='button'

@@ -11,6 +11,8 @@ import SectionFour from '../components/Landing/SectionFour';
 import PHunt from '../components/Landing/PHunt';
 import Email from '../components/Landing/Email';
 import Banner from '../components/Home/Banner';
+import HowSell from '../components/Landing/HowSell';
+import Fee from '../components/Landing/Fee';
 
 const Home = () => {
   const currentUser = Cookies.get('currentUser')
@@ -27,10 +29,8 @@ const Home = () => {
         <div className='w-full mx-auto h-full flex flex-col items-center'>
           <Hero />
           <Banner />
-          <SectionOne />
-          <SectionTwo />
-          <SectionThree />
-          <SectionFour />
+          <HowSell />
+          <Fee />
           <PHunt />
           <Email />
         </div>

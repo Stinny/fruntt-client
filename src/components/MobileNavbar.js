@@ -186,14 +186,11 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
         </button>
 
         <div className='flex flex-col w-full h-full mx-auto items-center'>
-          <Link to='/pricing' className='text-2xl font-medium mt-20 border-b-2'>
-            About
-          </Link>
-          <Link to='/pricing' className='text-2xl font-medium mt-20 border-b-2'>
-            Pricing
+          <Link to='/signup' className='text-2xl font-medium mt-20 border-b-2'>
+            Sell
           </Link>
 
-          <a
+          {/* <a
             href='https://discord.gg/6GHYR2xn'
             target='_blank'
             className='font-medium'
@@ -201,7 +198,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
             className='mt-20'
           >
             <BsDiscord className='text-4xl border-b-2' />
-          </a>
+          </a> */}
 
           <Link to='/login' className='w-full flex justify-center mt-20'>
             <button className='w-10/12 h-14 border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 text-xl'>
