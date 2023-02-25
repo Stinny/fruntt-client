@@ -54,10 +54,10 @@ const Item = () => {
         You have not added a product yet!
       </h2>
       <p className='text-gray-400 text-xl w-8/12 mt-4 text-center font-medium'>
-        What kind of product do you want to offer on your product page?
+        Add any kind of digital file to sell
       </p>
       <div className='flex flex-col w-6/12 mt-4'>
-        <Link to='/dashboard/item/add' className='w-full'>
+        {/* <Link to='/dashboard/item/add' className='w-full'>
           <div className='flex justify-between items-center border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white pl-8 pr-8'>
             <div className='flex flex-col'>
               <p className='font-medium text-lg'>+ Physical product</p>
@@ -65,12 +65,12 @@ const Item = () => {
             </div>
             <BiPackage className='text-5xl' />
           </div>
-        </Link>
+        </Link> */}
         <Link to='/dashboard/item/digital' className='w-full'>
           <div className='w-full flex justify-between items-center border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white pl-8 pr-8 mt-2'>
             <div className='flex flex-col'>
               <p className='font-medium text-lg'>+ Digital product</p>
-              <p>Sell courses, ebooks, photography, etc.</p>
+              <p>Sell courses, ebooks, photography, templates, etc.</p>
             </div>
             <MdOutlineFileDownload className='text-5xl' />
           </div>

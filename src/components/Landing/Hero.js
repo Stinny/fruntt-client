@@ -12,7 +12,7 @@ const Hero = () => {
           Bring your digital products to LIFE.
         </p>
         <p className='text-xl font-medium mt-8 text-gray-400'>
-          Your own customized pages to sell your digital products from.{' '}
+          Sell your digital products from your own customized pages.{' '}
           <span className='font-semibold'>Only pay 1% of what you sell.</span>
         </p>
 
@@ -34,7 +34,7 @@ const Hero = () => {
           Bring your digital products to LIFE.
         </p>
         <p className='text-2xl font-medium mt-8 text-gray-400'>
-          Your own customized pages to sell your digital products from.{' '}
+          Sell your digital products from your own customized pages.{' '}
           <span className='font-semibold'>Only pay 1% of what you sell.</span>
         </p>
 
