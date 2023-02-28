@@ -1,16 +1,25 @@
 .samp-bg {
-  background-color: #d4ffde;
+  background-color: #ffffff;
   animation-name: colorChange;
-  animation-duration: 5s;
+  animation-duration: 6s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
 
 @keyframes colorChange {
-  from {
+  /* from {
     background-color: #d4ffde;
   }
   to {
+    background-color: #e0f0ff;
+  } */
+  0% {
+    background-color: #ffffff;
+  }
+  50.0% {
+    background-color: #d4ffde;
+  }
+  100.0% {
     background-color: #e0f0ff;
   }
 }

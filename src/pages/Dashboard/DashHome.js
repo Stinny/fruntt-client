@@ -32,6 +32,8 @@ const DashHome = () => {
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
   const currentStoreID = useSelector((state) => state.user.selectedStore);
+  //holds the url of the page being viewed
+  const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
   const { data: stats, isLoading, isSuccess, refetch } = useGetStoreStatsQuery({
     storeId: currentStoreID,
@@ -89,13 +91,14 @@ const DashHome = () => {
             </p>
           </Alert>
         )}
-        <div className='flex justify-between w-full mb-2'>
+        <div className='flex mb-2'>
+          <p className='text-lg text-stone-800 font-medium'>Your live page:</p>
           <a
             href={currentUser?.store?.url}
-            className='flex justify-center items-center text-xl text-slate-800 font-medium'
+            className='flex justify-center items-center text-lg text-gray-400 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
             target='_blank'
           >
-            View your product page <FaExternalLinkAlt className='ml-2' />{' '}
+            {currentStoreUrl}
           </a>
         </div>
 

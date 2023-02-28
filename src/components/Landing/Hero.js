@@ -12,13 +12,13 @@ const Hero = () => {
           Bring your digital products to LIFE.
         </p>
         <p className='text-xl font-medium mt-8 text-gray-400'>
-          Sell your digital products from your own customized pages.{' '}
-          <span className='font-semibold'>Only pay 1% of what you sell.</span>
+          Sell your digital products from your own customized pages. Only pay 1%
+          of what you sell.
         </p>
 
         <Link to='/signup' className='flex mt-8'>
-          <button className='rounded text-slate-800 w-96 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
-            Launch a page - for FREE
+          <button className='rounded text-slate-800 w-full h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
+            Launch a page
           </button>
         </Link>
       </div>
@@ -34,18 +34,18 @@ const Hero = () => {
           Bring your digital products to LIFE.
         </p>
         <p className='text-2xl font-medium mt-8 text-gray-400'>
-          Sell your digital products from your own customized pages.{' '}
-          <span className='font-semibold'>Only pay 1% of what you sell.</span>
+          Sell your digital products from your own customized pages. Only pay 1%
+          of what you sell.
         </p>
 
         <Link to='/signup' className='flex mt-8'>
           <button className='rounded text-slate-800 w-96 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'>
-            Launch a page - for FREE
+            Launch a page
           </button>
         </Link>
       </div>
 
-      <div className='w-6/12 h-4/6 flex flex-col items-end'>
+      <div className='w-7/12 h-4/5 flex flex-col items-end'>
         <PageSamp />
       </div>
     </div>

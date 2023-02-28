@@ -17,7 +17,7 @@ const PageSamp = () => {
             <Avatar>J</Avatar>
           </div>
 
-          <div className='flex flex-col w-38 w-4/12'>
+          <div className='flex flex-col w-4/12'>
             <div className='flex'>
               <div className='w-6/12 h-2 bg-gray-200'></div>
               <div className='w-6/12 h-2 bg-gray-200 ml-2'></div>
@@ -39,9 +39,9 @@ const PageSamp = () => {
             <p className='font-medium text-xs'>Sales</p>
           </div>
 
-          <div className='flex flex-col w-4/12'>
+          <div className='flex flex-col items-start w-4/12'>
             <p className='font-medium text-xs'>My other pages:</p>
-            <select className='h-6 rounded bg-gray-200'></select>
+            <select className='h-6 rounded bg-gray-200 w-full'></select>
           </div>
         </div>
 
@@ -81,12 +81,12 @@ const PageSamp = () => {
 
             <div className='flex items-center mt-2'>
               <p className='w-7/12 font-semibold text-2xl'>$19.99</p>
-              <p className='w-5/12 text-sm ml-4'>(12) reviews</p>
+              <p className='w-5/12 text-xs ml-4'>(12) reviews</p>
             </div>
 
             <button
               type='button'
-              className='w-full bg-white text-black rounded h-6 text-sm mt-2'
+              className='w-full bg-white text-black rounded h-6 text-sm mt-2 border border-stone-800'
             >
               BUY NOW
             </button>
@@ -96,17 +96,62 @@ const PageSamp = () => {
         <p className='text-black text-sm mt-2 font-medium text-left'>
           About this product
         </p>
-        <div className='bg-gray-300 h-24 w-full rounded'></div>
+        <div className='bg-gray-300 h-24 w-full rounded p-2'>
+          <div className='flex'>
+            <div className='w-9/12 h-2 bg-gray-200'></div>
+            <div className='w-3/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-4/12 h-2 bg-gray-200'></div>
+            <div className='w-8/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-5/12 h-2 bg-gray-200'></div>
+            <div className='w-7/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-10/12 h-2 bg-gray-200'></div>
+            <div className='w-2/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+        </div>
 
         <p className='text-black text-sm mt-2 font-medium text-left'>
           Customer questions
         </p>
-        <div className='bg-gray-300 h-14 w-full rounded'></div>
+        <div className='bg-gray-300 h-14 w-full rounded p-2'>
+          <div className='flex'>
+            <div className='w-9/12 h-2 bg-gray-200'></div>
+            <div className='w-3/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-4/12 h-2 bg-gray-200'></div>
+            <div className='w-8/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-5/12 h-2 bg-gray-200'></div>
+            <div className='w-7/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+        </div>
 
         <p className='text-black text-sm mt-2 font-medium text-left'>
           Customer reviews (12)
         </p>
-        <div className='bg-gray-300 h-14 w-full rounded'></div>
+        <div className='bg-gray-300 h-14 w-full rounded p-2'>
+          <div className='flex mt-2'>
+            <div className='w-5/12 h-2 bg-gray-200'></div>
+            <div className='w-7/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-10/12 h-2 bg-gray-200'></div>
+            <div className='w-2/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+        </div>
       </div>
     </>
   ) : (
@@ -189,7 +234,7 @@ const PageSamp = () => {
 
             <button
               type='button'
-              className='w-full bg-white text-black rounded h-6 text-sm mt-2'
+              className='w-full bg-white text-black rounded h-6 text-sm mt-2 border border-stone-800'
             >
               BUY NOW
             </button>
@@ -199,17 +244,62 @@ const PageSamp = () => {
         <p className='text-black text-sm mt-2 font-medium'>
           About this product
         </p>
-        <div className='bg-gray-300 h-24 w-full rounded'></div>
+        <div className='bg-gray-300 h-28 w-full rounded p-2'>
+          <div className='flex'>
+            <div className='w-9/12 h-2 bg-gray-200'></div>
+            <div className='w-3/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-4/12 h-2 bg-gray-200'></div>
+            <div className='w-8/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-5/12 h-2 bg-gray-200'></div>
+            <div className='w-7/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-10/12 h-2 bg-gray-200'></div>
+            <div className='w-2/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+        </div>
 
         <p className='text-black text-sm mt-2 font-medium'>
           Customer questions
         </p>
-        <div className='bg-gray-300 h-16 w-full rounded'></div>
+        <div className='bg-gray-300 h-24 w-full rounded p-2'>
+          <div className='flex'>
+            <div className='w-9/12 h-2 bg-gray-200'></div>
+            <div className='w-3/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-4/12 h-2 bg-gray-200'></div>
+            <div className='w-8/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-5/12 h-2 bg-gray-200'></div>
+            <div className='w-7/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+        </div>
 
         <p className='text-black text-sm mt-2 font-medium'>
           Customer reviews (12)
         </p>
-        <div className='bg-gray-300 h-16 w-full rounded'></div>
+        <div className='bg-gray-300 h-20 w-full rounded p-2'>
+          <div className='flex mt-2'>
+            <div className='w-5/12 h-2 bg-gray-200'></div>
+            <div className='w-7/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+
+          <div className='flex mt-2'>
+            <div className='w-10/12 h-2 bg-gray-200'></div>
+            <div className='w-2/12 h-2 bg-gray-200 ml-2'></div>
+          </div>
+        </div>
       </div>
     </>
   );
