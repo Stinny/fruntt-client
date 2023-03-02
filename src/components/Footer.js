@@ -14,7 +14,7 @@ const Footer = () => {
   return isMobile ? (
     <MobileFooter />
   ) : (
-    <footer className='w-full h-40 border-t-2 mt-10'>
+    <footer className='w-full h-32 border-t-2 mt-10'>
       <div className='max-w-7xl mx-auto h-full flex justify-between items-center'>
         <div className='h-full flex justify-center items-center text-4xl'>
           <Link to='/' className='h-full flex justify-center items-center'>
