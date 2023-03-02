@@ -16,8 +16,11 @@
   0% {
     background-color: #ffffff;
   }
-  50.0% {
+  25.0% {
     background-color: #d4ffde;
+  }
+  50.0% {
+    background-color: #f18ebf;
   }
   100.0% {
     background-color: #e0f0ff;
@@ -33,10 +36,13 @@
 }
 
 @keyframes colorChangeTwo {
-  from {
+  0% {
     background-color: #fddafb;
   }
-  to {
+  25.0% {
     background-color: #f6e6ce;
+  }
+  100.0% {
+    background-color: #ffffff;
   }
 }

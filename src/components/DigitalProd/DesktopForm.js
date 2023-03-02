@@ -24,6 +24,7 @@ const DesktopForm = ({
   image,
   setFiles,
   files,
+  setLink,
 }) => {
   return (
     <div className='w-full'>
@@ -50,7 +51,7 @@ const DesktopForm = ({
 
       <form className='w-full' onSubmit={handleAddProduct}>
         <div className='flex items-center'>
-          <p className='text-xl font-medium'>Details</p>
+          <p className='text-2xl font-medium'>Details</p>
           <Tooltip
             title={
               <p className='text-lg'>
@@ -80,9 +81,10 @@ const DesktopForm = ({
               <option value='printable'>Printables</option>
               <option value='ebook'>E-Book</option>
               <option value='podcast'>Podcast</option>
+              <option value='template'>Template</option>
               <option value='other'>Other Digital Media</option>
             </select>
-            <p className='text-gray-400'>Product Title</p>
+            <p className='text-gray-400 mt-4'>Product Title</p>
             <input
               type='text'
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
@@ -138,7 +140,7 @@ const DesktopForm = ({
         </div>
 
         <div className='flex items-center mt-4'>
-          <p className='text-xl font-medium'>Content</p>
+          <p className='text-2xl font-medium'>Content</p>
           <Tooltip
             title={
               <p className='text-lg'>Images, zip files, PDFs, video, etc..</p>
@@ -163,6 +165,19 @@ const DesktopForm = ({
             setFiles(fileItems.map((fileItem) => fileItem.file));
           }}
         />
+
+        <div className='flex flex-col'>
+          <p className='font-medium'>Add a link</p>
+          <p className='font-medium text-gray-400'>
+            This is just a link for customers to click, not a redirect
+          </p>
+          <input
+            type='text'
+            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-2'
+            placeholder='https://www.yourlink.com'
+            onChange={(e) => setLink(e.target.value)}
+          />
+        </div>
 
         <button className='border-2 rounded h-14 w-full text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white mt-4'>
           + ADD PRODUCT

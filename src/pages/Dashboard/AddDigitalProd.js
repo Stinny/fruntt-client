@@ -28,6 +28,7 @@ const AddDigitalProd = () => {
   const [files, setFiles] = useState([]);
   const [published, setPublished] = useState(true);
   const [digitalType, setDigitalType] = useState('');
+  const [link, setLink] = useState('');
 
   const [addDigitalProduct, result] = useAddDigitalProductMutation();
 
@@ -38,15 +39,17 @@ const AddDigitalProd = () => {
   const handleAddProduct = async (e) => {
     e.preventDefault();
 
+    console.log('adding product');
+
     let coverPicUrl;
     let coverPicKey;
-    let uploadedFiles;
+    let uploadedFiles = [];
 
     //try to upload cover image and all files first
     //if request is success
     //send request to create product
 
-    if (!title || !description || !digitalType || !price || !files.length) {
+    if (!title || !description || !digitalType || !price) {
       setError('Please fill out all fields to complete your product');
       return;
     }
@@ -61,24 +64,28 @@ const AddDigitalProd = () => {
         coverPicUrl = imageDataReq.data[0].url;
         coverPicKey = imageDataReq.data[0].key;
 
-        const filesToUpload = new FormData();
-        for (var x = 0; x < files.length; x++) {
-          filesToUpload.append('productImages', files[x]);
+        if (files.length) {
+          const filesToUpload = new FormData();
+          for (var x = 0; x < files.length; x++) {
+            filesToUpload.append('productImages', files[x]);
+          }
+          const filesUploadReq = await uploadImageRequest.post(
+            '/products/filesupload',
+            filesToUpload
+          );
+          uploadedFiles = filesUploadReq.data;
         }
-        const filesUploadReq = await uploadImageRequest.post(
-          '/products/filesupload',
-          filesToUpload
-        );
-        uploadedFiles = filesUploadReq.data;
+
         const addDigitalProductReq = await addDigitalProduct({
           title,
           description,
           price,
           coverImage: imageDataReq.data,
-          files: filesUploadReq.data,
+          files: uploadedFiles,
           storeId: currentStoreID,
           published: published,
           digitalType,
+          link: link,
         }).unwrap();
 
         if (addDigitalProductReq.msg === 'Product added') {
@@ -125,6 +132,7 @@ const AddDigitalProd = () => {
             setPublished={setPublished}
             published={published}
             setDigitalType={setDigitalType}
+            setLink={setLink}
           />
         )}
       </div>

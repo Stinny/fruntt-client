@@ -11,7 +11,7 @@ const PageSamp = () => {
       <p className='font-medium mb-2 text-left mt-10'>
         &#123;YourPageName&#125;.fruntt.com
       </p>
-      <div className='w-full h-full p-2 rounded bg-green-100 border-black border samp-bg'>
+      <div className='w-full h-full p-2 rounded bg-green-100 border-black border samp-bg drop-shadow-xl'>
         <div className='border-t border-b w-full h-16 border-black flex items-center'>
           <div className='w-2/12'>
             <Avatar>J</Avatar>
@@ -159,7 +159,7 @@ const PageSamp = () => {
       <p className='font-medium ml-24 text-lg mb-2 text-left'>
         &#123;YourPageName&#125;.fruntt.com
       </p>
-      <div className='w-9/12 h-full p-2 rounded bg-green-100 ml-32 border-black border samp-bg'>
+      <div className='w-10/12 h-full p-2 rounded bg-green-100 ml-32 border-black border samp-bg drop-shadow-xl'>
         <div className='border-t border-b w-full h-16 border-black flex items-center'>
           <div className='w-2/12'>
             <Avatar>J</Avatar>

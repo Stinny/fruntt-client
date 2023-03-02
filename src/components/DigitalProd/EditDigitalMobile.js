@@ -33,6 +33,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
   const [files, setFiles] = useState([]);
   const [published, setPublished] = useState(product?.published);
   const [digitalType, setDigitalType] = useState(product?.digitalType);
+  const [link, setLink] = useState(product?.link);
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
@@ -90,6 +91,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
         files: uploadedFiles,
         productId: product?._id,
         digitalType: digitalType,
+        link: link,
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
@@ -233,6 +235,17 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
             onupdatefiles={(fileItems) => {
               setFiles(fileItems.map((fileItem) => fileItem.file));
             }}
+          />
+        </div>
+
+        <div className='flex flex-col'>
+          <p className='font-medium'>Add a link</p>
+          <input
+            type='text'
+            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-2'
+            placeholder='https://www.yourlink.com'
+            onChange={(e) => setLink(e.target.value)}
+            value={link}
           />
         </div>
 

@@ -34,6 +34,8 @@ const EditDesktop = ({
   setDigitalType,
   error,
   refetchProduct,
+  setLink,
+  link,
 }) => {
   return (
     <div className='w-full'>
@@ -181,6 +183,21 @@ const EditDesktop = ({
             onupdatefiles={(fileItems) => {
               setFiles(fileItems.map((fileItem) => fileItem.file));
             }}
+          />
+        </div>
+
+        <div className='flex flex-col'>
+          <p className='font-medium'>Add a link</p>
+          <p className='font-medium text-gray-400'>
+            This is just a link for customers to click after purchase, not a
+            redirect
+          </p>
+          <input
+            type='text'
+            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-2'
+            placeholder='https://www.yourlink.com'
+            onChange={(e) => setLink(e.target.value)}
+            value={link}
           />
         </div>
 

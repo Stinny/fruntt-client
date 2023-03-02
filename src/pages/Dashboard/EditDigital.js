@@ -22,6 +22,7 @@ const EditDigital = ({ product, refetch }) => {
   const [files, setFiles] = useState([]);
   const [published, setPublished] = useState(product?.published);
   const [digitalType, setDigitalType] = useState(product?.digitalType);
+  const [link, setLink] = useState(product?.link);
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
@@ -38,8 +39,8 @@ const EditDigital = ({ product, refetch }) => {
       return;
     }
 
-    if (!product.files.length && !files.length) {
-      setError('Please upload files to include in the purchase');
+    if (!title || !description || !price) {
+      setError('Please fill in all fields');
       return;
     }
 
@@ -79,6 +80,7 @@ const EditDigital = ({ product, refetch }) => {
         files: uploadedFiles,
         productId: product?._id,
         digitalType: digitalType,
+        link: link,
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
@@ -114,6 +116,8 @@ const EditDigital = ({ product, refetch }) => {
       handleSaveEdit={handleSaveEdit}
       error={error}
       refetchProduct={refetch}
+      link={link}
+      setLink={setLink}
     />
   );
 };

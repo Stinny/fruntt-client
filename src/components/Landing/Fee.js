@@ -12,7 +12,7 @@ const Fee = () => {
       <p className='font-medium text-md'>After payment processing fees</p>
       <p className='font-medium text-lg mt-4 w-11/12 text-center'>
         Never pay us on a monthly basis, we get paid only when you do. We just
-        take a mini cut of every sales.
+        take a mini cut of every sale.
       </p>
     </div>
   ) : (

@@ -102,29 +102,55 @@ const DigitalProduct = ({ product }) => {
           All content/files get automatically delivered to customers after
           purchase via a download link
         </p>
-        <div className='p-4 flex flex-wrap w-full border-2 rounded-md mt-2'>
-          {product?.files?.map((file, index) => (
-            <div className='w-full flex items-center justify-between border-b mt-2'>
-              <div className='w-4/12'>
-                <p className='font-medium text-lg'>{file?.name}</p>
+        <div className='p-4 flex flex-col w-full border-2 rounded-md mt-2'>
+          {product?.files.length ? (
+            product?.files?.map((file, index) => (
+              <div className='w-full flex items-center justify-between border-b mt-2'>
+                <div className='w-4/12'>
+                  <p className='font-medium text-lg'>{file?.name}</p>
+                </div>
+                <div className='w-4/12 flex justify-center'>
+                  <p className='font-medium text-lg'>
+                    {' '}
+                    {moment.utc(product.updatedOn).format('MMM D, YYYY')}
+                  </p>
+                </div>
+                <div className='w-4/12 flex justify-end'>
+                  <a
+                    href={file?.url}
+                    download
+                    className='text-blue-500 font-lg font-medium'
+                  >
+                    Download file
+                  </a>
+                </div>
               </div>
-              <div className='w-4/12 flex justify-center'>
-                <p className='font-medium text-lg'>
-                  {' '}
-                  {moment.utc(product.updatedOn).format('MMM D, YYYY')}
-                </p>
-              </div>
-              <div className='w-4/12 flex justify-end'>
-                <a
-                  href={file?.url}
-                  download
-                  className='text-blue-500 font-lg font-medium'
-                >
-                  Download file
-                </a>
-              </div>
+            ))
+          ) : (
+            <p className='text-center font-medium'>
+              No files have been added to this product
+            </p>
+          )}
+        </div>
+        <div className='flex flex-col mt-4'>
+          <p className='font-medium'>Link</p>
+          <p className='font-medium text-gray-400'>
+            This is just a link for customers to click after purchase, not a
+            redirect
+          </p>
+          {product?.link === '' ? (
+            <div className='w-full border-2 rounded-md h-14 p-2 flex items-center justify-center'>
+              <p className='text-center font-medium'>
+                No link has been added to this product
+              </p>
             </div>
-          ))}
+          ) : (
+            <div className='w-full border-2 rounded-md h-14 p-2 flex items-center'>
+              <a href={product?.link} target='_blank' className='font-medium'>
+                {product?.link}
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </div>

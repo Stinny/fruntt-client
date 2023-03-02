@@ -74,6 +74,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         coverImageKey,
         files,
         digitalType,
+        link,
       }) => ({
         url: `/products/editdigital/${productId}`,
         method: 'POST',
@@ -86,6 +87,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
           coverImageKey: coverImageKey,
           files: files,
           digitalType: digitalType,
+          link: link,
         },
       }),
     }),
