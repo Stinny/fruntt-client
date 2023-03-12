@@ -13,7 +13,7 @@ const Hero = () => {
         </p>
         <p className='text-xl font-medium mt-8 text-gray-400'>
           Your own customized pages to sell your digital products from. Make
-          your products stand out. Kepp 99% of what you earn.
+          your products stand out. Keep 99% of what you earn.
         </p>
 
         <Link to='/signup' className='flex mt-8'>
