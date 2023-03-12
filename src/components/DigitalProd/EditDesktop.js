@@ -2,6 +2,8 @@ import React from 'react';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import CoverImage from './CoverImage';
 import Files from './Files';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { Editor } from 'react-draft-wysiwyg';
 
 //filepond
 import { FilePond } from 'react-filepond';
@@ -34,13 +36,24 @@ const EditDesktop = ({
   setDigitalType,
   error,
   refetchProduct,
-  setLink,
-  link,
+  productContent,
+  handleProductContent,
 }) => {
   return (
     <div className='w-full'>
       <div className='mb-10 flex justify-between border-b-2 p-2'>
         <h2 className='text-3xl font-medium'>Edit your digital product</h2>
+
+        <FormControlLabel
+          label='Publish to page'
+          control={
+            <Switch
+              checked={published}
+              onChange={(e) => setPublished(e.target.checked)}
+            />
+          }
+          className='mt-2'
+        />
 
         <div className='flex'>
           <button
@@ -91,10 +104,11 @@ const EditDesktop = ({
               <option value='printable'>Printables</option>
               <option value='ebook'>E-Book</option>
               <option value='podcast'>Podcast</option>
+              <option value='template'>Template</option>
               <option value='other'>Other Digital Media</option>
             </select>
 
-            <p className='text-gray-400'>Product Title</p>
+            <p className='text-gray-400 mt-4'>Product Title</p>
             <input
               type='text'
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
@@ -102,18 +116,16 @@ const EditDesktop = ({
               onChange={(e) => setTitle(e.target.value)}
             />
 
-            <p className='text-gray-400 mt-4'>Product Description(optional)</p>
+            <p className='text-gray-400 mt-4'>Product Summary (optional)</p>
             <textarea
               type='text'
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-              placeholder='Description'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
 
             <p className='text-gray-400 mt-4'>Product Price</p>
             <div className='flex items-center'>
-              <p className='mr-2 font-medium text-xl'>$</p>
               <input
                 type='number'
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
@@ -121,16 +133,6 @@ const EditDesktop = ({
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>
-            <FormControlLabel
-              label='Publish to product page'
-              control={
-                <Switch
-                  checked={published}
-                  onChange={(e) => setPublished(e.target.checked)}
-                />
-              }
-              className='mt-2'
-            />
           </div>
 
           <div className='border-2 rounded w-6/12 ml-4 flex flex-col justify-center p-2'>
@@ -144,13 +146,13 @@ const EditDesktop = ({
           </div>
         </div>
 
-        <div className='flex items-center mt-4'>
-          <p className='text-xl font-medium'>Edit your content</p>
+        <div className='flex items-center mt-4 border-t-2'>
+          <p className='text-xl font-medium mt-4'>Content</p>
           <Tooltip
             title={
               <p className='text-lg'>Images, zip files, PDFs, video, etc..</p>
             }
-            className='ml-2 text-lg'
+            className='ml-2 text-lg mt-4'
             placement='right-end'
           >
             <button type='button' disabled>
@@ -159,8 +161,9 @@ const EditDesktop = ({
           </Tooltip>
         </div>
         <p className='text-gray-400 font-medium mb-4'>
-          Add any files you want to include in the digital purchase. All files
-          will automatically be sent to customers after purchase.
+          Add any files and content you want to include in your digital
+          purchase. A download link will be sent to customers automatically
+          after purchase.
         </p>
 
         <div className='flex flex-col'>
@@ -186,7 +189,34 @@ const EditDesktop = ({
           />
         </div>
 
-        <div className='flex flex-col'>
+        <div className='w-full border rounded mt-6'>
+          <Editor
+            editorState={productContent}
+            toolbarClassName='toolbarClassName'
+            wrapperClassName='wrapperClassName'
+            editorClassName='editorClassName'
+            onEditorStateChange={handleProductContent}
+            placeholder='Start typing here..'
+            toolbar={{
+              options: [
+                'inline',
+                'blockType',
+                'fontSize',
+                'list',
+                'textAlign',
+                'colorPicker',
+                'link',
+                'embedded',
+                'emoji',
+                'image',
+                'remove',
+                'history',
+              ],
+            }}
+          />
+        </div>
+
+        {/* <div className='flex flex-col'>
           <p className='font-medium'>Add a link</p>
           <p className='font-medium text-gray-400'>
             This is just a link for customers to click after purchase, not a
@@ -199,7 +229,7 @@ const EditDesktop = ({
             onChange={(e) => setLink(e.target.value)}
             value={link}
           />
-        </div>
+        </div> */}
 
         <button
           type='submit'

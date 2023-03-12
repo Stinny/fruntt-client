@@ -92,7 +92,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
           <div className='text-4xl h-full flex justify-center items-center'>
             <Link to='/' className='h-full flex justify-center items-center'>
               <IoStorefrontOutline className='text-slate-800 font-bold' />
-              <h2 className='font-black font-sans'>Fruntt</h2>
+              <p className='font-black font-sans'>Fruntt</p>
             </Link>
           </div>
 
@@ -168,7 +168,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
           <div className='text-4xl h-full flex justify-center items-center'>
             <Link to='/' className='h-full flex justify-center items-center'>
               <IoStorefrontOutline className='text-slate-800 font-bold' />
-              <h2 className='font-black font-sans'>Fruntt</h2>
+              <p className='font-black font-sans'>Fruntt</p>
             </Link>
           </div>
 

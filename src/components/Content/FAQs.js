@@ -10,7 +10,7 @@ import { isMobile } from 'react-device-detect';
 import Cookies from 'js-cookie';
 import Spinner from '../Spinner';
 
-const FAQs = ({ currentUser }) => {
+const FAQs = ({ currentUser, item, refetch, isLoading, isSuccess }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   //form state
@@ -19,10 +19,6 @@ const FAQs = ({ currentUser }) => {
 
   const [addFAQ, result] = useAddFAQMutation();
   const [deleteFAQ, { result: deleteFAQRes }] = useDeleteFAQMutation();
-
-  const { data: item, isLoading, isSuccess, refetch } = useGetProductsQuery({
-    storeId: currentUser?.store?._id,
-  });
 
   const handleAddFAQ = async (e) => {
     e.preventDefault();
@@ -148,13 +144,19 @@ const FAQs = ({ currentUser }) => {
         {isMobile ? (
           <div className='mb-4'>
             <div className='w-full flex justify-between items-center p-2 border-b'>
-              <p className='text-slate-800 font-medium'>Customer questions</p>
-              <button
-                className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
-                onClick={openModal}
-              >
-                + Add
-              </button>
+              <p className='text-slate-800 font-medium text-xl'>
+                Customer questions
+              </p>
+              {item.length ? (
+                <button
+                  className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
+                  onClick={openModal}
+                >
+                  + Add
+                </button>
+              ) : (
+                ''
+              )}
             </div>
 
             {item?.length ? (
@@ -184,19 +186,19 @@ const FAQs = ({ currentUser }) => {
                 ) : (
                   <div className='w-full mx-auto rounded border-2 flex flex-col justify-center items-center mt-2 p-2'>
                     <p className='text-slate-800 text-xl font-medium'>
-                      You have not added any FAQs yet
+                      You have not added any customer questions
                     </p>
                     <p className='text-gray-400 text-center mt-2'>
-                      These FAQs are visible on your product page for customers
-                      to read. They should relate to whatever product you are
-                      offering.
+                      These questions are visible on your product page for
+                      customers to read. They should relate to whatever product
+                      you are offering.
                     </p>
                     <button
                       type='button'
                       className='border-2 border-slate-800 rounded text-slate-800 hover:bg-slate-800 hover:text-white w-28 h-10 mt-2'
                       onClick={openModal}
                     >
-                      + Add FAQ
+                      + Add question
                     </button>
                   </div>
                 )}
@@ -204,13 +206,16 @@ const FAQs = ({ currentUser }) => {
             ) : (
               <div className='p-4'>
                 <div className='w-full mx-auto rounded border-2 flex flex-col justify-center items-center mt-2 p-2'>
-                  <p className='text-slate-800 text-xl font-medium'>
+                  <p className='text-slate-800 text-lg font-medium'>
                     You have not added a product yet
                   </p>
-                  <p className='text-gray-400 w-7/12 text-center mt-2'>
-                    In order to add FAQs, you need to add a product.
-                  </p>
-                  <Link to='/dashboard/item'>+ add a product</Link>
+
+                  <Link
+                    to='/dashboard/item'
+                    className='border-stone-800 border-2 p-2 rounded text-sm mt-2'
+                  >
+                    + Add product
+                  </Link>
                 </div>
               </div>
             )}
@@ -221,12 +226,16 @@ const FAQs = ({ currentUser }) => {
               <p className='text-slate-800 font-medium text-xl'>
                 Customer questions
               </p>
-              <button
-                className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
-                onClick={openModal}
-              >
-                + Add
-              </button>
+              {item.length ? (
+                <button
+                  className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
+                  onClick={openModal}
+                >
+                  + Add
+                </button>
+              ) : (
+                ''
+              )}
             </div>
 
             {item?.length ? (
@@ -256,19 +265,19 @@ const FAQs = ({ currentUser }) => {
                 ) : (
                   <div className='w-full mx-auto rounded border-2 flex flex-col justify-center items-center mt-2 p-2'>
                     <p className='text-slate-800 text-xl font-medium'>
-                      You have not added any customer questions yet
+                      You have not added any customer questions
                     </p>
                     <p className='text-gray-400 w-7/12 text-center mt-2'>
-                      These FAQs are visible on your storefront for customers to
-                      read. They should relate to whatever product you are
-                      offering.
+                      These questions are visible on your storefront for
+                      customers to read. They should relate to whatever product
+                      you are offering.
                     </p>
                     <button
                       type='button'
                       className='border-2 border-slate-800 rounded text-slate-800 hover:bg-slate-800 hover:text-white w-32 h-10 mt-2'
                       onClick={openModal}
                     >
-                      + Add FAQ
+                      + Add question
                     </button>
                   </div>
                 )}
@@ -276,14 +285,15 @@ const FAQs = ({ currentUser }) => {
             ) : (
               <div className='p-4'>
                 <div className='w-full mx-auto rounded border-2 flex flex-col justify-center items-center mt-2 p-2'>
-                  <p className='text-slate-800 text-xl font-medium'>
+                  <p className='text-slate-800 text-lg font-medium'>
                     You have not added a product yet
                   </p>
-                  <p className='text-gray-400 w-7/12 text-center mt-2'>
-                    In order to add customer questions, you need to add a
-                    product.
-                  </p>
-                  <Link to='/dashboard/item'>+ add a product</Link>
+                  <Link
+                    to='/dashboard/item'
+                    className='border-stone-800 border-2 p-2 rounded text-sm mt-2'
+                  >
+                    + Add product
+                  </Link>
                 </div>
               </div>
             )}

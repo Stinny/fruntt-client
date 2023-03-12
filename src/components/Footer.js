@@ -19,7 +19,7 @@ const Footer = () => {
         <div className='h-full flex justify-center items-center text-4xl'>
           <Link to='/' className='h-full flex justify-center items-center'>
             <IoStorefrontOutline className='text-gray-400 font-bold' />
-            <h2 className='font-black text-gray-400 font-sans'>Fruntt</h2>
+            <p className='font-black text-gray-400 font-sans'>Fruntt</p>
           </Link>
         </div>
 

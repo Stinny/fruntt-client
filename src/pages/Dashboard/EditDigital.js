@@ -9,6 +9,7 @@ import {
   useDeleteItemImageMutation,
 } from '../../api/productsApiSlice';
 import { uploadImageRequest } from '../../api/requests';
+import { convertFromRaw, EditorState, convertToRaw } from 'draft-js';
 
 const EditDigital = ({ product, refetch }) => {
   const navigate = useNavigate();
@@ -26,6 +27,9 @@ const EditDigital = ({ product, refetch }) => {
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
+  const [productContent, setProductContent] = useState(
+    EditorState.createWithContent(convertFromRaw(JSON.parse(product?.content)))
+  );
 
   const handleSaveEdit = async (e) => {
     e.preventDefault();
@@ -80,7 +84,9 @@ const EditDigital = ({ product, refetch }) => {
         files: uploadedFiles,
         productId: product?._id,
         digitalType: digitalType,
-        link: link,
+        content: JSON.stringify(
+          convertToRaw(productContent.getCurrentContent())
+        ),
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
@@ -90,6 +96,10 @@ const EditDigital = ({ product, refetch }) => {
     } catch (err) {
       setError('There was an error');
     }
+  };
+
+  const handleProductContent = (edits) => {
+    setProductContent(edits);
   };
 
   const handleDelete = async () => {
@@ -118,6 +128,8 @@ const EditDigital = ({ product, refetch }) => {
       refetchProduct={refetch}
       link={link}
       setLink={setLink}
+      productContent={productContent}
+      handleProductContent={handleProductContent}
     />
   );
 };

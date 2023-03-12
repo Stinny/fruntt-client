@@ -1,5 +1,7 @@
 import React from 'react';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 //mui
 import Tooltip from '@mui/material/Tooltip';
@@ -24,6 +26,8 @@ const MobileForm = ({
   image,
   setFiles,
   files,
+  handleProductContent,
+  productContent,
 }) => {
   return (
     <div className='w-full p-2'>
@@ -63,6 +67,7 @@ const MobileForm = ({
               <option value='printable'>Printables</option>
               <option value='ebook'>E-Book</option>
               <option value='podcast'>Podcast</option>
+              <option value='template'>Template</option>
               <option value='other'>Other Digital Media</option>
             </select>
             <p className='text-gray-400 mt-4'>Product Title</p>
@@ -120,8 +125,8 @@ const MobileForm = ({
           </div>
         </div>
 
-        <div className='flex items-center mt-4'>
-          <p className='text-xl font-medium'>Content</p>
+        <div className='flex items-center mt-4 border-t'>
+          <p className='text-xl font-medium mt-6'>Content</p>
           <Tooltip
             title={
               <p className='text-lg'>Images, zip files, PDFs, video, etc..</p>
@@ -129,14 +134,15 @@ const MobileForm = ({
             className='ml-2 text-lg'
             placement='right-end'
           >
-            <button type='button' disabled>
+            <button type='button' disabled className='mt-6'>
               <AiOutlineInfoCircle />
             </button>
           </Tooltip>
         </div>
         <p className='text-gray-400 font-medium mb-4'>
-          Add any files you want to include in the digital purchase. All files
-          will automatically be sent to customers after purchase.
+          Add any files and content you want to include in the digital purchase.
+          All content and files are available to customers immediately after
+          purchase.
         </p>
         <FilePond
           file={files}
@@ -146,6 +152,33 @@ const MobileForm = ({
             setFiles(fileItems.map((fileItem) => fileItem.file));
           }}
         />
+
+        <div className='w-full border rounded mt-6'>
+          <Editor
+            editorState={productContent}
+            toolbarClassName='toolbarClassName'
+            wrapperClassName='wrapperClassName'
+            editorClassName='editorClassName'
+            onEditorStateChange={handleProductContent}
+            placeholder='Start typing here..'
+            toolbar={{
+              options: [
+                'inline',
+                'blockType',
+                'fontSize',
+                'list',
+                'textAlign',
+                'colorPicker',
+                'link',
+                'embedded',
+                'emoji',
+                'image',
+                'remove',
+                'history',
+              ],
+            }}
+          />
+        </div>
 
         <button className='border-2 rounded h-14 w-full text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white mt-4'>
           + ADD PRODUCT

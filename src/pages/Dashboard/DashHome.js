@@ -103,7 +103,7 @@ const DashHome = () => {
         </div>
 
         <div className='flex justify-between'>
-          <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 relative'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>Total revenue your page has generated</p>
@@ -127,7 +127,7 @@ const DashHome = () => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 ml-4 relative'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>Total sales your page has generated</p>
@@ -147,7 +147,7 @@ const DashHome = () => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 ml-4 relative'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -167,7 +167,7 @@ const DashHome = () => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-gray-200 rounded-md p-2 ml-4 relative'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -189,7 +189,7 @@ const DashHome = () => {
         </div>
 
         <div className='w-full mt-4 mb-4 flex justify between'>
-          <div className='w-8/12 drop-shadow-md rounded-md h-40 bg-gray-200 p-2'>
+          <div className='w-8/12 drop-shadow-md rounded-md h-40 bg-white border p-2'>
             <p className='text-xl font-medium text-slate-800'>
               Orders & Inventory
             </p>
@@ -226,36 +226,36 @@ const DashHome = () => {
               </p>
             )}
           </div>
-          <div className='w-4/12 drop-shadow-md mx-auto rounded-md bg-gray-200 h-40 ml-4 flex flex-col justify-center p-2'>
+          <div className='w-4/12 drop-shadow-md mx-auto rounded-md bg-white border h-40 ml-4 flex flex-col justify-center p-2'>
             <div className='w-full flex mx-auto justify-between items-center'>
               <Link to='/dashboard/item' className='w-6/12 h-14'>
-                <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
+                <button className='w-full h-full border-2 border-stone-800 rounded hover:bg-stone-800 hover:text-white'>
                   Product
                 </button>
               </Link>
-              <Link to='/dashboard/design' className='w-6/12 h-14 ml-2'>
-                <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
-                  Design
+              <Link to='/dashboard/content' className='w-6/12 h-14 ml-2'>
+                <button className='w-full h-full border-2 border-stone-800 rounded hover:bg-stone-800 hover:text-white'>
+                  Content
                 </button>
               </Link>
             </div>
 
             <div className='w-full flex mx-auto justify-between items-center mt-4'>
-              <Link to='/dashboard/orders' className='w-6/12 h-14'>
-                <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
-                  Orders
+              <Link to='/dashboard/design' className='w-6/12 h-14'>
+                <button className='w-full h-full border-2 border-stone-800 rounded hover:bg-stone-800 hover:text-white'>
+                  Design
                 </button>
               </Link>
-              <Link to='/dashboard/customers' className='w-6/12 h-14 ml-2'>
-                <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
-                  Customers
+              <Link to='/dashboard/orders' className='w-6/12 h-14 ml-2'>
+                <button className='w-full h-full border-2 border-stone-800 rounded hover:bg-stone-800 hover:text-white'>
+                  Orders
                 </button>
               </Link>
             </div>
           </div>
         </div>
 
-        <div className='w-full h-28 bg-gray-200 rounded-md drop-shadow-md flex flex-col p-2'>
+        <div className='w-full h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2'>
           <p className='text-xl font-medium text-slate-800'>
             Is your product page ready for customers?
           </p>
@@ -307,7 +307,7 @@ const DashHome = () => {
           </div>
         </div>
 
-        <div className='w-full h-28 bg-gray-200 rounded-md drop-shadow-md flex flex-col p-2 mt-4'>
+        <div className='w-full h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2 mt-4'>
           <p className='text-xl font-medium text-slate-800'>
             Share your product page with your people!
           </p>

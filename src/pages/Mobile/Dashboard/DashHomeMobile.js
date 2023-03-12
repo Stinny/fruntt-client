@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SalesGraph from '../../../components/SalesGraph';
 import { BsArrowRightShort } from 'react-icons/bs';
@@ -12,6 +13,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 const DashHomeMobile = ({ stats, currentUser }) => {
+  //holds the url of the page being viewed
+  const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
   return (
     <>
       <div className='w-full p-2 flex flex-col'>
@@ -53,19 +56,20 @@ const DashHomeMobile = ({ stats, currentUser }) => {
         )}
       </div>
 
-      <div className='flex w-full mx-auto mt-4 pl-2'>
+      <div className='flex pl-2'>
+        <p className='text-lg text-stone-800 font-medium'>Live page:</p>
         <a
           href={currentUser?.store?.url}
-          className='flex items-center text-lg text-slate-800 font-medium'
+          className='flex justify-center items-center text-lg text-gray-400 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
           target='_blank'
         >
-          View your product page <FaExternalLinkAlt className='ml-2' />{' '}
+          {currentStoreUrl}
         </a>
       </div>
 
       <div className='flex flex-col items-center w-full p-2'>
         <div className='w-full flex'>
-          <div className='drop-shadow-md w-6/12 h-28 bg-gray-200 rounded-md p-2 relative'>
+          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded-md p-2 relative'>
             <Tooltip
               title={
                 <p className='text-lg'>Total revenue your page has generated</p>
@@ -90,7 +94,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-6/12 h-28 bg-gray-200 rounded-md p-2 relative ml-2'>
+          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded-md p-2 relative ml-2'>
             <Tooltip
               title={
                 <p className='text-lg'>Total sales your page has generated</p>
@@ -109,7 +113,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
         </div>
 
         <div className='w-full flex'>
-          <div className='drop-shadow-md w-6/12 h-28 mt-2 bg-gray-200 rounded-md p-2 relative'>
+          <div className='drop-shadow-md w-6/12 h-28 mt-2 bg-white border rounded-md p-2 relative'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -128,7 +132,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
             <p className='text-2xl font-medium'>{stats?.visits}</p>
           </div>
 
-          <div className='drop-shadow-md w-6/12 h-28 mt-2 ml-2 bg-gray-200 rounded-md p-2 relative'>
+          <div className='drop-shadow-md w-6/12 h-28 mt-2 ml-2 bg-white border rounded-md p-2 relative'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -152,8 +156,8 @@ const DashHomeMobile = ({ stats, currentUser }) => {
       </div>
 
       <div className='w-full flex flex-col items-center mx-auto p-2'>
-        <div className='w-full drop-shadow-md rounded-md h-40 bg-gray-200 p-2'>
-          <p className='text-xl font-medium'>Orders & Inventory</p>
+        <div className='w-full drop-shadow-md rounded-md h-40 bg-white border p-2'>
+          <p className='text-xl font-medium'>Orders</p>
           {stats?.numOfUnfulfilledOrders ? (
             <p className='text-2xl font-medium mt-2'>
               {stats?.numOfUnfulfilledOrders > 1
@@ -171,49 +175,34 @@ const DashHomeMobile = ({ stats, currentUser }) => {
               <BsArrowRightShort />
             </div>
           </Link>
-          {stats?.itemStock <= 10 ? (
-            <p className='mt-2'>
-              Inventory:{' '}
-              <span className='text-red-400 font-medium'>
-                {stats?.itemStock} units
-              </span>
-            </p>
-          ) : (
-            <p className='mt-2'>
-              Inventory:{' '}
-              <span className='text-slate-800 font-medium'>
-                {stats?.itemStock} units left
-              </span>
-            </p>
-          )}
         </div>
 
-        <div className='w-full mx-auto mt-2'>
-          <p className='font-medium text-lg'>Quick navigation</p>
-        </div>
-        <div className='w-full p-2 drop-shadow-md mx-auto rounded-md bg-gray-200 h-40 flex flex-col justify-center'>
+        <div className='w-full p-2 drop-shadow-md mx-auto rounded-md bg-white border h-40 flex flex-col justify-center mt-2'>
+          <div className='w-full mx-auto'>
+            <p className='font-medium text-lg'>Quick navigation</p>
+          </div>
           <div className='w-full flex mx-auto justify-between items-center'>
-            <Link to='/dashboard/item' className='w-6/12 h-14'>
+            <Link to='/dashboard/item' className='w-6/12 h-12'>
               <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
                 Product
               </button>
             </Link>
-            <Link to='/dashboard/design' className='w-6/12 h-14 ml-2'>
+            <Link to='/dashboard/content' className='w-6/12 h-12 ml-2'>
               <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
-                Design
+                Content
               </button>
             </Link>
           </div>
 
-          <div className='w-full flex mx-auto justify-between items-center mt-4'>
-            <Link to='/dashboard/orders' className='w-6/12 h-14'>
+          <div className='w-full flex mx-auto justify-between items-center mt-2'>
+            <Link to='/dashboard/design' className='w-6/12 h-12'>
               <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
-                Orders
+                Design
               </button>
             </Link>
-            <Link to='/dashboard/customers' className='w-6/12 h-14 ml-2'>
+            <Link to='/dashboard/orders' className='w-6/12 h-12 ml-2'>
               <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
-                Customers
+                Orders
               </button>
             </Link>
           </div>
@@ -221,7 +210,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
       </div>
 
       <div className='w-full p-2'>
-        <div className='w-full mx-auto bg-gray-200 rounded-md drop-shadow-md flex flex-col p-2'>
+        <div className='w-full mx-auto bg-white border rounded-md drop-shadow-md flex flex-col p-2'>
           <p className='text-xl font-medium text-slate-800'>
             Is your product page ready for customers?
           </p>

@@ -7,8 +7,8 @@ const Topbar = () => {
   //for changing nav links according to the page
   const path = window.location.pathname;
   const activeLink =
-    'text-sm font-medium text-white w-24 rounded-xl bg-slate-800';
-  const notActiveLink = 'text-sm font-medium w-24 text-slate-800';
+    'text-sm font-medium text-white w-24 rounded-xl bg-stone-800';
+  const notActiveLink = 'text-sm font-medium w-24 text-stone-800';
 
   return isMobile ? (
     <TopbarMobile />
@@ -38,6 +38,18 @@ const Topbar = () => {
           </button>
         </NavLink>
 
+        <NavLink to='/dashboard/content'>
+          <button
+            className={
+              path === '/dashboard/content' || path === '/dashboard/description'
+                ? activeLink
+                : notActiveLink
+            }
+          >
+            Content
+          </button>
+        </NavLink>
+
         <NavLink to='/dashboard/design'>
           <button
             className={
@@ -47,16 +59,6 @@ const Topbar = () => {
             }
           >
             Design
-          </button>
-        </NavLink>
-
-        <NavLink to='/dashboard/content'>
-          <button
-            className={
-              path === '/dashboard/content' ? activeLink : notActiveLink
-            }
-          >
-            Content
           </button>
         </NavLink>
 

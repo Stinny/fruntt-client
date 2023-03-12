@@ -127,8 +127,8 @@ const Navbar = () => {
             to='/dashboard'
             className='h-full flex justify-center items-center'
           >
-            <IoStorefrontOutline className='text-slate-800 font-bold' />
-            <h2 className='font-black text-slate-800 font-sans'>Fruntt</h2>
+            <IoStorefrontOutline className='text-stone-800 font-bold' />
+            <p className='font-black text-stone-800 font-sans'>Fruntt</p>
           </Link>
         </div>
 
@@ -248,7 +248,7 @@ const Navbar = () => {
         <div className='text-4xl h-full flex justify-center items-center'>
           <Link to='/' className='h-full flex justify-center items-center'>
             <IoStorefrontOutline className='text-slate-800 font-bold' />
-            <h2 className='font-black font-sans'>Fruntt</h2>
+            <p className='font-black font-sans'>Fruntt</p>
           </Link>
         </div>
 
@@ -265,7 +265,7 @@ const Navbar = () => {
             style={{ color: '#738adb' }}
           ></a>
           <Link to='/login'>
-            <button className='border-2 text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white rounded w-20 h-full'>
+            <button className='border-2 text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded w-20 h-full'>
               Login
             </button>
           </Link>

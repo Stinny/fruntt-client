@@ -42,6 +42,7 @@ import Feedback from './pages/Feedback';
 import AddPage from './pages/AddPage';
 import AddDigitalProd from './pages/Dashboard/AddDigitalProd';
 import Download from './pages/Download';
+import Description from './pages/Dashboard/Description';
 
 function App() {
   return (
@@ -69,59 +70,58 @@ function App() {
               <Route path='addpayment' element={<PaymentMethod />} />
               <Route path='addpage' element={<AddPage />} />
 
-              {/* routes require user to be subscribed to a plan */}
-              <Route element={<RequireSubscription />}>
-                <Route path='settings' element={<Settings />} />
+              <Route path='settings' element={<Settings />} />
 
-                <Route path='dashboard' element={<DashHome />} />
+              <Route path='dashboard' element={<DashHome />} />
 
-                <Route path='dashboard/item' element={<Item />} />
+              <Route path='dashboard/item' element={<Item />} />
 
-                <Route path='dashboard/orders' element={<Orders />} />
+              <Route path='dashboard/orders' element={<Orders />} />
 
-                <Route
-                  path='dashboard/orders/:orderId'
-                  element={<OrderDetail />}
-                />
+              <Route path='dashboard/description' element={<Description />} />
 
-                <Route path='dashboard/customers' element={<Customers />} />
+              <Route
+                path='dashboard/orders/:orderId'
+                element={<OrderDetail />}
+              />
 
-                <Route
-                  path='dashboard/customers/:customerId'
-                  element={<CustomerDetail />}
-                />
+              <Route path='dashboard/customers' element={<Customers />} />
 
-                <Route path='dashboard/addons' element={<Integrations />} />
+              <Route
+                path='dashboard/customers/:customerId'
+                element={<CustomerDetail />}
+              />
 
-                <Route path='dashboard/config' element={<Config />} />
+              <Route path='dashboard/addons' element={<Integrations />} />
 
-                <Route path='dashboard/design' element={<Design />} />
+              <Route path='dashboard/config' element={<Config />} />
 
-                <Route path='dashboard/content' element={<Content />} />
+              <Route path='dashboard/design' element={<Design />} />
 
-                <Route path='dashboard/design/edit' element={<EditDesign />} />
+              <Route path='dashboard/content' element={<Content />} />
 
-                <Route
-                  path='dashboard/design/edit/preview'
-                  element={<DesignPreview />}
-                />
+              <Route path='dashboard/design/edit' element={<EditDesign />} />
 
-                <Route path='dashboard/marketing' element={<Marketing />} />
+              <Route
+                path='dashboard/design/edit/preview'
+                element={<DesignPreview />}
+              />
 
-                <Route path='feedback/' element={<Feedback />} />
+              <Route path='dashboard/marketing' element={<Marketing />} />
 
-                <Route path='dashboard/item/add' element={<AddItem />} />
+              <Route path='feedback/' element={<Feedback />} />
 
-                <Route
-                  path='dashboard/item/digital'
-                  element={<AddDigitalProd />}
-                />
+              <Route path='dashboard/item/add' element={<AddItem />} />
 
-                <Route
-                  path='dashboard/item/edit/:productId'
-                  element={<EditItem />}
-                />
-              </Route>
+              <Route
+                path='dashboard/item/digital'
+                element={<AddDigitalProd />}
+              />
+
+              <Route
+                path='dashboard/item/edit/:productId'
+                element={<EditItem />}
+              />
             </Route>
           </Route>
         </Routes>

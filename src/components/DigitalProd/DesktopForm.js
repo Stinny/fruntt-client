@@ -1,5 +1,7 @@
 import React from 'react';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 //mui
 import Tooltip from '@mui/material/Tooltip';
@@ -25,11 +27,23 @@ const DesktopForm = ({
   setFiles,
   files,
   setLink,
+  productContent,
+  handleProductContent,
 }) => {
   return (
     <div className='w-full'>
       <div className='mb-10 flex justify-between border-b-2 p-2'>
         <h2 className='text-3xl font-medium'>Add your digital product</h2>
+        <FormControlLabel
+          label='Publish to page'
+          control={
+            <Switch
+              checked={published}
+              onChange={(e) => setPublished(e.target.checked)}
+            />
+          }
+          className='mt-2'
+        />
 
         <div className='flex'>
           <button
@@ -55,7 +69,8 @@ const DesktopForm = ({
           <Tooltip
             title={
               <p className='text-lg'>
-                Product details help your customers know what they are buying.
+                This is the information your customers will see before buying
+                the product
               </p>
             }
             className='ml-2 text-lg'
@@ -66,7 +81,6 @@ const DesktopForm = ({
             </button>
           </Tooltip>
         </div>
-
         <div className='flex items-center justify-between w-full mt-2'>
           <div className='flex flex-col w-6/12'>
             <p className='text-gray-400'>Product Type</p>
@@ -92,34 +106,23 @@ const DesktopForm = ({
               onChange={(e) => setTitle(e.target.value)}
             />
 
-            <p className='text-gray-400 mt-4'>Product Description(optional)</p>
+            <p className='text-gray-400 mt-4'>Product Summary (optional)</p>
             <textarea
               type='text'
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-              placeholder='Description'
+              placeholder='Summary'
               onChange={(e) => setDescription(e.target.value)}
             />
 
             <p className='text-gray-400 mt-4'>Product Price</p>
             <div className='flex items-center'>
-              <p className='mr-2 font-medium text-xl'>$</p>
               <input
                 type='decimal'
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-                placeholder='Price'
+                placeholder='$19'
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>
-            <FormControlLabel
-              label='Publish to product page'
-              control={
-                <Switch
-                  checked={published}
-                  onChange={(e) => setPublished(e.target.checked)}
-                />
-              }
-              className='mt-2'
-            />
           </div>
 
           <div className='border-2 rounded w-6/12 h-44 ml-4 flex flex-col p-2'>
@@ -139,11 +142,14 @@ const DesktopForm = ({
           </div>
         </div>
 
-        <div className='flex items-center mt-4'>
-          <p className='text-2xl font-medium'>Content</p>
+        <div className='flex items-center mt-4 border-t-2'>
+          <p className='text-2xl font-medium mt-2'>Content</p>
           <Tooltip
             title={
-              <p className='text-lg'>Images, zip files, PDFs, video, etc..</p>
+              <p className='text-lg'>
+                This is the information customers will see after buying the
+                product
+              </p>
             }
             className='ml-2 text-lg'
             placement='right-end'
@@ -154,8 +160,9 @@ const DesktopForm = ({
           </Tooltip>
         </div>
         <p className='text-gray-400 font-medium mb-4'>
-          Add any files you want to include in the digital purchase. All files
-          will automatically be sent to customers after purchase.
+          Add any files and content you want to include in the digital purchase.
+          All content and files are available to customers immediately after
+          purchase.
         </p>
         <FilePond
           file={files}
@@ -165,8 +172,33 @@ const DesktopForm = ({
             setFiles(fileItems.map((fileItem) => fileItem.file));
           }}
         />
-
-        <div className='flex flex-col'>
+        <div className='w-full border rounded mt-6'>
+          <Editor
+            editorState={productContent}
+            toolbarClassName='toolbarClassName'
+            wrapperClassName='wrapperClassName'
+            editorClassName='editorClassName'
+            onEditorStateChange={handleProductContent}
+            placeholder='Start typing here..'
+            toolbar={{
+              options: [
+                'inline',
+                'blockType',
+                'fontSize',
+                'list',
+                'textAlign',
+                'colorPicker',
+                'link',
+                'embedded',
+                'emoji',
+                'image',
+                'remove',
+                'history',
+              ],
+            }}
+          />
+        </div>
+        {/* <div className='flex flex-col'>
           <p className='font-medium'>Add a link</p>
           <p className='font-medium text-gray-400'>
             This is just a link for customers to click, not a redirect
@@ -177,8 +209,7 @@ const DesktopForm = ({
             placeholder='https://www.yourlink.com'
             onChange={(e) => setLink(e.target.value)}
           />
-        </div>
-
+        </div> */}
         <button className='border-2 rounded h-14 w-full text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white mt-4'>
           + ADD PRODUCT
         </button>

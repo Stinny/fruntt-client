@@ -139,7 +139,7 @@ const Design = () => {
       <Topbar />
       {isMobile ? (
         <div className='w-full mx-auto h-fit'>
-          <div className='flex justify-between border-b-2 p-2'>
+          <div className='flex justify-between items-center border-b-2 p-2'>
             <div className='flex flex-col'>
               <h2 className='text-2xl font-medium'>Page design</h2>
               <p>

@@ -20,27 +20,12 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
   return isMobile ? (
     <div className='w-full mx-auto p-2'>
       <div
-        className='w-full mx-auto'
+        className='max-w-6xl flex flex-col mx-auto border-t-2 border-b-2'
         style={{
-          backgroundColor: pageBG,
+          borderColor: borderColor,
         }}
       >
-        <div
-          className='max-w-6xl mx-auto border-b-2'
-          style={{ borderColor: borderColor }}
-        >
-          <p
-            className='font-medium text-xl mb-2'
-            style={{
-              color: headers,
-            }}
-          >
-            The seller
-          </p>
-        </div>
-      </div>
-      <div className='max-w-6xl flex flex-col mx-auto'>
-        <div className='flex justify-between mt-2'>
+        <div className='flex justify-between items-center mt-2'>
           <Avatar
             sx={{ width: 62, height: 62 }}
             src={
@@ -49,6 +34,29 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
                 : ''
             }
           />
+          <div
+            className='flex flex-col ml-2 border-l p-2'
+            style={{
+              borderColor: borderColor,
+            }}
+          >
+            <p className='text-2xl font-medium' style={{ color: pageText }}>
+              {currentUser?.firstName ? currentUser?.firstName : 'First name'}{' '}
+              {currentUser?.lastName ? currentUser?.lastName : 'Last name'}
+            </p>
+
+            <p
+              style={{
+                color: pageText,
+              }}
+            >
+              {currentUser?.sellerProfile?.bio
+                ? currentUser?.sellerProfile?.bio
+                : 'This is your bio'}
+            </p>
+          </div>
+        </div>
+        <div className='flex justify-between items-center'>
           <div className='flex flex-col items-center'>
             <p
               className='font-medium text-3xl'
@@ -68,26 +76,29 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
               sales
             </p>
           </div>
+
+          <div className='flex flex-col w-8/12'>
+            <p
+              className='font-medium text-lg'
+              style={{
+                color: pageText,
+              }}
+            >
+              My other pages:
+            </p>
+            <select
+              className='rounded border-2 bg-transparent h-8'
+              style={{
+                color: pageText,
+                borderColor: borderColor,
+              }}
+            >
+              <option>{currentUser?.store?.url}</option>
+            </select>
+          </div>
         </div>
 
-        <div className='flex flex-col'>
-          <p className='text-2xl font-medium' style={{ color: pageText }}>
-            {currentUser?.firstName ? currentUser?.firstName : 'First name'}{' '}
-            {currentUser?.lastName ? currentUser?.lastName : 'Last name'}
-          </p>
-
-          <p
-            style={{
-              color: pageText,
-            }}
-          >
-            {currentUser?.sellerProfile?.bio
-              ? currentUser?.sellerProfile?.bio
-              : 'This is your bio'}
-          </p>
-        </div>
-
-        <div className='flex items-center text-3xl mt-4'>
+        <div className='flex items-center justify-end text-3xl mt-4'>
           {currentUser?.sellerProfile?.facebook && (
             <a href={currentUser?.sellerProfile?.facebook} target='_blank'>
               <AiOutlineFacebook style={{ color: pageText }} />
@@ -123,71 +134,29 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
             </a>
           )}
         </div>
-
-        <div className='flex flex-col mt-4'>
-          <p
-            className='font-medium text-lg'
-            style={{
-              color: pageText,
-            }}
-          >
-            Their other pages:
-          </p>
-          <select
-            className='rounded border-2 bg-transparent h-8'
-            style={{
-              color: pageText,
-              borderColor: borderColor,
-            }}
-          >
-            <option>{currentUser?.store?.url}</option>
-          </select>
-        </div>
-      </div>
-      <div
-        className='w-full mx-auto'
-        style={{
-          backgroundColor: pageBG,
-        }}
-      >
-        <div
-          className='mx-auto border-b-2 mt-4'
-          style={{ borderColor: borderColor }}
-        >
-          <p className='font-medium text-xl mb-2' style={{ color: headers }}>
-            What they're selling
-          </p>
-        </div>
       </div>
     </div>
   ) : (
     <div className='w-full mx-auto p-2'>
       <div
-        className='max-w-6xl mx-auto'
-        style={{
-          backgroundColor: pageBG,
-        }}
+        className='max-w-6xl flex justify-between items-center border-b-2 border-t-2 mx-auto pl-8 pr-8 p-2'
+        style={{ borderColor: borderColor }}
       >
+        <div className='w-1/12'>
+          <Avatar
+            sx={{ width: 52, height: 52 }}
+            src={
+              currentUser?.sellerProfile?.picture?.url
+                ? currentUser?.sellerProfile?.picture?.url
+                : ''
+            }
+          />
+        </div>
+
         <div
-          className='max-w-6xl mx-auto border-b-2 p-2'
+          className='flex flex-col w-4/12 border-l-2 pl-2'
           style={{ borderColor: borderColor }}
         >
-          <p className='font-medium text-xl mb-2' style={{ color: headers }}>
-            The seller
-          </p>
-        </div>
-      </div>
-      <div className='max-w-6xl flex justify-between mx-auto pl-8 pr-8 pt-2'>
-        <Avatar
-          sx={{ width: 48, height: 48 }}
-          src={
-            currentUser?.sellerProfile?.picture?.url
-              ? currentUser?.sellerProfile?.picture?.url
-              : ''
-          }
-        />
-
-        <div className='flex flex-col w-64'>
           <p
             className='text-xl font-medium'
             style={{
@@ -209,7 +178,7 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
           </p>
         </div>
 
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center w-1/12'>
           <p className='font-medium text-3xl'>
             {currentUser?.sellerProfile?.numberOfSales > 0
               ? currentUser?.sellerProfile.numberOfSales
@@ -218,9 +187,9 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
           <p>sales</p>
         </div>
 
-        <div className='flex flex-col mt-2'>
+        <div className='flex flex-col w-3/12'>
           <p className='font-medium' style={{ color: pageText }}>
-            Their other pages:
+            My other pages:
           </p>
           <select
             className='rounded border-2 bg-transparent h-8'
@@ -234,7 +203,7 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
           </select>
         </div>
 
-        <div className='flex items-center text-3xl'>
+        <div className='flex items-center justify-end text-3xl w-3/12'>
           {currentUser?.sellerProfile?.facebook && (
             <a href={currentUser?.sellerProfile?.facebook} target='_blank'>
               <AiOutlineFacebook style={{ color: pageText }} />
@@ -276,21 +245,7 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
         style={{
           backgroundColor: pageBG,
         }}
-      >
-        <div
-          className='mx-auto border-b-2 p-2'
-          style={{ borderColor: borderColor }}
-        >
-          <p
-            className='font-medium text-xl mb-2'
-            style={{
-              color: headers,
-            }}
-          >
-            What they're selling
-          </p>
-        </div>
-      </div>
+      ></div>
     </div>
   );
 };

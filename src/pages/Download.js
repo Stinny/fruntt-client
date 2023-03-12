@@ -11,10 +11,13 @@ import {
   MdLocalPrintshop,
   MdOutlinePermMedia,
 } from 'react-icons/md';
-import { HiOutlineBookOpen } from 'react-icons/hi';
+import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill } from 'react-icons/bs';
 import { isMobile } from 'react-device-detect';
 import MobileDownload from './Mobile/MobileDownload';
+import { Editor } from 'react-draft-wysiwyg';
+import { convertFromRaw, EditorState } from 'draft-js';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const Download = () => {
   const { orderId } = useParams();
@@ -25,13 +28,13 @@ const Download = () => {
     }
   );
 
-  //allow for files in order to be downloaded
-
   let content;
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    console.log('got order');
+    const contentState = convertFromRaw(
+      JSON.parse(orderAndStore?.order?.item?.content)
+    );
     content = isMobile ? (
       <MobileDownload orderAndStore={orderAndStore} />
     ) : (
@@ -63,6 +66,11 @@ const Download = () => {
                 <p>Podcast</p>
                 <BsFillMicFill className='ml-2 text-2xl' />
               </div>
+            ) : orderAndStore?.order?.item?.digitalType === 'template' ? (
+              <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+                <p>Template</p>
+                <HiOutlineTemplate className='ml-2 text-2xl' />
+              </div>
             ) : orderAndStore?.order?.item?.digitalType === 'other' ? (
               <div className='flex items-center justify-center border-2 border-slate-800 rounded w-4/12 h-10'>
                 <p>Digital Media</p>
@@ -74,7 +82,7 @@ const Download = () => {
                 <MdLocalPrintshop className='ml-2 text-2xl' />
               </div>
             )}
-            <p className='font-medium mt-2'>Page you purchased from:</p>
+            <p className='font-medium mt-4'>Page you purchased from:</p>
             <a
               href={orderAndStore?.store?.url}
               className='text-xl text-slate-800 underline'
@@ -82,10 +90,10 @@ const Download = () => {
             >
               {orderAndStore?.store?.url}
             </a>
-            <p className='font-medium mt-2'>Delivered to:</p>
+            <p className='font-medium mt-4'>Delivered to:</p>
             <p className='text-xl'>{orderAndStore?.order?.email}</p>
 
-            <p className='font-medium mt-2'>Title:</p>
+            <p className='font-medium mt-4'>Title:</p>
             <p className='text-xl'>{orderAndStore?.order?.item?.title}</p>
           </div>
 
@@ -98,10 +106,13 @@ const Download = () => {
         </div>
         <div className='w-full border-b mt-4'>
           <p className='font-medium text-slate-800 text-xl'>
-            Files included in purchase
+            Content included in purchase
           </p>
         </div>
-        <div className='p-4 flex flex-wrap w-11/12 mx-auto border-2 rounded mt-4'>
+        <div className=' w-11/12 mx-auto mt-4'>
+          <p className='text-gray-400'>Files</p>
+        </div>
+        <div className='p-4 flex flex-wrap w-11/12 mx-auto border-2 rounded'>
           {orderAndStore?.order?.item?.files?.map((file, index) => (
             <div className='w-full flex items-center justify-between border-b mt-2'>
               <div className='w-4/12'>
@@ -119,6 +130,22 @@ const Download = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className=' w-11/12 mx-auto mt-4'>
+          <p className='text-gray-400'>Content</p>
+        </div>
+        <div className='p-4 w-11/12 mx-auto border-2 rounded'>
+          {contentState.hasText() ? (
+            <Editor
+              editorState={EditorState.createWithContent(
+                convertFromRaw(JSON.parse(orderAndStore?.order?.item?.content))
+              )}
+              readOnly={true}
+              toolbarHidden
+            />
+          ) : (
+            <p>No additional content added</p>
+          )}
         </div>
       </div>
     );

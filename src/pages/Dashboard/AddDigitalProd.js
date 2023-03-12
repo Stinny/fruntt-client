@@ -10,6 +10,7 @@ import { uploadImageRequest } from '../../api/requests';
 import { useAddDigitalProductMutation } from '../../api/productsApiSlice';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { EditorState, convertToRaw } from 'draft-js';
 
 const AddDigitalProd = () => {
   const navigate = useNavigate();
@@ -29,6 +30,9 @@ const AddDigitalProd = () => {
   const [published, setPublished] = useState(true);
   const [digitalType, setDigitalType] = useState('');
   const [link, setLink] = useState('');
+  const [productContent, setProductContent] = useState(
+    EditorState.createEmpty()
+  );
 
   const [addDigitalProduct, result] = useAddDigitalProductMutation();
 
@@ -36,10 +40,16 @@ const AddDigitalProd = () => {
     navigate('/dashboard/item');
   };
 
+  const handleProductContent = (edits) => {
+    setProductContent(edits);
+  };
+
   const handleAddProduct = async (e) => {
     e.preventDefault();
 
-    console.log('adding product');
+    console.log(
+      JSON.stringify(convertToRaw(productContent.getCurrentContent()))
+    );
 
     let coverPicUrl;
     let coverPicKey;
@@ -86,6 +96,9 @@ const AddDigitalProd = () => {
           published: published,
           digitalType,
           link: link,
+          content: JSON.stringify(
+            convertToRaw(productContent.getCurrentContent())
+          ),
         }).unwrap();
 
         if (addDigitalProductReq.msg === 'Product added') {
@@ -119,6 +132,8 @@ const AddDigitalProd = () => {
             setPublished={setPublished}
             published={published}
             setDigitalType={setDigitalType}
+            productContent={productContent}
+            handleProductContent={handleProductContent}
           />
         ) : (
           <DesktopForm
@@ -133,6 +148,8 @@ const AddDigitalProd = () => {
             published={published}
             setDigitalType={setDigitalType}
             setLink={setLink}
+            productContent={productContent}
+            handleProductContent={handleProductContent}
           />
         )}
       </div>

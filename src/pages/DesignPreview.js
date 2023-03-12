@@ -13,11 +13,11 @@ import moment from 'moment';
 import { BsArrow90DegDown } from 'react-icons/bs';
 import { useGetReviewsAndProductQuery } from '../api/customersApiSlice';
 import SellerPro from '../components/DesignPrev/SellerPro';
+import DigitalPreview from '../components/DesignPrev/DigitalPreview';
 
 //mui
 import Alert from '@mui/material/Alert';
 import Rating from '@mui/material/Rating';
-import DigitalPreview from '../components/DesignPrev/DigitalPreview';
 
 const DesignPreview = ({
   pageBG,
@@ -282,20 +282,20 @@ const DesignPreview = ({
           <div className='w-full mx-auto p-10'>
             <div
               className='mx-auto w-10/12 border-2 rounded flex flex-col justify-center items-center'
-              style={{ borderColor: storefront?.style?.borderColor }}
+              style={{ borderColor: borderColor }}
             >
               <div className='h-60'></div>
               <p
-                className='font-medium text-lg'
-                style={{ borderColor: storefront?.style?.pageText }}
+                className='font-medium text-lg text-stone-800'
+                style={{ color: pageText }}
               >
                 This product page is empty
               </p>
               <Link
                 to='/dashboard/item'
-                className='border-2 rounded border-slate-800 text-slate-800 w-36 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
+                className='border-2 rounded border-stone-800 text-stone-800 w-36 hover:bg-stone-800 hover:text-white mt-2 flex items-center justify-center'
               >
-                + Add a product
+                + Add product
               </Link>
               <div className='h-60'></div>
             </div>

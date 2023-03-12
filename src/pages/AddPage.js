@@ -73,23 +73,12 @@ const AddPage = () => {
               </p>
               <div className='w-full mx-auto flex flex-col'>
                 <p className='font-medium text-gray-400'>
-                  You will be charged $3 now and your monthly bill will increase
-                  by $3
+                  Have something else to offer? Add another page to your
+                  collection
                 </p>
               </div>
             </div>
 
-            {!currentUser?.paymentAdded ? (
-              <Alert severity='error' className='w-full mt-2 mb-2'>
-                You need to add a payment method in{' '}
-                <Link to='/settings' className='text-red-900 font-semibold'>
-                  settings
-                </Link>{' '}
-                before adding additional product pages!
-              </Alert>
-            ) : (
-              ''
-            )}
             <form
               className='flex flex-col mt-4 w-full mb-44'
               onSubmit={handleAddPage}
@@ -106,9 +95,9 @@ const AddPage = () => {
               <button
                 type='submit'
                 className=' text-lg font-medium border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 h-14 mt-4 w-full'
-                disabled={addingPage || !currentUser?.paymentAdded}
+                disabled={addingPage}
               >
-                {addingPage ? 'Launching page...' : 'Launch product page - $3'}
+                {addingPage ? 'Launching page...' : 'Launch product page'}
               </button>
 
               <Link
@@ -139,17 +128,6 @@ const AddPage = () => {
                 </Link>
               </div>
             </div>
-            {!currentUser?.paymentAdded ? (
-              <Alert severity='error' className='w-8/12 mt-2 mb-2'>
-                You need to add a payment method in{' '}
-                <Link to='/settings' className='text-red-900 font-semibold'>
-                  settings
-                </Link>{' '}
-                before adding additional product pages!
-              </Alert>
-            ) : (
-              ''
-            )}
 
             {error && (
               <Alert severity='error' className='w-8/12 mt-2 mb-2'>
@@ -172,7 +150,7 @@ const AddPage = () => {
               <button
                 type='submit'
                 className=' text-lg font-medium border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 h-14 mt-6 w-full'
-                disabled={addingPage || !currentUser.paymentAdded}
+                disabled={addingPage}
               >
                 {addingPage ? 'Launching page...' : 'Launch product page'}
               </button>

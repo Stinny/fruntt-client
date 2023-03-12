@@ -9,6 +9,9 @@ import {
   useDeleteItemImageMutation,
 } from '../../api/productsApiSlice';
 import { uploadImageRequest } from '../../api/requests';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { Editor } from 'react-draft-wysiwyg';
+import { convertFromRaw, EditorState, convertToRaw } from 'draft-js';
 
 //filepond
 import { FilePond } from 'react-filepond';
@@ -34,6 +37,9 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
   const [published, setPublished] = useState(product?.published);
   const [digitalType, setDigitalType] = useState(product?.digitalType);
   const [link, setLink] = useState(product?.link);
+  const [productContent, setProductContent] = useState(
+    EditorState.createWithContent(convertFromRaw(JSON.parse(product?.content)))
+  );
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
@@ -47,11 +53,6 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
 
     if (product.coverImage.url === '' && !image.length) {
       setError('Please upload a cover image');
-      return;
-    }
-
-    if (!product.files.length && !files.length) {
-      setError('Please upload files to include in the purchase');
       return;
     }
 
@@ -92,6 +93,9 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
         productId: product?._id,
         digitalType: digitalType,
         link: link,
+        content: JSON.stringify(
+          convertToRaw(productContent.getCurrentContent())
+        ),
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
@@ -101,6 +105,10 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
     } catch (err) {
       setError('There was an error');
     }
+  };
+
+  const handleProductContent = (edits) => {
+    setProductContent(edits);
   };
 
   const handleDelete = async () => {
@@ -145,6 +153,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
               <option value='printable'>Printables</option>
               <option value='ebook'>E-Book</option>
               <option value='podcast'>Podcast</option>
+              <option value='template'>Template</option>
               <option value='other'>Other Digital Media</option>
             </select>
 
@@ -156,7 +165,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
               onChange={(e) => setTitle(e.target.value)}
             />
 
-            <p className='text-gray-400 mt-4'>Product Description(optional)</p>
+            <p className='text-gray-400 mt-4'>Product Summary (optional)</p>
             <textarea
               type='text'
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white h-28'
@@ -167,7 +176,6 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
 
             <p className='text-gray-400 mt-4'>Product Price</p>
             <div className='flex items-center'>
-              <p className='mr-2 font-medium text-xl'>$</p>
               <input
                 type='number'
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
@@ -196,13 +204,13 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
           </div>
         </div>
 
-        <div className='flex items-center mt-4'>
-          <p className='text-xl font-medium'>Edit your content</p>
+        <div className='flex items-center mt-4 border-t'>
+          <p className='text-xl font-medium mt-6'>Edit Content</p>
           <Tooltip
             title={
               <p className='text-lg'>Images, zip files, PDFs, video, etc..</p>
             }
-            className='ml-2 text-lg'
+            className='ml-2 text-lg mt-6'
             placement='right-end'
           >
             <button type='button' disabled>
@@ -211,8 +219,8 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
           </Tooltip>
         </div>
         <p className='text-gray-400 font-medium mb-4'>
-          Add any files you want to include in the digital purchase. All files
-          will automatically be sent to customers after purchase.
+          All content and files are available to customers immediately after
+          purchase
         </p>
 
         <div className='flex flex-col'>
@@ -238,14 +246,30 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
           />
         </div>
 
-        <div className='flex flex-col'>
-          <p className='font-medium'>Add a link</p>
-          <input
-            type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-2'
-            placeholder='https://www.yourlink.com'
-            onChange={(e) => setLink(e.target.value)}
-            value={link}
+        <div className='w-full border rounded mt-6'>
+          <Editor
+            editorState={productContent}
+            toolbarClassName='toolbarClassName'
+            wrapperClassName='wrapperClassName'
+            editorClassName='editorClassName'
+            onEditorStateChange={handleProductContent}
+            placeholder='Start typing here..'
+            toolbar={{
+              options: [
+                'inline',
+                'blockType',
+                'fontSize',
+                'list',
+                'textAlign',
+                'colorPicker',
+                'link',
+                'embedded',
+                'emoji',
+                'image',
+                'remove',
+                'history',
+              ],
+            }}
           />
         </div>
 

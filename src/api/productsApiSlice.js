@@ -74,7 +74,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         coverImageKey,
         files,
         digitalType,
-        link,
+        content,
       }) => ({
         url: `/products/editdigital/${productId}`,
         method: 'POST',
@@ -87,7 +87,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
           coverImageKey: coverImageKey,
           files: files,
           digitalType: digitalType,
-          link: link,
+          content: content,
         },
       }),
     }),
@@ -140,6 +140,16 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    addDescription: builder.mutation({
+      query: ({ productId, description }) => ({
+        url: `/products/description/add`,
+        method: 'POST',
+        body: {
+          productId: productId,
+          description: description,
+        },
+      }),
+    }),
     deleteFAQ: builder.mutation({
       query: ({ productId, faqId }) => ({
         url: `/products/deletefaq`,
@@ -168,4 +178,5 @@ export const {
   useDeleteFAQMutation,
   useGetFilesQuery,
   useDeleteFileMutation,
+  useAddDescriptionMutation,
 } = productsApiSlice;

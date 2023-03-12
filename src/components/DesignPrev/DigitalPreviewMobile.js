@@ -1,5 +1,16 @@
 import React from 'react';
 import moment from 'moment';
+import { Editor } from 'react-draft-wysiwyg';
+import { convertFromRaw, EditorState } from 'draft-js';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import {
+  MdOutlineFileDownload,
+  MdOutlineVideoLibrary,
+  MdLocalPrintshop,
+  MdOutlinePermMedia,
+} from 'react-icons/md';
+import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
+import { BsFillMicFill } from 'react-icons/bs';
 
 //mui
 import Rating from '@mui/material/Rating';
@@ -23,6 +34,8 @@ const DigitalPreviewMobile = ({
   reviewBackground,
 }) => {
   const btnStyle = buttonStyle === 'filled' ? buttonColor : '';
+  const contentState = convertFromRaw(JSON.parse(itemAndReviews?.item?.info));
+
   return (
     <div className=''>
       <div
@@ -34,30 +47,51 @@ const DigitalPreviewMobile = ({
         </div>
 
         <div className='w-full flex flex-col p-2'>
-          <h2
-            className='text-xl font-medium w-full'
+          <p
+            className='text-2xl font-medium w-full'
             style={{ color: pageText }}
           >
             {itemAndReviews?.item?.title}
-          </h2>
-          <p className='text-lg w-11/12' style={{ color: pageText }}>
+          </p>
+          <p className='text-lg w-full' style={{ color: pageText }}>
             {itemAndReviews?.item?.description}
           </p>
-          <p className='text-xl font-medium' style={{ color: pageText }}>
-            ${itemAndReviews?.item?.price.toFixed(2)}
-          </p>
-          {itemAndReviews?.item?.options?.length > 0
-            ? itemAndReviews.item.options.map((option) => (
-                <>
-                  <p>{option.name}</p>
-                  <select className='rounded-md border-2 w-9/12 h-10 mt-2'>
-                    <option>{option.values[0]}</option>
-                  </select>
-                </>
-              ))
-            : ''}
-          <form>
-            <div className='w-8/12 flex mt-2'>
+          {itemAndReviews?.item?.digitalType === 'video' ? (
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+              <p>Video Course</p>
+              <MdOutlineVideoLibrary className='ml-2 text-2xl' />
+            </div>
+          ) : itemAndReviews?.item?.digitalType === 'ebook' ? (
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+              <p>E-Book</p>
+              <HiOutlineBookOpen className='ml-2 text-2xl' />
+            </div>
+          ) : itemAndReviews?.item?.digitalType === 'podcast' ? (
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+              <p>Podcast</p>
+              <BsFillMicFill className='ml-2 text-2xl' />
+            </div>
+          ) : itemAndReviews?.item?.digitalType === 'template' ? (
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+              <p>Template</p>
+              <HiOutlineTemplate className='ml-2 text-2xl' />
+            </div>
+          ) : itemAndReviews?.item?.digitalType === 'other' ? (
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+              <p>Digital Media</p>
+              <MdOutlinePermMedia className='ml-2 text-2xl' />
+            </div>
+          ) : (
+            <div className='flex items-center justify-center border-2 border-slate-800  rounded w-5/12 h-8 mt-2'>
+              <p>Printables</p>
+              <MdLocalPrintshop className='ml-2 text-2xl' />
+            </div>
+          )}
+          <div className='flex items-center mt-2'>
+            <p className='text-2xl font-medium' style={{ color: pageText }}>
+              ${itemAndReviews?.item?.price.toFixed(2)}
+            </p>
+            <div className='w-8/12 flex ml-4'>
               <Rating
                 value={itemAndReviews?.totalRating}
                 precision={0.5}
@@ -68,12 +102,14 @@ const DigitalPreviewMobile = ({
                 {itemAndReviews?.reviews?.length === 1 ? 'review' : 'reviews'}
               </p>
             </div>
+          </div>
 
+          <form>
             <div className='flex justify-between w-full items-center mt-4'>
               <button
                 type='button'
                 disabled
-                className='w-full h-10 ml-2 border-2 border-slate-800 rounded'
+                className='w-full h-10 border-2 border-slate-800 rounded'
                 style={{
                   color: buttonTextColor,
                   backgroundColor: btnStyle,
@@ -89,11 +125,43 @@ const DigitalPreviewMobile = ({
 
       {/* Other stuff for the item */}
       <div className='mt-10'>
-        <p className='text-xl' style={{ color: headerColor }}>
-          Customer questions
-        </p>
+        <div className='mt-2 pl-2 pr-2'>
+          <div className='w-full border-b' style={{ borderColor: borderColor }}>
+            <p className='text-xl' style={{ color: headerColor }}>
+              Description
+            </p>
+          </div>
+          {contentState.hasText() ? (
+            <div className=''>
+              <Editor
+                editorState={EditorState.createWithContent(
+                  convertFromRaw(JSON.parse(itemAndReviews?.item?.info))
+                )}
+                readOnly={true}
+                toolbarHidden
+              />
+            </div>
+          ) : (
+            <div
+              style={{ borderColor: borderColor }}
+              className='w-full h-44 mt-4 border-2 rounded flex justify-center items-center'
+            >
+              <p
+                className='font-medium text-lg text-center'
+                style={{ color: pageText }}
+              >
+                A product description has not been added!
+              </p>
+            </div>
+          )}
+        </div>
 
         <div className='mt-2 pl-2 pr-2'>
+          <div className='w-full border-b' style={{ borderColor: borderColor }}>
+            <p className='text-xl' style={{ color: headerColor }}>
+              Customer questions
+            </p>
+          </div>
           {itemAndReviews?.item?.faqs?.length ? (
             itemAndReviews?.item?.faqs.map((faq) => (
               <div
@@ -137,16 +205,18 @@ const DigitalPreviewMobile = ({
                 className='font-medium text-lg text-center'
                 style={{ color: storefront?.style?.pageText }}
               >
-                Customer questions have not been posted yet!
+                Customer questions have not been added!
               </p>
             </div>
           )}
         </div>
 
-        <p className='text-xl mt-4' style={{ color: headerColor }}>
-          Customer Reviews
-        </p>
         <div className='pl-2 pr-2'>
+          <div className='w-full border-b' style={{ borderColor: borderColor }}>
+            <p className='text-xl' style={{ color: headerColor }}>
+              Customer reviews
+            </p>
+          </div>
           {itemAndReviews?.reviews?.length > 0 ? (
             itemAndReviews?.reviews.map((review) => (
               <div
@@ -188,7 +258,7 @@ const DigitalPreviewMobile = ({
               className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
             >
               <p className='font-medium text-lg' style={{ color: pageText }}>
-                Item has not been reviewed yet!
+                Item has not been reviewed!
               </p>
             </div>
           )}

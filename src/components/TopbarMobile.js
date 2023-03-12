@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 const TopbarMobile = () => {
   const path = window.location.pathname;
   const activeLink =
-    'text-sm font-medium text-white w-20 rounded-xl bg-slate-800 ml-2';
-  const notActiveLink = 'text-sm w-20 font-medium text-slate-800 ml-2';
+    'text-sm font-medium text-white w-20 rounded-xl bg-stone-800 ml-2';
+  const notActiveLink = 'text-sm w-20 font-medium text-stone-800 ml-2';
 
   return (
     <>
@@ -41,6 +41,20 @@ const TopbarMobile = () => {
             </button>
           </NavLink>
 
+          <NavLink to='/dashboard/content'>
+            <button
+              autoFocus={path === '/dashboard/content'}
+              className={
+                path === '/dashboard/content' ||
+                path === '/dashboard/description'
+                  ? activeLink
+                  : notActiveLink
+              }
+            >
+              Content
+            </button>
+          </NavLink>
+
           <NavLink to='/dashboard/design'>
             <button
               autoFocus={
@@ -55,17 +69,6 @@ const TopbarMobile = () => {
               }
             >
               Design
-            </button>
-          </NavLink>
-
-          <NavLink to='/dashboard/content'>
-            <button
-              autoFocus={path === '/dashboard/content'}
-              className={
-                path === '/dashboard/content' ? activeLink : notActiveLink
-              }
-            >
-              Content
             </button>
           </NavLink>
 

@@ -7,8 +7,11 @@ import {
   MdLocalPrintshop,
   MdOutlinePermMedia,
 } from 'react-icons/md';
-import { HiOutlineBookOpen } from 'react-icons/hi';
+import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill } from 'react-icons/bs';
+import { Editor } from 'react-draft-wysiwyg';
+import { convertFromRaw, EditorState } from 'draft-js';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -17,7 +20,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 const DigitalProductMobile = ({ product }) => {
   return (
     <div className='w-full p-2'>
-      <div className='w-full flex flex-col mb-10 border-b-2 p-2'>
+      <div className='w-full flex justify-between items-center mb-10 border-b-2 p-2'>
         <div className='flex flex-col'>
           <h2 className='text-3xl font-semibold'>Your product</h2>
           <p>
@@ -25,23 +28,16 @@ const DigitalProductMobile = ({ product }) => {
           </p>
         </div>
 
-        <div className='flex justify-between items-center'>
-          <div className='flex items-center'>
-            <p className='font-medium mr-2'>This is a digital product</p>
-            <MdOutlineFileDownload className='text-3xl' />
-          </div>
-
-          <Link to={`/dashboard/item/edit/${product._id}`}>
-            <button className='w-28 h-10 rounded border-slate-800 text-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
-              EDIT
-            </button>
-          </Link>
-        </div>
+        <Link to={`/dashboard/item/edit/${product._id}`}>
+          <button className='w-28 h-10 rounded border-slate-800 text-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
+            EDIT
+          </button>
+        </Link>
       </div>
 
       <div className='w-full'>
         <div className='flex items-center'>
-          <p className='text-xl font-medium'>Details</p>
+          <p className='text-2xl font-medium'>Details</p>
         </div>
         <div className='w-full p-4 border-2 rounded-md mt-4'>
           <div className='flex flex-col'>
@@ -61,6 +57,11 @@ const DigitalProductMobile = ({ product }) => {
                   <p>Podcast</p>
                   <BsFillMicFill className='ml-2 text-2xl' />
                 </div>
+              ) : product?.digitalType === 'template' ? (
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+                  <p>Template</p>
+                  <HiOutlineTemplate className='ml-2 text-2xl' />
+                </div>
               ) : product?.digitalType === 'other' ? (
                 <div className='flex items-center justify-center border-2 border-slate-800 rounded w-8/12 h-10'>
                   <p>Digital Media</p>
@@ -73,10 +74,10 @@ const DigitalProductMobile = ({ product }) => {
                 </div>
               )}
               <p className='text-gray-400 mt-4'>Product Title</p>
-              <h2 className='text-3xl'>{product?.title}</h2>
+              <p className='text-3xl'>{product?.title}</p>
               {product.description && (
                 <div className='flex flex-col'>
-                  <p className='text-gray-400 mt-4'>Product Description</p>
+                  <p className='text-gray-400 mt-4'>Product Summary</p>
                   <p className='text-xl'>{product?.description}</p>
                 </div>
               )}
@@ -101,10 +102,10 @@ const DigitalProductMobile = ({ product }) => {
           </div>
         </div>
 
-        <p className='text-xl font-medium mt-4'>Content</p>
+        <p className='text-2xl font-medium mt-4'>Content</p>
         <p className='text-gray-400 font-medium mt-2'>
-          All content/files get automatically delivered to customers after
-          purchase via a download link
+          All content and files are available to customers immediately after
+          purchase
         </p>
         <div className='p-4 flex flex-col w-full border-2 rounded-md mt-2'>
           {product?.files.length ? (
@@ -113,19 +114,14 @@ const DigitalProductMobile = ({ product }) => {
                 <div className='w-4/12'>
                   <p className='font-medium text-lg'>{file?.name}</p>
                 </div>
-                <div className='w-4/12 flex justify-center'>
-                  <p className='font-medium text-lg'>
-                    {' '}
-                    {moment.utc(product.updatedOn).format('MMM D, YYYY')}
-                  </p>
-                </div>
+
                 <div className='w-4/12 flex justify-end'>
                   <a
                     href={file?.url}
                     download
                     className='text-blue-500 font-lg font-medium'
                   >
-                    Download file
+                    <MdOutlineFileDownload className='text-3xl' />
                   </a>
                 </div>
               </div>
@@ -137,25 +133,14 @@ const DigitalProductMobile = ({ product }) => {
           )}
         </div>
 
-        <div className='flex flex-col mt-4'>
-          <p className='font-medium'>Link</p>
-          {product?.link === '' ? (
-            <div className='w-full border-2 rounded-md h-14 p-2 flex items-center justify-center'>
-              <p className='text-center font-medium'>
-                No link has been added to this product
-              </p>
-            </div>
-          ) : (
-            <div className='w-full border-2 rounded-md p-2 flex items-center'>
-              <a
-                href={product?.link}
-                target='_blank'
-                className='font-medium break-all'
-              >
-                {product?.link}
-              </a>
-            </div>
-          )}
+        <div className='border rounded p-2 mt-2'>
+          <Editor
+            editorState={EditorState.createWithContent(
+              convertFromRaw(JSON.parse(product?.content))
+            )}
+            readOnly={true}
+            toolbarHidden
+          />
         </div>
       </div>
     </div>

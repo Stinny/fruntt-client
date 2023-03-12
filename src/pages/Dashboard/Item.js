@@ -54,25 +54,12 @@ const Item = () => {
         You have not added a product yet!
       </h2>
       <p className='text-gray-400 text-xl w-8/12 mt-4 text-center font-medium'>
-        Add any kind of digital file to sell
+        Add any kind of files and digital content
       </p>
-      <div className='flex flex-col w-6/12 mt-4'>
-        {/* <Link to='/dashboard/item/add' className='w-full'>
-          <div className='flex justify-between items-center border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white pl-8 pr-8'>
-            <div className='flex flex-col'>
-              <p className='font-medium text-lg'>+ Physical product</p>
-              <p>Something that would require shipping on your end</p>
-            </div>
-            <BiPackage className='text-5xl' />
-          </div>
-        </Link> */}
-        <Link to='/dashboard/item/digital' className='w-full'>
-          <div className='w-full flex justify-between items-center border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white pl-8 pr-8 mt-2'>
-            <div className='flex flex-col'>
-              <p className='font-medium text-lg'>+ Digital product</p>
-              <p>Sell courses, ebooks, photography, templates, etc.</p>
-            </div>
-            <MdOutlineFileDownload className='text-5xl' />
+      <div className='flex w-11/12 mt-4 items-center'>
+        <Link to='/dashboard/item/digital' className='w-full mx-auto'>
+          <div className='w-52 mx-auto flex justify-center items-center border-2 rounded border-stone-800 p-2 h-14 hover:bg-stone-800 hover:text-white pl-8 pr-8 mt-2'>
+            <p className='font-medium text-lg text-center'>+ Add product</p>
           </div>
         </Link>
       </div>

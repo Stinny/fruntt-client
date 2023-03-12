@@ -11,9 +11,11 @@ import AddSocials from '../../components/Content/AddSocials';
 import AddMedia from '../../components/Content/AddMedia';
 import { isMobile } from 'react-device-detect';
 import Cookies from 'js-cookie';
+import { useGetProductsQuery } from '../../api/productsApiSlice';
 
 //mui
 import Alert from '@mui/material/Alert';
+import Description from '../../components/Content/Description';
 
 const Content = () => {
   const currentStoreID = useSelector((state) => state.user.selectedStore);
@@ -27,6 +29,15 @@ const Content = () => {
     isSuccess,
     refetch,
   } = useGetStorefrontQuery({ storeId: currentUser?.store?._id });
+
+  const {
+    data: item,
+    isLoading: gettingItem,
+    isSuccess: gotItem,
+    refetch: getItemAgain,
+  } = useGetProductsQuery({
+    storeId: currentUser?.store?._id,
+  });
 
   const [nameChangedInfo, setInfo] = useState('');
 
@@ -47,7 +58,10 @@ const Content = () => {
     content = (
       <>
         <div className='w-full border-b-2 p-2'>
-          <h2 className='text-3xl font-semibold'>Content</h2>
+          <h2 className='text-3xl font-medium'>Content</h2>
+          <p className='text-lg font-medium text-gray-400'>
+            Add additional content to your page
+          </p>
         </div>
 
         {isMobile
@@ -64,9 +78,21 @@ const Content = () => {
 
         <AddLogo storefront={storefront} refetch={refetch} setInfo={setInfo} />
 
-        {/* <AddSocials storefront={storefront} refetch={refetch} /> */}
+        <Description
+          currentUser={currentUser}
+          isLoading={gettingItem}
+          isSuccess={gotItem}
+          refetch={getItemAgain}
+          product={item}
+        />
 
-        <FAQs currentUser={currentUser} />
+        <FAQs
+          currentUser={currentUser}
+          isLoading={gettingItem}
+          isSuccess={gotItem}
+          refetch={getItemAgain}
+          item={item}
+        />
 
         <AddMedia />
       </>

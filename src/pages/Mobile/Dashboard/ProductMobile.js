@@ -13,28 +13,14 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 const ProductMobile = ({ product }) => {
   const noItem = (
     <div className='h-screen mx-auto border-2 border-gray-200 rounded w-11/12 flex flex-col justify-center items-center mt-4'>
-      <h2 className='text-xl font-medium'>You have not added a product yet!</h2>
+      <p className='text-xl font-medium'>You have not added a product yet!</p>
       <p className='text-gray-400 text-lg w-full mt-4 text-center'>
-        What kind of product do you want to offer on your product page?
+        Add any kind of files and digital content
       </p>
-      <div className='flex flex-col w-11/12 mt-4'>
-        <Link to='/dashboard/item/add' className='w-full'>
-          <div className='flex justify-between items-center border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white pl-8 pr-8'>
-            <div className='flex flex-col'>
-              <p className='font-medium text-lg'>+ Physical product</p>
-              <p>Something that would require shipping on your end</p>
-            </div>
-            <BiPackage className='text-5xl' />
-          </div>
-        </Link>
-
-        <Link to='/dashboard/item/digital' className='w-full'>
-          <div className='w-full flex justify-between items-center border-2 rounded border-slate-800 p-2 h-28 hover:bg-slate-800 hover:text-white pl-8 pr-8 mt-2'>
-            <div className='flex flex-col'>
-              <p className='font-medium text-lg'>+ Digital product</p>
-              <p>Sell courses, ebooks, printables, and more</p>
-            </div>
-            <MdOutlineFileDownload className='text-5xl' />
+      <div className='flex w-11/12 mt-4 items-center'>
+        <Link to='/dashboard/item/digital' className='w-full mx-auto'>
+          <div className='w-52 mx-auto flex justify-center items-center border-2 rounded border-stone-800 p-2 h-14 hover:bg-stone-800 hover:text-white pl-8 pr-8 mt-2'>
+            <p className='font-medium text-lg text-center'>+ Add product</p>
           </div>
         </Link>
       </div>

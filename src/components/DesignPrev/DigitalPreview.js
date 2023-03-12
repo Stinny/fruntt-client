@@ -1,5 +1,16 @@
 import React from 'react';
 import moment from 'moment';
+import {
+  MdOutlineFileDownload,
+  MdOutlineVideoLibrary,
+  MdLocalPrintshop,
+  MdOutlinePermMedia,
+} from 'react-icons/md';
+import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
+import { BsFillMicFill } from 'react-icons/bs';
+import { Editor } from 'react-draft-wysiwyg';
+import { convertFromRaw, EditorState } from 'draft-js';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 //mui
 import Rating from '@mui/material/Rating';
@@ -19,6 +30,8 @@ const DigitalPreview = ({
 }) => {
   const btnStyle = buttonStyle === 'filled' ? buttonColor : '';
 
+  const contentState = convertFromRaw(JSON.parse(itemAndReviews?.item?.info));
+
   return (
     <div className='p-14'>
       <div
@@ -26,10 +39,7 @@ const DigitalPreview = ({
         style={{ backgroundColor: pageBG }}
       >
         <div className='w-3/6' style={{ backgroundColor: pageBG }}>
-          <img
-            className='w-11/12'
-            src={itemAndReviews?.item?.coverImage?.url}
-          />
+          <img className='w-full' src={itemAndReviews?.item?.coverImage?.url} />
         </div>
 
         <div
@@ -42,24 +52,46 @@ const DigitalPreview = ({
           >
             {itemAndReviews?.item?.title}
           </h2>
-          <p className='text-xl mt-4 w-11/12' style={{ color: pageText }}>
+          <p className='text-xl mt-2 w-full' style={{ color: pageText }}>
             {itemAndReviews?.item?.description}
           </p>
-          <p className='text-4xl font-medium mt-4' style={{ color: pageText }}>
+          {itemAndReviews?.item?.digitalType === 'video' ? (
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+              <p>Video Course</p>
+              <MdOutlineVideoLibrary className='ml-2 text-2xl' />
+            </div>
+          ) : itemAndReviews?.item?.digitalType === 'ebook' ? (
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+              <p>E-Book</p>
+              <HiOutlineBookOpen className='ml-2 text-2xl' />
+            </div>
+          ) : itemAndReviews?.item?.digitalType === 'podcast' ? (
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+              <p>Podcast</p>
+              <BsFillMicFill className='ml-2 text-2xl' />
+            </div>
+          ) : itemAndReviews?.item?.digitalType === 'template' ? (
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+              <p>Template</p>
+              <HiOutlineTemplate className='ml-2 text-2xl' />
+            </div>
+          ) : itemAndReviews?.item?.digitalType === 'other' ? (
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+              <p>Digital Media</p>
+              <MdOutlinePermMedia className='ml-2 text-2xl' />
+            </div>
+          ) : (
+            <div className='flex items-center justify-center border-2 border-slate-800  rounded w-5/12 h-8 mt-2'>
+              <p>Printables</p>
+              <MdLocalPrintshop className='ml-2 text-2xl' />
+            </div>
+          )}
+          <p className='text-3xl font-medium mt-2' style={{ color: pageText }}>
             ${itemAndReviews?.item?.price.toFixed(2)}
           </p>
-          {itemAndReviews?.item?.options?.length > 0
-            ? itemAndReviews.item.options.map((option) => (
-                <>
-                  <p>{option.name}</p>
-                  <select className='rounded-md border-2 w-32 h-10 mt-2'>
-                    <option>{option.values[0]}</option>
-                  </select>
-                </>
-              ))
-            : ''}
+
           <form>
-            <div className='w-8/12 flex items-center mt-4'>
+            <div className='w-full flex items-center mt-2'>
               <Rating
                 value={itemAndReviews?.totalRating}
                 precision={0.5}
@@ -71,11 +103,11 @@ const DigitalPreview = ({
               </p>
             </div>
 
-            <div className='flex justify-between w-11/12 items-center mt-4'>
+            <div className='flex justify-between w-full items-center mt-2'>
               <button
                 type='button'
                 disabled
-                className='w-full h-10 text-2xl border-2 border-slate-800 rounded'
+                className='w-full text-xl border-2 border-slate-800 rounded'
                 style={{
                   color: buttonTextColor,
                   backgroundColor: btnStyle,
@@ -91,9 +123,37 @@ const DigitalPreview = ({
 
       {/* Other stuff for the item */}
       <div className='mt-10'>
-        <p className='text-2xl' style={{ color: headerColor }}>
-          Customer questions
-        </p>
+        <div className='w-full border-b' style={{ borderColor: borderColor }}>
+          <p className='text-2xl' style={{ color: headerColor }}>
+            Description
+          </p>
+        </div>
+        {contentState.hasText() ? (
+          <div className=''>
+            <Editor
+              editorState={EditorState.createWithContent(
+                convertFromRaw(JSON.parse(itemAndReviews?.item?.info))
+              )}
+              readOnly={true}
+              toolbarHidden
+            />
+          </div>
+        ) : (
+          <div
+            style={{ borderColor: borderColor }}
+            className='w-full h-44 mt-4 border-2 rounded flex justify-center items-center'
+          >
+            <p className='font-medium text-xl' style={{ color: pageText }}>
+              A product description has not been added!
+            </p>
+          </div>
+        )}
+
+        <div className='w-full border-b' style={{ borderColor: borderColor }}>
+          <p className='text-2xl' style={{ color: headerColor }}>
+            Customer questions
+          </p>
+        </div>
 
         <div className='mt-2'>
           {itemAndReviews?.item?.faqs?.length ? (
@@ -124,15 +184,20 @@ const DigitalPreview = ({
               className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
             >
               <p className='font-medium text-xl' style={{ color: pageText }}>
-                Customer questions have not been posted yet!
+                Customer questions have not been added!
               </p>
             </div>
           )}
         </div>
 
-        <p className='text-2xl mt-4' style={{ color: headerColor }}>
-          Customer Reviews
-        </p>
+        <div
+          className='w-full border-b mt-4'
+          style={{ borderColor: borderColor }}
+        >
+          <p className='text-2xl' style={{ color: headerColor }}>
+            Customer reviews
+          </p>
+        </div>
         {itemAndReviews?.reviews?.length > 0 ? (
           itemAndReviews?.reviews.map((review) => (
             <div
@@ -174,7 +239,7 @@ const DigitalPreview = ({
             className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
           >
             <p className='font-medium text-xl' style={{ color: pageText }}>
-              Item has not been reviewed yet!
+              Item has not been reviewed!
             </p>
           </div>
         )}

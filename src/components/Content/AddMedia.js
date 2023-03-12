@@ -4,8 +4,8 @@ import { isMobile } from 'react-device-detect';
 const AddMedia = () => {
   return isMobile ? (
     <div>
-      <div className='w-full flex justify-between items-center mt-4 p-2'>
-        <p className='text-slate-800 font-medium text-lg'>Video & media</p>
+      <div className='w-full flex justify-between items-center mt-4 p-2 border-b'>
+        <p className='text-slate-800 font-medium text-xl'>Video & media</p>
         <button
           className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
           //   onClick={openModal}
