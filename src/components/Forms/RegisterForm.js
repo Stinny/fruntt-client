@@ -10,6 +10,7 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
 //mui
 import Alert from '@mui/material/Alert';
+import Rating from '@mui/material/Rating';
 
 const RegisterForm = ({
   error,
@@ -43,7 +44,7 @@ const RegisterForm = ({
 
       <form
         onSubmit={handleSignup}
-        className='flex flex-col items-center w-full bg-gray-100 p-2 rounded border-2 border-gray-300'
+        className='flex flex-col items-center w-full bg-white p-2 rounded border-2 drop-shadow-md'
       >
         <input
           type='email'

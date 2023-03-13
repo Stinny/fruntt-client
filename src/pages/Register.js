@@ -151,7 +151,7 @@ const Register = () => {
           setProfilePic={setProfilePic}
         />
 
-        <div className='h-full flex flex-col justify-center w-7/12 border-l-2 border-black'>
+        <div className='h-full flex flex-col justify-center w-7/12 border-l-2 border-black mt-10'>
           {storeName ? (
             <p className='text-xl font-medium ml-56 mb-2'>
               https://{storeName}.fruntt.com
@@ -244,8 +244,9 @@ const Register = () => {
                 </div>
 
                 <div className='flex items-center mt-4'>
-                  <p className='font-semibold text-2xl mr-4'>$19.99</p>
-                  <p className='text-sm'>(12) reviews</p>
+                  <p className='font-semibold text-2xl mr-2'>$19.99</p>
+                  <Rating value={4.5} precision={0.5} readOnly size='small' />
+                  <p className='text-xs ml-2'>(12) reviews</p>
                 </div>
 
                 <button

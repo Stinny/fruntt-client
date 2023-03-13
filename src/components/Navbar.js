@@ -114,7 +114,7 @@ const Navbar = () => {
       handleOpenModal={handleOpenModal}
     />
   ) : currentUser ? (
-    <nav className='w-full h-16 border-b-2'>
+    <nav className='w-full h-16 border-b-2 border-stone-800'>
       <HelpModal
         isOpen={isOpen}
         handleOpenModal={handleOpenModal}
@@ -242,7 +242,7 @@ const Navbar = () => {
       </div>
     </nav>
   ) : (
-    <nav className='w-full h-16 border-b-2 bg-white'>
+    <nav className='w-full h-16 border-b-2 border-stone-800 bg-white'>
       <div className='max-w-7xl h-full mx-auto flex justify-between items-center'>
         {/* logo section */}
         <div className='text-4xl h-full flex justify-center items-center'>
@@ -253,19 +253,13 @@ const Navbar = () => {
         </div>
 
         {/* links section */}
-        <div className='h-full flex items-center w-36 flex justify-between'>
+        <div className='h-full flex items-center flex justify-between'>
           <Link to='/signup'>
-            <p className='font-medium text-slate-800'>Sell</p>
+            <p className='font-medium text-slate-800 text-xl'>Sell</p>
           </Link>
 
-          <a
-            href='https://discord.gg/6GHYR2xn'
-            target='_blank'
-            className='font-medium'
-            style={{ color: '#738adb' }}
-          ></a>
           <Link to='/login'>
-            <button className='border-2 text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded w-20 h-full'>
+            <button className='border-2 font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded w-20 h-10 ml-20'>
               Login
             </button>
           </Link>
