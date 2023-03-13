@@ -13,7 +13,7 @@ const Hero = () => {
         </p>
         <p className='text-xl font-medium mt-8 text-gray-400'>
           Your own customized pages to sell your digital products from. Make
-          your products stand out.
+          your products stand out to your audience.
         </p>
 
         <p className='font-medium text-2xl text-stone-800 mt-8'>
