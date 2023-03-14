@@ -8,14 +8,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { DataGrid } from '@mui/x-data-grid';
 import Stack from '@mui/material/Stack';
 
-const OrdersMobile = ({
-  orders,
-  cols,
-  tableView,
-  setTableView,
-  notFulfilledOrders,
-  fulfilledOrders,
-}) => {
+const OrdersMobile = ({ orders, cols }) => {
   return orders.length > 0 ? (
     <div>
       <div className='w-full flex justify-between border-b-2 p-2'>
@@ -32,143 +25,36 @@ const OrdersMobile = ({
       </div>
 
       <div className='w-full mx-auto mt-6 p-2'>
-        <div className='flex flex-col'>
-          <p className='text-gray-400'>Filter</p>
-          <select
-            onChange={(e) => setTableView(e.target.value)}
-            className='rounded-md border-2 w-32 h-12 bg-transparent mb-2'
-          >
-            <option value='all'>All</option>
-            <option value='notFulfilled'>Not Fulfilled</option>
-            <option value='fulfilled'>Fulfilled</option>
-          </select>
-        </div>
-
-        {tableView === 'all' && (
-          <DataGrid
-            rows={orders}
-            columns={cols}
-            getRowId={(row) => row._id}
-            autoHeight
-            disableSelectionOnClick={true}
-            disableColumnFilter
-            checkboxSelection
-            pageSize={10}
-            rowsPerPageOptions={[10]}
-            disableExtendRowFullWidth={true}
-            onSelectionModelChange={(ids) => {
-              const selectedIDs = new Set(ids);
-              const selectedRowData = orders.filter((order) =>
-                selectedIDs.has(order._id.toString())
-              );
-              console.log(selectedRowData); //console logs the selected rows(orders)
-            }}
-            components={{
-              noRowsOverlay: () => (
-                <Stack
-                  height='100%'
-                  alignItems='center'
-                  justifyContent='center'
-                >
-                  No rows in DataGrid
-                </Stack>
-              ),
-              noResultsOverlay: () => (
-                <Stack
-                  height='100%'
-                  alignItems='center'
-                  justifyContent='center'
-                >
-                  Local filter returns no result
-                </Stack>
-              ),
-            }}
-          />
-        )}
-
-        {tableView === 'notFulfilled' && (
-          <DataGrid
-            rows={notFulfilledOrders}
-            columns={cols}
-            getRowId={(row) => row._id}
-            autoHeight
-            disableSelectionOnClick={true}
-            disableColumnFilter
-            checkboxSelection
-            pageSize={10}
-            rowsPerPageOptions={[10]}
-            disableExtendRowFullWidth={true}
-            onSelectionModelChange={(ids) => {
-              const selectedIDs = new Set(ids);
-              const selectedRowData = orders.filter((order) =>
-                selectedIDs.has(order._id.toString())
-              );
-              console.log(selectedRowData); //console logs the selected rows(orders)
-            }}
-            components={{
-              noRowsOverlay: () => (
-                <Stack
-                  height='100%'
-                  alignItems='center'
-                  justifyContent='center'
-                >
-                  No rows in DataGrid
-                </Stack>
-              ),
-              noResultsOverlay: () => (
-                <Stack
-                  height='100%'
-                  alignItems='center'
-                  justifyContent='center'
-                >
-                  Local filter returns no result
-                </Stack>
-              ),
-            }}
-          />
-        )}
-
-        {tableView === 'fulfilled' && (
-          <DataGrid
-            rows={fulfilledOrders}
-            columns={cols}
-            getRowId={(row) => row._id}
-            autoHeight
-            disableSelectionOnClick={true}
-            disableColumnFilter
-            checkboxSelection
-            pageSize={10}
-            rowsPerPageOptions={[10]}
-            disableExtendRowFullWidth={true}
-            onSelectionModelChange={(ids) => {
-              const selectedIDs = new Set(ids);
-              const selectedRowData = orders.filter((order) =>
-                selectedIDs.has(order._id.toString())
-              );
-              console.log(selectedRowData); //console logs the selected rows(orders)
-            }}
-            components={{
-              noRowsOverlay: () => (
-                <Stack
-                  height='100%'
-                  alignItems='center'
-                  justifyContent='center'
-                >
-                  No rows in DataGrid
-                </Stack>
-              ),
-              noResultsOverlay: () => (
-                <Stack
-                  height='100%'
-                  alignItems='center'
-                  justifyContent='center'
-                >
-                  Local filter returns no result
-                </Stack>
-              ),
-            }}
-          />
-        )}
+        <DataGrid
+          rows={orders}
+          columns={cols}
+          getRowId={(row) => row._id}
+          autoHeight
+          disableSelectionOnClick={true}
+          disableColumnFilter
+          pageSize={10}
+          rowsPerPageOptions={[10]}
+          disableExtendRowFullWidth={true}
+          onSelectionModelChange={(ids) => {
+            const selectedIDs = new Set(ids);
+            const selectedRowData = orders.filter((order) =>
+              selectedIDs.has(order._id.toString())
+            );
+            console.log(selectedRowData); //console logs the selected rows(orders)
+          }}
+          components={{
+            noRowsOverlay: () => (
+              <Stack height='100%' alignItems='center' justifyContent='center'>
+                No rows in DataGrid
+              </Stack>
+            ),
+            noResultsOverlay: () => (
+              <Stack height='100%' alignItems='center' justifyContent='center'>
+                Local filter returns no result
+              </Stack>
+            ),
+          }}
+        />
       </div>
     </div>
   ) : (

@@ -87,11 +87,11 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
         handleOpenModal={handleOpenModal}
         handleCloseModal={handleCloseModal}
       />
-      <nav className='w-full h-16 border-b-2 bg-white'>
+      <nav className='w-full h-16 border-b-2 border-stone-800 bg-white'>
         <div className='w-11/12 h-full mx-auto flex justify-between items-center'>
           <div className='text-4xl h-full flex justify-center items-center'>
             <Link to='/' className='h-full flex justify-center items-center'>
-              <IoStorefrontOutline className='text-slate-800 font-bold' />
+              <IoStorefrontOutline className='text-stone-800 font-bold' />
               <p className='font-black font-sans'>Fruntt</p>
             </Link>
           </div>
@@ -163,7 +163,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
     </>
   ) : (
     <>
-      <nav className='w-full h-16 border-b-2 bg-white'>
+      <nav className='w-full h-16 border-b-2 border-stone-800 bg-white'>
         <div className='w-11/12 h-full mx-auto flex justify-between items-center'>
           <div className='text-4xl h-full flex justify-center items-center'>
             <Link to='/' className='h-full flex justify-center items-center'>

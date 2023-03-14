@@ -13,7 +13,7 @@ import OrdersMobile from '../Mobile/Dashboard/OrdersMobile';
 import { isMobile } from 'react-device-detect';
 import { MdOutlineFileDownload } from 'react-icons/md';
 import { BiPackage } from 'react-icons/bi';
-
+import { AiOutlineCheckCircle } from 'react-icons/ai';
 //mui
 import { DataGrid } from '@mui/x-data-grid';
 import Stack from '@mui/material/Stack';
@@ -46,102 +46,61 @@ const Orders = () => {
   //for data grid
   const cols = [
     {
-      field: 'firstName',
-      headerName: 'Name',
-      width: 180,
-      align: 'center',
+      field: 'email',
+      headerName: 'Email',
+      width: 275,
       headerAlign: 'center',
+      align: 'center',
+      renderCell: (params) => {
+        return <p className='font-bold text-lg'>{params.row.email}</p>;
+      },
+    },
+    {
+      field: 'placedOn',
+      headerName: 'Ordered on',
+      width: 200,
+      headerAlign: 'center',
+      align: 'center',
       renderCell: (params) => {
         return (
-          <p>
-            {params.row.firstName} {params.row.lastName}
+          <p className='font-bold text-lg'>
+            {moment(params?.row?.placedOn).format('MMM D, YYYY')}
           </p>
         );
       },
     },
     {
-      field: 'email',
-      headerName: 'Email',
-      width: 225,
-      headerAlign: 'center',
-      align: 'center',
-    },
-    {
-      field: 'placedOn',
-      headerName: 'Ordered on',
-      width: 100,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: (params) => {
-        return <p>{moment(params?.row?.placedOn).format('MMM D, YYYY')}</p>;
-      },
-    },
-    {
       field: 'total',
       headerName: 'Total',
-      width: 125,
+      width: 175,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
-        return <p>${params.row.total.toFixed(2)}</p>;
-      },
-    },
-    {
-      field: 'type',
-      headerName: 'Type',
-      width: 125,
-      align: 'center',
-      headerAlign: 'center',
-      renderCell: (params) => {
-        return params.row.item.type === 'physical' ? (
-          <div className='flex items-center'>
-            <p className='font-medium'>Physical</p>
-            <BiPackage className='ml-2' />
-          </div>
-        ) : (
-          <div className='flex items-center'>
-            <p className='font-medium'>Digital</p>
-            <MdOutlineFileDownload className='ml-2' />
-          </div>
+        return (
+          <p className='font-bold text-xl'>${params.row.total.toFixed(2)}</p>
         );
       },
     },
     {
       field: 'paid',
       headerName: 'Payment',
-      width: 100,
+      width: 250,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
         return params.row.paid ? (
-          <p className='text-green-500 font-medium'>Paid</p>
+          <div className='w-3/12 flex items-center justify-center bg-green-300 rounded-md h-8'>
+            <p className='text-stone-800 font-bold'>PAID</p>
+          </div>
         ) : (
           <p className='text-red-600'>No Payment</p>
         );
       },
     },
     {
-      field: 'fulfilled',
-      headerName: 'Fulfilled',
-      width: 140,
-      align: 'center',
-      headerAlign: 'center',
-      renderCell: (params) => {
-        return params.row.fulfilled || params.row.item.type === 'digital' ? (
-          <button className='rounded-lg w-80 text-lime-600 bg-lime-200 font-semibold hover:cursor-default'>
-            Fulfilled
-          </button>
-        ) : (
-          <button className='rounded-lg w-60  bg-red-200 text-red-400 font-semibold hover:cursor-default'>
-            Needs Fulfilling
-          </button>
-        );
-      },
-    },
-    {
       field: 'view',
       headerName: 'View',
-      width: 130,
+      width: 300,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
@@ -150,8 +109,8 @@ const Orders = () => {
             to={`/dashboard/orders/${params.row._id}/`}
             className='w-full mx-auto flex justify-center'
           >
-            <button className='border-2 w-3/6 border-slate-800 text-slate-800 text-sm rounded'>
-              Details
+            <button className='border-2 w-4/6 border-slate-800 text-slate-800 text-sm rounded h-8'>
+              View Order
             </button>
           </Link>
         );
@@ -178,153 +137,54 @@ const Orders = () => {
           <h2 className='text-3xl font-semibold'>Your Orders</h2>
           <div className='flex justify-between'>
             <input
-              placeholder='Enter email or  order number'
+              placeholder='Search by email'
               className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
             />
-            <button className='border-2 rounded w-20 ml-2  h-10 border-slate-800 text-slate-800'>
+            <button className='border-2 rounded w-20 ml-2  h-10 border-stone-800 text-slate-800'>
               Search
             </button>
           </div>
         </div>
 
         <div className='w-full mx-auto mt-6'>
-          <div className='flex flex-col'>
-            <p className='text-gray-400'>Filter</p>
-            <select
-              onChange={(e) => setTableView(e.target.value)}
-              className='rounded-md border-2 w-32 h-12 bg-transparent mb-2'
-            >
-              <option value='all'>All</option>
-              <option value='notFulfilled'>Not Fulfilled</option>
-              <option value='fulfilled'>Fulfilled</option>
-            </select>
-          </div>
-
-          {tableView === 'all' && (
-            <DataGrid
-              rows={orders}
-              columns={cols}
-              getRowId={(row) => row._id}
-              autoHeight
-              disableSelectionOnClick={true}
-              disableColumnFilter
-              checkboxSelection
-              pageSize={10}
-              rowsPerPageOptions={[10]}
-              disableExtendRowFullWidth={true}
-              onSelectionModelChange={(ids) => {
-                const selectedIDs = new Set(ids);
-                const selectedRowData = orders.filter((order) =>
-                  selectedIDs.has(order._id.toString())
-                );
-                console.log(selectedRowData); //console logs the selected rows(orders)
-              }}
-              components={{
-                noRowsOverlay: () => (
-                  <Stack
-                    height='100%'
-                    alignItems='center'
-                    justifyContent='center'
-                  >
-                    No rows in DataGrid
-                  </Stack>
-                ),
-                noResultsOverlay: () => (
-                  <Stack
-                    height='100%'
-                    alignItems='center'
-                    justifyContent='center'
-                  >
-                    Local filter returns no result
-                  </Stack>
-                ),
-              }}
-            />
-          )}
-
-          {tableView === 'notFulfilled' && (
-            <DataGrid
-              rows={notFulfilledOrders}
-              columns={cols}
-              getRowId={(row) => row._id}
-              autoHeight
-              disableSelectionOnClick={true}
-              disableColumnFilter
-              checkboxSelection
-              pageSize={10}
-              rowsPerPageOptions={[10]}
-              disableExtendRowFullWidth={true}
-              onSelectionModelChange={(ids) => {
-                const selectedIDs = new Set(ids);
-                const selectedRowData = orders.filter((order) =>
-                  selectedIDs.has(order._id.toString())
-                );
-                console.log(selectedRowData); //console logs the selected rows(orders)
-              }}
-              components={{
-                noRowsOverlay: () => (
-                  <Stack
-                    height='100%'
-                    alignItems='center'
-                    justifyContent='center'
-                  >
-                    No rows in DataGrid
-                  </Stack>
-                ),
-                noResultsOverlay: () => (
-                  <Stack
-                    height='100%'
-                    alignItems='center'
-                    justifyContent='center'
-                  >
-                    Local filter returns no result
-                  </Stack>
-                ),
-              }}
-            />
-          )}
-
-          {tableView === 'fulfilled' && (
-            <DataGrid
-              rows={fulfilledOrders}
-              columns={cols}
-              getRowId={(row) => row._id}
-              autoHeight
-              disableSelectionOnClick={true}
-              disableColumnFilter
-              checkboxSelection
-              pageSize={10}
-              rowsPerPageOptions={[10]}
-              disableExtendRowFullWidth={true}
-              onSelectionModelChange={(ids) => {
-                const selectedIDs = new Set(ids);
-                const selectedRowData = orders.filter((order) =>
-                  selectedIDs.has(order._id.toString())
-                );
-                console.log(selectedRowData); //console logs the selected rows(orders)
-              }}
-              components={{
-                noRowsOverlay: () => (
-                  <Stack
-                    height='100%'
-                    alignItems='center'
-                    justifyContent='center'
-                  >
-                    No rows in DataGrid
-                  </Stack>
-                ),
-                noResultsOverlay: () => (
-                  <Stack
-                    height='100%'
-                    alignItems='center'
-                    justifyContent='center'
-                  >
-                    Local filter returns no result
-                  </Stack>
-                ),
-              }}
-            />
-          )}
+          <DataGrid
+            rows={orders}
+            columns={cols}
+            getRowId={(row) => row._id}
+            autoHeight
+            disableSelectionOnClick={true}
+            disableColumnFilter
+            pageSize={10}
+            rowsPerPageOptions={[10]}
+            disableExtendRowFullWidth={true}
+            onSelectionModelChange={(ids) => {
+              const selectedIDs = new Set(ids);
+              const selectedRowData = orders.filter((order) =>
+                selectedIDs.has(order._id.toString())
+              );
+              console.log(selectedRowData); //console logs the selected rows(orders)
+            }}
+            components={{
+              noRowsOverlay: () => (
+                <Stack
+                  height='100%'
+                  alignItems='center'
+                  justifyContent='center'
+                >
+                  No rows in DataGrid
+                </Stack>
+              ),
+              noResultsOverlay: () => (
+                <Stack
+                  height='100%'
+                  alignItems='center'
+                  justifyContent='center'
+                >
+                  Local filter returns no result
+                </Stack>
+              ),
+            }}
+          />
         </div>
       </div>
     ) : (
@@ -332,8 +192,7 @@ const Orders = () => {
         <h2 className='text-2xl font-medium mb-4'>You have no orders</h2>
         <img src={img} className='w-3/12' />
         <p className='text-xl text-gray-400 mt-4 font-medium'>
-          Here you will be able view, fulfill, and create shipping labels for
-          all orders
+          Here you will be able view all incoming orders from customers
         </p>
       </div>
     );

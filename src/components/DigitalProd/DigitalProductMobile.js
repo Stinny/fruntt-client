@@ -18,6 +18,8 @@ import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 const DigitalProductMobile = ({ product }) => {
+  const contentState = convertFromRaw(JSON.parse(product?.content));
+
   return (
     <div className='w-full p-2'>
       <div className='w-full flex justify-between items-center mb-10 border-b-2 p-2'>
@@ -107,7 +109,8 @@ const DigitalProductMobile = ({ product }) => {
           All content and files are available to customers immediately after
           purchase
         </p>
-        <div className='p-4 flex flex-col w-full border-2 rounded-md mt-2'>
+        <p className='text-gray-400 font-medium mt-4'>Files</p>
+        <div className='p-4 flex flex-col w-full border-2 rounded-md'>
           {product?.files.length ? (
             product?.files?.map((file, index) => (
               <div className='w-full flex items-center justify-between border-b mt-2'>
@@ -132,16 +135,22 @@ const DigitalProductMobile = ({ product }) => {
             </p>
           )}
         </div>
-
-        <div className='border rounded p-2 mt-2'>
-          <Editor
-            editorState={EditorState.createWithContent(
-              convertFromRaw(JSON.parse(product?.content))
-            )}
-            readOnly={true}
-            toolbarHidden
-          />
-        </div>
+        <p className='text-gray-400 font-medium mt-4'>Content</p>
+        {contentState.hasText() ? (
+          <div className='border rounded p-2'>
+            <Editor
+              editorState={EditorState.createWithContent(
+                convertFromRaw(JSON.parse(product?.content))
+              )}
+              readOnly={true}
+              toolbarHidden
+            />
+          </div>
+        ) : (
+          <div className='border rounded p-2 h-14 flex items-center justify-center'>
+            <p className='font-medium'>You have no additional content added</p>
+          </div>
+        )}
       </div>
     </div>
   );
