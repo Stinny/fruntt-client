@@ -94,7 +94,7 @@ const DashHome = () => {
         <div className='flex mb-2'>
           <p className='text-lg text-stone-800 font-medium'>Your live page:</p>
           <a
-            href={currentUser?.store?.url}
+            href={currentStoreUrl}
             className='flex justify-center items-center text-lg text-gray-400 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
             target='_blank'
           >
