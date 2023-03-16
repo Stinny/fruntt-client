@@ -76,7 +76,7 @@ const RegisterMobile = ({
             <div className='flex flex-col border-b mb-2'>
               <p className='font-medium'>Seller profile</p>
               <p className='text-gray-400 font-medium'>
-                This appears at the top of all your product pages
+                This appears at the top of all your pages
               </p>
             </div>
 
