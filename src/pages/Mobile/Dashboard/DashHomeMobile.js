@@ -149,7 +149,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
             </Tooltip>
             <p className='text-lg font-medium'>Conversion rate</p>
             <p className='text-2xl font-medium'>
-              {stats?.conversion > 0 ? stats?.conversion.toFixed(2) : '0'}%
+              {stats?.conversion > 0 ? stats?.conversion.toFixed(1) : '0'}%
             </p>
           </div>
         </div>
