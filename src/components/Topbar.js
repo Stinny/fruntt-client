@@ -46,7 +46,7 @@ const Topbar = () => {
                 : notActiveLink
             }
           >
-            Content
+            Page
           </button>
         </NavLink>
 
@@ -81,7 +81,7 @@ const Topbar = () => {
               path === '/dashboard/customers' ? activeLink : notActiveLink
             }
           >
-            Customers
+            Reviews
           </button>
         </NavLink>
 

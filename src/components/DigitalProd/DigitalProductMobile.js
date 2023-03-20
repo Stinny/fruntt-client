@@ -9,17 +9,14 @@ import {
 } from 'react-icons/md';
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill } from 'react-icons/bs';
-import { Editor } from 'react-draft-wysiwyg';
-import { convertFromRaw, EditorState } from 'draft-js';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css';
 
 //mui
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 const DigitalProductMobile = ({ product }) => {
-  const contentState = convertFromRaw(JSON.parse(product?.content));
-
   return (
     <div className='w-full p-2'>
       <div className='w-full flex justify-between items-center mb-10 border-b-2 p-2'>
@@ -31,7 +28,7 @@ const DigitalProductMobile = ({ product }) => {
         </div>
 
         <Link to={`/dashboard/item/edit/${product._id}`}>
-          <button className='w-28 h-10 rounded border-slate-800 text-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
+          <button className='w-28 h-10 rounded border-stone-800 text-stone-800 border-2 hover:bg-stone-800 hover:text-white'>
             EDIT
           </button>
         </Link>
@@ -45,27 +42,27 @@ const DigitalProductMobile = ({ product }) => {
           <div className='flex flex-col'>
             <div className='flex flex-col w-full'>
               {product?.digitalType === 'video' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-8/12 h-10'>
+                <div className='flex items-center justify-center border-2 border-stone-800 rounded w-7/12 h-10'>
                   <p>Video Course</p>
                   <MdOutlineVideoLibrary className='ml-2 text-2xl' />
                 </div>
               ) : product?.digitalType === 'ebook' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-8/12 h-10'>
+                <div className='flex items-center justify-center border-2 border-stone-800 rounded w-7/12 h-10'>
                   <p>E-Book</p>
                   <HiOutlineBookOpen className='ml-2 text-2xl' />
                 </div>
               ) : product?.digitalType === 'podcast' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-8/12 h-10'>
+                <div className='flex items-center justify-center border-2 border-stone-800 rounded w-7/12 h-10'>
                   <p>Podcast</p>
                   <BsFillMicFill className='ml-2 text-2xl' />
                 </div>
               ) : product?.digitalType === 'template' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+                <div className='flex items-center justify-center border-2 border-stone-800 rounded w-7/12 h-8 mt-2'>
                   <p>Template</p>
                   <HiOutlineTemplate className='ml-2 text-2xl' />
                 </div>
               ) : product?.digitalType === 'other' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-8/12 h-10'>
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-7/12 h-10'>
                   <p>Digital Media</p>
                   <MdOutlinePermMedia className='ml-2 text-2xl' />
                 </div>
@@ -136,19 +133,17 @@ const DigitalProductMobile = ({ product }) => {
           )}
         </div>
         <p className='text-gray-400 font-medium mt-4'>Content</p>
-        {contentState.hasText() ? (
-          <div className='border rounded p-2'>
-            <Editor
-              editorState={EditorState.createWithContent(
-                convertFromRaw(JSON.parse(product?.content))
-              )}
-              readOnly={true}
-              toolbarHidden
-            />
-          </div>
-        ) : (
+        {product?.content === '' ? (
           <div className='border rounded p-2 h-14 flex items-center justify-center'>
             <p className='font-medium'>You have no additional content added</p>
+          </div>
+        ) : (
+          <div className='border rounded p-2'>
+            <ReactQuill
+              value={product?.content}
+              readOnly={true}
+              theme={'bubble'}
+            />
           </div>
         )}
       </div>

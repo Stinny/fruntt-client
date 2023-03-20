@@ -102,7 +102,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
             <div className='flex justify-between items-center'>
               <input
                 type='text'
-                className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded-lg p-2'
+                className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded p-2'
                 placeholder='Storefront name'
                 onChange={(e) => setName(e.target.value)}
                 value={name}
@@ -112,7 +112,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
           </form>
           <button
             onClick={handleChangeName}
-            className='h-14 w-full border-slate-800 border-2 rounded mt-2 hover:bg-slate-800 hover:text-white'
+            className='h-14 w-full border-stone-800 border-2 rounded mt-2 hover:bg-stone-800 hover:text-white'
           >
             Save
           </button>

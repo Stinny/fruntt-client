@@ -20,6 +20,7 @@ import {
   WhatsappIcon,
   TelegramIcon,
 } from 'react-share';
+import { Line, Bar } from 'react-chartjs-2';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -38,6 +39,46 @@ const DashHome = () => {
   const { data: stats, isLoading, isSuccess, refetch } = useGetStoreStatsQuery({
     storeId: currentStoreID,
   });
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Page Sales',
+      },
+    },
+  };
+
+  const labels = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'Septemer',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const fdata = {
+    labels,
+    datasets: [
+      {
+        label: 'Dataset 1',
+        data: labels.map(() => Math.ceil(Math.random() * 8)),
+        backgroundColor: 'black',
+        borderColor: 'black',
+      },
+    ],
+  };
 
   useEffect(() => {
     refetch();
@@ -188,7 +229,7 @@ const DashHome = () => {
           </div>
         </div>
 
-        <div className='w-full mt-4 mb-4 flex justify between'>
+        {/* <div className='w-full mt-4 mb-4 flex justify between'>
           <div className='w-8/12 drop-shadow-md rounded-md h-40 bg-white border p-2'>
             <p className='text-xl font-medium text-slate-800'>
               Orders & Inventory
@@ -253,11 +294,11 @@ const DashHome = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className='w-full h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2'>
+        <div className='w-full mt-4 h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2'>
           <p className='text-xl font-medium text-slate-800'>
-            Is your product page ready for customers?
+            Is your page ready for customers?
           </p>
 
           <div className='w-full flex justify-between mt-2'>
@@ -307,9 +348,13 @@ const DashHome = () => {
           </div>
         </div>
 
+        <div className='w-full border rounded-md mt-4 bg-white drop-shadow-md'>
+          <Line options={options} data={fdata} />
+        </div>
+
         <div className='w-full h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2 mt-4'>
           <p className='text-xl font-medium text-slate-800'>
-            Share your product page with your people!
+            Share your page with your people!
           </p>
 
           <div className='w-8/12 flex justify-between mt-2'>

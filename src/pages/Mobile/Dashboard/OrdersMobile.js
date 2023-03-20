@@ -32,8 +32,8 @@ const OrdersMobile = ({ orders, cols }) => {
           autoHeight
           disableSelectionOnClick={true}
           disableColumnFilter
-          pageSize={10}
-          rowsPerPageOptions={[10]}
+          pageSize={15}
+          rowsPerPageOptions={[15]}
           disableExtendRowFullWidth={true}
           onSelectionModelChange={(ids) => {
             const selectedIDs = new Set(ids);

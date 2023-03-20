@@ -84,7 +84,7 @@ const Orders = () => {
     {
       field: 'paid',
       headerName: 'Payment',
-      width: 250,
+      width: 200,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
@@ -154,8 +154,8 @@ const Orders = () => {
             autoHeight
             disableSelectionOnClick={true}
             disableColumnFilter
-            pageSize={10}
-            rowsPerPageOptions={[10]}
+            pageSize={15}
+            rowsPerPageOptions={[15]}
             disableExtendRowFullWidth={true}
             onSelectionModelChange={(ids) => {
               const selectedIDs = new Set(ids);

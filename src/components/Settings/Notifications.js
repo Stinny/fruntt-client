@@ -79,26 +79,20 @@ const Notifications = ({ user, refetch }) => {
         style={modalStyles}
       >
         <form onSubmit={handleSaveNotifications}>
-          <p className='text-xl font-medium mb-4'>Notifications</p>
-          <p className='text-gray-400'>Fruntt news & updates</p>
+          <p className='text-xl font-medium mb-4 border-b'>Notifications</p>
+          <p className='text-stone-800'>Fruntt news & updates</p>
           <Switch
             checked={sendUpdates}
             onChange={(e) => setSendUpdates(e.target.checked)}
           />
 
-          <p className='text-gray-400 mt-2'>An order has been placed</p>
+          <p className='text-stone-800 mt-2'>An order has been placed</p>
           <Switch
             checked={sendOrderPlaced}
             onChange={(e) => setSendOrderPlaced(e.target.checked)}
           />
 
-          <p className='text-gray-400 mt-2'>Your item goes out of stock</p>
-          <Switch
-            checked={sendItemOutOfStock}
-            onChange={(e) => setSendItemOutOfStock(e.target.checked)}
-          />
-
-          <p className='text-gray-400 mt-2'>Customer leaves a review</p>
+          <p className='text-stone-800 mt-2'>Customer leaves a review</p>
           <Switch
             checked={sendReviewCollected}
             onChange={(e) => setSendReviewCollected(e.target.checked)}
@@ -113,7 +107,7 @@ const Notifications = ({ user, refetch }) => {
           </button>
           <button
             type='submit'
-            className='w-full h-14 border-2 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 rounded mt-4'
+            className='w-full h-14 border-2 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 rounded mt-4'
           >
             Save
           </button>
@@ -134,7 +128,7 @@ const Notifications = ({ user, refetch }) => {
           <p className='text-xlg font-medium'>Notifications</p>
           <button
             onClick={openModal}
-            className='border-2 rounded w-20 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
+            className='border-2 rounded w-20 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white'
           >
             Edit
           </button>
@@ -145,20 +139,13 @@ const Notifications = ({ user, refetch }) => {
           <div className='flex flex-col'>
             <p className='text-lg font-medium'>Fruntt news & updates</p>
             <p className='text-lg font-medium mt-4'>An order was placed</p>
-            <p className='text-lg font-medium mt-4'>
-              An item goes out of stock
-            </p>
             <p className='text-lg font-medium mt-4'>Customer leaves a review</p>
           </div>
 
           <div className='flex flex-col'>
             <Switch checked={user?.sendUpdates} disabled />
             <Switch checked={user?.sendOrderPlaced} className='mt-4' disabled />
-            <Switch
-              checked={user?.sendItemOutOfStock}
-              className='mt-4'
-              disabled
-            />
+
             <Switch
               checked={user?.sendReviewCollected}
               className='mt-4'
@@ -171,20 +158,14 @@ const Notifications = ({ user, refetch }) => {
           <div className='flex flex-col'>
             <p className='text-lg font-medium'>Fruntt news & updates</p>
             <p className='text-lg font-medium mt-4'>An order was placed</p>
-            <p className='text-lg font-medium mt-4'>
-              An item goes out of stock
-            </p>
+
             <p className='text-lg font-medium mt-4'>Customer leaves a review</p>
           </div>
 
           <div className='flex flex-col'>
             <Switch checked={user?.sendUpdates} disabled />
             <Switch checked={user?.sendOrderPlaced} className='mt-4' disabled />
-            <Switch
-              checked={user?.sendItemOutOfStock}
-              className='mt-4'
-              disabled
-            />
+
             <Switch
               checked={user?.sendReviewCollected}
               className='mt-4'

@@ -58,7 +58,7 @@ const Email = () => {
         />
         <button
           type='submit'
-          className='h-10 border-slate-800 border-2 rounded w-full font-medium hover:text-white hover:bg-slate-800 mt-2'
+          className='h-10 border-stone-800 border-2 rounded w-full font-medium hover:text-white hover:bg-stone-800 mt-2'
         >
           SUBSCRIBE
         </button>

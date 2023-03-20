@@ -149,7 +149,7 @@ const FAQs = ({ currentUser, item, refetch, isLoading, isSuccess }) => {
               </p>
               {item.length ? (
                 <button
-                  className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
+                  className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
                   onClick={openModal}
                 >
                   + Add
@@ -185,17 +185,17 @@ const FAQs = ({ currentUser, item, refetch, isLoading, isSuccess }) => {
                   </div>
                 ) : (
                   <div className='w-full mx-auto rounded border-2 flex flex-col justify-center items-center mt-2 p-2'>
-                    <p className='text-slate-800 text-xl font-medium'>
+                    <p className='text-slate-800 text-xl font-medium text-center'>
                       You have not added any customer questions
                     </p>
                     <p className='text-gray-400 text-center mt-2'>
-                      These questions are visible on your product page for
-                      customers to read. They should relate to whatever product
-                      you are offering.
+                      These questions are visible on your page for customers to
+                      read. They should relate to whatever product you are
+                      offering.
                     </p>
                     <button
                       type='button'
-                      className='border-2 border-slate-800 rounded text-slate-800 hover:bg-slate-800 hover:text-white w-28 h-10 mt-2'
+                      className='border-2 border-slate-800 rounded text-slate-800 hover:bg-slate-800 hover:text-white w-32 h-10 mt-2'
                       onClick={openModal}
                     >
                       + Add question

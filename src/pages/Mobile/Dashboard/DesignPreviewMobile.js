@@ -70,25 +70,21 @@ const DesignPreviewMobile = ({
           itemAndReviews?.item?.type === 'digital' ? (
             <DigitalPreviewMobile
               itemAndReviews={itemAndReviews}
-              pageBG={storefront?.style?.pageBackground}
+              pageBG={pageBG}
               navbarBG={storefront?.style?.navbarBackground}
-              buttonColor={storefront?.style?.buttonColor}
-              buttonTextColor={storefront?.style?.buttonTextColor}
-              buttonStyle={storefront?.style?.buttonStyle}
-              pageText={storefront?.style?.pageText}
-              footerBG={storefront?.style?.footerBackground}
+              buttonColor={buttonColor}
+              buttonTextColor={buttonTextColor}
+              buttonStyle={buttonStyle}
+              pageText={pageText}
               storefrontId={storefront?._id}
-              hideNav={storefront?.style?.hideNav}
-              socialIcons={storefront?.style?.socialIcons}
-              hideFooter={storefront?.style?.hideFooter}
-              headerColor={storefront?.style?.headerColor}
-              borderColor={storefront?.style?.borderColor}
+              headerColor={headerColor}
+              borderColor={borderColor}
               storefront={storefront}
-              faqBackground={storefront?.style?.faqBackground}
-              reviewBackground={storefront?.style?.reviewBackground}
+              faqBackground={faqBackground}
+              reviewBackground={reviewBackground}
             />
           ) : (
-            <div className=''>
+            <div>
               <div
                 className='w-full flex flex-col mx-auto'
                 style={{ backgroundColor: pageBG }}

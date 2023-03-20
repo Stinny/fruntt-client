@@ -11,6 +11,8 @@ import {
 } from 'react-icons/md';
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill } from 'react-icons/bs';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css';
 
 //mui
 import Rating from '@mui/material/Rating';
@@ -34,7 +36,6 @@ const DigitalPreviewMobile = ({
   reviewBackground,
 }) => {
   const btnStyle = buttonStyle === 'filled' ? buttonColor : '';
-  const contentState = convertFromRaw(JSON.parse(itemAndReviews?.item?.info));
 
   return (
     <div className=''>
@@ -46,7 +47,12 @@ const DigitalPreviewMobile = ({
           <img className='w-full' src={itemAndReviews?.item?.coverImage?.url} />
         </div>
 
-        <div className='w-full flex flex-col p-2'>
+        <div
+          className='w-full flex flex-col p-2'
+          style={{
+            backgroundColor: pageBG,
+          }}
+        >
           <p
             className='text-2xl font-medium w-full'
             style={{ color: pageText }}
@@ -87,7 +93,12 @@ const DigitalPreviewMobile = ({
               <MdLocalPrintshop className='ml-2 text-2xl' />
             </div>
           )}
-          <div className='flex items-center mt-2'>
+          <div
+            className='flex items-center mt-2'
+            style={{
+              backgroundColor: pageBG,
+            }}
+          >
             <p className='text-2xl font-medium' style={{ color: pageText }}>
               ${itemAndReviews?.item?.price.toFixed(2)}
             </p>
@@ -131,17 +142,7 @@ const DigitalPreviewMobile = ({
               Description
             </p>
           </div>
-          {contentState.hasText() ? (
-            <div className=''>
-              <Editor
-                editorState={EditorState.createWithContent(
-                  convertFromRaw(JSON.parse(itemAndReviews?.item?.info))
-                )}
-                readOnly={true}
-                toolbarHidden
-              />
-            </div>
-          ) : (
+          {itemAndReviews?.item?.info === '' ? (
             <div
               style={{ borderColor: borderColor }}
               className='w-full h-44 mt-4 border-2 rounded flex justify-center items-center'
@@ -153,13 +154,21 @@ const DigitalPreviewMobile = ({
                 A product description has not been added!
               </p>
             </div>
+          ) : (
+            <div className=''>
+              <ReactQuill
+                value={itemAndReviews?.item?.info}
+                readOnly={true}
+                theme={'bubble'}
+              />
+            </div>
           )}
         </div>
 
         <div className='mt-2 pl-2 pr-2'>
           <div className='w-full border-b' style={{ borderColor: borderColor }}>
             <p className='text-xl' style={{ color: headerColor }}>
-              Customer questions
+              Questions
             </p>
           </div>
           {itemAndReviews?.item?.faqs?.length ? (
@@ -203,7 +212,7 @@ const DigitalPreviewMobile = ({
             >
               <p
                 className='font-medium text-lg text-center'
-                style={{ color: storefront?.style?.pageText }}
+                style={{ pageText }}
               >
                 Customer questions have not been added!
               </p>
@@ -214,7 +223,7 @@ const DigitalPreviewMobile = ({
         <div className='pl-2 pr-2'>
           <div className='w-full border-b' style={{ borderColor: borderColor }}>
             <p className='text-xl' style={{ color: headerColor }}>
-              Customer reviews
+              Reviews
             </p>
           </div>
           {itemAndReviews?.reviews?.length > 0 ? (
@@ -226,13 +235,10 @@ const DigitalPreviewMobile = ({
                 }}
               >
                 <div className='flex w-4/12'>
-                  <p
-                    className='font-medium mr-2'
-                    style={{ color: storefront?.style?.pageText }}
-                  >
+                  <p className='font-medium mr-2' style={{ color: pageText }}>
                     {review?.customerName}
                   </p>
-                  <p style={{ color: storefront?.style?.pageText }}>
+                  <p style={{ color: pageText }}>
                     {moment(review?.reviewedOn).format('MMM D, YYYY')}
                   </p>
                 </div>
@@ -254,11 +260,11 @@ const DigitalPreviewMobile = ({
             ))
           ) : (
             <div
-              style={{ borderColor: borderColor }}
+              style={{ borderColor: borderColor, color: pageText }}
               className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
             >
               <p className='font-medium text-lg' style={{ color: pageText }}>
-                Item has not been reviewed!
+                Product has not been reviewed!
               </p>
             </div>
           )}

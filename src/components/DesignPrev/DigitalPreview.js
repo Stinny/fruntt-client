@@ -11,6 +11,8 @@ import { BsFillMicFill } from 'react-icons/bs';
 import { Editor } from 'react-draft-wysiwyg';
 import { convertFromRaw, EditorState } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css';
 
 //mui
 import Rating from '@mui/material/Rating';
@@ -29,8 +31,6 @@ const DigitalPreview = ({
   reviewBackground,
 }) => {
   const btnStyle = buttonStyle === 'filled' ? buttonColor : '';
-
-  const contentState = convertFromRaw(JSON.parse(itemAndReviews?.item?.info));
 
   return (
     <div className='p-14'>
@@ -124,21 +124,11 @@ const DigitalPreview = ({
       {/* Other stuff for the item */}
       <div className='mt-10'>
         <div className='w-full border-b' style={{ borderColor: borderColor }}>
-          <p className='text-2xl' style={{ color: headerColor }}>
+          <p className='text-lg' style={{ color: headerColor }}>
             Description
           </p>
         </div>
-        {contentState.hasText() ? (
-          <div className=''>
-            <Editor
-              editorState={EditorState.createWithContent(
-                convertFromRaw(JSON.parse(itemAndReviews?.item?.info))
-              )}
-              readOnly={true}
-              toolbarHidden
-            />
-          </div>
-        ) : (
+        {itemAndReviews?.item?.info === '' ? (
           <div
             style={{ borderColor: borderColor }}
             className='w-full h-44 mt-4 border-2 rounded flex justify-center items-center'
@@ -147,11 +137,19 @@ const DigitalPreview = ({
               A product description has not been added!
             </p>
           </div>
+        ) : (
+          <div className=''>
+            <ReactQuill
+              value={itemAndReviews?.item?.info}
+              readOnly={true}
+              theme={'bubble'}
+            />
+          </div>
         )}
 
         <div className='w-full border-b' style={{ borderColor: borderColor }}>
-          <p className='text-2xl' style={{ color: headerColor }}>
-            Customer questions
+          <p className='text-lg' style={{ color: headerColor }}>
+            Questions
           </p>
         </div>
 
@@ -194,8 +192,8 @@ const DigitalPreview = ({
           className='w-full border-b mt-4'
           style={{ borderColor: borderColor }}
         >
-          <p className='text-2xl' style={{ color: headerColor }}>
-            Customer reviews
+          <p className='text-lg' style={{ color: headerColor }}>
+            Reviews
           </p>
         </div>
         {itemAndReviews?.reviews?.length > 0 ? (

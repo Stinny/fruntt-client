@@ -19,7 +19,7 @@ import { isMobile } from 'react-device-detect';
 
 const Banner = () => {
   return isMobile ? (
-    <div className='w-full flex flex-col items-center justify-center mb-44 mt-44 border-t-2 border-b-2 p-2'>
+    <div className='w-full flex flex-col items-center justify-center mb-44 mt-52 border-t-2 border-b-2 p-2'>
       {/* <p className='mb-8 text-2xl text-center font-medium'>
         Sell just about anything from your page!
       </p>
@@ -78,14 +78,14 @@ const Banner = () => {
         <button
           type='button'
           disabled
-          className='rounded text-slate-800 w-72 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'
+          className='rounded text-stone-800 w-72 h-10 text-xl mt-4 border-stone-800 border-2 hover:bg-stone-800 hover:text-white flex items-center justify-center'
         >
           COMING SOON
         </button>
       </div>
     </div>
   ) : (
-    <div className='w-full flex flex-col items-center mb-44 border-t-2 border-b-2 p-2'>
+    <div className='w-full flex flex-col items-center mb-44 border-t-2 border-b-2 p-2 mt-44'>
       {/* <p className='mb-8 text-2xl font-medium'>
         Sell just about anything from your page!
       </p>
@@ -140,7 +140,7 @@ const Banner = () => {
         <button
           type='button'
           disabled
-          className='rounded text-slate-800 w-72 h-10 text-xl mt-4 border-slate-800 border-2 hover:bg-slate-800 hover:text-white flex items-center justify-center'
+          className='rounded text-slate-800 w-72 h-10 text-xl mt-4 border-stone-800 border-2 hover:bg-stone-800 hover:text-white flex items-center justify-center'
         >
           COMING SOON
         </button>

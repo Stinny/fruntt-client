@@ -2,8 +2,8 @@ import React from 'react';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import CoverImage from './CoverImage';
 import Files from './Files';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Editor } from 'react-draft-wysiwyg';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 //filepond
 import { FilePond } from 'react-filepond';
@@ -37,7 +37,7 @@ const EditDesktop = ({
   error,
   refetchProduct,
   productContent,
-  handleProductContent,
+  setProductContent,
 }) => {
   return (
     <div className='w-full'>
@@ -190,7 +190,7 @@ const EditDesktop = ({
         </div>
 
         <div className='w-full border rounded mt-6'>
-          <Editor
+          {/* <Editor
             editorState={productContent}
             toolbarClassName='toolbarClassName'
             wrapperClassName='wrapperClassName'
@@ -213,6 +213,12 @@ const EditDesktop = ({
                 'history',
               ],
             }}
+          /> */}
+          <ReactQuill
+            // theme='snow'
+            value={productContent}
+            onChange={setProductContent}
+            placeholder='Start typing here'
           />
         </div>
 

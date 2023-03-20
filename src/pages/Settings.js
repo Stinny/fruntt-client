@@ -91,7 +91,7 @@ const Settings = () => {
           </div>
           <Payments refetch={refetch} />
         </div>
-
+        {/* 
         <div className='w-full mt-10'>
           <div className='flex flex-col w-full border-b p-2'>
             <p className='text-lg font-medium'>Payment Method</p>
@@ -101,7 +101,7 @@ const Settings = () => {
             </p>
           </div>
           <Billing user={user} refetch={refetch} />
-        </div>
+        </div> */}
 
         <div className='w-full mt-10'>
           <div className='flex flex-col w-full border-b p-2'>

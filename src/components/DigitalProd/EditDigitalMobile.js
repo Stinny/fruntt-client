@@ -12,6 +12,8 @@ import { uploadImageRequest } from '../../api/requests';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Editor } from 'react-draft-wysiwyg';
 import { convertFromRaw, EditorState, convertToRaw } from 'draft-js';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 //filepond
 import { FilePond } from 'react-filepond';
@@ -37,9 +39,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
   const [published, setPublished] = useState(product?.published);
   const [digitalType, setDigitalType] = useState(product?.digitalType);
   const [link, setLink] = useState(product?.link);
-  const [productContent, setProductContent] = useState(
-    EditorState.createWithContent(convertFromRaw(JSON.parse(product?.content)))
-  );
+  const [productContent, setProductContent] = useState(product?.content);
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
@@ -55,6 +55,10 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
       setError('Please upload a cover image');
       return;
     }
+
+    //to see if quill editor is empty on save
+    var regex = /(<([^>]+)>)/gi;
+    const hasText = !!productContent.replace(regex, '').length;
 
     try {
       //first try to upload new coverImage if one exists
@@ -93,9 +97,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
         productId: product?._id,
         digitalType: digitalType,
         link: link,
-        content: JSON.stringify(
-          convertToRaw(productContent.getCurrentContent())
-        ),
+        content: hasText ? productContent : '',
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
@@ -247,7 +249,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
         </div>
 
         <div className='w-full border rounded mt-6'>
-          <Editor
+          {/* <Editor
             editorState={productContent}
             toolbarClassName='toolbarClassName'
             wrapperClassName='wrapperClassName'
@@ -270,6 +272,12 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                 'history',
               ],
             }}
+          /> */}
+          <ReactQuill
+            // theme='snow'
+            value={productContent}
+            onChange={setProductContent}
+            placeholder='Start typing here'
           />
         </div>
 

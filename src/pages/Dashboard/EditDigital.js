@@ -27,9 +27,7 @@ const EditDigital = ({ product, refetch }) => {
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
-  const [productContent, setProductContent] = useState(
-    EditorState.createWithContent(convertFromRaw(JSON.parse(product?.content)))
-  );
+  const [productContent, setProductContent] = useState(product?.content);
 
   const handleSaveEdit = async (e) => {
     e.preventDefault();
@@ -47,6 +45,10 @@ const EditDigital = ({ product, refetch }) => {
       setError('Please fill in all fields');
       return;
     }
+
+    //to see if quill editor is empty
+    var regex = /(<([^>]+)>)/gi;
+    const hasText = !!productContent.replace(regex, '').length;
 
     try {
       //first try to upload new coverImage if one exists
@@ -84,9 +86,7 @@ const EditDigital = ({ product, refetch }) => {
         files: uploadedFiles,
         productId: product?._id,
         digitalType: digitalType,
-        content: JSON.stringify(
-          convertToRaw(productContent.getCurrentContent())
-        ),
+        content: hasText ? productContent : '',
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
@@ -129,7 +129,7 @@ const EditDigital = ({ product, refetch }) => {
       link={link}
       setLink={setLink}
       productContent={productContent}
-      handleProductContent={handleProductContent}
+      setProductContent={setProductContent}
     />
   );
 };

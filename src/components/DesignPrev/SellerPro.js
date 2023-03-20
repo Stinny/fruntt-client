@@ -56,7 +56,73 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
             </p>
           </div>
         </div>
-        <div className='flex justify-between items-center'>
+        <div className='flex justify-between items-center mt-2'>
+          <div className='flex flex-col'>
+            <div className='flex flex-col w-full'>
+              <p
+                className='font-medium'
+                style={{
+                  color: pageText,
+                }}
+              >
+                My other pages:
+              </p>
+              <select
+                className='rounded border-2 bg-transparent h-8'
+                style={{
+                  color: pageText,
+                  borderColor: borderColor,
+                }}
+              >
+                <option>{currentUser?.store?.url}</option>
+              </select>
+              <div className='flex items-center text-2xl mt-4'>
+                {currentUser?.sellerProfile?.facebook && (
+                  <a
+                    href={currentUser?.sellerProfile?.facebook}
+                    target='_blank'
+                  >
+                    <AiOutlineFacebook style={{ color: pageText }} />
+                  </a>
+                )}
+                {currentUser?.sellerProfile?.instagram && (
+                  <a
+                    href={currentUser?.sellerProfile?.instagram}
+                    target='_blank'
+                  >
+                    <AiOutlineInstagram
+                      style={{ color: pageText }}
+                      className=' ml-2'
+                    />
+                  </a>
+                )}
+                {currentUser?.sellerProfile?.twitter && (
+                  <a href={currentUser?.sellerProfile?.twitter} target='_blank'>
+                    <AiOutlineTwitter
+                      style={{ color: pageText }}
+                      className='ml-2'
+                    />
+                  </a>
+                )}
+                {currentUser?.sellerProfile?.youtube && (
+                  <a href={currentUser?.sellerProfile?.youtube} target='_blank'>
+                    <AiOutlineYoutube
+                      style={{ color: pageText }}
+                      className='text-gray-400 hover:text-blue-400 ml-2'
+                    />
+                  </a>
+                )}
+                {currentUser?.sellerProfile?.tiktok && (
+                  <a href={currentUser?.sellerProfile?.tiktok} target='_blank'>
+                    <FaTiktok
+                      style={{ color: pageText }}
+                      className='text-gray-400 hover:text-blue-400 ml-2'
+                    />
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
           <div className='flex flex-col items-center'>
             <p
               className='font-medium text-3xl'
@@ -73,66 +139,9 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
                 color: pageText,
               }}
             >
-              sales
+              Total sales
             </p>
           </div>
-
-          <div className='flex flex-col w-8/12'>
-            <p
-              className='font-medium text-lg'
-              style={{
-                color: pageText,
-              }}
-            >
-              My other pages:
-            </p>
-            <select
-              className='rounded border-2 bg-transparent h-8'
-              style={{
-                color: pageText,
-                borderColor: borderColor,
-              }}
-            >
-              <option>{currentUser?.store?.url}</option>
-            </select>
-          </div>
-        </div>
-
-        <div className='flex items-center justify-end text-3xl mt-4'>
-          {currentUser?.sellerProfile?.facebook && (
-            <a href={currentUser?.sellerProfile?.facebook} target='_blank'>
-              <AiOutlineFacebook style={{ color: pageText }} />
-            </a>
-          )}
-          {currentUser?.sellerProfile?.instagram && (
-            <a href={currentUser?.sellerProfile?.instagram} target='_blank'>
-              <AiOutlineInstagram
-                style={{ color: pageText }}
-                className=' ml-2'
-              />
-            </a>
-          )}
-          {currentUser?.sellerProfile?.twitter && (
-            <a href={currentUser?.sellerProfile?.twitter} target='_blank'>
-              <AiOutlineTwitter style={{ color: pageText }} className='ml-2' />
-            </a>
-          )}
-          {currentUser?.sellerProfile?.youtube && (
-            <a href={currentUser?.sellerProfile?.youtube} target='_blank'>
-              <AiOutlineYoutube
-                style={{ color: pageText }}
-                className='text-gray-400 hover:text-blue-400 ml-2'
-              />
-            </a>
-          )}
-          {currentUser?.sellerProfile?.tiktok && (
-            <a href={currentUser?.sellerProfile?.tiktok} target='_blank'>
-              <FaTiktok
-                style={{ color: pageText }}
-                className='text-gray-400 hover:text-blue-400 ml-2'
-              />
-            </a>
-          )}
         </div>
       </div>
     </div>
@@ -203,7 +212,7 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
           </select>
         </div>
 
-        <div className='flex items-center justify-end text-3xl w-3/12'>
+        <div className='flex items-center justify-end text-2xl w-3/12'>
           {currentUser?.sellerProfile?.facebook && (
             <a href={currentUser?.sellerProfile?.facebook} target='_blank'>
               <AiOutlineFacebook style={{ color: pageText }} />
