@@ -37,6 +37,18 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    addProductReview: builder.mutation({
+      query: ({ orderId, email, review, rating }) => ({
+        url: `/orders/add/review`,
+        method: 'POST',
+        body: {
+          orderId: orderId,
+          email: email,
+          review: review,
+          rating: rating,
+        },
+      }),
+    }),
     editShippingAddress: builder.mutation({
       query: ({ orderId, address, country, state, city, zipcode }) => ({
         url: '/orders/shippingaddress',
@@ -77,4 +89,5 @@ export const {
   useEditShippingAddressMutation,
   useGetShippingLabelMutation,
   useEditShipsFromAddressMutation,
+  useAddProductReviewMutation,
 } = ordersApiSlice;

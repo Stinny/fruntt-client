@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { useGetDigitalOrderQuery } from '../api/ordersApiSlice';
+import {
+  useGetDigitalOrderQuery,
+  useAddProductReviewMutation,
+} from '../api/ordersApiSlice';
 import Spinner from '../components/Spinner';
 import moment from 'moment';
 import {
@@ -15,36 +18,115 @@ import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill } from 'react-icons/bs';
 import { isMobile } from 'react-device-detect';
 import MobileDownload from './Mobile/MobileDownload';
-import { Editor } from 'react-draft-wysiwyg';
-import { convertFromRaw, EditorState } from 'draft-js';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css';
+
+//mui
+import Rating from '@mui/material/Rating';
+import Alert from '@mui/material/Alert';
 
 const Download = () => {
   const { orderId } = useParams();
+
+  const [open, setOpen] = useState(false);
+  const [review, setReview] = useState('');
+  const [rating, setRating] = useState(0);
+
   //get order, as long as it is paid for
-  const { data: orderAndStore, isLoading, isSuccess } = useGetDigitalOrderQuery(
-    {
-      orderId,
+  const {
+    data: orderAndStore,
+    isLoading,
+    isSuccess,
+    refetch,
+  } = useGetDigitalOrderQuery({
+    orderId,
+  });
+
+  const [addProductReview, result] = useAddProductReviewMutation();
+
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    try {
+      const addReviewReq = await addProductReview({
+        review: review,
+        rating: rating,
+        orderId: orderAndStore?.order?._id,
+        email: orderAndStore?.order?.email,
+      }).unwrap();
+
+      if (addReviewReq === 'Review added') {
+        refetch();
+      }
+    } catch (err) {
+      console.log(err);
     }
-  );
+  };
 
   let content;
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    const contentState = convertFromRaw(
-      JSON.parse(orderAndStore?.order?.item?.content)
-    );
     content = isMobile ? (
-      <MobileDownload orderAndStore={orderAndStore} />
+      <MobileDownload
+        orderAndStore={orderAndStore}
+        setReview={setReview}
+        setRating={setRating}
+        handleSubmitReview={handleSubmitReview}
+        open={open}
+        setOpen={setOpen}
+      />
     ) : (
       <div className='mx-auto'>
-        <div className='w-full border-b-2 mt-20'>
-          <p className='text-2xl font-medium'>Your Recent Digital Purchase</p>
-          <p className='text-xl text-gray-400'>
-            You will always have access to this page from your email
-          </p>
+        <div className='w-full border-b-2 mt-20 flex justify-between items-center'>
+          <div className='flex flex-col'>
+            <p className='text-2xl font-medium'>Your Recent Digital Purchase</p>
+            <p className='text-xl text-gray-400 font-medium'>
+              This is always accessible from your email
+            </p>
+          </div>
+          <button
+            type='button'
+            className='border-2 rounded border-stone-800 h-10 w-32 text-stone-800 hover:bg-stone-800 hover:text-white text-sm'
+            onClick={() => setOpen(!open)}
+          >
+            {open ? 'Close review' : 'Leave a review'}
+          </button>
         </div>
+        {open ? (
+          <div className='w-8/12 mt-4 mb-4 rounded mx-auto'>
+            {orderAndStore?.order?.reviewed ? (
+              <Alert severity='info'>
+                Your review has successfully been submitted!
+              </Alert>
+            ) : (
+              <form
+                onSubmit={handleSubmitReview}
+                className='w-full flex justify-around items-center'
+              >
+                <textarea
+                  onChange={(e) => setReview(e.target.value)}
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white mr-4'
+                  placeholder='Enter review here...'
+                />
+
+                <Rating
+                  onChange={(e) => setRating(e.target.value)}
+                  precision={0.5}
+                  size='large'
+                />
+
+                <button
+                  type='submit'
+                  className='w-28 h-12 border-2 border-stone-800 rounded text-stone-800 hover:bg-stone-800 hover:text-white ml-4'
+                >
+                  Submit
+                </button>
+              </form>
+            )}
+          </div>
+        ) : (
+          ''
+        )}
         <div className='w-full border-b mt-4'>
           <p className='font-medium text-slate-800 text-xl'>Purchase details</p>
         </div>
@@ -113,38 +195,44 @@ const Download = () => {
           <p className='text-gray-400'>Files</p>
         </div>
         <div className='p-4 flex flex-wrap w-11/12 mx-auto border-2 rounded'>
-          {orderAndStore?.order?.item?.files?.map((file, index) => (
-            <div className='w-full flex items-center justify-between border-b mt-2'>
-              <div className='w-4/12'>
-                <p className='font-medium text-lg'>{file?.name}</p>
-              </div>
+          {orderAndStore?.order?.item?.files.length ? (
+            orderAndStore?.order?.item?.files?.map((file, index) => (
+              <div className='w-full flex items-center justify-between border-b mt-2'>
+                <div className='w-4/12'>
+                  <p className='font-medium text-lg'>{file?.name}</p>
+                </div>
 
-              <div className='w-4/12 flex justify-end'>
-                <a
-                  href={file?.url}
-                  download
-                  className='text-blue-500 text-3xl font-medium'
-                >
-                  <MdOutlineFileDownload />
-                </a>
+                <div className='w-4/12 flex justify-end'>
+                  <a
+                    href={file?.url}
+                    download
+                    className='text-blue-500 text-3xl font-medium'
+                  >
+                    <MdOutlineFileDownload />
+                  </a>
+                </div>
               </div>
+            ))
+          ) : (
+            <div className='mx-auto w-full'>
+              <p className='text-stone-800 text-center font-medium'>
+                No files have been added
+              </p>
             </div>
-          ))}
+          )}
         </div>
         <div className=' w-11/12 mx-auto mt-4'>
           <p className='text-gray-400'>Content</p>
         </div>
         <div className='p-4 w-11/12 mx-auto border-2 rounded'>
-          {contentState.hasText() ? (
-            <Editor
-              editorState={EditorState.createWithContent(
-                convertFromRaw(JSON.parse(orderAndStore?.order?.item?.content))
-              )}
-              readOnly={true}
-              toolbarHidden
-            />
-          ) : (
+          {orderAndStore?.order?.item?.content === '' ? (
             <p>No additional content added</p>
+          ) : (
+            <ReactQuill
+              value={orderAndStore?.order?.item?.content}
+              readOnly={true}
+              theme={'bubble'}
+            />
           )}
         </div>
       </div>

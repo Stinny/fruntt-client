@@ -154,8 +154,8 @@ const Orders = () => {
             autoHeight
             disableSelectionOnClick={true}
             disableColumnFilter
-            pageSize={15}
-            rowsPerPageOptions={[15]}
+            pageSize={12}
+            rowsPerPageOptions={[12]}
             disableExtendRowFullWidth={true}
             onSelectionModelChange={(ids) => {
               const selectedIDs = new Set(ids);
