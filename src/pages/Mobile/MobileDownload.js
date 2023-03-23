@@ -25,10 +25,6 @@ const MobileDownload = ({
   open,
   setOpen,
 }) => {
-  const contentState = convertFromRaw(
-    JSON.parse(orderAndStore?.order?.item?.content)
-  );
-
   return (
     <div className='mx-auto p-2'>
       <div className='w-full border-b-2 mt-6 p-2 flex flex-col'>

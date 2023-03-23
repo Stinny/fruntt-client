@@ -30,41 +30,16 @@ const MobileDigitalDetail = ({ order }) => {
           </h2>
           <p>Order placed on {moment(order?.placedOn).format('MMM D, YYYY')}</p>
         </div>
-        <div className='flex items-center'>
-          <div className='flex items-center justify-center border-2 mr-2 w-40 h-10 rounded text-slate-800 border-slate-800 '>
-            <p>Order Delivered</p>
-            <AiOutlineCheckCircle className='text-green-600 text-xl ml-2' />
-          </div>
-        </div>
       </div>
-
       <div className='w-11/12 mx-auto mt-10 border-2 rounded p-2'>
-        <div className='w-full flex justify-between border-b p-2'>
-          <p className='text-xl font-medium'>Customer info</p>
-          <Link
-            to={`/dashboard/customers/${order.customerId}`}
-            className='border-2 w-32 flex justify-center items-center rounded text-slate-800 border-slate-800 hover:text-white hover:bg-slate-800'
-          >
-            View customer
-          </Link>
-        </div>
-        <div className='w-full p-4 flex flex-col mx-auto'>
-          <p className='text-gray-400'>Email:</p>
-          <p className='text-lg font-medium'>{order?.email}</p>
-          <p className='text-gray-400 mt-2'>First Name:</p>
-          <p className='text-lg font-medium mt-2'>{order?.firstName}</p>
-          <p className='text-gray-400 mt-2'>Last Name:</p>
-          <p className='text-lg font-medium mt-2'>{order?.lastName}</p>
-        </div>
-        <div className='border-b p-2'>
-          <p className='text-xl font-medium'>What they got</p>
-        </div>
-        <div className='w-full h-72 p-4 flex flex-col mx-auto'>
-          <p className='text-gray-400'>title</p>
-          <p className='text-lg font-medium mt-2'>{order?.item?.title}</p>
-          <p className='text-gray-400 mb-2 mt-2'>Type:</p>
+        <div className='w-full flex flex-col items-center mx-auto'>
+          <p className='text-gray-400 font-medium'>Total</p>
+          <p className='font-medium text-stone-800 text-4xl'>${order?.total}</p>
+          <p className='text-gray-400 font-medium mt-4'>Delivered to</p>
+          <p className='text-stone-800 font-medium text-xl'>{order?.email}</p>
+          <p className='text-gray-400 font-medium mt-4'>Type</p>
           {order?.item?.digitalType === 'video' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-10'>
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-10 mt-2'>
               <p>Video Course</p>
               <MdOutlineVideoLibrary className='ml-2 text-2xl' />
             </div>
@@ -89,18 +64,14 @@ const MobileDigitalDetail = ({ order }) => {
               <MdLocalPrintshop className='ml-2 text-2xl' />
             </div>
           )}
-          <p className='text-gray-400 mt-2'>Files included:</p>
-          <p className='text-lg font-medium mt-2'>
-            {order?.item?.files.length}
+          <p className='text-gray-400 font-medium mt-4'>Title</p>
+          <p className='text-stone-800 font-medium text-2xl'>
+            {order?.item?.title}
           </p>
-          <p className='text-gray-400 mt-2'>Total:</p>
-          <p className='text-lg font-medium mt-2'>
-            $
-            {order?.total?.toLocaleString('en-US', {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
-          </p>
+          <img
+            src={order?.item?.coverImage?.url}
+            className='w-8/12 rounded mt-4'
+          />
         </div>
       </div>
     </div>

@@ -87,7 +87,7 @@ const OrderDetail = () => {
       <DigitalDetail order={order} />
     ) : (
       <div className='w-full'>
-        <LabelModal
+        {/* <LabelModal
           closeLabelModal={closeLabelModal}
           openLabelModal={openLabelModal}
           labelModalIsOpen={labelModaIsOpen}
@@ -101,7 +101,7 @@ const OrderDetail = () => {
           order={order}
           fulfillModalIsOpen={fulfillModalIsOpen}
           refetch={refetch}
-        />
+        /> */}
 
         <Link
           to='/dashboard/orders'
