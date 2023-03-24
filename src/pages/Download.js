@@ -31,6 +31,7 @@ const Download = () => {
   const [open, setOpen] = useState(false);
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
+  const [name, setName] = useState('');
 
   //get order, as long as it is paid for
   const {
@@ -52,6 +53,7 @@ const Download = () => {
         rating: rating,
         orderId: orderAndStore?.order?._id,
         email: orderAndStore?.order?.email,
+        name: name,
       }).unwrap();
 
       if (addReviewReq === 'Review added') {
@@ -74,6 +76,7 @@ const Download = () => {
         handleSubmitReview={handleSubmitReview}
         open={open}
         setOpen={setOpen}
+        setName={setName}
       />
     ) : (
       <div className='mx-auto'>
@@ -103,11 +106,20 @@ const Download = () => {
                 onSubmit={handleSubmitReview}
                 className='w-full flex justify-around items-center'
               >
-                <textarea
-                  onChange={(e) => setReview(e.target.value)}
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white mr-4'
-                  placeholder='Enter review here...'
-                />
+                <div className='flex flex-col w-full mr-4'>
+                  <input
+                    type='text'
+                    placeholder='Name'
+                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white mr-4'
+                    onChange={(e) => setName(e.target.value)}
+                  />
+
+                  <textarea
+                    onChange={(e) => setReview(e.target.value)}
+                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white mr-4 mt-2'
+                    placeholder='Enter review here...'
+                  />
+                </div>
 
                 <Rating
                   onChange={(e) => setRating(e.target.value)}

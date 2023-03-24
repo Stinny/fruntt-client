@@ -24,13 +24,14 @@ const MobileDownload = ({
   handleSubmitReview,
   open,
   setOpen,
+  setName,
 }) => {
   return (
     <div className='mx-auto p-2'>
       <div className='w-full border-b-2 mt-6 p-2 flex flex-col'>
         <p className='text-2xl font-medium'>Your Recent Digital Purchase</p>
         <p className='text-md text-gray-400 font-medium'>
-          This is always accessible from you email
+          This is always accessible from your email
         </p>
       </div>
 
@@ -59,6 +60,12 @@ const MobileDownload = ({
                 onChange={(e) => setRating(e.target.value)}
                 precision={0.5}
                 size='large'
+              />
+              <input
+                type='text'
+                placeholder='Name'
+                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded-lg p-2 outline outline-0 bg-white mt-2'
+                onChange={(e) => setName(e.target.value)}
               />
               <textarea
                 onChange={(e) => setReview(e.target.value)}

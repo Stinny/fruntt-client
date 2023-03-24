@@ -38,7 +38,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     addProductReview: builder.mutation({
-      query: ({ orderId, email, review, rating }) => ({
+      query: ({ orderId, email, review, rating, name }) => ({
         url: `/orders/add/review`,
         method: 'POST',
         body: {
@@ -46,6 +46,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
           email: email,
           review: review,
           rating: rating,
+          name: name,
         },
       }),
     }),
