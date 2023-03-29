@@ -29,6 +29,18 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    hideSections: builder.mutation({
+      query: ({ storeId, hideDescription, hideReviews, hideQuestions }) => ({
+        url: `/storefront/hidesections`,
+        method: 'POST',
+        body: {
+          storeId: storeId,
+          hideReviews: hideReviews,
+          hideQuestions: hideQuestions,
+          hideDescription: hideDescription,
+        },
+      }),
+    }),
     addSocials: builder.mutation({
       query: ({ storeId, youtube, facebook, instagram, twitter }) => ({
         url: `/storefront/addsocials`,
@@ -114,4 +126,5 @@ export const {
   useAddStoreMutation,
   useLazyGetStorefrontByIDQuery,
   useDeleteStoreMutation,
+  useHideSectionsMutation,
 } = storefrontApiSlice;

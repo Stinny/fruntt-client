@@ -126,7 +126,7 @@ const FAQs = ({ currentUser, item, refetch, isLoading, isSuccess }) => {
 
             <button
               onClick={handleAddFAQ}
-              className='h-14 w-full border-slate-800 border-2 rounded mt-2 hover:bg-slate-800 hover:text-white'
+              className='h-14 w-full border-stone-800 border-2 rounded mt-2 hover:bg-stone-800 hover:text-white'
             >
               + Add FAQ
             </button>
@@ -149,7 +149,7 @@ const FAQs = ({ currentUser, item, refetch, isLoading, isSuccess }) => {
               </p>
               {item.length ? (
                 <button
-                  className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
+                  className='border-2 rounded w-16 h-8 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800'
                   onClick={openModal}
                 >
                   + Add

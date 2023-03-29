@@ -7,7 +7,7 @@ import AddLogo from '../../components/Content/AddLogo';
 import FAQs from '../../components/Content/FAQs';
 import { useGetStorefrontQuery } from '../../api/storefrontApiSlice';
 import Spinner from '../../components/Spinner';
-import AddSocials from '../../components/Content/AddSocials';
+import HideSections from '../../components/Content/HideSections';
 import AddMedia from '../../components/Content/AddMedia';
 import { isMobile } from 'react-device-detect';
 import Cookies from 'js-cookie';
@@ -78,6 +78,8 @@ const Content = () => {
 
         <AddLogo storefront={storefront} refetch={refetch} setInfo={setInfo} />
 
+        <HideSections storefront={storefront} refetch={refetch} />
+
         <Description
           currentUser={currentUser}
           isLoading={gettingItem}
@@ -94,7 +96,7 @@ const Content = () => {
           item={item}
         />
 
-        <AddMedia />
+        {/* <AddMedia /> */}
       </>
     );
   }
