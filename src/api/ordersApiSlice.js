@@ -15,6 +15,12 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
     getShippingRates: builder.query({
       query: ({ orderId }) => `/orders/rates/${orderId}`,
     }),
+    getReviews: builder.query({
+      query: ({ storeId }) => `/orders/reviews/${storeId}`,
+    }),
+    getReview: builder.query({
+      query: ({ reviewId }) => `/orders/reviews/r/${reviewId}`,
+    }),
     fulfillOrder: builder.mutation({
       query: ({ orderId, trackingNum, fulfillType, carrierCode }) => ({
         url: `/orders/fulfill/${orderId}`,
@@ -37,6 +43,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+
     addProductReview: builder.mutation({
       query: ({ orderId, email, review, rating, name }) => ({
         url: `/orders/add/review`,
@@ -91,4 +98,6 @@ export const {
   useGetShippingLabelMutation,
   useEditShipsFromAddressMutation,
   useAddProductReviewMutation,
+  useGetReviewsQuery,
+  useGetReviewQuery,
 } = ordersApiSlice;

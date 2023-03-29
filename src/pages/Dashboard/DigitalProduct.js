@@ -90,7 +90,15 @@ const DigitalProduct = ({ product }) => {
                 </div>
               )}
               <p className='text-gray-400 mt-4'>Product Price</p>
-              <p className='text-2xl mt-4'>${product?.price.toFixed(2)}</p>
+              <p className='text-3xl mt-4 font-medium'>
+                ${product?.payChoice ? `${product?.price} +` : product?.price}
+              </p>
+
+              <FormControlLabel
+                label='Let customers pay what they want'
+                control={<Switch checked={product?.payChoice} disabled />}
+                className='mt-2'
+              />
             </div>
             <div className='w-6/12 flex flex-col ml-4'>
               <p className='text-gray-400 mt-4'>Cover Image</p>
@@ -98,6 +106,19 @@ const DigitalProduct = ({ product }) => {
                 src={product?.coverImage?.url}
                 className='w-8/12 border rounded mt-2'
               />
+
+              <p className='text-gray-400 mt-4'>Call to action</p>
+              <button
+                type='button'
+                disabled
+                className='w-10/12 border-2 rounded h-14 text-xl border-stone-800 text-stone-800'
+              >
+                {product?.callToAction === 'buy'
+                  ? 'Buy Now'
+                  : product?.callToAction === 'want'
+                  ? 'I want this!'
+                  : 'Get Now'}
+              </button>
             </div>
           </div>
         </div>

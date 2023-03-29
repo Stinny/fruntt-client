@@ -85,10 +85,10 @@ function App() {
                 element={<OrderDetail />}
               />
 
-              <Route path='dashboard/customers' element={<Customers />} />
+              <Route path='dashboard/reviews' element={<Customers />} />
 
               <Route
-                path='dashboard/customers/:customerId'
+                path='dashboard/reviews/:reviewId'
                 element={<CustomerDetail />}
               />
 

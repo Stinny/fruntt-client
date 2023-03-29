@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 //mui
 import Tooltip from '@mui/material/Tooltip';
@@ -29,6 +29,13 @@ const DesktopForm = ({
   setLink,
   productContent,
   handleProductContent,
+  setCallToAction,
+  callToAction,
+  payChoice,
+  setPayChoice,
+  price,
+  setSuggestedPrice,
+  setProductContent,
 }) => {
   return (
     <div className='w-full'>
@@ -54,7 +61,7 @@ const DesktopForm = ({
             CANCEL
           </button>
           <button
-            className='w-40 h-10 rounded border-slate-800 border-2 hover:text-white hover:bg-slate-800'
+            className='w-40 h-10 rounded border-stone-800 border-2 hover:text-white hover:bg-stone-800 text-stone-800'
             onClick={handleAddProduct}
             type='button'
           >
@@ -116,16 +123,71 @@ const DesktopForm = ({
 
             <p className='text-gray-400 mt-4'>Product Price</p>
             <div className='flex items-center'>
+              <div className='mr-4'>
+                <p className='text-xl font-medium'>$</p>
+              </div>
               <input
-                type='decimal'
+                type='number'
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-                placeholder='$19'
+                placeholder={payChoice ? '$9+' : '$9'}
+                step={1}
                 onChange={(e) => setPrice(e.target.value)}
+                price={price}
               />
             </div>
+            <FormControlLabel
+              label='Let customers pay what they want'
+              control={
+                <Switch
+                  checked={payChoice}
+                  onChange={(e) => setPayChoice(e.target.checked)}
+                />
+              }
+              className='mt-2'
+            />
+
+            {payChoice ? (
+              <div className='flex items-center'>
+                <div className='flex flex-col w-6/12'>
+                  <p className='text-gray-400'>Minimum price</p>
+                  <div className='flex items-center w-full'>
+                    <div className='w-1/12'>
+                      <p className='text-xl font-medium'>$</p>
+                    </div>
+                    <input
+                      type='number'
+                      className='border-2 border-slate-200 w-11/12 rounded p-2 outline outline-0 bg-white'
+                      step={1}
+                      placeholder='$9+'
+                      value={price}
+                      disabled
+                      style={{
+                        WebkitAppearance: 'none',
+                        MozAppearance: 'textfield',
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className='flex flex-col w-6/12 ml-2'>
+                  <p className='text-gray-400'>Suggested price/placeholder</p>
+                  <div className='flex items-center w-full'>
+                    <div className='w-1/12'>
+                      <p className='text-xl font-medium'>$</p>
+                    </div>
+                    <input
+                      className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                      onChange={(e) => setSuggestedPrice(e.target.value)}
+                      placeholder='$9+'
+                    />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
 
-          <div className='border-2 rounded w-6/12 h-44 ml-4 flex flex-col p-2'>
+          <div className='border-2 rounded w-6/12 ml-4 flex flex-col p-2'>
             <p className='text-lg font-medium text-slate-800 text-center'>
               Upload a cover image
             </p>
@@ -139,6 +201,16 @@ const DesktopForm = ({
               name='productImages'
               onupdatefiles={(file) => setImage(file)}
             />
+            <p className='text-gray-400'>Call to action</p>
+            <select
+              onChange={(e) => setCallToAction(e.target.value)}
+              className='w-full h-14 rounded p-2'
+              value={callToAction}
+            >
+              <option value='buy'>Buy Now</option>
+              <option value='want'>I want this!</option>
+              <option value='get'>Get Now</option>
+            </select>
           </div>
         </div>
 
@@ -173,29 +245,10 @@ const DesktopForm = ({
           }}
         />
         <div className='w-full border rounded mt-6'>
-          <Editor
-            editorState={productContent}
-            toolbarClassName='toolbarClassName'
-            wrapperClassName='wrapperClassName'
-            editorClassName='editorClassName'
-            onEditorStateChange={handleProductContent}
-            placeholder='Start typing here..'
-            toolbar={{
-              options: [
-                'inline',
-                'blockType',
-                'fontSize',
-                'list',
-                'textAlign',
-                'colorPicker',
-                'link',
-                'embedded',
-                'emoji',
-                'image',
-                'remove',
-                'history',
-              ],
-            }}
+          <ReactQuill
+            // theme='snow'
+            onChange={setProductContent}
+            placeholder='Start typing here...'
           />
         </div>
         {/* <div className='flex flex-col'>
@@ -210,7 +263,7 @@ const DesktopForm = ({
             onChange={(e) => setLink(e.target.value)}
           />
         </div> */}
-        <button className='border-2 rounded h-14 w-full text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white mt-4'>
+        <button className='border-2 rounded h-14 w-full text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white mt-4'>
           + ADD PRODUCT
         </button>
         <button

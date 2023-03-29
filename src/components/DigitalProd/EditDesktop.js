@@ -38,6 +38,12 @@ const EditDesktop = ({
   refetchProduct,
   productContent,
   setProductContent,
+  callToAction,
+  setCallToAction,
+  payChoice,
+  setPayChoice,
+  suggestedPrice,
+  setSuggestedPrice,
 }) => {
   return (
     <div className='w-full'>
@@ -126,13 +132,69 @@ const EditDesktop = ({
 
             <p className='text-gray-400 mt-4'>Product Price</p>
             <div className='flex items-center'>
+              <div className='mr-4'>
+                <p className='text-xl font-medium'>$</p>
+              </div>
               <input
                 type='number'
+                step={1}
+                min={0}
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>
+            <FormControlLabel
+              label='Let customers pay what they want'
+              control={
+                <Switch
+                  checked={payChoice}
+                  onChange={(e) => setPayChoice(e.target.checked)}
+                />
+              }
+              className='mt-2'
+            />
+
+            {payChoice ? (
+              <div className='flex items-center'>
+                <div className='flex flex-col w-6/12'>
+                  <p className='text-gray-400'>Minimum price</p>
+                  <div className='flex items-center w-full'>
+                    <div className='w-1/12'>
+                      <p className='text-xl font-medium'>$</p>
+                    </div>
+                    <input
+                      type='number'
+                      className='border-2 border-slate-200 w-11/12 rounded p-2 outline outline-0 bg-white'
+                      step={1}
+                      placeholder='$9+'
+                      value={price}
+                      disabled
+                      style={{
+                        WebkitAppearance: 'none',
+                        MozAppearance: 'textfield',
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className='flex flex-col w-6/12 ml-2'>
+                  <p className='text-gray-400'>Suggested price/placeholder</p>
+                  <div className='flex items-center w-full'>
+                    <div className='w-1/12'>
+                      <p className='text-xl font-medium'>$</p>
+                    </div>
+                    <input
+                      className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                      onChange={(e) => setSuggestedPrice(e.target.value)}
+                      placeholder='$9+'
+                      value={suggestedPrice}
+                    />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
 
           <div className='border-2 rounded w-6/12 ml-4 flex flex-col justify-center p-2'>
@@ -143,6 +205,16 @@ const EditDesktop = ({
               setImage={setImage}
               refetchProduct={refetchProduct}
             />
+            <p className='text-gray-400'>Call to action</p>
+            <select
+              onChange={(e) => setCallToAction(e.target.value)}
+              className='w-full h-14 rounded p-2'
+              value={callToAction}
+            >
+              <option value='buy'>Buy Now</option>
+              <option value='want'>I want this!</option>
+              <option value='get'>Get Now</option>
+            </select>
           </div>
         </div>
 

@@ -10,7 +10,6 @@ import { uploadImageRequest } from '../../api/requests';
 import { useAddDigitalProductMutation } from '../../api/productsApiSlice';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { EditorState, convertToRaw } from 'draft-js';
 
 const AddDigitalProd = () => {
   const navigate = useNavigate();
@@ -30,9 +29,10 @@ const AddDigitalProd = () => {
   const [published, setPublished] = useState(true);
   const [digitalType, setDigitalType] = useState('');
   const [link, setLink] = useState('');
-  const [productContent, setProductContent] = useState(
-    EditorState.createEmpty()
-  );
+  const [callToAction, setCallToAction] = useState('buy');
+  const [payChoice, setPayChoice] = useState(false);
+  const [suggestedPrice, setSuggestedPrice] = useState('');
+  const [productContent, setProductContent] = useState('');
 
   const [addDigitalProduct, result] = useAddDigitalProductMutation();
 
@@ -47,9 +47,7 @@ const AddDigitalProd = () => {
   const handleAddProduct = async (e) => {
     e.preventDefault();
 
-    console.log(
-      JSON.stringify(convertToRaw(productContent.getCurrentContent()))
-    );
+    console.log('adding product');
 
     let coverPicUrl;
     let coverPicKey;
@@ -59,10 +57,15 @@ const AddDigitalProd = () => {
     //if request is success
     //send request to create product
 
-    if (!title || !description || !digitalType || !price) {
+    if (!title || !digitalType || !price) {
       setError('Please fill out all fields to complete your product');
       return;
     }
+
+    //to see if quill editor is empty
+    var regex = /(<([^>]+)>)/gi;
+    const hasText = !!productContent.replace(regex, '').length;
+
     try {
       if (image.length) {
         const imageToUpload = new FormData();
@@ -96,9 +99,10 @@ const AddDigitalProd = () => {
           published: published,
           digitalType,
           link: link,
-          content: JSON.stringify(
-            convertToRaw(productContent.getCurrentContent())
-          ),
+          callToAction: callToAction,
+          payChoice: payChoice,
+          suggestedPrice: suggestedPrice,
+          content: hasText ? productContent : '',
         }).unwrap();
 
         if (addDigitalProductReq.msg === 'Product added') {
@@ -107,10 +111,9 @@ const AddDigitalProd = () => {
           Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
           navigate('/dashboard/item');
         }
-
-        console.log(addDigitalProductReq);
       }
     } catch (err) {
+      console.log(err);
       setError('There was a server error');
     }
   };
@@ -129,11 +132,18 @@ const AddDigitalProd = () => {
             setImage={setImage}
             setFiles={setFiles}
             setPrice={setPrice}
+            price={price}
             setPublished={setPublished}
             published={published}
             setDigitalType={setDigitalType}
             productContent={productContent}
             handleProductContent={handleProductContent}
+            setCallToAction={setCallToAction}
+            callToAction={callToAction}
+            payChoice={payChoice}
+            setPayChoice={setPayChoice}
+            setSuggestedPrice={setSuggestedPrice}
+            setProductContent={setProductContent}
           />
         ) : (
           <DesktopForm
@@ -144,12 +154,19 @@ const AddDigitalProd = () => {
             setImage={setImage}
             setFiles={setFiles}
             setPrice={setPrice}
+            price={price}
             setPublished={setPublished}
             published={published}
             setDigitalType={setDigitalType}
             setLink={setLink}
             productContent={productContent}
+            setProductContent={setProductContent}
             handleProductContent={handleProductContent}
+            setCallToAction={setCallToAction}
+            callToAction={callToAction}
+            payChoice={payChoice}
+            setPayChoice={setPayChoice}
+            setSuggestedPrice={setSuggestedPrice}
           />
         )}
       </div>

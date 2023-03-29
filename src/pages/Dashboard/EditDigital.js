@@ -24,6 +24,9 @@ const EditDigital = ({ product, refetch }) => {
   const [published, setPublished] = useState(product?.published);
   const [digitalType, setDigitalType] = useState(product?.digitalType);
   const [link, setLink] = useState(product?.link);
+  const [callToAction, setCallToAction] = useState(product?.callToAction);
+  const [payChoice, setPayChoice] = useState(product?.payChoice);
+  const [suggestedPrice, setSuggestedPrice] = useState(product?.suggestedPrice);
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
@@ -41,7 +44,7 @@ const EditDigital = ({ product, refetch }) => {
       return;
     }
 
-    if (!title || !description || !price) {
+    if (!title || !price) {
       setError('Please fill in all fields');
       return;
     }
@@ -87,6 +90,9 @@ const EditDigital = ({ product, refetch }) => {
         productId: product?._id,
         digitalType: digitalType,
         content: hasText ? productContent : '',
+        suggestedPrice: suggestedPrice,
+        payChoice: payChoice,
+        callToAction: callToAction,
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
@@ -96,10 +102,6 @@ const EditDigital = ({ product, refetch }) => {
     } catch (err) {
       setError('There was an error');
     }
-  };
-
-  const handleProductContent = (edits) => {
-    setProductContent(edits);
   };
 
   const handleDelete = async () => {
@@ -130,6 +132,12 @@ const EditDigital = ({ product, refetch }) => {
       setLink={setLink}
       productContent={productContent}
       setProductContent={setProductContent}
+      callToAction={callToAction}
+      setCallToAction={setCallToAction}
+      payChoice={payChoice}
+      setPayChoice={setPayChoice}
+      suggestedPrice={suggestedPrice}
+      setSuggestedPrice={setSuggestedPrice}
     />
   );
 };

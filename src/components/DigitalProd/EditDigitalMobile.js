@@ -40,6 +40,9 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
   const [digitalType, setDigitalType] = useState(product?.digitalType);
   const [link, setLink] = useState(product?.link);
   const [productContent, setProductContent] = useState(product?.content);
+  const [callToAction, setCallToAction] = useState(product?.callToAction);
+  const [payChoice, setPayChoice] = useState(product?.payChoice);
+  const [suggestedPrice, setSuggestedPrice] = useState(product?.suggestedPrice);
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
@@ -98,6 +101,9 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
         digitalType: digitalType,
         link: link,
         content: hasText ? productContent : '',
+        suggestedPrice: suggestedPrice,
+        payChoice: payChoice,
+        callToAction: callToAction,
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
@@ -178,6 +184,9 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
 
             <p className='text-gray-400 mt-4'>Product Price</p>
             <div className='flex items-center'>
+              <div className='mr-4'>
+                <p className='text-xl font-medium'>$</p>
+              </div>
               <input
                 type='number'
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
@@ -186,15 +195,46 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
               />
             </div>
             <FormControlLabel
-              label='Publish to product page'
+              label='Let customers pay what they want'
               control={
                 <Switch
-                  checked={published}
-                  onChange={(e) => setPublished(e.target.checked)}
+                  checked={payChoice}
+                  onChange={(e) => setPayChoice(e.target.checked)}
                 />
               }
               className='mt-2'
             />
+
+            {payChoice ? (
+              <div className='flex items-center'>
+                <div className='flex flex-col w-6/12'>
+                  <p className='text-gray-400'>Minimum price</p>
+                  <input
+                    type='number'
+                    className='border-2 border-slate-200 w-full rounded p-2 outline outline-0 bg-white'
+                    step={1}
+                    placeholder='$9+'
+                    value={price}
+                    disabled
+                    style={{
+                      WebkitAppearance: 'none',
+                      MozAppearance: 'textfield',
+                    }}
+                  />
+                </div>
+                <div className='flex flex-col w-6/12 ml-2'>
+                  <p className='text-gray-400'>Suggested price</p>
+                  <input
+                    className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                    onChange={(e) => setSuggestedPrice(e.target.value)}
+                    placeholder='$9+'
+                    value={suggestedPrice}
+                  />
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
 
             <CoverImage
               product={product}
@@ -202,6 +242,26 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
               image={image}
               setImage={setImage}
               refetchProduct={refetch}
+            />
+            <p className='text-gray-400 mt-2'>Call to action</p>
+            <select
+              onChange={(e) => setCallToAction(e.target.value)}
+              className='w-full h-14 rounded p-2'
+              value={callToAction}
+            >
+              <option value='buy'>Buy Now</option>
+              <option value='want'>I want this!</option>
+              <option value='get'>Get Now</option>
+            </select>
+            <FormControlLabel
+              label='Publish to page'
+              control={
+                <Switch
+                  checked={published}
+                  onChange={(e) => setPublished(e.target.checked)}
+                />
+              }
+              className='mt-2'
             />
           </div>
         </div>

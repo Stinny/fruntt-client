@@ -28,7 +28,7 @@ const OrdersMobile = ({ orders, cols }) => {
         <DataGrid
           rows={orders}
           columns={cols}
-          getRowId={(row) => row._id}
+          getRowId={(row) => row?._id}
           autoHeight
           disableSelectionOnClick={true}
           disableColumnFilter

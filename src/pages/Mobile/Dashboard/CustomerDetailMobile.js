@@ -1,66 +1,56 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BsArrowLeftShort } from 'react-icons/bs';
+import moment from 'moment';
 
 //mui
 import Rating from '@mui/material/Rating';
 
-const CustomerDetailMobile = ({ customer }) => {
+const CustomerDetailMobile = ({ review }) => {
   return (
-    <div>
+    <div className='w-full p-2'>
       <Link
-        to='/dashboard/customers'
-        className='flex items-center text-gray-400 text-lg hover:text-gray-600 w-4/12'
+        to='/dashboard/reviews'
+        className='flex items-center text-gray-400 text-lg hover:text-gray-600 w-6/12'
       >
         {' '}
         <BsArrowLeftShort />
-        Customers
+        Back to reviews
       </Link>
-      <div className='flex flex-col border-b-2 p-2'>
-        <h2 className='text-xl font-bold'>
-          Viewing customer:{' '}
-          <span className='font-medium'>{customer?.customer?._id}</span>
-        </h2>
+      <div className='flex justify-between items-center w-full border-b-2 p-2'>
+        <div className='flex flex-col'>
+          <h2 className='text-2xl font-bold'>
+            Viewing review: <span className='font-medium'>{review?._id}</span>
+          </h2>
+          <p>Reviewed on {moment(review?.createdAt).format('MMM D, YYYY')}</p>
+        </div>
       </div>
-      <div className='w-full flex justify-between border-b p-2 mt-2'>
-        <p className='text-xl font-medium'>Details</p>
+
+      <div className='w-full mx-auto mt-10 border-2 rounded p-2 relative'>
         <Link
-          to={`/dashboard/orders/${customer?.customer?.orderId}`}
-          className='border-2 w-32 flex justify-center items-center rounded text-slate-800 border-slate-800 hover:text-white hover:bg-slate-800'
+          to={`/dashboard/orders/${review?.orderId}`}
+          className='absolute right-0 text-sm flex items-center justify-center border-2 border-stone-800 rounded w-24 h-10 mr-2 hover:bg-stone-800 hover:text-white'
         >
-          View their order
+          View Order
         </Link>
-      </div>
-
-      <div className='w-full p-2 flex flex-col mx-auto p-4'>
-        <p className='text-gray-400'>Email:</p>
-        <p className='text-lg font-medium'>{customer?.customer?.email}</p>
-        <p className='text-gray-400 mt-2'>First Name:</p>
-        <p className='text-lg font-medium'>{customer?.customer?.firstName}</p>
-        <p className='text-gray-400 mt-2'>Last Name:</p>
-        <p className='text-lg font-medium '>{customer?.customer?.lastName}</p>
-      </div>
-
-      <div className='w-full border-b p-2'>
-        <p className='text-xl font-medium '>Review</p>
-      </div>
-      {customer?.customer?.reviewed ? (
-        <div className='w-full border-2 rounded p-2 mt-4'>
+        <div className='w-full flex flex-col mx-auto'>
+          <p className='text-gray-400 font-medium '>Name</p>
+          <p className='text-xl font-medium'>{review?.name}</p>
+          <p className='text-gray-400 font-medium mt-4'>Rating</p>
           <Rating
-            value={customer?.customer?.rating}
-            readOnly
+            value={review?.rating}
             precision={0.5}
-            size='medium'
+            size='large'
+            readOnly
           />
-          <p className='text-lg mt-2'>{customer?.customer?.review}</p>
+          <p className='text-gray-400 font-medium mt-4'>Review</p>
+          <textarea
+            value={review?.review}
+            readOnly
+            className='rounded border-gray-200 border-2 p-2 outline-0 outline'
+          />
         </div>
-      ) : (
-        <div className='border-2 rounded flex justify-center items-center p-4 h-20 mt-4 w-11/12 mx-auto'>
-          <p className='text-gray-400 text-lg text-center'>
-            This customer has not left a review yet
-          </p>
-        </div>
-      )}
+      </div>
     </div>
   );
 };

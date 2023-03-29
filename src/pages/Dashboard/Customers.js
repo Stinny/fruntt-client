@@ -14,22 +14,19 @@ import moment from 'moment';
 import { BiMailSend } from 'react-icons/bi';
 import { isMobile } from 'react-device-detect';
 import CustomersMobile from '../Mobile/Dashboard/CustomersMobile';
+import { useGetReviewsQuery } from '../../api/ordersApiSlice';
 
 //mui
 import { DataGrid } from '@mui/x-data-grid';
 import Stack from '@mui/material/Stack';
+import Rating from '@mui/material/Rating';
 
 const Customers = () => {
   const currentStoreID = useSelector((state) => state.user.selectedStore);
 
-  const {
-    data: customers,
-    isLoading,
-    isSuccess,
-    refetch,
-  } = useGetCustomersQuery({ storeId: currentStoreID });
-
-  const [sendReviewEmail, result] = useSendReviewEmailMutation();
+  const { data: reviews, isLoading, isSuccess, refetch } = useGetReviewsQuery({
+    storeId: currentStoreID,
+  });
 
   useEffect(() => {
     refetch();
@@ -39,111 +36,75 @@ const Customers = () => {
     refetch();
   }, [currentStoreID]);
 
-  const handleSendReviewEmail = async ({ customerId, storeId }) => {
-    try {
-      const sendReviewEmailReq = await sendReviewEmail({
-        customerId: customerId,
-        storeId: storeId,
-      }).unwrap();
-      refetch();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   //for data grid
   const cols = [
     {
-      field: 'email',
-      headerName: 'Email',
-      width: 200,
-      align: 'center',
-      headerAlign: 'center',
-    },
-    {
-      field: 'firstName',
-      headerName: 'Name',
-      width: 190,
+      field: 'orderId',
+      headerName: 'Order',
+      width: 250,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
         return (
-          <p>
-            {params.row.firstName} {params.row.lastName}
+          <Link
+            to={`/dashboard/orders/${params?.row?.orderId}`}
+            className='underline underline0-offset-4'
+          >
+            {params?.row?.orderId}
+          </Link>
+        );
+      },
+    },
+    {
+      field: 'name',
+      headerName: 'Name',
+      width: 225,
+      align: 'center',
+      headerAlign: 'center',
+      renderCell: (params) => {
+        return <p className='text-lg'>{params?.row?.name}</p>;
+      },
+    },
+    {
+      field: 'createdAt',
+      headerName: 'Reviewed On',
+      width: 225,
+      headerAlign: 'center',
+      align: 'center',
+      renderCell: (params) => {
+        return (
+          <p className='font-bold text-lg'>
+            {moment(params?.row?.createdAt).format('MMM D, YYYY')}
           </p>
         );
       },
     },
 
     {
-      field: 'orderedOn',
-      headerName: 'Ordered On',
-      width: 175,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: (params) => {
-        return <p>{moment(params?.row?.orderedOn).format('MMM D, YYYY')}</p>;
-      },
-    },
-    {
       field: 'reviewed',
-      headerName: 'Review',
-      width: 175,
+      headerName: 'Rating',
+      width: 225,
       headerAlign: 'center',
       align: 'center',
       renderCell: (params) => {
-        return params.row.reviewed ? (
-          <button className='rounded-lg w-80 text-lime-600 bg-lime-200 font-semibold hover:cursor-default'>
-            Collected
-          </button>
-        ) : (
-          <button className='rounded-lg w-60  bg-red-200 text-red-400 font-semibold hover:cursor-default'>
-            Not collected
-          </button>
-        );
+        return <Rating value={params?.row?.rating} precision={0.5} readOnly />;
       },
     },
-    {
-      field: 'emailSent',
-      headerName: 'Collect',
-      width: 200,
-      align: 'center',
-      headerAlign: 'center',
-      renderCell: (params) => {
-        return params.row.emailSent ? (
-          <div className='flex items-center'>
-            <p className='font-medium text-blue-600'>Email sent</p>
-            <BiMailSend className='text-lg ml-2 text-blue-600' />
-          </div>
-        ) : (
-          <button
-            className='border-2 w-10/12 border-gray-400 text-gray-400 text-sm rounded'
-            onClick={(e) =>
-              handleSendReviewEmail({
-                customerId: params.row._id,
-                storeId: params.row.storeId,
-              })
-            }
-          >
-            Request Review
-          </button>
-        );
-      },
-    },
+
     {
       field: ' ',
       headerName: 'View',
-      width: 200,
+      width: 225,
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
         return (
           <Link
             className='w-full flex justify-center items-center'
-            to={`/dashboard/customers/${params.row._id}`}
+            to={`/dashboard/reviews/${params.row._id}`}
           >
-            <button className='border-2 w-3/6 border-slate-800 text-slate-800 text-sm rounded'>
-              Details
+            <button className='border-2 w-4/6 border-slate-800 text-slate-800 text-sm rounded'>
+              See Full Review
             </button>
           </Link>
         );
@@ -156,12 +117,13 @@ const Customers = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
+    console.log(reviews);
     content = isMobile ? (
-      <CustomersMobile customers={customers} cols={cols} />
-    ) : customers.length > 0 ? (
+      <CustomersMobile reviews={reviews} cols={cols} />
+    ) : reviews.length > 0 ? (
       <div>
         <div className='w-full  flex justify-between border-b-2 p-2'>
-          <h2 className='text-3xl font-semibold'>Your Customers</h2>
+          <h2 className='text-3xl font-semibold'>Your Reviews</h2>
           <div className='flex justify-between'>
             <input
               placeholder='Enter customer email or name'
@@ -176,7 +138,7 @@ const Customers = () => {
         <div className='w-full mx-auto mt-6'>
           {/* data grid copied over from old component */}
           <DataGrid
-            rows={customers}
+            rows={reviews}
             columns={cols}
             getRowId={(row) => row._id}
             autoHeight

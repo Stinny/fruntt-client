@@ -94,7 +94,7 @@ const AddPage = () => {
               </div>
               <button
                 type='submit'
-                className=' text-lg font-medium border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 h-14 mt-4 w-full'
+                className=' text-lg font-medium border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 h-14 mt-4 w-full'
                 disabled={addingPage}
               >
                 {addingPage ? 'Launching page...' : 'Launch product page'}
@@ -149,7 +149,7 @@ const AddPage = () => {
               </div>
               <button
                 type='submit'
-                className=' text-lg font-medium border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 h-14 mt-6 w-full'
+                className=' text-lg font-medium border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 h-14 mt-6 w-full'
                 disabled={addingPage}
               >
                 {addingPage ? 'Launching page...' : 'Launch product page'}

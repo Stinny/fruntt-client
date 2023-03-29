@@ -75,10 +75,10 @@ const Topbar = () => {
           </button>
         </NavLink>
 
-        <NavLink to='/dashboard/customers'>
+        <NavLink to='/dashboard/reviews'>
           <button
             className={
-              path === '/dashboard/customers' ? activeLink : notActiveLink
+              path === '/dashboard/reviews' ? activeLink : notActiveLink
             }
           >
             Reviews

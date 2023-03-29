@@ -2,6 +2,8 @@ import React from 'react';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 //mui
 import Tooltip from '@mui/material/Tooltip';
@@ -26,8 +28,14 @@ const MobileForm = ({
   image,
   setFiles,
   files,
-  handleProductContent,
+  setProductContent,
   productContent,
+  setSuggestedPrice,
+  payChoice,
+  setPayChoice,
+  setCallToAction,
+  callToAction,
+  price,
 }) => {
   return (
     <div className='w-full p-2'>
@@ -90,25 +98,54 @@ const MobileForm = ({
             <div className='flex items-center'>
               <p className='mr-2 font-medium text-xl'>$</p>
               <input
-                type='decimal'
+                type='number'
+                step={1}
                 className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-                placeholder='Price'
+                placeholder={payChoice ? '$9+' : '$9'}
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>
             <FormControlLabel
-              label='Publish to product page'
+              label='Let customers pay what they want'
               control={
                 <Switch
-                  checked={published}
-                  onChange={(e) => setPublished(e.target.checked)}
+                  checked={payChoice}
+                  onChange={(e) => setPayChoice(e.target.checked)}
                 />
               }
-              className='mt-2'
             />
+            {payChoice ? (
+              <div className='flex items-center'>
+                <div className='flex flex-col w-6/12'>
+                  <p className='text-gray-400'>Minimum price</p>
+                  <input
+                    type='number'
+                    className='border-2 border-slate-200 w-full rounded p-2 outline outline-0 bg-white'
+                    step={1}
+                    placeholder='$9+'
+                    value={price}
+                    disabled
+                    style={{
+                      WebkitAppearance: 'none',
+                      MozAppearance: 'textfield',
+                    }}
+                  />
+                </div>
+                <div className='flex flex-col w-6/12 ml-2'>
+                  <p className='text-gray-400'>Suggested price</p>
+                  <input
+                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                    onChange={(e) => setSuggestedPrice(e.target.value)}
+                    placeholder='$9+'
+                  />
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
 
-          <div className='border-2 rounded w-full h-44 flex flex-col p-2'>
+          <div className='border-2 rounded w-full h-44 flex flex-col p-2 mt-2'>
             <p className='text-lg font-medium text-slate-800 text-center'>
               Upload a cover image
             </p>
@@ -123,6 +160,26 @@ const MobileForm = ({
               onupdatefiles={(file) => setImage(file)}
             />
           </div>
+          <p className='text-gray-400'>Call to action</p>
+          <select
+            onChange={(e) => setCallToAction(e.target.value)}
+            className='w-full h-14 rounded p-2'
+            value={callToAction}
+          >
+            <option value='buy'>Buy Now</option>
+            <option value='want'>I want this!</option>
+            <option value='get'>Get Now</option>
+          </select>
+          <FormControlLabel
+            label='Publish to page'
+            control={
+              <Switch
+                checked={published}
+                onChange={(e) => setPublished(e.target.checked)}
+              />
+            }
+            className='mt-2'
+          />
         </div>
 
         <div className='flex items-center mt-4 border-t'>
@@ -154,29 +211,10 @@ const MobileForm = ({
         />
 
         <div className='w-full border rounded mt-6'>
-          <Editor
-            editorState={productContent}
-            toolbarClassName='toolbarClassName'
-            wrapperClassName='wrapperClassName'
-            editorClassName='editorClassName'
-            onEditorStateChange={handleProductContent}
-            placeholder='Start typing here..'
-            toolbar={{
-              options: [
-                'inline',
-                'blockType',
-                'fontSize',
-                'list',
-                'textAlign',
-                'colorPicker',
-                'link',
-                'embedded',
-                'emoji',
-                'image',
-                'remove',
-                'history',
-              ],
-            }}
+          <ReactQuill
+            // theme='snow'
+            onChange={setProductContent}
+            placeholder='Start typing here...'
           />
         </div>
 

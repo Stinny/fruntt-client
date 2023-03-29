@@ -39,17 +39,18 @@ const DigitalPreview = ({
         style={{ backgroundColor: pageBG }}
       >
         <div className='w-3/6' style={{ backgroundColor: pageBG }}>
-          <img className='w-full' src={itemAndReviews?.item?.coverImage?.url} />
+          <img
+            className='w-full border rounded'
+            style={{ borderColor: borderColor }}
+            src={itemAndReviews?.item?.coverImage?.url}
+          />
         </div>
 
         <div
-          className='w-3/6 flex flex-col pl-10'
+          className='w-3/6 flex flex-col pl-6'
           style={{ backgroundColor: pageBG }}
         >
-          <h2
-            className='text-2xl font-medium w-11/12'
-            style={{ color: pageText }}
-          >
+          <h2 className='text-2xl font-medium' style={{ color: pageText }}>
             {itemAndReviews?.item?.title}
           </h2>
           <p className='text-xl mt-2 w-full' style={{ color: pageText }}>
@@ -86,36 +87,85 @@ const DigitalPreview = ({
               <MdLocalPrintshop className='ml-2 text-2xl' />
             </div>
           )}
-          <p className='text-3xl font-medium mt-2' style={{ color: pageText }}>
-            ${itemAndReviews?.item?.price.toFixed(2)}
-          </p>
 
           <form>
             <div className='w-full flex items-center mt-2'>
+              <p
+                className='text-3xl font-medium mr-2'
+                style={{ color: pageText }}
+              >
+                $
+                {itemAndReviews?.item?.payChoice
+                  ? `${itemAndReviews?.item?.price.toFixed(0)} +`
+                  : itemAndReviews?.item?.price.toFixed(0)}
+              </p>
+
               <Rating
                 value={itemAndReviews?.totalRating}
                 precision={0.5}
                 readOnly
+                size='small'
               />
-              <p className='ml-2' style={{ color: pageText }}>
+              <p className='ml-2 text-sm' style={{ color: pageText }}>
                 ({itemAndReviews?.reviews?.length}){' '}
                 {itemAndReviews?.reviews?.length === 1 ? 'review' : 'reviews'}
               </p>
             </div>
 
             <div className='flex justify-between w-full items-center mt-2'>
-              <button
-                type='button'
-                disabled
-                className='w-full text-xl border-2 border-slate-800 rounded'
-                style={{
-                  color: buttonTextColor,
-                  backgroundColor: btnStyle,
-                  borderColor: buttonColor,
-                }}
-              >
-                Buy Now
-              </button>
+              {itemAndReviews?.item?.payChoice ? (
+                <div className='flex flex-col w-full'>
+                  <p className='text-sm'>Set your price</p>
+                  <div className='w-full flex'>
+                    <div className='flex flex-col w-3/12'>
+                      <input
+                        type='number'
+                        className='border-2 mr-2 rounded h-8 bg-transparent p-2 outline outline-0'
+                        style={{
+                          borderColor: borderColor,
+                          WebkitAppearance: 'none',
+                          MozAppearance: 'textfield',
+                        }}
+                        placeholder={`$${itemAndReviews?.item?.suggestedPrice} +`}
+                        min={itemAndReviews?.item?.price}
+                      />
+                    </div>
+                    <button
+                      type='button'
+                      disabled
+                      className='w-9/12 text-xl h-8 border-2 border-slate-800 rounded'
+                      style={{
+                        color: buttonTextColor,
+                        backgroundColor: btnStyle,
+                        borderColor: buttonColor,
+                      }}
+                    >
+                      {itemAndReviews?.item?.callToAction === 'buy'
+                        ? 'Buy Now'
+                        : itemAndReviews?.item?.callToAction === 'want'
+                        ? 'I want this!'
+                        : 'Get Now'}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type='button'
+                  disabled
+                  className='w-full text-xl h-10 border-2 border-slate-800 rounded'
+                  style={{
+                    color: buttonTextColor,
+                    backgroundColor: btnStyle,
+                    borderColor: buttonColor,
+                  }}
+                >
+                  {itemAndReviews?.item?.callToAction === 'buy'
+                    ? 'Buy Now'
+                    : itemAndReviews?.item?.callToAction === 'want'
+                    ? 'I want this!'
+                    : 'Get Now'}
+                </button>
+              )}
             </div>
           </form>
         </div>
@@ -147,7 +197,10 @@ const DigitalPreview = ({
           </div>
         )}
 
-        <div className='w-full border-b' style={{ borderColor: borderColor }}>
+        <div
+          className='w-full border-b mt-4'
+          style={{ borderColor: borderColor }}
+        >
           <p className='text-lg' style={{ color: headerColor }}>
             Questions
           </p>

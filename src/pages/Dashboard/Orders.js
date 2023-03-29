@@ -52,7 +52,7 @@ const Orders = () => {
       headerAlign: 'center',
       align: 'center',
       renderCell: (params) => {
-        return <p className='font-bold text-lg'>{params.row.email}</p>;
+        return <p className='text-lg'>{params.row.email}</p>;
       },
     },
     {
@@ -63,7 +63,7 @@ const Orders = () => {
       align: 'center',
       renderCell: (params) => {
         return (
-          <p className='font-bold text-lg'>
+          <p className='text-lg'>
             {moment(params?.row?.placedOn).format('MMM D, YYYY')}
           </p>
         );
@@ -77,7 +77,7 @@ const Orders = () => {
       headerAlign: 'center',
       renderCell: (params) => {
         return (
-          <p className='font-bold text-xl'>${params.row.total.toFixed(2)}</p>
+          <p className='font-bold text-xl'>${params?.row?.total?.toFixed(2)}</p>
         );
       },
     },
@@ -88,7 +88,7 @@ const Orders = () => {
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
-        return params.row.paid ? (
+        return params?.row?.paid ? (
           <div className='w-3/12 flex items-center justify-center bg-green-300 rounded-md h-8'>
             <p className='text-stone-800 font-bold'>PAID</p>
           </div>
@@ -106,7 +106,7 @@ const Orders = () => {
       renderCell: (params) => {
         return (
           <Link
-            to={`/dashboard/orders/${params.row._id}/`}
+            to={`/dashboard/orders/${params?.row?._id}/`}
             className='w-full mx-auto flex justify-center'
           >
             <button className='border-2 w-4/6 border-slate-800 text-slate-800 text-sm rounded h-8'>

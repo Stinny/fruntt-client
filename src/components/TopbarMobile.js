@@ -83,11 +83,11 @@ const TopbarMobile = () => {
             </button>
           </NavLink>
 
-          <NavLink to='/dashboard/customers'>
+          <NavLink to='/dashboard/reviews'>
             <button
-              autoFocus={path === '/dashboard/customers'}
+              autoFocus={path === '/dashboard/reviews'}
               className={
-                path === '/dashboard/customers' ? activeLink : notActiveLink
+                path === '/dashboard/reviews' ? activeLink : notActiveLink
               }
             >
               Reviews
