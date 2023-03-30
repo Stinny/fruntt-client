@@ -14,14 +14,6 @@ const Config = () => {
       <Topbar />
       <div className='max-w-6xl mx-auto h-screen'>
         <div className='w-full mx-auto p-4'>
-          <div className='p-2 border-b'>
-            <p className='text-xl font-medium'>Domain name</p>
-          </div>
-          <div className='w-full h-32 flex flex-col justify-center items-center border-2 rounded mt-2 text-center'>
-            <p className='font-medium'>
-              Adding your own domain name will be available very soon
-            </p>
-          </div>
           <div className='p-2 border-b mt-4 flex flex-col'>
             <p className='text-xl font-medium'>Maintenance mode</p>
             <p className='text-gray-400 font-medium'>

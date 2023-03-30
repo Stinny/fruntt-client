@@ -44,7 +44,7 @@ const EditDigital = ({ product, refetch }) => {
       return;
     }
 
-    if (!title || !price) {
+    if (!title) {
       setError('Please fill in all fields');
       return;
     }

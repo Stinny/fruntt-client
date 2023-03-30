@@ -145,7 +145,7 @@ const DeletePage = () => {
       ) : (
         <div className='w-full h-32 flex flex-col justify-center items-center border-2 rounded mt-2 text-center'>
           <p className='font-medium'>
-            You can't delete your free product page. Go into settings if you
+            You can't delete your last product page. Go into settings if you
             want to delete your account.
           </p>
         </div>
