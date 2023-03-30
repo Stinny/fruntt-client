@@ -19,22 +19,21 @@ const DashHomeMobile = ({ stats, currentUser }) => {
     <>
       <div className='w-full p-2 flex flex-col'>
         {!currentUser.stripeOnboard && (
-          <Alert severity='error' className='mt-2 mb-2 w-full mx-auto'>
+          <Alert severity='error' className='mt-2 w-full mx-auto'>
             <p>
               Connect to payment gateway in{' '}
               <Link to='/settings' className='text-red-900 font-semibold'>
                 settings
               </Link>{' '}
-              to enable checkout
+              to enable purchases
             </p>
           </Alert>
         )}
 
         {!currentUser.firstName ||
-        !currentUser.lastName ||
         !currentUser?.sellerProfile?.bio ||
         !currentUser?.sellerProfile?.picture?.url ? (
-          <Alert severity='error' className='mt-2 mb-2 w-full mx-auto'>
+          <Alert severity='error' className='mt-2 w-full mx-auto'>
             <p>
               Finish setting up your seller profile in{' '}
               <Link to='/settings' className='text-red-900 font-semibold'>
@@ -50,7 +49,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
           <Alert severity='error' className='mt-2 mb-2 w-full mx-auto'>
             <p>
               Please check your inbox to confirm your email so you can enable
-              checkout
+              purchases
             </p>
           </Alert>
         )}

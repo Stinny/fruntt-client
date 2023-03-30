@@ -98,13 +98,13 @@ const DashHome = () => {
     ) : (
       <>
         {!currentUser.stripeOnboard && (
-          <Alert severity='error' className='mt-4 mb-4 w-full'>
+          <Alert severity='error' className='mt-2 mb-2 w-full'>
             <p>
               Connect to payment gateway in{' '}
               <Link to='/settings' className='text-red-900 font-semibold'>
                 settings
               </Link>{' '}
-              to enable checkout
+              to enable purchases
             </p>
           </Alert>
         )}
@@ -112,7 +112,7 @@ const DashHome = () => {
         {!currentUser.firstName ||
         !currentUser?.sellerProfile?.bio ||
         !currentUser?.sellerProfile?.picture?.url ? (
-          <Alert severity='error' className='mt-4 mb-4 w-full'>
+          <Alert severity='error' className='mt-2 w-full'>
             <p>
               Finish setting up your seller profile in{' '}
               <Link to='/settings' className='text-red-900 font-semibold'>
@@ -128,7 +128,7 @@ const DashHome = () => {
           <Alert severity='error' className='mt-2 mb-4 w-full'>
             <p>
               Please check your email inbox to confirm your email address so you
-              can enable checkout
+              can enable purchases
             </p>
           </Alert>
         )}
@@ -352,7 +352,7 @@ const DashHome = () => {
           <Line options={options} data={fdata} />
         </div>
 
-        <div className='w-full h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2 mt-4'>
+        {/* <div className='w-full h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2 mt-4'>
           <p className='text-xl font-medium text-slate-800'>
             Share your page with your people!
           </p>
@@ -365,7 +365,7 @@ const DashHome = () => {
             <WhatsappIcon borderRadius={5} size={50} />
             <TelegramIcon borderRadius={5} size={50} />
           </div>
-        </div>
+        </div> */}
 
         {/* <SalesGraph /> */}
       </>
