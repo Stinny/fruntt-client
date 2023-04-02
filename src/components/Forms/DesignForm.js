@@ -76,9 +76,9 @@ const DesignForm = ({ storefront, currentUser }) => {
   const designForm = () => {
     return (
       <form className='w-3/12 mx-auto'>
-        <div className='p-4 w-full mx-auto scroll-smooth overflow-scroll h-3/6'>
+        <div className='p-4 w-full mx-auto scroll-smooth overflow-scroll h-4/6'>
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Page background</p>
+            <p className='text-lg font-medium mb-2'>Background</p>
 
             <HexColorPicker
               color={pageBG}
@@ -93,7 +93,7 @@ const DesignForm = ({ storefront, currentUser }) => {
               className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
             />
           </div>
-
+          {/* 
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
             <p className='text-lg font-medium mb-2'>Page text</p>
 
@@ -109,19 +109,10 @@ const DesignForm = ({ storefront, currentUser }) => {
               prefixed
               className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
             />
-          </div>
+          </div> */}
 
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Button background</p>
-            <select
-              value={buttonStyle}
-              className='mt-2 mb-2'
-              onChange={handleBtnStyle}
-            >
-              <option value='filled'>Filled</option>
-              <option value='outlined'>Outlined</option>
-            </select>
-
+            <p className='text-lg font-medium mb-2'>Button</p>
             <HexColorPicker
               color={buttonColor}
               onChange={setButtonColor}
@@ -134,6 +125,15 @@ const DesignForm = ({ storefront, currentUser }) => {
               prefixed
               className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
             />
+            <p className='text-sm'>Style</p>
+            <select
+              value={buttonStyle}
+              className='mt-2 mb-2 transparent h-10 bg-transparent border-2 rounded'
+              onChange={handleBtnStyle}
+            >
+              <option value='filled'>Filled</option>
+              <option value='outlined'>Outlined</option>
+            </select>
           </div>
 
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
@@ -186,39 +186,47 @@ const DesignForm = ({ storefront, currentUser }) => {
               className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
             />
           </div>
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>FAQs background</p>
+          {storefront?.hideQuestions ? (
+            ''
+          ) : (
+            <div className='w-full flex flex-col p-2 border-b mx-auto'>
+              <p className='text-lg font-medium mb-2'>Questions</p>
 
-            <HexColorPicker
-              color={faqBackground}
-              onChange={setFaqBackground}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={faqBackground}
-              onChange={setFaqBackground}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-          </div>
+              <HexColorPicker
+                color={faqBackground}
+                onChange={setFaqBackground}
+                style={{ width: '200px', height: '75px' }}
+              />
+              <p className='text-gray-400 mr-2'>Hex value:</p>
+              <HexColorInput
+                color={faqBackground}
+                onChange={setFaqBackground}
+                prefixed
+                className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+              />
+            </div>
+          )}
 
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Reviews background</p>
+          {storefront?.hideReviews ? (
+            ''
+          ) : (
+            <div className='w-full flex flex-col p-2 border-b mx-auto'>
+              <p className='text-lg font-medium mb-2'>Reviews</p>
 
-            <HexColorPicker
-              color={reviewBackground}
-              onChange={setReviewBackground}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={reviewBackground}
-              onChange={setReviewBackground}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-          </div>
+              <HexColorPicker
+                color={reviewBackground}
+                onChange={setReviewBackground}
+                style={{ width: '200px', height: '75px' }}
+              />
+              <p className='text-gray-400 mr-2'>Hex value:</p>
+              <HexColorInput
+                color={reviewBackground}
+                onChange={setReviewBackground}
+                prefixed
+                className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+              />
+            </div>
+          )}
         </div>
       </form>
     );

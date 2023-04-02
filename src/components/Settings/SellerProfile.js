@@ -6,7 +6,7 @@ import {
   AiOutlineYoutube,
   AiOutlineFacebook,
   AiOutlineTwitter,
-  AiOutlineLinkedin
+  AiOutlineLinkedin,
 } from 'react-icons/ai';
 import { FaTiktok } from 'react-icons/fa';
 import { uploadImageRequest } from '../../api/requests';
@@ -285,6 +285,7 @@ const SellerProfile = ({ user, refetch }) => {
                 <Avatar
                   sx={{ width: 62, height: 62 }}
                   src={user?.sellerProfile?.picture?.url}
+                  className='border border-stone-800'
                 />
                 <div className='flex flex-col items-center'>
                   <p className='font-medium text-4xl'>
@@ -314,36 +315,48 @@ const SellerProfile = ({ user, refetch }) => {
                 </select>
               </div>
               <div className='flex items-center mt-4'>
-              {user?.sellerProfile?.facebook ? (
+                {user?.sellerProfile?.facebook ? (
                   <a href={user?.sellerProfile?.facebook} target='_blank'>
                     <AiOutlineFacebook className='text-stone-800 text-3xl' />
                   </a>
-                ) : <AiOutlineFacebook className='text-gray-200 text-3xl' />}
+                ) : (
+                  <AiOutlineFacebook className='text-gray-200 text-3xl' />
+                )}
                 {user?.sellerProfile?.instagram ? (
                   <a href={user?.sellerProfile?.instagram} target='_blank'>
                     <AiOutlineInstagram className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                ) : <AiOutlineInstagram className='text-gray-200 ml-2 text-3xl' />}
+                ) : (
+                  <AiOutlineInstagram className='text-gray-200 ml-2 text-3xl' />
+                )}
                 {user?.sellerProfile?.twitter ? (
                   <a href={user?.sellerProfile?.twitter} target='_blank'>
                     <AiOutlineTwitter className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                ) : <AiOutlineTwitter className='text-gray-200 ml-2 text-3xl' />}
+                ) : (
+                  <AiOutlineTwitter className='text-gray-200 ml-2 text-3xl' />
+                )}
                 {user?.sellerProfile?.linkedin ? (
                   <a href={user?.sellerProfile?.linkedin} target='_blank'>
                     <AiOutlineLinkedin className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                ) : <AiOutlineLinkedin className='text-gray-200 ml-2 text-3xl' />}
+                ) : (
+                  <AiOutlineLinkedin className='text-gray-200 ml-2 text-3xl' />
+                )}
                 {user?.sellerProfile?.youtube ? (
                   <a href={user?.sellerProfile?.youtube} target='_blank'>
                     <AiOutlineYoutube className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                ) : <AiOutlineYoutube className='text-gray-200 ml-2 text-3xl' />}
+                ) : (
+                  <AiOutlineYoutube className='text-gray-200 ml-2 text-3xl' />
+                )}
                 {user?.sellerProfile?.tiktok ? (
                   <a href={user?.sellerProfile?.tiktok} target='_blank'>
                     <FaTiktok className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                ) : <FaTiktok className='text-gray-200 ml-2 text-3xl' />}
+                ) : (
+                  <FaTiktok className='text-gray-200 ml-2 text-3xl' />
+                )}
               </div>
             </div>
           </div>
@@ -353,6 +366,7 @@ const SellerProfile = ({ user, refetch }) => {
               <Avatar
                 sx={{ width: 62, height: 62 }}
                 src={user?.sellerProfile?.picture?.url}
+                className='border border-stone-800'
               />
 
               <div className='flex flex-col w-96'>
@@ -376,37 +390,48 @@ const SellerProfile = ({ user, refetch }) => {
               </div>
 
               <div className='flex items-center'>
-
                 {user?.sellerProfile?.facebook ? (
                   <a href={user?.sellerProfile?.facebook} target='_blank'>
                     <AiOutlineFacebook className='text-stone-800 text-3xl' />
                   </a>
-                ) : <AiOutlineFacebook className='text-gray-200 text-3xl' />}
+                ) : (
+                  <AiOutlineFacebook className='text-gray-200 text-3xl' />
+                )}
                 {user?.sellerProfile?.instagram ? (
                   <a href={user?.sellerProfile?.instagram} target='_blank'>
                     <AiOutlineInstagram className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                ) : <AiOutlineInstagram className='text-gray-200 ml-2 text-3xl' />}
+                ) : (
+                  <AiOutlineInstagram className='text-gray-200 ml-2 text-3xl' />
+                )}
                 {user?.sellerProfile?.twitter ? (
                   <a href={user?.sellerProfile?.twitter} target='_blank'>
                     <AiOutlineTwitter className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                ) : <AiOutlineTwitter className='text-gray-200 ml-2 text-3xl' />}
+                ) : (
+                  <AiOutlineTwitter className='text-gray-200 ml-2 text-3xl' />
+                )}
                 {user?.sellerProfile?.linkedin ? (
                   <a href={user?.sellerProfile?.linkedin} target='_blank'>
                     <AiOutlineLinkedin className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                ) : <AiOutlineLinkedin className='text-gray-200 ml-2 text-3xl' />}
+                ) : (
+                  <AiOutlineLinkedin className='text-gray-200 ml-2 text-3xl' />
+                )}
                 {user?.sellerProfile?.youtube ? (
                   <a href={user?.sellerProfile?.youtube} target='_blank'>
                     <AiOutlineYoutube className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                ) : <AiOutlineYoutube className='text-gray-200 ml-2 text-3xl' />}
+                ) : (
+                  <AiOutlineYoutube className='text-gray-200 ml-2 text-3xl' />
+                )}
                 {user?.sellerProfile?.tiktok ? (
                   <a href={user?.sellerProfile?.tiktok} target='_blank'>
                     <FaTiktok className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                ) : <FaTiktok className='text-gray-200 ml-2 text-3xl' />}
+                ) : (
+                  <FaTiktok className='text-gray-200 ml-2 text-3xl' />
+                )}
               </div>
             </div>
           </div>

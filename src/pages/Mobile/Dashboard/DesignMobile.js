@@ -7,28 +7,32 @@ const DesignMobile = ({ storefront }) => {
     <>
       <div className='flex w-full h-32 overflow-x-scroll'>
         <div className='w-28 h-full flex flex-col p-2 mx-auto'>
-          <p className='text-md font-medium'>Page</p>
+          <p className='text-md font-medium'>Background</p>
           <div
-            className='w-28 h-12 border-2 rounded'
+            className='w-28 h-12 border border-stone-800 rounded'
             style={{ backgroundColor: storefront?.style?.pageBackground }}
           ></div>
         </div>
 
-        <div className='w-28 h-full flex flex-col p-2 mx-auto ml-2'>
+        {/* <div className='w-28 h-full flex flex-col p-2 mx-auto ml-2'>
           <p className='text-md font-medium'>Page text</p>
           <div
             className='w-28 h-12 border-2 rounded'
             style={{ backgroundColor: storefront?.style?.pageText }}
           ></div>
-        </div>
+        </div> */}
 
         <div className='w-28 h-full flex flex-col p-2 mx-auto ml-2'>
           <p className='text-md font-medium'>Button</p>
           <div
-            className='w-28 h-12 border-2 rounded'
+            className='w-28 h-12 border border-stone-800 rounded'
             style={{ backgroundColor: storefront?.style?.buttonColor }}
           ></div>
-          <select className='mt-2 mb-2 bg-gray-300 rounded w-9/12' disabled>
+
+          <select
+            className='mt-2 bg-transparent border rounded w-full'
+            disabled
+          >
             <option>{storefront?.style?.buttonStyle}</option>
           </select>
         </div>
@@ -36,7 +40,7 @@ const DesignMobile = ({ storefront }) => {
         <div className='w-28 h-full flex flex-col p-2 mx-auto ml-2'>
           <p className='text-md font-medium'>Button text</p>
           <div
-            className='w-28 h-12 border-2 rounded'
+            className='w-28 h-12 border border-stone-800 rounded'
             style={{ backgroundColor: storefront?.style?.buttonTextColor }}
           ></div>
         </div>
@@ -44,7 +48,7 @@ const DesignMobile = ({ storefront }) => {
         <div className='w-28 h-full flex flex-col p-2 mx-auto ml-2'>
           <p className='text-md font-medium'>Borders</p>
           <div
-            className='w-28 h-12 border-2 rounded'
+            className='w-28 h-12 border border-stone-800 rounded'
             style={{ backgroundColor: storefront?.style?.borderColor }}
           ></div>
         </div>
@@ -52,15 +56,15 @@ const DesignMobile = ({ storefront }) => {
         <div className='w-28 h-full flex flex-col p-2 mx-auto ml-2'>
           <p className='text-md font-medium'>Headers</p>
           <div
-            className='w-28 h-12 border-2 rounded'
+            className='w-28 h-12 border border-stone-800 rounded'
             style={{ backgroundColor: storefront?.style?.headerColor }}
           ></div>
         </div>
 
         <div className='w-28 h-full flex flex-col p-2 mx-auto ml-2'>
-          <p className='text-md font-medium'>FAQs</p>
+          <p className='text-md font-medium'>Questions</p>
           <div
-            className='w-28 h-12 border-2 rounded'
+            className='w-28 h-12 border border-stone-800 rounded'
             style={{ backgroundColor: storefront?.style?.faqBackground }}
           ></div>
         </div>
@@ -68,7 +72,7 @@ const DesignMobile = ({ storefront }) => {
         <div className='w-28 h-full flex flex-col p-2 border-b mx-auto ml-2'>
           <p className='text-md font-medium'>Reviews</p>
           <div
-            className='w-28 h-12 border-2 rounded'
+            className='w-28 h-12 border border-stone-800 rounded'
             style={{ backgroundColor: storefront?.style?.reviewBackground }}
           ></div>
         </div>

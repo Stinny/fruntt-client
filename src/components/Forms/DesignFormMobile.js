@@ -82,7 +82,7 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
       <form className='w-full mx-auto'>
         <div className='w-full overflow-x-scroll h-64 flex'>
           <div className='w-48 h-64 flex flex-col p-2 mx-auto'>
-            <p className='text-lg font-medium mb-2'>Page</p>
+            <p className='text-lg font-medium mb-2'>Background</p>
 
             <HexColorPicker
               color={pageBG}
@@ -98,7 +98,7 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
             />
           </div>
 
-          <div className='w-48 h-64 flex flex-col p-2 ml-4'>
+          {/* <div className='w-48 h-64 flex flex-col p-2 ml-4'>
             <p className='text-lg font-medium mb-2'>Header</p>
 
             <HexColorPicker
@@ -120,9 +120,9 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
                 onChange={(e) => setHideNav(e.target.checked)}
               />
             </div>
-          </div>
+          </div> */}
 
-          <div className='w-48 h-64 flex flex-col p-2 ml-4'>
+          {/* <div className='w-48 h-64 flex flex-col p-2 ml-4'>
             <p className='text-lg font-medium mb-2'>Footer</p>
 
             <HexColorPicker
@@ -145,8 +145,8 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
                 onChange={(e) => setHideFooter(e.target.checked)}
               />
             </div>
-          </div>
-
+          </div> */}
+          {/* 
           <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
             <p className='text-lg font-medium mb-2'>Page text</p>
 
@@ -162,7 +162,7 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
               prefixed
               className='w-28 h-10 border-2 rounded p-2 focus:outline focus:border-gray-400 focus:outline-0'
             />
-          </div>
+          </div> */}
 
           <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
             <p className='text-lg font-medium mb-2'>Button</p>
@@ -179,9 +179,10 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
               prefixed
               className='w-28 h-10 border-2 rounded p-2 focus:outline focus:border-gray-400 focus:outline-0'
             />
+            <p className='text-sm mt-2'>Style</p>
             <select
               value={buttonStyle}
-              className='mt-2 mb-2 rounded h-10'
+              className='mb-2 rounded h-10 border-2 bg-transparent'
               onChange={handleBtnStyle}
             >
               <option value='filled'>Filled</option>
@@ -206,7 +207,7 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
             />
           </div>
 
-          <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
+          {/* <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
             <p className='text-lg font-medium mb-2'>Social icons</p>
 
             <HexColorPicker
@@ -221,7 +222,7 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
               prefixed
               className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
             />
-          </div>
+          </div> */}
 
           <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
             <p className='text-lg font-medium mb-2'>Borders</p>
@@ -241,7 +242,7 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
           </div>
 
           <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
-            <p className='text-lg font-medium mb-2'>Sub Headers</p>
+            <p className='text-lg font-medium mb-2'>Headers</p>
 
             <HexColorPicker
               color={header}
@@ -257,39 +258,47 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
             />
           </div>
 
-          <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
-            <p className='text-lg font-medium mb-2'>FAQs</p>
+          {storefront?.hideQuestions ? (
+            ''
+          ) : (
+            <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
+              <p className='text-lg font-medium mb-2'>Questions</p>
 
-            <HexColorPicker
-              color={faqBackground}
-              onChange={setFaqBackground}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400'>Hex value:</p>
-            <HexColorInput
-              color={faqBackground}
-              onChange={setFaqBackground}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-          </div>
+              <HexColorPicker
+                color={faqBackground}
+                onChange={setFaqBackground}
+                style={{ width: '200px', height: '75px' }}
+              />
+              <p className='text-gray-400'>Hex value:</p>
+              <HexColorInput
+                color={faqBackground}
+                onChange={setFaqBackground}
+                prefixed
+                className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+              />
+            </div>
+          )}
 
-          <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
-            <p className='text-lg font-medium mb-2'>Reviews</p>
+          {storefront?.hideReviews ? (
+            ''
+          ) : (
+            <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
+              <p className='text-lg font-medium mb-2'>Reviews</p>
 
-            <HexColorPicker
-              color={reviewBackground}
-              onChange={setReviewBackground}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400'>Hex value:</p>
-            <HexColorInput
-              color={reviewBackground}
-              onChange={setReviewBackground}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-          </div>
+              <HexColorPicker
+                color={reviewBackground}
+                onChange={setReviewBackground}
+                style={{ width: '200px', height: '75px' }}
+              />
+              <p className='text-gray-400'>Hex value:</p>
+              <HexColorInput
+                color={reviewBackground}
+                onChange={setReviewBackground}
+                prefixed
+                className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+              />
+            </div>
+          )}
         </div>
       </form>
     );

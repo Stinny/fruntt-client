@@ -220,55 +220,62 @@ const DigitalPreviewMobile = ({
           )}
         </div>
 
-        <div className='pl-2 pr-2'>
-          <div className='w-full border-b' style={{ borderColor: borderColor }}>
-            <p className='text-xl' style={{ color: headerColor }}>
-              Reviews
-            </p>
-          </div>
-          {itemAndReviews?.reviews?.length > 0 ? (
-            itemAndReviews?.reviews.map((review) => (
-              <div
-                className='flex flex-col bg-gray-200 p-4 rounded mt-2'
-                style={{
-                  backgroundColor: reviewBackground,
-                }}
-              >
-                <div className='flex w-4/12'>
-                  <p className='font-medium mr-2' style={{ color: pageText }}>
-                    {review?.customerName}
-                  </p>
-                  <p style={{ color: pageText }}>
-                    {moment(review?.reviewedOn).format('MMM D, YYYY')}
-                  </p>
-                </div>
-
-                <Rating
-                  value={review.rating}
-                  readOnly
-                  size='medium'
-                  className='mt-2'
-                  precision={0.5}
-                />
-                <p
-                  className='mt-2'
-                  style={{ color: storefront?.style?.pageText }}
-                >
-                  {review.review}
-                </p>
-              </div>
-            ))
-          ) : (
+        {storefront?.hideReviews ? (
+          ''
+        ) : (
+          <div className='pl-2 pr-2'>
             <div
-              style={{ borderColor: borderColor, color: pageText }}
-              className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
+              className='w-full border-b'
+              style={{ borderColor: borderColor }}
             >
-              <p className='font-medium text-lg' style={{ color: pageText }}>
-                Product has not been reviewed!
+              <p className='text-xl' style={{ color: headerColor }}>
+                Reviews
               </p>
             </div>
-          )}
-        </div>
+            {itemAndReviews?.reviews?.length > 0 ? (
+              itemAndReviews?.reviews.map((review) => (
+                <div
+                  className='flex flex-col bg-gray-200 p-4 rounded mt-2'
+                  style={{
+                    backgroundColor: reviewBackground,
+                  }}
+                >
+                  <div className='flex w-4/12'>
+                    <p className='font-medium mr-2' style={{ color: pageText }}>
+                      {review?.customerName}
+                    </p>
+                    <p style={{ color: pageText }}>
+                      {moment(review?.reviewedOn).format('MMM D, YYYY')}
+                    </p>
+                  </div>
+
+                  <Rating
+                    value={review.rating}
+                    readOnly
+                    size='medium'
+                    className='mt-2'
+                    precision={0.5}
+                  />
+                  <p
+                    className='mt-2'
+                    style={{ color: storefront?.style?.pageText }}
+                  >
+                    {review.review}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <div
+                style={{ borderColor: borderColor, color: pageText }}
+                className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
+              >
+                <p className='font-medium text-lg' style={{ color: pageText }}>
+                  Product has not been reviewed!
+                </p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
