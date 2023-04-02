@@ -5,6 +5,7 @@ import {
   AiOutlineYoutube,
   AiOutlineFacebook,
   AiOutlineTwitter,
+  AiOutlineLinkedin,
 } from 'react-icons/ai';
 import { FaTiktok } from 'react-icons/fa';
 import Cookies from 'js-cookie';
@@ -33,6 +34,8 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
                 ? currentUser?.sellerProfile?.picture?.url
                 : ''
             }
+            className='border'
+            style={{ borderColor: borderColor }}
           />
           <div
             className='flex flex-col ml-2 border-l p-2'
@@ -112,6 +115,17 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
                     />
                   </a>
                 )}
+                {currentUser?.sellerProfile?.linkedin && (
+                  <a
+                    href={currentUser?.sellerProfile?.linkedin}
+                    target='_blank'
+                  >
+                    <AiOutlineLinkedin
+                      style={{ color: pageText }}
+                      className='text-stone-800 hover:text-blue-400 ml-2'
+                    />
+                  </a>
+                )}
                 {currentUser?.sellerProfile?.tiktok && (
                   <a href={currentUser?.sellerProfile?.tiktok} target='_blank'>
                     <FaTiktok
@@ -159,6 +173,8 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
                 ? currentUser?.sellerProfile?.picture?.url
                 : ''
             }
+            className='border'
+            style={{ borderColor: borderColor }}
           />
         </div>
 
@@ -229,6 +245,14 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
           {currentUser?.sellerProfile?.twitter && (
             <a href={currentUser?.sellerProfile?.twitter} target='_blank'>
               <AiOutlineTwitter style={{ color: pageText }} className='ml-2' />
+            </a>
+          )}
+          {currentUser?.sellerProfile?.linkedin && (
+            <a href={currentUser?.sellerProfile?.linkedin} target='_blank'>
+              <AiOutlineLinkedin
+                style={{ color: pageText }}
+                className='text-gray-400 hover:text-blue-400 ml-2'
+              />
             </a>
           )}
           {currentUser?.sellerProfile?.youtube && (

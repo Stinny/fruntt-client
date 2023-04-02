@@ -35,6 +35,9 @@ const DesignPreview = ({
   socialIcons,
   faqBackground,
   reviewBackground,
+  hideReviews,
+  hideQuestions,
+  hideDescription,
 }) => {
   const {
     data: itemAndReviews,
@@ -82,6 +85,9 @@ const DesignPreview = ({
               storefront={storefront}
               faqBackground={faqBackground}
               reviewBackground={reviewBackground}
+              hideReviews={hideReviews}
+              hideQuestions={hideQuestions}
+              hideDescription={hideDescription}
             />
           ) : (
             <div className='p-14'>

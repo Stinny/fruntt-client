@@ -53,7 +53,7 @@ const Settings = () => {
             </div>
           </div>
         ) : (
-          <div className='border-b-2 pb-4 mt-20'>
+          <div className='pb-4 mt-20'>
             <div className='flex justify-between w-full'>
               <h2 className='text-4xl font-semibold'>Settings</h2>
 
@@ -68,30 +68,26 @@ const Settings = () => {
           </div>
         )}
 
-        <div className='w-full mt-4'>
-          <SellerProfile user={user} refetch={refetch} />
-        </div>
-
-        <div className='w-full mt-4'>
-          <Profile user={user} refetch={refetch} />
-        </div>
-
-        {/* 
-        <div className='w-full mt-10'>
-          <BusinessInfo user={user} refetch={refetch} />
-        </div> */}
-
-        <div className='w-full mt-10'>
-          <Notifications user={user} refetch={refetch} />
-        </div>
-
-        <div className='w-full mt-4'>
-          <div className='flex justify-between items-center w-full border-b p-2'>
-            <p className='text-lg font-medium'>Payment Gateway</p>
+        <div className='rounded w-full drop-shadow-lg mt-2 bg-white p-1 border'>
+          <div className='w-full mt-4'>
+            <SellerProfile user={user} refetch={refetch} />
           </div>
-          <Payments refetch={refetch} />
-        </div>
-        {/* 
+
+          <div className='w-full mt-4'>
+            <Profile user={user} refetch={refetch} />
+          </div>
+
+          <div className='w-full mt-10'>
+            <Notifications user={user} refetch={refetch} />
+          </div>
+
+          <div className='w-full mt-4'>
+            <div className='flex justify-between items-center w-full border-b p-2'>
+              <p className='text-lg font-medium'>Payment Gateway</p>
+            </div>
+            <Payments refetch={refetch} />
+          </div>
+          {/* 
         <div className='w-full mt-10'>
           <div className='flex flex-col w-full border-b p-2'>
             <p className='text-lg font-medium'>Payment Method</p>
@@ -103,15 +99,16 @@ const Settings = () => {
           <Billing user={user} refetch={refetch} />
         </div> */}
 
-        <div className='w-full mt-10'>
-          <div className='flex flex-col w-full border-b p-2'>
-            <p className='text-lg font-medium'>Delete your Fruntt account</p>
-            <p className='text-gray-400 font-medium'>
-              Deleting your account will delete all data from our servers
-              (pages, orders, products, etc..)
-            </p>
+          <div className='w-full mt-10'>
+            <div className='flex flex-col w-full border-b p-2'>
+              <p className='text-lg font-medium'>Delete your Fruntt account</p>
+              <p className='text-gray-400 font-medium'>
+                Deleting your account will delete all data from our servers
+                (pages, orders, products, etc..)
+              </p>
+            </div>
+            <DeleteAccount user={user} refetch={refetch} />
           </div>
-          <DeleteAccount user={user} refetch={refetch} />
         </div>
       </div>
     );

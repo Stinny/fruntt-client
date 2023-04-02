@@ -128,6 +128,9 @@ const Design = () => {
           storefront={storefront}
           faqBackground={storefront?.style?.faqBackground}
           reviewBackground={storefront?.style?.reviewBackground}
+          hideReviews={storefront?.hideReviews}
+          hideDescription={storefront?.hideDescription}
+          hideQuestions={storefront?.hideQuestions}
         />
       </div>
     );

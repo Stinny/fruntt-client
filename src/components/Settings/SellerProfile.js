@@ -6,6 +6,7 @@ import {
   AiOutlineYoutube,
   AiOutlineFacebook,
   AiOutlineTwitter,
+  AiOutlineLinkedin
 } from 'react-icons/ai';
 import { FaTiktok } from 'react-icons/fa';
 import { uploadImageRequest } from '../../api/requests';
@@ -35,6 +36,7 @@ const SellerProfile = ({ user, refetch }) => {
   const [twitter, setTwitter] = useState(user?.sellerProfile?.twitter);
   const [instagram, setInstagram] = useState(user?.sellerProfile?.instagram);
   const [tiktok, setTiktok] = useState(user?.sellerProfile?.tiktok);
+  const [linkedin, setLinkedin] = useState(user?.sellerProfile?.linkedin);
   const [profilePic, setProfilePic] = useState([]);
 
   const [updateSellerProfile, result] = useUpdateSellerProfileMutation();
@@ -66,6 +68,7 @@ const SellerProfile = ({ user, refetch }) => {
         youtube,
         twitter,
         instagram,
+        linkedin,
         tiktok,
         profilePicUrl,
         profilePicKey,
@@ -148,9 +151,10 @@ const SellerProfile = ({ user, refetch }) => {
           </div>
           <textarea
             placeholder='A little about you, your brand, or what you sell...'
-            className='w-full h-24 border-2 border-gray-300 hover:border-gray-400 outline outline-0 p-2 mt-2'
+            className='w-full h-24 border-2 border-gray-300 hover:border-gray-400 rounded outline outline-0 p-2 mt-2'
             onChange={(e) => setBio(e.target.value)}
             value={bio}
+            maxLength={100}
           />
           <p className='text-gray-400 mt-2'>Upload new profile image</p>
           <FilePond
@@ -203,6 +207,17 @@ const SellerProfile = ({ user, refetch }) => {
               placeholder='https://www.twitter.com/youraccount'
               onChange={(e) => setTwitter(e.target.value)}
               value={twitter}
+            />
+          </div>
+
+          <div className='w-full flex justify-between items-center mt-2'>
+            <AiOutlineLinkedin className='text-4xl' />
+            <input
+              type='text'
+              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+              placeholder='https://www.linkedin.com/youraccount'
+              onChange={(e) => setLinkedin(e.target.value)}
+              value={linkedin}
             />
           </div>
 
@@ -299,42 +314,36 @@ const SellerProfile = ({ user, refetch }) => {
                 </select>
               </div>
               <div className='flex items-center mt-4'>
-                {user?.sellerProfile?.facebook === '' &&
-                  user?.sellerProfile?.instagram === '' &&
-                  user?.sellerProfile?.twitter === '' &&
-                  user?.sellerProfile?.youtube === '' &&
-                  user?.sellerProfile?.tiktok === '' && (
-                    <div className='w-full h-16 w-full border-2 flex items-center justify-center rounded'>
-                      <p className='text-md font-medium'>
-                        You have not added any social links!
-                      </p>
-                    </div>
-                  )}
-                {user?.sellerProfile?.facebook && (
+              {user?.sellerProfile?.facebook ? (
                   <a href={user?.sellerProfile?.facebook} target='_blank'>
-                    <AiOutlineFacebook className='text-slate-800 text-3xl' />
+                    <AiOutlineFacebook className='text-stone-800 text-3xl' />
                   </a>
-                )}
-                {user?.sellerProfile?.instagram && (
+                ) : <AiOutlineFacebook className='text-gray-200 text-3xl' />}
+                {user?.sellerProfile?.instagram ? (
                   <a href={user?.sellerProfile?.instagram} target='_blank'>
-                    <AiOutlineInstagram className='text-slate-800 ml-2 text-3xl' />
+                    <AiOutlineInstagram className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                )}
-                {user?.sellerProfile?.twitter && (
+                ) : <AiOutlineInstagram className='text-gray-200 ml-2 text-3xl' />}
+                {user?.sellerProfile?.twitter ? (
                   <a href={user?.sellerProfile?.twitter} target='_blank'>
-                    <AiOutlineTwitter className='text-slate-800 ml-2 text-3xl' />
+                    <AiOutlineTwitter className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                )}
-                {user?.sellerProfile?.youtube && (
+                ) : <AiOutlineTwitter className='text-gray-200 ml-2 text-3xl' />}
+                {user?.sellerProfile?.linkedin ? (
+                  <a href={user?.sellerProfile?.linkedin} target='_blank'>
+                    <AiOutlineLinkedin className='text-stone-800 ml-2 text-3xl' />
+                  </a>
+                ) : <AiOutlineLinkedin className='text-gray-200 ml-2 text-3xl' />}
+                {user?.sellerProfile?.youtube ? (
                   <a href={user?.sellerProfile?.youtube} target='_blank'>
-                    <AiOutlineYoutube className='text-slate-800 ml-2 text-3xl' />
+                    <AiOutlineYoutube className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                )}
-                {user?.sellerProfile?.tiktok && (
+                ) : <AiOutlineYoutube className='text-gray-200 ml-2 text-3xl' />}
+                {user?.sellerProfile?.tiktok ? (
                   <a href={user?.sellerProfile?.tiktok} target='_blank'>
-                    <FaTiktok className='text-slate-800 ml-2 text-3xl' />
+                    <FaTiktok className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                )}
+                ) : <FaTiktok className='text-gray-200 ml-2 text-3xl' />}
               </div>
             </div>
           </div>
@@ -367,43 +376,37 @@ const SellerProfile = ({ user, refetch }) => {
               </div>
 
               <div className='flex items-center'>
-                {user?.sellerProfile?.facebook === '' &&
-                  user?.sellerProfile?.instagram === '' &&
-                  user?.sellerProfile?.twitter === '' &&
-                  user?.sellerProfile?.youtube === '' &&
-                  user?.sellerProfile?.tiktok === '' && (
-                    <div className='w-full h-16 w-full border-2 flex items-center justify-center rounded p-2'>
-                      <p className='text-md font-medium'>
-                        You have not added any social links!
-                      </p>
-                    </div>
-                  )}
 
-                {user?.sellerProfile?.facebook && (
+                {user?.sellerProfile?.facebook ? (
                   <a href={user?.sellerProfile?.facebook} target='_blank'>
-                    <AiOutlineFacebook className='text-slate-800 text-3xl' />
+                    <AiOutlineFacebook className='text-stone-800 text-3xl' />
                   </a>
-                )}
-                {user?.sellerProfile?.instagram && (
+                ) : <AiOutlineFacebook className='text-gray-200 text-3xl' />}
+                {user?.sellerProfile?.instagram ? (
                   <a href={user?.sellerProfile?.instagram} target='_blank'>
-                    <AiOutlineInstagram className='text-slate-800 ml-2 text-3xl' />
+                    <AiOutlineInstagram className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                )}
-                {user?.sellerProfile?.twitter && (
+                ) : <AiOutlineInstagram className='text-gray-200 ml-2 text-3xl' />}
+                {user?.sellerProfile?.twitter ? (
                   <a href={user?.sellerProfile?.twitter} target='_blank'>
-                    <AiOutlineTwitter className='text-slate-800 ml-2 text-3xl' />
+                    <AiOutlineTwitter className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                )}
-                {user?.sellerProfile?.youtube && (
+                ) : <AiOutlineTwitter className='text-gray-200 ml-2 text-3xl' />}
+                {user?.sellerProfile?.linkedin ? (
+                  <a href={user?.sellerProfile?.linkedin} target='_blank'>
+                    <AiOutlineLinkedin className='text-stone-800 ml-2 text-3xl' />
+                  </a>
+                ) : <AiOutlineLinkedin className='text-gray-200 ml-2 text-3xl' />}
+                {user?.sellerProfile?.youtube ? (
                   <a href={user?.sellerProfile?.youtube} target='_blank'>
-                    <AiOutlineYoutube className='text-slate-800 ml-2 text-3xl' />
+                    <AiOutlineYoutube className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                )}
-                {user?.sellerProfile?.tiktok && (
+                ) : <AiOutlineYoutube className='text-gray-200 ml-2 text-3xl' />}
+                {user?.sellerProfile?.tiktok ? (
                   <a href={user?.sellerProfile?.tiktok} target='_blank'>
-                    <FaTiktok className='text-slate-800 ml-2 text-3xl' />
+                    <FaTiktok className='text-stone-800 ml-2 text-3xl' />
                   </a>
-                )}
+                ) : <FaTiktok className='text-gray-200 ml-2 text-3xl' />}
               </div>
             </div>
           </div>

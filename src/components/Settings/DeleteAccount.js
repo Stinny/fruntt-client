@@ -116,7 +116,7 @@ const DeleteAccount = () => {
           </button>
         </div>
       ) : (
-        <div className='w-full h-32 mt-2'>
+        <div className='w-full h-32 mt-2 pl-2 pr-2'>
           <button
             type='button'
             disabled={deletingAccount}

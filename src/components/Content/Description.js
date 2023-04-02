@@ -36,7 +36,7 @@ const Description = ({ product, isLoding, isSuccess, refetch }) => {
               </p>
             </div>
             <Link
-              className='border-2 rounded w-16 h-8 flex items-center justify-center border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
+              className='border-2 rounded w-20 h-8 flex items-center justify-center border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
               to='/dashboard/description'
             >
               Edit

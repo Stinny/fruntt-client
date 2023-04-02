@@ -29,6 +29,9 @@ const DigitalPreview = ({
   borderColor,
   faqBackground,
   reviewBackground,
+  hideReviews,
+  hideDescription,
+  hideQuestions,
 }) => {
   const btnStyle = buttonStyle === 'filled' ? buttonColor : '';
 
@@ -173,126 +176,150 @@ const DigitalPreview = ({
 
       {/* Other stuff for the item */}
       <div className='mt-10'>
-        <div className='w-full border-b' style={{ borderColor: borderColor }}>
-          <p className='text-lg' style={{ color: headerColor }}>
-            Description
-          </p>
-        </div>
-        {itemAndReviews?.item?.info === '' ? (
-          <div
-            style={{ borderColor: borderColor }}
-            className='w-full h-44 mt-4 border-2 rounded flex justify-center items-center'
-          >
-            <p className='font-medium text-xl' style={{ color: pageText }}>
-              A product description has not been added!
-            </p>
-          </div>
+        {hideDescription ? (
+          ''
         ) : (
-          <div className=''>
-            <ReactQuill
-              value={itemAndReviews?.item?.info}
-              readOnly={true}
-              theme={'bubble'}
-            />
-          </div>
+          <>
+            <div
+              className='w-full border-b'
+              style={{ borderColor: borderColor }}
+            >
+              <p className='text-lg' style={{ color: headerColor }}>
+                Description
+              </p>
+            </div>
+            {itemAndReviews?.item?.info === '' ? (
+              <div
+                style={{ borderColor: borderColor }}
+                className='w-full h-44 mt-4 border-2 rounded flex justify-center items-center'
+              >
+                <p className='font-medium text-xl' style={{ color: pageText }}>
+                  A product description has not been added!
+                </p>
+              </div>
+            ) : (
+              <div className=''>
+                <ReactQuill
+                  value={itemAndReviews?.item?.info}
+                  readOnly={true}
+                  theme={'bubble'}
+                />
+              </div>
+            )}
+          </>
         )}
 
-        <div
-          className='w-full border-b mt-4'
-          style={{ borderColor: borderColor }}
-        >
-          <p className='text-lg' style={{ color: headerColor }}>
-            Questions
-          </p>
-        </div>
-
-        <div className='mt-2'>
-          {itemAndReviews?.item?.faqs?.length ? (
-            itemAndReviews?.item?.faqs.map((faq) => (
-              <div
-                className='flex flex-col rounded p-2 mb-2'
-                style={{
-                  backgroundColor: faqBackground,
-                }}
-              >
-                <p style={{ color: pageText }}>
-                  <span className='font-medium' style={{ color: pageText }}>
-                    Question:
-                  </span>{' '}
-                  {faq.question}
-                </p>
-                <p className='mt-2' style={{ color: pageText }}>
-                  <span className='font-medium' style={{ color: pageText }}>
-                    Answer:
-                  </span>{' '}
-                  {faq.answer}
-                </p>
-              </div>
-            ))
-          ) : (
-            <div
-              style={{ borderColor: borderColor }}
-              className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
-            >
-              <p className='font-medium text-xl' style={{ color: pageText }}>
-                Customer questions have not been added!
-              </p>
-            </div>
-          )}
-        </div>
-
-        <div
-          className='w-full border-b mt-4'
-          style={{ borderColor: borderColor }}
-        >
-          <p className='text-lg' style={{ color: headerColor }}>
-            Reviews
-          </p>
-        </div>
-        {itemAndReviews?.reviews?.length > 0 ? (
-          itemAndReviews?.reviews.map((review) => (
-            <div
-              className='flex flex-col bg-gray-200 p-4 rounded mt-2'
-              style={{
-                backgroundColor: reviewBackground,
-              }}
-            >
-              <div className='flex w-4/12'>
-                <p
-                  className='font-medium mr-2'
-                  style={{ color: storefront?.style?.pageText }}
-                >
-                  {review?.customerName}
-                </p>
-                <p style={{ color: storefront?.style?.pageText }}>
-                  {moment(review?.reviewedOn).format('MMM D, YYYY')}
-                </p>
-              </div>
-
-              <Rating
-                value={review.rating}
-                readOnly
-                size='medium'
-                className='mt-2'
-                precision={0.5}
-              />
-              <p
-                className='mt-2'
-                style={{ color: storefront?.style?.pageText }}
-              >
-                {review.review}
-              </p>
-            </div>
-          ))
+        {hideQuestions ? (
+          ''
         ) : (
-          <div
-            style={{ borderColor: borderColor }}
-            className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
-          >
-            <p className='font-medium text-xl' style={{ color: pageText }}>
-              Item has not been reviewed!
-            </p>
-          </div>
+          <>
+            <div
+              className='w-full border-b mt-4'
+              style={{ borderColor: borderColor }}
+            >
+              <p className='text-lg' style={{ color: headerColor }}>
+                Questions
+              </p>
+            </div>
+
+            <div className='mt-2'>
+              {itemAndReviews?.item?.faqs?.length ? (
+                itemAndReviews?.item?.faqs.map((faq) => (
+                  <div
+                    className='flex flex-col rounded p-2 mb-2'
+                    style={{
+                      backgroundColor: faqBackground,
+                    }}
+                  >
+                    <p style={{ color: pageText }}>
+                      <span className='font-medium' style={{ color: pageText }}>
+                        Question:
+                      </span>{' '}
+                      {faq.question}
+                    </p>
+                    <p className='mt-2' style={{ color: pageText }}>
+                      <span className='font-medium' style={{ color: pageText }}>
+                        Answer:
+                      </span>{' '}
+                      {faq.answer}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <div
+                  style={{ borderColor: borderColor }}
+                  className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
+                >
+                  <p
+                    className='font-medium text-xl'
+                    style={{ color: pageText }}
+                  >
+                    Customer questions have not been added!
+                  </p>
+                </div>
+              )}
+            </div>
+          </>
+        )}
+
+        {hideReviews ? (
+          ''
+        ) : (
+          <>
+            <div
+              className='w-full border-b mt-4'
+              style={{ borderColor: borderColor }}
+            >
+              <p className='text-lg' style={{ color: headerColor }}>
+                Reviews
+              </p>
+            </div>
+            {itemAndReviews?.reviews?.length > 0 ? (
+              itemAndReviews?.reviews.map((review) => (
+                <div
+                  className='flex flex-col bg-gray-200 p-4 rounded mt-2'
+                  style={{
+                    backgroundColor: reviewBackground,
+                  }}
+                >
+                  <div className='flex w-4/12'>
+                    <p
+                      className='font-medium mr-2'
+                      style={{ color: storefront?.style?.pageText }}
+                    >
+                      {review?.customerName}
+                    </p>
+                    <p style={{ color: storefront?.style?.pageText }}>
+                      {moment(review?.reviewedOn).format('MMM D, YYYY')}
+                    </p>
+                  </div>
+
+                  <Rating
+                    value={review.rating}
+                    readOnly
+                    size='medium'
+                    className='mt-2'
+                    precision={0.5}
+                  />
+                  <p
+                    className='mt-2'
+                    style={{ color: storefront?.style?.pageText }}
+                  >
+                    {review.review}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <div
+                style={{ borderColor: borderColor }}
+                className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
+              >
+                <p className='font-medium text-xl' style={{ color: pageText }}>
+                  Item has not been reviewed!
+                </p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

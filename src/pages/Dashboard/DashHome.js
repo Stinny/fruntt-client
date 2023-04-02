@@ -36,7 +36,12 @@ const DashHome = () => {
   //holds the url of the page being viewed
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
-  const { data: stats, isLoading, isSuccess, refetch } = useGetStoreStatsQuery({
+  const {
+    data: stats,
+    isLoading,
+    isSuccess,
+    refetch,
+  } = useGetStoreStatsQuery({
     storeId: currentStoreID,
   });
 
@@ -49,6 +54,20 @@ const DashHome = () => {
       title: {
         display: true,
         text: 'Page Sales',
+      },
+    },
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+      xAxes: {
+        ticks: {
+          display: false,
+        },
       },
     },
   };
@@ -97,6 +116,21 @@ const DashHome = () => {
       <DashHomeMobile currentUser={currentUser} stats={stats} />
     ) : (
       <>
+        {!currentUser.firstName ||
+        !currentUser?.sellerProfile?.bio ||
+        !currentUser?.sellerProfile?.picture?.url ? (
+          <Alert severity='info' className='mt-2 w-full'>
+            <p>
+              Finish setting up your seller profile in{' '}
+              <Link to='/settings' className='text-blue-800 font-semibold'>
+                settings!
+              </Link>
+            </p>
+          </Alert>
+        ) : (
+          ''
+        )}
+
         {!currentUser.stripeOnboard && (
           <Alert severity='error' className='mt-2 mb-2 w-full'>
             <p>
@@ -107,21 +141,6 @@ const DashHome = () => {
               to enable purchases
             </p>
           </Alert>
-        )}
-
-        {!currentUser.firstName ||
-        !currentUser?.sellerProfile?.bio ||
-        !currentUser?.sellerProfile?.picture?.url ? (
-          <Alert severity='error' className='mt-2 w-full'>
-            <p>
-              Finish setting up your seller profile in{' '}
-              <Link to='/settings' className='text-red-900 font-semibold'>
-                settings!
-              </Link>
-            </p>
-          </Alert>
-        ) : (
-          ''
         )}
 
         {!currentUser.emailConfirmed && (
@@ -349,7 +368,13 @@ const DashHome = () => {
         </div>
 
         <div className='w-full border rounded-md mt-4 bg-white drop-shadow-md'>
-          <Line options={options} data={fdata} />
+          {stats?.numOfOrders > 0 ? (
+            <Line options={options} data={fdata} />
+          ) : (
+            <div className='h-56 w-full flex items-center justify-center'>
+              <p className='font-medium'>No orders have came in</p>
+            </div>
+          )}
         </div>
 
         {/* <div className='w-full h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2 mt-4'>
