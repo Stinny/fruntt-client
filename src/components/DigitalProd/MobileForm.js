@@ -9,7 +9,7 @@ import 'react-quill/dist/quill.snow.css';
 import Tooltip from '@mui/material/Tooltip';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
+import Alert from '@mui/material/Alert';
 //filepond
 import { FilePond } from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
@@ -36,12 +36,15 @@ const MobileForm = ({
   setCallToAction,
   callToAction,
   price,
+  error,
 }) => {
   return (
     <div className='w-full p-2'>
       <div className='mb-10 border-b-2 p-2'>
         <h2 className='text-3xl font-medium'>Add your digital product</h2>
       </div>
+
+      {error && <Alert severity='error'>{error}</Alert>}
 
       <form className='w-full' onSubmit={handleAddProduct}>
         <div className='flex items-center'>

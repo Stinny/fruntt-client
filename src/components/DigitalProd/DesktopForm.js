@@ -7,6 +7,7 @@ import 'react-quill/dist/quill.snow.css';
 import Tooltip from '@mui/material/Tooltip';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Alert from '@mui/material/Alert';
 
 //filepond
 import { FilePond } from 'react-filepond';
@@ -26,9 +27,7 @@ const DesktopForm = ({
   image,
   setFiles,
   files,
-  setLink,
-  productContent,
-  handleProductContent,
+  error,
   setCallToAction,
   callToAction,
   payChoice,
@@ -69,6 +68,8 @@ const DesktopForm = ({
           </button>
         </div>
       </div>
+
+      {error && <Alert severity='error'>{error}</Alert>}
 
       <form className='w-full' onSubmit={handleAddProduct}>
         <div className='flex items-center'>
