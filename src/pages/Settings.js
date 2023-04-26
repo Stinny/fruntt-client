@@ -85,8 +85,8 @@ const Settings = () => {
             <div className='flex flex-col w-full border-b p-2'>
               <p className='text-lg font-medium'>Payment Gateway</p>
               <p className=' font-medium text-gray-400'>
-                All funds go straight to your stripe account after a successful
-                purchase. You keep 99% of what you make.
+                You are paid immediately after a successful purchase. You keep
+                99% of what you make.
               </p>
             </div>
             <Payments refetch={refetch} />
