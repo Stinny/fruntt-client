@@ -268,9 +268,9 @@ const FAQs = ({ currentUser, item, refetch, isLoading, isSuccess }) => {
                       You have not added any customer questions
                     </p>
                     <p className='text-gray-400 w-7/12 text-center mt-2'>
-                      These questions are visible on your storefront for
-                      customers to read. They should relate to whatever product
-                      you are offering.
+                      These questions are visible on your page for customers to
+                      read. They should relate to whatever product you are
+                      offering.
                     </p>
                     <button
                       type='button'
