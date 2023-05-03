@@ -53,7 +53,7 @@ const DashHome = () => {
       },
       title: {
         display: true,
-        text: 'Page Sales',
+        text: 'Page Sales (COMING SOON)',
       },
     },
     scales: {
@@ -91,7 +91,7 @@ const DashHome = () => {
     labels,
     datasets: [
       {
-        label: 'Dataset 1',
+        label: 'Sales',
         data: labels.map(() => Math.ceil(Math.random() * 8)),
         backgroundColor: 'black',
         borderColor: 'black',

@@ -30,7 +30,6 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
     getUpdatedUser: builder.query({
       query: () => '/auth/updateduser',
-      keepUnusedDataFor: 5,
     }),
     disconnectStripe: builder.mutation({
       query: () => ({
@@ -74,7 +73,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         tiktok,
         profilePicUrl,
         profilePicKey,
-        linkedin
+        linkedin,
       }) => ({
         url: '/auth/updatesellerprofile',
         method: 'POST',
@@ -130,6 +129,34 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
       }),
     }),
+    sendResetEmail: builder.mutation({
+      query: ({ email }) => ({
+        url: '/auth/sendresetemail',
+        method: 'POST',
+        body: {
+          email: email,
+        },
+      }),
+    }),
+    checkToken: builder.mutation({
+      query: ({ token }) => ({
+        url: '/auth/checkresettoken',
+        method: 'POST',
+        body: {
+          token: token,
+        },
+      }),
+    }),
+    resetPassword: builder.mutation({
+      query: ({ email, password }) => ({
+        url: '/auth/resetpassword',
+        method: 'POST',
+        body: {
+          password: password,
+          email: email,
+        },
+      }),
+    }),
   }),
 });
 
@@ -149,4 +176,7 @@ export const {
   useDeletePaymentMethodMutation,
   useUpdateSellerProfileMutation,
   useDeleteAccountMutation,
+  useSendResetEmailMutation,
+  useCheckTokenMutation,
+  useResetPasswordMutation,
 } = authApiSlice;

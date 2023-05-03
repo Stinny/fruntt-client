@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Navigate, Link, useNavigate } from 'react-router-dom';
+import { Navigate, Link, useNavigate, useLocation } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import { useLoginMutation } from '../api/authApiSlice';
 import Navbar from '../components/Navbar';
@@ -14,7 +14,10 @@ import { setStoreIds, setSelectedStoreUrl } from '../redux/userRedux';
 import Alert from '@mui/material/Alert';
 
 const Login = () => {
+  const { state } = useLocation();
   const [login, { isLoading }] = useLoginMutation();
+
+  console.log(state);
 
   //form state
   const [email, setEmail] = useState('');
@@ -76,8 +79,13 @@ const Login = () => {
           </p>
         </div>
         {error && (
-          <Alert severity='error' className='mt-4 mb-4 w-96 bg-red-300'>
+          <Alert severity='error' className='mt-2 mb-2 w-96 bg-red-300'>
             {error}
+          </Alert>
+        )}
+        {state?.success && (
+          <Alert severity='info' className='mt-2 mb-2 w-96'>
+            Your password was successfully reset
           </Alert>
         )}
         <form
@@ -104,7 +112,7 @@ const Login = () => {
                 Don't have a page yet?
               </p>
             </Link>
-            <Link to='/signup'>
+            <Link to='/reset/password'>
               <p className='text-sm text-slate-400 hover:text-stone-800 font-medium'>
                 Forgot your password?
               </p>

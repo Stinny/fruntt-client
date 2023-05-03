@@ -4,6 +4,7 @@ import { isMobile } from 'react-device-detect';
 
 //mui
 import Avatar from '@mui/material/Avatar';
+import Rating from '@mui/material/Rating';
 
 const PageSamp = () => {
   return isMobile ? (
@@ -81,7 +82,7 @@ const PageSamp = () => {
 
             <div className='flex items-center mt-2'>
               <p className='w-7/12 font-semibold text-2xl'>$19.99</p>
-              <p className='w-5/12 text-xs ml-4'>(12) reviews</p>
+              <Rating size='small' disabled value={4.5} precision={0.5} />
             </div>
 
             <button
@@ -228,8 +229,8 @@ const PageSamp = () => {
             </div>
 
             <div className='flex items-center mt-2'>
-              <p className='w-7/12 font-semibold text-2xl'>$19.99</p>
-              <p className='w-5/12 text-sm ml-4'>(12) reviews</p>
+              <p className='w-6/12 font-semibold text-2xl'>$19.99</p>
+              <Rating size='small' disabled value={4.5} precision={0.5} />
             </div>
 
             <button

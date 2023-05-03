@@ -43,6 +43,8 @@ import AddPage from './pages/AddPage';
 import AddDigitalProd from './pages/Dashboard/AddDigitalProd';
 import Download from './pages/Download';
 import Description from './pages/Dashboard/Description';
+import PasswordReset from './pages/PasswordReset';
+import RequestReset from './pages/RequestReset';
 
 function App() {
   return (
@@ -59,6 +61,10 @@ function App() {
             <Route path='signup' element={<Register />} />
 
             <Route path='order/digital/:orderId' element={<Download />} />
+
+            <Route path='reset/password' element={<RequestReset />} />
+
+            <Route path='password/reset/:token' element={<PasswordReset />} />
 
             {/* routes require user to be logged in */}
             <Route element={<RequireAuth />}>
