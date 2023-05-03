@@ -53,7 +53,7 @@ const LoginMobile = ({
               Don't have a page yet?
             </p>
           </Link>
-          <Link to='/signup'>
+          <Link to='/reset/password'>
             <p className='text-xs text-slate-400 hover:text-stone-800 font-medium'>
               Forgot your password?
             </p>
