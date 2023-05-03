@@ -133,6 +133,19 @@ const PasswordReset = () => {
           </form>
         </div>
       )
+    ) : isMobile ? (
+      <div className='mx-auto mt-32 w-11/12 flex flex-col items-center border bg-white rounded drop-shadow-md p-2'>
+        <FaRegSadTear className='text-6xl' />
+        <p className='font-medium text-stone-800 text-xl mt-4'>
+          This link is now expired
+        </p>
+        <Link
+          to='/'
+          className='border-2 rounded border-stone-800 flex items-center justify-center text-stone-800 w-28 h-10 mt-4'
+        >
+          Return Home
+        </Link>
+      </div>
     ) : (
       <div className='mx-auto mt-32 w-8/12 flex flex-col items-center border bg-white rounded drop-shadow-md p-2'>
         <FaRegSadTear className='text-6xl' />
