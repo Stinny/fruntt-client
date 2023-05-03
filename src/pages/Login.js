@@ -69,6 +69,7 @@ const Login = () => {
         setEmail={setEmail}
         setPassword={setPassword}
         error={error}
+        state={state}
       />
     ) : (
       <div className='flex flex-col items-center mx-auto justify-center w-full mb-56'>

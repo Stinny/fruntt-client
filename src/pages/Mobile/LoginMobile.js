@@ -10,6 +10,7 @@ const LoginMobile = ({
   setEmail,
   handleLogin,
   isLoading,
+  state,
 }) => {
   return (
     <div className='flex flex-col mx-auto w-full p-2'>
@@ -22,6 +23,11 @@ const LoginMobile = ({
       {error && (
         <Alert severity='error' className='mt-2 mb-2 w-10/12 bg-red-300'>
           {error}
+        </Alert>
+      )}
+      {state?.success && (
+        <Alert severity='info' className='mt-2 mb-2 w-10/12'>
+          Your password was successfully reset
         </Alert>
       )}
       <form
