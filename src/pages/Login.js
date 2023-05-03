@@ -17,8 +17,6 @@ const Login = () => {
   const { state } = useLocation();
   const [login, { isLoading }] = useLoginMutation();
 
-  console.log(state);
-
   //form state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

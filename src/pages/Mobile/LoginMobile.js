@@ -21,12 +21,12 @@ const LoginMobile = ({
         </p>
       </div>
       {error && (
-        <Alert severity='error' className='mt-2 mb-2 w-10/12 bg-red-300'>
+        <Alert severity='error' className='mt-2 mb-2 w-full bg-red-300'>
           {error}
         </Alert>
       )}
       {state?.success && (
-        <Alert severity='info' className='mt-2 mb-2 w-10/12'>
+        <Alert severity='info' className='mt-2 mb-2 w-full'>
           Your password was successfully reset
         </Alert>
       )}
