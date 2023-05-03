@@ -11,6 +11,7 @@ import { FaRegSadTear } from 'react-icons/fa';
 
 //mui
 import Alert from '@mui/material/Alert';
+import { isMobile } from 'react-device-detect';
 
 const PasswordReset = () => {
   const navigate = useNavigate();
@@ -59,41 +60,79 @@ const PasswordReset = () => {
     content = <Spinner />;
   } else if (isSuccess) {
     content = data?.valid ? (
-      <div className='mx-auto w-8/12 border rounded bg-white drop-shadow-md p-2 mt-32'>
-        <p className='font-medium text-3xl text-stone-800'>
-          Reset your password
-        </p>
+      isMobile ? (
+        <div className='mx-auto w-11/12 border rounded bg-white drop-shadow-md p-2 mt-32'>
+          <p className='font-medium text-3xl text-stone-800'>
+            Reset your password
+          </p>
 
-        <p className='font-medium text-lg mt-2 text-gray-400'>
-          Reset your password for Fruntt account:{' '}
-          <span className='text-stone-800'>{data?.email}</span>
-        </p>
+          <p className='font-medium text-lg mt-2 text-gray-400'>
+            Reset your password for Fruntt account:{' '}
+            <span className='text-stone-800'>{data?.email}</span>
+          </p>
 
-        {error && <Alert severity='error'>{error}</Alert>}
-        <form
-          className='flex flex-col mx-auto w-full'
-          onSubmit={handleSubmitPassword}
-        >
-          <input
-            type='password'
-            placeholder='New Password'
-            className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input
-            type='password'
-            placeholder='Confirm Password'
-            className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
-            onChange={(e) => setPasswordTwo(e.target.value)}
-          />
-          <button
-            type='submit'
-            className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-xl mt-4'
+          {error && <Alert severity='error'>{error}</Alert>}
+          <form
+            className='flex flex-col mx-auto w-full'
+            onSubmit={handleSubmitPassword}
           >
-            Reset Password
-          </button>
-        </form>
-      </div>
+            <input
+              type='password'
+              placeholder='New Password'
+              className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+              type='password'
+              placeholder='Confirm Password'
+              className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
+              onChange={(e) => setPasswordTwo(e.target.value)}
+            />
+            <button
+              type='submit'
+              className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-xl mt-4'
+            >
+              Reset Password
+            </button>
+          </form>
+        </div>
+      ) : (
+        <div className='mx-auto w-8/12 border rounded bg-white drop-shadow-md p-2 mt-32'>
+          <p className='font-medium text-3xl text-stone-800'>
+            Reset your password
+          </p>
+
+          <p className='font-medium text-lg mt-2 text-gray-400'>
+            Reset your password for Fruntt account:{' '}
+            <span className='text-stone-800'>{data?.email}</span>
+          </p>
+
+          {error && <Alert severity='error'>{error}</Alert>}
+          <form
+            className='flex flex-col mx-auto w-full'
+            onSubmit={handleSubmitPassword}
+          >
+            <input
+              type='password'
+              placeholder='New Password'
+              className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+              type='password'
+              placeholder='Confirm Password'
+              className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
+              onChange={(e) => setPasswordTwo(e.target.value)}
+            />
+            <button
+              type='submit'
+              className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-xl mt-4'
+            >
+              Reset Password
+            </button>
+          </form>
+        </div>
+      )
     ) : (
       <div className='mx-auto mt-32 w-8/12 flex flex-col items-center border bg-white rounded drop-shadow-md p-2'>
         <FaRegSadTear className='text-6xl' />
