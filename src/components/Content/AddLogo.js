@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { uploadImageRequest } from '../../api/requests';
 import {
@@ -6,6 +6,8 @@ import {
   useDeleteLogoMutation,
 } from '../../api/storefrontApiSlice';
 import { isMobile } from 'react-device-detect';
+import Cookies from 'js-cookie';
+import { setSelectedStoreUrl } from '../../redux/userRedux';
 
 //filepond
 import { FilePond, registerPlugin } from 'react-filepond';
@@ -14,11 +16,20 @@ import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orien
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginImageResize from 'filepond-plugin-image-resize';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import { Alert } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
 const AddLogo = ({ storefront, refetch, setInfo }) => {
+  const dispatch = useDispatch();
+
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
+
   const [modalIsOpen, setIsOpen] = useState(false);
   const [logoFile, setLogoFile] = useState([]);
   const [name, setName] = useState(storefront?.name);
+  const [error, setError] = useState('');
 
   const [addLogo, result] = useAddLogoMutation();
   const [deleteLogo, { isLoading }] = useDeleteLogoMutation();
@@ -39,12 +50,19 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
         name: name,
       }).unwrap();
 
-      if (addLogoReq === 'Logo added') {
+      if (addLogoReq?.msg === 'Name changed') {
         refetch();
-        setInfo(
-          'Please log out and log back in for name or logo change to fully take place'
-        );
+        // setInfo(
+        //   'Please log out and log back in for name or logo change to fully take place'
+        // );
+        dispatch(setSelectedStoreUrl(`https://${name}.fruntt.com`));
+        currentUser.store.name = name;
+        currentUser.store.url = `https://${name}.fruntt.com`;
+        const newUser = JSON.stringify(currentUser);
+        Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
         closeModal();
+      } else if (addLogoReq?.msg === 'Name in use') {
+        setError('Sorry that name is taken!');
       } else {
         refetch();
         return;
@@ -53,6 +71,10 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    setError('');
+  }, [name]);
 
   function openModal() {
     setIsOpen(true);
@@ -97,6 +119,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
           <p className='text-lg font-medium text-slate-800 mb-4 border-b'>
             Edit page name
           </p>
+          {error && <Alert severity='error'>{error}</Alert>}
           <form>
             <p>Name</p>
             <div className='flex justify-between items-center'>
@@ -143,7 +166,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
           <div>
             <p className='text-gray-400 font-medium mt-2'>Name</p>
             <p className='text-xl text-gray-400 font-medium'>
-              <span className='text-slate-800'>{storefront?.name}</span>
+              <span className='text-stone-800'>{storefront?.name}</span>
               .fruntt.com
             </p>
           </div>
@@ -153,7 +176,7 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
           <div className='w-full flex justify-between items-center mt-4 border-b p-2'>
             <p className='text-slate-800 font-medium text-xl'>Page name</p>
             <button
-              className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
+              className='border-2 rounded w-20 h-8 border-stone-800 text-slate-800 hover:bg-stone-800 hover:text-white'
               onClick={openModal}
             >
               Edit

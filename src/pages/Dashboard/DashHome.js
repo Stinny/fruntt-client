@@ -87,18 +87,6 @@ const DashHome = () => {
     'December',
   ];
 
-  const fdata = {
-    labels,
-    datasets: [
-      {
-        label: 'Sales',
-        data: labels.map(() => Math.ceil(Math.random() * 8)),
-        backgroundColor: 'black',
-        borderColor: 'black',
-      },
-    ],
-  };
-
   useEffect(() => {
     refetch();
   }, []);
@@ -112,6 +100,18 @@ const DashHome = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
+    const data = {
+      labels: stats?.dataSet?.dates,
+      datasets: [
+        {
+          label: 'Total',
+          data: stats?.dataSet?.totals,
+          backgroundColor: 'black',
+          borderColor: 'black',
+        },
+      ],
+    };
+
     content = isMobile ? (
       <DashHomeMobile currentUser={currentUser} stats={stats} />
     ) : (
@@ -369,7 +369,7 @@ const DashHome = () => {
 
         <div className='w-full border rounded-md mt-4 bg-white drop-shadow-md'>
           {stats?.numOfOrders > 0 ? (
-            <Line options={options} data={fdata} />
+            <Line options={options} data={data} />
           ) : (
             <div className='h-56 w-full flex items-center justify-center'>
               <p className='font-medium'>No orders have came in</p>
