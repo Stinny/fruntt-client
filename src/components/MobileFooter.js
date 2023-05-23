@@ -37,8 +37,8 @@ const MobileFooter = () => {
           <Link to='/' className='text-gray-400 hover:text-slate-800'>
             Contact
           </Link>
-          <Link to='/' className='text-gray-400 hover:text-slate-800'>
-            Privacy Policy
+          <Link to='/privacy' className='text-gray-400 hover:text-slate-800'>
+            Privacy
           </Link>
           <Link to='/' className='text-gray-400 hover:text-slate-800'>
             Terms

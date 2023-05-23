@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation, Navigate, Outlet } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-const RequireSubscription = () => {
+const UserHasNoPage = () => {
   const location = useLocation();
 
   const currentUser = Cookies.get('currentUser')
@@ -11,18 +11,13 @@ const RequireSubscription = () => {
 
   let content;
 
-  //old one
-  //!currentUser.trial || currentUser.subscribed
-
-  let subscribed = true;
-
-  if (subscribed) {
+  if (currentUser?.storeIds.length > 0) {
     content = <Outlet />;
   } else {
-    content = <Navigate to='/dashboard/plans' />;
+    content = <Navigate to='/home' />;
   }
 
   return content;
 };
 
-export default RequireSubscription;
+export default UserHasNoPage;

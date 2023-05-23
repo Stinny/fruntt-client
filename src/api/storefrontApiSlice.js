@@ -9,7 +9,7 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
       query: ({ storeId }) => `/storefront/get/${storeId}`,
     }),
     getStoreStats: builder.query({
-      query: ({ storeId }) => `/storefront/storestats/${storeId}`,
+      query: ({ storeId, view }) => `/storefront/storestats/${storeId}/${view}`,
     }),
     addStore: builder.mutation({
       query: ({ pageName }) => ({

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Navbar from '../../components/Navbar';
 import Topbar from '../../components/Topbar';
@@ -12,15 +12,8 @@ import { isMobile } from 'react-device-detect';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { useGetStoreStatsQuery } from '../../api/storefrontApiSlice';
 import DashHomeMobile from '../Mobile/Dashboard/DashHomeMobile';
-import {
-  FacebookIcon,
-  TwitterIcon,
-  PinterestIcon,
-  LinkedinIcon,
-  WhatsappIcon,
-  TelegramIcon,
-} from 'react-share';
 import { Line, Bar } from 'react-chartjs-2';
+import { GoGraph } from 'react-icons/go';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -32,6 +25,8 @@ const DashHome = () => {
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
+
+  const [dataView, setDataView] = useState('seven');
   const currentStoreID = useSelector((state) => state.user.selectedStore);
   //holds the url of the page being viewed
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
@@ -43,7 +38,12 @@ const DashHome = () => {
     refetch,
   } = useGetStoreStatsQuery({
     storeId: currentStoreID,
+    view: dataView,
   });
+
+  useEffect(() => {
+    refetch();
+  }, [dataView]);
 
   const options = {
     responsive: true,
@@ -66,7 +66,14 @@ const DashHome = () => {
       ],
       xAxes: {
         ticks: {
-          display: false,
+          display:
+            dataView === 'seven'
+              ? true
+              : dataView === 'thirty'
+              ? true
+              : dataView === 'today'
+              ? true
+              : false,
         },
       },
     },
@@ -108,6 +115,7 @@ const DashHome = () => {
           data: stats?.dataSet?.totals,
           backgroundColor: 'black',
           borderColor: 'black',
+          minBarLength: 7,
         },
       ],
     };
@@ -116,7 +124,7 @@ const DashHome = () => {
       <DashHomeMobile currentUser={currentUser} stats={stats} />
     ) : (
       <>
-        {!currentUser.firstName ||
+        {!currentUser.name ||
         !currentUser?.sellerProfile?.bio ||
         !currentUser?.sellerProfile?.picture?.url ? (
           <Alert severity='info' className='mt-2 w-full'>
@@ -151,15 +159,32 @@ const DashHome = () => {
             </p>
           </Alert>
         )}
-        <div className='flex mb-2'>
-          <p className='text-lg text-stone-800 font-medium'>Your live page:</p>
-          <a
-            href={currentStoreUrl}
-            className='flex justify-center items-center text-lg text-gray-400 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
-            target='_blank'
-          >
-            {currentStoreUrl}
-          </a>
+        <div className='flex justify-between mb-2'>
+          <div className='flex items-center'>
+            <p className='text-lg text-stone-800 font-medium'>
+              Your live page:
+            </p>
+            <a
+              href={currentStoreUrl}
+              className='flex justify-center items-center text-lg text-gray-400 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
+              target='_blank'
+            >
+              {currentStoreUrl}
+            </a>
+          </div>
+          <div className='flex items-center'>
+            <p className='font-medium text-stone-800 mr-2 text-lg'>Filter:</p>
+            <select
+              className='rounded border-2 w-32 h-10'
+              onChange={(e) => setDataView(e.target.value)}
+              value={dataView}
+            >
+              <option value='today'>Today</option>
+              <option value='seven'>Last 7 days</option>
+              <option value='thirty'>Last 30 days</option>
+              <option value='all'>All time</option>
+            </select>
+          </div>
         </div>
 
         <div className='flex justify-between'>
@@ -243,77 +268,10 @@ const DashHome = () => {
             </Tooltip>
             <p className='text-xl font-medium'>Conversion rate</p>
             <p className='text-4xl font-medium'>
-              {stats?.conversion > 0 ? stats?.conversion.toFixed(1) : '0'}%
+              {stats?.conversion > 0 ? stats?.conversion.toFixed(0) : '0'}%
             </p>
           </div>
         </div>
-
-        {/* <div className='w-full mt-4 mb-4 flex justify between'>
-          <div className='w-8/12 drop-shadow-md rounded-md h-40 bg-white border p-2'>
-            <p className='text-xl font-medium text-slate-800'>
-              Orders & Inventory
-            </p>
-            {stats?.numOfUnfulfilledOrders ? (
-              <p className='text-3xl font-medium mt-2 text-slate-800'>
-                {stats?.numOfUnfulfilledOrders > 1
-                  ? `You have ${stats?.numOfUnfulfilledOrders} unfulfilled orders`
-                  : `You have ${stats?.numOfUnfulfilledOrders} unfulfilled order`}
-              </p>
-            ) : (
-              <p className='text-3xl font-medium mt-2 text-slate-800'>
-                You have no recent orders
-              </p>
-            )}
-            <Link to='/dashboard/orders' className='mt-2'>
-              <div className='flex items-center'>
-                <p>View orders</p>
-                <BsArrowRightShort />
-              </div>
-            </Link>
-            {stats?.itemStock <= 10 ? (
-              <p className='mt-2'>
-                Inventory:{' '}
-                <span className='text-red-400 font-medium'>
-                  {stats?.itemStock} units
-                </span>
-              </p>
-            ) : (
-              <p className='mt-2'>
-                Inventory:{' '}
-                <span className='text-slate-800 font-medium'>
-                  {stats?.itemStock} units left
-                </span>
-              </p>
-            )}
-          </div>
-          <div className='w-4/12 drop-shadow-md mx-auto rounded-md bg-white border h-40 ml-4 flex flex-col justify-center p-2'>
-            <div className='w-full flex mx-auto justify-between items-center'>
-              <Link to='/dashboard/item' className='w-6/12 h-14'>
-                <button className='w-full h-full border-2 border-stone-800 rounded hover:bg-stone-800 hover:text-white'>
-                  Product
-                </button>
-              </Link>
-              <Link to='/dashboard/content' className='w-6/12 h-14 ml-2'>
-                <button className='w-full h-full border-2 border-stone-800 rounded hover:bg-stone-800 hover:text-white'>
-                  Content
-                </button>
-              </Link>
-            </div>
-
-            <div className='w-full flex mx-auto justify-between items-center mt-4'>
-              <Link to='/dashboard/design' className='w-6/12 h-14'>
-                <button className='w-full h-full border-2 border-stone-800 rounded hover:bg-stone-800 hover:text-white'>
-                  Design
-                </button>
-              </Link>
-              <Link to='/dashboard/orders' className='w-6/12 h-14 ml-2'>
-                <button className='w-full h-full border-2 border-stone-800 rounded hover:bg-stone-800 hover:text-white'>
-                  Orders
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div> */}
 
         <div className='w-full mt-4 h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2'>
           <p className='text-xl font-medium text-slate-800'>
@@ -369,10 +327,13 @@ const DashHome = () => {
 
         <div className='w-full border rounded-md mt-4 bg-white drop-shadow-md'>
           {stats?.numOfOrders > 0 ? (
-            <Line options={options} data={data} />
+            <Bar options={options} data={data} />
           ) : (
-            <div className='h-56 w-full flex items-center justify-center'>
-              <p className='font-medium'>No orders have came in</p>
+            <div className='h-56 w-full flex flex-col items-center justify-center'>
+              <GoGraph className='text-4xl text-gray-300' />
+              <p className='font-medium text-stone-800 mt-2'>
+                No orders have came in
+              </p>
             </div>
           )}
         </div>

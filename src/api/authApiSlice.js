@@ -16,6 +16,29 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: { ...credentials },
       }),
     }),
+    twitterLogin: builder.mutation({
+      query: ({ oauthToken, oauthSecret, oauthVerifier }) => ({
+        url: '/auth/twitter/login',
+        method: 'POST',
+        body: {
+          oauthToken: oauthToken,
+          oauthSecret: oauthSecret,
+          oauthVerifier: oauthVerifier,
+        },
+      }),
+    }),
+    twitterRegister: builder.mutation({
+      query: ({ oauthToken, oauthSecret, oauthVerifier, storeName }) => ({
+        url: '/auth/twitter/register',
+        method: 'POST',
+        body: {
+          oauthToken: oauthToken,
+          oauthSecret: oauthSecret,
+          oauthVerifier: oauthVerifier,
+          storeName: storeName,
+        },
+      }),
+    }),
     deleteAccount: builder.mutation({
       query: () => ({
         url: '/auth/deleteaccount',
@@ -24,6 +47,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
     getOnboardUrl: builder.query({
       query: () => '/auth/onboard',
+    }),
+    getTwitterAuthUrl: builder.query({
+      query: ({ type }) => `/auth/twitter/${type}`,
     }),
     getSetupIntent: builder.query({
       query: () => '/auth/getsetupintent',
@@ -179,4 +205,7 @@ export const {
   useSendResetEmailMutation,
   useCheckTokenMutation,
   useResetPasswordMutation,
+  useLazyGetTwitterAuthUrlQuery,
+  useTwitterLoginMutation,
+  useTwitterRegisterMutation,
 } = authApiSlice;

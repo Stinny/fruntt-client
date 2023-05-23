@@ -1,14 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Navigate, Link, useNavigate, useLocation } from 'react-router-dom';
+import {
+  Navigate,
+  Link,
+  useNavigate,
+  useLocation,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
-import { useLoginMutation } from '../api/authApiSlice';
+import {
+  useLazyGetTwitterAuthUrlQuery,
+  useLoginMutation,
+  useTwitterLoginMutation,
+} from '../api/authApiSlice';
 import Navbar from '../components/Navbar';
 import Cookies from 'js-cookie';
 import Spinner from '../components/Spinner';
 import Footer from '../components/Footer';
 import LoginMobile from './Mobile/LoginMobile';
 import { setStoreIds, setSelectedStoreUrl } from '../redux/userRedux';
+import { AiOutlineTwitter } from 'react-icons/ai';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -23,6 +35,24 @@ const Login = () => {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [getTwitterAuthUrl, result] = useLazyGetTwitterAuthUrlQuery();
+
+  const handleTwitterLogin = async (e) => {
+    //request the twitter auth url from server
+    //redirect user to the auth url for log in
+    e.preventDefault();
+    console.log('Logging in with Twitter!');
+    const twitterAuthUrlReq = await getTwitterAuthUrl({
+      type: 'login',
+    }).unwrap();
+
+    if (twitterAuthUrlReq.url) {
+      Cookies.set('twitterOauth', twitterAuthUrlReq?.oauthSecret);
+      Cookies.set('twitterAuthType', twitterAuthUrlReq?.type);
+      window.location.href = twitterAuthUrlReq?.url;
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -70,27 +100,43 @@ const Login = () => {
         state={state}
       />
     ) : (
-      <div className='flex flex-col items-center mx-auto justify-center w-full mb-56'>
-        <div className='w-96 flex flex-col border-b-2 items-center'>
-          <h2 className='text-4xl font-medium text-stone-800'>Login</h2>
-          <p className='text-gray-400 font-medium text-center'>
+      <div className='flex flex-col items-center mx-auto justify-center w-3/12 mb-56'>
+        <div className='w-full flex flex-col border-b-2 items-center'>
+          <h2 className='text-3xl font-medium text-stone-800'>Login</h2>
+          <p className='text-gray-400 font-medium text-center text-lg'>
             Welcome back! Please enter your details below.
           </p>
         </div>
         {error && (
-          <Alert severity='error' className='mt-2 mb-2 w-96 bg-red-300'>
+          <Alert severity='error' className='mt-2 mb-2 w-full bg-red-300'>
             {error}
           </Alert>
         )}
         {state?.success && (
-          <Alert severity='info' className='mt-2 mb-2 w-96'>
+          <Alert severity='info' className='mt-2 mb-2 w-full'>
             Your password was successfully reset
+          </Alert>
+        )}
+
+        {state?.msg && (
+          <Alert severity='error' className='mt-2 mb-2 w-full'>
+            {state?.msg}
           </Alert>
         )}
         <form
           onSubmit={handleLogin}
-          className='flex flex-col items-center w-96 bg-white p-2 rounded border-2 border drop-shadow-md mt-2'
+          className='flex flex-col items-center w-full bg-white p-2 rounded border-2 drop-shadow-md mt-2'
         >
+          <button
+            style={{ backgroundColor: '#1D9BF0' }}
+            className='w-full h-10 rounded flex items-center justify-center text-white'
+            type='button'
+            onClick={handleTwitterLogin}
+          >
+            <AiOutlineTwitter className='text-2xl mr-2' />
+            <p>Log in with Twitter</p>
+          </button>
+          <p className='font-medium text-lg text-stone-800 mt-2'>OR</p>
           <input
             type='email'
             placeholder='Email'
@@ -132,7 +178,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className='mx-auto max-w-7xl h-screen flex justify-center items-center'>
+      <div className='mx-auto max-w-8xl h-screen flex justify-center items-center'>
         {content}
       </div>
       <Footer />

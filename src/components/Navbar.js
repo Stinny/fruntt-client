@@ -115,11 +115,6 @@ const Navbar = () => {
     />
   ) : currentUser ? (
     <nav className='w-full h-16 border-b-2 border-stone-800'>
-      <HelpModal
-        isOpen={isOpen}
-        handleOpenModal={handleOpenModal}
-        handleCloseModal={handleCloseModal}
-      />
       <div className='max-w-7xl h-full mx-auto flex justify-between items-center'>
         {/* logo section */}
         <div className='text-4xl h-full flex justify-center items-center'>
@@ -133,28 +128,33 @@ const Navbar = () => {
         </div>
 
         <div className='flex items-center h-full'>
-          <p className='font-medium mr-2'>Viewing:</p>
-          <select
-            className='rounded border-2 w-72 h-10'
-            onChange={(e) => setPageInView(e.target.value)}
-            value={selectedStoreUrl}
-          >
-            <option selected disabled>
-              {selectedStoreUrl}
-            </option>
-            {filteredStores?.map((store) => (
-              <option value={store?.url}>{store?.url}</option>
-            ))}
-          </select>
-
-          <Link
-            to='/addpage'
-            type='button'
-            disabled
-            className='ml-2 text-gray-400 hover:text-gray-800'
-          >
-            + Add page
-          </Link>
+          {currentUser.storeIds.length > 0 ? (
+            <>
+              <p className='font-medium mr-2'>Viewing:</p>
+              <select
+                className='rounded border-2 w-72 h-10'
+                onChange={(e) => setPageInView(e.target.value)}
+                value={selectedStoreUrl}
+              >
+                <option selected disabled>
+                  {selectedStoreUrl}
+                </option>
+                {filteredStores?.map((store) => (
+                  <option value={store?.url}>{store?.url}</option>
+                ))}
+              </select>
+              <Link
+                to='/addpage'
+                type='button'
+                disabled
+                className='ml-2 text-gray-400 hover:text-gray-800'
+              >
+                + Add page
+              </Link>
+            </>
+          ) : (
+            ''
+          )}
         </div>
 
         {/* links section */}
@@ -209,9 +209,9 @@ const Navbar = () => {
             className='hover:cursor-pointer'
           >
             <MenuItem>
-              <Avatar />
+              <Avatar src={currentUser?.sellerProfile?.picture?.url} />
               <div className='flex justify-between'>
-                {currentUser.firstName && <p>{currentUser?.firstName}</p>}
+                {currentUser.name && <p>{currentUser?.name}</p>}
               </div>
             </MenuItem>
             <Divider />

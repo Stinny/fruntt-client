@@ -26,7 +26,7 @@ import Pricing from './pages/Pricing';
 import Marketing from './pages/Dashboard/Marketing';
 import Plans from './pages/Plans';
 import FreePlan from './pages/FreePlan';
-import RequireSubscription from './RequireSubscription';
+import UserHasNoPage from './UserHasNoPage';
 import PaidPlan from './pages/PaidPlan';
 import Item from './pages/Dashboard/Item';
 import AddItem from './pages/Dashboard/AddItem';
@@ -45,6 +45,9 @@ import Download from './pages/Download';
 import Description from './pages/Dashboard/Description';
 import PasswordReset from './pages/PasswordReset';
 import RequestReset from './pages/RequestReset';
+import TwitterAuth from './pages/TwitterAuth';
+import Privacy from './pages/Privacy';
+import NoPage from './pages/NoPage';
 
 function App() {
   return (
@@ -54,11 +57,15 @@ function App() {
           <Route path='/' element={<NoAuth />}>
             <Route index element={<Home />} />
 
+            <Route path='privacy' element={<Privacy />} />
+
             <Route path='pricing' element={<Pricing />} />
 
             <Route path='login' element={<Login />} />
 
             <Route path='signup' element={<Register />} />
+
+            <Route path='auth/twitter' element={<TwitterAuth />} />
 
             <Route path='order/digital/:orderId' element={<Download />} />
 
@@ -68,6 +75,55 @@ function App() {
 
             {/* routes require user to be logged in */}
             <Route element={<RequireAuth />}>
+              <Route path='home' element={<NoPage />} />
+              <Route element={<UserHasNoPage />}>
+                <Route path='dashboard' element={<DashHome />} />
+
+                <Route path='dashboard/item' element={<Item />} />
+
+                <Route path='dashboard/orders' element={<Orders />} />
+
+                <Route path='dashboard/description' element={<Description />} />
+
+                <Route
+                  path='dashboard/orders/:orderId'
+                  element={<OrderDetail />}
+                />
+
+                <Route path='dashboard/reviews' element={<Customers />} />
+
+                <Route
+                  path='dashboard/reviews/:reviewId'
+                  element={<CustomerDetail />}
+                />
+
+                <Route path='dashboard/addons' element={<Integrations />} />
+
+                <Route path='dashboard/config' element={<Config />} />
+
+                <Route path='dashboard/design' element={<Design />} />
+
+                <Route path='dashboard/content' element={<Content />} />
+
+                <Route path='dashboard/design/edit' element={<EditDesign />} />
+
+                <Route
+                  path='dashboard/design/edit/preview'
+                  element={<DesignPreview />}
+                />
+
+                <Route path='dashboard/item/add' element={<AddItem />} />
+
+                <Route
+                  path='dashboard/item/digital'
+                  element={<AddDigitalProd />}
+                />
+
+                <Route
+                  path='dashboard/item/edit/:productId'
+                  element={<EditItem />}
+                />
+              </Route>
               <Route path='dashboard/plans' element={<Plans />} />
               <Route path='dashboard/plans/free' element={<FreePlan />} />
               <Route path='dashboard/plans/paid' element={<PaidPlan />} />
@@ -78,56 +134,9 @@ function App() {
 
               <Route path='settings' element={<Settings />} />
 
-              <Route path='dashboard' element={<DashHome />} />
-
-              <Route path='dashboard/item' element={<Item />} />
-
-              <Route path='dashboard/orders' element={<Orders />} />
-
-              <Route path='dashboard/description' element={<Description />} />
-
-              <Route
-                path='dashboard/orders/:orderId'
-                element={<OrderDetail />}
-              />
-
-              <Route path='dashboard/reviews' element={<Customers />} />
-
-              <Route
-                path='dashboard/reviews/:reviewId'
-                element={<CustomerDetail />}
-              />
-
-              <Route path='dashboard/addons' element={<Integrations />} />
-
-              <Route path='dashboard/config' element={<Config />} />
-
-              <Route path='dashboard/design' element={<Design />} />
-
-              <Route path='dashboard/content' element={<Content />} />
-
-              <Route path='dashboard/design/edit' element={<EditDesign />} />
-
-              <Route
-                path='dashboard/design/edit/preview'
-                element={<DesignPreview />}
-              />
-
               <Route path='dashboard/marketing' element={<Marketing />} />
 
               <Route path='feedback/' element={<Feedback />} />
-
-              <Route path='dashboard/item/add' element={<AddItem />} />
-
-              <Route
-                path='dashboard/item/digital'
-                element={<AddDigitalProd />}
-              />
-
-              <Route
-                path='dashboard/item/edit/:productId'
-                element={<EditItem />}
-              />
             </Route>
           </Route>
         </Routes>

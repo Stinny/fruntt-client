@@ -44,8 +44,7 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
             }}
           >
             <p className='text-2xl font-medium' style={{ color: pageText }}>
-              {currentUser?.firstName ? currentUser?.firstName : 'First name'}{' '}
-              {currentUser?.lastName ? currentUser?.lastName : 'Last name'}
+              {currentUser?.name ? currentUser?.name : '{Your Name}'}{' '}
             </p>
 
             <p
@@ -188,8 +187,7 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
               color: pageText,
             }}
           >
-            {currentUser?.firstName ? currentUser?.firstName : 'First name'}{' '}
-            {currentUser?.lastName ? currentUser?.lastName : 'Last name'}
+            {currentUser?.name ? currentUser?.name : '{Your Name}'}
           </p>
 
           <p

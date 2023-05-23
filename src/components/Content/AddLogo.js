@@ -30,27 +30,21 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
   const [logoFile, setLogoFile] = useState([]);
   const [name, setName] = useState(storefront?.name);
   const [error, setError] = useState('');
+  const [changingName, setChangingName] = useState(false);
 
   const [addLogo, result] = useAddLogoMutation();
-  const [deleteLogo, { isLoading }] = useDeleteLogoMutation();
-
-  const handleDeleteLogo = async (key) => {
-    const deleleteLogoReq = await deleteLogo({
-      storeId: storefront._id,
-      key: storefront.logo.key,
-    }).unwrap();
-    refetch();
-  };
 
   //this needs to be refactored at some point to better handle errors
   const handleChangeName = async (e) => {
     try {
+      setChangingName(true);
       const addLogoReq = await addLogo({
         storeId: storefront._id,
         name: name,
       }).unwrap();
 
       if (addLogoReq?.msg === 'Name changed') {
+        setChangingName(false);
         refetch();
         // setInfo(
         //   'Please log out and log back in for name or logo change to fully take place'
@@ -62,13 +56,16 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
         Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
         closeModal();
       } else if (addLogoReq?.msg === 'Name in use') {
+        setChangingName(false);
         setError('Sorry that name is taken!');
       } else {
+        setChangingName(false);
         refetch();
         return;
       }
     } catch (err) {
-      console.log(err);
+      setChangingName(false);
+      setError('There was a server error');
     }
   };
 
@@ -135,9 +132,10 @@ const AddLogo = ({ storefront, refetch, setInfo }) => {
           </form>
           <button
             onClick={handleChangeName}
+            disabled={changingName}
             className='h-14 w-full border-stone-800 border-2 rounded mt-2 hover:bg-stone-800 hover:text-white'
           >
-            Save
+            {changingName ? 'Changing name...' : 'Save'}
           </button>
 
           <button

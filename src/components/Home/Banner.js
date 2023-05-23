@@ -85,7 +85,7 @@ const Banner = () => {
       </div>
     </div>
   ) : (
-    <div className='w-full flex flex-col items-center mb-44 border-t-2 border-b-2 p-2 mt-44'>
+    <div className='w-full flex flex-col items-center mb-44 border-t-2 border-b-2 p-2 mt-72'>
       {/* <p className='mb-8 text-2xl font-medium'>
         Sell just about anything from your page!
       </p>

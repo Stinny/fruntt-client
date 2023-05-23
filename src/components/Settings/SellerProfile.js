@@ -27,7 +27,7 @@ const SellerProfile = ({ user, refetch }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   //form
-  const [firstName, setFirstName] = useState(user?.firstName);
+  const [name, setName] = useState(user?.name);
   const [lastName, setLastName] = useState(user?.lastName);
   const [bio, setBio] = useState(user?.sellerProfile?.bio);
   const [image, setImage] = useState('');
@@ -61,8 +61,7 @@ const SellerProfile = ({ user, refetch }) => {
 
       //update profile request goes here
       const updateProfileReq = await updateSellerProfile({
-        firstName,
-        lastName,
+        name,
         bio,
         facebook,
         youtube,
@@ -136,17 +135,10 @@ const SellerProfile = ({ user, refetch }) => {
           <div className='flex items-center w-full'>
             <input
               type='text'
-              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-6/12 rounded p-2'
-              onChange={(e) => setFirstName(e.target.value)}
-              value={firstName}
+              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded p-2'
+              onChange={(e) => setName(e.target.value)}
+              value={name}
               placeholder='First name'
-            />
-            <input
-              type='text'
-              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-6/12 rounded p-2 ml-2'
-              onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
-              placeholder='Last name'
             />
           </div>
           <textarea
@@ -297,8 +289,7 @@ const SellerProfile = ({ user, refetch }) => {
 
               <div className='flex flex-col'>
                 <p className='text-2xl font-medium'>
-                  {user?.firstName ? user?.firstName : 'First name'}{' '}
-                  {user?.lastName ? user?.lastName : 'Last name'}
+                  {user?.name ? user?.name : '{Your Name}'}
                 </p>
 
                 <p>
@@ -371,8 +362,7 @@ const SellerProfile = ({ user, refetch }) => {
 
               <div className='flex flex-col w-96'>
                 <p className='text-2xl font-medium'>
-                  {user?.firstName ? user?.firstName : 'First name'}{' '}
-                  {user?.lastName ? user?.lastName : 'Last name'}
+                  {user?.name ? user?.name : '{Your Name}'}
                 </p>
 
                 <p>
