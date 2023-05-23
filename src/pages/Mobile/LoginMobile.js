@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AiOutlineTwitter } from 'react-icons/ai';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -9,6 +10,7 @@ const LoginMobile = ({
   setPassword,
   setEmail,
   handleLogin,
+  handleTwitterLogin,
   isLoading,
   state,
 }) => {
@@ -30,10 +32,26 @@ const LoginMobile = ({
           Your password was successfully reset
         </Alert>
       )}
+
+      {state?.msg && (
+        <Alert severity='error' className='mt-2 mb-2 w-full'>
+          {state?.msg}
+        </Alert>
+      )}
       <form
         onSubmit={handleLogin}
         className='flex flex-col w-full items-center bg-white p-2 rounded border-2 drop-shadow-md mt-2 mb-44'
       >
+        <button
+          style={{ backgroundColor: '#1D9BF0' }}
+          className='w-full h-10 rounded flex items-center justify-center text-white'
+          type='button'
+          onClick={handleTwitterLogin}
+        >
+          <AiOutlineTwitter className='text-2xl mr-2' />
+          <p>Log in with Twitter</p>
+        </button>
+        <p className='font-medium text-lg text-stone-800 mt-2'>OR</p>
         <input
           type='email'
           placeholder='Email'

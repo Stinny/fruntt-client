@@ -93,6 +93,7 @@ const Login = () => {
     content = isMobile ? (
       <LoginMobile
         handleLogin={handleLogin}
+        handleTwitterLogin={handleTwitterLogin}
         isLoading={isLoading}
         setEmail={setEmail}
         setPassword={setPassword}

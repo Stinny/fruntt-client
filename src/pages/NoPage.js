@@ -9,6 +9,7 @@ import { setSelectedStoreUrl } from '../redux/userRedux';
 
 //mui
 import Alert from '@mui/material/Alert';
+import { isMobile } from 'react-device-detect';
 
 const NoPage = () => {
   const dispatch = useDispatch();
@@ -64,40 +65,82 @@ const NoPage = () => {
   return (
     <>
       <Navbar />
-      <div className='max-w-7xl mx-auto h-screen'>
-        <div className='mx-auto border-2 rounded flex flex-col items-center p-10 w-8/12 mt-44'>
-          <p className='text-2xl font-medium text-stone-800 text-center'>
-            You have no product pages!
-          </p>
-          <p className='text-lg text-stone-800 mt-6 w-96 text-center'>
-            When you are ready to sell a digital product, launch your first page
-            below. You will be ready to sell in minutes.
-          </p>
+      <div className='max-w-7xl mx-auto h-screen p-2'>
+        {isMobile ? (
+          <div className='mx-auto border bg-white drop-shadow-md rounded flex flex-col items-center p-10 w-full mt-44'>
+            <p className='text-2xl font-medium text-stone-800 text-center'>
+              You have no product pages!
+            </p>
+            <p className='text-lg text-stone-800 mt-6 w-96 text-center'>
+              When you are ready to sell a digital product, launch your first
+              page below. You will be ready to sell in minutes.
+            </p>
 
-          {error && (
-            <Alert severity='error' className='w-8/12 mt-2'>
-              {error}
-            </Alert>
-          )}
-          <form className='flex flex-col mt-4 w-6/12' onSubmit={handleAddPage}>
-            <div className='flex items-center mt-6'>
-              <input
-                type='text'
-                className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-                placeholder='Enter page name'
-                onChange={(e) => setPageName(e.target.value)}
-              />
-              <p className='font-medium text-xl'>.fruntt.com</p>
-            </div>
-            <button
-              type='submit'
-              className=' text-lg font-medium border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 h-14 mt-6 w-full'
-              disabled={addingPage}
+            {error && (
+              <Alert severity='error' className='w-8/12 mt-2'>
+                {error}
+              </Alert>
+            )}
+            <form
+              className='flex flex-col mt-4 w-full'
+              onSubmit={handleAddPage}
             >
-              {addingPage ? 'Launching page...' : 'Launch first page'}
-            </button>
-          </form>
-        </div>
+              <div className='flex items-center mt-6'>
+                <input
+                  type='text'
+                  className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                  placeholder='Enter page name'
+                  onChange={(e) => setPageName(e.target.value)}
+                />
+                <p className='font-medium text-xl'>.fruntt.com</p>
+              </div>
+              <button
+                type='submit'
+                className=' text-lg font-medium border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 h-14 mt-6 w-full'
+                disabled={addingPage}
+              >
+                {addingPage ? 'Launching page...' : 'Launch first page'}
+              </button>
+            </form>
+          </div>
+        ) : (
+          <div className='mx-auto border bg-white drop-shadow-md rounded flex flex-col items-center p-10 w-8/12 mt-44'>
+            <p className='text-2xl font-medium text-stone-800 text-center'>
+              You have no product pages!
+            </p>
+            <p className='text-lg text-stone-800 mt-6 w-96 text-center'>
+              When you are ready to sell a digital product, launch your first
+              page below. You will be ready to sell in minutes.
+            </p>
+
+            {error && (
+              <Alert severity='error' className='w-8/12 mt-2'>
+                {error}
+              </Alert>
+            )}
+            <form
+              className='flex flex-col mt-4 w-6/12'
+              onSubmit={handleAddPage}
+            >
+              <div className='flex items-center mt-6'>
+                <input
+                  type='text'
+                  className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                  placeholder='Enter page name'
+                  onChange={(e) => setPageName(e.target.value)}
+                />
+                <p className='font-medium text-xl'>.fruntt.com</p>
+              </div>
+              <button
+                type='submit'
+                className=' text-lg font-medium border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 h-14 mt-6 w-full'
+                disabled={addingPage}
+              >
+                {addingPage ? 'Launching page...' : 'Launch first page'}
+              </button>
+            </form>
+          </div>
+        )}
       </div>
       <Footer />
     </>

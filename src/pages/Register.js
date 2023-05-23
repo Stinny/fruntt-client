@@ -71,7 +71,7 @@ const Register = () => {
     let profilePicUrl = '';
     let profilePicKey = '';
 
-    if (!email || !password || !storeName || !firstName) {
+    if (!email || !password || !storeName) {
       setError('All required fields must be filled in');
       return;
     }
@@ -140,6 +140,8 @@ const Register = () => {
         setEmail={setEmail}
         setPassword={setPassword}
         handleSignup={handleSignup}
+        handleTwitterSignup={handleTwitterSignup}
+        state={state}
         setStoreName={setStoreName}
         storeName={storeName}
         bio={bio}
