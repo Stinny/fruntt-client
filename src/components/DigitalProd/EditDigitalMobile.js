@@ -126,11 +126,14 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
 
   return (
     <div className='w-full p-2'>
-      <div className='mb-10 flex flex-col border-b-2 p-2'>
+      <div className='mb-2 flex flex-col border-b-2 p-2'>
         <h2 className='text-3xl font-medium'>Edit your digital product</h2>
       </div>
 
-      <form className='w-full' onSubmit={handleSaveEdit}>
+      <form
+        className='w-full border rounded bg-white drop-shadow-md p-2'
+        onSubmit={handleSaveEdit}
+      >
         {error && <Alert severity='error'>{error}</Alert>}
         <div className='flex items-center'>
           <p className='text-xl font-medium'>Details</p>

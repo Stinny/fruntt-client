@@ -138,7 +138,7 @@ const SellerProfile = ({ user, refetch }) => {
               className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded p-2'
               onChange={(e) => setName(e.target.value)}
               value={name}
-              placeholder='First name'
+              placeholder='Name'
             />
           </div>
           <textarea

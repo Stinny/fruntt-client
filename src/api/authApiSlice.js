@@ -89,8 +89,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
     updateSellerProfile: builder.mutation({
       query: ({
-        firstName,
-        lastName,
+        name,
         bio,
         facebook,
         youtube,
@@ -104,8 +103,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         url: '/auth/updatesellerprofile',
         method: 'POST',
         body: {
-          firstName: firstName,
-          lastName: lastName,
+          name: name,
           bio: bio,
           facebook: facebook,
           youtube: youtube,

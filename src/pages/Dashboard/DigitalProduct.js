@@ -22,7 +22,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 const DigitalProduct = ({ product }) => {
   return (
     <div className='w-full'>
-      <div className='w-full flex justify-between items-center mb-10 border-b-2 p-2'>
+      <div className='w-full flex justify-between items-center mb-4 p-2'>
         <div className='flex flex-col'>
           <h2 className='text-3xl font-semibold'>Your product</h2>
           <p>
@@ -43,7 +43,7 @@ const DigitalProduct = ({ product }) => {
         </Link>
       </div>
 
-      <div className='w-full'>
+      <div className='w-full border rounded bg-white drop-shadow-md p-2'>
         <div className='flex items-center'>
           <p className='text-xl font-medium'>Details</p>
         </div>

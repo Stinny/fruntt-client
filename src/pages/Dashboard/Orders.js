@@ -188,7 +188,7 @@ const Orders = () => {
         </div>
       </div>
     ) : (
-      <div className='flex flex-col items-center justify-center rounded h-full w-full border-2 border-gray-200 mb-20'>
+      <div className='flex flex-col items-center justify-center rounded h-full w-full border bg-white drop-shadow-md mb-20'>
         <h2 className='text-2xl font-medium mb-4'>You have no orders</h2>
         <img src={img} className='w-3/12' />
         <p className='text-xl text-gray-400 mt-4 font-medium'>

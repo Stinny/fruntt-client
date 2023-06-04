@@ -23,16 +23,10 @@ const TopbarMobile = () => {
           <NavLink to='/dashboard/item'>
             <button
               autoFocus={
-                path === '/dashboard/item' ||
-                path === '/dashboard/item/add' ||
-                path === '/dashboard/item/import' ||
-                path === '/dashboard/item/add/ali'
+                path === '/dashboard/item' || path === '/dashboard/item/digital'
               }
               className={
-                path === '/dashboard/item' ||
-                path === '/dashboard/item/add' ||
-                path === '/dashboard/item/import' ||
-                path === '/dashboard/item/add/ali'
+                path === '/dashboard/item' || path === '/dashboard/item/digital'
                   ? activeLink
                   : notActiveLink
               }

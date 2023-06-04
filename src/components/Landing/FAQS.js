@@ -26,9 +26,9 @@ const FAQS = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                You can sell almost antying, templates, code, courses, etc. You
-                have the ability to upload any digital files or create custom
-                content for your customers.
+                You can sell almost antying, templates, code, courses, e-books,
+                etc. You have the ability to upload any digital files or create
+                custom content for your customers.
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -112,9 +112,9 @@ const FAQS = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                You can sell almost antying, templates, code, courses, etc. You
-                have the ability to upload any digital files or create custom
-                content for your customers.
+                You can sell almost antying, templates, code, courses, e-books,
+                etc. You have the ability to upload any digital files or create
+                custom content for your customers.
               </Typography>
             </AccordionDetails>
           </Accordion>

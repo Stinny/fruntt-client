@@ -47,7 +47,7 @@ const EditDesktop = ({
 }) => {
   return (
     <div className='w-full'>
-      <div className='mb-10 flex justify-between border-b-2 p-2'>
+      <div className='mb-4 flex justify-between p-2'>
         <h2 className='text-3xl font-medium'>Edit your digital product</h2>
 
         <FormControlLabel
@@ -79,7 +79,10 @@ const EditDesktop = ({
         </div>
       </div>
 
-      <form className='w-full' onSubmit={handleSaveEdit}>
+      <form
+        className='w-full border rounded bg-white p-2 drop-shadow-md'
+        onSubmit={handleSaveEdit}
+      >
         {error && <Alert severity='error'>{error}</Alert>}
         <div className='flex items-center'>
           <p className='text-xl font-medium'>Details</p>

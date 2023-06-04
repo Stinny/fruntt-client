@@ -12,7 +12,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 const ProductMobile = ({ product }) => {
   const noItem = (
-    <div className='h-screen mx-auto border-2 border-gray-200 rounded w-11/12 flex flex-col justify-center items-center mt-4'>
+    <div className='h-screen mx-auto border drop-shadow-md bg-white rounded w-11/12 flex flex-col justify-center items-center mt-4'>
       <p className='text-xl font-medium'>You have not added a product yet!</p>
       <p className='text-gray-400 text-lg w-full mt-4 text-center'>
         Add any kind of files and digital content

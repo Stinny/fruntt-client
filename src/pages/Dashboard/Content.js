@@ -57,7 +57,7 @@ const Content = () => {
   } else if (isSuccess) {
     content = (
       <>
-        <div className='w-full border-b-2 p-2'>
+        <div className='w-full p-2'>
           <h2 className='text-3xl font-medium'>Content</h2>
           <p className='text-lg font-medium text-gray-400'>
             Add additional content to your page
@@ -76,25 +76,31 @@ const Content = () => {
               </Alert>
             )}
 
-        <AddLogo storefront={storefront} refetch={refetch} setInfo={setInfo} />
+        <div className='w-full border rounded drop-shadow-md bg-white p-2'>
+          <AddLogo
+            storefront={storefront}
+            refetch={refetch}
+            setInfo={setInfo}
+          />
 
-        <HideSections storefront={storefront} refetch={refetch} />
+          <HideSections storefront={storefront} refetch={refetch} />
 
-        <Description
-          currentUser={currentUser}
-          isLoading={gettingItem}
-          isSuccess={gotItem}
-          refetch={getItemAgain}
-          product={item}
-        />
+          <Description
+            currentUser={currentUser}
+            isLoading={gettingItem}
+            isSuccess={gotItem}
+            refetch={getItemAgain}
+            product={item}
+          />
 
-        <FAQs
-          currentUser={currentUser}
-          isLoading={gettingItem}
-          isSuccess={gotItem}
-          refetch={getItemAgain}
-          item={item}
-        />
+          <FAQs
+            currentUser={currentUser}
+            isLoading={gettingItem}
+            isSuccess={gotItem}
+            refetch={getItemAgain}
+            item={item}
+          />
+        </div>
 
         {/* <AddMedia /> */}
       </>

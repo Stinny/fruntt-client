@@ -38,7 +38,7 @@ const DesktopForm = ({
 }) => {
   return (
     <div className='w-full'>
-      <div className='mb-10 flex justify-between border-b-2 p-2'>
+      <div className='mb-4 flex justify-between p-2'>
         <h2 className='text-3xl font-medium'>Add your digital product</h2>
         <FormControlLabel
           label='Publish to page'
@@ -71,7 +71,10 @@ const DesktopForm = ({
 
       {error && <Alert severity='error'>{error}</Alert>}
 
-      <form className='w-full' onSubmit={handleAddProduct}>
+      <form
+        className='w-full border rounded bg-white drop-shadow-md p-2'
+        onSubmit={handleAddProduct}
+      >
         <div className='flex items-center'>
           <p className='text-2xl font-medium'>Details</p>
           <Tooltip

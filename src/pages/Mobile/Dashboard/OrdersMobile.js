@@ -58,7 +58,7 @@ const OrdersMobile = ({ orders, cols }) => {
       </div>
     </div>
   ) : (
-    <div className='flex flex-col items-center justify-center rounded h-full w-11/12 border-2 border-gray-200 mb-20 mx-auto mt-4'>
+    <div className='flex flex-col items-center justify-center rounded h-full w-11/12 border bg-white drop-shadow-md mb-20 mx-auto mt-4'>
       <h2 className='text-2xl font-medium mb-4'>You have no orders</h2>
       <img src={img} className='w-5/12' />
       <p className='text-lg text-gray-400 mt-4 font-medium text-center'>

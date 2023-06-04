@@ -49,7 +49,7 @@ const Item = () => {
   }, [currentStoreID]);
 
   const noItem = (
-    <div className='h-screen border-2 border-gray-200 rounded w-full flex flex-col justify-center items-center mt-4'>
+    <div className='h-screen border border-gray-200 rounded bg-white drop-shadow-md w-full flex flex-col justify-center items-center mt-4'>
       <h2 className='text-2xl font-medium text-slate-800'>
         You have not added a product yet!
       </h2>
