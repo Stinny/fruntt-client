@@ -13,6 +13,7 @@ import Email from '../components/Landing/Email';
 import Banner from '../components/Home/Banner';
 import HowSell from '../components/Landing/HowSell';
 import Fee from '../components/Landing/Fee';
+import FAQS from '../components/Landing/FAQS';
 
 const Home = () => {
   const currentUser = Cookies.get('currentUser')
@@ -30,6 +31,7 @@ const Home = () => {
           <Hero />
           <Banner />
           <HowSell />
+          <FAQS />
           <Fee />
           <PHunt />
           <Email />
