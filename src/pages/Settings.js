@@ -54,7 +54,7 @@ const Settings = () => {
           </div>
         ) : (
           <div className='pb-4 mt-20'>
-            <div className='flex justify-between w-full'>
+            <div className='flex justify-between w-full items-center'>
               <h2 className='text-4xl font-semibold'>Settings</h2>
 
               <Link
@@ -68,7 +68,7 @@ const Settings = () => {
           </div>
         )}
 
-        <div className='rounded w-full drop-shadow-lg mt-2 bg-white p-1 border'>
+        <div className='rounded w-full drop-shadow-lg bg-white p-1 border'>
           <div className='w-full mt-4'>
             <SellerProfile user={user} refetch={refetch} />
           </div>
@@ -86,22 +86,11 @@ const Settings = () => {
               <p className='text-lg font-medium'>Payment Gateway</p>
               <p className=' font-medium text-gray-400'>
                 You are paid immediately after a successful purchase. You keep
-                99% of what you make.
+                99% of what you make after processing fees.
               </p>
             </div>
             <Payments refetch={refetch} />
           </div>
-          {/* 
-        <div className='w-full mt-10'>
-          <div className='flex flex-col w-full border-b p-2'>
-            <p className='text-lg font-medium'>Payment Method</p>
-            <p className='text-gray-400 font-medium'>
-              Add a payment method only if you plan to buy shipping labels from
-              us
-            </p>
-          </div>
-          <Billing user={user} refetch={refetch} />
-        </div> */}
 
           <div className='w-full mt-10'>
             <div className='flex flex-col w-full border-b p-2'>

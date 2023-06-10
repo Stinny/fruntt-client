@@ -3,7 +3,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import { convertFromRaw, EditorState, convertToRaw } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useAddDescriptionMutation } from '../../api/productsApiSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { isMobile } from 'react-device-detect';
@@ -79,13 +79,21 @@ const DescEditor = ({ product, getItemAgain }) => {
             purchase
           </p>
         </div>
-        <button
-          type='button'
-          className='border-2 rounded w-20 h-8 flex items-center justify-center border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
-          onClick={handleSaveDescription}
-        >
-          SAVE
-        </button>
+        <div className='flex items-center'>
+          <Link
+            to='/dashboard/content'
+            className='border-2 rounded w-20 h-8 flex items-center justify-center border-red-400 text-red-400 hover:text-white hover:bg-red-400 mr-2'
+          >
+            CANCEL
+          </Link>
+          <button
+            type='button'
+            className='border-2 rounded w-20 h-8 flex items-center justify-center border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800'
+            onClick={handleSaveDescription}
+          >
+            SAVE
+          </button>
+        </div>
       </div>
 
       <div className=' w-full'>

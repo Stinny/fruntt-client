@@ -145,6 +145,8 @@ const AddDigitalProd = () => {
             setSuggestedPrice={setSuggestedPrice}
             setProductContent={setProductContent}
             error={error}
+            description={description}
+            title={title}
           />
         ) : (
           <DesktopForm
@@ -169,6 +171,8 @@ const AddDigitalProd = () => {
             setPayChoice={setPayChoice}
             setSuggestedPrice={setSuggestedPrice}
             error={error}
+            description={description}
+            title={title}
           />
         )}
       </div>

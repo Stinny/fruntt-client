@@ -193,7 +193,7 @@ const Register = () => {
             <input
               type='email'
               placeholder='Email'
-              className='border-2 border-gray-300 hover:border-slate-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
+              className='border-2 border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
               onChange={(e) => setEmail(e.target.value)}
               autoFocus
             />
@@ -201,7 +201,7 @@ const Register = () => {
             <input
               type='password'
               placeholder='Password'
-              className='border-2 border-gray-300 focus:outline focus:outline-1 hover:border-gray-400 focus:outline-gray-400 hover:border-slate-300 w-full rounded p-2 mt-2'
+              className='border-2 border-gray-300 focus:outline focus:outline-1 hover:border-gray-400 focus:outline-gray-400 w-full rounded p-2 mt-2'
               onChange={(e) => setPassword(e.target.value)}
             />
 
@@ -218,17 +218,6 @@ const Register = () => {
               />
               <p className='font-medium text-xl mt-6'>.fruntt.com</p>
             </div>
-            {/* 
-        <div className='w-full mt-2'>
-          <p className='font-medium'>Payment</p>
-          <p className='text-gray-400 font-medium text-sm border-b'>
-            Won't be charged until 7 day trial is over, can cancel anytime
-          </p>
-        </div> */}
-
-            {/* <div className='w-full mt-4'>
-          <CardElement options={CARD_ELEMENT_OPTIONS} />
-        </div> */}
 
             <button
               type='submit'

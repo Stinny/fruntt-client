@@ -138,6 +138,21 @@ const FAQS = () => {
           <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
+              aria-controls='panel1a-content'
+              id='panel1a-header'
+            >
+              <Typography>What payment processor is used?</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Currently we are only using Stripe to keep things simple on our
+                end. PayPal will be available in the near future.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
               aria-controls='panel3a-content'
               id='panel3a-header'
             >

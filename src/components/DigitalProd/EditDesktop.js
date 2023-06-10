@@ -123,7 +123,11 @@ const EditDesktop = ({
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              maxLength={50}
             />
+            <div className='w-full flex justify-end'>
+              <p className='text-sm text-gray-400'>{title.length}/50</p>
+            </div>
 
             <p className='text-gray-400 mt-4'>Product Summary (optional)</p>
             <textarea
@@ -131,7 +135,11 @@ const EditDesktop = ({
               className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              maxLength={75}
             />
+            <div className='w-full flex justify-end'>
+              <p className='text-sm text-gray-400'>{description.length}/75</p>
+            </div>
 
             <p className='text-gray-400 mt-4'>Product Price</p>
             <div className='flex items-center'>

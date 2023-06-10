@@ -99,6 +99,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         profilePicUrl,
         profilePicKey,
         linkedin,
+        link,
       }) => ({
         url: '/auth/updatesellerprofile',
         method: 'POST',
@@ -111,6 +112,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
           instagram: instagram,
           tiktok: tiktok,
           linkedin: linkedin,
+          link: link,
           profilePicUrl: profilePicUrl,
           profilePicKey: profilePicKey,
         },

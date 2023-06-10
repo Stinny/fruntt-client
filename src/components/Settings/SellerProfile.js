@@ -7,6 +7,7 @@ import {
   AiOutlineFacebook,
   AiOutlineTwitter,
   AiOutlineLinkedin,
+  AiOutlineLink,
 } from 'react-icons/ai';
 import { FaTiktok } from 'react-icons/fa';
 import { uploadImageRequest } from '../../api/requests';
@@ -37,6 +38,7 @@ const SellerProfile = ({ user, refetch }) => {
   const [instagram, setInstagram] = useState(user?.sellerProfile?.instagram);
   const [tiktok, setTiktok] = useState(user?.sellerProfile?.tiktok);
   const [linkedin, setLinkedin] = useState(user?.sellerProfile?.linkedin);
+  const [link, setLink] = useState(user?.sellerProfile?.link);
   const [profilePic, setProfilePic] = useState([]);
 
   const [updateSellerProfile, result] = useUpdateSellerProfileMutation();
@@ -69,6 +71,7 @@ const SellerProfile = ({ user, refetch }) => {
         instagram,
         linkedin,
         tiktok,
+        link,
         profilePicUrl,
         profilePicKey,
       }).unwrap();
@@ -148,6 +151,9 @@ const SellerProfile = ({ user, refetch }) => {
             value={bio}
             maxLength={100}
           />
+          <div className='w-full flex justify-end'>
+            <p className='text-sm text-gray-400'>{bio.length}/100</p>
+          </div>
           <p className='text-gray-400 mt-2'>Upload new profile image</p>
           <FilePond
             file={profilePic}
@@ -221,6 +227,17 @@ const SellerProfile = ({ user, refetch }) => {
               placeholder='https://www.tiktok.com/youraccount'
               onChange={(e) => setTiktok(e.target.value)}
               value={tiktok}
+            />
+          </div>
+
+          <div className='w-full flex justify-between items-center mt-2'>
+            <AiOutlineLink className='text-4xl' />
+            <input
+              type='text'
+              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+              placeholder='https://www.YourLink.com/'
+              onChange={(e) => setLink(e.target.value)}
+              value={link}
             />
           </div>
           <button
@@ -348,6 +365,13 @@ const SellerProfile = ({ user, refetch }) => {
                 ) : (
                   <FaTiktok className='text-gray-200 ml-2 text-3xl' />
                 )}
+                {user?.sellerProfile?.link ? (
+                  <a href={user?.sellerProfile?.tiktok} target='_blank'>
+                    <AiOutlineLink className='text-stone-800 ml-2 text-3xl' />
+                  </a>
+                ) : (
+                  <AiOutlineLink className='text-gray-200 ml-2 text-3xl' />
+                )}
               </div>
             </div>
           </div>
@@ -421,6 +445,13 @@ const SellerProfile = ({ user, refetch }) => {
                   </a>
                 ) : (
                   <FaTiktok className='text-gray-200 ml-2 text-3xl' />
+                )}
+                {user?.sellerProfile?.link ? (
+                  <a href={user?.sellerProfile?.tiktok} target='_blank'>
+                    <AiOutlineLink className='text-stone-800 ml-2 text-3xl' />
+                  </a>
+                ) : (
+                  <AiOutlineLink className='text-gray-200 ml-2 text-3xl' />
                 )}
               </div>
             </div>

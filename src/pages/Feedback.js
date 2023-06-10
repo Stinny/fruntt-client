@@ -87,14 +87,12 @@ const Feedback = () => {
             </Alert>
           )}
           <form
-            className='flex flex-col w-9/12 mx-auto'
+            className='flex flex-col w-9/12 mx-auto border rounded bg-white p-2 drop-shadow-md mt-10'
             onSubmit={handleAddFeedBack}
           >
-            <p className='font-medium mb-2 text-gray-400 mt-10'>
-              Leave feedback on:
-            </p>
+            <p className='font-medium mb-2 text-gray-400'>Leave feedback on:</p>
             <select
-              className='w-6/12 h-10 border rounded'
+              className='w-6/12 h-10 border rounded p-2'
               onChange={(e) => setType(e.target.value)}
             >
               <option disabled selected>
@@ -102,7 +100,7 @@ const Feedback = () => {
               </option>
               <option value='design'>Designing your product page</option>
               <option value='orders'>Order management</option>
-              <option value='customers'>Customer management</option>
+              <option value='customers'>Review management</option>
               <option value='feature'>Request a feature</option>
               <option value='pricing'>Pricing</option>
               <option value='other'>Other</option>
@@ -127,7 +125,7 @@ const Feedback = () => {
 
             <button
               type='submit'
-              className='w-full h-14 border-2 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 rounded mt-4'
+              className='w-full h-14 border-2 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 rounded mt-4'
             >
               Submit feedback
             </button>

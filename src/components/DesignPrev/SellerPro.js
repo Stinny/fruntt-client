@@ -6,6 +6,7 @@ import {
   AiOutlineFacebook,
   AiOutlineTwitter,
   AiOutlineLinkedin,
+  AiOutlineLink,
 } from 'react-icons/ai';
 import { FaTiktok } from 'react-icons/fa';
 import Cookies from 'js-cookie';
@@ -128,6 +129,14 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
                 {currentUser?.sellerProfile?.tiktok && (
                   <a href={currentUser?.sellerProfile?.tiktok} target='_blank'>
                     <FaTiktok
+                      style={{ color: pageText }}
+                      className='text-gray-400 hover:text-blue-400 ml-2'
+                    />
+                  </a>
+                )}
+                {currentUser?.sellerProfile?.link && (
+                  <a href={currentUser?.sellerProfile?.link} target='_blank'>
+                    <AiOutlineLink
                       style={{ color: pageText }}
                       className='text-gray-400 hover:text-blue-400 ml-2'
                     />
@@ -264,6 +273,14 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
           {currentUser?.sellerProfile?.tiktok && (
             <a href={currentUser?.sellerProfile?.tiktok} target='_blank'>
               <FaTiktok
+                style={{ color: pageText }}
+                className='text-gray-400 hover:text-blue-400 ml-2'
+              />
+            </a>
+          )}
+          {currentUser?.sellerProfile?.link && (
+            <a href={currentUser?.sellerProfile?.link} target='_blank'>
+              <AiOutlineLink
                 style={{ color: pageText }}
                 className='text-gray-400 hover:text-blue-400 ml-2'
               />
