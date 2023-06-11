@@ -23,10 +23,8 @@ const Payments = ({ refetch }) => {
   const [gettingUrl, setGettingUrl] = useState(false);
 
   const [getOnboardUrl, result] = useLazyGetOnboardUrlQuery();
-  const [
-    disconnectStripe,
-    { isLoading, isSuccess },
-  ] = useDisconnectStripeMutation();
+  const [disconnectStripe, { isLoading, isSuccess }] =
+    useDisconnectStripeMutation();
 
   useEffect(() => {
     const fetchOnboardUrl = async () => {
@@ -47,7 +45,7 @@ const Payments = ({ refetch }) => {
     <>
       {' '}
       <div className='w-full h-20 flex items-center justify-center border-purple-600 border-2 text-purple-600 rounded-md text-md mt-2 p-2'>
-        You are connected to Stripe
+        <p>{currentUser?.stripeId}</p>
         <AiOutlineCheckCircle className='text-2xl ml-4' />
       </div>
       <button
@@ -60,11 +58,11 @@ const Payments = ({ refetch }) => {
   ) : (
     <>
       <div className='w-full h-20 flex items-center justify-center border-purple-600 border-2 text-purple-600 rounded-md text-md mt-4 p-2'>
-        You are connected to Stripe
+        <p>{currentUser?.stripeId}</p>
         <AiOutlineCheckCircle className='text-2xl ml-4' />
       </div>
       <button
-        className='w-full h-10 border-2 text-md rounded-md mt-4 text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white'
+        className='w-full h-10 border-2 text-md rounded-md mt-4 text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white'
         onClick={handleDisconnectStripe}
       >
         Disconnect

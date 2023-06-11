@@ -133,7 +133,7 @@ const SellerProfile = ({ user, refetch }) => {
           <p className=' font-medium text-gray-400 mb-4 border-b'>
             This appears at the top of all your product pages
           </p>
-          <p className='text-lg font-medium mt-2 mb-2'>about you</p>
+          <p className='text-lg font-medium mt-2 mb-2'>About you</p>
 
           <div className='flex items-center w-full'>
             <input
@@ -164,81 +164,83 @@ const SellerProfile = ({ user, refetch }) => {
           />
           <p className='text-lg font-medium mt-2 mb-2'>Social links</p>
 
-          <div className='w-full flex justify-between items-center'>
-            <AiOutlineFacebook className='text-4xl' />
-            <input
-              type='text'
-              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
-              placeholder='https://www.facebook.com/youraccount'
-              onChange={(e) => setFacebook(e.target.value)}
-              value={facebook}
-            />
-          </div>
+          <div className='flex flex-col h-44 overflow-scroll'>
+            <div className='w-full flex justify-between items-center'>
+              <AiOutlineFacebook className='text-4xl' />
+              <input
+                type='text'
+                className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                placeholder='https://www.facebook.com/youraccount'
+                onChange={(e) => setFacebook(e.target.value)}
+                value={facebook}
+              />
+            </div>
 
-          <div className='w-full flex justify-between items-center mt-2'>
-            <AiOutlineInstagram className='text-4xl' />
-            <input
-              type='text'
-              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
-              placeholder='https://www.instagram.com/youraccount'
-              onChange={(e) => setInstagram(e.target.value)}
-              value={instagram}
-            />
-          </div>
+            <div className='w-full flex justify-between items-center mt-2'>
+              <AiOutlineInstagram className='text-4xl' />
+              <input
+                type='text'
+                className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                placeholder='https://www.instagram.com/youraccount'
+                onChange={(e) => setInstagram(e.target.value)}
+                value={instagram}
+              />
+            </div>
 
-          <div className='w-full flex justify-between items-center mt-2'>
-            <AiOutlineYoutube className='text-4xl' />
-            <input
-              type='text'
-              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
-              placeholder='https://www.youtube.com/youraccount'
-              onChange={(e) => setYoutube(e.target.value)}
-              value={youtube}
-            />
-          </div>
+            <div className='w-full flex justify-between items-center mt-2'>
+              <AiOutlineYoutube className='text-4xl' />
+              <input
+                type='text'
+                className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                placeholder='https://www.youtube.com/youraccount'
+                onChange={(e) => setYoutube(e.target.value)}
+                value={youtube}
+              />
+            </div>
 
-          <div className='w-full flex justify-between items-center mt-2'>
-            <AiOutlineTwitter className='text-4xl' />
-            <input
-              type='text'
-              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
-              placeholder='https://www.twitter.com/youraccount'
-              onChange={(e) => setTwitter(e.target.value)}
-              value={twitter}
-            />
-          </div>
+            <div className='w-full flex justify-between items-center mt-2'>
+              <AiOutlineTwitter className='text-4xl' />
+              <input
+                type='text'
+                className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                placeholder='https://www.twitter.com/youraccount'
+                onChange={(e) => setTwitter(e.target.value)}
+                value={twitter}
+              />
+            </div>
 
-          <div className='w-full flex justify-between items-center mt-2'>
-            <AiOutlineLinkedin className='text-4xl' />
-            <input
-              type='text'
-              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
-              placeholder='https://www.linkedin.com/youraccount'
-              onChange={(e) => setLinkedin(e.target.value)}
-              value={linkedin}
-            />
-          </div>
+            <div className='w-full flex justify-between items-center mt-2'>
+              <AiOutlineLinkedin className='text-4xl' />
+              <input
+                type='text'
+                className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                placeholder='https://www.linkedin.com/youraccount'
+                onChange={(e) => setLinkedin(e.target.value)}
+                value={linkedin}
+              />
+            </div>
 
-          <div className='w-full flex justify-between items-center mt-2'>
-            <FaTiktok className='text-4xl' />
-            <input
-              type='text'
-              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
-              placeholder='https://www.tiktok.com/youraccount'
-              onChange={(e) => setTiktok(e.target.value)}
-              value={tiktok}
-            />
-          </div>
+            <div className='w-full flex justify-between items-center mt-2'>
+              <FaTiktok className='text-4xl' />
+              <input
+                type='text'
+                className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                placeholder='https://www.tiktok.com/youraccount'
+                onChange={(e) => setTiktok(e.target.value)}
+                value={tiktok}
+              />
+            </div>
 
-          <div className='w-full flex justify-between items-center mt-2'>
-            <AiOutlineLink className='text-4xl' />
-            <input
-              type='text'
-              className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
-              placeholder='https://www.YourLink.com/'
-              onChange={(e) => setLink(e.target.value)}
-              value={link}
-            />
+            <div className='w-full flex justify-between items-center mt-2'>
+              <AiOutlineLink className='text-4xl' />
+              <input
+                type='text'
+                className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                placeholder='https://www.YourLink.com/'
+                onChange={(e) => setLink(e.target.value)}
+                value={link}
+              />
+            </div>
           </div>
           <button
             type='button'

@@ -22,6 +22,24 @@ const FAQS = () => {
               aria-controls='panel1a-content'
               id='panel1a-header'
             >
+              <Typography>
+                Do creators really keep 99% of what they earn?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Yes, creators keep 99% of what they earn after processing fees.
+                Processing fees are 2.9% + 30 cents per transaction. This does
+                not go to us, it is for credit card companies.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls='panel1a-content'
+              id='panel1a-header'
+            >
               <Typography>What can I sell?</Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -102,6 +120,24 @@ const FAQS = () => {
           <p className='font-medium text-gray-400 text-2xl underline underline-offset-8 text-center mt-32 mb-4'>
             FAQ's
           </p>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls='panel1a-content'
+              id='panel1a-header'
+            >
+              <Typography>
+                Do creators really keep 99% of what they earn?
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                Yes, creators keep 99% of what they earn after processing fees.
+                Processing fees are 2.9% + 30 cents per transaction. This does
+                not go to us, it is for credit card companies.
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
           <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
