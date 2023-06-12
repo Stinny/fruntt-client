@@ -28,9 +28,10 @@ const FAQS = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Yes, creators keep 99% of what they earn after processing fees.
-                Processing fees are 2.9% + 30 cents per transaction. This does
-                not go to us, it is for credit card companies.
+                Yes, creators keep 99% of what they earn after payment
+                processing fees. Processing fees are 2.9% + 30 cents per
+                transaction. This does not go to us, it is for credit card
+                companies.
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -44,9 +45,9 @@ const FAQS = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                You can sell almost antying, templates, code, courses, e-books,
-                etc. You have the ability to upload any digital files or create
-                custom content for your customers.
+                You can sell almost anything digital: templates, code, courses,
+                e-books, etc. You have the ability to upload any digital files
+                or create custom content for your customers.
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -132,9 +133,10 @@ const FAQS = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Yes, creators keep 99% of what they earn after processing fees.
-                Processing fees are 2.9% + 30 cents per transaction. This does
-                not go to us, it is for credit card companies.
+                Yes, creators keep 99% of what they earn after payment
+                processing fees. Processing fees are 2.9% + 30 cents per
+                transaction. This does not go to us, it is for credit card
+                companies.
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -148,9 +150,9 @@ const FAQS = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                You can sell almost antying, templates, code, courses, e-books,
-                etc. You have the ability to upload any digital files or create
-                custom content for your customers.
+                You can sell almost anything digital: templates, code, courses,
+                e-books, etc. You have the ability to upload any digital files
+                or create custom content for your customers.
               </Typography>
             </AccordionDetails>
           </Accordion>

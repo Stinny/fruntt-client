@@ -114,10 +114,10 @@ const Navbar = () => {
       handleOpenModal={handleOpenModal}
     />
   ) : currentUser ? (
-    <nav className='w-full h-16 border-b-2 border-stone-800'>
+    <nav className='w-full h-16 border-b shadow bg-white fixed top-0 left-0 right-0 z-50'>
       <div className='max-w-7xl h-full mx-auto flex justify-between items-center'>
         {/* logo section */}
-        <div className='text-4xl h-full flex justify-center items-center'>
+        <div className='text-2xl h-full flex justify-center items-center'>
           <Link
             to='/dashboard'
             className='h-full flex justify-center items-center'
@@ -242,10 +242,10 @@ const Navbar = () => {
       </div>
     </nav>
   ) : (
-    <nav className='w-full h-16 border-b-2 border-stone-800 bg-white'>
+    <nav className='w-full h-16 border-b shadow bg-white fixed top-0 left-0 right-0 z-50'>
       <div className='max-w-7xl h-full mx-auto flex justify-between items-center'>
         {/* logo section */}
-        <div className='text-4xl h-full flex justify-center items-center'>
+        <div className='text-2xl h-full flex justify-center items-center'>
           <Link to='/' className='h-full flex justify-center items-center'>
             <IoStorefrontOutline className='text-slate-800 font-bold' />
             <p className='font-black font-sans'>Fruntt</p>
@@ -253,7 +253,7 @@ const Navbar = () => {
         </div>
 
         {/* links section */}
-        <div className='h-full flex items-center flex justify-between'>
+        <div className='h-full flex items-center justify-between'>
           <Link to='/signup'>
             <p className='font-medium text-slate-800 text-xl'>Sell</p>
           </Link>
