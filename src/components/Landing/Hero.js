@@ -37,10 +37,7 @@ const Hero = () => {
           Keep <span className='bg-stone-800 rounded text-white p-1'>99%</span>{' '}
           of what you earn.
         </p>
-        <p
-          className='text-lg font-medium mt-8 text-stone-800 text-center'
-          style={{ width: '400px' }}
-        >
+        <p className='text-lg font-medium mt-8 text-stone-800 text-center'>
           Sell any digital product from your own customized pages and keep 99%
           of what you earn after payment processing fees.
         </p>
