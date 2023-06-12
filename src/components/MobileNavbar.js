@@ -168,7 +168,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
           <div className='text-2xl h-full flex justify-center items-center'>
             <Link to='/' className='h-full flex justify-center items-center'>
               <IoStorefrontOutline className='text-slate-800 font-bold' />
-              <p className='font-black font-sans'>Fruntt</p>
+              <p className='text-stone-800 font-black font-sans'>Fruntt</p>
             </Link>
           </div>
 
