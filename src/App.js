@@ -10,7 +10,6 @@ import {
 
 import NoAuth from './NoAuth';
 import RequireAuth from './RequireAuth';
-
 import Register from './pages/Register';
 import Login from './pages/Login';
 import DashHome from './pages/Dashboard/DashHome';
@@ -48,6 +47,7 @@ import RequestReset from './pages/RequestReset';
 import TwitterAuth from './pages/TwitterAuth';
 import Privacy from './pages/Privacy';
 import NoPage from './pages/NoPage';
+import 'normalize.css';
 
 function App() {
   return (
