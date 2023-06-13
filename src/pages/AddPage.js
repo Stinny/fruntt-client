@@ -66,7 +66,7 @@ const AddPage = () => {
       <Navbar />
       <div className='h-screen max-w-6xl mx-auto'>
         {isMobile ? (
-          <div className='flex flex-col items-center justify-center h-full p-2'>
+          <div className='flex flex-col items-center justify-center h-full p-2 bg-white border drop-shadow-md'>
             <div className='w-full mx-auto flex flex-col border-b-2 p-2'>
               <p className='font-medium text-2xl'>
                 Launch another product page!
@@ -109,52 +109,50 @@ const AddPage = () => {
             </form>
           </div>
         ) : (
-          <div className='flex flex-col items-center justify-center h-full'>
-            <div className='w-8/12 mx-auto flex flex-col border-b-2 p-2'>
-              <p className='font-medium text-2xl'>
-                Launch another product page!
-              </p>
-              <div className='w-full mx-auto flex justify-between'>
-                <p className='font-medium text-gray-400'>
-                  Have something else to offer? Add another page to your
-                  collection
-                </p>
-                <Link
-                  to='/dashboard'
-                  className='flex justify-center items-center text-gray-400 hover:text-gray-500'
-                >
-                  <p>Back to dashboard</p>{' '}
-                  <BsArrowRightShort className='text-xl' />
-                </Link>
-              </div>
-            </div>
-
-            {error && (
-              <Alert severity='error' className='w-8/12 mt-2 mb-2'>
-                {error}
-              </Alert>
-            )}
-            <form
-              className='flex flex-col mt-4 w-5/12 mb-44'
-              onSubmit={handleAddPage}
+          <div className='flex flex-col items-center justify-center h-full '>
+            <div
+              className='flex flex-col items-center h-60 bg-white border drop-shadow-md rounded p-2'
+              style={{ width: '600px' }}
             >
-              <div className='flex items-center mt-6'>
-                <input
-                  type='text'
-                  className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-                  placeholder='Enter page name'
-                  onChange={(e) => setPageName(e.target.value)}
-                />
-                <p className='font-medium text-xl'>.fruntt.com</p>
+              <div className='w-full mx-auto flex flex-col'>
+                <p className='font-medium text-2xl'>
+                  Launch another product page!
+                </p>
+                <div className='w-full mx-auto flex justify-between'>
+                  <p className='font-medium text-gray-400'>
+                    Have something else to offer? Add another page to your
+                    collection
+                  </p>
+                </div>
               </div>
-              <button
-                type='submit'
-                className=' text-lg font-medium border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 h-14 mt-6 w-full'
-                disabled={addingPage}
+
+              {error && (
+                <Alert severity='error' className='w-8/12 mt-2 mb-2'>
+                  {error}
+                </Alert>
+              )}
+              <form
+                className='flex flex-col mt-4 w-8/12 mb-44'
+                onSubmit={handleAddPage}
               >
-                {addingPage ? 'Launching page...' : 'Launch product page'}
-              </button>
-            </form>
+                <div className='flex items-center mt-6'>
+                  <input
+                    type='text'
+                    className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                    placeholder='Enter page name'
+                    onChange={(e) => setPageName(e.target.value)}
+                  />
+                  <p className='font-medium text-xl'>.fruntt.com</p>
+                </div>
+                <button
+                  type='submit'
+                  className=' text-lg font-medium border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 h-14 mt-6 w-full'
+                  disabled={addingPage}
+                >
+                  {addingPage ? 'Launching page...' : 'Launch product page'}
+                </button>
+              </form>
+            </div>
           </div>
         )}
       </div>

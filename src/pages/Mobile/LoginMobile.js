@@ -15,7 +15,7 @@ const LoginMobile = ({
   state,
 }) => {
   return (
-    <div className='flex flex-col mx-auto w-full p-2'>
+    <div className='flex flex-col mx-auto w-full p-2 mt-20'>
       <div className='w-full flex flex-col border-b-2 items-center'>
         <h2 className='text-4xl font-medium'>Login</h2>
         <p className='text-gray-400 font-medium text-center'>

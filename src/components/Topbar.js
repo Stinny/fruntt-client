@@ -13,8 +13,8 @@ const Topbar = () => {
   return isMobile ? (
     <TopbarMobile />
   ) : (
-    <div className='max-w-6xl mx-auto h-16 mb-8 mt-10'>
-      <div className='w-full h-full mx-auto flex justify-between items-center border-b-2 p-2'>
+    <div className='max-w-6xl mx-auto h-16 mb-8 mt-24'>
+      <div className='w-full h-full mx-auto flex justify-between items-center border rounded bg-white drop-shadow-md p-2'>
         <NavLink to='/dashboard'>
           <button
             className={path === '/dashboard' ? activeLink : notActiveLink}
