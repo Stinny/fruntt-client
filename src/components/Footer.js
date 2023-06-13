@@ -16,7 +16,7 @@ const Footer = () => {
   ) : (
     <footer className='w-full h-32 border-t-2 mt-10'>
       <div className='max-w-7xl mx-auto h-full flex justify-between items-center'>
-        <div className='h-full flex justify-center items-center text-4xl'>
+        <div className='h-full flex justify-center items-center text-2xl'>
           <Link to='/' className='h-full flex justify-center items-center'>
             <IoStorefrontOutline className='text-gray-400 font-bold' />
             <p className='font-black text-gray-400 font-sans'>Fruntt</p>

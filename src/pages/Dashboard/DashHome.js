@@ -188,7 +188,7 @@ const DashHome = () => {
         </div>
 
         <div className='flex justify-between'>
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 relative border'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>Total revenue your page has generated</p>
@@ -212,7 +212,7 @@ const DashHome = () => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 ml-4 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>Total sales your page has generated</p>
@@ -232,7 +232,7 @@ const DashHome = () => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 ml-4 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -252,7 +252,7 @@ const DashHome = () => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 ml-4 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -273,7 +273,7 @@ const DashHome = () => {
           </div>
         </div>
 
-        <div className='w-full mt-4 h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2'>
+        <div className='w-full mt-4 h-28 bg-white border rounded drop-shadow-md flex flex-col p-2'>
           <p className='text-xl font-medium text-slate-800'>
             Is your page ready for customers?
           </p>
@@ -325,11 +325,11 @@ const DashHome = () => {
           </div>
         </div>
 
-        <div className='w-full border rounded-md mt-4 bg-white drop-shadow-md'>
+        <div className='w-full border rounded mt-4 bg-white drop-shadow-md'>
           {stats?.numOfOrders > 0 ? (
             <Bar options={options} data={data} />
           ) : (
-            <div className='h-56 w-full flex flex-col items-center justify-center'>
+            <div className='h-72 w-full flex flex-col items-center justify-center'>
               <GoGraph className='text-4xl text-gray-300' />
               <p className='font-medium text-stone-800 mt-2'>
                 No orders have came in
