@@ -155,8 +155,8 @@ const Register = () => {
         setProfilePic={setProfilePic}
       />
     ) : (
-      <div className='mx-auto w-full h-full flex items-center justify-center'>
-        <div className='flex flex-col mx-auto items-center justify-center'>
+      <div className='mx-auto w-3/12 h-full flex items-center justify-center'>
+        <div className='flex flex-col mx-auto items-center justify-center w-full'>
           <p className='text-3xl font-medium text-center'>Ready to sell?</p>
           <p className='text-stone-800 font-medium mb-4 text-center text-lg'>
             Launch your first page, be ready to sell in minutes.
