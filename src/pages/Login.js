@@ -101,11 +101,11 @@ const Login = () => {
         state={state}
       />
     ) : (
-      <div className='flex flex-col items-center mx-auto justify-center w-3/12 mb-56'>
-        <div className='w-full flex flex-col border-b-2 items-center'>
+      <div className='flex flex-col items-center mx-auto justify-center w-3/12 h-full'>
+        <div className='w-full flex flex-col items-center'>
           <h2 className='text-3xl font-medium text-stone-800'>Login</h2>
-          <p className='text-gray-400 font-medium text-center text-lg'>
-            Welcome back! Please enter your details below.
+          <p className='text-stone-800 font-medium text-center text-lg'>
+            Welcome back! Please enter details below.
           </p>
         </div>
         {error && (

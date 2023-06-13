@@ -43,13 +43,11 @@ const RegisterMobile = ({
   }, []);
 
   return (
-    <div className='container flex flex-col mx-auto w-full p-2 mb-32'>
+    <div className='flex flex-col mx-auto w-full p-2 items-center justify-center h-full'>
       <div className='flex flex-col w-full mx-auto'>
-        <p className='text-2xl font-medium text-center'>
-          Launch your first product page
-        </p>
-        <p className='border-b-2 text-gray-400 font-medium mb-4 text-center'>
-          Launch your first product page and start selling today
+        <p className='text-2xl font-medium text-center'>Ready to sell?</p>
+        <p className='text-stone-800 font-medium mb-4 text-center mt-2'>
+          Launch your first page, be ready to sell in minutes.
         </p>
 
         {error && (
@@ -81,7 +79,7 @@ const RegisterMobile = ({
           <input
             type='email'
             placeholder='Email'
-            className='border-2 border-gray-300 hover:border-slate-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
+            className='border-2 border-gray-200 hover:border-slate-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 mt-2'
             onChange={(e) => setEmail(e.target.value)}
             autoFocus
           />
@@ -89,7 +87,7 @@ const RegisterMobile = ({
           <input
             type='password'
             placeholder='Password'
-            className='border-2 border-gray-300 focus:outline focus:outline-1 hover:border-gray-400 focus:outline-gray-400 hover:border-slate-300 w-full rounded p-2 mt-2'
+            className='border-2 border-gray-200 focus:outline focus:outline-1 hover:border-gray-400 focus:outline-gray-400 hover:border-gray-300 w-full rounded p-2 mt-2'
             onChange={(e) => setPassword(e.target.value)}
           />
 
@@ -100,8 +98,8 @@ const RegisterMobile = ({
           <div className='flex w-full'>
             <input
               type='text'
-              placeholder='Page name & url'
-              className='w-5/6 border-2 border-gray-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 rounded p-2 mt-2'
+              placeholder='Page name'
+              className='w-5/6 border-2 h-10 border-gray-200 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-200 rounded p-2 mt-2'
               onChange={(e) => setStoreName(e.target.value)}
             />
             <p className='font-medium text-xl mt-6'>.fruntt.com</p>
