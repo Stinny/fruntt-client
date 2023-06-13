@@ -14,7 +14,7 @@ const MobileFooter = () => {
   return (
     <footer className='w-full h-40 border-t-2 mt-10'>
       <div className='w-11/12 mx-auto h-full flex flex-col items-center justify-center'>
-        <div className='flex justify-center items-center text-3xl'>
+        <div className='flex justify-center items-center text-2xl'>
           <Link to='/' className='h-full flex justify-center items-center'>
             <IoStorefrontOutline className='text-gray-400 font-bold' />
             <p className='font-black text-gray-400 font-sans'>Fruntt</p>
@@ -31,16 +31,16 @@ const MobileFooter = () => {
         </div>
 
         <div className='flex justify-between items-center w-10/12 mt-4 text-sm'>
-          <Link to='/' className='text-gray-400 hover:text-slate-800'>
+          {/* <Link to='/' className='text-gray-400 hover:text-slate-800'>
             About
-          </Link>
+          </Link> */}
           <Link to='/' className='text-gray-400 hover:text-slate-800'>
             Contact
           </Link>
           <Link to='/privacy' className='text-gray-400 hover:text-slate-800'>
             Privacy
           </Link>
-          <Link to='/' className='text-gray-400 hover:text-slate-800'>
+          <Link to='/tos' className='text-gray-400 hover:text-slate-800'>
             Terms
           </Link>
         </div>

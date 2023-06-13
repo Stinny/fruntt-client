@@ -47,6 +47,7 @@ import RequestReset from './pages/RequestReset';
 import TwitterAuth from './pages/TwitterAuth';
 import Privacy from './pages/Privacy';
 import NoPage from './pages/NoPage';
+import TOS from './pages/TOS';
 import 'normalize.css';
 
 function App() {
@@ -58,6 +59,8 @@ function App() {
             <Route index element={<Home />} />
 
             <Route path='privacy' element={<Privacy />} />
+
+            <Route path='tos' element={<TOS />} />
 
             <Route path='pricing' element={<Pricing />} />
 

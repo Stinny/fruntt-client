@@ -24,16 +24,16 @@ const Footer = () => {
         </div>
 
         <div className='flex justify-between items-center w-72'>
-          <Link to='/' className='text-gray-400 hover:text-slate-800'>
+          {/* <Link to='/' className='text-gray-400 hover:text-slate-800'>
             About
-          </Link>
+          </Link> */}
           <Link to='/' className='text-gray-400 hover:text-slate-800'>
             Contact
           </Link>
           <Link to='/privacy' className='text-gray-400 hover:text-slate-800'>
             Privacy
           </Link>
-          <Link to='/' className='text-gray-400 hover:text-slate-800'>
+          <Link to='/tos' className='text-gray-400 hover:text-slate-800'>
             Terms
           </Link>
         </div>

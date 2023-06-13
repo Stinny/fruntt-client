@@ -8,9 +8,7 @@ const Privacy = () => {
       <Navbar />
       <div className='max-w-7xl mx-auto'>
         <div className='bg-white drop-shadow-md w-10/12 mx-auto p-10 border rounded mt-24'>
-          <p className='font-medium text-xl text-stone-800'>
-            Privacy Policy for Fruntt
-          </p>
+          <p className='font-medium text-2xl text-stone-800'>Privacy Policy</p>
           <p className='text-stone-800 mt-4'>
             This Privacy Policy governs the manner in which Fruntt collects,
             uses, maintains, and discloses information collected from users
