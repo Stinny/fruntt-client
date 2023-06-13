@@ -119,7 +119,7 @@ const RegisterMobile = ({
           <button
             type='submit'
             disabled={isLoading}
-            className='h-11 w-full border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 rounded text-xl mt-4'
+            className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-xl mt-4'
           >
             Launch product page
           </button>

@@ -16,10 +16,10 @@ const LoginMobile = ({
 }) => {
   return (
     <div className='flex flex-col mx-auto w-full p-2 mt-20'>
-      <div className='w-full flex flex-col border-b-2 items-center'>
+      <div className='w-full flex flex-col items-center'>
         <h2 className='text-4xl font-medium'>Login</h2>
-        <p className='text-gray-400 font-medium text-center'>
-          Welcome back! Please enter your details below.
+        <p className='text-stone-800 font-medium text-center mt-2'>
+          Welcome back! Please enter details below.
         </p>
       </div>
       {error && (
