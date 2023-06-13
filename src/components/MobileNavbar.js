@@ -9,6 +9,7 @@ import { BsDiscord } from 'react-icons/bs';
 import HelpModal from '../components/HelpModal';
 import { useLazyGetStorefrontByIDQuery } from '../api/storefrontApiSlice';
 import { setSelectedStore, setSelectedStoreUrl } from '../redux/userRedux';
+import { GrCloudDownload } from 'react-icons/gr';
 
 const MobileNavbar = ({ currentUser, handleLogout }) => {
   const dispatch = useDispatch();
