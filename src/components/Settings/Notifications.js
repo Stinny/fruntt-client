@@ -128,7 +128,7 @@ const Notifications = ({ user, refetch }) => {
           <p className='text-xlg font-medium'>Notifications</p>
           <button
             onClick={openModal}
-            className='border-2 rounded w-20 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white'
+            className='border-2 rounded w-20 h-8 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white'
           >
             Edit
           </button>

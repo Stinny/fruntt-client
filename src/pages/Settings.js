@@ -85,9 +85,9 @@ const Settings = () => {
           <div className='w-full mt-4'>
             <div className='flex flex-col w-full border-b p-2'>
               <p className='text-lg font-medium'>Payment Gateway</p>
-              <p className=' font-medium text-gray-400'>
+              <p className=' font-medium text-gray-400 mt-1'>
                 You are paid immediately after a successful purchase. You keep
-                99% of what you make after processing fees.
+                99% of what you make after processing fees (2.9% + 30¢ / sale).
               </p>
             </div>
             <Payments refetch={refetch} />
@@ -95,8 +95,8 @@ const Settings = () => {
 
           <div className='w-full mt-10'>
             <div className='flex flex-col w-full border-b p-2'>
-              <p className='text-lg font-medium'>Delete your Fruntt account</p>
-              <p className='text-gray-400 font-medium'>
+              <p className='text-lg font-medium'>Delete your account</p>
+              <p className='text-gray-400 font-medium mt-1'>
                 Deleting your account will delete all data from our servers
                 (pages, orders, products, etc..)
               </p>

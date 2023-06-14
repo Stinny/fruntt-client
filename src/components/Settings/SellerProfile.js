@@ -261,7 +261,7 @@ const SellerProfile = ({ user, refetch }) => {
         {isMobile ? (
           <div className='flex justify-between items-center w-full border-b p-2'>
             <div className='flex flex-col'>
-              <p className='text-xlg font-medium'>Seller profile</p>
+              <p className='text-lg font-medium'>Seller profile</p>
             </div>
             <button
               className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
@@ -274,14 +274,14 @@ const SellerProfile = ({ user, refetch }) => {
           <div className='flex justify-between items-center w-full border-b p-2'>
             <div className='flex flex-col'>
               <p className='text-xlg font-medium'>Seller profile</p>
-              <p className='text-gray-400'>
+              <p className='text-gray-400 mt-1'>
                 Your seller profile appears at the top of all your product pages
                 for customers to see
               </p>
             </div>
 
             <button
-              className='border-2 rounded w-20 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
+              className='border-2 h-8 rounded w-20 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
               onClick={openModal}
             >
               Edit

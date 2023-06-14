@@ -103,7 +103,7 @@ const Profile = ({ user, refetch }) => {
         <div className='flex justify-between items-center w-full border-b p-2'>
           <p className='text-xlg font-medium'>Account Details</p>
           <button
-            className='border-2 rounded w-20 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
+            className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
             onClick={openModal}
           >
             Edit
