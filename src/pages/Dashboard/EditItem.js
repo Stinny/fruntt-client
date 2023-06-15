@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetProductQuery } from '../../api/productsApiSlice';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
+import Topbar from '../../components/Topbar';
 import { productSlice } from '../../redux/productRedux';
 import { isMobile } from 'react-device-detect';
 import EditDigital from './EditDigital';
@@ -18,7 +19,12 @@ const EditItem = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { data: product, isLoading, isSuccess, refetch } = useGetProductQuery({
+  const {
+    data: product,
+    isLoading,
+    isSuccess,
+    refetch,
+  } = useGetProductQuery({
     productId,
   });
 
@@ -54,7 +60,7 @@ const EditItem = () => {
   return (
     <>
       <Navbar />
-      {/* <Topbar /> */}
+      <Topbar />
       <div className='max-w-6xl mx-auto h-fit mt-10'>{content}</div>
       <Footer />
     </>

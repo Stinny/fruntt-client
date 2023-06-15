@@ -17,6 +17,7 @@ import {
   setStoreIds,
   setSelectedStoreUrl,
 } from '../redux/userRedux';
+import 'react-toastify/dist/ReactToastify.css';
 
 //mui
 import Menu from '@mui/material/Menu';
@@ -132,7 +133,7 @@ const Navbar = () => {
             <>
               <p className='font-medium mr-2'>Viewing:</p>
               <select
-                className='rounded border-2 w-72 h-10'
+                className='rounded border-2 w-72 h-10 p-1'
                 onChange={(e) => setPageInView(e.target.value)}
                 value={selectedStoreUrl}
               >
@@ -158,7 +159,7 @@ const Navbar = () => {
         </div>
 
         {/* links section */}
-        <div className='h-full flex items-center w-56 flex justify-between'>
+        <div className='h-full flex items-center w-56 justify-between'>
           <Link to='/feedback'>Give Feedback</Link>
 
           {/* <BiHelpCircle

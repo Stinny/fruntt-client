@@ -10,6 +10,7 @@ import {
 } from '../../api/productsApiSlice';
 import { uploadImageRequest } from '../../api/requests';
 import { convertFromRaw, EditorState, convertToRaw } from 'draft-js';
+import { toast } from 'react-toastify';
 
 const EditDigital = ({ product, refetch }) => {
   const navigate = useNavigate();
@@ -96,6 +97,7 @@ const EditDigital = ({ product, refetch }) => {
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
+        toast.success('Product updated!');
         refetch();
         navigate('/dashboard/item');
       }
@@ -105,8 +107,15 @@ const EditDigital = ({ product, refetch }) => {
   };
 
   const handleDelete = async () => {
-    const deleteItemReq = await deleteProduct(product._id);
-    navigate('/dashboard/item');
+    const deleteItemReq = await deleteProduct(product._id).unwrap();
+
+    if (deleteItemReq === 'Item deleted') {
+      toast.error('Product deleted!');
+      navigate('/dashboard/item');
+    } else {
+      setError('There was an error deleting your product');
+      return;
+    }
   };
 
   return (

@@ -28,7 +28,7 @@ const Topbar = () => {
             className={
               path === '/dashboard/item' ||
               path === '/dashboard/item/import' ||
-              path === '/dashboard/item/add' ||
+              path.startsWith('/dashboard/item/edit') ||
               path === '/dashboard/item/digital'
                 ? activeLink
                 : notActiveLink

@@ -27,11 +27,14 @@ const OrderDetail = () => {
   const { orderId } = useParams();
 
   //gets the order
-  const { data: order, isLoading, isSuccess, refetch } = useGetSingleOrderQuery(
-    {
-      orderId,
-    }
-  );
+  const {
+    data: order,
+    isLoading,
+    isSuccess,
+    refetch,
+  } = useGetSingleOrderQuery({
+    orderId,
+  });
 
   //gets the shipping rates
   const {
@@ -86,7 +89,7 @@ const OrderDetail = () => {
     ) : order?.item?.type === 'digital' ? (
       <DigitalDetail order={order} />
     ) : (
-      <div className='w-full'>
+      <div className='w-full mt-24'>
         {/* <LabelModal
           closeLabelModal={closeLabelModal}
           openLabelModal={openLabelModal}

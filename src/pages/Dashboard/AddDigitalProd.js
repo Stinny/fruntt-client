@@ -10,6 +10,7 @@ import { uploadImageRequest } from '../../api/requests';
 import { useAddDigitalProductMutation } from '../../api/productsApiSlice';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 const AddDigitalProd = () => {
   const navigate = useNavigate();
@@ -46,8 +47,6 @@ const AddDigitalProd = () => {
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
-
-    console.log('adding product');
 
     let coverPicUrl;
     let coverPicKey;
@@ -109,6 +108,7 @@ const AddDigitalProd = () => {
           currentUser.store = addDigitalProductReq.store;
           const newUser = JSON.stringify(currentUser);
           Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
+          toast.success('Product created!');
           navigate('/dashboard/item');
         }
       }

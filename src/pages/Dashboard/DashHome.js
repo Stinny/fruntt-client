@@ -159,8 +159,8 @@ const DashHome = () => {
             </p>
           </Alert>
         )}
-        <div className='flex justify-between mb-2'>
-          <div className='flex items-center'>
+        <div className='flex justify-between mb-4'>
+          <div className='flex items-center p-2 bg-white rounded border drop-shadow-md'>
             <p className='text-lg text-stone-800 font-medium'>
               Your live page:
             </p>
@@ -172,10 +172,10 @@ const DashHome = () => {
               {currentStoreUrl}
             </a>
           </div>
-          <div className='flex items-center'>
-            <p className='font-medium text-stone-800 mr-2 text-lg'>Filter:</p>
+          <div className='flex items-center p-2 bg-white rounded border drop-shadow-md'>
+            <p className='font-medium text-stone-800 mr-2 text-md'>Filter:</p>
             <select
-              className='rounded border-2 w-32 h-10'
+              className='rounded border-2 w-32 h-8 p-1'
               onChange={(e) => setDataView(e.target.value)}
               value={dataView}
             >

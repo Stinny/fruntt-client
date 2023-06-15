@@ -16,7 +16,7 @@ import { BsFillMicFill } from 'react-icons/bs';
 
 const DigitalDetail = ({ order }) => {
   return (
-    <div className='w-full'>
+    <div className='w-full mt-24'>
       <Link
         to='/dashboard/orders'
         className='flex items-center text-gray-400 text-lg hover:text-gray-600 w-4/12'
@@ -40,13 +40,13 @@ const DigitalDetail = ({ order }) => {
         </div>
       </div>
 
-      <div className='w-7/12 mx-auto mt-10 border-2 rounded p-2'>
+      <div className='w-7/12 mx-auto mt-10 border bg-white drop-shadow-md rounded p-2'>
         <div className='w-full flex flex-col items-center mx-auto'>
-          <p className='text-gray-400 font-medium'>Total</p>
+          <p className='text-gray-400 font-medium mb-2'>Total</p>
           <p className='font-medium text-stone-800 text-4xl'>${order?.total}</p>
-          <p className='text-gray-400 font-medium mt-4'>Delivered to</p>
+          <p className='text-gray-400 font-medium mt-4 mb-2'>Delivered to</p>
           <p className='text-stone-800 font-medium text-xl'>{order?.email}</p>
-          <p className='text-gray-400 font-medium mt-4'>Type</p>
+          <p className='text-gray-400 font-medium mt-4 mb-2'>Type</p>
           {order?.item?.digitalType === 'video' ? (
             <div className='flex items-center justify-center border-2 border-slate-800 rounded w-4/12 h-10 mt-2'>
               <p>Video Course</p>
@@ -68,18 +68,18 @@ const DigitalDetail = ({ order }) => {
               <MdOutlinePermMedia className='ml-2 text-2xl' />
             </div>
           ) : (
-            <div className='flex items-center justify-center border-2 border-slate-800  rounded w-5/12 h-10'>
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-10'>
               <p>Printables</p>
               <MdLocalPrintshop className='ml-2 text-2xl' />
             </div>
           )}
-          <p className='text-gray-400 font-medium mt-4'>Title</p>
+          <p className='text-gray-400 font-medium mt-4 mb-2'>Title</p>
           <p className='text-stone-800 font-medium text-2xl'>
             {order?.item?.title}
           </p>
           <img
             src={order?.item?.coverImage?.url}
-            className='w-7/12 rounded mt-4'
+            className='w-7/12 rounded mt-4 border border-blue-700'
           />
         </div>
       </div>

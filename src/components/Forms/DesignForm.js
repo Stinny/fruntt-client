@@ -4,6 +4,7 @@ import { useEditStylesMutation } from '../../api/storefrontApiSlice';
 import { useNavigate, Link } from 'react-router-dom';
 import DesignPreview from '../../pages/DesignPreview';
 import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 
 const DesignForm = ({ storefront, currentUser }) => {
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ const DesignForm = ({ storefront, currentUser }) => {
     if (editStylesReq.msg === 'Styles saved') {
       currentUser.store = editStylesReq.store;
       const newUser = JSON.stringify(currentUser);
+      toast.success('Design updated!');
       Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
       navigate('/dashboard/design');
     }
@@ -246,7 +248,7 @@ const DesignForm = ({ storefront, currentUser }) => {
           </button>
           <button
             onClick={handleSaveStyles}
-            className='w-32 h-10 rounded text-slate-800 border-slate-800 border-2 ml-2 hover:bg-slate-800 hover:text-white'
+            className='w-32 h-10 rounded text-stone-800 border-stone-800 border-2 ml-2 hover:bg-stone-800 hover:text-white'
           >
             SAVE
           </button>

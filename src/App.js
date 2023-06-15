@@ -49,10 +49,12 @@ import Privacy from './pages/Privacy';
 import NoPage from './pages/NoPage';
 import TOS from './pages/TOS';
 import 'normalize.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <>
+      <ToastContainer />
       <Router>
         <Routes>
           <Route path='/' element={<NoAuth />}>

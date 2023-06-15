@@ -70,7 +70,7 @@ const EditDesktop = ({
             DELETE
           </button>
           <button
-            className='w-40 h-10 rounded border-slate-800 border-2 hover:text-white hover:bg-slate-800'
+            className='w-40 h-10 rounded border-stone-800 border-2 hover:text-white hover:bg-stone-800'
             onClick={handleSaveEdit}
             type='button'
           >
