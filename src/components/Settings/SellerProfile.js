@@ -23,6 +23,7 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
 //mui
 import Avatar from '@mui/material/Avatar';
+import { toast } from 'react-toastify';
 
 const SellerProfile = ({ user, refetch }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -77,6 +78,7 @@ const SellerProfile = ({ user, refetch }) => {
       }).unwrap();
 
       if (updateProfileReq === 'Profile updated') {
+        toast.success('Profile updated!');
         refetch();
         closeModal();
       } else {

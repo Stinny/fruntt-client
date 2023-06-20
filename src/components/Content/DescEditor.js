@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { isMobile } from 'react-device-detect';
+import { toast } from 'react-toastify';
 
 const DescEditor = ({ product, getItemAgain }) => {
   const navigate = useNavigate();
@@ -33,8 +34,8 @@ const DescEditor = ({ product, getItemAgain }) => {
         // ),
         description: hasText ? value : '',
       }).unwrap();
-      console.log(addDescriptionReq);
       if (addDescriptionReq === 'Description added') {
+        toast.success('Product description added!');
         getItemAgain();
         navigate('/dashboard/content');
       } else {

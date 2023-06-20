@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import Cookies from 'js-cookie';
 import Spinner from '../Spinner';
+import { toast } from 'react-toastify';
 
 const FAQs = ({ currentUser, item, refetch, isLoading, isSuccess }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -33,6 +34,7 @@ const FAQs = ({ currentUser, item, refetch, isLoading, isSuccess }) => {
         }).unwrap();
 
         if (addFAQReq === 'FAQ added') {
+          toast.success('Question added!');
           refetch();
           closeModal();
         }

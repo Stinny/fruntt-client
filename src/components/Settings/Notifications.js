@@ -5,6 +5,7 @@ import { isMobile } from 'react-device-detect';
 //mui
 import Switch from '@mui/material/Switch';
 import { useUpdateNotificationsMutation } from '../../api/authApiSlice';
+import { toast } from 'react-toastify';
 
 const Notifications = ({ user, refetch }) => {
   const [sendUpdates, setSendUpdates] = useState(user?.sendUpdates);
@@ -28,6 +29,7 @@ const Notifications = ({ user, refetch }) => {
         sendReviewCollected,
       }).unwrap();
       if (updateNotificationsReq === 'User updated') {
+        toast.success('Notifications updated!');
         refetch();
         closeModal();
       }
