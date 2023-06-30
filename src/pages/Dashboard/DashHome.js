@@ -53,7 +53,7 @@ const DashHome = () => {
       },
       title: {
         display: true,
-        text: 'Page Sales (COMING SOON)',
+        text: 'Page Sales',
       },
     },
     scales: {
@@ -107,14 +107,22 @@ const DashHome = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
+    console.log(stats?.dataSet);
     const data = {
       labels: stats?.dataSet?.dates,
       datasets: [
         {
-          label: 'Total',
+          label: 'Total ($)',
           data: stats?.dataSet?.totals,
           backgroundColor: 'black',
           borderColor: 'black',
+          minBarLength: 7,
+        },
+        {
+          label: 'Sales',
+          data: stats?.dataSet?.sales,
+          backgroundColor: '#d9dad8',
+          borderColor: '#d9dad8',
           minBarLength: 7,
         },
       ],
@@ -127,7 +135,7 @@ const DashHome = () => {
         {!currentUser.name ||
         !currentUser?.sellerProfile?.bio ||
         !currentUser?.sellerProfile?.picture?.url ? (
-          <Alert severity='info' className='mt-2 w-full'>
+          <Alert severity='info' className='mt-2 mb-2 w-full'>
             <p>
               Finish setting up your seller profile in{' '}
               <Link to='/settings' className='text-blue-800 font-semibold'>
@@ -140,7 +148,7 @@ const DashHome = () => {
         )}
 
         {!currentUser.stripeOnboard && (
-          <Alert severity='error' className='mt-2 mb-2 w-full'>
+          <Alert severity='error' className='mb-2 w-full'>
             <p>
               Connect to payment gateway in{' '}
               <Link to='/settings' className='text-red-900 font-semibold'>
@@ -152,7 +160,7 @@ const DashHome = () => {
         )}
 
         {!currentUser.emailConfirmed && (
-          <Alert severity='error' className='mt-2 mb-4 w-full'>
+          <Alert severity='error' className='mb-2 w-full'>
             <p>
               Please check your email inbox to confirm your email address so you
               can enable purchases
