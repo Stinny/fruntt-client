@@ -12,6 +12,8 @@ const DesignForm = ({ storefront, currentUser }) => {
   const [navbarBG, setNavbarBG] = useState(storefront?.style?.navbarBackground);
   const [pageBG, setPageBG] = useState(storefront?.style?.pageBackground);
 
+  const [cardBG, setCardBG] = useState(storefront?.style?.cardBackground);
+
   const [buttonColor, setButtonColor] = useState(
     storefront?.style?.buttonColor
   );
@@ -47,8 +49,8 @@ const DesignForm = ({ storefront, currentUser }) => {
 
     const editStylesReq = await editStyles({
       storeId: storefront._id,
-      navbarBG,
       pageBG,
+      cardBG,
       pageText,
       buttonColor,
       buttonTextColor,
@@ -80,7 +82,7 @@ const DesignForm = ({ storefront, currentUser }) => {
       <form className='w-3/12 mx-auto'>
         <div className='p-4 w-full mx-auto scroll-smooth overflow-scroll h-4/6'>
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Background</p>
+            <p className='text-lg font-medium mb-2'>Page</p>
 
             <HexColorPicker
               color={pageBG}
@@ -91,6 +93,23 @@ const DesignForm = ({ storefront, currentUser }) => {
             <HexColorInput
               color={pageBG}
               onChange={setPageBG}
+              prefixed
+              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+            />
+          </div>
+
+          <div className='w-full flex flex-col p-2 border-b mx-auto'>
+            <p className='text-lg font-medium mb-2'>Card</p>
+
+            <HexColorPicker
+              color={cardBG}
+              onChange={setCardBG}
+              style={{ width: '200px', height: '75px' }}
+            />
+            <p className='text-gray-400 mr-2'>Hex value:</p>
+            <HexColorInput
+              color={cardBG}
+              onChange={setCardBG}
               prefixed
               className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
             />
@@ -237,7 +256,7 @@ const DesignForm = ({ storefront, currentUser }) => {
   return (
     <div className='w-full mx-auto'>
       <div className='mb-10 flex justify-between items-center border-b-2 p-2'>
-        <h2 className='text-3xl font-medium'>Designing your page</h2>
+        <h2 className='text-3xl font-medium'>Design your page</h2>
 
         <div className='flex'>
           <button
@@ -259,6 +278,7 @@ const DesignForm = ({ storefront, currentUser }) => {
         {designForm()}
         <DesignPreview
           pageBG={pageBG}
+          cardBG={cardBG}
           navbarBG={navbarBG}
           buttonColor={buttonColor}
           buttonTextColor={buttonTextColor}

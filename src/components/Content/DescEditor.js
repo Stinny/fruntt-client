@@ -14,6 +14,8 @@ const DescEditor = ({ product, getItemAgain }) => {
   const [addDescription, result] = useAddDescriptionMutation();
   const [error, setError] = useState('');
 
+  const customQuillClass = 'custom-quill';
+
   // const [description, setDescription] = useState(
   //   EditorState.createWithContent(convertFromRaw(JSON.parse(product?.info)))
   // );
@@ -67,6 +69,7 @@ const DescEditor = ({ product, getItemAgain }) => {
           value={value}
           onChange={setValue}
           placeholder='Start typing here'
+          className={customQuillClass}
         />
       </div>
     </div>
@@ -103,6 +106,7 @@ const DescEditor = ({ product, getItemAgain }) => {
           value={value}
           onChange={setValue}
           placeholder='Start typing here'
+          className={customQuillClass}
         />
       </div>
     </div>

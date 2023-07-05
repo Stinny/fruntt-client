@@ -78,7 +78,7 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
     editStyles: builder.mutation({
       query: ({
         storeId,
-        navbarBG,
+        cardBG,
         pageBG,
         pageText,
         buttonColor,
@@ -96,7 +96,7 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
         url: `/storefront/edit/${storeId}`,
         method: 'POST',
         body: {
-          navbarBG: navbarBG,
+          cardBG: cardBG,
           pageBG: pageBG,
           pageText: pageText,
           buttonColor: buttonColor,

@@ -14,7 +14,7 @@ import Cookies from 'js-cookie';
 //mui
 import Avatar from '@mui/material/Avatar';
 
-const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
+const SellerPro = ({ pageBG, cardBG, pageText, borderColor, headers }) => {
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
@@ -22,7 +22,7 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
   return isMobile ? (
     <div className='w-full mx-auto p-2'>
       <div
-        className='max-w-6xl flex flex-col mx-auto border-t-2 border-b-2'
+        className='max-w-6xl flex flex-col mx-auto border rounded bg-inherit drop-shadow-md'
         style={{
           borderColor: borderColor,
         }}
@@ -168,10 +168,10 @@ const SellerPro = ({ pageBG, pageText, borderColor, headers }) => {
       </div>
     </div>
   ) : (
-    <div className='w-full mx-auto p-2'>
+    <div className='w-full mx-auto'>
       <div
-        className='max-w-6xl flex justify-between items-center border-b-2 border-t-2 mx-auto pl-8 pr-8 p-2'
-        style={{ borderColor: borderColor }}
+        className='max-w-6xl flex justify-between items-center border rounded mx-auto pl-8 pr-8 p-2 bg-inherit drop-shadow-lg'
+        style={{ borderColor: borderColor, backgroundColor: cardBG }}
       >
         <div className='w-1/12'>
           <Avatar

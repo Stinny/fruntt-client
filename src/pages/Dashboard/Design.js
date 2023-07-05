@@ -13,9 +13,6 @@ import DesignPreview from '../DesignPreview';
 import DesignMobile from '../Mobile/Dashboard/DesignMobile';
 import Cookies from 'js-cookie';
 
-//mui
-import Switch from '@mui/material/Switch';
-
 const Design = () => {
   const currentStoreID = useSelector((state) => state.user.selectedStore);
 
@@ -41,13 +38,21 @@ const Design = () => {
     content = isMobile ? (
       <DesignMobile storefront={storefront} />
     ) : (
-      <div className='w-full mx-auto flex'>
-        <div className='flex w-3/12 flex-col overflow-scroll'>
+      <div className='w-full mx-auto flex flex-col'>
+        <div className='flex w-full overflow-scroll'>
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium'>Background</p>
+            <p className='text-lg font-medium'>Page</p>
             <div
-              className='w-6/12 h-14 border border-stone-800 rounded'
+              className='w-14 h-14 border border-stone-800 rounded-full'
               style={{ backgroundColor: storefront?.style?.pageBackground }}
+            ></div>
+          </div>
+
+          <div className='w-full flex flex-col p-2 border-b mx-auto'>
+            <p className='text-lg font-medium'>Card</p>
+            <div
+              className='w-14 h-14 border border-stone-800 rounded-full'
+              style={{ backgroundColor: storefront?.style?.cardBackground }}
             ></div>
           </div>
           {/* 
@@ -62,22 +67,26 @@ const Design = () => {
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
             <p className='text-lg font-medium'>Button</p>
             <div
-              className='w-6/12 h-14 border rounded border-stone-800'
+              className='w-14 h-14 border rounded-full border-stone-800'
               style={{ backgroundColor: storefront?.style?.buttonColor }}
             ></div>
-            <p className='mt-2 text-sm'>Style</p>
-            <select
+            <p className='text-sm'>Style</p>
+            {/* <select
               className='mb-2 bg-transparent rounded w-5/12 h-10 border-2'
               disabled
             >
               <option>{storefront?.style?.buttonStyle}</option>
-            </select>
+            </select> */}
+
+            <p className='border rounded p-1 w-6/12'>
+              {storefront?.style?.buttonStyle}
+            </p>
           </div>
 
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
             <p className='text-lg font-medium'>Button text</p>
             <div
-              className='w-6/12 h-14 border border-stone-800 rounded'
+              className='w-14 h-14 border border-stone-800 rounded-full'
               style={{ backgroundColor: storefront?.style?.buttonTextColor }}
             ></div>
           </div>
@@ -85,7 +94,7 @@ const Design = () => {
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
             <p className='text-lg font-medium'>Borders</p>
             <div
-              className='w-6/12 h-14 border border-stone-800 rounded'
+              className='w-14 h-14 border border-stone-800 rounded-full'
               style={{ backgroundColor: storefront?.style?.borderColor }}
             ></div>
           </div>
@@ -93,7 +102,7 @@ const Design = () => {
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
             <p className='text-lg font-medium'>Headers</p>
             <div
-              className='w-6/12 h-14 border border-stone-800 rounded'
+              className='w-14 h-14 border border-stone-800 rounded-full'
               style={{ backgroundColor: storefront?.style?.headerColor }}
             ></div>
           </div>
@@ -104,7 +113,7 @@ const Design = () => {
             <div className='w-full flex flex-col p-2 border-b mx-auto'>
               <p className='text-lg font-medium'>Questions</p>
               <div
-                className='w-6/12 h-14 border border-stone-800 rounded'
+                className='w-14 h-14 border border-stone-800 rounded-full'
                 style={{ backgroundColor: storefront?.style?.faqBackground }}
               ></div>
             </div>
@@ -116,7 +125,7 @@ const Design = () => {
             <div className='w-full flex flex-col p-2 border-b mx-auto'>
               <p className='text-lg font-medium'>Reviews</p>
               <div
-                className='w-6/12 h-14 border border-stone-800 rounded'
+                className='w-14 h-14 border border-stone-800 rounded-full'
                 style={{ backgroundColor: storefront?.style?.reviewBackground }}
               ></div>
             </div>
@@ -125,6 +134,7 @@ const Design = () => {
 
         <DesignPreview
           pageBG={storefront?.style?.pageBackground}
+          cardBG={storefront?.style?.cardBackground}
           navbarBG={storefront?.style?.navbarBackground}
           buttonColor={storefront?.style?.buttonColor}
           buttonTextColor={storefront?.style?.buttonTextColor}
@@ -179,8 +189,8 @@ const Design = () => {
           {content}
         </div>
       ) : (
-        <div className='max-w-7xl mx-auto'>
-          <div className='mb-10 flex justify-between items-center border-b-2 p-2'>
+        <div className='max-w-6xl mx-auto'>
+          <div className=' flex justify-between items-center border-b-2 p-2'>
             <div className='flex flex-col'>
               <h2 className='text-3xl font-medium'>Page design</h2>
               <p>

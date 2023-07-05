@@ -8,6 +8,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 
 const Description = ({ product, isLoding, isSuccess, refetch }) => {
+  const customQuillClass = 'custom-quill';
+
   let content;
   if (isLoding) {
     content = <Spinner />;
@@ -67,6 +69,7 @@ const Description = ({ product, isLoding, isSuccess, refetch }) => {
                 value={product[0]?.info}
                 readOnly={true}
                 theme={'bubble'}
+                className={customQuillClass}
               />
             </div>
           )}

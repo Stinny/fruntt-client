@@ -20,6 +20,12 @@ html {
 
 .ql-container {
   font-family: system-ui, -apple-system !important;
+  line-height: 2 !important;
+}
+
+.custom-quill .ql-editor {
+  line-height: 1.8 !important; /* Adjust the line height as per your requirement */
+  font-size: medium;
 }
 
 @tailwind base;
