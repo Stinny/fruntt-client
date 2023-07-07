@@ -20,15 +20,12 @@ import Rating from '@mui/material/Rating';
 const DigitalPreviewMobile = ({
   itemAndReviews,
   pageBG,
-  navbarBG,
+  cardBG,
   buttonColor,
   buttonTextColor,
   buttonStyle,
   pageText,
-  footerBG,
   storefront,
-  hideNav,
-  hideFooter,
   headerColor,
   borderColor,
   socialIcons,
@@ -266,8 +263,8 @@ const DigitalPreviewMobile = ({
               ))
             ) : (
               <div
-                style={{ borderColor: borderColor, color: pageText }}
-                className='w-full h-32 mt-4 border-2 rounded flex justify-center items-center'
+                style={{ borderColor: borderColor, backgroundColor: cardBG }}
+                className='w-full h-32 mt-4 border rounded flex justify-center items-center bg-inherit drop-shadow-md'
               >
                 <p className='font-medium text-lg' style={{ color: pageText }}>
                   Product has not been reviewed!

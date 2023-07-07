@@ -21,15 +21,13 @@ import Rating from '@mui/material/Rating';
 
 const DesignPreviewMobile = ({
   pageBG,
-  navbarBG,
+  cardBG,
   buttonColor,
   buttonTextColor,
   buttonStyle,
   pageText,
   footerBG,
   storefront,
-  hideNav,
-  hideFooter,
   headerColor,
   borderColor,
   socialIcons,
@@ -61,6 +59,7 @@ const DesignPreviewMobile = ({
       >
         <SellerPro
           pageBG={pageBG}
+          cardBG={cardBG}
           pageText={pageText}
           borderColor={borderColor}
           headers={headerColor}
@@ -71,7 +70,7 @@ const DesignPreviewMobile = ({
             <DigitalPreviewMobile
               itemAndReviews={itemAndReviews}
               pageBG={pageBG}
-              navbarBG={storefront?.style?.navbarBackground}
+              cardBG={cardBG}
               buttonColor={buttonColor}
               buttonTextColor={buttonTextColor}
               buttonStyle={buttonStyle}
@@ -273,10 +272,13 @@ const DesignPreviewMobile = ({
             </div>
           )
         ) : (
-          <div className='w-full mx-auto'>
+          <div className='w-full mx-auto p-2'>
             <div
-              className='mx-auto w-9/12 border-2 rounded flex flex-col justify-center items-center'
-              style={{ borderColor: storefront?.style?.borderColor }}
+              className='mx-auto w-full border rounded flex flex-col justify-center items-center bg-inherit drop-shadow-md'
+              style={{
+                borderColor: storefront?.style?.borderColor,
+                backgroundColor: storefront?.style?.cardBackground,
+              }}
             >
               <div className='h-60'></div>
               <p
@@ -287,9 +289,9 @@ const DesignPreviewMobile = ({
               </p>
               <Link
                 to='/dashboard/item/add'
-                className='border-2 rounded border-slate-800 text-slate-800 w-32 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
+                className='border-2 rounded border-slate-800 text-slate-800 w-24 h-10 hover:bg-slate-800 hover:text-white mt-2 flex items-center justify-center'
               >
-                + Add product
+                + Add
               </Link>
               <div className='h-60'></div>
             </div>

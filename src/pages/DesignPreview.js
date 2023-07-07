@@ -1,12 +1,4 @@
 import React, { useEffect } from 'react';
-import { useGetProductsQuery } from '../api/productsApiSlice';
-import { AiFillStar } from 'react-icons/ai';
-import {
-  AiOutlineInstagram,
-  AiOutlineYoutube,
-  AiOutlineFacebook,
-  AiOutlineTwitter,
-} from 'react-icons/ai';
 import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
@@ -14,7 +6,6 @@ import { BsArrow90DegDown } from 'react-icons/bs';
 import { useGetReviewsAndProductQuery } from '../api/customersApiSlice';
 import SellerPro from '../components/DesignPrev/SellerPro';
 import {
-  MdOutlineFileDownload,
   MdOutlineVideoLibrary,
   MdLocalPrintshop,
   MdOutlinePermMedia,
@@ -25,7 +16,6 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 
 //mui
-import Alert from '@mui/material/Alert';
 import Rating from '@mui/material/Rating';
 
 const DesignPreview = ({
@@ -388,10 +378,10 @@ const DesignPreview = ({
             </div>
           </div>
         ) : (
-          <div className='w-full mx-auto p-10'>
+          <div className='w-full mx-auto mt-4'>
             <div
-              className='mx-auto w-10/12 border-2 rounded flex flex-col justify-center items-center'
-              style={{ borderColor: borderColor }}
+              className='mx-auto w-full border rounded flex flex-col justify-center items-center drop-shadow-md bg-inherit'
+              style={{ borderColor: borderColor, backgroundColor: cardBG }}
             >
               <div className='h-60'></div>
               <p
@@ -402,7 +392,7 @@ const DesignPreview = ({
               </p>
               <Link
                 to='/dashboard/item'
-                className='border-2 rounded border-stone-800 text-stone-800 w-36 hover:bg-stone-800 hover:text-white mt-2 flex items-center justify-center'
+                className='border-2 rounded border-stone-800 text-stone-800 w-36 h-10 hover:bg-stone-800 hover:text-white mt-2 flex items-center justify-center'
               >
                 + Add product
               </Link>

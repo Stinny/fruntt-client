@@ -5,13 +5,10 @@ import DesignPreviewMobile from '../../pages/Mobile/Dashboard/DesignPreviewMobil
 import { useEditStylesMutation } from '../../api/storefrontApiSlice';
 import Cookies from 'js-cookie';
 
-//mui
-import Switch from '@mui/material/Switch';
-
 const DesignFormMobile = ({ storefront, currentUser }) => {
   const navigate = useNavigate();
 
-  const [navbarBG, setNavbarBG] = useState(storefront?.style?.navbarBackground);
+  const [cardBG, setCardBG] = useState(storefront?.style?.cardBackground);
   const [pageBG, setPageBG] = useState(storefront?.style?.pageBackground);
 
   const [buttonColor, setButtonColor] = useState(
@@ -50,7 +47,7 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
 
     const editStylesReq = await editStyles({
       storeId: storefront._id,
-      navbarBG,
+      cardBG,
       pageBG,
       pageText,
       buttonColor,
@@ -82,7 +79,7 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
       <form className='w-full mx-auto'>
         <div className='w-full overflow-x-scroll h-64 flex'>
           <div className='w-48 h-64 flex flex-col p-2 mx-auto'>
-            <p className='text-lg font-medium mb-2'>Background</p>
+            <p className='text-lg font-medium mb-2'>Page</p>
 
             <HexColorPicker
               color={pageBG}
@@ -98,71 +95,22 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
             />
           </div>
 
-          {/* <div className='w-48 h-64 flex flex-col p-2 ml-4'>
-            <p className='text-lg font-medium mb-2'>Header</p>
-
-            <HexColorPicker
-              color={navbarBG}
-              onChange={setNavbarBG}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={navbarBG}
-              onChange={setNavbarBG}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-            <div className='flex items-center'>
-              <p>hide</p>
-              <Switch
-                checked={hideNav}
-                onChange={(e) => setHideNav(e.target.checked)}
-              />
-            </div>
-          </div> */}
-
-          {/* <div className='w-48 h-64 flex flex-col p-2 ml-4'>
-            <p className='text-lg font-medium mb-2'>Footer</p>
-
-            <HexColorPicker
-              color={footerBG}
-              onChange={setFooterBG}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={footerBG}
-              onChange={setFooterBG}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-
-            <div className='flex items-center'>
-              <p>hide</p>
-              <Switch
-                checked={hideFooter}
-                onChange={(e) => setHideFooter(e.target.checked)}
-              />
-            </div>
-          </div> */}
-          {/* 
           <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
-            <p className='text-lg font-medium mb-2'>Page text</p>
+            <p className='text-lg font-medium mb-2'>Card</p>
 
             <HexColorPicker
-              color={pageText}
-              onChange={setPageText}
+              color={cardBG}
+              onChange={setCardBG}
               style={{ width: '200px', height: '75px' }}
             />
-            <p className='text-gray-400'>Hex value:</p>
+            <p className='text-gray-400 mr-2'>Hex value:</p>
             <HexColorInput
-              color={pageText}
-              onChange={setPageText}
+              color={cardBG}
+              onChange={setCardBG}
               prefixed
-              className='w-28 h-10 border-2 rounded p-2 focus:outline focus:border-gray-400 focus:outline-0'
+              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
             />
-          </div> */}
+          </div>
 
           <div className='w-48 h-64 flex flex-col p-2 mx-auto ml-4'>
             <p className='text-lg font-medium mb-2'>Button</p>
@@ -329,7 +277,7 @@ const DesignFormMobile = ({ storefront, currentUser }) => {
         {designForm()}
         <DesignPreviewMobile
           pageBG={pageBG}
-          navbarBG={navbarBG}
+          cardBG={cardBG}
           buttonColor={buttonColor}
           buttonTextColor={buttonTextColor}
           buttonStyle={buttonStyle}

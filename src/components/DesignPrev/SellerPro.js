@@ -14,7 +14,7 @@ import Cookies from 'js-cookie';
 //mui
 import Avatar from '@mui/material/Avatar';
 
-const SellerPro = ({ pageBG, cardBG, pageText, borderColor, headers }) => {
+const SellerPro = ({ pageBG, cardBG, pageText, borderColor }) => {
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
@@ -22,9 +22,10 @@ const SellerPro = ({ pageBG, cardBG, pageText, borderColor, headers }) => {
   return isMobile ? (
     <div className='w-full mx-auto p-2'>
       <div
-        className='max-w-6xl flex flex-col mx-auto border rounded bg-inherit drop-shadow-md'
+        className='max-w-6xl flex flex-col mx-auto border rounded bg-inherit drop-shadow-md p-2'
         style={{
           borderColor: borderColor,
+          backgroundColor: cardBG,
         }}
       >
         <div className='flex justify-between items-center mt-2'>
@@ -68,7 +69,7 @@ const SellerPro = ({ pageBG, cardBG, pageText, borderColor, headers }) => {
                   color: pageText,
                 }}
               >
-                My other pages:
+                My other products:
               </p>
               <select
                 className='rounded border-2 bg-transparent h-8'
@@ -145,7 +146,7 @@ const SellerPro = ({ pageBG, cardBG, pageText, borderColor, headers }) => {
               </div>
             </div>
           </div>
-          <div className='flex flex-col items-center'>
+          <div className='flex flex-col items-center mr-2'>
             <p
               className='font-medium text-3xl'
               style={{
@@ -221,7 +222,7 @@ const SellerPro = ({ pageBG, cardBG, pageText, borderColor, headers }) => {
 
         <div className='flex flex-col w-3/12'>
           <p className='font-medium' style={{ color: pageText }}>
-            My other pages:
+            My other products:
           </p>
           <select
             className='rounded border-2 bg-transparent h-8'
