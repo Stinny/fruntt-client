@@ -10,9 +10,12 @@ import { isMobile } from 'react-device-detect';
 
 const Files = ({ productId, product, refetchProduct }) => {
   //get all files for this product
-  const { data: files, isLoading, isSuccess, refetch } = useGetFilesQuery(
-    productId
-  );
+  const {
+    data: files,
+    isLoading,
+    isSuccess,
+    refetch,
+  } = useGetFilesQuery(productId);
   const [deleteFile, result] = useDeleteFileMutation();
 
   useEffect(() => {
@@ -43,7 +46,7 @@ const Files = ({ productId, product, refetchProduct }) => {
             {moment.utc(product.updatedOn).format('MMM D, YYYY')}
           </p>
         </div>
-        <div className='flex items-center w-4/12 flex justify-end'>
+        <div className='flex items-center w-4/12 justify-end'>
           <button
             className='text-red-400 text-2xl'
             type='button'
@@ -64,7 +67,7 @@ const Files = ({ productId, product, refetchProduct }) => {
       </div>
     ))
   ) : (
-    <div className='w-full rounded border-2 flex flex-col items-center justify-center'>
+    <div className='w-full rounded border-2 flex flex-col items-center justify-center h-16'>
       <p>No files added</p>
       <p className='text-gray-400'>
         Add files to include in this digital purchase

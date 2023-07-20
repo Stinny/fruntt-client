@@ -129,7 +129,13 @@ const Navbar = () => {
         </div>
 
         <div className='flex items-center h-full'>
-          {currentUser.storeIds.length > 0 ? (
+          <Link to='/dashboard/item/digital'>
+            <button className='border-2 font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded w-32 h-10 ml-20'>
+              + New Product
+            </button>
+          </Link>
+
+          {/* {currentUser.storeIds.length > 0 ? (
             <>
               <p className='font-medium mr-2'>Viewing:</p>
               <select
@@ -155,7 +161,7 @@ const Navbar = () => {
             </>
           ) : (
             ''
-          )}
+          )} */}
         </div>
 
         {/* links section */}

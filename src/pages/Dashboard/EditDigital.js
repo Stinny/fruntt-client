@@ -19,6 +19,7 @@ const EditDigital = ({ product, refetch }) => {
 
   const [title, setTitle] = useState(product?.title);
   const [description, setDescription] = useState(product?.description);
+  const [info, setInfo] = useState(product?.info);
   const [price, setPrice] = useState(product?.price);
   const [image, setImage] = useState([]);
   const [files, setFiles] = useState([]);
@@ -127,6 +128,8 @@ const EditDigital = ({ product, refetch }) => {
       setDigitalType={setDigitalType}
       description={description}
       setDescription={setDescription}
+      info={info}
+      setInfo={setInfo}
       price={price}
       setPrice={setPrice}
       setImage={setImage}

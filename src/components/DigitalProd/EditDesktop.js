@@ -6,6 +6,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Modal from 'react-modal';
 import { isMobile } from 'react-device-detect';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 //filepond
 import { FilePond } from 'react-filepond';
@@ -47,7 +49,11 @@ const EditDesktop = ({
   suggestedPrice,
   setSuggestedPrice,
   deletingProduct,
+  info,
+  setInfo,
 }) => {
+  const customQuillClass = 'custom-quill';
+
   const modalStyles = isMobile
     ? {
         content: {
@@ -155,261 +161,241 @@ const EditDesktop = ({
           </div>
         </div>
 
-        <form
-          className='w-full border rounded bg-white p-2 drop-shadow-md'
-          onSubmit={handleSaveEdit}
-        >
-          {error && <Alert severity='error'>{error}</Alert>}
-          <div className='flex items-center'>
-            <p className='text-xl font-medium'>Details</p>
-            <Tooltip
-              title={
-                <p className='text-lg'>
-                  Product details help your customers know what they are buying.
-                </p>
-              }
-              className='ml-2 text-lg'
-              placement='right-end'
+        <Tabs>
+          <TabList>
+            <Tab>Details</Tab>
+            <Tab>Content</Tab>
+          </TabList>
+
+          <TabPanel>
+            <form
+              className='w-full border rounded bg-white p-2 drop-shadow-lg pb-12'
+              onSubmit={handleSaveEdit}
             >
-              <button type='button' disabled>
-                <AiOutlineInfoCircle />
-              </button>
-            </Tooltip>
-          </div>
-
-          <div className='flex justify-between w-full mt-2'>
-            <div className='flex flex-col w-6/12'>
-              <p className='text-gray-400'>Product Type</p>
-              <select
-                onChange={(e) => setDigitalType(e.target.value)}
-                className='w-full h-14 rounded p-2'
-                value={digitalType}
-              >
-                <option value='video'>Video Course</option>
-                <option value='printable'>Printables</option>
-                <option value='ebook'>E-Book</option>
-                <option value='podcast'>Podcast</option>
-                <option value='template'>Template</option>
-                <option value='other'>Other Digital Media</option>
-              </select>
-
-              <p className='text-gray-400 mt-4'>Product Title</p>
-              <input
-                type='text'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                maxLength={50}
-              />
-              <div className='w-full flex justify-end'>
-                <p className='text-sm text-gray-400'>{title.length}/50</p>
-              </div>
-
-              <p className='text-gray-400 mt-4'>Product Summary (optional)</p>
-              <textarea
-                type='text'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                maxLength={75}
-              />
-              <div className='w-full flex justify-end'>
-                <p className='text-sm text-gray-400'>{description.length}/75</p>
-              </div>
-
-              <p className='text-gray-400 mt-4'>Product Price</p>
+              {error && <Alert severity='error'>{error}</Alert>}
               <div className='flex items-center'>
-                <div className='mr-4'>
-                  <p className='text-xl font-medium'>$</p>
-                </div>
-                <input
-                  type='number'
-                  step={1}
-                  min={0}
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
+                <p className='text-xl font-medium'>Details</p>
+                <Tooltip
+                  title={
+                    <p className='text-lg'>
+                      Product details help your customers know what they are
+                      buying.
+                    </p>
+                  }
+                  className='ml-2 text-lg'
+                  placement='right-end'
+                >
+                  <button type='button' disabled>
+                    <AiOutlineInfoCircle />
+                  </button>
+                </Tooltip>
               </div>
-              <FormControlLabel
-                label='Let customers pay what they want'
-                control={
-                  <Switch
-                    checked={payChoice}
-                    onChange={(e) => setPayChoice(e.target.checked)}
+              <div className='flex justify-between w-full mt-2'>
+                <div className='flex flex-col w-6/12'>
+                  <p className='text-gray-400'>Type</p>
+                  <select
+                    onChange={(e) => setDigitalType(e.target.value)}
+                    className='w-full h-14 rounded p-2'
+                    value={digitalType}
+                  >
+                    <option value='video'>Video Course</option>
+                    <option value='printable'>Printables</option>
+                    <option value='ebook'>E-Book</option>
+                    <option value='podcast'>Podcast</option>
+                    <option value='template'>Template</option>
+                    <option value='other'>Other Digital Media</option>
+                  </select>
+
+                  <p className='text-gray-400 mt-4'>Title</p>
+                  <input
+                    type='text'
+                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    maxLength={50}
                   />
-                }
-                className='mt-2'
-              />
+                  <div className='w-full flex justify-end'>
+                    <p className='text-sm text-gray-400'>{title.length}/50</p>
+                  </div>
 
-              {payChoice ? (
-                <div className='flex items-center'>
-                  <div className='flex flex-col w-6/12'>
-                    <p className='text-gray-400'>Minimum price</p>
-                    <div className='flex items-center w-full'>
-                      <div className='w-1/12'>
-                        <p className='text-xl font-medium'>$</p>
-                      </div>
-                      <input
-                        type='number'
-                        className='border-2 border-slate-200 w-11/12 rounded p-2 outline outline-0 bg-white'
-                        step={1}
-                        placeholder='$9+'
-                        value={price}
-                        disabled
-                        style={{
-                          WebkitAppearance: 'none',
-                          MozAppearance: 'textfield',
-                        }}
-                      />
-                    </div>
+                  <p className='text-gray-400 mt-4'>Summary (optional)</p>
+                  <textarea
+                    type='text'
+                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    maxLength={75}
+                  />
+                  <div className='w-full flex justify-end'>
+                    <p className='text-sm text-gray-400'>
+                      {description.length}/75
+                    </p>
                   </div>
-                  <div className='flex flex-col w-6/12 ml-2'>
-                    <p className='text-gray-400'>Suggested price/placeholder</p>
-                    <div className='flex items-center w-full'>
-                      <div className='w-1/12'>
-                        <p className='text-xl font-medium'>$</p>
-                      </div>
-                      <input
-                        className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-                        onChange={(e) => setSuggestedPrice(e.target.value)}
-                        placeholder='$9+'
-                        value={suggestedPrice}
-                      />
+
+                  <p className='text-gray-400 mt-4'>Price</p>
+                  <div className='flex items-center'>
+                    <div className='mr-4'>
+                      <p className='text-xl font-medium'>$</p>
                     </div>
+                    <input
+                      type='number'
+                      step={1}
+                      min={0}
+                      className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                    />
                   </div>
+                  <FormControlLabel
+                    label='Let customers pay what they want'
+                    control={
+                      <Switch
+                        checked={payChoice}
+                        onChange={(e) => setPayChoice(e.target.checked)}
+                      />
+                    }
+                    className='mt-2'
+                  />
+
+                  {payChoice ? (
+                    <div className='flex items-center'>
+                      <div className='flex flex-col w-6/12'>
+                        <p className='text-gray-400'>Minimum price</p>
+                        <div className='flex items-center w-full mt-1'>
+                          <div className='w-1/12'>
+                            <p className='text-xl font-medium'>$</p>
+                          </div>
+                          <input
+                            type='number'
+                            className='border-2 border-slate-200 w-11/12 rounded p-2 outline outline-0 bg-white'
+                            step={1}
+                            placeholder='$9+'
+                            value={price}
+                            disabled
+                            style={{
+                              WebkitAppearance: 'none',
+                              MozAppearance: 'textfield',
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div className='flex flex-col w-6/12 ml-2'>
+                        <p className='text-gray-400'>
+                          Suggested price/placeholder
+                        </p>
+                        <div className='flex items-center w-full mt-1'>
+                          <div className='w-1/12'>
+                            <p className='text-xl font-medium'>$</p>
+                          </div>
+                          <input
+                            className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                            onChange={(e) => setSuggestedPrice(e.target.value)}
+                            placeholder='$9+'
+                            value={suggestedPrice}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    ''
+                  )}
                 </div>
-              ) : (
-                ''
-              )}
-            </div>
 
-            <div className='border-2 rounded w-6/12 ml-4 flex flex-col justify-center p-2'>
-              <CoverImage
-                product={product}
+                <div className='border-2 rounded w-6/12 ml-4 flex flex-col justify-center p-2'>
+                  <CoverImage
+                    product={product}
+                    productId={product._id}
+                    image={image}
+                    setImage={setImage}
+                    refetchProduct={refetchProduct}
+                  />
+                  <p className='text-gray-400'>Call to action</p>
+                  <select
+                    onChange={(e) => setCallToAction(e.target.value)}
+                    className='w-full h-14 rounded p-2'
+                    value={callToAction}
+                  >
+                    <option value='buy'>Buy Now</option>
+                    <option value='want'>I want this!</option>
+                    <option value='get'>Get Now</option>
+                  </select>
+                </div>
+              </div>
+              <p className='text-gray-400 mt-2'>Description</p>
+              <ReactQuill
+                value={info}
+                onChange={setInfo}
+                className='h-72 mt-1'
+                placeholder='Start typing description here...'
+              />
+              {/* <button
+                type='submit'
+                className='border-2 rounded h-14 w-full text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white mt-4'
+              >
+                SAVE
+              </button>
+              <button
+                type='button'
+                onClick={handleDelete}
+                className='border-2 rounded h-8 w-full text-red-400 border-red-400 hover:bg-red-400 hover:text-white mt-2'
+              >
+                DELETE
+              </button> */}
+            </form>
+          </TabPanel>
+
+          <TabPanel>
+            <div className='p-2 pb-12 bg-white rounded drop-shadow-lg border'>
+              <div className='flex items-center'>
+                <p className='text-xl font-medium'>Content</p>
+                <Tooltip
+                  title={
+                    <p className='text-lg'>
+                      Images, zip files, PDFs, video, etc..
+                    </p>
+                  }
+                  className='ml-2 text-lg'
+                  placement='right-end'
+                >
+                  <button type='button' disabled>
+                    <AiOutlineInfoCircle />
+                  </button>
+                </Tooltip>
+              </div>
+              <p className='text-gray-400 font-medium mb-4'>
+                Add any files and content you want to include in your digital
+                purchase. A download link will be sent to customers
+                automatically after a purchase.
+              </p>
+
+              <Files
                 productId={product._id}
-                image={image}
-                setImage={setImage}
+                product={product}
+                formFiles={files}
+                setFormFiles={setFiles}
                 refetchProduct={refetchProduct}
               />
-              <p className='text-gray-400'>Call to action</p>
-              <select
-                onChange={(e) => setCallToAction(e.target.value)}
-                className='w-full h-14 rounded p-2'
-                value={callToAction}
-              >
-                <option value='buy'>Buy Now</option>
-                <option value='want'>I want this!</option>
-                <option value='get'>Get Now</option>
-              </select>
+
+              <div className='w-full mt-4'>
+                <FilePond
+                  file={files}
+                  name='digitalProducts'
+                  allowMultiple
+                  onupdatefiles={(fileItems) => {
+                    setFiles(fileItems.map((fileItem) => fileItem.file));
+                  }}
+                />
+              </div>
+
+              <ReactQuill
+                value={productContent}
+                onChange={setProductContent}
+                placeholder='Start typing content here'
+                className='h-96'
+              />
             </div>
-          </div>
-
-          <div className='flex items-center mt-4 border-t-2'>
-            <p className='text-xl font-medium mt-4'>Content</p>
-            <Tooltip
-              title={
-                <p className='text-lg'>Images, zip files, PDFs, video, etc..</p>
-              }
-              className='ml-2 text-lg mt-4'
-              placement='right-end'
-            >
-              <button type='button' disabled>
-                <AiOutlineInfoCircle />
-              </button>
-            </Tooltip>
-          </div>
-          <p className='text-gray-400 font-medium mb-4'>
-            Add any files and content you want to include in your digital
-            purchase. A download link will be sent to customers automatically
-            after purchase.
-          </p>
-
-          <div className='flex flex-col'>
-            <p className='text-gray-400 mt-4'>Content currently added</p>
-          </div>
-
-          <Files
-            productId={product._id}
-            product={product}
-            formFiles={files}
-            setFormFiles={setFiles}
-            refetchProduct={refetchProduct}
-          />
-
-          <div className='w-full mt-4'>
-            <FilePond
-              file={files}
-              name='digitalProducts'
-              allowMultiple
-              onupdatefiles={(fileItems) => {
-                setFiles(fileItems.map((fileItem) => fileItem.file));
-              }}
-            />
-          </div>
-
-          <div className='w-full border rounded mt-6'>
-            {/* <Editor
-            editorState={productContent}
-            toolbarClassName='toolbarClassName'
-            wrapperClassName='wrapperClassName'
-            editorClassName='editorClassName'
-            onEditorStateChange={handleProductContent}
-            placeholder='Start typing here..'
-            toolbar={{
-              options: [
-                'inline',
-                'blockType',
-                'fontSize',
-                'list',
-                'textAlign',
-                'colorPicker',
-                'link',
-                'embedded',
-                'emoji',
-                'image',
-                'remove',
-                'history',
-              ],
-            }}
-          /> */}
-            <ReactQuill
-              // theme='snow'
-              value={productContent}
-              onChange={setProductContent}
-              placeholder='Start typing here'
-            />
-          </div>
-
-          {/* <div className='flex flex-col'>
-          <p className='font-medium'>Add a link</p>
-          <p className='font-medium text-gray-400'>
-            This is just a link for customers to click after purchase, not a
-            redirect
-          </p>
-          <input
-            type='text'
-            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-2'
-            placeholder='https://www.yourlink.com'
-            onChange={(e) => setLink(e.target.value)}
-            value={link}
-          />
-        </div> */}
-
-          <button
-            type='submit'
-            className='border-2 rounded h-14 w-full text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white mt-4'
-          >
-            SAVE
-          </button>
-          <button
-            type='button'
-            onClick={handleDelete}
-            className='border-2 rounded h-8 w-full text-red-400 border-red-400 hover:bg-red-400 hover:text-white mt-2'
-          >
-            DELETE
-          </button>
-        </form>
+          </TabPanel>
+        </Tabs>
       </div>
     </>
   );
