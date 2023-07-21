@@ -11,6 +11,8 @@ import { useAddDigitalProductMutation } from '../../api/productsApiSlice';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 const AddDigitalProd = () => {
   const navigate = useNavigate();
@@ -34,6 +36,7 @@ const AddDigitalProd = () => {
   const [payChoice, setPayChoice] = useState(false);
   const [suggestedPrice, setSuggestedPrice] = useState('');
   const [productContent, setProductContent] = useState('');
+  const [info, setInfo] = useState('');
 
   const [addDigitalProduct, result] = useAddDigitalProductMutation();
 
@@ -64,6 +67,7 @@ const AddDigitalProd = () => {
     //to see if quill editor is empty
     var regex = /(<([^>]+)>)/gi;
     const hasText = !!productContent.replace(regex, '').length;
+    const hasInfo = !!info.replace(regex, '').length;
 
     try {
       if (image.length) {
@@ -102,6 +106,7 @@ const AddDigitalProd = () => {
           payChoice: payChoice,
           suggestedPrice: suggestedPrice,
           content: hasText ? productContent : '',
+          info: hasInfo ? info : '',
         }).unwrap();
 
         if (addDigitalProductReq.msg === 'Product added') {
@@ -165,6 +170,8 @@ const AddDigitalProd = () => {
             productContent={productContent}
             setProductContent={setProductContent}
             handleProductContent={handleProductContent}
+            info={info}
+            setInfo={setInfo}
             setCallToAction={setCallToAction}
             callToAction={callToAction}
             payChoice={payChoice}

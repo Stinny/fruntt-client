@@ -54,6 +54,7 @@ const EditDigital = ({ product, refetch }) => {
     //to see if quill editor is empty
     var regex = /(<([^>]+)>)/gi;
     const hasText = !!productContent.replace(regex, '').length;
+    const hasInfo = !!info.replace(regex, '').length;
 
     try {
       //first try to upload new coverImage if one exists
@@ -92,6 +93,7 @@ const EditDigital = ({ product, refetch }) => {
         productId: product?._id,
         digitalType: digitalType,
         content: hasText ? productContent : '',
+        info: hasInfo ? info : '',
         suggestedPrice: suggestedPrice,
         payChoice: payChoice,
         callToAction: callToAction,
