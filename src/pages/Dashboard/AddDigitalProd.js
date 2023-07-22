@@ -37,6 +37,7 @@ const AddDigitalProd = () => {
   const [suggestedPrice, setSuggestedPrice] = useState('');
   const [productContent, setProductContent] = useState('');
   const [info, setInfo] = useState('');
+  const [url, setUrl] = useState('');
 
   const [addDigitalProduct, result] = useAddDigitalProductMutation();
 
@@ -107,6 +108,7 @@ const AddDigitalProd = () => {
           suggestedPrice: suggestedPrice,
           content: hasText ? productContent : '',
           info: hasInfo ? info : '',
+          url: url,
         }).unwrap();
 
         if (addDigitalProductReq.msg === 'Product added') {
@@ -158,14 +160,18 @@ const AddDigitalProd = () => {
             handleAddProduct={handleAddProduct}
             handleCancel={handleCancel}
             setTitle={setTitle}
+            title={title}
             setDescription={setDescription}
             setImage={setImage}
+            image={image}
             setFiles={setFiles}
+            files={files}
             setPrice={setPrice}
             price={price}
             setPublished={setPublished}
             published={published}
             setDigitalType={setDigitalType}
+            digitalType={digitalType}
             setLink={setLink}
             productContent={productContent}
             setProductContent={setProductContent}
@@ -177,9 +183,11 @@ const AddDigitalProd = () => {
             payChoice={payChoice}
             setPayChoice={setPayChoice}
             setSuggestedPrice={setSuggestedPrice}
+            suggestedPrice={suggestedPrice}
             error={error}
             description={description}
-            title={title}
+            url={url}
+            setUrl={setUrl}
           />
         )}
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import CoverImage from './CoverImage';
 import Files from './Files';
@@ -51,8 +52,11 @@ const EditDesktop = ({
   deletingProduct,
   info,
   setInfo,
+  url,
+  setUrl,
 }) => {
   const customQuillClass = 'custom-quill';
+  const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
   const modalStyles = isMobile
     ? {
@@ -195,7 +199,7 @@ const EditDesktop = ({
                   <p className='text-gray-400'>Type</p>
                   <select
                     onChange={(e) => setDigitalType(e.target.value)}
-                    className='w-full h-14 rounded p-2'
+                    className='w-full h-14 rounded p-2 mt-1'
                     value={digitalType}
                   >
                     <option value='video'>Video Course</option>
@@ -209,7 +213,7 @@ const EditDesktop = ({
                   <p className='text-gray-400 mt-4'>Title</p>
                   <input
                     type='text'
-                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     maxLength={50}
@@ -221,7 +225,7 @@ const EditDesktop = ({
                   <p className='text-gray-400 mt-4'>Summary (optional)</p>
                   <textarea
                     type='text'
-                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     maxLength={75}
@@ -241,7 +245,7 @@ const EditDesktop = ({
                       type='number'
                       step={1}
                       min={0}
-                      className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                      className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
                       value={price}
                       onChange={(e) => setPrice(e.target.value)}
                     />
@@ -309,16 +313,27 @@ const EditDesktop = ({
                     setImage={setImage}
                     refetchProduct={refetchProduct}
                   />
-                  <p className='text-gray-400'>Call to action</p>
+                  <p className='text-gray-400 mt-2'>Call to action</p>
                   <select
                     onChange={(e) => setCallToAction(e.target.value)}
-                    className='w-full h-14 rounded p-2'
+                    className='w-full h-14 rounded p-2 mt-1'
                     value={callToAction}
                   >
                     <option value='buy'>Buy Now</option>
                     <option value='want'>I want this!</option>
                     <option value='get'>Get Now</option>
                   </select>
+
+                  <p className='text-gray-400 mt-2'>URL</p>
+                  <div className='flex items-center'>
+                    <span className='underline underline-offset-2 font-medium text-lg'>{`${currentStoreUrl}/`}</span>
+                    <input
+                      className='bg-white border-2 rounded p-2 outline outline-0'
+                      placeholder='MyProduct'
+                      value={url}
+                      onChange={(e) => setUrl(e.target.value)}
+                    />
+                  </div>
                 </div>
               </div>
               <p className='text-gray-400 mt-2'>Description</p>

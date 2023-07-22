@@ -41,6 +41,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         formOptions,
         formShippingPrice,
         imageData,
+        url,
       }) => ({
         url: `/products/edit/${productId}`,
         method: 'POST',
@@ -60,6 +61,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
           zipcode: formZip,
           shippingPrice: formShippingPrice,
           imageData: imageData,
+          url: url,
         },
       }),
     }),
@@ -79,6 +81,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         payChoice,
         suggestedPrice,
         callToAction,
+        url,
       }) => ({
         url: `/products/editdigital/${productId}`,
         method: 'POST',
@@ -96,6 +99,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
           payChoice: payChoice,
           suggestedPrice: suggestedPrice,
           callToAction: callToAction,
+          url: url,
         },
       }),
     }),

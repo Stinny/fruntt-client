@@ -34,7 +34,7 @@ const Topbar = () => {
                 : notActiveLink
             }
           >
-            Product
+            Products
           </button>
         </NavLink>
 

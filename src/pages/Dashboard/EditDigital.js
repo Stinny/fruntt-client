@@ -29,6 +29,7 @@ const EditDigital = ({ product, refetch }) => {
   const [callToAction, setCallToAction] = useState(product?.callToAction);
   const [payChoice, setPayChoice] = useState(product?.payChoice);
   const [suggestedPrice, setSuggestedPrice] = useState(product?.suggestedPrice);
+  const [url, setUrl] = useState(product?.url);
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
@@ -97,6 +98,7 @@ const EditDigital = ({ product, refetch }) => {
         suggestedPrice: suggestedPrice,
         payChoice: payChoice,
         callToAction: callToAction,
+        url: url,
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
@@ -152,6 +154,8 @@ const EditDigital = ({ product, refetch }) => {
       setPayChoice={setPayChoice}
       suggestedPrice={suggestedPrice}
       setSuggestedPrice={setSuggestedPrice}
+      setUrl={setUrl}
+      url={url}
     />
   );
 };

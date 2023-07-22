@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -20,6 +21,7 @@ const DesktopForm = ({
   handleAddProduct,
   handleCancel,
   setDigitalType,
+  digitalType,
   setTitle,
   setDescription,
   description,
@@ -40,8 +42,14 @@ const DesktopForm = ({
   info,
   setInfo,
   setSuggestedPrice,
+  suggestedPrice,
   setProductContent,
+  productContent,
+  url,
+  setUrl,
 }) => {
+  const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
+
   return (
     <div className='w-full'>
       <div className='mb-4 flex justify-between p-2'>
@@ -111,8 +119,9 @@ const DesktopForm = ({
                 <select
                   onChange={(e) => setDigitalType(e.target.value)}
                   className='w-full h-14 rounded p-2 mt-1'
+                  value={digitalType}
                 >
-                  <option disabled selected hidden>
+                  <option disabled selected hidden value=''>
                     Select product type
                   </option>
                   <option value='video'>Video Course</option>
@@ -128,6 +137,7 @@ const DesktopForm = ({
                   className='border-2 border-gray-200 hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
                   placeholder='Title'
                   onChange={(e) => setTitle(e.target.value)}
+                  value={title}
                   maxLength={50}
                 />
                 <div className='w-full flex justify-end'>
@@ -140,6 +150,7 @@ const DesktopForm = ({
                   className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
                   placeholder='Summary'
                   onChange={(e) => setDescription(e.target.value)}
+                  value={description}
                   maxLength={75}
                 />
                 <div className='w-full flex justify-end'>
@@ -159,7 +170,7 @@ const DesktopForm = ({
                     placeholder={payChoice ? '$9+' : '$9'}
                     step={1}
                     onChange={(e) => setPrice(e.target.value)}
-                    price={price}
+                    value={price}
                   />
                 </div>
                 <FormControlLabel
@@ -207,6 +218,7 @@ const DesktopForm = ({
                         <input
                           className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
                           onChange={(e) => setSuggestedPrice(e.target.value)}
+                          value={suggestedPrice}
                           placeholder='$9+'
                         />
                       </div>
@@ -226,21 +238,33 @@ const DesktopForm = ({
                 </p>
 
                 <FilePond
-                  file={image}
+                  files={image}
                   imageResizeTargetWidth={200}
                   name='productImages'
                   onupdatefiles={(file) => setImage(file)}
+                  instantUpload={false}
                 />
                 <p className='text-gray-400'>Call to action</p>
                 <select
                   onChange={(e) => setCallToAction(e.target.value)}
-                  className='w-full h-14 rounded p-2'
+                  className='w-full h-14 rounded p-2 mt-1'
                   value={callToAction}
                 >
                   <option value='buy'>Buy Now</option>
                   <option value='want'>I want this!</option>
                   <option value='get'>Get Now</option>
                 </select>
+
+                <p className='text-gray-400 mt-2'>URL</p>
+                <div className='flex items-center'>
+                  <span className='underline underline-offset-2 font-medium text-lg'>{`${currentStoreUrl}/`}</span>
+                  <input
+                    className='bg-white border-2 rounded p-2 outline outline-0'
+                    placeholder='MyProduct'
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                  />
+                </div>
               </div>
             </div>
 
@@ -290,7 +314,7 @@ const DesktopForm = ({
               immediately after purchase.
             </p>
             <FilePond
-              file={files}
+              files={files}
               name='digitalProducts'
               allowMultiple
               onupdatefiles={(fileItems) => {
@@ -300,6 +324,7 @@ const DesktopForm = ({
 
             <ReactQuill
               onChange={setProductContent}
+              value={productContent}
               placeholder='Start typing here...'
               className='h-96'
             />
