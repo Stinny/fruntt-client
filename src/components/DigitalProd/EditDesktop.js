@@ -325,11 +325,11 @@ const EditDesktop = ({
                   </select>
 
                   <p className='text-gray-400 mt-2'>URL</p>
-                  <div className='flex items-center'>
-                    <span className='underline underline-offset-2 font-medium text-lg'>{`${currentStoreUrl}/`}</span>
+                  <div className='flex items-center border-2 p-2 rounded border-gray-200 hover:border-gray-300 mt-1'>
+                    <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
                     <input
-                      className='bg-white border-2 rounded p-2 outline outline-0'
-                      placeholder='MyProduct'
+                      className='bg-white outline outline-0'
+                      placeholder='YourProductName'
                       value={url}
                       onChange={(e) => setUrl(e.target.value)}
                     />

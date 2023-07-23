@@ -20,7 +20,7 @@ const SellerPro = ({ pageBG, cardBG, pageText, borderColor }) => {
     : null;
 
   return isMobile ? (
-    <div className='w-full mx-auto p-2'>
+    <div className='w-full mx-auto'>
       <div
         className='max-w-6xl flex flex-col mx-auto border rounded bg-inherit drop-shadow-md p-2'
         style={{

@@ -147,7 +147,7 @@ const DesktopForm = ({
                 <p className='text-gray-400 mt-4'>Summary (optional)</p>
                 <textarea
                   type='text'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
+                  className='border-2 border-gray-200 hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
                   placeholder='Summary'
                   onChange={(e) => setDescription(e.target.value)}
                   value={description}
@@ -166,7 +166,7 @@ const DesktopForm = ({
                   </div>
                   <input
                     type='number'
-                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
+                    className='border-2 border-gray-200 hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
                     placeholder={payChoice ? '$9+' : '$9'}
                     step={1}
                     onChange={(e) => setPrice(e.target.value)}
@@ -195,7 +195,7 @@ const DesktopForm = ({
 
                         <input
                           type='number'
-                          className='border-2 border-slate-200 w-11/12 rounded p-2 outline outline-0 bg-white mt-1'
+                          className='border-2 border-gray-200 hover:border-gray-300 w-11/12 rounded p-2 outline outline-0 bg-white mt-1'
                           step={1}
                           placeholder='$9+'
                           value={price}
@@ -216,7 +216,7 @@ const DesktopForm = ({
                           <p className='text-xl font-medium'>$</p>
                         </div>
                         <input
-                          className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
+                          className='border-2 text-gray-600 border-gray-200 hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
                           onChange={(e) => setSuggestedPrice(e.target.value)}
                           value={suggestedPrice}
                           placeholder='$9+'
@@ -256,11 +256,11 @@ const DesktopForm = ({
                 </select>
 
                 <p className='text-gray-400 mt-2'>URL</p>
-                <div className='flex items-center'>
-                  <span className='underline underline-offset-2 font-medium text-lg'>{`${currentStoreUrl}/`}</span>
+                <div className='flex items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2'>
+                  <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
                   <input
-                    className='bg-white border-2 rounded p-2 outline outline-0'
-                    placeholder='MyProduct'
+                    className='bg-white outline outline-0'
+                    placeholder='YourProductName'
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                   />
