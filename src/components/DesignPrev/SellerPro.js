@@ -14,7 +14,15 @@ import Cookies from 'js-cookie';
 //mui
 import Avatar from '@mui/material/Avatar';
 
-const SellerPro = ({ pageBG, cardBG, pageText, borderColor }) => {
+const SellerPro = ({
+  pageBG,
+  cardBG,
+  pageText,
+  borderColor,
+  handleSelectedProduct,
+  selectedProduct,
+  products,
+}) => {
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
@@ -72,13 +80,17 @@ const SellerPro = ({ pageBG, cardBG, pageText, borderColor }) => {
                 My other products:
               </p>
               <select
+                onChange={handleSelectedProduct}
                 className='rounded border-2 bg-transparent h-8'
                 style={{
                   color: pageText,
                   borderColor: borderColor,
                 }}
+                value={selectedProduct ? selectedProduct?.item?._id : ''}
               >
-                <option>{currentUser?.store?.url}</option>
+                {products.map((prod) => (
+                  <option value={prod?.item?._id}>{prod?.item?.title}</option>
+                ))}
               </select>
               <div className='flex items-center text-2xl mt-4'>
                 {currentUser?.sellerProfile?.facebook && (
@@ -224,7 +236,7 @@ const SellerPro = ({ pageBG, cardBG, pageText, borderColor }) => {
           <p className='font-medium' style={{ color: pageText }}>
             My other products:
           </p>
-          <select
+          {/* <select
             className='rounded border-2 bg-transparent h-8'
             disabled
             style={{
@@ -233,6 +245,19 @@ const SellerPro = ({ pageBG, cardBG, pageText, borderColor }) => {
             }}
           >
             <option>{currentUser?.store?.url}</option>
+          </select> */}
+          <select
+            onChange={handleSelectedProduct}
+            className='rounded border-2 bg-transparent h-8'
+            style={{
+              color: pageText,
+              borderColor: borderColor,
+            }}
+            value={selectedProduct ? selectedProduct?.item?._id : ''}
+          >
+            {products.map((prod) => (
+              <option value={prod?.item?._id}>{prod?.item?.title}</option>
+            ))}
           </select>
         </div>
 

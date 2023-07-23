@@ -158,7 +158,7 @@ const Design = () => {
       <Topbar />
       {isMobile ? (
         <div className='w-full mx-auto h-fit'>
-          <div className='flex justify-between items-center border-b-2 p-2'>
+          <div className='flex justify-between items-center p-2'>
             <div className='flex flex-col'>
               <h2 className='text-2xl font-medium'>Page design</h2>
               <p>
@@ -184,7 +184,7 @@ const Design = () => {
         </div>
       ) : (
         <div className='max-w-6xl mx-auto'>
-          <div className=' flex justify-between items-center border-b-2 p-2'>
+          <div className=' flex justify-between items-center p-2'>
             <div className='flex flex-col'>
               <h2 className='text-3xl font-medium'>Page design</h2>
               <p>

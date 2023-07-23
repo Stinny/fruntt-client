@@ -90,7 +90,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
       />
       <nav className='w-full h-16 border-b shadow bg-white fixed top-0 left-0 right-0 z-50'>
         <div className='w-11/12 h-full mx-auto flex justify-between items-center'>
-          <div className='text-4xl h-full flex justify-center items-center'>
+          <div className='text-2xl h-full flex justify-center items-center'>
             <Link to='/' className='h-full flex justify-center items-center'>
               <IoStorefrontOutline className='text-stone-800 font-bold' />
               <p className='font-black font-sans'>Fruntt</p>
@@ -111,35 +111,16 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
         </button>
 
         <div className='flex flex-col w-10/12 mx-auto items-center mt-20'>
-          <div className='flex flex-col w-full h-full'>
-            <p className='font-medium mr-2 '>Viewing:</p>
-
-            <select
-              className='rounded border-2 w-full h-10'
-              onChange={(e) => setPageInView(e.target.value)}
-              value={selectedStoreUrl}
+          <Link to='/dashboard/item/digital' className='w-10/12 mx-auto'>
+            <button
+              className='w-full mx-auto h-12 border-2 rounded border-stone-800 text-white bg-stone-800 text-xl mt-20 shadow-lg'
+              disabled
+              type='button'
             >
-              <option selected disabled>
-                {selectedStoreUrl}
-              </option>
-              {filteredStores?.map((store) => (
-                <option value={store?.url}>{store?.url}</option>
-              ))}
-            </select>
+              + Add Product
+            </button>
+          </Link>
 
-            <Link
-              to='/addpage'
-              className='ml-2 text-gray-400 hover:text-gray- mt-2'
-            >
-              + Add page
-            </Link>
-          </div>
-          {/* <button
-            onClick={handleOpenModal}
-            className='text-2xl font-medium mt-10 border-b-2'
-          >
-            Help
-          </button> */}
           <Link
             to='/settings'
             className='text-2xl font-medium mt-10 border-b-2'
@@ -154,7 +135,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
           </Link>
 
           <button
-            className='w-10/12 h-14 border-2 rounded border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 text-xl mt-20'
+            className='w-10/12 h-14 border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 text-xl mt-20 shadow-lg'
             onClick={handleLogout}
           >
             Logout

@@ -130,7 +130,7 @@ const Navbar = () => {
 
         <div className='flex items-center h-full'>
           <Link to='/dashboard/item/digital'>
-            <button className='border-2 font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded w-32 h-10 ml-20'>
+            <button className='border-2 font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded w-32 h-10 ml-20 shadow-md bg-white'>
               + New Product
             </button>
           </Link>

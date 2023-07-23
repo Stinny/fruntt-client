@@ -9,8 +9,8 @@ const TopbarMobile = () => {
 
   return (
     <>
-      <div className='w-full mx-auto h-16'>
-        <div className='w-11/12 h-full mx-auto flex justify-between items-center border rounded bg-white drop-shadow-md p-2 overflow-x-scroll mt-20'>
+      <div className='w-full mx-auto h-14 pr-2 pl-2'>
+        <div className='w-full h-full mx-auto flex justify-between items-center border rounded bg-white drop-shadow-md p-2 overflow-x-scroll mt-20'>
           <NavLink to='/dashboard'>
             <button
               autoFocus={path === '/dashboard'}
@@ -31,7 +31,7 @@ const TopbarMobile = () => {
                   : notActiveLink
               }
             >
-              Product
+              Products
             </button>
           </NavLink>
 

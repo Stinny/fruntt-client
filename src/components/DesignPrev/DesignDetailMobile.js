@@ -45,25 +45,8 @@ const DesignDetailMobile = ({
 
   return (
     <>
-      <div className='w-full flex justify-between items-center mb-2 mt-2'>
-        <div className='flex flex-col'>
-          <select
-            onChange={handleSelectedProduct}
-            className='w-full h-10 rounded p-1 mt-1 text-md'
-            value={selectedProduct ? selectedProduct?.item?._id : ''}
-          >
-            {products.map((prod) => (
-              <option value={prod?.item?._id}>{prod?.item?.title}</option>
-            ))}
-          </select>
-        </div>
-        {/* <div className='flex items-center mt-6'>
-          <BsArrow90DegDown className='text-xl mt-2' />
-          <p className='font-medium text-2xl'>Preview product page</p>
-        </div> */}
-      </div>
       <div
-        className='w-full h-full mx-auto border p-2'
+        className='w-full h-full mx-auto border p-2 rounded'
         style={{ backgroundColor: pageBG }}
       >
         <SellerPro
@@ -72,6 +55,9 @@ const DesignDetailMobile = ({
           pageText={pageText}
           borderColor={borderColor}
           headers={headerColor}
+          handleSelectedProduct={handleSelectedProduct}
+          selectedProduct={selectedProduct}
+          products={products}
         />
 
         {products.length > 0 ? (

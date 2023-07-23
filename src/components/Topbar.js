@@ -38,18 +38,6 @@ const Topbar = () => {
           </button>
         </NavLink>
 
-        <NavLink to='/dashboard/content'>
-          <button
-            className={
-              path === '/dashboard/content' || path === '/dashboard/description'
-                ? activeLink
-                : notActiveLink
-            }
-          >
-            Page
-          </button>
-        </NavLink>
-
         <NavLink to='/dashboard/design'>
           <button
             className={
@@ -82,6 +70,18 @@ const Topbar = () => {
             }
           >
             Reviews
+          </button>
+        </NavLink>
+
+        <NavLink to='/'>
+          <button
+            className={
+              path === '/dashboard/audience' || path === '/dashboard/audience'
+                ? activeLink
+                : notActiveLink
+            }
+          >
+            Audience
           </button>
         </NavLink>
 

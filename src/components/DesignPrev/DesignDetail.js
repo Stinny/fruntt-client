@@ -44,7 +44,7 @@ const DesignDetail = ({
   };
   return (
     <>
-      <div className='w-full flex justify-between items-center mb-2 mt-2'>
+      {/* <div className='w-full flex justify-between items-center mb-2 mt-2'>
         <div className='flex flex-col'>
           <select
             onChange={handleSelectedProduct}
@@ -60,9 +60,9 @@ const DesignDetail = ({
           <BsArrow90DegDown className='text-xl mt-2' />
           <p className='font-medium text-2xl'>Preview product page</p>
         </div>
-      </div>
+      </div> */}
       <div
-        className='w-full h-full mx-auto border p-10 rounded'
+        className='w-full h-full mx-auto border p-10 rounded mt-6 drop-shadow-lg'
         style={{ backgroundColor: pageBG }}
       >
         <SellerPro
@@ -71,6 +71,9 @@ const DesignDetail = ({
           pageText={pageText}
           borderColor={borderColor}
           headers={headerColor}
+          handleSelectedProduct={handleSelectedProduct}
+          selectedProduct={selectedProduct}
+          products={products}
         />
 
         {products.length > 0 ? (
