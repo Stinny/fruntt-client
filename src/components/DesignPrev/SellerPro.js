@@ -236,19 +236,9 @@ const SellerPro = ({
           <p className='font-medium' style={{ color: pageText }}>
             My other products:
           </p>
-          {/* <select
-            className='rounded border-2 bg-transparent h-8'
-            disabled
-            style={{
-              color: pageText,
-              borderColor: borderColor,
-            }}
-          >
-            <option>{currentUser?.store?.url}</option>
-          </select> */}
           <select
             onChange={handleSelectedProduct}
-            className='rounded border-2 bg-transparent h-8'
+            className='rounded border-2 bg-transparent h-8 pl-2'
             style={{
               color: pageText,
               borderColor: borderColor,
@@ -271,7 +261,7 @@ const SellerPro = ({
             <a href={currentUser?.sellerProfile?.instagram} target='_blank'>
               <AiOutlineInstagram
                 style={{ color: pageText }}
-                className=' ml-2'
+                className='ml-2'
               />
             </a>
           )}
@@ -282,34 +272,22 @@ const SellerPro = ({
           )}
           {currentUser?.sellerProfile?.linkedin && (
             <a href={currentUser?.sellerProfile?.linkedin} target='_blank'>
-              <AiOutlineLinkedin
-                style={{ color: pageText }}
-                className='text-gray-400 hover:text-blue-400 ml-2'
-              />
+              <AiOutlineLinkedin style={{ color: pageText }} className='ml-2' />
             </a>
           )}
           {currentUser?.sellerProfile?.youtube && (
             <a href={currentUser?.sellerProfile?.youtube} target='_blank'>
-              <AiOutlineYoutube
-                style={{ color: pageText }}
-                className='text-gray-400 hover:text-blue-400 ml-2'
-              />
+              <AiOutlineYoutube style={{ color: pageText }} className='ml-2' />
             </a>
           )}
           {currentUser?.sellerProfile?.tiktok && (
             <a href={currentUser?.sellerProfile?.tiktok} target='_blank'>
-              <FaTiktok
-                style={{ color: pageText }}
-                className='text-gray-400 hover:text-blue-400 ml-2'
-              />
+              <FaTiktok style={{ color: pageText }} className='ml-2' />
             </a>
           )}
           {currentUser?.sellerProfile?.link && (
             <a href={currentUser?.sellerProfile?.link} target='_blank'>
-              <AiOutlineLink
-                style={{ color: pageText }}
-                className='text-gray-400 hover:text-blue-400 ml-2'
-              />
+              <AiOutlineLink style={{ color: pageText }} className='ml-2' />
             </a>
           )}
         </div>
