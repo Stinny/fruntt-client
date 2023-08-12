@@ -20,13 +20,10 @@ import {
   MdOutlinePermMedia,
 } from 'react-icons/md';
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
-import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { BsFillMicFill } from 'react-icons/bs';
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 
 //mui
-import Chip from '@mui/material/Chip';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
@@ -72,7 +69,7 @@ const Item = () => {
     content = <Spinner />;
   } else if (isSuccess) {
     content = isMobile ? (
-      <ProductMobile product={product[0]} />
+      <ProductMobile product={product} />
     ) : product.length ? (
       <div className='w-full'>
         <div className='w-full flex justify-between items-center p-2'>

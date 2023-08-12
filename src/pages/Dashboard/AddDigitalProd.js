@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Navbar from '../../components/Navbar';
 import Topbar from '../../components/Topbar';
@@ -11,8 +11,6 @@ import { useAddDigitalProductMutation } from '../../api/productsApiSlice';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
 
 const AddDigitalProd = () => {
   const navigate = useNavigate();
@@ -38,6 +36,7 @@ const AddDigitalProd = () => {
   const [productContent, setProductContent] = useState('');
   const [info, setInfo] = useState('');
   const [url, setUrl] = useState('');
+  const [addingProduct, setAddingProduct] = useState(false);
 
   const [addDigitalProduct, result] = useAddDigitalProductMutation();
 
@@ -52,6 +51,8 @@ const AddDigitalProd = () => {
   const handleAddProduct = async (e) => {
     e.preventDefault();
 
+    setAddingProduct(true);
+
     let coverPicUrl;
     let coverPicKey;
     let uploadedFiles = [];
@@ -60,8 +61,9 @@ const AddDigitalProd = () => {
     //if request is success
     //send request to create product
 
-    if (!title || !digitalType || !price) {
+    if (!title || !digitalType || !price || !url) {
       setError('Please fill out all fields to complete your product');
+      setAddingProduct(false);
       return;
     }
 
@@ -116,14 +118,29 @@ const AddDigitalProd = () => {
           const newUser = JSON.stringify(currentUser);
           Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
           toast.success('Product created!');
+          setAddingProduct(false);
           navigate('/dashboard/item');
         }
       }
     } catch (err) {
       console.log(err);
       setError('There was a server error');
+      setAddingProduct(false);
     }
   };
+
+  useEffect(() => {
+    setError('');
+  }, [
+    title,
+    description,
+    price,
+    info,
+    url,
+    productContent,
+    suggestedPrice,
+    callToAction,
+  ]);
 
   return (
     <>
@@ -151,9 +168,14 @@ const AddDigitalProd = () => {
             setPayChoice={setPayChoice}
             setSuggestedPrice={setSuggestedPrice}
             setProductContent={setProductContent}
+            info={info}
+            setInfo={setInfo}
             error={error}
             description={description}
             title={title}
+            setUrl={setUrl}
+            url={url}
+            addingProduct={addingProduct}
           />
         ) : (
           <DesktopForm
@@ -188,6 +210,7 @@ const AddDigitalProd = () => {
             description={description}
             url={url}
             setUrl={setUrl}
+            addingProduct={addingProduct}
           />
         )}
       </div>

@@ -47,6 +47,7 @@ const DesktopForm = ({
   productContent,
   url,
   setUrl,
+  addingProduct,
 }) => {
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
@@ -77,13 +78,18 @@ const DesktopForm = ({
             className='w-40 h-10 rounded border-stone-800 border-2 hover:text-white hover:bg-stone-800 text-stone-800'
             onClick={handleAddProduct}
             type='button'
+            disabled={addingProduct}
           >
-            + ADD PRODUCT
+            {addingProduct ? 'ADDING...' : '+ ADD PRODUCT'}
           </button>
         </div>
       </div>
 
-      {error && <Alert severity='error'>{error}</Alert>}
+      {error && (
+        <Alert severity='error' className='mb-2'>
+          {error}
+        </Alert>
+      )}
 
       <Tabs>
         <TabList>

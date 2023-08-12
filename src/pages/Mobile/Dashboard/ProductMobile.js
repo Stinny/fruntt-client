@@ -2,8 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { BiPackage } from 'react-icons/bi';
-import { MdOutlineFileDownload } from 'react-icons/md';
 import DigitalProductMobile from '../../../components/DigitalProd/DigitalProductMobile';
+import {
+  MdOutlineFileDownload,
+  MdOutlineVideoLibrary,
+  MdLocalPrintshop,
+  MdOutlinePermMedia,
+} from 'react-icons/md';
+import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
+import { BsFillMicFill } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 
 //mui
 import Chip from '@mui/material/Chip';
@@ -11,6 +19,8 @@ import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 const ProductMobile = ({ product }) => {
+  const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
+
   const noItem = (
     <div className='h-screen mx-auto border drop-shadow-md bg-white rounded w-11/12 flex flex-col justify-center items-center mt-4'>
       <p className='text-xl font-medium'>You have not added a product yet!</p>
@@ -28,115 +38,127 @@ const ProductMobile = ({ product }) => {
   );
 
   return product ? (
-    product?.type === 'digital' ? (
-      <DigitalProductMobile product={product} />
-    ) : (
-      <div className='w-full'>
-        <div className='w-full flex justify-between items-center mb-10 border-b-2 p-2'>
-          <div className='flex flex-col'>
-            <h2 className='text-2xl font-semibold'>Your product</h2>
-            <p>
-              last edited on {moment(product.updatedOn).format('MMM D, YYYY')}
-            </p>
-          </div>
+    <div className='w-full'>
+      <div className='w-full flex justify-between items-center p-2'>
+        <h2 className='text-xl font-semibold'>Your products</h2>
 
-          <Link to={`/dashboard/item/edit/${product._id}`}>
-            <button className='w-20 h-10 rounded border-slate-800 text-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
-              EDIT
+        {/* <Link to={`/dashboard/item/edit/${product[0]._id}`}>
+            <button className='w-40 h-10 rounded border-stone-800 text-stone-800 border-2 hover:bg-stone-800 hover:text-white'>
+              EDIT PRODUCT
             </button>
+          </Link> */}
+        <div className='flex items-center'>
+          {/* <p className='text-stone-800 font-medium text-lg'>
+            {product.length > 1
+              ? `${product.length} products created`
+              : `${product.length} product created`}
+          </p> */}
+          <Link
+            className='rounded-lg h-8 w-8 text-stone-800 border-stone-800 border-2 flex items-center justify-center text-xl ml-4 font-medium hover:text-white hover:bg-stone-800 pb-1'
+            to='/dashboard/item/digital'
+          >
+            +
           </Link>
         </div>
-
-        <div className='w-11/12 mx-auto'>
-          <div className='flex items-center'>
-            <p className='text-xl font-medium'>Details</p>
-          </div>
-          <div className='w-full p-4 border-2 rounded-md'>
-            <p className='text-gray-400 mt-4'>Product Title</p>
-            <h2 className='text-2xl'>{product?.title}</h2>
-            {product.description && (
-              <div className='flex flex-col'>
-                <p className='text-gray-400 mt-4'>Product Description</p>
-                <p className='text-lg'>{product?.description}</p>
-              </div>
-            )}
-            <p className='text-gray-400 mt-4'>Product Price</p>
-            <p className='text-xl'>${product?.price.toFixed(2)}</p>
-            <p className='text-gray-400 mt-4'>Product Inventory</p>
-            <p className='text-xl'>{product?.stock} units left</p>
-            <p className='text-gray-400 mt-4'>Product Options</p>
-            {product.options.length > 0 ? (
-              product.options.map((opt, optIndex) => (
-                <div className='w-full flex flex-col bg-gray-100 p-2 relative mt-2'>
-                  <p className='text-lg'>{opt?.name}</p>
-                  <div className='w-full flex flex-wrap'>
-                    {opt.values.map((value) => (
-                      <Chip label={value} className='ml-2' />
-                    ))}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className='w-full flex flex-col items-center justify-center h-18 p-2 rounded bg-gray-100 mt-2'>
-                <p className='text-lg font-medium'>No options added</p>
-                <p>Add options like size or color</p>
-              </div>
-            )}
-
-            <FormControlLabel
-              label='Published to storefront'
-              control={<Switch checked={product?.published} disabled />}
-              className='mt-2'
-            />
-          </div>
-
-          <p className='text-xl font-medium mt-4'>Media</p>
-          <div className='p-4 flex flex-wrap w-full border-2 rounded-md'>
-            {product?.images.map((img, index) => (
-              <img className='w-3/12' src={img.url} key={index} />
-            ))}
-          </div>
-
-          <div className='w-full flex justify-between'>
-            <div className='flex flex-col w-6/12'>
-              <p className='text-xl font-medium mt-4'>Package</p>
-              <div className='w-full flex justify-between p-4 border-2 rounded-md h-28'>
-                <div className='flex flex-col'>
-                  <p className='text-gray-400'>Package Weight</p>
-                  <p className='text-lg'>
-                    {product?.weight}
-                    <span>
-                      {' '}
-                      {product?.weightUnit === 'pound' ? 'Lbs' : 'Ounces'}
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className='flex flex-col w-6/12 ml-2'>
-              <p className='text-lg font-medium mt-4'>Shipping</p>
-              <div className='w-full flex flex-col p-4 border-2 rounded-md h-28'>
-                <p className='text-gray-400'>Customers pay</p>
-                <p className='text-lg'>${product?.shippingPrice.toFixed(2)}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className='flex flex-col w-full'>
-            <p className='text-lg font-medium mt-4'>Ships from</p>
-            <div className='w-full flex flex-col p-4 border-2 rounded-md h-32'>
-              <p className='text-xl'>{product?.shipsFrom?.address}</p>
-              <p className='text-xl'>
-                {product?.shipsFrom?.city}, {product?.shipsFrom?.state}{' '}
-                {product?.shipsFrom?.zipcode}
-              </p>
-              <p className='text-xl'>{product?.shipsFrom?.country}</p>
-            </div>
-          </div>
-        </div>
       </div>
-    )
+
+      <div
+        className='flex flex-col overflow-y-scroll h-screen bg-gray-50 p-2 rounded'
+        // style={{ height: '500px' }}
+      >
+        {product.map((prod) => (
+          <div className='border rounded bg-white drop-shadow-md relative flex mt-4'>
+            <img
+              src={prod?.coverImage?.url}
+              className='rounded-tl rounded-bl w-2/12 h-32'
+            />
+
+            <div className='w-10/12 border-l pl-4 flex flex-col p-2'>
+              <p className='text-xl font-medium mb-4'>
+                {prod?.title} - $
+                {prod?.payChoice ? `${prod?.price}+` : prod?.price}
+              </p>
+
+              <a
+                href={`${currentStoreUrl}/${prod?.url}`}
+                className='text-sm underline underline-offset-2 text-stone-800 mb-2'
+                target='_blank'
+              >
+                {`${currentStoreUrl}/${prod?.url}`}
+              </a>
+
+              {prod?.digitalType === 'video' ? (
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                  <p className='text-sm'>Video Course</p>
+                  <MdOutlineVideoLibrary className='ml-2 text-md' />
+                </div>
+              ) : prod?.digitalType === 'ebook' ? (
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                  <p className='text-sm'>E-Book</p>
+                  <HiOutlineBookOpen className='ml-2 text-md' />
+                </div>
+              ) : prod?.digitalType === 'podcast' ? (
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                  <p className='text-sm'>Podcast</p>
+                  <BsFillMicFill className='ml-2 text-md' />
+                </div>
+              ) : prod?.digitalType === 'template' ? (
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                  <p className='text-sm'>Template</p>
+                  <HiOutlineTemplate className='ml-2 text-md' />
+                </div>
+              ) : prod?.digitalType === 'other' ? (
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                  <p className='text-sm'>Digital Media</p>
+                  <MdOutlinePermMedia className='ml-2 text-md' />
+                </div>
+              ) : (
+                <div className='flex items-center justify-center border-2 border-slate-800  rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                  <p className='text-sm'>Printables</p>
+                  <MdLocalPrintshop className='ml-2 text-md' />
+                </div>
+              )}
+              <div className='flex mt-4'>
+                <FormControlLabel
+                  label='Published'
+                  control={
+                    <Switch checked={prod?.published} disabled size='small' />
+                  }
+                />
+                <FormControlLabel
+                  label='Marketplace'
+                  control={
+                    <Switch
+                      checked={prod?.marketplace}
+                      disabled
+                      size='small'
+                      className='ml-2'
+                    />
+                  }
+                />
+                <FormControlLabel
+                  label='Pay what you want'
+                  control={
+                    <Switch
+                      checked={prod?.payChoice}
+                      disabled
+                      size='small'
+                      className='ml-2'
+                    />
+                  }
+                />
+              </div>
+            </div>
+
+            <Link to={`/dashboard/item/edit/${prod?._id}`}>
+              <button className='absolute border-2 h-8 w-16 text-sm border-stone-800 text-stone-800 rounded right-0 bottom-0 mb-2 mr-2 hover:text-white hover:bg-stone-800'>
+                Edit
+              </button>
+            </Link>
+          </div>
+        ))}
+      </div>
+    </div>
   ) : (
     noItem
   );
