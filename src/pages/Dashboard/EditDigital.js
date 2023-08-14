@@ -9,7 +9,6 @@ import {
   useDeleteItemImageMutation,
 } from '../../api/productsApiSlice';
 import { uploadImageRequest } from '../../api/requests';
-import { convertFromRaw, EditorState, convertToRaw } from 'draft-js';
 import { toast } from 'react-toastify';
 
 const EditDigital = ({ product, refetch }) => {

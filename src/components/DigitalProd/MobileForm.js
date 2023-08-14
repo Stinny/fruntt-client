@@ -222,7 +222,7 @@ const MobileForm = ({
               </div>
 
               <FormControlLabel
-                label='Publish to page'
+                label='Publish to storefront'
                 control={
                   <Switch
                     checked={published}

@@ -238,12 +238,9 @@ const DesignDetail = ({
                     </p>
                   </div>
                   {selectedProduct?.item?.info === '' ? (
-                    <div
-                      style={{ borderColor: borderColor }}
-                      className='w-full h-44 mt-4 border-2 rounded flex justify-center items-center'
-                    >
+                    <div className='w-full h-44 mt-4 rounded flex justify-center items-center bg-gray-100'>
                       <p
-                        className='font-medium text-xl'
+                        className='font-medium text-lg'
                         style={{ color: pageText }}
                       >
                         No description had been added!

@@ -45,7 +45,7 @@ const CoverImage = ({
   } else if (isSuccess) {
     content = coverImage?.url ? (
       <>
-        <p className='text-gray-400 mt-4'>Current cover image</p>
+        <p className='text-gray-400 mt-4 mb-1'>Current cover image</p>
         <img src={coverImage?.url} className='rounded w-10/12' />
         <button
           type='button'
@@ -56,14 +56,14 @@ const CoverImage = ({
               key: product?.coverImage?.key,
             })
           }
-          className='w-full border-2 rounded border-red-400 text-red-400 hover:text-white hover:bg-red-400 mt-2'
+          className='w-full h-8 border-2 rounded border-red-400 text-red-400 hover:text-white hover:bg-red-400 mt-2'
         >
           Delete & upload new cover image
         </button>
       </>
     ) : (
       <>
-        <p className='text-lg font-medium text-slate-800 text-center'>
+        <p className='text-lg font-medium text-slate-800 text-center h-8'>
           Upload a new cover image
         </p>
         <p className='text-gray-400 font-medium text-center'>

@@ -10,10 +10,11 @@ import {
 } from '../../api/productsApiSlice';
 import { uploadImageRequest } from '../../api/requests';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Editor } from 'react-draft-wysiwyg';
-import { convertFromRaw, EditorState, convertToRaw } from 'draft-js';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import { useSelector } from 'react-redux';
 
 //filepond
 import { FilePond } from 'react-filepond';
@@ -29,6 +30,8 @@ import Alert from '@mui/material/Alert';
 const EditDigitalMobile = ({ product, productId, refetch }) => {
   const navigate = useNavigate();
 
+  const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
+
   const [error, setError] = useState('');
 
   const [title, setTitle] = useState(product?.title);
@@ -43,6 +46,8 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
   const [callToAction, setCallToAction] = useState(product?.callToAction);
   const [payChoice, setPayChoice] = useState(product?.payChoice);
   const [suggestedPrice, setSuggestedPrice] = useState(product?.suggestedPrice);
+  const [url, setUrl] = useState(product?.url);
+  const [info, setInfo] = useState(product?.info);
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
@@ -104,6 +109,8 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
         suggestedPrice: suggestedPrice,
         payChoice: payChoice,
         callToAction: callToAction,
+        url: url,
+        info: info,
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
@@ -126,234 +133,249 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
 
   return (
     <div className='w-full p-2'>
-      <div className='mb-2 flex flex-col border-b-2 p-2'>
-        <h2 className='text-3xl font-medium'>Edit your digital product</h2>
+      <div className='mb-2'>
+        <h2 className='text-xl font-medium'>Edit your digital product</h2>
       </div>
 
-      <form
-        className='w-full border rounded bg-white drop-shadow-md p-2'
-        onSubmit={handleSaveEdit}
-      >
-        {error && <Alert severity='error'>{error}</Alert>}
-        <div className='flex items-center'>
-          <p className='text-xl font-medium'>Details</p>
-          <Tooltip
-            title={
-              <p className='text-lg'>
-                Product details help your customers know what they are buying.
-              </p>
-            }
-            className='ml-2 text-lg'
-            placement='right-end'
-          >
-            <button type='button' disabled>
-              <AiOutlineInfoCircle />
-            </button>
-          </Tooltip>
-        </div>
+      <Tabs>
+        <TabList>
+          <Tab>Details</Tab>
+          <Tab>Content</Tab>
+        </TabList>
 
-        <div className='flex flex-col w-full mt-2'>
-          <div className='flex flex-col w-full'>
-            <p className='text-gray-400'>Product Type</p>
-            <select
-              onChange={(e) => setDigitalType(e.target.value)}
-              className='w-full h-14 rounded p-2'
-              value={digitalType}
-            >
-              <option value='video'>Video Course</option>
-              <option value='printable'>Printables</option>
-              <option value='ebook'>E-Book</option>
-              <option value='podcast'>Podcast</option>
-              <option value='template'>Template</option>
-              <option value='other'>Other Digital Media</option>
-            </select>
-
-            <p className='text-gray-400 mt-4'>Product Title</p>
-            <input
-              type='text'
-              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              maxLength={50}
-            />
-            <div className='w-full flex justify-end'>
-              <p className='text-sm text-gray-400'>{title.length}/50</p>
-            </div>
-
-            <p className='text-gray-400 mt-4'>Product Summary (optional)</p>
-            <textarea
-              type='text'
-              className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white h-28'
-              placeholder='Description'
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              maxLength={75}
-            />
-            <div className='w-full flex justify-end'>
-              <p className='text-sm text-gray-400'>{description.length}/75</p>
-            </div>
-
-            <p className='text-gray-400 mt-4'>Product Price</p>
+        <TabPanel>
+          <form className='w-full border rounded bg-white drop-shadow-md p-2'>
+            {error && <Alert severity='error'>{error}</Alert>}
             <div className='flex items-center'>
-              <div className='mr-4'>
-                <p className='text-xl font-medium'>$</p>
-              </div>
-              <input
-                type='number'
-                className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-              />
+              <p className='text-xl font-medium'>Details</p>
+              <Tooltip
+                title={
+                  <p className='text-lg'>
+                    Product details help your customers know what they are
+                    buying.
+                  </p>
+                }
+                className='ml-2 text-lg'
+                placement='right-end'
+              >
+                <button type='button' disabled>
+                  <AiOutlineInfoCircle />
+                </button>
+              </Tooltip>
             </div>
-            <FormControlLabel
-              label='Let customers pay what they want'
-              control={
-                <Switch
-                  checked={payChoice}
-                  onChange={(e) => setPayChoice(e.target.checked)}
-                />
-              }
-              className='mt-2'
-            />
 
-            {payChoice ? (
-              <div className='flex items-center'>
-                <div className='flex flex-col w-6/12'>
-                  <p className='text-gray-400'>Minimum price</p>
+            <div className='flex flex-col w-full mt-2'>
+              <div className='flex flex-col w-full pb-12'>
+                <p className='text-gray-400'>Product Type</p>
+                <select
+                  onChange={(e) => setDigitalType(e.target.value)}
+                  className='w-full h-14 rounded p-2'
+                  value={digitalType}
+                >
+                  <option value='video'>Video Course</option>
+                  <option value='printable'>Printables</option>
+                  <option value='ebook'>E-Book</option>
+                  <option value='podcast'>Podcast</option>
+                  <option value='template'>Template</option>
+                  <option value='other'>Other Digital Media</option>
+                </select>
+
+                <p className='text-gray-400 mt-4'>Product Title</p>
+                <input
+                  type='text'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  maxLength={50}
+                />
+                <div className='w-full flex justify-end'>
+                  <p className='text-sm text-gray-400'>{title.length}/50</p>
+                </div>
+
+                <p className='text-gray-400 mt-4'>Product Summary (optional)</p>
+                <textarea
+                  type='text'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white h-28'
+                  placeholder='Description'
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  maxLength={75}
+                />
+                <div className='w-full flex justify-end'>
+                  <p className='text-sm text-gray-400'>
+                    {description.length}/75
+                  </p>
+                </div>
+
+                <p className='text-gray-400 mt-4'>Product Price</p>
+                <div className='flex items-center'>
+                  <div className='mr-4'>
+                    <p className='text-xl font-medium'>$</p>
+                  </div>
                   <input
                     type='number'
-                    className='border-2 border-slate-200 w-full rounded p-2 outline outline-0 bg-white'
-                    step={1}
-                    placeholder='$9+'
+                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                     value={price}
-                    disabled
-                    style={{
-                      WebkitAppearance: 'none',
-                      MozAppearance: 'textfield',
-                    }}
+                    onChange={(e) => setPrice(e.target.value)}
                   />
                 </div>
-                <div className='flex flex-col w-6/12 ml-2'>
-                  <p className='text-gray-400'>Suggested price</p>
-                  <input
-                    className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-                    onChange={(e) => setSuggestedPrice(e.target.value)}
-                    placeholder='$9+'
-                    value={suggestedPrice}
-                  />
-                </div>
-              </div>
-            ) : (
-              ''
-            )}
+                <FormControlLabel
+                  label='Let customers pay what they want'
+                  control={
+                    <Switch
+                      checked={payChoice}
+                      onChange={(e) => setPayChoice(e.target.checked)}
+                    />
+                  }
+                  className='mt-2'
+                />
 
-            <CoverImage
-              product={product}
+                {payChoice ? (
+                  <div className='flex items-center'>
+                    <div className='flex flex-col w-6/12'>
+                      <p className='text-gray-400'>Minimum price</p>
+                      <input
+                        type='number'
+                        className='border-2 border-slate-200 w-full rounded p-2 outline outline-0 bg-white'
+                        step={1}
+                        placeholder='$9+'
+                        value={price}
+                        disabled
+                        style={{
+                          WebkitAppearance: 'none',
+                          MozAppearance: 'textfield',
+                        }}
+                      />
+                    </div>
+                    <div className='flex flex-col w-6/12 ml-2'>
+                      <p className='text-gray-400'>Suggested price</p>
+                      <input
+                        className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                        onChange={(e) => setSuggestedPrice(e.target.value)}
+                        placeholder='$9+'
+                        value={suggestedPrice}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  ''
+                )}
+
+                <CoverImage
+                  product={product}
+                  productId={productId}
+                  image={image}
+                  setImage={setImage}
+                  refetchProduct={refetch}
+                />
+
+                <FormControlLabel
+                  label='Publish to storefront'
+                  control={
+                    <Switch
+                      checked={published}
+                      onChange={(e) => setPublished(e.target.checked)}
+                    />
+                  }
+                  className='mt-2'
+                />
+
+                <p className='text-gray-400 mt-2'>Call to action</p>
+                <select
+                  onChange={(e) => setCallToAction(e.target.value)}
+                  className='w-full h-14 rounded p-2 mt-1'
+                  value={callToAction}
+                >
+                  <option value='buy'>Buy Now</option>
+                  <option value='want'>I want this!</option>
+                  <option value='get'>Get Now</option>
+                </select>
+
+                <p className='text-gray-400 mt-2'>URL</p>
+                <div className='flex items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2 w-full'>
+                  <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
+                  <input
+                    className='bg-white outline outline-0 w-40'
+                    placeholder='ProductName'
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                  />
+                </div>
+
+                <p className='text-gray-400 mt-2'>Description</p>
+                <ReactQuill
+                  value={info}
+                  onChange={setInfo}
+                  className='h-60 mt-1'
+                  placeholder='Start typing description here...'
+                />
+              </div>
+            </div>
+          </form>
+        </TabPanel>
+
+        <TabPanel>
+          <div className='w-full bg-white drop-shadow-md border rounded p-2 pb-12'>
+            <div className='flex items-center'>
+              <p className='text-xl font-medium'>Edit Content</p>
+              <Tooltip
+                title={
+                  <p className='text-lg'>
+                    Images, zip files, PDFs, video, etc..
+                  </p>
+                }
+                className='ml-2 text-lg'
+                placement='right-end'
+              >
+                <button type='button' disabled>
+                  <AiOutlineInfoCircle />
+                </button>
+              </Tooltip>
+            </div>
+            <p className='text-gray-400 font-medium mb-4'>
+              All content and files are available to customers immediately after
+              purchase
+            </p>
+
+            <div className='flex flex-col'>
+              <p className='text-gray-400 mt-4'>Files currently added</p>
+            </div>
+
+            <Files
               productId={productId}
-              image={image}
-              setImage={setImage}
+              product={product}
+              formFiles={files}
+              setFormFiles={setFiles}
               refetchProduct={refetch}
             />
-            <p className='text-gray-400 mt-2'>Call to action</p>
-            <select
-              onChange={(e) => setCallToAction(e.target.value)}
-              className='w-full h-14 rounded p-2'
-              value={callToAction}
-            >
-              <option value='buy'>Buy Now</option>
-              <option value='want'>I want this!</option>
-              <option value='get'>Get Now</option>
-            </select>
-            <FormControlLabel
-              label='Publish to page'
-              control={
-                <Switch
-                  checked={published}
-                  onChange={(e) => setPublished(e.target.checked)}
-                />
-              }
-              className='mt-2'
-            />
+
+            <div className='w-full mt-4'>
+              <FilePond
+                file={files}
+                name='digitalProducts'
+                allowMultiple
+                onupdatefiles={(fileItems) => {
+                  setFiles(fileItems.map((fileItem) => fileItem.file));
+                }}
+              />
+            </div>
+
+            <div className='w-full border rounded mt-6'>
+              <ReactQuill
+                className='h-60'
+                value={productContent}
+                onChange={setProductContent}
+                placeholder='Start typing here'
+              />
+            </div>
           </div>
-        </div>
+        </TabPanel>
+      </Tabs>
 
-        <div className='flex items-center mt-4 border-t'>
-          <p className='text-xl font-medium mt-6'>Edit Content</p>
-          <Tooltip
-            title={
-              <p className='text-lg'>Images, zip files, PDFs, video, etc..</p>
-            }
-            className='ml-2 text-lg mt-6'
-            placement='right-end'
-          >
-            <button type='button' disabled>
-              <AiOutlineInfoCircle />
-            </button>
-          </Tooltip>
-        </div>
-        <p className='text-gray-400 font-medium mb-4'>
-          All content and files are available to customers immediately after
-          purchase
-        </p>
-
-        <div className='flex flex-col'>
-          <p className='text-gray-400 mt-4'>Content currently added</p>
-        </div>
-
-        <Files
-          productId={productId}
-          product={product}
-          formFiles={files}
-          setFormFiles={setFiles}
-          refetchProduct={refetch}
-        />
-
-        <div className='w-full mt-4'>
-          <FilePond
-            file={files}
-            name='digitalProducts'
-            allowMultiple
-            onupdatefiles={(fileItems) => {
-              setFiles(fileItems.map((fileItem) => fileItem.file));
-            }}
-          />
-        </div>
-
-        <div className='w-full border rounded mt-6'>
-          {/* <Editor
-            editorState={productContent}
-            toolbarClassName='toolbarClassName'
-            wrapperClassName='wrapperClassName'
-            editorClassName='editorClassName'
-            onEditorStateChange={handleProductContent}
-            placeholder='Start typing here..'
-            toolbar={{
-              options: [
-                'inline',
-                'blockType',
-                'fontSize',
-                'list',
-                'textAlign',
-                'colorPicker',
-                'link',
-                'embedded',
-                'emoji',
-                'image',
-                'remove',
-                'history',
-              ],
-            }}
-          /> */}
-          <ReactQuill
-            // theme='snow'
-            value={productContent}
-            onChange={setProductContent}
-            placeholder='Start typing here'
-          />
-        </div>
-
+      <div className='w-full bg-white border rounded p-2 drop-shadow-md mt-2'>
         <button
-          type='submit'
+          type='button'
+          onClick={handleSaveEdit}
           className='border-2 rounded h-14 w-full text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white mt-4'
         >
           SAVE
@@ -365,7 +387,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
         >
           DELETE
         </button>
-      </form>
+      </div>
     </div>
   );
 };

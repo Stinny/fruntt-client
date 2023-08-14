@@ -68,13 +68,8 @@ const ProductMobile = ({ product }) => {
       >
         {product.map((prod) => (
           <div className='border rounded bg-white drop-shadow-md relative flex mt-4'>
-            <img
-              src={prod?.coverImage?.url}
-              className='rounded-tl rounded-bl w-2/12 h-32'
-            />
-
-            <div className='w-10/12 border-l pl-4 flex flex-col p-2'>
-              <p className='text-xl font-medium mb-4'>
+            <div className='w-full border-l pl-4 flex flex-col p-2'>
+              <p className='text-lg font-medium mb-4'>
                 {prod?.title} - $
                 {prod?.payChoice ? `${prod?.price}+` : prod?.price}
               </p>
@@ -87,37 +82,6 @@ const ProductMobile = ({ product }) => {
                 {`${currentStoreUrl}/${prod?.url}`}
               </a>
 
-              {prod?.digitalType === 'video' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>Video Course</p>
-                  <MdOutlineVideoLibrary className='ml-2 text-md' />
-                </div>
-              ) : prod?.digitalType === 'ebook' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>E-Book</p>
-                  <HiOutlineBookOpen className='ml-2 text-md' />
-                </div>
-              ) : prod?.digitalType === 'podcast' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>Podcast</p>
-                  <BsFillMicFill className='ml-2 text-md' />
-                </div>
-              ) : prod?.digitalType === 'template' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>Template</p>
-                  <HiOutlineTemplate className='ml-2 text-md' />
-                </div>
-              ) : prod?.digitalType === 'other' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>Digital Media</p>
-                  <MdOutlinePermMedia className='ml-2 text-md' />
-                </div>
-              ) : (
-                <div className='flex items-center justify-center border-2 border-slate-800  rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>Printables</p>
-                  <MdLocalPrintshop className='ml-2 text-md' />
-                </div>
-              )}
               <div className='flex mt-4'>
                 <FormControlLabel
                   label='Published'
@@ -130,17 +94,6 @@ const ProductMobile = ({ product }) => {
                   control={
                     <Switch
                       checked={prod?.marketplace}
-                      disabled
-                      size='small'
-                      className='ml-2'
-                    />
-                  }
-                />
-                <FormControlLabel
-                  label='Pay what you want'
-                  control={
-                    <Switch
-                      checked={prod?.payChoice}
                       disabled
                       size='small'
                       className='ml-2'
