@@ -52,7 +52,7 @@ const Orders = () => {
       headerAlign: 'center',
       align: 'center',
       renderCell: (params) => {
-        return <p className='text-lg'>{params.row.email}</p>;
+        return <p className='text-md'>{params.row.email}</p>;
       },
     },
     {
@@ -62,11 +62,7 @@ const Orders = () => {
       headerAlign: 'center',
       align: 'center',
       renderCell: (params) => {
-        return (
-          <p className='text-lg'>
-            {moment(params?.row?.placedOn).format('MMM D, YYYY')}
-          </p>
-        );
+        return <p>{moment(params?.row?.placedOn).format('MMM D, YYYY')}</p>;
       },
     },
     {

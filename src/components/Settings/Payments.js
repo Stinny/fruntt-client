@@ -57,12 +57,12 @@ const Payments = ({ refetch }) => {
     </>
   ) : (
     <>
-      <div className='w-full h-20 flex items-center justify-center border-purple-600 border-2 text-purple-600 rounded-md text-md mt-4 p-2'>
+      <div className='w-full h-20 flex items-center justify-center border-purple-600 border-2 text-purple-600 rounded text-md mt-4 p-2'>
         <p>{currentUser?.stripeId}</p>
         <AiOutlineCheckCircle className='text-2xl ml-4' />
       </div>
       <button
-        className='w-full h-10 border-2 text-md rounded-md mt-4 text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white'
+        className='w-full h-10 border-2 text-md rounded mt-4 text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white'
         onClick={handleDisconnectStripe}
       >
         Disconnect
@@ -79,7 +79,7 @@ const Payments = ({ refetch }) => {
     ) : (
       <a
         href={result?.data?.url}
-        className='w-full h-20 flex items-center justify-center bg-purple-500 border-2 border-purple-600 hover:bg-purple-600 text-white rounded-lg text-md mt-4 p-2'
+        className='w-full h-20 flex items-center justify-center bg-purple-500 border-2 border-purple-600 hover:bg-purple-600 text-white rounded text-md mt-4 p-2'
       >
         Connect to Stripe
         <FaStripeS className='text-2xl ml-4' />
