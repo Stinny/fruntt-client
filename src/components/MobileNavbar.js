@@ -168,6 +168,12 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
         </button>
 
         <div className='flex flex-col w-full h-full mx-auto items-center'>
+          <Link
+            to='/marketplace'
+            className='text-2xl font-medium mt-20 border-b-2'
+          >
+            Marketplace
+          </Link>
           <Link to='/signup' className='text-2xl font-medium mt-20 border-b-2'>
             Sell
           </Link>

@@ -67,7 +67,7 @@ const Customers = () => {
       align: 'center',
       headerAlign: 'center',
       renderCell: (params) => {
-        return <p className='text-lg'>{params?.row?.name}</p>;
+        return <p className='text-md'>{params?.row?.name}</p>;
       },
     },
     {
@@ -183,8 +183,8 @@ const Customers = () => {
       <div className='flex flex-col items-center justify-center rounded h-full w-full border bg-white drop-shadow-md mb-20'>
         <h2 className='text-2xl font-medium mb-4'>You have no reviews</h2>
         <img src={img} className='w-2/12' />
-        <p className='text-xl text-gray-400 mt-4 font-medium'>
-          Here you will be able view product reviews written by customers
+        <p className='text-stone-800 mt-4'>
+          Here you will be able to view product reviews written by customers
         </p>
       </div>
     );

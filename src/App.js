@@ -50,6 +50,7 @@ import NoPage from './pages/NoPage';
 import TOS from './pages/TOS';
 import 'normalize.css';
 import { ToastContainer } from 'react-toastify';
+import Marketplace from './pages/Marketplace';
 
 function App() {
   return (
@@ -69,6 +70,8 @@ function App() {
             <Route path='login' element={<Login />} />
 
             <Route path='signup' element={<Register />} />
+
+            <Route path='marketplace' element={<Marketplace />} />
 
             <Route path='auth/twitter' element={<TwitterAuth />} />
 

@@ -55,7 +55,7 @@ const CustomersMobile = ({ reviews, cols }) => {
     <div className='flex flex-col items-center justify-center rounded h-full w-11/12 mx-auto mt-4 border bg-white drop-shadow-md mb-20'>
       <h2 className='text-2xl font-medium mb-4'>You have no reviews</h2>
       <img src={img} className='w-5/12' />
-      <p className='text-lg text-center text-gray-400 mt-4 font-medium'>
+      <p className='text-md text-center text-stone-800 mt-4'>
         Here you will be able view product reviews written by customers
       </p>
     </div>

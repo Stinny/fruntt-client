@@ -53,7 +53,7 @@ const DashHome = () => {
       },
       title: {
         display: true,
-        text: 'Page Sales',
+        text: 'Storefront Sales',
       },
     },
     scales: {
@@ -169,12 +169,12 @@ const DashHome = () => {
         )}
         <div className='flex justify-between mb-4'>
           <div className='flex items-center p-2 bg-white rounded border drop-shadow-md'>
-            <p className='text-lg text-stone-800 font-medium'>
-              Your live page:
+            <p className='text-md text-stone-800 font-medium'>
+              Your storefront:
             </p>
             <a
               href={currentStoreUrl}
-              className='flex justify-center items-center text-lg text-gray-400 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
+              className='flex justify-center items-center text-md text-gray-400 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
               target='_blank'
             >
               {currentStoreUrl}
@@ -232,9 +232,7 @@ const DashHome = () => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-xl font-medium text-slate-800'>
-              Number of Sales
-            </p>
+            <p className='text-xl font-medium text-slate-800'>Orders</p>
             <p className='text-4xl font-medium text-slate-800'>
               {stats?.numOfOrders}
             </p>
@@ -254,7 +252,7 @@ const DashHome = () => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-xl font-medium text-slate-800'>Page views</p>
+            <p className='text-xl font-medium text-slate-800'>Views</p>
             <p className='text-4xl font-medium text-slate-800'>
               {stats?.visits}
             </p>
@@ -283,7 +281,7 @@ const DashHome = () => {
 
         <div className='w-full mt-4 h-28 bg-white border rounded drop-shadow-md flex flex-col p-2'>
           <p className='text-xl font-medium text-slate-800'>
-            Is your page ready for customers?
+            Is your storefront ready for customers?
           </p>
 
           <div className='w-full flex justify-between mt-2'>
@@ -328,7 +326,7 @@ const DashHome = () => {
                   disabled
                 />
               }
-              label='Design your page'
+              label='Design your storefront'
             />
           </div>
         </div>

@@ -158,8 +158,8 @@ const Register = () => {
       <div className='mx-auto w-3/12 h-full flex items-center justify-center'>
         <div className='flex flex-col mx-auto items-center justify-center w-full'>
           <p className='text-3xl font-medium text-center'>Ready to sell?</p>
-          <p className='text-stone-800 font-medium mb-4 text-center text-lg'>
-            Launch your first page, be ready to sell in minutes.
+          <p className='text-stone-800 font-medium mb-4 text-center text-lg mt-1'>
+            Open your storefront, be ready to sell in minutes.
           </p>
 
           {error && (
@@ -191,7 +191,7 @@ const Register = () => {
             <input
               type='email'
               placeholder='Email'
-              className='border-2 border-gray-200 hover:border-gray-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded p-2 mt-2'
+              className='border-2 border-gray-200 hover:border-gray-300 focus:border-gray-300 outline outline-0 w-full rounded p-2 mt-2'
               onChange={(e) => setEmail(e.target.value)}
               autoFocus
             />
@@ -199,35 +199,46 @@ const Register = () => {
             <input
               type='password'
               placeholder='Password'
-              className='border-2 border-gray-200 focus:outline focus:outline-1 hover:border-gray-300 focus:outline-gray-300 w-full rounded p-2 mt-2'
+              className='border-2 border-gray-200 outline outline-0 hover:border-gray-300 focus:border-gray-300 w-full rounded p-2 mt-2'
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <div className='w-full mt-2'>
-              <p className='font-medium border-b'>Give your page a name</p>
-            </div>
+            {/* <div className='w-full mt-2'>
+              <p className='font-medium border-b'>
+                Give your storefront a name
+              </p>
+            </div> */}
 
-            <div className='flex w-full'>
+            {/* <div className='flex w-full '>
               <input
                 type='text'
                 placeholder='Page name'
-                className='w-5/6 border-2 h-10 border-gray-200 hover:border-gray-300 focus:outline focus:outline-1 focus:outline-gray-300 rounded p-2 mt-2'
+                className='w-5/6 border-2 h-10  p-2 mt-2'
                 onChange={(e) => setStoreName(e.target.value)}
               />
-              <p className='font-medium text-xl mt-6'>.fruntt.com</p>
+              <span className='font-medium text-xl mt-6'>.fruntt.com</span>
+            </div> */}
+
+            <div className='flex w-full items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2'>
+              <input
+                className='bg-white outline outline-0'
+                placeholder='StoreName'
+                onChange={(e) => setStoreName(e.target.value)}
+              />
+              <span className='font-medium'>.fruntt.com</span>
             </div>
 
             <button
               type='submit'
               disabled={isLoading}
-              className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-xl mt-4'
+              className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-lg mt-4'
             >
-              Launch product page
+              Open storefront
             </button>
             <div className='mt-2 flex w-full'>
               <Link to='/login'>
                 <p className='text-sm self-start text-slate-400 hover:text-slate-800 font-medium'>
-                  Already have a page? Login here.
+                  Already have a storefront? Login here.
                 </p>
               </Link>
             </div>

@@ -335,7 +335,7 @@ const DesignDetail = ({
                 className='font-medium text-lg text-stone-800'
                 style={{ color: pageText }}
               >
-                This product page is empty
+                This storefront is empty
               </p>
               <Link
                 to='/dashboard/item'

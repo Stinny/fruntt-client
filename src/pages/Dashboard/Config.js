@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
 import Topbar from '../../components/Topbar';
 import Cookies from 'js-cookie';
 import Modal from 'react-modal';
 import { isMobile } from 'react-device-detect';
-
+import { setSelectedStoreUrl } from '../../redux/userRedux';
+import { useAddLogoMutation } from '../../api/storefrontApiSlice';
+import { toast } from 'react-toastify';
 //mui
-import Switch from '@mui/material/Switch';
-import DeletePage from '../../components/Config/DeletePage';
+import Alert from '@mui/material/Alert';
 
 const Config = () => {
+  const dispatch = useDispatch();
+
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
@@ -20,6 +23,8 @@ const Config = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [error, setError] = useState('');
   const [changingName, setChangingName] = useState(false);
+
+  const [addLogo, result] = useAddLogoMutation();
 
   const modalStyles = isMobile
     ? {
@@ -45,7 +50,37 @@ const Config = () => {
         },
       };
 
-  const handleSaveName = () => {};
+  const handleChangeName = async (e) => {
+    e.preventDefault();
+
+    try {
+      setChangingName(true);
+      const addLogoReq = await addLogo({
+        storeId: currentUser?.store?._id,
+        name: name,
+      }).unwrap();
+
+      if (addLogoReq?.msg === 'Name changed') {
+        setChangingName(false);
+        dispatch(setSelectedStoreUrl(`https://${name}.fruntt.com`));
+        currentUser.store.name = name;
+        currentUser.store.url = `https://${name}.fruntt.com`;
+        const newUser = JSON.stringify(currentUser);
+        Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
+        toast.success('Storefront name has been changed!');
+        closeModal();
+      } else if (addLogoReq?.msg === 'Name in use') {
+        setChangingName(false);
+        setError('Sorry that name is taken!');
+      } else {
+        setChangingName(false);
+        return;
+      }
+    } catch (err) {
+      setChangingName(false);
+      setError('There was a server error');
+    }
+  };
 
   function openModal() {
     setIsOpen(true);
@@ -54,6 +89,10 @@ const Config = () => {
   function closeModal() {
     setIsOpen(false);
   }
+
+  useState(() => {
+    setError('');
+  }, []);
 
   return (
     <>
@@ -64,8 +103,9 @@ const Config = () => {
         onRequestClose={closeModal}
         style={modalStyles}
       >
-        <form onSubmit={handleSaveName}>
+        <form onSubmit={handleChangeName}>
           <p className='text-xl font-medium mb-4 border-b'>Storefront Name</p>
+          {error ? <Alert severity='error'>{error}</Alert> : ''}
           <div className='flex items-center border-2 rounded mt-1 h-12 border-gray-200 hover:border-gray-300 p-2'>
             <input
               className='bg-white outline outline-0'

@@ -155,7 +155,7 @@ const Login = () => {
           <div className='w-full flex justify-between mt-2'>
             <Link to='/signup'>
               <p className='text-sm text-slate-400 hover:text-stone-800 font-medium'>
-                Don't have a page yet?
+                Don't have a storefront yet?
               </p>
             </Link>
             <Link to='/reset/password'>
@@ -167,9 +167,9 @@ const Login = () => {
 
           <button
             disabled={isLoading}
-            className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-xl mt-4'
+            className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-lg mt-4'
           >
-            Go to my page(s)
+            Go to my storefront
           </button>
         </form>
       </div>

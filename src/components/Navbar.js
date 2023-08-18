@@ -134,34 +134,6 @@ const Navbar = () => {
               + New Product
             </button>
           </Link>
-
-          {/* {currentUser.storeIds.length > 0 ? (
-            <>
-              <p className='font-medium mr-2'>Viewing:</p>
-              <select
-                className='rounded border-2 w-72 h-10 p-1'
-                onChange={(e) => setPageInView(e.target.value)}
-                value={selectedStoreUrl}
-              >
-                <option selected disabled>
-                  {selectedStoreUrl}
-                </option>
-                {filteredStores?.map((store) => (
-                  <option value={store?.url}>{store?.url}</option>
-                ))}
-              </select>
-              <Link
-                to='/addpage'
-                type='button'
-                disabled
-                className='ml-2 text-gray-400 hover:text-gray-800'
-              >
-                + Add page
-              </Link>
-            </>
-          ) : (
-            ''
-          )} */}
         </div>
 
         {/* links section */}
@@ -261,8 +233,11 @@ const Navbar = () => {
 
         {/* links section */}
         <div className='h-full flex items-center justify-between'>
+          <Link to='/marketplace'>
+            <p className='text-stone-800 text-xl font-medium'>Marketplace</p>
+          </Link>
           <Link to='/signup'>
-            <p className='font-medium text-slate-800 text-xl'>Sell</p>
+            <p className='font-medium text-stone-800 text-xl ml-20'>Sell</p>
           </Link>
 
           <Link to='/login'>

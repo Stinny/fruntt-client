@@ -54,12 +54,10 @@ const Launching = () => {
             </Typography>
           </Box>
         </Box>
-        <p className='mt-2 text-xl font-medium'>
-          Your product page is launching...
+        <p className='mt-4 text-xl font-medium'>
+          Your storefront is launching...
         </p>
-        <p className='text-gray-400 mt-2 font-medium'>
-          This will only take about a minute
-        </p>
+        <p className='text-stone-800 mt-2'>This will only take a minute</p>
       </div>
     </div>
   );

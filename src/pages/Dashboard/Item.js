@@ -49,14 +49,14 @@ const Item = () => {
 
   const noItem = (
     <div className='h-screen border border-gray-200 rounded bg-white drop-shadow-md w-full flex flex-col justify-center items-center mt-4'>
-      <h2 className='text-2xl font-medium text-stone-800'>
-        You have no products added!
+      <h2 className='text-xl font-medium text-stone-800'>
+        You have no products!
       </h2>
 
       <div className='flex w-11/12 mt-6 items-center'>
         <Link to='/dashboard/item/digital' className='w-full mx-auto'>
           <div className='w-52 mx-auto flex justify-center items-center border-2 rounded border-stone-800 p-2 h-10 hover:bg-stone-800 hover:text-white pl-8 pr-8 mt-2'>
-            <p className='font-medium text-lg text-center'>+ Add product</p>
+            <p className='font-medium text-md text-center'>+ Add</p>
           </div>
         </Link>
       </div>

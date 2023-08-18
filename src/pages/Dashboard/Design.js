@@ -160,7 +160,7 @@ const Design = () => {
         <div className='w-full mx-auto h-fit'>
           <div className='flex justify-between items-center p-2'>
             <div className='flex flex-col'>
-              <h2 className='text-2xl font-medium'>Page design</h2>
+              <h2 className='text-2xl font-medium'>Storefront design</h2>
               <p>
                 Page last designed on{' '}
                 {moment(storefront?.lastEdited).format('MMM D, YYYY')}
@@ -186,18 +186,18 @@ const Design = () => {
         <div className='max-w-6xl mx-auto'>
           <div className=' flex justify-between items-center p-2'>
             <div className='flex flex-col'>
-              <h2 className='text-3xl font-medium'>Page design</h2>
-              <p>
-                Page last designed on{' '}
+              <h2 className='text-2xl font-medium'>Storefront design</h2>
+              <p className='mt-2'>
+                Last designed on{' '}
                 {moment(storefront?.lastEdited).format('MMM D, YYYY')}
               </p>
             </div>
             <a
               href={storefront?.url}
               target='_blank'
-              className='flex items-center'
+              className='flex items-center mt-6'
             >
-              <p className='font-medium text-xl'>View your live page</p>
+              <p className='font-medium text-xl'>View your storefront</p>
               <BsArrowRightShort className='text-2xl font-medium' />
             </a>
             <Link to='/dashboard/design/edit'>

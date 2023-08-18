@@ -55,12 +55,10 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     addLogo: builder.mutation({
-      query: ({ storeId, logoUrl, logoKey, name }) => ({
+      query: ({ storeId, name }) => ({
         url: `/storefront/addlogo/${storeId}`,
         method: 'POST',
         body: {
-          logoUrl: logoUrl,
-          logoKey: logoKey,
           name: name,
         },
       }),

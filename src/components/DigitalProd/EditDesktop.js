@@ -137,7 +137,7 @@ const EditDesktop = ({
           <h2 className='text-3xl font-medium'>Edit your digital product</h2>
 
           <FormControlLabel
-            label='Publish to page'
+            label='Publish to storefront'
             control={
               <Switch
                 checked={published}
@@ -149,14 +149,14 @@ const EditDesktop = ({
 
           <div className='flex'>
             <button
-              className='w-32 h-10 rounded border-red-400 text-red-400 border-2 mr-2 hover:text-white hover:bg-red-400'
+              className='w-32 h-10 rounded border-red-400 text-red-400 border-2 mr-2 hover:text-white hover:bg-red-400 text-sm'
               onClick={openModal}
               type='button'
             >
               DELETE
             </button>
             <button
-              className='w-32 h-10 rounded border-stone-800 border-2 hover:text-white hover:bg-stone-800'
+              className='w-32 h-10 rounded border-stone-800 border-2 hover:text-white hover:bg-stone-800 text-sm'
               onClick={handleSaveEdit}
               type='button'
             >

@@ -56,7 +56,7 @@ const DesktopForm = ({
       <div className='mb-4 flex justify-between p-2'>
         <h2 className='text-3xl font-medium'>Add your digital product</h2>
         <FormControlLabel
-          label='Publish to page'
+          label='Publish to storefront'
           control={
             <Switch
               checked={published}
@@ -68,19 +68,19 @@ const DesktopForm = ({
 
         <div className='flex'>
           <button
-            className='w-32 h-10 rounded border-red-400 text-red-400 border-2 mr-2 hover:text-white hover:bg-red-400'
+            className='w-32 h-10 rounded border-red-400 text-red-400 border-2 mr-2 hover:text-white hover:bg-red-400 text-sm'
             onClick={handleCancel}
             type='button'
           >
             CANCEL
           </button>
           <button
-            className='w-40 h-10 rounded border-stone-800 border-2 hover:text-white hover:bg-stone-800 text-stone-800'
+            className='w-32 h-10 rounded border-stone-800 border-2 hover:text-white hover:bg-stone-800 text-stone-800 text-sm'
             onClick={handleAddProduct}
             type='button'
             disabled={addingProduct}
           >
-            {addingProduct ? 'ADDING...' : '+ ADD PRODUCT'}
+            {addingProduct ? 'ADDING...' : '+ ADD'}
           </button>
         </div>
       </div>

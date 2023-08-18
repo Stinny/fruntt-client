@@ -29,12 +29,13 @@ const Home = () => {
       <div className='mx-auto h-fit max-w-8xl'>
         <div className='w-full mx-auto h-full flex flex-col items-center'>
           <Hero />
-          <Banner />
+          <Email />
+          {/* <Banner />
           <HowSell />
           <FAQS />
           <Fee />
           <PHunt />
-          <Email />
+          <Email /> */}
         </div>
       </div>
 
