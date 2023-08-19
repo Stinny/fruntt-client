@@ -3,7 +3,7 @@ import { isMobile } from 'react-device-detect';
 
 const Pricing = () => {
   return isMobile ? (
-    <div className='w-full flex flex-col items-center mt-20 mb-20'>
+    <div className='w-full flex flex-col items-center mt-20 mb-20 p-2'>
       <p className='text-lg font-medium'>Pricing</p>
 
       <div className='rounded bg-white border drop-shadow-lg flex flex-col p-4 items-center mt-6'>
