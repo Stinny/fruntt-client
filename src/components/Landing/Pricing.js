@@ -6,8 +6,8 @@ const Pricing = () => {
     <div className='w-full flex flex-col items-center mt-20 mb-20 p-2'>
       <p className='text-lg font-medium'>Pricing</p>
 
-      <div className='rounded bg-white border drop-shadow-lg flex flex-col p-4 items-center mt-6'>
-        <p className='font-semibold text-4xl'>1% flat fee</p>
+      <div className='rounded bg-white border drop-shadow-lg flex flex-col p-4 items-center mt-6 w-full'>
+        <p className='font-semibold text-2xl'>1% flat fee</p>
         <p className='font-medium text-md'>After payment processing fees</p>
         <p className='mt-4 font-medium'>Processing fees: 2.9% + 30 cents</p>
         <p className='font-medium text-md mt-6 w-96 text-center'>
