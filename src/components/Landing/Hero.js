@@ -44,7 +44,7 @@ const Hero = () => {
           </p>
           <div className='flex items-center mt-6'>
             <Link to='/signup' className='flex w-56'>
-              <button className='rounded text-stone-800 w-full h-10 border-stone-800 border-2 hover:bg-stone-800 hover:text-white flex items-center justify-center'>
+              <button className='rounded text-stone-800 text-sm w-full h-10 border-stone-800 border-2 hover:bg-stone-800 hover:text-white flex items-center justify-center'>
                 Open Storefront
               </button>
             </Link>
@@ -55,8 +55,8 @@ const Hero = () => {
               type='button'
               onClick={handleTwitterSignup}
             >
-              <AiOutlineTwitter className='text-2xl mr-2' />
-              <p className=''>Connect with Twitter</p>
+              <AiOutlineTwitter className='text-xl mr-2' />
+              <p className='text-sm'>Connect with Twitter</p>
             </button>
           </div>
         </div>
