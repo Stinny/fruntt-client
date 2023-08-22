@@ -10,7 +10,7 @@ const Pricing = () => {
         <p className='font-semibold text-3xl'>1% flat fee</p>
         <p className='font-medium text-sm'>After payment processing fees</p>
         <p className='mt-4 font-medium'>Processing fees: 2.9% + 30 cents</p>
-        <p className='font-medium text-md mt-6 w-96 text-center'>
+        <p className='font-medium text-md mt-6 text-center'>
           Never pay us on a monthly basis, we get paid only when you do. We just
           take a mini cut of every sale.
         </p>
