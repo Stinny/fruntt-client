@@ -183,10 +183,10 @@ const SellerPro = ({
   ) : (
     <div className='w-full mx-auto'>
       <div
-        className='max-w-6xl flex justify-between items-center border rounded mx-auto pl-8 pr-8 p-2 bg-inherit drop-shadow-lg'
+        className='flex justify-between items-center border rounded mx-auto pl-8 pr-8 p-2 bg-inherit drop-shadow-lg'
         style={{ borderColor: borderColor, backgroundColor: cardBG }}
       >
-        <div className='w-1/12'>
+        <div className='w-1/12 mr-2'>
           <Avatar
             sx={{ width: 52, height: 52 }}
             src={
@@ -216,6 +216,7 @@ const SellerPro = ({
             style={{
               color: pageText,
             }}
+            className='text-lg'
           >
             {currentUser?.sellerProfile?.bio
               ? currentUser?.sellerProfile?.bio
@@ -223,22 +224,22 @@ const SellerPro = ({
           </p>
         </div>
 
-        <div className='flex flex-col items-center w-1/12'>
-          <p className='font-medium text-3xl'>
+        <div className='flex flex-col items-center w-1/12 mr-1'>
+          <p className='font-medium text-2xl'>
             {currentUser?.sellerProfile?.numberOfSales > 0
               ? currentUser?.sellerProfile.numberOfSales
               : '0'}{' '}
           </p>
-          <p>sales</p>
+          <p className='text-md'>sales</p>
         </div>
 
         <div className='flex flex-col w-3/12'>
-          <p className='font-medium' style={{ color: pageText }}>
-            My other products:
+          <p className='font-medium text-md' style={{ color: pageText }}>
+            My products:
           </p>
           <select
             onChange={handleSelectedProduct}
-            className='rounded border-2 bg-transparent h-8 pl-2'
+            className='rounded border-2 bg-transparent h-8 pl-2 text-md'
             style={{
               color: pageText,
               borderColor: borderColor,
@@ -251,7 +252,7 @@ const SellerPro = ({
           </select>
         </div>
 
-        <div className='flex items-center justify-end text-2xl w-3/12'>
+        <div className='flex items-center justify-end text-2xl w-3/12 ml-1'>
           {currentUser?.sellerProfile?.facebook && (
             <a href={currentUser?.sellerProfile?.facebook} target='_blank'>
               <AiOutlineFacebook style={{ color: pageText }} />
