@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AiOutlineTwitter } from 'react-icons/ai';
+import img from '../../media/xlogowhite.png';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -43,13 +43,16 @@ const LoginMobile = ({
         className='flex flex-col w-full items-center bg-white p-2 rounded border-2 drop-shadow-md mt-2 mb-44'
       >
         <button
-          style={{ backgroundColor: '#1D9BF0' }}
+          style={{
+            backgroundColor: 'rgb(15, 20, 25)',
+            borderColor: 'rgb(15, 20, 25)',
+          }}
           className='w-full h-10 rounded flex items-center justify-center text-white'
           type='button'
           onClick={handleTwitterLogin}
         >
-          <AiOutlineTwitter className='text-2xl mr-2' />
-          <p>Log in with Twitter</p>
+          <p className='mr-2'>Log in with</p>
+          <img src={img} className='w-4 h-4' />
         </button>
         <p className='font-medium text-lg text-stone-800 mt-2'>OR</p>
         <input
@@ -80,9 +83,9 @@ const LoginMobile = ({
 
         <button
           disabled={isLoading}
-          className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-lg mt-4'
+          className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded mt-4'
         >
-          Go to my page(s)
+          Go to my storefront
         </button>
       </form>
     </div>

@@ -21,6 +21,7 @@ import Footer from '../components/Footer';
 import LoginMobile from './Mobile/LoginMobile';
 import { setStoreIds, setSelectedStoreUrl } from '../redux/userRedux';
 import { AiOutlineTwitter } from 'react-icons/ai';
+import img from '../media/xlogowhite.png';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -101,7 +102,10 @@ const Login = () => {
         state={state}
       />
     ) : (
-      <div className='flex flex-col items-center mx-auto justify-center w-3/12 h-full'>
+      <div
+        className='flex flex-col items-center mx-auto justify-center h-full'
+        style={{ width: '450px' }}
+      >
         <div className='w-full flex flex-col items-center'>
           <h2 className='text-3xl font-medium text-stone-800'>Login</h2>
           <p className='text-stone-800 font-medium text-center text-lg'>
@@ -129,13 +133,16 @@ const Login = () => {
           className='flex flex-col items-center w-full bg-white p-2 rounded border-2 drop-shadow-md mt-2'
         >
           <button
-            style={{ backgroundColor: '#1D9BF0' }}
+            style={{
+              backgroundColor: 'rgb(15, 20, 25)',
+              borderColor: 'rgb(15, 20, 25)',
+            }}
             className='w-full h-10 rounded flex items-center justify-center text-white'
             type='button'
             onClick={handleTwitterLogin}
           >
-            <AiOutlineTwitter className='text-2xl mr-2' />
-            <p>Log in with Twitter</p>
+            <p className='mr-2'>Log in with</p>
+            <img src={img} className='w-4 h-4' />
           </button>
           <p className='font-medium text-lg text-stone-800 mt-2'>OR</p>
           <input

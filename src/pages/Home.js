@@ -14,11 +14,20 @@ import Banner from '../components/Home/Banner';
 import HowSell from '../components/Landing/HowSell';
 import Fee from '../components/Landing/Fee';
 import FAQS from '../components/Landing/FAQS';
+import RecentStores from '../components/Landing/RecentStores';
+import { useGetFeaturedStoresQuery } from '../api/storefrontApiSlice';
 
 const Home = () => {
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
+
+  const {
+    data: stores,
+    isLoading,
+    isSuccess,
+    refetch,
+  } = useGetFeaturedStoresQuery();
 
   if (currentUser) return <Navigate to='/dashboard' />;
 
@@ -29,6 +38,12 @@ const Home = () => {
       <div className='mx-auto h-fit max-w-8xl'>
         <div className='w-full mx-auto h-full flex flex-col items-center'>
           <Hero />
+          <RecentStores
+            stores={stores}
+            isLoading={isLoading}
+            isSuccess={isSuccess}
+            refetch={refetch}
+          />
           <Email />
           {/* <Banner />
           <HowSell />
