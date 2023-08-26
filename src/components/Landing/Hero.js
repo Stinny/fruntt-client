@@ -55,9 +55,9 @@ const Hero = () => {
             Most affordable way to sell your
           </p>
           <div>
-            <span className='text-white bg-stone-800 rounded p-1 font-medium text-2xl'>
+            <p className='text-white bg-stone-800 rounded p-1 font-medium text-2xl inline-block'>
               {currentWord}.
-            </span>
+            </p>
           </div>
           <p className='text-lg mt-6'>
             Sell any digital product from your own customized storefront and
@@ -118,9 +118,9 @@ const Hero = () => {
             Most affordable way to sell your
           </p>
           <div>
-            <span className='text-white bg-stone-800 rounded p-1 font-medium text-3xl'>
+            <p className='text-white bg-stone-800 rounded p-1 font-medium text-3xl inline-block'>
               {currentWord}.
-            </span>
+            </p>
           </div>
           <p className='text-xl mt-6'>
             Sell any digital product from your own customized storefront and
