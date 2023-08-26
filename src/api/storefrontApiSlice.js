@@ -5,6 +5,9 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
     getStorefront: builder.query({
       query: ({ storeId }) => `/storefront/store/${storeId}`,
     }),
+    getFeaturedStores: builder.query({
+      query: () => `/storefront/featured`,
+    }),
     getStorefrontByID: builder.query({
       query: ({ storeId }) => `/storefront/get/${storeId}`,
     }),
@@ -116,6 +119,7 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetStorefrontQuery,
+  useGetFeaturedStoresQuery,
   useEditStylesMutation,
   useAddLogoMutation,
   useDeleteLogoMutation,

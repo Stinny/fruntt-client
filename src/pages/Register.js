@@ -13,7 +13,7 @@ import { isMobile } from 'react-device-detect';
 import { uploadImageRequest } from '../api/requests';
 import { setStoreIds } from '../redux/userRedux';
 import { AiOutlineTwitter, AiOutlineLinkedin } from 'react-icons/ai';
-import img from '../media/shirt.jpg';
+import img from '../media/xlogowhite.png';
 import { BsArrow90DegDown } from 'react-icons/bs';
 
 //mui
@@ -155,7 +155,10 @@ const Register = () => {
         setProfilePic={setProfilePic}
       />
     ) : (
-      <div className='mx-auto w-3/12 h-full flex items-center justify-center'>
+      <div
+        className='mx-auto h-full flex items-center justify-center'
+        style={{ width: '450px' }}
+      >
         <div className='flex flex-col mx-auto items-center justify-center w-full'>
           <p className='text-3xl font-medium text-center'>Ready to sell?</p>
           <p className='text-stone-800 font-medium mb-4 text-center text-lg mt-1'>
@@ -179,13 +182,16 @@ const Register = () => {
             className='flex flex-col items-center w-full bg-white p-2 rounded border-2 drop-shadow-md'
           >
             <button
-              style={{ backgroundColor: '#1D9BF0' }}
+              style={{
+                backgroundColor: 'rgb(15, 20, 25)',
+                borderColor: 'rgb(15, 20, 25)',
+              }}
               className='w-full h-10 rounded flex items-center justify-center text-white'
               type='button'
               onClick={handleTwitterSignup}
             >
-              <AiOutlineTwitter className='text-2xl mr-2' />
-              <p>Connect with Twitter</p>
+              <p className='mr-2'>Connect with</p>
+              <img src={img} className='w-4 h-4' />
             </button>
             <p className='font-medium text-lg text-stone-800 mt-2'>OR</p>
             <input

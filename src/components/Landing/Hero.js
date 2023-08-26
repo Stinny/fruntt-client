@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BsChevronDoubleDown } from 'react-icons/bs';
 import { isMobile } from 'react-device-detect';
@@ -8,12 +8,16 @@ import { useLazyGetTwitterAuthUrlQuery } from '../../api/authApiSlice';
 import Cookies from 'js-cookie';
 import imgOne from '../../media/light.svg';
 import imgTwo from '../../media/mail.svg';
+import imgThree from '../../media/xlogowhite.png';
 import Features from './Features';
 import Email from './Email';
 import Pricing from './Pricing';
 
 const Hero = () => {
   const [getTwitterAuthUrl, result] = useLazyGetTwitterAuthUrlQuery();
+  const words = ['templates', 'blogs', 'e-books', 'code', 'courses', 'art'];
+  const [wordIndex, setWordIndex] = useState(0);
+  const currentWord = words[wordIndex];
 
   const handleTwitterSignup = async (e) => {
     //request the twitter auth url from server
@@ -31,13 +35,30 @@ const Hero = () => {
     }
   };
 
+  useEffect(() => {
+    const interval = setInterval(cycleWords, 2000); // Change word every 2 seconds
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  const cycleWords = () => {
+    setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+  };
+
   return isMobile ? (
     <div className='h-fit flex flex-col w-full mt-20 p-2'>
       <div className='flex flex-col'>
         <div className='flex flex-col text-left w-full'>
           <p className='font-medium text-2xl'>
-            Most affordable way to sell your digital products.
+            Most affordable way to sell your
           </p>
+          <div>
+            <span className='text-white bg-stone-800 rounded p-1 font-medium text-2xl'>
+              {currentWord}.
+            </span>
+          </div>
           <p className='text-lg mt-6'>
             Sell any digital product from your own customized storefront and
             keep 99% of what you earn after payment processing fees.
@@ -50,13 +71,16 @@ const Hero = () => {
             </Link>
 
             <button
-              style={{ backgroundColor: '#1D9BF0', borderColor: '#1D9BF0' }}
+              style={{
+                backgroundColor: 'rgb(15, 20, 25)',
+                borderColor: 'rgb(15, 20, 25)',
+              }}
               className='w-56 h-10 rounded flex items-center justify-center text-white ml-1 border-2'
               type='button'
               onClick={handleTwitterSignup}
             >
-              <AiOutlineTwitter className='text-xl mr-2' />
-              <p className='text-sm'>Connect with Twitter</p>
+              <p className='text-sm mr-2'>Connect with</p>
+              <img src={imgThree} className='w-4 h-4' />
             </button>
           </div>
         </div>
@@ -91,8 +115,13 @@ const Hero = () => {
       <div className='flex items-center justify-between'>
         <div className='flex flex-col text-left w-3/6 mr-32'>
           <p className='font-medium text-3xl'>
-            Most affordable way to sell your digital products.
+            Most affordable way to sell your
           </p>
+          <div>
+            <span className='text-white bg-stone-800 rounded p-1 font-medium text-3xl'>
+              {currentWord}.
+            </span>
+          </div>
           <p className='text-xl mt-6'>
             Sell any digital product from your own customized storefront and
             keep 99% of what you earn after payment processing fees.
@@ -105,13 +134,17 @@ const Hero = () => {
             </Link>
 
             <button
-              style={{ backgroundColor: '#1D9BF0', borderColor: '#1D9BF0' }}
+              style={{
+                backgroundColor: 'rgb(15, 20, 25)',
+                borderColor: 'rgb(15, 20, 25)',
+              }}
               className='w-56 h-10 rounded flex items-center justify-center text-white ml-1 border-2'
               type='button'
               onClick={handleTwitterSignup}
             >
-              <AiOutlineTwitter className='text-2xl mr-2' />
-              <p className=''>Connect with Twitter</p>
+              {/* <AiOutlineTwitter className='text-2xl mr-2' /> */}
+              <p className='mr-2'>Connect with</p>
+              <img src={imgThree} className='w-4 h-4' />
             </button>
           </div>
         </div>

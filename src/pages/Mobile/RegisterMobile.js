@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineLinkedin, AiOutlineTwitter } from 'react-icons/ai';
-import img from '../../media/shirt.jpg';
+import img from '../../media/xlogowhite.png';
 import { BsArrow90DegDown } from 'react-icons/bs';
 
 //mui
@@ -47,7 +47,7 @@ const RegisterMobile = ({
       <div className='flex flex-col w-full mx-auto'>
         <p className='text-2xl font-medium text-center'>Ready to sell?</p>
         <p className='text-stone-800 font-medium mb-4 text-center mt-2'>
-          Launch your first page, be ready to sell in minutes.
+          Open your storefront, be ready to sell in minutes.
         </p>
 
         {error && (
@@ -67,41 +67,39 @@ const RegisterMobile = ({
           className='flex flex-col items-center w-full bg-white p-2 rounded border-2 drop-shadow-md'
         >
           <button
-            style={{ backgroundColor: '#1D9BF0' }}
+            style={{
+              backgroundColor: 'rgb(15, 20, 25)',
+              borderColor: 'rgb(15, 20, 25)',
+            }}
             className='w-full h-10 rounded flex items-center justify-center text-white'
             type='button'
             onClick={handleTwitterSignup}
           >
-            <AiOutlineTwitter className='text-2xl mr-2' />
-            <p>Connect with Twitter</p>
+            <p className='mr-2'>Connect with</p>
+            <img src={img} className='w-4 h-4' />
           </button>
           <p className='font-medium text-lg text-stone-800 mt-2'>OR</p>
           <input
             type='email'
             placeholder='Email'
-            className='border-2 border-gray-200 hover:border-slate-300 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 mt-2'
+            className='border-2 border-gray-200  hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 mt-2'
             onChange={(e) => setEmail(e.target.value)}
           />
 
           <input
             type='password'
             placeholder='Password'
-            className='border-2 border-gray-200 focus:outline focus:outline-1 hover:border-gray-400 focus:outline-gray-400 hover:border-gray-300 w-full rounded p-2 mt-2'
+            className='border-2 border-gray-200 focus:outline focus:outline-1  focus:outline-gray-400 hover:border-gray-300 w-full rounded p-2 mt-2'
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <div className='w-full mt-2'>
-            <p className='font-medium border-b'>Give your page a name</p>
-          </div>
-
-          <div className='flex w-full'>
+          <div className='flex w-full items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2'>
             <input
-              type='text'
-              placeholder='Page name'
-              className='w-5/6 border-2 h-10 border-gray-200 hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-200 rounded p-2 mt-2'
+              className='bg-white outline outline-0'
+              placeholder='StoreName'
               onChange={(e) => setStoreName(e.target.value)}
             />
-            <p className='font-medium text-xl mt-6'>.fruntt.com</p>
+            <span className='font-medium'>.fruntt.com</span>
           </div>
           {/* 
         <div className='w-full mt-2'>
@@ -118,9 +116,9 @@ const RegisterMobile = ({
           <button
             type='submit'
             disabled={isLoading}
-            className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-xl mt-4'
+            className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded mt-4'
           >
-            Launch product page
+            Open storefront
           </button>
           <div className='mt-2 flex w-full'>
             <Link to='/login'>
