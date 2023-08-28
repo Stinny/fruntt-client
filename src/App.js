@@ -75,7 +75,7 @@ function App() {
 
             <Route path='auth/twitter' element={<TwitterAuth />} />
 
-            <Route path='order/digital/:orderId' element={<Download />} />
+            <Route path='order/:orderId' element={<Download />} />
 
             <Route path='reset/password' element={<RequestReset />} />
 

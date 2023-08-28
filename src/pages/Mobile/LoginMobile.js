@@ -71,7 +71,7 @@ const LoginMobile = ({
         <div className='w-full flex justify-between mt-2'>
           <Link to='/signup'>
             <p className='text-xs text-slate-400 hover:text-stone-800 font-medium'>
-              Don't have a page yet?
+              Don't have a store yet?
             </p>
           </Link>
           <Link to='/reset/password'>

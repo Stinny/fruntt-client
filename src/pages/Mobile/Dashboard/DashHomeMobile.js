@@ -5,6 +5,7 @@ import SalesGraph from '../../../components/SalesGraph';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { GoGraph } from 'react-icons/go';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -56,10 +57,10 @@ const DashHomeMobile = ({ stats, currentUser }) => {
       </div>
 
       <div className='flex pl-2'>
-        <p className='text-lg text-stone-800 font-medium'>Live page:</p>
+        <p className='text-sm text-stone-800 font-medium'>Live store:</p>
         <a
           href={currentStoreUrl}
-          className='flex justify-center items-center text-lg text-gray-400 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
+          className='flex justify-center items-center text-md text-stone-800 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
           target='_blank'
         >
           {currentStoreUrl}
@@ -68,7 +69,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
 
       <div className='flex flex-col items-center w-full p-2'>
         <div className='w-full flex'>
-          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded-md p-2 relative'>
+          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded p-2 relative'>
             <Tooltip
               title={
                 <p className='text-lg'>Total revenue your page has generated</p>
@@ -81,8 +82,8 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-lg font-medium'>Revenue</p>
-            <p className='text-2xl font-medium'>
+            <p className='text-md font-medium'>Revenue</p>
+            <p className='text-2xl font-medium mt-1'>
               $
               {stats?.revenue > 0
                 ? stats?.revenue.toLocaleString('en-US', {
@@ -93,10 +94,10 @@ const DashHomeMobile = ({ stats, currentUser }) => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded-md p-2 relative ml-2'>
+          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded p-2 relative ml-2'>
             <Tooltip
               title={
-                <p className='text-lg'>Total sales your page has generated</p>
+                <p className='text-lg'>Total sales your store has generated</p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
               placement='bottom'
@@ -106,13 +107,13 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-lg font-medium'>Sales</p>
-            <p className='text-2xl font-medium'>{stats?.numOfOrders}</p>
+            <p className='text-md font-medium'>Sales</p>
+            <p className='text-2xl font-medium mt-1'>{stats?.numOfOrders}</p>
           </div>
         </div>
 
         <div className='w-full flex'>
-          <div className='drop-shadow-md w-6/12 h-28 mt-2 bg-white border rounded-md p-2 relative'>
+          <div className='drop-shadow-md w-6/12 h-28 mt-2 bg-white border rounded p-2 relative'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -127,11 +128,11 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-lg font-medium'>Page views</p>
-            <p className='text-2xl font-medium'>{stats?.visits}</p>
+            <p className='text-md font-medium'>Views</p>
+            <p className='text-2xl font-medium mt-1'>{stats?.visits}</p>
           </div>
 
-          <div className='drop-shadow-md w-6/12 h-28 mt-2 ml-2 bg-white border rounded-md p-2 relative'>
+          <div className='drop-shadow-md w-6/12 h-28 mt-2 ml-2 bg-white border rounded p-2 relative'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -146,16 +147,16 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-lg font-medium'>Conversion rate</p>
-            <p className='text-2xl font-medium'>
+            <p className='text-md font-medium'>Conversion rate</p>
+            <p className='text-2xl font-medium mt-1'>
               {stats?.conversion > 0 ? stats?.conversion.toFixed(1) : '0'}%
             </p>
           </div>
         </div>
       </div>
 
-      <div className='w-full flex flex-col items-center mx-auto p-2'>
-        <div className='w-full drop-shadow-md rounded-md h-40 bg-white border p-2'>
+      {/* <div className='w-full flex flex-col items-center mx-auto p-2'>
+        {/* <div className='w-full drop-shadow-md rounded-md h-40 bg-white border p-2'>
           <p className='text-xl font-medium'>Orders</p>
           {stats?.numOfUnfulfilledOrders ? (
             <p className='text-2xl font-medium mt-2'>
@@ -174,9 +175,9 @@ const DashHomeMobile = ({ stats, currentUser }) => {
               <BsArrowRightShort />
             </div>
           </Link>
-        </div>
+        </div> 
 
-        <div className='w-full p-2 drop-shadow-md mx-auto rounded-md bg-white border h-40 flex flex-col justify-center mt-2'>
+       <div className='w-full p-2 drop-shadow-md mx-auto rounded-md bg-white border h-40 flex flex-col justify-center mt-2'>
           <div className='w-full mx-auto'>
             <p className='font-medium text-lg'>Quick navigation</p>
           </div>
@@ -205,13 +206,13 @@ const DashHomeMobile = ({ stats, currentUser }) => {
               </button>
             </Link>
           </div>
-        </div>
-      </div>
+        </div> 
+      </div> */}
 
       <div className='w-full p-2'>
-        <div className='w-full mx-auto bg-white border rounded-md drop-shadow-md flex flex-col p-2'>
+        <div className='w-full mx-auto bg-white border rounded drop-shadow-md flex flex-col p-2'>
           <p className='text-xl font-medium text-slate-800'>
-            Is your product page ready for customers?
+            Is your storefront ready for customers?
           </p>
 
           <div className='w-full flex flex-col mt-2'>
@@ -259,6 +260,13 @@ const DashHomeMobile = ({ stats, currentUser }) => {
               label='Design your page'
             />
           </div>
+        </div>
+
+        <div className='h-72 w-full flex flex-col items-center justify-center rounded border drop-shadow-md bg-white mt-4'>
+          <GoGraph className='text-4xl text-gray-300' />
+          <p className='font-medium text-stone-800 mt-2'>
+            Mobile graph coming soon
+          </p>
         </div>
       </div>
 

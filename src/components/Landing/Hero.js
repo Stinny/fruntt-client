@@ -15,7 +15,7 @@ import Pricing from './Pricing';
 
 const Hero = () => {
   const [getTwitterAuthUrl, result] = useLazyGetTwitterAuthUrlQuery();
-  const words = ['templates', 'blogs', 'e-books', 'code', 'courses', 'art'];
+  const words = ['templates', 'content', 'e-books', 'code', 'courses', 'art'];
   const [wordIndex, setWordIndex] = useState(0);
   const currentWord = words[wordIndex];
 

@@ -81,7 +81,7 @@ const Topbar = () => {
                 : notActiveLink
             }
           >
-            Audience
+            Library
           </button>
         </NavLink>
 

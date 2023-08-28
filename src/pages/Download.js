@@ -83,8 +83,8 @@ const Download = () => {
         <div className='w-full border-b-2 mt-20 flex justify-between items-center'>
           <div className='flex flex-col'>
             <p className='text-2xl font-medium'>Your Recent Digital Purchase</p>
-            <p className='text-xl text-gray-400 font-medium'>
-              This is always accessible from your email
+            <p className='text-md text-stone-800'>
+              This will always be accessible from the email address below.
             </p>
           </div>
           <button
@@ -98,9 +98,7 @@ const Download = () => {
         {open ? (
           <div className='w-8/12 mt-4 mb-4 rounded mx-auto'>
             {orderAndStore?.order?.reviewed ? (
-              <Alert severity='info'>
-                Your review has successfully been submitted!
-              </Alert>
+              <Alert severity='success'>Your review was submitted!</Alert>
             ) : (
               <form
                 onSubmit={handleSubmitReview}
@@ -139,12 +137,12 @@ const Download = () => {
         ) : (
           ''
         )}
-        <div className='w-full border-b mt-4'>
+        <div className='w-11/12 mt-4 mx-auto'>
           <p className='font-medium text-slate-800 text-xl'>Purchase details</p>
         </div>
-        <div className='flex justify-between items-center mt-8 w-11/12 mx-auto border-2 rounded p-2'>
+        <div className='flex justify-between items-center mt-2 w-11/12 mx-auto border rounded bg-white drop-shadow-lg p-2'>
           <div className='w-6/12 flex flex-col'>
-            <p className='font-medium mt-2'>What you got:</p>
+            <p className='font-medium mt-2 mb-2'>What you got:</p>
             {orderAndStore?.order?.item?.digitalType === 'video' ? (
               <div className='flex items-center justify-center border-2 border-slate-800 rounded w-4/12 h-10'>
                 <p>Video Course</p>
@@ -176,7 +174,7 @@ const Download = () => {
                 <MdLocalPrintshop className='ml-2 text-2xl' />
               </div>
             )}
-            <p className='font-medium mt-4'>Page you purchased from:</p>
+            <p className='font-medium mt-4'>Store you purchased from:</p>
             <a
               href={orderAndStore?.store?.url}
               className='text-xl text-slate-800 underline'
@@ -185,28 +183,26 @@ const Download = () => {
               {orderAndStore?.store?.url}
             </a>
             <p className='font-medium mt-4'>Delivered to:</p>
-            <p className='text-xl'>{orderAndStore?.order?.email}</p>
+            <p className='text-xl mt-2'>{orderAndStore?.order?.email}</p>
 
             <p className='font-medium mt-4'>Title:</p>
-            <p className='text-xl'>{orderAndStore?.order?.item?.title}</p>
+            <p className='text-xl mt-2'>{orderAndStore?.order?.item?.title}</p>
           </div>
 
           <div className='w-6/12 flex justify-end'>
             <img
               src={orderAndStore?.order?.item?.coverImage?.url}
-              className='border rounded w-10/12'
+              className='border rounded w-9/12'
             />
           </div>
         </div>
-        <div className='w-full border-b mt-4'>
-          <p className='font-medium text-slate-800 text-xl'>
-            Content included in purchase
-          </p>
+        <div className='w-11/12 mx-auto mt-4'>
+          <p className='font-medium text-slate-800 text-xl'>Content included</p>
         </div>
         <div className=' w-11/12 mx-auto mt-4'>
-          <p className='text-gray-400'>Files</p>
+          <p className='text-stone-800'>Files</p>
         </div>
-        <div className='p-4 flex flex-wrap w-11/12 mx-auto border-2 rounded'>
+        <div className='p-4 flex flex-wrap w-11/12 mx-auto border rounded drop-shadow-lg bg-white'>
           {orderAndStore?.order?.item?.files.length ? (
             orderAndStore?.order?.item?.files?.map((file, index) => (
               <div className='w-full flex items-center justify-between border-b mt-2'>
@@ -228,15 +224,15 @@ const Download = () => {
           ) : (
             <div className='mx-auto w-full'>
               <p className='text-stone-800 text-center font-medium'>
-                No files have been added
+                No files included
               </p>
             </div>
           )}
         </div>
         <div className=' w-11/12 mx-auto mt-4'>
-          <p className='text-gray-400'>Content</p>
+          <p className='text-stone-800'>Content</p>
         </div>
-        <div className='p-4 w-11/12 mx-auto border-2 rounded'>
+        <div className='p-4 w-11/12 mx-auto border rounded bg-white drop-shadow-lg'>
           {orderAndStore?.order?.item?.content === '' ? (
             <p>No additional content added</p>
           ) : (
