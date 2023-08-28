@@ -35,7 +35,7 @@ const TopbarMobile = () => {
             </button>
           </NavLink>
 
-          <NavLink to='/dashboard/content'>
+          {/* <NavLink to='/dashboard/content'>
             <button
               autoFocus={path === '/dashboard/content'}
               className={
@@ -47,7 +47,7 @@ const TopbarMobile = () => {
             >
               Page
             </button>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink to='/dashboard/design'>
             <button
@@ -85,6 +85,18 @@ const TopbarMobile = () => {
               }
             >
               Reviews
+            </button>
+          </NavLink>
+
+          <NavLink to='/dashboard/library'>
+            <button
+              className={
+                path === '/dashboard/library' || path === '/dashboard/library'
+                  ? activeLink
+                  : notActiveLink
+              }
+            >
+              Library
             </button>
           </NavLink>
 

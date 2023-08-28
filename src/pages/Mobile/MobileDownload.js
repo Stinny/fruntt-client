@@ -27,16 +27,16 @@ const MobileDownload = ({
   setName,
 }) => {
   return (
-    <div className='mx-auto p-2'>
-      <div className='w-full border-b-2 mt-6 p-2 flex flex-col'>
+    <div className='mx-auto p-2 mt-14'>
+      <div className='w-full border-b-2 mt-6 flex flex-col'>
         <p className='text-2xl font-medium'>Your Recent Digital Purchase</p>
-        <p className='text-md text-gray-400 font-medium'>
-          This is always accessible from your email
+        <p className='text-sm text-stone-800'>
+          This will always be accessible from the email below.
         </p>
       </div>
 
-      <div className='w-full border-b mt-4 flex justify-between items-center pb-2'>
-        <p className='font-medium text-slate-800 text-xl'>Purchase details</p>
+      <div className='w-full mt-4 flex justify-between items-center pb-2'>
+        <p className='font-medium text-stone-800 text-xl'>Purchase details</p>
         <button
           type='button'
           className='border-2 rounded border-stone-800 h-8 w-32 text-stone-800 hover:bg-stone-800 hover:text-white'
@@ -46,11 +46,9 @@ const MobileDownload = ({
         </button>
       </div>
       {open ? (
-        <div className='w-full mt-4 mb-4 rounded mx-auto'>
+        <div className='w-full mt-2 mb-4 rounded mx-auto'>
           {orderAndStore?.order?.reviewed ? (
-            <Alert severity='info'>
-              Your review has successfully been submitted!
-            </Alert>
+            <Alert severity='success'>Your review was submitted!</Alert>
           ) : (
             <form
               onSubmit={handleSubmitReview}
@@ -85,9 +83,9 @@ const MobileDownload = ({
       ) : (
         ''
       )}
-      <div className='flex flex-col mt-8 w-full border-2 rounded mx-auto p-2'>
+      <div className='flex flex-col mt-2 w-full border rounded mx-auto p-2 drop-shadow-md bg-white'>
         <div className='w-full flex flex-col'>
-          <p className='font-medium mt-2'>What you got:</p>
+          <p className='font-medium mt-2 mb-1'>What you got:</p>
           {orderAndStore?.order?.item?.digitalType === 'video' ? (
             <div className='flex items-center justify-center border-2 border-slate-800 rounded w-8/12 h-10'>
               <p>Video Course</p>
@@ -119,49 +117,49 @@ const MobileDownload = ({
               <MdLocalPrintshop className='ml-2 text-2xl' />
             </div>
           )}
-          <p className='font-medium mt-4'>Page you purchased from:</p>
+          <p className='font-medium mt-4'>Store you purchased from:</p>
           <a
             href={orderAndStore?.store?.url}
-            className='text-xl text-slate-800 underline'
+            className='text-lg text-slate-800 underline mt-1'
             target='_blank'
           >
             {orderAndStore?.store?.url}
           </a>
           <p className='font-medium mt-4'>Delivered to:</p>
-          <p className='text-xl'>{orderAndStore?.order?.email}</p>
+          <p className='text-lg mt-1'>{orderAndStore?.order?.email}</p>
 
           <p className='font-medium mt-4'>Title:</p>
-          <p className='text-xl'>{orderAndStore?.order?.item?.title}</p>
+          <p className='text-lg mt-1'>{orderAndStore?.order?.item?.title}</p>
         </div>
 
-        <div className='w-full flex justify-end'>
+        <div className='w-full flex justify-end mt-4'>
           <img
             src={orderAndStore?.order?.item?.coverImage?.url}
             className='border rounded w-full'
           />
         </div>
       </div>
-      <div className='w-full border-b mt-4'>
-        <p className='font-medium text-slate-800 text-xl'>
-          Content included in purchase
-        </p>
+      <div className='w-full mt-4'>
+        <p className='font-medium text-stone-800 text-xl'>Content included</p>
       </div>
       <div className='w-full mx-auto mt-4'>
-        <p className='text-gray-400'>Files</p>
+        <p className='text-stone-800'>Files</p>
       </div>
-      <div className='p-2 flex flex-wrap w-full mx-auto border-2 rounded'>
+      <div className='p-2 flex flex-wrap w-full mx-auto border bg-white rounded drop-shadow-md'>
         {orderAndStore?.order?.item?.files.length ? (
           orderAndStore?.order?.item?.files?.map((file, index) => (
             <div className='w-full flex items-center justify-between border-b mt-2'>
               <div className='w-4/12'>
-                <p className='font-medium text-lg'>{file?.name}</p>
+                <p className='font-medium text-md text-stone-800'>
+                  {file?.name}
+                </p>
               </div>
 
               <div className='w-4/12 flex justify-end'>
                 <a
                   href={file?.url}
                   download
-                  className='text-blue-500 text-3xl font-medium'
+                  className='text-blue-500 text-2xl font-medium'
                 >
                   <MdOutlineFileDownload />
                 </a>
@@ -171,18 +169,18 @@ const MobileDownload = ({
         ) : (
           <div className='mx-auto w-full'>
             <p className='text-stone-800 text-center font-medium'>
-              No files have been added
+              No files included
             </p>
           </div>
         )}
       </div>
       <div className='w-full mx-auto mt-4'>
-        <p className='text-gray-400'>Content</p>
+        <p className='text-stone-800'>Content</p>
       </div>
-      <div className='p-2 w-full mx-auto border-2 rounded'>
+      <div className='p-2 w-full mx-auto border rounded drop-shadow-md bg-white'>
         {orderAndStore?.order?.item?.content === '' ? (
           <p className='text-center font-medium text-stone-800'>
-            No additional content has been added
+            No additional content included
           </p>
         ) : (
           <ReactQuill

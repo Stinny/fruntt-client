@@ -57,23 +57,25 @@ const DashHome = () => {
       },
     },
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
+      yAxes: {
+        ticks: {
+          beginAtZero: true,
         },
-      ],
+      },
+
       xAxes: {
         ticks: {
           display:
             dataView === 'seven'
-              ? true
+              ? false
               : dataView === 'thirty'
-              ? true
+              ? false
               : dataView === 'today'
-              ? true
+              ? false
               : false,
+        },
+        grid: {
+          display: false,
         },
       },
     },

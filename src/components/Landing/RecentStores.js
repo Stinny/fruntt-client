@@ -8,7 +8,6 @@ const RecentStores = ({ stores, isLoading, isSuccess, refetch }) => {
   if (isLoading) {
     content = '';
   } else if (isSuccess) {
-    console.log(stores);
     content = isMobile ? (
       <div className='w-full p-4 bg-stone-800 flex flex-col justify-center items-center mb-32 mt-24'>
         <div className='h-10 w-full'></div>

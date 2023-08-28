@@ -122,8 +122,8 @@ const RegisterMobile = ({
           </button>
           <div className='mt-2 flex w-full'>
             <Link to='/login'>
-              <p className='text-sm self-start text-slate-400 hover:text-slate-800 font-medium'>
-                Already have a page? Login here.
+              <p className='text-xs self-start text-gray-400 hover:text-stone-800 font-medium'>
+                Already have a store? Login here.
               </p>
             </Link>
           </div>
