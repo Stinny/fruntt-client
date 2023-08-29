@@ -61,7 +61,7 @@ const AddDigitalProd = () => {
     //if request is success
     //send request to create product
 
-    if (!title || !digitalType || !price || !url) {
+    if (!title || !digitalType || !url) {
       setError('Please fill out all fields to complete your product');
       setAddingProduct(false);
       return;
