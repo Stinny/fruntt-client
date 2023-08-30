@@ -6,7 +6,7 @@ import {
   MdOutlinePermMedia,
 } from 'react-icons/md';
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
-import { BsFillMicFill } from 'react-icons/bs';
+import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import { Editor } from 'react-draft-wysiwyg';
 import { convertFromRaw, EditorState } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -96,9 +96,9 @@ const MobileDownload = ({
               <p>E-Book</p>
               <HiOutlineBookOpen className='ml-2 text-2xl' />
             </div>
-          ) : orderAndStore?.order?.item?.digitalType === 'podcast' ? (
+          ) : orderAndStore?.order?.item?.digitalType === 'audio' ? (
             <div className='flex items-center justify-center border-2 border-slate-800 rounded w-8/12 h-10'>
-              <p>Podcast</p>
+              <p>Audio</p>
               <BsFillMicFill className='ml-2 text-2xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'other' ? (
@@ -113,8 +113,8 @@ const MobileDownload = ({
             </div>
           ) : (
             <div className='flex items-center justify-center border-2 border-slate-800  rounded w-4/12 h-10'>
-              <p>Printables</p>
-              <MdLocalPrintshop className='ml-2 text-2xl' />
+              <p>Art</p>
+              <BsPalette className='ml-2 text-2xl' />
             </div>
           )}
           <p className='font-medium mt-4'>Store you purchased from:</p>

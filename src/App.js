@@ -51,6 +51,7 @@ import TOS from './pages/TOS';
 import 'normalize.css';
 import { ToastContainer } from 'react-toastify';
 import Marketplace from './pages/Marketplace';
+import Library from './pages/Dashboard/Library';
 
 function App() {
   return (
@@ -112,6 +113,8 @@ function App() {
                 <Route path='dashboard/design' element={<Design />} />
 
                 <Route path='dashboard/content' element={<Content />} />
+
+                <Route path='dashboard/library' element={<Library />} />
 
                 <Route path='dashboard/design/edit' element={<EditDesign />} />
 

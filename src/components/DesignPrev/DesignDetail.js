@@ -5,7 +5,7 @@ import {
   MdOutlinePermMedia,
 } from 'react-icons/md';
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
-import { BsFillMicFill } from 'react-icons/bs';
+import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import SellerPro from './SellerPro';
@@ -122,34 +122,34 @@ const DesignDetail = ({
                         {selectedProduct?.item?.description}
                       </p>
                       {selectedProduct?.item?.digitalType === 'video' ? (
-                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8 mt-2'>
                           <p>Video Course</p>
                           <MdOutlineVideoLibrary className='ml-2 text-2xl' />
                         </div>
                       ) : selectedProduct?.item?.digitalType === 'ebook' ? (
-                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8 mt-2'>
                           <p className='text-xs'>E-Book</p>
                           <HiOutlineBookOpen className='ml-2 text-md' />
                         </div>
-                      ) : selectedProduct?.item?.digitalType === 'podcast' ? (
-                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
-                          <p className='text-xs'>Podcast</p>
+                      ) : selectedProduct?.item?.digitalType === 'audio' ? (
+                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8 mt-2'>
+                          <p className='text-xs'>Audio</p>
                           <BsFillMicFill className='ml-2 text-md' />
                         </div>
                       ) : selectedProduct?.item?.digitalType === 'template' ? (
-                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8 mt-2'>
                           <p className='text-xs'>Template</p>
                           <HiOutlineTemplate className='ml-2 text-md' />
                         </div>
                       ) : selectedProduct?.item?.digitalType === 'other' ? (
-                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 mt-2'>
+                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8 mt-2'>
                           <p className='text-xs'>Digital Media</p>
                           <MdOutlinePermMedia className='ml-2 text-md' />
                         </div>
                       ) : (
-                        <div className='flex items-center justify-center border-2 border-slate-800  rounded w-5/12 h-8 mt-2'>
-                          <p className='text-xs'>Printables</p>
-                          <MdLocalPrintshop className='ml-2 text-md' />
+                        <div className='flex items-center justify-center border-2 border-slate-800  rounded w-44 h-8 mt-2'>
+                          <p className='text-xs'>Art</p>
+                          <BsPalette className='ml-2 text-md' />
                         </div>
                       )}
 

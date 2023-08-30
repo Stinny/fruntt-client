@@ -203,9 +203,9 @@ const EditDesktop = ({
                     value={digitalType}
                   >
                     <option value='video'>Video Course</option>
-                    <option value='printable'>Printables</option>
+                    <option value='art'>Art</option>
                     <option value='ebook'>E-Book</option>
-                    <option value='podcast'>Podcast</option>
+                    <option value='audio'>Audio</option>
                     <option value='template'>Template</option>
                     <option value='other'>Other Digital Media</option>
                   </select>

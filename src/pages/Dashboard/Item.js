@@ -20,7 +20,7 @@ import {
   MdOutlinePermMedia,
 } from 'react-icons/md';
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
-import { BsFillMicFill } from 'react-icons/bs';
+import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import 'react-quill/dist/quill.bubble.css';
 
 //mui
@@ -268,9 +268,9 @@ const Item = () => {
                     <p className='text-sm'>E-Book</p>
                     <HiOutlineBookOpen className='ml-2 text-md' />
                   </div>
-                ) : prod?.digitalType === 'podcast' ? (
+                ) : prod?.digitalType === 'audio' ? (
                   <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                    <p className='text-sm'>Podcast</p>
+                    <p className='text-sm'>Audio</p>
                     <BsFillMicFill className='ml-2 text-md' />
                   </div>
                 ) : prod?.digitalType === 'template' ? (
@@ -285,8 +285,8 @@ const Item = () => {
                   </div>
                 ) : (
                   <div className='flex items-center justify-center border-2 border-slate-800  rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                    <p className='text-sm'>Printables</p>
-                    <MdLocalPrintshop className='ml-2 text-md' />
+                    <p className='text-sm'>Art</p>
+                    <BsPalette className='ml-2 text-md' />
                   </div>
                 )}
                 <div className='flex mt-4'>

@@ -12,7 +12,7 @@ import {
   MdOutlinePermMedia,
 } from 'react-icons/md';
 import { HiOutlineBookOpen } from 'react-icons/hi';
-import { BsFillMicFill } from 'react-icons/bs';
+import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 
 const DigitalDetail = ({ order }) => {
   return (
@@ -57,9 +57,9 @@ const DigitalDetail = ({ order }) => {
               <p>E-Book</p>
               <HiOutlineBookOpen className='ml-2 text-2xl' />
             </div>
-          ) : order?.item?.digitalType === 'podcast' ? (
+          ) : order?.item?.digitalType === 'audio' ? (
             <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-10'>
-              <p>Podcast</p>
+              <p>Audio</p>
               <BsFillMicFill className='ml-2 text-2xl' />
             </div>
           ) : order?.item?.digitalType === 'other' ? (
@@ -69,8 +69,8 @@ const DigitalDetail = ({ order }) => {
             </div>
           ) : (
             <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-10'>
-              <p>Printables</p>
-              <MdLocalPrintshop className='ml-2 text-2xl' />
+              <p>Art</p>
+              <BsPalette className='ml-2 text-2xl' />
             </div>
           )}
           <p className='text-gray-400 font-medium mt-4 mb-2'>Title</p>
