@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const TopbarMobile = () => {
   const path = window.location.pathname;
   const activeLink =
-    'text-sm font-medium text-white w-20 rounded-xl bg-stone-800 ml-2';
+    'text-sm font-medium text-white w-20 h-6 rounded bg-stone-800 ml-2';
   const notActiveLink = 'text-sm w-20 font-medium text-stone-800 ml-2';
 
   return (
@@ -90,6 +90,7 @@ const TopbarMobile = () => {
 
           <NavLink to='/dashboard/library'>
             <button
+              autoFocus={path === '/dashboard/library'}
               className={
                 path === '/dashboard/library' || path === '/dashboard/library'
                   ? activeLink

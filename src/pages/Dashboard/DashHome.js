@@ -109,7 +109,6 @@ const DashHome = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    console.log(stats?.dataSet);
     const data = {
       labels: stats?.dataSet?.dates,
       datasets: [

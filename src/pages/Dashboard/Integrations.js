@@ -42,7 +42,7 @@ const Integrations = () => {
           <div className='flex flex-col'>
             <h2 className='text-3xl font-medium'>Add-ons coming soon!</h2>
             <p className='text-lg mt-2'>
-              We would love and appreciate some feedback on product page add-ons
+              We would love and appreciate some feedback on storefront add-ons
               you think would be best. Just submit them in the form below!
             </p>
           </div>
@@ -62,7 +62,7 @@ const Integrations = () => {
                 onChange={(e) => setContent(e.target.value)}
               />
               <button
-                className='w-full h-14 border-2 border-slate-800 rounded text-lg mt-4 hover:text-white hover:bg-slate-800'
+                className='w-full h-14 border-2 border-stone-800 rounded text-lg mt-4 hover:text-white hover:bg-stone-800 text-stone-800'
                 type='submit'
               >
                 Submit feedback

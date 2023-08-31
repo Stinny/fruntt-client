@@ -73,7 +73,7 @@ const Item = () => {
     ) : product.length ? (
       <div className='w-full'>
         <div className='w-full flex justify-between items-center p-2'>
-          <h2 className='text-3xl font-semibold'>Your products</h2>
+          <p className='text-3xl font-medium'>Your products</p>
 
           {/* <Link to={`/dashboard/item/edit/${product[0]._id}`}>
             <button className='w-40 h-10 rounded border-stone-800 text-stone-800 border-2 hover:bg-stone-800 hover:text-white'>
@@ -162,8 +162,40 @@ const Item = () => {
                   className='w-8/12 border rounded mt-2'
                 />
 
-                <p className='text-gray-400 mt-4'>Call to action</p>
-                <button
+                <p className='text-gray-400 mt-4'>Call to a<div className='flex mt-4'>
+                    <FormControlLabel
+                      label='Published'
+                      control={
+                        <Switch
+                          checked={prod?.published}
+                          disabled
+                          size='small'
+                        />
+                      }
+                    />
+                    <FormControlLabel
+                      label='Marketplace'
+                      control={
+                        <Switch
+                          checked={prod?.marketplace}
+                          disabled
+                          size='small'
+                          className='ml-2'
+                        />
+                      }
+                    />
+                    <FormControlLabel
+                      label='Pay what you want'
+                      control={
+                        <Switch
+                          checked={prod?.payChoice}
+                          disabled
+                          size='small'
+                          className='ml-2'
+                        />
+                      }
+                    />
+                  </div>
                   type='button'
                   disabled
                   className='w-10/12 border-2 rounded h-14 text-xl border-stone-800 text-stone-800'

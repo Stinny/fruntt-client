@@ -46,7 +46,7 @@ import PasswordReset from './pages/PasswordReset';
 import RequestReset from './pages/RequestReset';
 import TwitterAuth from './pages/TwitterAuth';
 import Privacy from './pages/Privacy';
-import NoPage from './pages/NoPage';
+import NoStore from './pages/NoStore';
 import TOS from './pages/TOS';
 import 'normalize.css';
 import { ToastContainer } from 'react-toastify';
@@ -84,7 +84,7 @@ function App() {
 
             {/* routes require user to be logged in */}
             <Route element={<RequireAuth />}>
-              <Route path='home' element={<NoPage />} />
+              <Route path='home' element={<NoStore />} />
               <Route element={<UserHasNoPage />}>
                 <Route path='dashboard' element={<DashHome />} />
 

@@ -122,7 +122,6 @@ const Customers = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    console.log(reviews);
     content = isMobile ? (
       <CustomersMobile reviews={reviews} cols={cols} />
     ) : reviews.length > 0 ? (

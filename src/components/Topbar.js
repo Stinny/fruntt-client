@@ -7,8 +7,9 @@ const Topbar = () => {
   //for changing nav links according to the page
   const path = window.location.pathname;
   const activeLink =
-    'text-sm font-medium text-white w-24 rounded-xl bg-stone-800';
-  const notActiveLink = 'text-sm font-medium w-24 text-stone-800';
+    'text-sm h-6 font-medium text-white w-24 rounded bg-stone-800';
+  const notActiveLink =
+    'text-sm font-medium w-24 h-6 hover:bg-stone-800 hover:text-white rounded text-stone-800';
 
   return isMobile ? (
     <TopbarMobile />
