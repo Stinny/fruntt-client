@@ -129,11 +129,11 @@ const Orders = () => {
       />
     ) : orders.length > 0 ? (
       <div>
-        <div className='w-full flex justify-between border-b-2 p-2'>
-          <h2 className='text-3xl font-semibold'>Your Orders</h2>
+        <div className='w-full flex justify-between'>
+          <h2 className='text-3xl font-medium'>Your Orders</h2>
           <div className='flex justify-between'>
             <input
-              placeholder='Search by email'
+              placeholder='Coming soon!'
               className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
             />
             <button className='border-2 rounded w-20 ml-2  h-10 border-stone-800 text-slate-800'>
@@ -142,7 +142,7 @@ const Orders = () => {
           </div>
         </div>
 
-        <div className='w-full mx-auto mt-6'>
+        <div className='w-full mx-auto mt-2'>
           <DataGrid
             rows={orders}
             columns={cols}

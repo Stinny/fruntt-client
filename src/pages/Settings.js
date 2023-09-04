@@ -42,7 +42,7 @@ const Settings = () => {
         {isMobile ? (
           <div className='border-b-2 pb-2'>
             <div className='flex justify-between items-center w-full'>
-              <h2 className='text-3xl font-semibold'>Settings</h2>
+              <h2 className='text-3xl font-medium'>Settings</h2>
 
               <Link
                 to='/dashboard'
@@ -56,13 +56,13 @@ const Settings = () => {
         ) : (
           <div className='pb-4 mt-20'>
             <div className='flex justify-between w-full items-center'>
-              <h2 className='text-4xl font-semibold'>Settings</h2>
+              <h2 className='text-3xl font-medium'>Settings</h2>
 
               <Link
                 to='/dashboard'
-                className='flex justify-center items-center text-gray-400 hover:text-gray-500'
+                className='flex justify-center items-center text-stone-800'
               >
-                <p className='font-medium text-xl'>Back to dashboard</p>{' '}
+                <p className='font-medium text-lg'>Back to dashboard</p>{' '}
                 <BsArrowRightShort className='text-xl' />
               </Link>
             </div>

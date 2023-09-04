@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import {
@@ -15,11 +15,12 @@ import {
   MdOutlinePermMedia,
 } from 'react-icons/md';
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
-import { BsFillMicFill, BsPalette } from 'react-icons/bs';
+import { BsArrowRightShort, BsFillMicFill, BsPalette } from 'react-icons/bs';
 import { isMobile } from 'react-device-detect';
 import MobileDownload from './Mobile/MobileDownload';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
+import Cookies from 'js-cookie';
 
 //mui
 import Rating from '@mui/material/Rating';
@@ -27,6 +28,10 @@ import Alert from '@mui/material/Alert';
 
 const Download = () => {
   const { orderId } = useParams();
+
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
 
   const [open, setOpen] = useState(false);
   const [review, setReview] = useState('');
@@ -87,6 +92,21 @@ const Download = () => {
               This will always be accessible from the email address below.
             </p>
           </div>
+
+          {currentUser ? (
+            <Link
+              to='/dashboard/library'
+              className='text-stone-800 flex items-center'
+            >
+              Back to library
+              <BsArrowRightShort className='text-2xl' />
+            </Link>
+          ) : (
+            <Link to='/signup' className='text-stone-800 flex items-center'>
+              Create account
+              <BsArrowRightShort className='text-2xl' />
+            </Link>
+          )}
           <button
             type='button'
             className='border-2 rounded border-stone-800 h-10 w-32 text-stone-800 hover:bg-stone-800 hover:text-white text-sm'
@@ -96,7 +116,7 @@ const Download = () => {
           </button>
         </div>
         {open ? (
-          <div className='w-8/12 mt-4 mb-4 rounded mx-auto'>
+          <div className='w-full mt-4 mb-4 rounded mx-auto'>
             {orderAndStore?.order?.reviewed ? (
               <Alert severity='success'>Your review was submitted!</Alert>
             ) : (
@@ -137,10 +157,10 @@ const Download = () => {
         ) : (
           ''
         )}
-        <div className='w-11/12 mt-4 mx-auto'>
+        <div className='wfull mt-4 mx-auto'>
           <p className='font-medium text-slate-800 text-xl'>Purchase details</p>
         </div>
-        <div className='flex justify-between items-center mt-2 w-11/12 mx-auto border rounded bg-white drop-shadow-lg p-2'>
+        <div className='flex justify-between items-center mt-2 w-full mx-auto border rounded bg-white drop-shadow-lg p-2'>
           <div className='w-6/12 flex flex-col'>
             <p className='font-medium mt-2 mb-2'>What you got:</p>
             {orderAndStore?.order?.item?.digitalType === 'video' ? (
@@ -196,13 +216,13 @@ const Download = () => {
             />
           </div>
         </div>
-        <div className='w-11/12 mx-auto mt-4'>
+        <div className='w-full mx-auto mt-4'>
           <p className='font-medium text-slate-800 text-xl'>Content included</p>
         </div>
-        <div className=' w-11/12 mx-auto mt-4'>
+        <div className=' w-full mx-auto mt-4'>
           <p className='text-stone-800'>Files</p>
         </div>
-        <div className='p-4 flex flex-wrap w-11/12 mx-auto border rounded drop-shadow-lg bg-white'>
+        <div className='p-4 flex flex-wrap w-full mx-auto border rounded drop-shadow-lg bg-white'>
           {orderAndStore?.order?.item?.files.length ? (
             orderAndStore?.order?.item?.files?.map((file, index) => (
               <div className='w-full flex items-center justify-between border-b mt-2'>
@@ -229,10 +249,10 @@ const Download = () => {
             </div>
           )}
         </div>
-        <div className=' w-11/12 mx-auto mt-4'>
+        <div className='w-full mx-auto mt-4'>
           <p className='text-stone-800'>Content</p>
         </div>
-        <div className='p-4 w-11/12 mx-auto border rounded bg-white drop-shadow-lg'>
+        <div className='p-4 w-full mx-auto border rounded bg-white drop-shadow-lg'>
           {orderAndStore?.order?.item?.content === '' ? (
             <p>No additional content added</p>
           ) : (
@@ -249,7 +269,7 @@ const Download = () => {
   return (
     <>
       <Navbar />
-      <div className='max-w-7xl mx-auto'>{content}</div>
+      <div className='max-w-6xl mx-auto'>{content}</div>
       <Footer />
     </>
   );

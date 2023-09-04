@@ -60,8 +60,8 @@ const Hero = () => {
             </p>
           </div>
           <p className='text-lg mt-6'>
-            Sell any digital product from your own customized storefront and
-            keep 99% of what you earn after payment processing fees.
+            Create and sell any digital product to your audience and keep 99% of
+            what you earn after payment processing fees.
           </p>
           <div className='flex items-center mt-6'>
             <Link to='/signup' className='flex w-56'>
@@ -123,8 +123,8 @@ const Hero = () => {
             </p>
           </div>
           <p className='text-xl mt-6'>
-            Sell any digital product from your own customized storefront and
-            keep 99% of what you earn after payment processing fees.
+            Create and sell any digital product to your audience and keep 99% of
+            what you earn after payment processing fees.
           </p>
           <div className='flex items-center mt-6'>
             <Link to='/signup' className='flex w-56'>

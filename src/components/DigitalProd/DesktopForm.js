@@ -53,8 +53,8 @@ const DesktopForm = ({
 
   return (
     <div className='w-full'>
-      <div className='mb-4 flex justify-between p-2'>
-        <h2 className='text-3xl font-medium'>Add your digital product</h2>
+      <div className='flex justify-between'>
+        <h2 className='text-3xl font-medium'>New digital product</h2>
         <FormControlLabel
           label='Publish to storefront'
           control={

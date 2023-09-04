@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   MdOutlineFileDownload,
@@ -8,12 +8,29 @@ import {
 } from 'react-icons/md';
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill, BsPalette } from 'react-icons/bs';
+import ReactPaginate from 'react-paginate';
 
 const LibraryMobile = ({ orders }) => {
+  //stuff for pagination
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 5;
+
+  const endOffset = itemOffset + itemsPerPage;
+
+  const currentOrders = orders.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(orders.length / itemsPerPage);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % orders.length;
+
+    setItemOffset(newOffset);
+  };
+  //end of pagination stuff
+
   return orders.length ? (
     <div className='mx-auto w-full'>
-      <div className='w-full mx-auto flex flex-col'>
-        <div className='w-full flex justify-between items-center p-2'>
+      <div className='w-full mx-auto flex flex-col p-2'>
+        <div className='w-full flex justify-between items-center'>
           <p className='text-lg font-medium'>Your library</p>
 
           <div className='flex items-center'>
@@ -24,11 +41,8 @@ const LibraryMobile = ({ orders }) => {
             </p>
           </div>
         </div>
-        <div
-          className='flex flex-col overflow-y-scroll h-screen bg-gray-50 p-2 rounded'
-          // style={{ height: '500px' }}
-        >
-          {orders.map((order) => (
+        <div className='flex flex-col'>
+          {currentOrders.map((order) => (
             <Link to={`/order/${order?._id}`}>
               <div className='border rounded bg-white drop-shadow-md relative flex flex-col mt-2 p-2'>
                 {order?.item?.digitalType === 'video' ? (
@@ -68,6 +82,23 @@ const LibraryMobile = ({ orders }) => {
               </div>
             </Link>
           ))}
+          <div className='w-full flex justify-end mx-auto mt-2'>
+            <div className=''>
+              <ReactPaginate
+                breakLabel='...'
+                nextLabel='Next'
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={3}
+                pageCount={pageCount}
+                previousLabel='Prev'
+                renderOnZeroPageCount={null}
+                className='flex items-center'
+                activeLinkClassName='activePage'
+                pageLinkClassName='notActivePage'
+                breakLinkClassName='breakLink'
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

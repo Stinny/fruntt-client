@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   MdOutlineFileDownload,
   MdOutlineVideoLibrary,
@@ -6,12 +7,13 @@ import {
   MdOutlinePermMedia,
 } from 'react-icons/md';
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
-import { BsFillMicFill, BsPalette } from 'react-icons/bs';
+import { BsArrowLeftShort, BsFillMicFill, BsPalette } from 'react-icons/bs';
 import { Editor } from 'react-draft-wysiwyg';
 import { convertFromRaw, EditorState } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
+import Cookies from 'js-cookie';
 
 //mui
 import Rating from '@mui/material/Rating';
@@ -26,9 +28,27 @@ const MobileDownload = ({
   setOpen,
   setName,
 }) => {
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
+
   return (
     <div className='mx-auto p-2 mt-14'>
       <div className='w-full border-b-2 mt-6 flex flex-col'>
+        {currentUser ? (
+          <Link
+            to='/dashboard/library'
+            className='text-stone-800 flex items-center'
+          >
+            <BsArrowLeftShort className='text-2xl' />
+            Back to library
+          </Link>
+        ) : (
+          <Link to='/signup' className='text-stone-800 flex items-center'>
+            <BsArrowLeftShort className='text-2xl' />
+            Create account
+          </Link>
+        )}
         <p className='text-2xl font-medium'>Your Recent Digital Purchase</p>
         <p className='text-sm text-stone-800'>
           This will always be accessible from the email below.

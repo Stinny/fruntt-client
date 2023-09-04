@@ -60,6 +60,7 @@ const DashHome = () => {
       yAxes: {
         ticks: {
           beginAtZero: true,
+          display: false,
         },
       },
 
@@ -175,7 +176,7 @@ const DashHome = () => {
             </p>
             <a
               href={currentStoreUrl}
-              className='flex justify-center items-center text-md text-gray-400 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
+              className='flex justify-center items-center text-md text-stone-800 font-medium ml-2 underline underline-offset-4'
               target='_blank'
             >
               {currentStoreUrl}
@@ -334,7 +335,7 @@ const DashHome = () => {
 
         <div className='w-full border rounded mt-4 bg-white drop-shadow-md'>
           {stats?.numOfOrders > 0 ? (
-            <Bar options={options} data={data} />
+            <Line options={options} data={data} />
           ) : (
             <div className='h-72 w-full flex flex-col items-center justify-center'>
               <GoGraph className='text-4xl text-gray-300' />
@@ -344,23 +345,6 @@ const DashHome = () => {
             </div>
           )}
         </div>
-
-        {/* <div className='w-full h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2 mt-4'>
-          <p className='text-xl font-medium text-slate-800'>
-            Share your page with your people!
-          </p>
-
-          <div className='w-8/12 flex justify-between mt-2'>
-            <FacebookIcon borderRadius={5} size={50} />
-            <TwitterIcon borderRadius={5} size={50} />
-            <PinterestIcon borderRadius={5} size={50} />
-            <LinkedinIcon borderRadius={5} size={50} />
-            <WhatsappIcon borderRadius={5} size={50} />
-            <TelegramIcon borderRadius={5} size={50} />
-          </div>
-        </div> */}
-
-        {/* <SalesGraph /> */}
       </>
     );
   }

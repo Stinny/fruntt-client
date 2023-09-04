@@ -17,7 +17,7 @@ import EditItem from './pages/Dashboard/EditItem';
 import Integrations from './pages/Dashboard/Integrations';
 import Orders from './pages/Dashboard/Orders';
 import OrderDetail from './pages/Dashboard/OrderDetail';
-import Customers from './pages/Dashboard/Customers';
+import Reviews from './pages/Dashboard/Reviews';
 import Design from './pages/Dashboard/Design';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
@@ -28,7 +28,6 @@ import FreePlan from './pages/FreePlan';
 import UserHasNoPage from './UserHasNoPage';
 import PaidPlan from './pages/PaidPlan';
 import Item from './pages/Dashboard/Item';
-import AddItem from './pages/Dashboard/AddItem';
 import EditDesign from './pages/Dashboard/EditDesign';
 import ConfirmEmail from './pages/ConfirmEmail';
 import DesignPreview from './pages/DesignPreview';
@@ -99,14 +98,14 @@ function App() {
                   element={<OrderDetail />}
                 />
 
-                <Route path='dashboard/reviews' element={<Customers />} />
+                <Route path='dashboard/reviews' element={<Reviews />} />
 
                 <Route
                   path='dashboard/reviews/:reviewId'
                   element={<CustomerDetail />}
                 />
 
-                <Route path='dashboard/addons' element={<Integrations />} />
+                <Route path='dashboard/customers' element={<Integrations />} />
 
                 <Route path='dashboard/config' element={<Config />} />
 
@@ -122,8 +121,6 @@ function App() {
                   path='dashboard/design/edit/preview'
                   element={<DesignPreview />}
                 />
-
-                <Route path='dashboard/item/add' element={<AddItem />} />
 
                 <Route
                   path='dashboard/item/digital'

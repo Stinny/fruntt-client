@@ -53,7 +53,7 @@ const MobileForm = ({
   return (
     <div className='w-full p-2'>
       <div className='mb-2 p-2'>
-        <h2 className='text-xl font-medium'>Add your digital product</h2>
+        <h2 className='text-xl font-medium'>New digital product</h2>
       </div>
 
       {error && (
