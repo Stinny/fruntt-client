@@ -30,7 +30,7 @@ const HomeDetail = ({
 }) => {
   return (
     <div
-      className='w-full h-screen mx-auto border p-10 rounded mt-6 drop-shadow-lg'
+      className='w-full h-screen mx-auto border p-10 rounded mt-1 drop-shadow-lg'
       style={{ backgroundColor: pageBG }}
     >
       <SellerPro

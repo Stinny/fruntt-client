@@ -35,6 +35,12 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    markAsViewed: builder.mutation({
+      query: ({ orderId }) => ({
+        url: `/orders/view/${orderId}`,
+        method: 'POST',
+      }),
+    }),
     getShippingLabel: builder.mutation({
       query: ({ orderId, rateId, amount }) => ({
         url: `/orders/shippinglabel`,
@@ -102,6 +108,7 @@ export const {
   useGetShippingLabelMutation,
   useEditShipsFromAddressMutation,
   useAddProductReviewMutation,
+  useMarkAsViewedMutation,
   useGetReviewsQuery,
   useGetReviewQuery,
 } = ordersApiSlice;

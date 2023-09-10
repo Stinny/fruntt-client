@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Topbar from '../../components/Topbar';
@@ -16,6 +16,10 @@ const Library = () => {
     isSuccess,
     refetch,
   } = useGetUsersOrdersQuery();
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   let content;
 

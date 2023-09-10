@@ -1,7 +1,7 @@
 body,
 html {
   margin: 0;
-  font-family: system-ui, -apple-system;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

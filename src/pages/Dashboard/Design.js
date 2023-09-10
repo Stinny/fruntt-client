@@ -43,7 +43,7 @@ const Design = () => {
           <div className='w-full flex flex-col items-center p-2 mx-auto'>
             <p className='text-lg font-medium mb-1'>Page</p>
             <div
-              className='w-14 h-14 border border-stone-800 rounded-full shadow-lg'
+              className='w-14 h-14 border border-stone-800 rounded shadow-lg'
               style={{ backgroundColor: storefront?.style?.pageBackground }}
             ></div>
           </div>
@@ -51,7 +51,7 @@ const Design = () => {
           <div className='w-full flex flex-col items-center p-2 mx-auto'>
             <p className='text-lg font-medium mb-1'>Card</p>
             <div
-              className='w-14 h-14 border border-stone-800 rounded-full shadow-lg'
+              className='w-14 h-14 border border-stone-800 rounded shadow-lg'
               style={{ backgroundColor: storefront?.style?.cardBackground }}
             ></div>
           </div>
@@ -67,7 +67,7 @@ const Design = () => {
               Button
             </p>
             <div
-              className='w-14 h-14 border rounded-full border-stone-800 shadow-lg'
+              className='w-14 h-14 border rounded border-stone-800 shadow-lg'
               style={{ backgroundColor: storefront?.style?.buttonColor }}
             ></div>
             {/* <p className='text-sm'>Style</p>
@@ -80,7 +80,7 @@ const Design = () => {
           <div className='w-full flex flex-col p-2 mx-auto items-center'>
             <p className='text-lg font-medium mb-1'>Button text</p>
             <div
-              className='w-14 h-14 border border-stone-800 rounded-full shadow-lg'
+              className='w-14 h-14 border border-stone-800 rounded shadow-lg'
               style={{ backgroundColor: storefront?.style?.buttonTextColor }}
             ></div>
           </div>
@@ -88,7 +88,7 @@ const Design = () => {
           <div className='w-full flex flex-col items-center p-2 mx-auto'>
             <p className='text-lg font-medium mb-1'>Borders</p>
             <div
-              className='w-14 h-14 border border-stone-800 rounded-full shadow-lg'
+              className='w-14 h-14 border border-stone-800 rounded shadow-lg'
               style={{ backgroundColor: storefront?.style?.borderColor }}
             ></div>
           </div>
@@ -96,7 +96,7 @@ const Design = () => {
           <div className='w-full flex flex-col items-center p-2 mx-auto'>
             <p className='text-lg font-medium mb-1'>Headers</p>
             <div
-              className='w-14 h-14 border border-stone-800 rounded-full shadow-lg'
+              className='w-14 h-14 border border-stone-800 rounded shadow-lg'
               style={{ backgroundColor: storefront?.style?.headerColor }}
             ></div>
           </div>
@@ -107,7 +107,7 @@ const Design = () => {
             <div className='w-full flex flex-col items-center p-2 mx-auto'>
               <p className='text-lg font-medium mb-1'>Questions</p>
               <div
-                className='w-14 h-14 border border-stone-800 rounded-full shadow-lg'
+                className='w-14 h-14 border border-stone-800 rounded shadow-lg'
                 style={{ backgroundColor: storefront?.style?.faqBackground }}
               ></div>
             </div>
@@ -119,7 +119,7 @@ const Design = () => {
             <div className='w-full flex flex-col p-2 mx-auto items-center'>
               <p className='text-lg font-medium mb-1'>Reviews</p>
               <div
-                className='w-14 h-14 border border-stone-800 rounded-full shadow-lg'
+                className='w-14 h-14 border border-stone-800 rounded shadow-lg'
                 style={{ backgroundColor: storefront?.style?.reviewBackground }}
               ></div>
             </div>

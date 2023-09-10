@@ -74,7 +74,7 @@ const DesignDetail = ({
 
           <TabPanel>
             <div
-              className='w-full h-full mx-auto border p-10 rounded mt-6 drop-shadow-lg'
+              className='w-full h-full mx-auto p-10 mt-1 rounded border drop-shadow-lg'
               style={{ backgroundColor: pageBG }}
             >
               <SellerPro
