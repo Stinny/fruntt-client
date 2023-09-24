@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactCountryFlag from 'react-country-flag';
+import ReactPaginate from 'react-paginate';
 
 const DesktopCustomers = ({ customers }) => {
-  console.log(customers);
+  //stuff for pagination//
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 15;
+
+  const endOffset = itemOffset + itemsPerPage;
+  const currentCustomers = customers.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(customers.length / itemsPerPage);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % customers.length;
+
+    setItemOffset(newOffset);
+  };
+  //pagination stuff ends here//
+
   return customers.length > 0 ? (
-    <div className='max-w-6xl mx-auto'>
+    <div className='max-w-6xl mx-auto h-screen'>
       <div className='w-full flex justify-between'>
         <h2 className='text-3xl font-medium'>Your Customers</h2>
         <div className='flex justify-between'>
@@ -27,23 +42,32 @@ const DesktopCustomers = ({ customers }) => {
       <div className='w-full mx-auto mt-2'>
         <table className='w-full rounded-md bg-white border drop-shadow-lg p-2'>
           <tbody>
-            {customers.map((customer, index) => (
-              <tr className='text-left text-md'>
+            {currentCustomers.map((customer, index) => (
+              <tr className='text-left text-md border-b'>
                 <td className='p-3 flex items-center justify-center'>
                   {customer?.email}
                 </td>
-                <td className='w-24'>
-                  <ReactCountryFlag countryCode={customer?.country?.value} />
-                </td>
                 <td>{customer?.name}</td>
-
-                <td>{customer?.numberOfOrders} orders</td>
+                <td>
+                  <div className='flex items-center'>
+                    <ReactCountryFlag
+                      countryCode={customer?.country?.value}
+                      className='mr-1'
+                    />
+                    <p>{customer?.country?.label}</p>
+                  </div>
+                </td>
+                <td>
+                  {customer?.numberOfOrders === 1
+                    ? `${customer?.numberOfOrders} order`
+                    : `${customer?.numberOfOrders} orders`}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      {/* {customers.length > 15 ? (
+      {customers.length > 15 ? (
         <div className='w-full flex justify-end mx-auto mt-2'>
           <div className=''>
             <ReactPaginate
@@ -63,7 +87,7 @@ const DesktopCustomers = ({ customers }) => {
         </div>
       ) : (
         ''
-      )} */}
+      )}
     </div>
   ) : (
     <div className='max-w-6xl mx-auto h-screen p-2 bg-white drop-shadow-lg border rounded flex flex-col items-center justify-center'>

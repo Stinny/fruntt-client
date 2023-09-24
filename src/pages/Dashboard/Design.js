@@ -198,7 +198,7 @@ const Design = () => {
         <div className='max-w-6xl mx-auto'>
           <div className='flex justify-between items-center p-2'>
             <div className='flex flex-col'>
-              <h2 className='text-2xl font-medium'>Storefront design</h2>
+              <h2 className='text-3xl font-medium'>Storefront design</h2>
               <p className='mt-2'>
                 Last designed on{' '}
                 {moment(storefront?.lastEdited).format('MMM D, YYYY')}

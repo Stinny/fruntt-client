@@ -82,7 +82,7 @@ const DesktopOrders = ({ orders }) => {
         <table className='w-full rounded-md bg-white border drop-shadow-lg p-2'>
           <tbody>
             {currentOrders.map((order, index) => (
-              <tr className='text-left text-sm'>
+              <tr className='text-left text-sm border-b'>
                 <td className='p-3'>
                   <Link
                     to={`/dashboard/orders/${order?._id}`}
@@ -107,7 +107,7 @@ const DesktopOrders = ({ orders }) => {
                 </td>
 
                 <td className='w-12'>
-                  {order?.reviwed ? (
+                  {order?.reviewed ? (
                     <BiMessageSquareDetail className='text-2xl' />
                   ) : (
                     ''

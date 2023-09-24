@@ -37,7 +37,7 @@ const Customers = () => {
     <>
       <Navbar />
       <Topbar />
-      {content}
+      <div className='h-screen'>{content}</div>
       <Footer />
     </>
   );

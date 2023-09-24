@@ -47,6 +47,7 @@ const MobileDownload = ({
       markViewed();
     }
   }, []);
+
   return (
     <div className='mx-auto p-2 mt-14'>
       <div className='w-full border-b-2 mt-6 flex flex-col'>
