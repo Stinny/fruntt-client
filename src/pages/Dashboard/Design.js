@@ -46,6 +46,9 @@ const Design = () => {
               className='w-14 h-14 border border-stone-800 rounded shadow-lg'
               style={{ backgroundColor: storefront?.style?.pageBackground }}
             ></div>
+            <p className='text-sm font-medium mt-1'>
+              {storefront?.style?.pageBackground}
+            </p>
           </div>
 
           <div className='w-full flex flex-col items-center p-2 mx-auto'>
@@ -54,6 +57,9 @@ const Design = () => {
               className='w-14 h-14 border border-stone-800 rounded shadow-lg'
               style={{ backgroundColor: storefront?.style?.cardBackground }}
             ></div>
+            <p className='text-sm font-medium mt-1'>
+              {storefront?.style?.cardBackground}
+            </p>
           </div>
 
           <div className='w-full flex flex-col items-center p-2 mx-auto'>
@@ -70,11 +76,9 @@ const Design = () => {
               className='w-14 h-14 border rounded border-stone-800 shadow-lg'
               style={{ backgroundColor: storefront?.style?.buttonColor }}
             ></div>
-            {/* <p className='text-sm'>Style</p>
-
-            <p className='border rounded p-1 w-6/12'>
-              {storefront?.style?.buttonStyle}
-            </p> */}
+            <p className='text-sm font-medium mt-1'>
+              {storefront?.style?.buttonColor}
+            </p>
           </div>
 
           <div className='w-full flex flex-col p-2 mx-auto items-center'>
@@ -83,6 +87,9 @@ const Design = () => {
               className='w-14 h-14 border border-stone-800 rounded shadow-lg'
               style={{ backgroundColor: storefront?.style?.buttonTextColor }}
             ></div>
+            <p className='text-sm font-medium mt-1'>
+              {storefront?.style?.buttonTextColor}
+            </p>
           </div>
 
           <div className='w-full flex flex-col items-center p-2 mx-auto'>
@@ -91,6 +98,9 @@ const Design = () => {
               className='w-14 h-14 border border-stone-800 rounded shadow-lg'
               style={{ backgroundColor: storefront?.style?.borderColor }}
             ></div>
+            <p className='text-sm font-medium mt-1'>
+              {storefront?.style?.borderColor}
+            </p>
           </div>
 
           <div className='w-full flex flex-col items-center p-2 mx-auto'>
@@ -99,17 +109,23 @@ const Design = () => {
               className='w-14 h-14 border border-stone-800 rounded shadow-lg'
               style={{ backgroundColor: storefront?.style?.headerColor }}
             ></div>
+            <p className='text-sm font-medium mt-1'>
+              {storefront?.style?.headerColor}
+            </p>
           </div>
 
           {storefront?.hideQuestions ? (
             ''
           ) : (
             <div className='w-full flex flex-col items-center p-2 mx-auto'>
-              <p className='text-lg font-medium mb-1'>Questions</p>
+              <p className='text-lg font-medium mb-1'>Price</p>
               <div
                 className='w-14 h-14 border border-stone-800 rounded shadow-lg'
-                style={{ backgroundColor: storefront?.style?.faqBackground }}
+                style={{ backgroundColor: storefront?.style?.price }}
               ></div>
+              <p className='text-sm font-medium mt-1'>
+                {storefront?.style?.price}
+              </p>
             </div>
           )}
 
@@ -122,12 +138,16 @@ const Design = () => {
                 className='w-14 h-14 border border-stone-800 rounded shadow-lg'
                 style={{ backgroundColor: storefront?.style?.reviewBackground }}
               ></div>
+              <p className='text-sm font-medium mt-1'>
+                {storefront?.style?.reviewBackground}
+              </p>
             </div>
           )}
         </div>
 
         <DesignPreview
           pageBG={storefront?.style?.pageBackground}
+          price={storefront?.style?.price}
           cardBG={storefront?.style?.cardBackground}
           navbarBG={storefront?.style?.navbarBackground}
           buttonColor={storefront?.style?.buttonColor}

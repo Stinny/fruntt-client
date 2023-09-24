@@ -30,7 +30,7 @@ const SellerPro = ({
   return isMobile ? (
     <div className='w-full mx-auto'>
       <div
-        className='max-w-6xl flex flex-col mx-auto border rounded bg-inherit drop-shadow-md p-2'
+        className='max-w-6xl flex flex-col mx-auto border rounded bg-inherit shadow-md p-2'
         style={{
           borderColor: borderColor,
           backgroundColor: cardBG,

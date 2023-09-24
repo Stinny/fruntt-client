@@ -14,7 +14,6 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import DashHome from './pages/Dashboard/DashHome';
 import EditItem from './pages/Dashboard/EditItem';
-import Integrations from './pages/Dashboard/Integrations';
 import Orders from './pages/Dashboard/Orders';
 import OrderDetail from './pages/Dashboard/OrderDetail';
 import Reviews from './pages/Dashboard/Reviews';
@@ -51,6 +50,7 @@ import 'normalize.css';
 import { ToastContainer } from 'react-toastify';
 import Marketplace from './pages/Marketplace';
 import Library from './pages/Dashboard/Library';
+import Customers from './pages/Dashboard/Customers';
 
 function App() {
   return (
@@ -105,7 +105,7 @@ function App() {
                   element={<CustomerDetail />}
                 />
 
-                <Route path='dashboard/customers' element={<Integrations />} />
+                <Route path='dashboard/customers' element={<Customers />} />
 
                 <Route path='dashboard/config' element={<Config />} />
 

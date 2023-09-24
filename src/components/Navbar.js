@@ -271,7 +271,7 @@ const Navbar = () => {
               to='/login'
               className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded'
             >
-              <p className='font-medium'>Store</p>
+              <p className='font-medium'>Login</p>
               <IoStorefrontOutline className='text-xl' />
             </Link>
           </div>

@@ -51,7 +51,7 @@ const DesktopOrders = ({ orders }) => {
           ? `${Math.floor(daysElapsed)} day ago`
           : `${Math.floor(daysElapsed)} days ago`;
     } else {
-      displayText = `${moment(orderDate).format('MMMM D, YYYY')}`;
+      displayText = `${moment(orderDate).format('MMM D, YYYY')}`;
     }
 
     return <span>{displayText}</span>;

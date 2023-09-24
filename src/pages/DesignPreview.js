@@ -30,7 +30,7 @@ const DesignPreview = ({
   faqBackground,
   reviewBackground,
   hideReviews,
-  hideQuestions,
+  price,
   hideDescription,
 }) => {
   const {
@@ -60,6 +60,7 @@ const DesignPreview = ({
         products={productData.products}
         pageBG={pageBG}
         cardBG={cardBG}
+        price={price}
         buttonColor={buttonColor}
         buttonTextColor={buttonTextColor}
         buttonStyle={buttonStyle}
