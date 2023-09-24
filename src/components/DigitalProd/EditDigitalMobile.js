@@ -173,9 +173,9 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                   value={digitalType}
                 >
                   <option value='video'>Video Course</option>
-                  <option value='printable'>Printables</option>
+                  <option value='printable'>Art</option>
                   <option value='ebook'>E-Book</option>
-                  <option value='podcast'>Podcast</option>
+                  <option value='podcast'>Audio</option>
                   <option value='template'>Template</option>
                   <option value='other'>Other Digital Media</option>
                 </select>

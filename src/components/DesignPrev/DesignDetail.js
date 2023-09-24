@@ -5,7 +5,7 @@ import {
   MdOutlinePermMedia,
 } from 'react-icons/md';
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
-import { BsFillMicFill } from 'react-icons/bs';
+import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import SellerPro from './SellerPro';
@@ -32,6 +32,7 @@ const DesignDetail = ({
   hideReviews,
   storefront,
   hideDescription,
+  price,
 }) => {
   const [selectedProduct, setSelectedProduct] = useState(products[0]);
 
@@ -57,6 +58,7 @@ const DesignDetail = ({
             <HomeDetail
               products={products}
               pageBG={pageBG}
+              price={price}
               cardBG={cardBG}
               buttonColor={buttonColor}
               buttonTextColor={buttonTextColor}
@@ -74,7 +76,7 @@ const DesignDetail = ({
 
           <TabPanel>
             <div
-              className='w-full h-full mx-auto border p-10 rounded mt-6 drop-shadow-lg'
+              className='w-full h-full mx-auto p-10 mt-1 rounded border drop-shadow-lg'
               style={{ backgroundColor: pageBG }}
             >
               <SellerPro
@@ -109,61 +111,69 @@ const DesignDetail = ({
                       className='w-3/6 flex flex-col pl-6'
                       style={{ backgroundColor: cardBG }}
                     >
-                      <h2
+                      <p
                         className='text-xl font-medium'
                         style={{ color: pageText }}
                       >
                         {selectedProduct?.item?.title}
-                      </h2>
+                      </p>
                       <p
-                        className='text-xl mt-1 w-full'
+                        className='text-lg mt-1 w-full'
                         style={{ color: pageText }}
                       >
                         {selectedProduct?.item?.description}
                       </p>
                       {selectedProduct?.item?.digitalType === 'video' ? (
-                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8 mt-2'>
                           <p>Video Course</p>
                           <MdOutlineVideoLibrary className='ml-2 text-2xl' />
                         </div>
                       ) : selectedProduct?.item?.digitalType === 'ebook' ? (
-                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8 mt-2'>
                           <p className='text-xs'>E-Book</p>
                           <HiOutlineBookOpen className='ml-2 text-md' />
                         </div>
-                      ) : selectedProduct?.item?.digitalType === 'podcast' ? (
-                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
-                          <p className='text-xs'>Podcast</p>
+                      ) : selectedProduct?.item?.digitalType === 'audio' ? (
+                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8 mt-2'>
+                          <p className='text-xs'>Audio</p>
                           <BsFillMicFill className='ml-2 text-md' />
                         </div>
                       ) : selectedProduct?.item?.digitalType === 'template' ? (
-                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8 mt-2'>
                           <p className='text-xs'>Template</p>
                           <HiOutlineTemplate className='ml-2 text-md' />
                         </div>
                       ) : selectedProduct?.item?.digitalType === 'other' ? (
-                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 mt-2'>
+                        <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8 mt-2'>
                           <p className='text-xs'>Digital Media</p>
                           <MdOutlinePermMedia className='ml-2 text-md' />
                         </div>
                       ) : (
-                        <div className='flex items-center justify-center border-2 border-slate-800  rounded w-5/12 h-8 mt-2'>
-                          <p className='text-xs'>Printables</p>
-                          <MdLocalPrintshop className='ml-2 text-md' />
+                        <div className='flex items-center justify-center border-2 border-slate-800  rounded w-44 h-8 mt-2'>
+                          <p className='text-xs'>Art</p>
+                          <BsPalette className='ml-2 text-md' />
                         </div>
                       )}
 
                       <form>
-                        <div className='w-full flex items-center mt-2'>
-                          <p
-                            className='text-2xl font-medium mr-2'
-                            style={{ color: pageText }}
+                        <div className='w-full flex items-center mt-4'>
+                          <div
+                            className='p-2 rounded border mr-2'
+                            style={{
+                              borderColor: borderColor,
+                              backgroundColor: price,
+                            }}
                           >
-                            $
-                            {selectedProduct?.item?.payChoice
-                              ? `${selectedProduct?.item?.price.toFixed(0)} +`
-                              : selectedProduct?.item?.price.toFixed(0)}
-                          </p>
+                            <p
+                              className='text-xl font-medium mr-2'
+                              style={{ color: pageText }}
+                            >
+                              $
+                              {selectedProduct?.item?.payChoice
+                                ? `${selectedProduct?.item?.price.toFixed(0)} +`
+                                : selectedProduct?.item?.price.toFixed(0)}
+                            </p>
+                          </div>
 
                           <Rating
                             value={selectedProduct?.totalRating}
@@ -172,7 +182,7 @@ const DesignDetail = ({
                             size='medium'
                           />
                           <p
-                            className='ml-2 text-sm'
+                            className='ml-1 text-sm'
                             style={{ color: pageText }}
                           >
                             ({selectedProduct?.reviews?.length})
@@ -187,7 +197,7 @@ const DesignDetail = ({
                                 <div className='flex flex-col w-3/12'>
                                   <input
                                     type='number'
-                                    className='border-2 mr-2 rounded h-8 bg-transparent p-2 outline outline-0 text-md'
+                                    className='border-2 mr-2 rounded h-10 bg-transparent p-2 outline outline-0 text-md'
                                     style={{
                                       borderColor: borderColor,
                                       WebkitAppearance: 'none',
@@ -201,7 +211,7 @@ const DesignDetail = ({
                                 <button
                                   type='button'
                                   disabled
-                                  className='w-9/12 text-md h-8 border-2 border-slate-800 rounded'
+                                  className='w-9/12 text-md h-10 border-2 rounded'
                                   style={{
                                     color: buttonTextColor,
                                     backgroundColor: btnStyle,
@@ -221,7 +231,7 @@ const DesignDetail = ({
                             <button
                               type='button'
                               disabled
-                              className='w-full text-xl h-8 border-2 border-slate-800 rounded'
+                              className='w-full text-md h-10 border-2 rounded'
                               style={{
                                 color: buttonTextColor,
                                 backgroundColor: btnStyle,
@@ -289,45 +299,51 @@ const DesignDetail = ({
                           </p>
                         </div>
                         {selectedProduct?.reviews?.length > 0 ? (
-                          selectedProduct?.reviews.map((review) => (
-                            <div
-                              className='flex flex-col bg-gray-200 p-4 rounded mt-2 relative'
-                              style={{
-                                backgroundColor: reviewBackground,
-                              }}
-                            >
-                              <div className='absolute right-0 mr-2'>
-                                <p
-                                  style={{ color: storefront?.style?.pageText }}
-                                >
-                                  {moment(review?.reviewedOn).format(
-                                    'MMM D, YYYY'
-                                  )}
-                                </p>
-                              </div>
-                              <div className='flex items-center w-72'>
-                                <p
-                                  className='font-medium mr-2'
-                                  style={{ color: storefront?.style?.pageText }}
-                                >
-                                  {review?.name}
-                                </p>
-                                <Rating
-                                  value={review.rating}
-                                  readOnly
-                                  size='small'
-                                  precision={0.5}
-                                />
-                              </div>
-
-                              <p
-                                className='mt-2'
-                                style={{ color: storefront?.style?.pageText }}
+                          <div className='h-96 overflow-y-scroll'>
+                            {selectedProduct?.reviews.map((review) => (
+                              <div
+                                className='flex flex-col bg-gray-200 p-4 rounded mt-2 relative'
+                                style={{
+                                  backgroundColor: reviewBackground,
+                                }}
                               >
-                                {review.review}
-                              </p>
-                            </div>
-                          ))
+                                <div className='absolute right-0 mr-2'>
+                                  <p
+                                    style={{
+                                      color: storefront?.style?.pageText,
+                                    }}
+                                  >
+                                    {moment(review?.reviewedOn).format(
+                                      'MMM D, YYYY'
+                                    )}
+                                  </p>
+                                </div>
+                                <div className='flex items-center w-72'>
+                                  <p
+                                    className='font-medium mr-2'
+                                    style={{
+                                      color: storefront?.style?.pageText,
+                                    }}
+                                  >
+                                    {review?.name}
+                                  </p>
+                                  <Rating
+                                    value={review.rating}
+                                    readOnly
+                                    size='small'
+                                    precision={0.5}
+                                  />
+                                </div>
+
+                                <p
+                                  className='mt-2'
+                                  style={{ color: storefront?.style?.pageText }}
+                                >
+                                  {review.review}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
                         ) : (
                           <div
                             style={{ backgroundColor: reviewBackground }}

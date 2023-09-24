@@ -10,11 +10,11 @@ import {
   MdOutlinePermMedia,
 } from 'react-icons/md';
 import { HiOutlineBookOpen } from 'react-icons/hi';
-import { BsFillMicFill } from 'react-icons/bs';
+import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 
 const MobileDigitalDetail = ({ order }) => {
   return (
-    <div className='w-full'>
+    <div className='w-full mt-20 p-2'>
       <Link
         to='/dashboard/orders'
         className='flex items-center text-gray-400 text-lg hover:text-gray-600 w-full'
@@ -23,21 +23,25 @@ const MobileDigitalDetail = ({ order }) => {
         <BsArrowLeftShort />
         Back to orders
       </Link>
-      <div className='flex flex-col w-full border-b-2 p-2'>
+      <div className='flex flex-col w-ful p-2'>
         <div className='flex flex-col'>
-          <h2 className='text-2xl font-bold'>
-            Viewing order: <span className='font-medium'>{order?._id}</span>
+          <h2 className='text-xl font-medium'>
+            Viewing order: <span className=''>{order?._id}</span>
           </h2>
-          <p>Order placed on {moment(order?.placedOn).format('MMM D, YYYY')}</p>
+          <p>Placed on {moment(order?.placedOn).format('MMM D, YYYY')}</p>
         </div>
       </div>
-      <div className='w-11/12 mx-auto mt-10 border-2 rounded p-2'>
+      <div className='w-full mx-auto mt-4 border rounded p-2 bg-white drop-shadow-md'>
         <div className='w-full flex flex-col items-center mx-auto'>
-          <p className='text-gray-400 font-medium'>Total</p>
-          <p className='font-medium text-stone-800 text-4xl'>${order?.total}</p>
-          <p className='text-gray-400 font-medium mt-4'>Delivered to</p>
-          <p className='text-stone-800 font-medium text-xl'>{order?.email}</p>
-          <p className='text-gray-400 font-medium mt-4'>Type</p>
+          <p className='text-stone-800 font-medium text-sm'>Total</p>
+          <p className='font-medium text-stone-800 text-2xl mt-1'>
+            ${order?.total}
+          </p>
+          <p className='text-stone-800 font-medium mt-4 text-sm'>
+            Delivered to
+          </p>
+          <p className='text-stone-800 font-medium text-lg'>{order?.email}</p>
+          <p className='text-stone-800 font-medium mt-4 mb-2 text-sm'>Type</p>
           {order?.item?.digitalType === 'video' ? (
             <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-10 mt-2'>
               <p>Video Course</p>
@@ -48,9 +52,9 @@ const MobileDigitalDetail = ({ order }) => {
               <p>E-Book</p>
               <HiOutlineBookOpen className='ml-2 text-2xl' />
             </div>
-          ) : order?.item?.digitalType === 'podcast' ? (
+          ) : order?.item?.digitalType === 'audio' ? (
             <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-10'>
-              <p>Podcast</p>
+              <p>Audio</p>
               <BsFillMicFill className='ml-2 text-2xl' />
             </div>
           ) : order?.item?.digitalType === 'other' ? (
@@ -60,12 +64,12 @@ const MobileDigitalDetail = ({ order }) => {
             </div>
           ) : (
             <div className='flex items-center justify-center border-2 border-slate-800  rounded w-5/12 h-10'>
-              <p>Printables</p>
-              <MdLocalPrintshop className='ml-2 text-2xl' />
+              <p>Art</p>
+              <BsPalette className='ml-2 text-2xl' />
             </div>
           )}
-          <p className='text-gray-400 font-medium mt-4'>Title</p>
-          <p className='text-stone-800 font-medium text-2xl'>
+          <p className='text-stone-800 font-medium mt-4 text-sm'>Title</p>
+          <p className='text-stone-800 font-medium text-lg'>
             {order?.item?.title}
           </p>
           <img

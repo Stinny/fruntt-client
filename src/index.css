@@ -1,7 +1,7 @@
 body,
 html {
   margin: 0;
-  font-family: system-ui, -apple-system;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,6 +26,58 @@ html {
 .custom-quill .ql-editor {
   line-height: 1.8 !important; /* Adjust the line height as per your requirement */
   font-size: medium;
+}
+
+/* Your CSS file or inline styles */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Style the "Previous" and "Next" buttons */
+.previous,
+.next {
+  padding: 10px;
+  margin: 5px;
+  background-color: #fff;
+  color: rgb(41 37 36);
+  border: 2px solid rgb(41 37 36);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style the page number buttons */
+.notActivePage {
+  padding: 10px;
+  margin: 5px;
+  background-color: #fff;
+  color: rgb(41 37 36);
+  border: 2px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style the active page button */
+.activePage {
+  padding: 10px;
+  margin: 5px;
+  background-color: rgb(41 37 36);
+  color: #fff;
+  border: 2px solid rgb(41 37 36);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.breakLink {
+  padding: 10px;
+  margin: 5px;
+  background-color: #f0f0f0;
+  color: rgb(41 37 36);
+  border: 2px solid rgb(41 37 36);
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 @tailwind base;

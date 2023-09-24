@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineNotificationsNone } from 'react-icons/md';
-import { FiSettings } from 'react-icons/fi';
+import { FaBars } from 'react-icons/fa6';
 import { CgProfile } from 'react-icons/cg';
 import { IoStorefrontOutline } from 'react-icons/io5';
-import { BiHelpCircle } from 'react-icons/bi';
+import { MdOutlineSell } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import handleLogoutUser from '../utils/logout';
 import Cookies from 'js-cookie';
-import { BsDiscord } from 'react-icons/bs';
+import { BiMoneyWithdraw, BiPackage } from 'react-icons/bi';
 import { isMobile } from 'react-device-detect';
 import MobileNavbar from './MobileNavbar';
 import { useLazyGetStorefrontByIDQuery } from '../api/storefrontApiSlice';
@@ -124,14 +124,19 @@ const Navbar = () => {
             className='h-full flex justify-center items-center'
           >
             <IoStorefrontOutline className='text-stone-800 font-bold' />
-            <p className='font-black text-stone-800 font-sans'>Fruntt</p>
+            <p
+              className='font-black text-stone-800 mt-1'
+              style={{ fontFamily: 'Inter, sans-serif' }}
+            >
+              Fruntt
+            </p>
           </Link>
         </div>
 
         <div className='flex items-center h-full'>
           <Link to='/dashboard/item/digital'>
-            <button className='border-2 font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded w-32 h-10 ml-20 shadow-md bg-white'>
-              + New Product
+            <button className='border-2 font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded p-2 flex items-center'>
+              New Product <BiPackage className='ml-1' />
             </button>
           </Link>
         </div>
@@ -147,7 +152,7 @@ const Navbar = () => {
 
           <MdOutlineNotificationsNone className='text-2xl hover:cursor-pointer' />
 
-          <CgProfile
+          <FaBars
             className='text-2xl hover:cursor-pointer'
             onClick={handleClick}
           />
@@ -226,25 +231,56 @@ const Navbar = () => {
         {/* logo section */}
         <div className='text-2xl h-full flex justify-center items-center'>
           <Link to='/' className='h-full flex justify-center items-center'>
-            <IoStorefrontOutline className='text-slate-800 font-bold' />
-            <p className='font-black font-sans'>Fruntt</p>
+            <IoStorefrontOutline className='text-stone-800 font-bold' />
+            <p
+              className='font-black mt-1'
+              style={{ fontFamily: 'Inter, sans-serif' }}
+            >
+              Fruntt
+            </p>
           </Link>
         </div>
 
         {/* links section */}
         <div className='h-full flex items-center justify-between'>
-          <Link to='/marketplace'>
-            <p className='text-stone-800 text-xl font-medium'>Marketplace</p>
+          {/* <Link to='/marketplace' className='flex items-center'>
+            <p className='text-stone-800 text-xl font-medium'>Buy</p>
+            <MdOutlineSell className='text-2xl txt-stone-800' />
           </Link>
-          <Link to='/signup'>
+          <Link to='/signup' className='flex items-center'>
             <p className='font-medium text-stone-800 text-xl ml-20'>Sell</p>
-          </Link>
+            <BiMoneyWithdraw className='text-2xl text-stone-800' />
+          </Link> */}
 
-          <Link to='/login'>
+          <div className='flex border-2 border-stone-800 rounded p-1'>
+            <Link
+              to='/marketplace'
+              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded'
+            >
+              <p className='font-medium'>Buy</p>
+              <MdOutlineSell className='text-xl' />
+            </Link>
+            <Link
+              to='/signup'
+              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded'
+            >
+              <p className='font-medium'>Sell</p>
+              <BiMoneyWithdraw className='text-xl' />
+            </Link>
+            <Link
+              to='/login'
+              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded'
+            >
+              <p className='font-medium'>Login</p>
+              <IoStorefrontOutline className='text-xl' />
+            </Link>
+          </div>
+
+          {/* <Link to='/login'>
             <button className='border-2 font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded w-20 h-10 ml-20'>
               Login
             </button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </nav>

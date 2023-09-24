@@ -19,7 +19,12 @@ const Footer = () => {
         <div className='h-full flex justify-center items-center text-2xl'>
           <Link to='/' className='h-full flex justify-center items-center'>
             <IoStorefrontOutline className='text-gray-400 font-bold' />
-            <p className='font-black text-gray-400 font-sans'>Fruntt</p>
+            <p
+              className='font-black text-gray-400'
+              style={{ fontFamily: 'Inter, sans-serif' }}
+            >
+              Fruntt
+            </p>
           </Link>
         </div>
 

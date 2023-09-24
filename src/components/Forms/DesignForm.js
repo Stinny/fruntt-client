@@ -32,6 +32,7 @@ const DesignForm = ({ storefront, currentUser }) => {
   const [hideFooter, setHideFooter] = useState(storefront?.style?.hideFooter);
   const [borders, setBorders] = useState(storefront?.style?.borderColor);
   const [header, setHeader] = useState(storefront?.style?.headerColor);
+  const [price, setPrice] = useState(storefront?.style?.price);
   const [faqBackground, setFaqBackground] = useState(
     storefront?.style?.faqBackground
   );
@@ -60,6 +61,7 @@ const DesignForm = ({ storefront, currentUser }) => {
       hideFooter,
       socialIcons,
       borders,
+      price,
       header,
       reviewBackground,
       faqBackground,
@@ -211,17 +213,17 @@ const DesignForm = ({ storefront, currentUser }) => {
             ''
           ) : (
             <div className='w-full flex flex-col p-2 border-b mx-auto'>
-              <p className='text-lg font-medium mb-2'>Questions</p>
+              <p className='text-lg font-medium mb-2'>Price</p>
 
               <HexColorPicker
-                color={faqBackground}
-                onChange={setFaqBackground}
+                color={price}
+                onChange={setPrice}
                 style={{ width: '200px', height: '75px' }}
               />
               <p className='text-gray-400 mr-2'>Hex value:</p>
               <HexColorInput
-                color={faqBackground}
-                onChange={setFaqBackground}
+                color={price}
+                onChange={setPrice}
                 prefixed
                 className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
               />
@@ -278,6 +280,7 @@ const DesignForm = ({ storefront, currentUser }) => {
         {designForm()}
         <DesignPreview
           pageBG={pageBG}
+          price={price}
           cardBG={cardBG}
           navbarBG={navbarBG}
           buttonColor={buttonColor}

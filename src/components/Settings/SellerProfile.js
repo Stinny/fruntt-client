@@ -133,7 +133,7 @@ const SellerProfile = ({ user, refetch }) => {
             Edit seller profile
           </p>
           <p className=' font-medium text-gray-400 mb-4 border-b'>
-            This appears at the top of all your product pages
+            This appears at the top of your storefront
           </p>
           <p className='text-lg font-medium mt-2 mb-2'>About you</p>
 
@@ -277,8 +277,7 @@ const SellerProfile = ({ user, refetch }) => {
             <div className='flex flex-col'>
               <p className='text-xlg font-medium'>Seller profile</p>
               <p className='text-gray-400 mt-1'>
-                Your seller profile appears at the top of all your product pages
-                for customers to see
+                Your seller profile appears at the top of your storefront
               </p>
             </div>
 

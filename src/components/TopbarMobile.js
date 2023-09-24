@@ -1,11 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { AiFillHome } from 'react-icons/ai';
+import { BiPackage, BiMessageSquareDetail } from 'react-icons/bi';
+import { BsPalette, BsBookmarkHeart, BsGear, BsPeople } from 'react-icons/bs';
+import { MdOutlineShoppingCart } from 'react-icons/md';
 
 const TopbarMobile = () => {
   const path = window.location.pathname;
   const activeLink =
-    'text-sm font-medium text-white w-20 rounded-xl bg-stone-800 ml-2';
-  const notActiveLink = 'text-sm w-20 font-medium text-stone-800 ml-2';
+    'text-xs font-medium text-white w-20 h-6 rounded bg-stone-800 ml-2 flex items-center justify-center';
+  const notActiveLink =
+    'text-xs w-20 font-medium text-stone-800 ml-2 flex items-center justify-center';
 
   return (
     <>
@@ -16,6 +21,7 @@ const TopbarMobile = () => {
               autoFocus={path === '/dashboard'}
               className={path === '/dashboard' ? activeLink : notActiveLink}
             >
+              <AiFillHome className='mr-1' />
               Home
             </button>
           </NavLink>
@@ -31,6 +37,7 @@ const TopbarMobile = () => {
                   : notActiveLink
               }
             >
+              <BiPackage className='mr-1' />
               Products
             </button>
           </NavLink>
@@ -62,6 +69,7 @@ const TopbarMobile = () => {
                   : notActiveLink
               }
             >
+              <BsPalette className='mr-1' />
               Design
             </button>
           </NavLink>
@@ -73,6 +81,7 @@ const TopbarMobile = () => {
                 path === '/dashboard/orders' ? activeLink : notActiveLink
               }
             >
+              <MdOutlineShoppingCart classsName='mr-1' />
               Orders
             </button>
           </NavLink>
@@ -84,40 +93,34 @@ const TopbarMobile = () => {
                 path === '/dashboard/reviews' ? activeLink : notActiveLink
               }
             >
+              <BiMessageSquareDetail className='mr-1' />
               Reviews
+            </button>
+          </NavLink>
+
+          <NavLink to='/dashboard/customers'>
+            <button
+              autoFocus={path === '/dashboard/customers'}
+              className={
+                path === '/dashboard/customers' ? activeLink : notActiveLink
+              }
+            >
+              <BsPeople className='mr-1' />
+              Customers
             </button>
           </NavLink>
 
           <NavLink to='/dashboard/library'>
             <button
+              autoFocus={path === '/dashboard/library'}
               className={
                 path === '/dashboard/library' || path === '/dashboard/library'
                   ? activeLink
                   : notActiveLink
               }
             >
+              <BsBookmarkHeart className='mr-1' />
               Library
-            </button>
-          </NavLink>
-
-          {/* <NavLink to='/dashboard/marketing'>
-            <button
-              className={
-                path === '/dashboard/marketing' ? activeLink : notActiveLink
-              }
-            >
-              Marketing
-            </button>
-          </NavLink> */}
-
-          <NavLink to='/dashboard/addons'>
-            <button
-              autoFocus={path === '/dashboard/addons'}
-              className={
-                path === '/dashboard/addons' ? activeLink : notActiveLink
-              }
-            >
-              Add-ons
             </button>
           </NavLink>
 
@@ -128,6 +131,7 @@ const TopbarMobile = () => {
                 path === '/dashboard/config' ? activeLink : notActiveLink
               }
             >
+              <BsGear className='mr-1' />
               Config
             </button>
           </NavLink>

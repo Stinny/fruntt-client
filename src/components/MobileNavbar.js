@@ -93,7 +93,12 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
           <div className='text-2xl h-full flex justify-center items-center'>
             <Link to='/' className='h-full flex justify-center items-center'>
               <IoStorefrontOutline className='text-stone-800 font-bold' />
-              <p className='font-black font-sans'>Fruntt</p>
+              <p
+                className='font-black mt-1'
+                style={{ fontFamily: 'Inter, sans-serif' }}
+              >
+                Fruntt
+              </p>
             </Link>
           </div>
 
@@ -149,8 +154,13 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
         <div className='w-11/12 h-full mx-auto flex justify-between items-center'>
           <div className='text-2xl h-full flex justify-center items-center'>
             <Link to='/' className='h-full flex justify-center items-center'>
-              <IoStorefrontOutline className='text-slate-800 font-bold' />
-              <p className='text-stone-800 font-black font-sans mt-1'>Fruntt</p>
+              <IoStorefrontOutline className='text-stone-800 font-bold' />
+              <p
+                className='text-stone-800 font-black mt-1'
+                style={{ fontFamily: 'Inter, sans-serif' }}
+              >
+                Fruntt
+              </p>
             </Link>
           </div>
 
@@ -172,7 +182,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
             to='/marketplace'
             className='text-2xl font-medium mt-20 border-b-2'
           >
-            Marketplace
+            Buy
           </Link>
           <Link to='/signup' className='text-2xl font-medium mt-20 border-b-2'>
             Sell

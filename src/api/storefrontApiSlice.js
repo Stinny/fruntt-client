@@ -91,6 +91,7 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
         hideFooter,
         borders,
         header,
+        price,
         reviewBackground,
         faqBackground,
       }) => ({
@@ -109,6 +110,7 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
           hideFooter: hideFooter,
           borders: borders,
           header: header,
+          price: price,
           reviewBackground: reviewBackground,
           faqBackground: faqBackground,
         },

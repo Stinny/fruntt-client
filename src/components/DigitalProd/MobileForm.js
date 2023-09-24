@@ -53,7 +53,7 @@ const MobileForm = ({
   return (
     <div className='w-full p-2'>
       <div className='mb-2 p-2'>
-        <h2 className='text-xl font-medium'>Add your digital product</h2>
+        <h2 className='text-xl font-medium'>New digital product</h2>
       </div>
 
       {error && (
@@ -99,9 +99,9 @@ const MobileForm = ({
                     Select product type
                   </option>
                   <option value='video'>Video Course</option>
-                  <option value='printable'>Printables</option>
+                  <option value='art'>Art</option>
                   <option value='ebook'>E-Book</option>
-                  <option value='podcast'>Podcast</option>
+                  <option value='audio'>Audio</option>
                   <option value='template'>Template</option>
                   <option value='other'>Other Digital Media</option>
                 </select>

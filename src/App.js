@@ -14,10 +14,9 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import DashHome from './pages/Dashboard/DashHome';
 import EditItem from './pages/Dashboard/EditItem';
-import Integrations from './pages/Dashboard/Integrations';
 import Orders from './pages/Dashboard/Orders';
 import OrderDetail from './pages/Dashboard/OrderDetail';
-import Customers from './pages/Dashboard/Customers';
+import Reviews from './pages/Dashboard/Reviews';
 import Design from './pages/Dashboard/Design';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
@@ -28,7 +27,6 @@ import FreePlan from './pages/FreePlan';
 import UserHasNoPage from './UserHasNoPage';
 import PaidPlan from './pages/PaidPlan';
 import Item from './pages/Dashboard/Item';
-import AddItem from './pages/Dashboard/AddItem';
 import EditDesign from './pages/Dashboard/EditDesign';
 import ConfirmEmail from './pages/ConfirmEmail';
 import DesignPreview from './pages/DesignPreview';
@@ -46,11 +44,13 @@ import PasswordReset from './pages/PasswordReset';
 import RequestReset from './pages/RequestReset';
 import TwitterAuth from './pages/TwitterAuth';
 import Privacy from './pages/Privacy';
-import NoPage from './pages/NoPage';
+import NoStore from './pages/NoStore';
 import TOS from './pages/TOS';
 import 'normalize.css';
 import { ToastContainer } from 'react-toastify';
 import Marketplace from './pages/Marketplace';
+import Library from './pages/Dashboard/Library';
+import Customers from './pages/Dashboard/Customers';
 
 function App() {
   return (
@@ -83,7 +83,7 @@ function App() {
 
             {/* routes require user to be logged in */}
             <Route element={<RequireAuth />}>
-              <Route path='home' element={<NoPage />} />
+              <Route path='home' element={<NoStore />} />
               <Route element={<UserHasNoPage />}>
                 <Route path='dashboard' element={<DashHome />} />
 
@@ -98,14 +98,14 @@ function App() {
                   element={<OrderDetail />}
                 />
 
-                <Route path='dashboard/reviews' element={<Customers />} />
+                <Route path='dashboard/reviews' element={<Reviews />} />
 
                 <Route
                   path='dashboard/reviews/:reviewId'
                   element={<CustomerDetail />}
                 />
 
-                <Route path='dashboard/addons' element={<Integrations />} />
+                <Route path='dashboard/customers' element={<Customers />} />
 
                 <Route path='dashboard/config' element={<Config />} />
 
@@ -113,14 +113,14 @@ function App() {
 
                 <Route path='dashboard/content' element={<Content />} />
 
+                <Route path='dashboard/library' element={<Library />} />
+
                 <Route path='dashboard/design/edit' element={<EditDesign />} />
 
                 <Route
                   path='dashboard/design/edit/preview'
                   element={<DesignPreview />}
                 />
-
-                <Route path='dashboard/item/add' element={<AddItem />} />
 
                 <Route
                   path='dashboard/item/digital'
