@@ -14,8 +14,8 @@ const Footer = () => {
   return isMobile ? (
     <MobileFooter />
   ) : (
-    <footer className='w-full h-32 border-t-2 mt-10'>
-      <div className='max-w-7xl mx-auto h-full flex justify-between items-center'>
+    <footer className='w-full h-16 border-t-2 flex'>
+      <div className='w-full mx-auto h-full flex justify-between items-center pl-4 pr-4'>
         <div className='h-full flex justify-center items-center text-2xl'>
           <Link to='/' className='h-full flex justify-center items-center'>
             <IoStorefrontOutline className='text-gray-400 font-bold' />

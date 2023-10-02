@@ -58,8 +58,10 @@ const Orders = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-      <div className='max-w-6xl mx-auto h-screen'>{content}</div>
+      <div className='flex'>
+        <Topbar />
+        <div className='w-9/12 mx-auto h-screen p-10 bg-gray-50'>{content}</div>
+      </div>
       <Footer />
     </>
   );

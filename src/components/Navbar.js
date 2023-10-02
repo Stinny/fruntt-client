@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import handleLogoutUser from '../utils/logout';
 import Cookies from 'js-cookie';
 import { BiMoneyWithdraw, BiPackage } from 'react-icons/bi';
+import { VscFeedback } from 'react-icons/vsc';
 import { isMobile } from 'react-device-detect';
 import MobileNavbar from './MobileNavbar';
 import { useLazyGetStorefrontByIDQuery } from '../api/storefrontApiSlice';
@@ -115,8 +116,8 @@ const Navbar = () => {
       handleOpenModal={handleOpenModal}
     />
   ) : currentUser ? (
-    <nav className='w-full h-16 border-b shadow bg-white fixed top-0 left-0 right-0 z-50'>
-      <div className='max-w-7xl h-full mx-auto flex justify-between items-center'>
+    <nav className='w-full h-16 border-b bg-white top-0 left-0 right-0 pr-4 pl-4'>
+      <div className='w-full h-full mx-auto flex justify-between items-center'>
         {/* logo section */}
         <div className='text-2xl h-full flex justify-center items-center'>
           <Link
@@ -133,17 +134,17 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className='flex items-center h-full'>
+        {/* <div className='flex items-center h-full'>
           <Link to='/dashboard/item/digital'>
             <button className='border-2 font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded p-2 flex items-center'>
               New Product <BiPackage className='ml-1' />
             </button>
           </Link>
-        </div>
+        </div> */}
 
         {/* links section */}
-        <div className='h-full flex items-center w-56 justify-between'>
-          <Link to='/feedback'>Give Feedback</Link>
+        <div className='h-full flex items-center justify-between'>
+          {/* <Link to='/feedback'>Give Feedback</Link> */}
 
           {/* <BiHelpCircle
             className='text-2xl hover:cursor-pointer'
@@ -152,9 +153,15 @@ const Navbar = () => {
 
           <MdOutlineNotificationsNone className='text-2xl hover:cursor-pointer' />
 
-          <FaBars
-            className='text-2xl hover:cursor-pointer'
+          {/* <FaBars
+            className='text-2xl hover:cursor-pointer ml-4'
             onClick={handleClick}
+          /> */}
+          <Avatar
+            src={currentUser?.sellerProfile?.picture?.url}
+            onClick={handleClick}
+            sx={{ width: 32, height: 32 }}
+            className='ml-4 hover:cursor-pointer'
           />
           <Menu
             anchorEl={anchorEl}
@@ -207,12 +214,21 @@ const Navbar = () => {
                 Dashboard
               </MenuItem>
             </Link>
+
             <Link to='/settings'>
               <MenuItem>
                 <ListItemIcon>
                   <Settings fontSize='small' />
                 </ListItemIcon>
                 Settings
+              </MenuItem>
+            </Link>
+            <Link to='/feedback'>
+              <MenuItem>
+                <ListItemIcon>
+                  <VscFeedback />
+                </ListItemIcon>
+                Feedback
               </MenuItem>
             </Link>
             <MenuItem onClick={handleLogout}>

@@ -45,8 +45,11 @@ const CoverImage = ({
   } else if (isSuccess) {
     content = coverImage?.url ? (
       <>
-        <p className='text-gray-400 mt-4 mb-1'>Current cover image</p>
-        <img src={coverImage?.url} className='rounded w-10/12' />
+        <p className='text-stone-800 mb-1'>Current cover image</p>
+        <img
+          src={coverImage?.url}
+          className='rounded w-10/12 h-32 object-cover'
+        />
         <button
           type='button'
           onClick={(e) =>

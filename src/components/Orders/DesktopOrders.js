@@ -144,8 +144,10 @@ const DesktopOrders = ({ orders }) => {
     </div>
   ) : (
     <div className='flex flex-col items-center justify-center rounded h-full w-full border bg-white drop-shadow-md mb-20'>
-      <h2 className='text-2xl font-medium mb-4'>You have no orders</h2>
-      <img src={img} className='w-3/12' />
+      <h2 className='text-2xl text-stone-800 font-medium mb-4'>
+        You have no orders
+      </h2>
+
       <p className='text-stone-800 mt-4'>
         Here you will be able view all incoming orders from customers
       </p>

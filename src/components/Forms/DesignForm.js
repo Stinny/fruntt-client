@@ -69,7 +69,7 @@ const DesignForm = ({ storefront, currentUser }) => {
     if (editStylesReq.msg === 'Styles saved') {
       currentUser.store = editStylesReq.store;
       const newUser = JSON.stringify(currentUser);
-      toast.success('Design updated!');
+      toast.success('Design updated!', { style: { color: 'rgb(28 25 23)' } });
       Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
       navigate('/dashboard/design');
     }
@@ -82,7 +82,7 @@ const DesignForm = ({ storefront, currentUser }) => {
   const designForm = () => {
     return (
       <form className='w-3/12 mx-auto'>
-        <div className='p-4 w-full mx-auto scroll-smooth overflow-scroll h-4/6'>
+        <div className='p-4 w-full mx-auto scroll-smooth h-4/6'>
           <div className='w-full flex flex-col p-2 border-b mx-auto'>
             <p className='text-lg font-medium mb-2'>Page</p>
 
@@ -257,7 +257,7 @@ const DesignForm = ({ storefront, currentUser }) => {
 
   return (
     <div className='w-full mx-auto'>
-      <div className='mb-10 flex justify-between items-center border-b-2 p-2'>
+      <div className='mb-10 flex justify-between items-center p-2'>
         <h2 className='text-3xl font-medium'>Design your storefront</h2>
 
         <div className='flex'>

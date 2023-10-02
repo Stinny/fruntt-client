@@ -24,7 +24,7 @@ import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import 'react-quill/dist/quill.bubble.css';
 import ProductsDesktop from './ProductsDesktop';
 
-const Item = () => {
+const Products = () => {
   const currentStoreID = useSelector((state) => state.user.selectedStore);
 
   const {
@@ -58,11 +58,13 @@ const Item = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-      <div className='max-w-6xl mx-auto h-screen mb-32'>{content}</div>
+      <div className='flex'>
+        <Topbar />
+        <div className='w-9/12 mx-auto h-screen bg-gray-50'>{content}</div>
+      </div>
       <Footer />
     </>
   );
 };
 
-export default Item;
+export default Products;

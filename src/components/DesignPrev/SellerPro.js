@@ -181,7 +181,7 @@ const SellerPro = ({
       </div>
     </div>
   ) : (
-    <div className='w-full mx-auto'>
+    <div className='max-w-6xl mx-auto'>
       <div
         className='flex justify-between items-center border rounded mx-auto pl-8 pr-8 p-2 bg-inherit drop-shadow-lg'
         style={{ borderColor: borderColor, backgroundColor: cardBG }}

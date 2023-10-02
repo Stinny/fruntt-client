@@ -11,6 +11,7 @@ import Alert from '@mui/material/Alert';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FeedbackMobile from './Mobile/FeedbackMobile';
+import Topbar from '../components/Topbar';
 
 const Feedback = () => {
   const [content, setContent] = useState('');
@@ -53,85 +54,82 @@ const Feedback = () => {
   return (
     <>
       <Navbar />
-      {isMobile ? (
-        <FeedbackMobile handleAddFeedBack={handleAddFeedBack} />
-      ) : (
-        <div className='max-w-7xl mx-auto mt-20 h-screen'>
-          <div className='p-2 border-b-2 flex justify-between items-center'>
-            <div className='flex flex-col'>
-              <p className='font-medium text-3xl text-slate-800'>
-                Leave feedback
-              </p>
-              <p className='font-medium text-gray-400'>
-                We greatly appreaciate and encourage feedback!
-              </p>
+      <div className='flex'>
+        <Topbar />
+        {isMobile ? (
+          <FeedbackMobile handleAddFeedBack={handleAddFeedBack} />
+        ) : (
+          <div className='w-9/12 mx-auto h-screen p-10 bg-gray-50'>
+            <div className='flex justify-between items-center'>
+              <div className='flex flex-col'>
+                <p className='font-medium text-3xl text-slate-800'>
+                  Leave feedback
+                </p>
+                <p className='font-medium text-stone-800'>
+                  We listen closely to all feedback!
+                </p>
+              </div>
             </div>
 
-            <Link
-              to='/dashboard'
-              className='flex items-center text-gray-400 hover:text-gray-600 text-lg'
+            {msg && (
+              <Alert severity='info' className='w-full mt-4 mb-4 mx-auto'>
+                {msg}
+              </Alert>
+            )}
+            {error && (
+              <Alert severity='error' className='w-full mt-4 mb-4 mx-auto'>
+                {error}
+              </Alert>
+            )}
+            <form
+              className='flex flex-col w-full mx-auto border rounded bg-white p-2 drop-shadow-md mt-2'
+              onSubmit={handleAddFeedBack}
             >
-              Back to dashboard
-              <BsArrowRightShort />
-            </Link>
+              <p className='font-medium mb-2 text-gray-400'>
+                Leave feedback on:
+              </p>
+              <select
+                className='w-6/12 h-10 border rounded p-2'
+                onChange={(e) => setType(e.target.value)}
+              >
+                <option disabled selected>
+                  Select feedback type
+                </option>
+                <option value='design'>Designing your store</option>
+                <option value='orders'>Orders</option>
+                <option value='customers'>Reviews</option>
+                <option value='feature'>Request a feature</option>
+                <option value='pricing'>Pricing</option>
+                <option value='other'>Other</option>
+              </select>
+
+              <textarea
+                className='h-32 w-full border-2 rounded p-2 mt-2 outline outline-0 focus:border-gray-400'
+                placeholder='Enter feedback...'
+                onChange={(e) => setContent(e.target.value)}
+                value={content}
+              />
+
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={allowContact}
+                    onChange={(e) => setAllowContact(e.target.checked)}
+                  />
+                }
+                label='Allow us to contact you'
+              />
+
+              <button
+                type='submit'
+                className='w-full h-14 border-2 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 rounded mt-4'
+              >
+                Submit feedback
+              </button>
+            </form>
           </div>
-
-          {msg && (
-            <Alert severity='info' className='w-9/12 mt-4 mb-4 mx-auto'>
-              {msg}
-            </Alert>
-          )}
-          {error && (
-            <Alert severity='error' className='w-9/12 mt-4 mb-4 mx-auto'>
-              {error}
-            </Alert>
-          )}
-          <form
-            className='flex flex-col w-9/12 mx-auto border rounded bg-white p-2 drop-shadow-md mt-10'
-            onSubmit={handleAddFeedBack}
-          >
-            <p className='font-medium mb-2 text-gray-400'>Leave feedback on:</p>
-            <select
-              className='w-6/12 h-10 border rounded p-2'
-              onChange={(e) => setType(e.target.value)}
-            >
-              <option disabled selected>
-                Select feedback type
-              </option>
-              <option value='design'>Designing your product page</option>
-              <option value='orders'>Order management</option>
-              <option value='customers'>Review management</option>
-              <option value='feature'>Request a feature</option>
-              <option value='pricing'>Pricing</option>
-              <option value='other'>Other</option>
-            </select>
-
-            <textarea
-              className='h-32 w-full border-2 rounded p-2 mt-2 outline outline-0 focus:border-gray-400'
-              placeholder='Enter feedback...'
-              onChange={(e) => setContent(e.target.value)}
-              value={content}
-            />
-
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={allowContact}
-                  onChange={(e) => setAllowContact(e.target.checked)}
-                />
-              }
-              label='Allow us to contact you'
-            />
-
-            <button
-              type='submit'
-              className='w-full h-14 border-2 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 rounded mt-4'
-            >
-              Submit feedback
-            </button>
-          </form>
-        </div>
-      )}
+        )}
+      </div>
       <Footer />
     </>
   );

@@ -8,6 +8,7 @@ import {
   AiOutlineTwitter,
   AiOutlineLinkedin,
   AiOutlineLink,
+  AiOutlineEdit,
 } from 'react-icons/ai';
 import { FaTiktok } from 'react-icons/fa';
 import { uploadImageRequest } from '../../api/requests';
@@ -78,7 +79,9 @@ const SellerProfile = ({ user, refetch }) => {
       }).unwrap();
 
       if (updateProfileReq === 'Profile updated') {
-        toast.success('Profile updated!');
+        toast.success('Profile saved!', {
+          style: { color: 'rgb(28 25 23)' },
+        });
         refetch();
         closeModal();
       } else {
@@ -132,7 +135,7 @@ const SellerProfile = ({ user, refetch }) => {
           <p className='text-xl font-medium text-slate-800'>
             Edit seller profile
           </p>
-          <p className=' font-medium text-gray-400 mb-4 border-b'>
+          <p className=' font-medium text-stone-800 mb-4'>
             This appears at the top of your storefront
           </p>
           <p className='text-lg font-medium mt-2 mb-2'>About you</p>
@@ -253,7 +256,7 @@ const SellerProfile = ({ user, refetch }) => {
           </button>
           <button
             type='submit'
-            className='w-full h-14 border-2 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 rounded mt-4'
+            className='w-full h-14 border-2 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 rounded mt-4'
           >
             Save
           </button>
@@ -273,20 +276,18 @@ const SellerProfile = ({ user, refetch }) => {
             </button>
           </div>
         ) : (
-          <div className='flex justify-between items-center w-full border-b p-2'>
-            <div className='flex flex-col'>
-              <p className='text-xlg font-medium'>Seller profile</p>
-              <p className='text-gray-400 mt-1'>
-                Your seller profile appears at the top of your storefront
-              </p>
-            </div>
-
-            <button
+          <div className='flex justify-between items-center w-full'>
+            {/* <button
               className='border-2 h-8 rounded w-20 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
               onClick={openModal}
             >
               Edit
-            </button>
+            </button> */}
+            <p className='text-xl font-medium text-slate-800'>Seller profile</p>
+            <AiOutlineEdit
+              onClick={openModal}
+              className='text-stone-800 text-xl'
+            />
           </div>
         )}
 
@@ -295,7 +296,7 @@ const SellerProfile = ({ user, refetch }) => {
             <div className='max-w-6xl flex flex-col mx-auto'>
               <div className='flex justify-between mt-2'>
                 <Avatar
-                  sx={{ width: 62, height: 62 }}
+                  sx={{ width: 45, height: 45 }}
                   src={user?.sellerProfile?.picture?.url}
                   className='border border-stone-800'
                 />
@@ -379,15 +380,17 @@ const SellerProfile = ({ user, refetch }) => {
             </div>
           </div>
         ) : (
-          <div className='w-full mx-auto'>
-            <div className='max-w-6xl flex justify-between mx-auto p-8'>
-              <Avatar
-                sx={{ width: 62, height: 62 }}
-                src={user?.sellerProfile?.picture?.url}
-                className='border border-stone-800'
-              />
+          <div className='w-full mx-auto mt-2'>
+            <div className='w-full flex justify-between items-center mx-auto'>
+              <div className='w-2/12 flex items-center justify-center'>
+                <Avatar
+                  sx={{ width: 45, height: 45 }}
+                  src={user?.sellerProfile?.picture?.url}
+                  className='border border-stone-800'
+                />
+              </div>
 
-              <div className='flex flex-col w-96'>
+              <div className='flex flex-col w-5/12'>
                 <p className='text-2xl font-medium'>
                   {user?.name ? user?.name : '{Your Name}'}
                 </p>
@@ -399,62 +402,62 @@ const SellerProfile = ({ user, refetch }) => {
                 </p>
               </div>
 
-              <div className='flex flex-col items-center'>
-                <p className='font-medium text-4xl'>
+              <div className='flex flex-col items-center w-1/12'>
+                <p className='font-medium text-3xl'>
                   {user?.sellerProfile?.numberOfSales}
                 </p>
                 <p>sales</p>
               </div>
 
-              <div className='flex items-center'>
+              <div className='flex items-center w-4/12 ml-6'>
                 {user?.sellerProfile?.facebook ? (
                   <a href={user?.sellerProfile?.facebook} target='_blank'>
-                    <AiOutlineFacebook className='text-stone-800 text-3xl' />
+                    <AiOutlineFacebook className='text-stone-800 text-2xl' />
                   </a>
                 ) : (
-                  <AiOutlineFacebook className='text-gray-200 text-3xl' />
+                  <AiOutlineFacebook className='text-gray-200 text-2xl' />
                 )}
                 {user?.sellerProfile?.instagram ? (
                   <a href={user?.sellerProfile?.instagram} target='_blank'>
-                    <AiOutlineInstagram className='text-stone-800 ml-2 text-3xl' />
+                    <AiOutlineInstagram className='text-stone-800 ml-2 text-2xl' />
                   </a>
                 ) : (
-                  <AiOutlineInstagram className='text-gray-200 ml-2 text-3xl' />
+                  <AiOutlineInstagram className='text-gray-200 ml-2 text-2xl' />
                 )}
                 {user?.sellerProfile?.twitter ? (
                   <a href={user?.sellerProfile?.twitter} target='_blank'>
-                    <AiOutlineTwitter className='text-stone-800 ml-2 text-3xl' />
+                    <AiOutlineTwitter className='text-stone-800 ml-2 text-2xl' />
                   </a>
                 ) : (
-                  <AiOutlineTwitter className='text-gray-200 ml-2 text-3xl' />
+                  <AiOutlineTwitter className='text-gray-200 ml-2 text-2xl' />
                 )}
                 {user?.sellerProfile?.linkedin ? (
                   <a href={user?.sellerProfile?.linkedin} target='_blank'>
-                    <AiOutlineLinkedin className='text-stone-800 ml-2 text-3xl' />
+                    <AiOutlineLinkedin className='text-stone-800 ml-2 text-2xl' />
                   </a>
                 ) : (
-                  <AiOutlineLinkedin className='text-gray-200 ml-2 text-3xl' />
+                  <AiOutlineLinkedin className='text-gray-200 ml-2 text-2xl' />
                 )}
                 {user?.sellerProfile?.youtube ? (
                   <a href={user?.sellerProfile?.youtube} target='_blank'>
-                    <AiOutlineYoutube className='text-stone-800 ml-2 text-3xl' />
+                    <AiOutlineYoutube className='text-stone-800 ml-2 text-2xl' />
                   </a>
                 ) : (
-                  <AiOutlineYoutube className='text-gray-200 ml-2 text-3xl' />
+                  <AiOutlineYoutube className='text-gray-200 ml-2 text-2xl' />
                 )}
                 {user?.sellerProfile?.tiktok ? (
                   <a href={user?.sellerProfile?.tiktok} target='_blank'>
-                    <FaTiktok className='text-stone-800 ml-2 text-3xl' />
+                    <FaTiktok className='text-stone-800 ml-2 text-2xl' />
                   </a>
                 ) : (
-                  <FaTiktok className='text-gray-200 ml-2 text-3xl' />
+                  <FaTiktok className='text-gray-200 ml-2 text-2xl' />
                 )}
                 {user?.sellerProfile?.link ? (
                   <a href={user?.sellerProfile?.tiktok} target='_blank'>
-                    <AiOutlineLink className='text-stone-800 ml-2 text-3xl' />
+                    <AiOutlineLink className='text-stone-800 ml-2 text-2xl' />
                   </a>
                 ) : (
-                  <AiOutlineLink className='text-gray-200 ml-2 text-3xl' />
+                  <AiOutlineLink className='text-gray-200 ml-2 text-2xl' />
                 )}
               </div>
             </div>

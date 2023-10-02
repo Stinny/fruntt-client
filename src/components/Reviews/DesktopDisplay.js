@@ -11,7 +11,7 @@ const DesktopDisplay = ({ reviews }) => {
   const itemsPerPage = 5;
 
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+
   const currentItems = reviews.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(reviews.length / itemsPerPage);
 

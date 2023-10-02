@@ -4,6 +4,7 @@ html {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(249 250 251);
 }
 
 @layer base {
@@ -41,7 +42,7 @@ html {
 .next {
   padding: 10px;
   margin: 5px;
-  background-color: #fff;
+  background-color: transparent;
   color: rgb(41 37 36);
   border: 2px solid rgb(41 37 36);
   border-radius: 5px;
@@ -52,7 +53,7 @@ html {
 .notActivePage {
   padding: 10px;
   margin: 5px;
-  background-color: #fff;
+  background-color: transparent;
   color: rgb(41 37 36);
   border: 2px solid #000;
   border-radius: 5px;
@@ -73,11 +74,16 @@ html {
 .breakLink {
   padding: 10px;
   margin: 5px;
-  background-color: #f0f0f0;
+  background-color: transparent;
   color: rgb(41 37 36);
   border: 2px solid rgb(41 37 36);
   border-radius: 5px;
   cursor: pointer;
+}
+
+.custom-toast {
+  color: black; /* Set the text color to black */
+  /* Add any additional styles you want */
 }
 
 @tailwind base;

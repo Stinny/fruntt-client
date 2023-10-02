@@ -175,52 +175,54 @@ const Design = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-      {isMobile ? (
-        <div className='w-full mx-auto h-fit'>
-          <div className='flex justify-between items-center p-2'>
-            <div className='flex flex-col'>
-              <h2 className='text-2xl font-medium'>Storefront design</h2>
-              <p>
-                Page last designed on{' '}
-                {moment(storefront?.lastEdited).format('MMM D, YYYY')}
-              </p>
+      <div className='flex'>
+        <Topbar />
+        {isMobile ? (
+          <div className='w-full mx-auto'>
+            <div className='flex justify-between items-center p-2'>
+              <div className='flex flex-col'>
+                <h2 className='text-2xl font-medium'>Storefront design</h2>
+                <p>
+                  Page last designed on{' '}
+                  {moment(storefront?.lastEdited).format('MMM D, YYYY')}
+                </p>
+              </div>
+              <Link to='/dashboard/design/edit'>
+                <button className='w-20 text-sm h-10 rounded border-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
+                  EDIT
+                </button>
+              </Link>
             </div>
-            <Link to='/dashboard/design/edit'>
-              <button className='w-20 text-sm h-10 rounded border-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
-                EDIT
-              </button>
-            </Link>
+            {content}
           </div>
-          {content}
-        </div>
-      ) : (
-        <div className='max-w-6xl mx-auto'>
-          <div className='flex justify-between items-center p-2'>
-            <div className='flex flex-col'>
-              <h2 className='text-3xl font-medium'>Storefront design</h2>
-              <p className='mt-2'>
-                Last designed on{' '}
-                {moment(storefront?.lastEdited).format('MMM D, YYYY')}
-              </p>
+        ) : (
+          <div className='w-9/12 mx-auto p-10 h-screen overflow-y-scroll bg-gray-50'>
+            <div className='flex justify-between items-center p-2'>
+              <div className='flex flex-col'>
+                <h2 className='text-3xl font-medium'>Storefront design</h2>
+                <p className='mt-2'>
+                  Last designed on{' '}
+                  {moment(storefront?.lastEdited).format('MMM D, YYYY')}
+                </p>
+              </div>
+              <a
+                href={storefront?.url}
+                target='_blank'
+                className='flex items-center mt-6'
+              >
+                <p className='font-medium text-xl'>Live storefront</p>
+                <BsArrowRightShort className='text-2xl font-medium' />
+              </a>
+              <Link to='/dashboard/design/edit'>
+                <button className='w-40 h-10 rounded border-stone-800 border-2 hover:bg-stone-800 hover:text-white'>
+                  EDIT
+                </button>
+              </Link>
             </div>
-            <a
-              href={storefront?.url}
-              target='_blank'
-              className='flex items-center mt-6'
-            >
-              <p className='font-medium text-xl'>View your storefront</p>
-              <BsArrowRightShort className='text-2xl font-medium' />
-            </a>
-            <Link to='/dashboard/design/edit'>
-              <button className='w-40 h-10 rounded border-stone-800 border-2 hover:bg-stone-800 hover:text-white'>
-                EDIT
-              </button>
-            </Link>
+            {content}
           </div>
-          {content}
-        </div>
-      )}
+        )}
+      </div>
       <Footer />
     </>
   );

@@ -34,7 +34,7 @@ const Email = () => {
   }, [email]);
 
   return (
-    <div className='max-w-7xl mx-auto flex flex-col items-center'>
+    <div className='max-w-7xl mx-auto flex flex-col items-center mb-16'>
       <p className='font-medium text-slate-800 text-2xl'>
         Stay connected with us!
       </p>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SellerPro from './SellerPro';
 import {
   MdOutlineVideoLibrary,
@@ -7,6 +7,7 @@ import {
 } from 'react-icons/md';
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill, BsPalette } from 'react-icons/bs';
+import ReactPaginate from 'react-paginate';
 
 //mui
 import Rating from '@mui/material/Rating';
@@ -29,6 +30,19 @@ const HomeDetail = ({
   selectedProduct,
   handleSelectedProduct,
 }) => {
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 6;
+
+  const endOffset = itemOffset + itemsPerPage;
+
+  const currentProducts = products.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(products.length / itemsPerPage);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % products.length;
+
+    setItemOffset(newOffset);
+  };
   return (
     <div
       className='w-full h-fit mx-auto border p-10 rounded mt-1 drop-shadow-lg'
@@ -61,7 +75,7 @@ const HomeDetail = ({
       </div>
 
       <div className='mx-auto max-w-6xl grid grid-cols-3 gap-4'>
-        {products.map((product) => (
+        {currentProducts.map((product) => (
           <div
             className='border drop-shadow-lg flex w-full mb-4 rounded relative h-96'
             style={{
@@ -140,90 +154,25 @@ const HomeDetail = ({
                 size='medium'
               />
             </div>
-
-            {/* <div className='w-3/12 flex items-center justify-center p-4'>
-            <img className='rounded' src={product?.item?.coverImage?.url} />
-          </div> */}
           </div>
-          // <div
-          //   className='border drop-shadow-lg flex w-full mb-4 rounded relative'
-          //   style={{
-          //     backgroundColor: cardBG,
-          //     borderColor: borderColor,
-          //   }}
-          // >
-          //   <div className='absolute top-0 right-0 mr-2 mt-2'>
-          //     <Rating
-          //       value={product?.totalRating}
-          //       readOnly
-          //       precision={0.5}
-          //       size='large'
-          //     />
-          //   </div>
-
-          //   <div
-          //     className='absolute bottom-0 right-0 font-medium text-2xl border-l border-t rounded-tl p-2'
-          //     style={{ borderColor: borderColor, backgroundColor: price }}
-          //   >
-          //     <p className='font-medium text-3xl'>
-          //       $
-          //       {product?.item?.payChoice
-          //         ? `${product?.item?.price?.toLocaleString('en-US', {
-          //             minimumFractionDigits: 0,
-          //             maximumFractionDigits: 0,
-          //           })} +`
-          //         : product?.item?.price?.toLocaleString('en-US', {
-          //             minimumFractionDigits: 0,
-          //             maximumFractionDigits: 0,
-          //           })}
-          //     </p>
-          //   </div>
-          //   <div className='w-3/12 flex items-center justify-center p-4'>
-          //     <img className='rounded' src={product?.item?.coverImage?.url} />
-          //   </div>
-
-          //   <div className='w-9/12 flex-col p-4'>
-          //     <p className='font-medium text-2xl mb-4'>
-          //       {product?.item?.title}
-          //     </p>
-          //     <p className='font-medium text-xl mb-4'>
-          //       {product?.item?.description}
-          //     </p>
-
-          //     {product?.item?.digitalType === 'video' ? (
-          //       <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-10'>
-          //         <p>Video Course</p>
-          //         <MdOutlineVideoLibrary className='ml-2 text-2xl' />
-          //       </div>
-          //     ) : product?.item?.digitalType === 'ebook' ? (
-          //       <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-10'>
-          //         <p>E-Book</p>
-          //         <HiOutlineBookOpen className='ml-2 text-2xl' />
-          //       </div>
-          //     ) : product?.item?.digitalType === 'audio' ? (
-          //       <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-10'>
-          //         <p>Audio</p>
-          //         <BsFillMicFill className='ml-2 text-2xl' />
-          //       </div>
-          //     ) : product?.item?.digitalType === 'other' ? (
-          //       <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-10'>
-          //         <p>Digital Media</p>
-          //         <MdOutlinePermMedia className='ml-2 text-2xl' />
-          //       </div>
-          //     ) : product?.item?.digitalType === 'template' ? (
-          //       <div className='flex items-center justify-center border-2 border-stone-800 rounded w-44 h-8 mt-2'>
-          //         <p>Template</p>
-          //         <HiOutlineTemplate className='ml-2 text-2xl' />
-          //       </div>
-          //     ) : (
-          //       <div className='flex items-center justify-center border-2 border-slate-800  rounded w-44 h-10'>
-          //         <p>Art</p>
-          //         <BsPalette className='ml-2 text-2xl' />
-          //       </div>
-          //     )}
-          //   </div>
-          // </div>
         ))}
+      </div>
+      <div className='max-w-6xl flex justify-end mx-auto mt-2'>
+        <div className=''>
+          <ReactPaginate
+            breakLabel='...'
+            nextLabel='Next'
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            pageCount={pageCount}
+            previousLabel='Prev'
+            renderOnZeroPageCount={null}
+            className='flex items-center'
+            activeLinkClassName='activePage'
+            pageLinkClassName='notActivePage'
+            breakLinkClassName='breakLink'
+          />
+        </div>
       </div>
     </div>
   );

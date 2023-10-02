@@ -9,6 +9,7 @@ import Modal from 'react-modal';
 import { isMobile } from 'react-device-detect';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Select from 'react-select';
 
 //filepond
 import { FilePond } from 'react-filepond';
@@ -54,9 +55,35 @@ const EditDesktop = ({
   setInfo,
   url,
   setUrl,
+  free,
+  setFree,
+  handleType,
+  handleAction,
 }) => {
   const customQuillClass = 'custom-quill';
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
+
+  const typeOptions = [
+    { value: 'video', label: 'Course' },
+    { value: 'art', label: 'Art' },
+    { value: 'ebook', label: 'E-Book' },
+    { value: 'template', label: 'Template' },
+    { value: 'other', label: 'Other digital media' },
+  ];
+
+  const actionOptions = [
+    { value: 'buy', label: 'Buy Now' },
+    { value: 'want', label: 'I want this!' },
+    { value: 'get', label: 'Get Now' },
+  ];
+
+  const formattedTypeValue = typeOptions.find(
+    (option) => option.value === digitalType
+  );
+
+  const formattedActionValue = actionOptions.find(
+    (option) => option.value === callToAction
+  );
 
   const modalStyles = isMobile
     ? {
@@ -133,7 +160,7 @@ const EditDesktop = ({
         </div>
       </Modal>
       <div className='w-full'>
-        <div className='mb-4 flex justify-between p-2'>
+        <div className='mb-1 flex justify-between p-2'>
           <h2 className='text-3xl font-medium'>Edit your digital product</h2>
 
           <FormControlLabel
@@ -196,8 +223,31 @@ const EditDesktop = ({
               </div>
               <div className='flex justify-between w-full mt-2'>
                 <div className='flex flex-col w-6/12'>
-                  <p className='text-gray-400'>Type</p>
-                  <select
+                  <p className='text-stone-800'>Type</p>
+                  <Select
+                    options={typeOptions}
+                    onChange={handleType}
+                    value={formattedTypeValue}
+                    menuPortalTarget={document.body}
+                    menuPosition={'fixed'}
+                    isSearchable={false}
+                    styles={{
+                      control: (baseStyles, state) => ({
+                        ...baseStyles,
+                        borderColor: 'rgb(229 231 235)',
+                        borderWidth: 2,
+                        '&:hover': {
+                          borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                        },
+                        boxShadow: 'none',
+                        zIndex: 99999,
+                        position: 'relative',
+                      }),
+                      menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+                    }}
+                    className='mt-1'
+                  />
+                  {/* <select
                     onChange={(e) => setDigitalType(e.target.value)}
                     className='w-full h-14 rounded p-2 mt-1'
                     value={digitalType}
@@ -208,9 +258,9 @@ const EditDesktop = ({
                     <option value='audio'>Audio</option>
                     <option value='template'>Template</option>
                     <option value='other'>Other Digital Media</option>
-                  </select>
+                  </select> */}
 
-                  <p className='text-gray-400 mt-4'>Title</p>
+                  <p className='text-stone-800 mt-2'>Title</p>
                   <input
                     type='text'
                     className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
@@ -222,7 +272,7 @@ const EditDesktop = ({
                     <p className='text-sm text-gray-400'>{title.length}/50</p>
                   </div>
 
-                  <p className='text-gray-400 mt-4'>Summary (optional)</p>
+                  <p className='text-stone-800 mt-2'>Summary (optional)</p>
                   <textarea
                     type='text'
                     className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
@@ -236,7 +286,7 @@ const EditDesktop = ({
                     </p>
                   </div>
 
-                  <p className='text-gray-400 mt-4'>Price</p>
+                  <p className='text-stone-800 mt-2'>Price</p>
                   <div className='flex items-center'>
                     <div className='mr-4'>
                       <p className='text-xl font-medium'>$</p>
@@ -250,21 +300,41 @@ const EditDesktop = ({
                       onChange={(e) => setPrice(e.target.value)}
                     />
                   </div>
-                  <FormControlLabel
-                    label='Let customers pay what they want'
-                    control={
-                      <Switch
-                        checked={payChoice}
-                        onChange={(e) => setPayChoice(e.target.checked)}
-                      />
-                    }
-                    className='mt-2'
-                  />
+
+                  {payChoice ? (
+                    ''
+                  ) : (
+                    <FormControlLabel
+                      label='Free product'
+                      control={
+                        <Switch
+                          checked={free}
+                          onChange={(e) => setFree(e.target.checked)}
+                        />
+                      }
+                      className='mt-2'
+                    />
+                  )}
+
+                  {free ? (
+                    ''
+                  ) : (
+                    <FormControlLabel
+                      label='Let customers pay what they want'
+                      control={
+                        <Switch
+                          checked={payChoice}
+                          onChange={(e) => setPayChoice(e.target.checked)}
+                        />
+                      }
+                      className='mt-2'
+                    />
+                  )}
 
                   {payChoice ? (
                     <div className='flex items-center'>
                       <div className='flex flex-col w-6/12'>
-                        <p className='text-gray-400'>Minimum price</p>
+                        <p className='text-stone-800'>Minimum price</p>
                         <div className='flex items-center w-full mt-1'>
                           <div className='w-1/12'>
                             <p className='text-xl font-medium'>$</p>
@@ -284,7 +354,7 @@ const EditDesktop = ({
                         </div>
                       </div>
                       <div className='flex flex-col w-6/12 ml-2'>
-                        <p className='text-gray-400'>
+                        <p className='text-stone-800'>
                           Suggested price/placeholder
                         </p>
                         <div className='flex items-center w-full mt-1'>
@@ -292,7 +362,7 @@ const EditDesktop = ({
                             <p className='text-xl font-medium'>$</p>
                           </div>
                           <input
-                            className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                             onChange={(e) => setSuggestedPrice(e.target.value)}
                             placeholder='$9+'
                             value={suggestedPrice}
@@ -313,8 +383,31 @@ const EditDesktop = ({
                     setImage={setImage}
                     refetchProduct={refetchProduct}
                   />
-                  <p className='text-gray-400 mt-2'>Call to action</p>
-                  <select
+                  <p className='text-stone-800 mt-2'>Call to action</p>
+                  <Select
+                    options={actionOptions}
+                    onChange={handleAction}
+                    value={formattedActionValue}
+                    menuPortalTarget={document.body}
+                    menuPosition={'fixed'}
+                    isSearchable={false}
+                    styles={{
+                      control: (baseStyles, state) => ({
+                        ...baseStyles,
+                        borderColor: 'rgb(229 231 235)',
+                        borderWidth: 2,
+                        '&:hover': {
+                          borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                        },
+                        boxShadow: 'none',
+                        zIndex: 99999,
+                        position: 'relative',
+                      }),
+                      menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+                    }}
+                    className='mt-1'
+                  />
+                  {/* <select
                     onChange={(e) => setCallToAction(e.target.value)}
                     className='w-full h-14 rounded p-2 mt-1'
                     value={callToAction}
@@ -322,9 +415,9 @@ const EditDesktop = ({
                     <option value='buy'>Buy Now</option>
                     <option value='want'>I want this!</option>
                     <option value='get'>Get Now</option>
-                  </select>
+                  </select> */}
 
-                  <p className='text-gray-400 mt-2'>URL</p>
+                  <p className='text-stone-800 mt-2'>URL</p>
                   <div className='flex items-center border-2 p-2 rounded border-gray-200 hover:border-gray-300 mt-1'>
                     <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
                     <input
@@ -336,26 +429,13 @@ const EditDesktop = ({
                   </div>
                 </div>
               </div>
-              <p className='text-gray-400 mt-2'>Description</p>
+              <p className='text-stone-800 mt-2'>Description</p>
               <ReactQuill
                 value={info}
                 onChange={setInfo}
                 className='h-72 mt-1'
                 placeholder='Start typing description here...'
               />
-              {/* <button
-                type='submit'
-                className='border-2 rounded h-14 w-full text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white mt-4'
-              >
-                SAVE
-              </button>
-              <button
-                type='button'
-                onClick={handleDelete}
-                className='border-2 rounded h-8 w-full text-red-400 border-red-400 hover:bg-red-400 hover:text-white mt-2'
-              >
-                DELETE
-              </button> */}
             </form>
           </TabPanel>
 
@@ -377,7 +457,7 @@ const EditDesktop = ({
                   </button>
                 </Tooltip>
               </div>
-              <p className='text-gray-400 font-medium mb-4'>
+              <p className='text-stone-800 font-medium mb-4'>
                 Add any files and content you want to include in your digital
                 purchase. A download link will be sent to customers
                 automatically after a purchase.

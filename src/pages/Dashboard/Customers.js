@@ -36,8 +36,10 @@ const Customers = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-      <div className='h-screen'>{content}</div>
+      <div className='flex'>
+        <Topbar />
+        <div className='h-screen w-9/12 p-10 bg-gray-50'>{content}</div>
+      </div>
       <Footer />
     </>
   );

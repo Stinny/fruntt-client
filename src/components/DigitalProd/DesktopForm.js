@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Select from 'react-select';
 
 //mui
 import Tooltip from '@mui/material/Tooltip';
@@ -48,11 +49,29 @@ const DesktopForm = ({
   url,
   setUrl,
   addingProduct,
+  setFree,
+  free,
+  handleType,
+  handleAction,
 }) => {
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
+  const typeOptions = [
+    { value: 'video', label: 'Course' },
+    { value: 'art', label: 'Art' },
+    { value: 'ebook', label: 'E-Book' },
+    { value: 'template', label: 'Template' },
+    { value: 'other', label: 'Other digital media' },
+  ];
+
+  const actionOptions = [
+    { value: 'buy', label: 'Buy Now' },
+    { value: 'want', label: 'I want this!' },
+    { value: 'get', label: 'Get Now' },
+  ];
+
   return (
-    <div className='w-full'>
+    <div className='w-full p-4'>
       <div className='flex justify-between'>
         <h2 className='text-3xl font-medium'>New digital product</h2>
         <FormControlLabel
@@ -121,8 +140,31 @@ const DesktopForm = ({
             </div>
             <div className='flex items-center justify-between w-full mt-2'>
               <div className='flex flex-col w-6/12'>
-                <p className='text-gray-400'>Product Type</p>
-                <select
+                <p className='text-stone-800'>Type</p>
+                <Select
+                  options={typeOptions}
+                  onChange={handleType}
+                  placeholder='Product type'
+                  menuPortalTarget={document.body}
+                  menuPosition={'fixed'}
+                  isSearchable={false}
+                  styles={{
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderColor: 'rgb(229 231 235)',
+                      borderWidth: 2,
+                      '&:hover': {
+                        borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                      },
+                      boxShadow: 'none',
+                      zIndex: 99999,
+                      position: 'relative',
+                    }),
+                    menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+                  }}
+                  className='mt-1'
+                />
+                {/* <select
                   onChange={(e) => setDigitalType(e.target.value)}
                   className='w-full h-14 rounded p-2 mt-1'
                   value={digitalType}
@@ -136,8 +178,8 @@ const DesktopForm = ({
                   <option value='audio'>Audio</option>
                   <option value='template'>Template</option>
                   <option value='other'>Other Digital Media</option>
-                </select>
-                <p className='text-gray-400 mt-4'>Title</p>
+                </select> */}
+                <p className='text-stone-800 mt-4'>Title</p>
                 <input
                   type='text'
                   className='border-2 border-gray-200 hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
@@ -150,7 +192,7 @@ const DesktopForm = ({
                   <p className='text-sm text-gray-400'>{title.length}/50</p>
                 </div>
 
-                <p className='text-gray-400 mt-4'>Summary (optional)</p>
+                <p className='text-stone-800 mt-2'>Summary (optional)</p>
                 <textarea
                   type='text'
                   className='border-2 border-gray-200 hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
@@ -165,7 +207,7 @@ const DesktopForm = ({
                   </p>
                 </div>
 
-                <p className='text-gray-400 mt-4'>Price</p>
+                <p className='text-stone-800 mt-2'>Price</p>
                 <div className='flex items-center'>
                   <div className='mr-4'>
                     <p className='text-xl font-medium'>$</p>
@@ -179,21 +221,40 @@ const DesktopForm = ({
                     value={price}
                   />
                 </div>
-                <FormControlLabel
-                  label='Let customers pay what they want'
-                  control={
-                    <Switch
-                      checked={payChoice}
-                      onChange={(e) => setPayChoice(e.target.checked)}
-                    />
-                  }
-                  className='mt-2'
-                />
+
+                {payChoice ? (
+                  ''
+                ) : (
+                  <FormControlLabel
+                    label='Free product'
+                    control={
+                      <Switch
+                        checked={free}
+                        onChange={(e) => setFree(e.target.checked)}
+                      />
+                    }
+                    className='mt-2'
+                  />
+                )}
+                {free ? (
+                  ''
+                ) : (
+                  <FormControlLabel
+                    label='Let customers pay what they want'
+                    control={
+                      <Switch
+                        checked={payChoice}
+                        onChange={(e) => setPayChoice(e.target.checked)}
+                      />
+                    }
+                    className='mt-2'
+                  />
+                )}
 
                 {payChoice ? (
                   <div className='flex items-center'>
                     <div className='flex flex-col w-6/12'>
-                      <p className='text-gray-400'>Minimum price</p>
+                      <p className='text-stone-800'>Minimum price</p>
                       <div className='flex items-center w-full'>
                         <div className='w-1/12'>
                           <p className='text-xl font-medium'>$</p>
@@ -214,7 +275,7 @@ const DesktopForm = ({
                       </div>
                     </div>
                     <div className='flex flex-col w-6/12 ml-2'>
-                      <p className='text-gray-400'>
+                      <p className='text-stone-800'>
                         Suggested price/placeholder
                       </p>
                       <div className='flex items-center w-full'>
@@ -250,18 +311,32 @@ const DesktopForm = ({
                   onupdatefiles={(file) => setImage(file)}
                   instantUpload={false}
                 />
-                <p className='text-gray-400'>Call to action</p>
-                <select
-                  onChange={(e) => setCallToAction(e.target.value)}
-                  className='w-full h-14 rounded p-2 mt-1'
-                  value={callToAction}
-                >
-                  <option value='buy'>Buy Now</option>
-                  <option value='want'>I want this!</option>
-                  <option value='get'>Get Now</option>
-                </select>
+                <p className='text-stone-800'>Call to action</p>
+                <Select
+                  options={actionOptions}
+                  onChange={handleAction}
+                  placeholder='Call to action'
+                  menuPortalTarget={document.body}
+                  menuPosition={'fixed'}
+                  isSearchable={false}
+                  styles={{
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderColor: 'rgb(229 231 235)',
+                      borderWidth: 2,
+                      '&:hover': {
+                        borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                      },
+                      boxShadow: 'none',
+                      zIndex: 99999,
+                      position: 'relative',
+                    }),
+                    menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+                  }}
+                  className='mt-1'
+                />
 
-                <p className='text-gray-400 mt-2'>URL</p>
+                <p className='text-stone-800 mt-2'>URL</p>
                 <div className='flex items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2'>
                   <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
                   <input
@@ -274,24 +349,13 @@ const DesktopForm = ({
               </div>
             </div>
 
-            <p className='text-gray-400 mt-2'>Description</p>
+            <p className='text-stone-800 mt-2'>Description</p>
             <ReactQuill
               value={info}
               onChange={setInfo}
-              className='h-72 mt-1'
+              className='h-72'
               placeholder='Start typing description here...'
             />
-
-            {/* <button className='border-2 rounded h-14 w-full text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white mt-4'>
-              + ADD PRODUCT
-            </button>
-            <button
-              type='button'
-              onClick={handleCancel}
-              className='border-2 rounded h-8 w-full text-red-400 border-red-400 hover:bg-red-400 hover:text-white mt-2'
-            >
-              CANCEL
-            </button> */}
           </form>
         </TabPanel>
 
@@ -314,7 +378,7 @@ const DesktopForm = ({
                 </button>
               </Tooltip>
             </div>
-            <p className='text-gray-400 font-medium mb-4'>
+            <p className='text-stone-800 font-medium mb-4'>
               Add any files and content you want to include in the digital
               purchase. All content and files are available to customers
               immediately after purchase.

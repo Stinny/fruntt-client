@@ -26,7 +26,7 @@ import Plans from './pages/Plans';
 import FreePlan from './pages/FreePlan';
 import UserHasNoPage from './UserHasNoPage';
 import PaidPlan from './pages/PaidPlan';
-import Item from './pages/Dashboard/Item';
+import Products from './pages/Dashboard/Products';
 import EditDesign from './pages/Dashboard/EditDesign';
 import ConfirmEmail from './pages/ConfirmEmail';
 import DesignPreview from './pages/DesignPreview';
@@ -87,7 +87,7 @@ function App() {
               <Route element={<UserHasNoPage />}>
                 <Route path='dashboard' element={<DashHome />} />
 
-                <Route path='dashboard/item' element={<Item />} />
+                <Route path='dashboard/item' element={<Products />} />
 
                 <Route path='dashboard/orders' element={<Orders />} />
 

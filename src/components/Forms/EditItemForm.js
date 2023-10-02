@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FileUpload from '../../pages/Dashboard/FileUpload';
 import { useNavigate, Link } from 'react-router-dom';
-import {
-  useUpdateProductMutation,
-  useDeleteProductMutation,
-} from '../../api/productsApiSlice';
+import { useDeleteProductMutation } from '../../api/productsApiSlice';
 import Media from '../Media';
 import { uploadImageRequest } from '../../api/requests';
 import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
@@ -41,7 +38,6 @@ const EditItemForm = ({ product, productId }) => {
   const [error, setError] = useState('');
 
   //hooks from our apiSlice's
-  const [updateProduct, result] = useUpdateProductMutation();
   const [deleteProduct, { isLoading }] = useDeleteProductMutation();
 
   const navigate = useNavigate();
@@ -74,57 +70,6 @@ const EditItemForm = ({ product, productId }) => {
     formWeight,
   ]);
 
-  const handleSaveEdit = async (e) => {
-    console.log('trying to save');
-    e.preventDefault();
-
-    try {
-      let imagesDataReq;
-
-      if (fileList?.length) {
-        const images = new FormData();
-
-        for (let i = 0; i < fileList.length; i++) {
-          images.append('productImages', fileList[i]); //appends actual file object to form data
-        }
-
-        imagesDataReq = await uploadImageRequest.post(
-          '/products/imageupload',
-          images
-        );
-      }
-
-      const updateItemReq = await updateProduct({
-        productId,
-        formTitle,
-        formDescription,
-        formPrice,
-        formStock,
-        formPublished,
-        formWeight,
-        formWeightUnit,
-        formAddress,
-        formCountry,
-        formCity,
-        formState,
-        formZip,
-        formOptions,
-        formShippingPrice,
-        imageData: imagesDataReq ? imagesDataReq.data : [],
-      }).unwrap();
-
-      if (updateItemReq === 'Invalid address') {
-        setError('The "Ships from" address you entered is invalid.');
-        return;
-      } else if (updateItemReq === 'Item updated') {
-        navigate('/dashboard/item');
-      }
-    } catch (err) {
-      setError(err.message);
-      return;
-    }
-  };
-
   return (
     <>
       <Link
@@ -147,10 +92,7 @@ const EditItemForm = ({ product, productId }) => {
           >
             DELETE
           </button>
-          <button
-            className='w-32 h-10 rounded border-slate-800 border-2 text-slate-800 hover:text-white hover:bg-slate-800'
-            onClick={handleSaveEdit}
-          >
+          <button className='w-32 h-10 rounded border-slate-800 border-2 text-slate-800 hover:text-white hover:bg-slate-800'>
             SAVE
           </button>
         </div>
@@ -164,7 +106,7 @@ const EditItemForm = ({ product, productId }) => {
           {error}
         </Alert>
       )}
-      <form className='mx-auto' onSubmit={handleSaveEdit}>
+      <form className='mx-auto'>
         {/* within this form inputs needed to set above state */}
         <div className='flex items-center'>
           <p className='text-xl font-medium'>Details</p>

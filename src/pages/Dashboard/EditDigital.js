@@ -29,10 +29,19 @@ const EditDigital = ({ product, refetch }) => {
   const [payChoice, setPayChoice] = useState(product?.payChoice);
   const [suggestedPrice, setSuggestedPrice] = useState(product?.suggestedPrice);
   const [url, setUrl] = useState(product?.url);
+  const [free, setFree] = useState(product?.free);
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
   const [productContent, setProductContent] = useState(product?.content);
+
+  const handleType = (value) => {
+    setDigitalType(value.value);
+  };
+
+  const handleAction = (value) => {
+    setCallToAction(value.value);
+  };
 
   const handleSaveEdit = async (e) => {
     e.preventDefault();
@@ -85,7 +94,7 @@ const EditDigital = ({ product, refetch }) => {
       const editProductReq = await updateDigitalProduct({
         title: title,
         description: description,
-        price: price,
+        price: free ? 0 : price,
         published: published,
         coverImageUrl: newCoverImageUrl,
         coverImageKey: newCoverImageKey,
@@ -98,10 +107,11 @@ const EditDigital = ({ product, refetch }) => {
         payChoice: payChoice,
         callToAction: callToAction,
         url: url,
+        free: free,
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
-        toast.success('Product updated!');
+        toast.success('Product saved!', { style: { color: 'rgb(28 25 23)' } });
         refetch();
         navigate('/dashboard/item');
       }
@@ -114,7 +124,7 @@ const EditDigital = ({ product, refetch }) => {
     const deleteItemReq = await deleteProduct(product._id).unwrap();
 
     if (deleteItemReq === 'Item deleted') {
-      toast.error('Product deleted!');
+      toast.error('Product deleted!', { style: { color: 'rgb(28 25 23)' } });
       navigate('/dashboard/item');
     } else {
       setError('There was an error deleting your product');
@@ -155,6 +165,10 @@ const EditDigital = ({ product, refetch }) => {
       setSuggestedPrice={setSuggestedPrice}
       setUrl={setUrl}
       url={url}
+      free={free}
+      setFree={setFree}
+      handleAction={handleAction}
+      handleType={handleType}
     />
   );
 };
