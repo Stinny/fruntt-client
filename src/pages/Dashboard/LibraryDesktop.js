@@ -41,13 +41,10 @@ const LibraryDesktop = ({ orders }) => {
             </p>
           </div>
         </div>
-        <div
-          className='flex flex-col h-screen'
-          // style={{ height: '500px' }}
-        >
+        <div className='flex flex-col'>
           {currentOrders.map((order) => (
             <Link to={`/order/${order?._id}`}>
-              <div className='border rounded bg-white drop-shadow-md relative flex mt-2'>
+              <div className='border rounded bg-white drop-shadow-md relative flex mt-4'>
                 <img
                   src={order?.item?.coverImage?.url}
                   className='rounded-tl rounded-bl w-2/12 h-32 object-cover'
@@ -95,7 +92,7 @@ const LibraryDesktop = ({ orders }) => {
               </div>
             </Link>
           ))}
-          <div className='w-full flex justify-end mx-auto mt-2'>
+          <div className='w-full flex justify-end  mt-2'>
             <div className=''>
               <ReactPaginate
                 breakLabel='...'

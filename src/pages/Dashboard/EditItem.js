@@ -44,14 +44,12 @@ const EditItem = () => {
             productId={productId}
             refetch={refetch}
           />
-        ) : product?.type === 'digital' ? (
+        ) : (
           <EditDigital
             product={product}
             productId={productId}
             refetch={refetch}
           />
-        ) : (
-          <EditItemForm product={product} productId={productId} />
         )}
       </div>
     );
@@ -60,8 +58,12 @@ const EditItem = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-      <div className='max-w-6xl mx-auto h-fit'>{content}</div>
+      <div className='flex'>
+        <Topbar />
+        <div className='w-9/12 mx-auto h-screen p-10 overflow-y-scroll bg-gray-50'>
+          {content}
+        </div>
+      </div>
       <Footer />
     </>
   );

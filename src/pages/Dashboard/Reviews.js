@@ -54,7 +54,6 @@ const Reviews = () => {
     ) : (
       <div className='flex flex-col items-center justify-center rounded h-full w-full border bg-white drop-shadow-md mb-20'>
         <h2 className='text-2xl font-medium mb-4'>You have no reviews</h2>
-        <img src={img} className='w-2/12' />
         <p className='text-stone-800 mt-4'>
           Here you will be able to view product reviews written by customers
         </p>
@@ -65,8 +64,10 @@ const Reviews = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-      <div className='max-w-6xl mx-auto h-screen'>{content}</div>
+      <div className='flex'>
+        <Topbar />
+        <div className='w-9/12 mx-auto h-screen p-10 bg-gray-50'>{content}</div>
+      </div>
       <Footer />
     </>
   );

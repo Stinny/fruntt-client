@@ -127,7 +127,7 @@ const Notifications = ({ user, refetch }) => {
         </div>
       ) : (
         <div className='flex justify-between items-center w-full border-b p-2'>
-          <p className='text-xlg font-medium'>Notifications</p>
+          <p className='text-lg font-medium'>Notifications</p>
           <button
             onClick={openModal}
             className='border-2 rounded w-20 h-8 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white'

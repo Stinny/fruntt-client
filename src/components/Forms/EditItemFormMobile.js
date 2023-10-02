@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AiOutlineInfoCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 import FileUpload from '../../pages/Dashboard/FileUpload';
-import {
-  useUpdateProductMutation,
-  useDeleteProductMutation,
-} from '../../api/productsApiSlice';
+import { useDeleteProductMutation } from '../../api/productsApiSlice';
 import Media from '../Media';
 import { states } from '../../states';
 import { BsArrowLeftShort } from 'react-icons/bs';
@@ -41,7 +38,7 @@ const EditItemFormMobile = ({ product, productId, refetch }) => {
   const [error, setError] = useState('');
 
   //hooks from our apiSlice's
-  const [updateProduct, result] = useUpdateProductMutation();
+
   const [deleteProduct, { isLoading }] = useDeleteProductMutation();
 
   const navigate = useNavigate();
@@ -92,32 +89,6 @@ const EditItemFormMobile = ({ product, productId, refetch }) => {
           '/products/imageupload',
           images
         );
-      }
-
-      const updateItemReq = await updateProduct({
-        productId,
-        formTitle,
-        formDescription,
-        formPrice,
-        formStock,
-        formPublished,
-        formWeight,
-        formWeightUnit,
-        formAddress,
-        formCountry,
-        formCity,
-        formState,
-        formZip,
-        formOptions,
-        formShippingPrice,
-        imageData: imagesDataReq ? imagesDataReq.data : [],
-      }).unwrap();
-
-      if (updateItemReq === 'Invalid address') {
-        setError('The "Ships from" address you entered is invalid.');
-        return;
-      } else if (updateItemReq === 'Item updated') {
-        navigate('/dashboard/item');
       }
     } catch (err) {
       setError(err.message);

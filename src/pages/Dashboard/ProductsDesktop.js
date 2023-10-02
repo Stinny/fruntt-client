@@ -35,14 +35,14 @@ const ProductsDesktop = ({ product }) => {
   //end of pagination stuff
 
   const noItem = (
-    <div className='h-screen border border-gray-200 rounded bg-white drop-shadow-md w-full flex flex-col justify-center items-center mt-4'>
-      <h2 className='text-xl font-medium text-stone-800'>
-        You have no products!
+    <div className='h-full border rounded bg-white drop-shadow-lg w-full flex flex-col justify-center items-center'>
+      <h2 className='text-2xl font-medium text-stone-800'>
+        You have no products
       </h2>
 
       <div className='flex w-11/12 mt-6 items-center'>
         <Link to='/dashboard/item/digital' className='w-full mx-auto'>
-          <div className='w-52 mx-auto flex justify-center items-center border-2 rounded border-stone-800 p-2 h-10 hover:bg-stone-800 hover:text-white pl-8 pr-8 mt-2'>
+          <div className='w-32 mx-auto flex justify-center items-center border-2 rounded border-stone-800 p-2 h-10 hover:bg-stone-800 hover:text-white pl-8 pr-8 mt-2'>
             <p className='font-medium text-md text-center'>+ Add</p>
           </div>
         </Link>
@@ -51,7 +51,7 @@ const ProductsDesktop = ({ product }) => {
   );
 
   return product.length ? (
-    <div className='w-full'>
+    <div className='w-full p-10'>
       <div className='w-full flex justify-between items-center'>
         <p className='text-3xl font-medium'>Your products</p>
 
@@ -83,8 +83,12 @@ const ProductsDesktop = ({ product }) => {
 
             <div className='w-10/12 border-l pl-4 flex flex-col p-2'>
               <p className='text-xl font-medium mb-4'>
-                {prod?.title} - $
-                {prod?.payChoice ? `${prod?.price}+` : prod?.price}
+                {prod?.title} - {}
+                {prod?.free
+                  ? 'FREE'
+                  : prod?.payChoice
+                  ? `$ ${prod?.price}+`
+                  : `$${prod?.price}`}
               </p>
 
               <a
@@ -166,26 +170,30 @@ const ProductsDesktop = ({ product }) => {
           </div>
         ))}
       </div>
-      <div className='w-full flex justify-end mx-auto mt-2'>
-        <div className=''>
-          <ReactPaginate
-            breakLabel='...'
-            nextLabel='Next'
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={3}
-            pageCount={pageCount}
-            previousLabel='Prev'
-            renderOnZeroPageCount={null}
-            className='flex items-center'
-            activeLinkClassName='activePage'
-            pageLinkClassName='notActivePage'
-            breakLinkClassName='breakLink'
-          />
+      {product.length > 5 ? (
+        <div className='w-full flex justify-end mx-auto mt-2'>
+          <div className=''>
+            <ReactPaginate
+              breakLabel='...'
+              nextLabel='Next'
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={3}
+              pageCount={pageCount}
+              previousLabel='Prev'
+              renderOnZeroPageCount={null}
+              className='flex items-center'
+              activeLinkClassName='activePage'
+              pageLinkClassName='notActivePage'
+              breakLinkClassName='breakLink'
+            />
+          </div>
         </div>
-      </div>
+      ) : (
+        ''
+      )}
     </div>
   ) : (
-    noItem
+    <div className='p-10 h-full'>{noItem}</div>
   );
 };
 

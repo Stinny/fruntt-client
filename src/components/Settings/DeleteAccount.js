@@ -71,7 +71,7 @@ const DeleteAccount = () => {
     <>
       <Modal isOpen={isOpen} onRequestClose={closeModal} style={modalStyles}>
         <div className='w-11/12 mx-auto'>
-          <p className='text-lg font-medium text-slate-800 mb-4 border-b'>
+          <p className='text-lg font-medium text-stone-800 mb-4 border-b'>
             Delete Fruntt account
           </p>
 

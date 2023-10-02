@@ -96,8 +96,6 @@ const Config = () => {
 
   return (
     <>
-      <Navbar />
-      <Topbar />
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -132,35 +130,36 @@ const Config = () => {
           </button>
         </form>
       </Modal>
-      <div className='max-w-6xl mx-auto h-screen'>
-        <p className='font-medium text-2xl text-stone-800'>
-          Storefront Configuration
-        </p>
-        <div className='w-full bg-white border rounded drop-shadow-lg mt-2 p-2'>
-          <div className='w-full border-b p-2 flex justify-between items-center'>
-            <p className='font-medium'>Storefront Name</p>
-            <button
-              onClick={openModal}
-              className='border-2 rounded w-20 h-8 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white'
-            >
-              Edit
-            </button>
-          </div>
+      <Navbar />
+      <div className='flex'>
+        <Topbar />
 
-          <div className='flex justify-between items-center'>
-            <div className='flex items-center border-2 rounded mt-1 border-gray-200 bg-gray-200 p-2 bg-inherit pl-4 pr-4'>
-              <span className=' font-medium text-lg'>{`${currentUser?.store?.name}`}</span>
-              <span className=' text-lg'>.fruntt.com</span>
+        <div className='w-9/12 p-10 mx-auto h-screen bg-gray-50'>
+          <p className='font-medium text-3xl text-stone-800'>
+            Storefront Configuration
+          </p>
+          <div className='w-full bg-white border rounded drop-shadow-lg mt-2 p-2'>
+            <div className='w-full border-b p-2 flex justify-between items-center'>
+              <p className='font-medium'>Storefront Name</p>
+              <button
+                onClick={openModal}
+                className='border-2 rounded w-20 h-8 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white'
+              >
+                Edit
+              </button>
             </div>
-          </div>
 
-          <div className='w-full border-b p-2 flex justify-between items-center mt-4'>
-            <p className='font-medium'>Analytics</p>
-          </div>
+            <div className='flex justify-between items-center'>
+              <div className='flex items-center border-2 rounded mt-1 border-gray-200 bg-gray-200 p-2 bg-inherit pl-4 pr-4'>
+                <span className=' font-medium text-lg'>{`${currentUser?.store?.name}`}</span>
+                <span className=' text-lg'>.fruntt.com</span>
+              </div>
+            </div>
 
-          <div className='rounded bg-gray-100 h-32 flex items-center justify-center mt-2'>
-            <div>
-              <p>Coming soon!</p>
+            <div className='rounded bg-gray-100 h-32 flex items-center justify-center mt-2'>
+              <div>
+                <p>More coming soon!</p>
+              </div>
             </div>
           </div>
         </div>

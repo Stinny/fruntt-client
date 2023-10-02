@@ -36,8 +36,10 @@ const Library = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-      <div className='mx-auto max-w-6xl'>{content}</div>
+      <div className='flex'>
+        <Topbar />
+        <div className='mx-auto w-9/12 p-10 bg-gray-50 h-screen'>{content}</div>
+      </div>
       <Footer />
     </>
   );

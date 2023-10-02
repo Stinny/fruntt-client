@@ -47,8 +47,12 @@ const EditDesign = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-      <div className='max-w-7xl mx-auto h-fit'>{content}</div>
+      <div className='flex'>
+        <Topbar />
+        <div className='w-9/12 mx-auto h-screen overflow-y-scroll p-10 bg-gray-50'>
+          {content}
+        </div>
+      </div>
       <Footer />
     </>
   );

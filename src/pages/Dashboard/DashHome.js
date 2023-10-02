@@ -8,18 +8,22 @@ import Cookies from 'js-cookie';
 import Footer from '../../components/Footer';
 import Spinner from '../../components/Spinner';
 import { FaExternalLinkAlt } from 'react-icons/fa';
+import { BiLinkExternal } from 'react-icons/bi';
 import { isMobile } from 'react-device-detect';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { useGetStoreStatsQuery } from '../../api/storefrontApiSlice';
 import DashHomeMobile from '../Mobile/Dashboard/DashHomeMobile';
 import { Line, Bar } from 'react-chartjs-2';
 import { GoGraph } from 'react-icons/go';
+import Select from 'react-select';
 
 //mui
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import SellerProfile from '../../components/Settings/SellerProfile';
+import { useGetUpdatedUserQuery } from '../../api/authApiSlice';
 
 const DashHome = () => {
   const currentUser = Cookies.get('currentUser')
@@ -31,6 +35,21 @@ const DashHome = () => {
   //holds the url of the page being viewed
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
+  const viewOptions = [
+    { value: 'today', label: 'Today' },
+    { value: 'seven', label: 'Last 7 days' },
+    { value: 'thirty', label: 'Last 30 days' },
+    { value: 'all', label: 'All time' },
+  ];
+
+  const formattedViewValue = viewOptions.find(
+    (option) => option.value === dataView
+  );
+
+  const handleView = (value) => {
+    setDataView(value.value);
+  };
+
   const {
     data: stats,
     isLoading,
@@ -41,12 +60,22 @@ const DashHome = () => {
     view: dataView,
   });
 
+  const {
+    data: user,
+    isLoading: gettingUser,
+    isError: errorGettingUser,
+    isSuccess: gotUser,
+    refetch: refetchUser,
+  } = useGetUpdatedUserQuery();
+
   useEffect(() => {
     refetch();
   }, [dataView]);
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
+    height: 800,
     plugins: {
       legend: {
         position: 'top',
@@ -82,21 +111,6 @@ const DashHome = () => {
     },
   };
 
-  const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'Septemer',
-    'October',
-    'November',
-    'December',
-  ];
-
   useEffect(() => {
     refetch();
   }, []);
@@ -107,9 +121,9 @@ const DashHome = () => {
 
   let content;
 
-  if (isLoading) {
+  if (isLoading || gettingUser) {
     content = <Spinner />;
-  } else if (isSuccess) {
+  } else if (isSuccess && gotUser) {
     const data = {
       labels: stats?.dataSet?.dates,
       datasets: [
@@ -156,7 +170,7 @@ const DashHome = () => {
               <Link to='/settings' className='text-red-900 font-semibold'>
                 settings
               </Link>{' '}
-              to enable purchases
+              to enable paid purchases
             </p>
           </Alert>
         )}
@@ -171,20 +185,42 @@ const DashHome = () => {
         )}
         <div className='flex justify-between mb-4'>
           <div className='flex items-center p-2 bg-white rounded border drop-shadow-md'>
-            <p className='text-md text-stone-800 font-medium'>
-              Your storefront:
-            </p>
+            <p className='text-md text-stone-800 font-medium'>Your store:</p>
             <a
               href={currentStoreUrl}
-              className='flex justify-center items-center text-md text-stone-800 font-medium ml-2 underline underline-offset-4'
+              className='flex justify-center items-center text-md text-stone-800 font-medium ml-2'
               target='_blank'
             >
               {currentStoreUrl}
             </a>
+            <BiLinkExternal className='ml-1' />
           </div>
           <div className='flex items-center p-2 bg-white rounded border drop-shadow-md'>
             <p className='font-medium text-stone-800 mr-2 text-md'>Filter:</p>
-            <select
+            <Select
+              options={viewOptions}
+              onChange={handleView}
+              value={formattedViewValue}
+              menuPortalTarget={document.body}
+              menuPosition={'fixed'}
+              isSearchable={false}
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  borderColor: 'rgb(229 231 235)',
+                  borderWidth: 2,
+                  '&:hover': {
+                    borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                  },
+                  boxShadow: 'none',
+                  zIndex: 99999,
+                  position: 'relative',
+                }),
+                menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+              }}
+              className='mt-1'
+            />
+            {/* <select
               className='rounded border-2 w-32 h-8 p-1'
               onChange={(e) => setDataView(e.target.value)}
               value={dataView}
@@ -193,15 +229,57 @@ const DashHome = () => {
               <option value='seven'>Last 7 days</option>
               <option value='thirty'>Last 30 days</option>
               <option value='all'>All time</option>
-            </select>
+            </select> */}
+          </div>
+        </div>
+
+        <div className='flex justify-between items-center w-full mb-4'>
+          <div className='bg-white border rounded drop-shadow-md w-8/12 p-2 h-36'>
+            <SellerProfile user={user} refetch={refetchUser} />
+          </div>
+          <div className='bg-white border rounded drop-shadow-md w-4/12 ml-2 p-2 h-36'>
+            <Tooltip
+              title={
+                <p className='text-lg'>
+                  Total revenue your store has generated
+                </p>
+              }
+              className='ml-2 text-lg absolute right-0 mr-2'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+            <p className='text-xl font-medium text-slate-800'>Revenue</p>
+            <p className='text-4xl font-medium text-slate-800 mt-2'>
+              $
+              {stats?.revenue > 0
+                ? stats?.revenue.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })
+                : '0'}
+            </p>
+            <p className='mt-1 text-sm font-medium'>
+              {dataView === 'today'
+                ? 'In the past 24 hours'
+                : dataView === 'seven'
+                ? 'In the past 7 days'
+                : dataView === 'thirty'
+                ? 'In the past 30 days'
+                : 'Since you opened your store'}
+            </p>
           </div>
         </div>
 
         <div className='flex justify-between'>
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 relative border'>
+          {/* <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 relative border'>
             <Tooltip
               title={
-                <p className='text-lg'>Total revenue your page has generated</p>
+                <p className='text-lg'>
+                  Total revenue your store has generated
+                </p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
               placement='right-end'
@@ -220,9 +298,9 @@ const DashHome = () => {
                   })
                 : '0'}
             </p>
-          </div>
+          </div> */}
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 ml-4 relative border'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>Total sales your page has generated</p>
@@ -257,6 +335,26 @@ const DashHome = () => {
             <p className='text-xl font-medium text-slate-800'>Views</p>
             <p className='text-4xl font-medium text-slate-800'>
               {stats?.visits}
+            </p>
+          </div>
+
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 ml-4 relative border'>
+            <Tooltip
+              title={
+                <p className='text-lg'>
+                  Percentage of customers who visit and make a purchase
+                </p>
+              }
+              className='ml-2 text-lg absolute right-0 mr-2'
+              placement='right-end'
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+            <p className='text-xl font-medium'>Customers</p>
+            <p className='text-4xl font-medium'>
+              {stats?.numberOfCustomers > 0 ? stats?.numberOfCustomers : '0'}
             </p>
           </div>
 
@@ -333,12 +431,12 @@ const DashHome = () => {
           </div>
         </div>
 
-        <div className='w-full border rounded mt-4 bg-white drop-shadow-md'>
+        <div className='w-full border rounded mt-4 bg-white drop-shadow-md h-96 flex items-center justify-center'>
           {stats?.numOfOrders > 0 ? (
             <Line options={options} data={data} />
           ) : (
             <div className='h-72 w-full flex flex-col items-center justify-center'>
-              <GoGraph className='text-4xl text-gray-300' />
+              <GoGraph className='text-4xl text-stone-800' />
               <p className='font-medium text-stone-800 mt-2'>
                 No orders have came in
               </p>
@@ -352,8 +450,12 @@ const DashHome = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-      <div className='max-w-6xl mx-auto h-fit'>{content}</div>
+      <div className='flex'>
+        <Topbar />
+        <div className='w-9/12 mx-auto h-screen overflow-y-scroll p-10 bg-gray-50'>
+          {content}
+        </div>
+      </div>
       <Footer />
     </>
   );

@@ -21,7 +21,7 @@ import { Rating } from '@mui/material';
 
 const DigitalDetail = ({ order }) => {
   return (
-    <div className='w-full mt-24 h-screen'>
+    <div className='w-full'>
       <Link
         to='/dashboard/orders'
         className='flex items-center text-stone-800 text-lg hover:text-gray-600 w-4/12'
@@ -104,8 +104,6 @@ const DigitalDetail = ({ order }) => {
         </div>
 
         <div className='mt-2'>
-          <p>Review</p>
-
           {order?.reviewed ? (
             <div className='flex flex-col p-4 rounded mt-2 relative bg-white drop-shadow-md border'>
               <Rating
@@ -119,7 +117,7 @@ const DigitalDetail = ({ order }) => {
               <p className='md:text-xl mt-2'>{order?.review?.content}</p>
             </div>
           ) : (
-            <div className='w-full h-32 rounded bg-gray-50 flex items-center justify-center mt-1'>
+            <div className='w-full h-32 rounded bg-gray-100 flex items-center justify-center mt-1'>
               <p>No review</p>
             </div>
           )}

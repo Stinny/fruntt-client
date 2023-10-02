@@ -36,9 +36,18 @@ const AddDigitalProd = () => {
   const [productContent, setProductContent] = useState('');
   const [info, setInfo] = useState('');
   const [url, setUrl] = useState('');
+  const [free, setFree] = useState(false);
   const [addingProduct, setAddingProduct] = useState(false);
 
   const [addDigitalProduct, result] = useAddDigitalProductMutation();
+
+  const handleType = (value) => {
+    setDigitalType(value.value);
+  };
+
+  const handleAction = (value) => {
+    setCallToAction(value.value);
+  };
 
   const handleCancel = () => {
     navigate('/dashboard/item');
@@ -111,13 +120,16 @@ const AddDigitalProd = () => {
           content: hasText ? productContent : '',
           info: hasInfo ? info : '',
           url: url,
+          free: free,
         }).unwrap();
 
         if (addDigitalProductReq.msg === 'Product added') {
           currentUser.store = addDigitalProductReq.store;
           const newUser = JSON.stringify(currentUser);
           Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
-          toast.success('Product created!');
+          toast.success('Product created!', {
+            style: { color: 'rgb(28 25 23)' },
+          });
           setAddingProduct(false);
           navigate('/dashboard/item');
         }
@@ -145,74 +157,80 @@ const AddDigitalProd = () => {
   return (
     <>
       <Navbar />
-      <Topbar />
-      <div className='max-w-6xl mx-auto'>
-        {isMobile ? (
-          <MobileForm
-            handleAddProduct={handleAddProduct}
-            handleCancel={handleCancel}
-            setTitle={setTitle}
-            setDescription={setDescription}
-            setImage={setImage}
-            setFiles={setFiles}
-            setPrice={setPrice}
-            price={price}
-            setPublished={setPublished}
-            published={published}
-            setDigitalType={setDigitalType}
-            productContent={productContent}
-            handleProductContent={handleProductContent}
-            setCallToAction={setCallToAction}
-            callToAction={callToAction}
-            payChoice={payChoice}
-            setPayChoice={setPayChoice}
-            setSuggestedPrice={setSuggestedPrice}
-            setProductContent={setProductContent}
-            info={info}
-            setInfo={setInfo}
-            error={error}
-            description={description}
-            title={title}
-            setUrl={setUrl}
-            url={url}
-            addingProduct={addingProduct}
-          />
-        ) : (
-          <DesktopForm
-            handleAddProduct={handleAddProduct}
-            handleCancel={handleCancel}
-            setTitle={setTitle}
-            title={title}
-            setDescription={setDescription}
-            setImage={setImage}
-            image={image}
-            setFiles={setFiles}
-            files={files}
-            setPrice={setPrice}
-            price={price}
-            setPublished={setPublished}
-            published={published}
-            setDigitalType={setDigitalType}
-            digitalType={digitalType}
-            setLink={setLink}
-            productContent={productContent}
-            setProductContent={setProductContent}
-            handleProductContent={handleProductContent}
-            info={info}
-            setInfo={setInfo}
-            setCallToAction={setCallToAction}
-            callToAction={callToAction}
-            payChoice={payChoice}
-            setPayChoice={setPayChoice}
-            setSuggestedPrice={setSuggestedPrice}
-            suggestedPrice={suggestedPrice}
-            error={error}
-            description={description}
-            url={url}
-            setUrl={setUrl}
-            addingProduct={addingProduct}
-          />
-        )}
+      <div className='flex'>
+        <Topbar />
+        <div className='w-9/12 mx-auto h-screen bg-gray-50 p-10 overflow-y-scroll'>
+          {isMobile ? (
+            <MobileForm
+              handleAddProduct={handleAddProduct}
+              handleCancel={handleCancel}
+              setTitle={setTitle}
+              setDescription={setDescription}
+              setImage={setImage}
+              setFiles={setFiles}
+              setPrice={setPrice}
+              price={price}
+              setPublished={setPublished}
+              published={published}
+              setDigitalType={setDigitalType}
+              productContent={productContent}
+              handleProductContent={handleProductContent}
+              setCallToAction={setCallToAction}
+              callToAction={callToAction}
+              payChoice={payChoice}
+              setPayChoice={setPayChoice}
+              setSuggestedPrice={setSuggestedPrice}
+              setProductContent={setProductContent}
+              info={info}
+              setInfo={setInfo}
+              error={error}
+              description={description}
+              title={title}
+              setUrl={setUrl}
+              url={url}
+              addingProduct={addingProduct}
+            />
+          ) : (
+            <DesktopForm
+              handleAddProduct={handleAddProduct}
+              handleCancel={handleCancel}
+              setTitle={setTitle}
+              title={title}
+              setDescription={setDescription}
+              setImage={setImage}
+              image={image}
+              setFiles={setFiles}
+              files={files}
+              setPrice={setPrice}
+              price={price}
+              setPublished={setPublished}
+              published={published}
+              setDigitalType={setDigitalType}
+              digitalType={digitalType}
+              setLink={setLink}
+              productContent={productContent}
+              setProductContent={setProductContent}
+              handleProductContent={handleProductContent}
+              info={info}
+              setInfo={setInfo}
+              setCallToAction={setCallToAction}
+              callToAction={callToAction}
+              payChoice={payChoice}
+              setPayChoice={setPayChoice}
+              setSuggestedPrice={setSuggestedPrice}
+              suggestedPrice={suggestedPrice}
+              error={error}
+              description={description}
+              url={url}
+              setUrl={setUrl}
+              addingProduct={addingProduct}
+              setFree={setFree}
+              free={free}
+              handleAction={handleAction}
+              handleType={handleType}
+            />
+          )}
+        </div>
       </div>
       <Footer />
     </>
