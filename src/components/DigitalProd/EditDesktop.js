@@ -196,6 +196,7 @@ const EditDesktop = ({
           <TabList>
             <Tab>Details</Tab>
             <Tab>Content</Tab>
+            <Tab>Marketplace</Tab>
           </TabList>
 
           <TabPanel>
@@ -488,6 +489,12 @@ const EditDesktop = ({
                 placeholder='Start typing content here'
                 className='h-96'
               />
+            </div>
+          </TabPanel>
+
+          <TabPanel>
+            <div className='h-screen flex items-center justify-center border rounded w-full shadow-lg'>
+              <p className='text-stone-800 text-md'>Marketplace coming soon!</p>
             </div>
           </TabPanel>
         </Tabs>
