@@ -19,7 +19,7 @@ const DesktopCustomers = ({ customers }) => {
   //pagination stuff ends here//
 
   return customers.length > 0 ? (
-    <div className='w-full mx-auto h-screen'>
+    <div className='w-full mx-auto h-full'>
       <div className='w-full flex justify-between'>
         <h2 className='text-3xl font-medium'>Your Customers</h2>
         <div className='flex justify-between'>
@@ -90,7 +90,7 @@ const DesktopCustomers = ({ customers }) => {
       )}
     </div>
   ) : (
-    <div className='w-full mx-auto h-screen bg-white drop-shadow-lg border rounded flex flex-col items-center justify-center'>
+    <div className='w-full mx-auto h-full bg-white drop-shadow-lg border rounded flex flex-col items-center justify-center'>
       <h2 className='text-2xl font-medium mb-4'>You have no customers</h2>
 
       <p className='text-stone-800 mt-4'>
