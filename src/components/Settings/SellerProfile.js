@@ -266,7 +266,7 @@ const SellerProfile = ({ user, refetch }) => {
         {isMobile ? (
           <div className='flex justify-between items-center w-full border-b p-2'>
             <div className='flex flex-col'>
-              <p className='text-lg font-medium'>Seller profile</p>
+              <p className='text-md font-medium'>Seller profile</p>
             </div>
             <button
               className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
@@ -277,16 +277,10 @@ const SellerProfile = ({ user, refetch }) => {
           </div>
         ) : (
           <div className='flex justify-between items-center w-full'>
-            {/* <button
-              className='border-2 h-8 rounded w-20 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
-              onClick={openModal}
-            >
-              Edit
-            </button> */}
-            <p className='text-xl font-medium text-slate-800'>Seller profile</p>
+            <p className='text-md font-medium text-slate-800'>Seller profile</p>
             <AiOutlineEdit
               onClick={openModal}
-              className='text-stone-800 text-xl'
+              className='text-stone-800 text-xl hover:cursor-pointer'
             />
           </div>
         )}
@@ -309,7 +303,7 @@ const SellerProfile = ({ user, refetch }) => {
               </div>
 
               <div className='flex flex-col'>
-                <p className='text-2xl font-medium'>
+                <p className='text-xl font-medium'>
                   {user?.name ? user?.name : '{Your Name}'}
                 </p>
 
@@ -391,11 +385,11 @@ const SellerProfile = ({ user, refetch }) => {
               </div>
 
               <div className='flex flex-col w-5/12'>
-                <p className='text-2xl font-medium'>
+                <p className='text-xl font-medium text-stone-800'>
                   {user?.name ? user?.name : '{Your Name}'}
                 </p>
 
-                <p>
+                <p className='text-stone-800'>
                   {user?.sellerProfile?.bio
                     ? user?.sellerProfile?.bio
                     : 'This is your bio, it is empty.'}
@@ -403,10 +397,10 @@ const SellerProfile = ({ user, refetch }) => {
               </div>
 
               <div className='flex flex-col items-center w-1/12'>
-                <p className='font-medium text-3xl'>
+                <p className='font-medium text-2xl'>
                   {user?.sellerProfile?.numberOfSales}
                 </p>
-                <p>sales</p>
+                <p className='text-stone-800 text-sm'>sales</p>
               </div>
 
               <div className='flex items-center w-4/12 ml-6'>

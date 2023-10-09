@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Modal from 'react-modal';
 import { useUpdateAccountInfoMutation } from '../../api/authApiSlice';
 import { isMobile } from 'react-device-detect';
+import Select from 'react-select';
+import countryList from 'react-select-country-list';
 
 const Profile = ({ user, refetch }) => {
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
+  const [country, setCountry] = useState(user?.country);
+  const [zip, setZip] = useState(user?.zipcode);
   const [email, setEmail] = useState(user?.email);
+
+  const options = useMemo(() => countryList().getData(), []);
 
   const [updateAccountInfo, result] = useUpdateAccountInfoMutation();
 
@@ -14,9 +20,15 @@ const Profile = ({ user, refetch }) => {
     e.preventDefault();
     const updateAccountInfoReq = await updateAccountInfo({
       email,
+      country,
+      zip,
     }).unwrap();
     refetch();
     closeModal();
+  };
+
+  const handleCountry = (value) => {
+    setCountry(value);
   };
 
   const modalStyles = isMobile
@@ -62,17 +74,47 @@ const Profile = ({ user, refetch }) => {
       >
         <form onSubmit={handleSaveAccountInfo}>
           <p className='text-xl font-medium mb-4 border-b'>Account Details</p>
-          <p className='text-xl font-medium mt-2'>Email</p>
-          <p className='text-gray-400'>
-            This email will be used accross all product pages
-          </p>
+          <p className='text-md font-medium mt-2'>Email</p>
+
           <input
             type='text'
-            className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded-lg p-2'
+            className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-300 w-full rounded p-2'
             placeholder='Last name'
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
+
+          <p className='text-md font-medium mt-2'>Country</p>
+          <Select
+            options={options}
+            onChange={handleCountry}
+            className='w-full h-10 text-sm'
+            styles={{
+              control: (baseStyles, state) => ({
+                ...baseStyles,
+                borderColor: 'rgb(229 231 235)',
+                '&:hover': {
+                  borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                },
+                boxShadow: 'none',
+                borderWidth: 2,
+                zIndex: 99999,
+                position: 'relative',
+              }),
+              menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+            }}
+          />
+
+          <p className='text-md font-medium mt-2'>Zipcode</p>
+
+          <input
+            type='text'
+            className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-300 w-full rounded p-2'
+            placeholder='ZIP'
+            onChange={(e) => setZip(e.target.value)}
+            value={zip}
+          />
+
           <button
             type='button'
             onClick={closeModal}
@@ -82,7 +124,7 @@ const Profile = ({ user, refetch }) => {
           </button>
           <button
             type='submit'
-            className='w-full h-14 border-2 border-slate-800 text-slate-800 hover:text-white hover:bg-slate-800 rounded mt-4'
+            className='w-full h-14 border-2 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 rounded mt-4'
           >
             Save
           </button>
@@ -119,14 +161,23 @@ const Profile = ({ user, refetch }) => {
           <p className='text-xl mt-2'>{user?.email}</p>
         </div>
       ) : (
-        <div className='w-11/12 mx-auto flex justify-between p-4'>
-          <div className='text-left'>
-            <p className='text-lg font-medium mt-2'>Account email</p>
+        <>
+          <div className='w-11/12 mx-auto flex justify-between p-4'>
+            <div className='text-left'>
+              <p className='text-lg font-medium mt-2'>Account email</p>
+            </div>
+            <div className='text-right'>
+              <p className='text-xl'>{user?.email}</p>
+            </div>
           </div>
-          <div className='text-right'>
-            <p className='text-xl'>{user?.email}</p>
-          </div>
-        </div>
+          {user?.zipcode ? (
+            ''
+          ) : (
+            <div className='rounded h-32 flex bg-gray-50 w-11/12 items-center justify-center mx-auto'>
+              <p className='text-sm'>Finishing adding account info</p>
+            </div>
+          )}
+        </>
       )}
     </>
   );
