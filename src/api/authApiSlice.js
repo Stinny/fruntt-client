@@ -79,11 +79,13 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     updateAccountInfo: builder.mutation({
-      query: ({ email }) => ({
+      query: ({ email, country, zip }) => ({
         url: '/auth/updateaccountinfo',
         method: 'POST',
         body: {
           email: email,
+          country: country,
+          zipcode: zip,
         },
       }),
     }),

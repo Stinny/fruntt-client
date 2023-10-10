@@ -41,24 +41,76 @@ const DigitalDetail = ({ order }) => {
 
       <div className='w-full mx-auto mt-2 border bg-white drop-shadow-md rounded p-2 relative flex flex-col'>
         <div className='absolute right-0 flex items-center mr-2'>
-          {order?.paid ? <MdOutlineAttachMoney className='text-2xl' /> : ''}{' '}
-          {order?.viewed ? <AiOutlineEye className='text-2xl' /> : ''}
+          {order?.paid ? (
+            <div className='flex items-center'>
+              <p>Paid</p>
+              <MdOutlineAttachMoney className='text-xl ml-1' />
+            </div>
+          ) : (
+            ''
+          )}{' '}
+          {order?.viewed ? (
+            <div className='flex items-center'>
+              <p>Viewed</p>
+              <AiOutlineEye className='text-xl ml-1' />
+            </div>
+          ) : (
+            ''
+          )}
         </div>
-        <div className='w-full flex items-center mx-auto'>
-          <div className='w-3/6 flex flex-col mr-4'>
-            <img
-              src={order?.item?.coverImage?.url}
-              className='rounded mt-4 border'
-            />
+        <div className='w-full flex mx-auto'>
+          <div className='flex flex-col'>
+            <p className='text-stone-800 font-medium mb-1'>Item</p>
+            <div className='w-64 flex flex-col mr-4 border rounded p-2'>
+              <img
+                src={order?.item?.coverImage?.url}
+                className='rounded  mb-2'
+              />
+              {order?.item?.digitalType === 'video' ? (
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+                  <p className='text-sm'>Video Course</p>
+                  <MdOutlineVideoLibrary className='ml-2 text-xl' />
+                </div>
+              ) : order?.item?.digitalType === 'ebook' ? (
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+                  <p className='text-sm'>E-Book</p>
+                  <HiOutlineBookOpen className='ml-2 text-xl' />
+                </div>
+              ) : order?.item?.digitalType === 'audio' ? (
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+                  <p className='text-sm'>Audio</p>
+                  <BsFillMicFill className='ml-2 text-xl' />
+                </div>
+              ) : order?.item?.digitalType === 'other' ? (
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+                  <p className='text-sm'>Digital Media</p>
+                  <MdOutlinePermMedia className='ml-2 text-xl' />
+                </div>
+              ) : (
+                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+                  <p className='text-sm'>Art</p>
+                  <BsPalette className='ml-2 text-xl' />
+                </div>
+              )}
+
+              <p className='text-stone-800 font-medium text-lg mt-2'>
+                {order?.item?.title}
+              </p>
+              <p className='text-stone-800 font-medium text-sm'>
+                {order?.item?.description}
+              </p>
+            </div>
           </div>
-          <div className='flex flex-col w-3/6'>
-            <p className='text-stone-800 font-medium mb-2'>Total</p>
+          <div className='flex flex-col'>
+            <p className='text-stone-800 font-medium mb-2 text-sm'>Total</p>
             <p className='font-medium text-stone-800 text-4xl'>
               ${order?.total}
             </p>
-            <p className='text-stone-800 font-medium mt-4 mb-2'>Delivered to</p>
-            <p className='text-stone-800 font-medium text-xl'>{order?.name}</p>
-            <p className='text-stone-800 font-medium text-xl mt-1'>
+            <p className='text-stone-800 font-medium mt-4 mb-2 text-sm'>
+              Delivered to
+            </p>
+            <p className='text-stone-800 font-medium text-lg'>{order?.name}</p>
+            <p className='text-stone-800 font-medium text-lg mt-1'>
               {order?.email}
             </p>
             <div className='flex items-center text-xl mt-1'>
@@ -66,40 +118,8 @@ const DigitalDetail = ({ order }) => {
                 countryCode={order?.country?.value}
                 className='mr-1'
               />
-              <p>{order?.country?.label}</p>
+              <p className='text-lg text-stone-800'>{order?.country?.label}</p>
             </div>
-
-            <p className='text-stone-800 font-medium mt-4 mb-2'>Item</p>
-
-            <p className='text-stone-800 font-medium text-2xl'>
-              {order?.item?.title}
-            </p>
-            {order?.item?.digitalType === 'video' ? (
-              <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
-                <p className='text-sm'>Video Course</p>
-                <MdOutlineVideoLibrary className='ml-2 text-xl' />
-              </div>
-            ) : order?.item?.digitalType === 'ebook' ? (
-              <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
-                <p className='text-sm'>E-Book</p>
-                <HiOutlineBookOpen className='ml-2 text-xl' />
-              </div>
-            ) : order?.item?.digitalType === 'audio' ? (
-              <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
-                <p className='text-sm'>Audio</p>
-                <BsFillMicFill className='ml-2 text-xl' />
-              </div>
-            ) : order?.item?.digitalType === 'other' ? (
-              <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
-                <p className='text-sm'>Digital Media</p>
-                <MdOutlinePermMedia className='ml-2 text-xl' />
-              </div>
-            ) : (
-              <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
-                <p className='text-sm'>Art</p>
-                <BsPalette className='ml-2 text-xl' />
-              </div>
-            )}
           </div>
         </div>
 

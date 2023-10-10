@@ -30,6 +30,8 @@ const EditDigital = ({ product, refetch }) => {
   const [suggestedPrice, setSuggestedPrice] = useState(product?.suggestedPrice);
   const [url, setUrl] = useState(product?.url);
   const [free, setFree] = useState(product?.free);
+  const [marketplace, setMarketplace] = useState(product?.marketplace);
+  const [category, setCategory] = useState(product?.category);
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
@@ -41,6 +43,10 @@ const EditDigital = ({ product, refetch }) => {
 
   const handleAction = (value) => {
     setCallToAction(value.value);
+  };
+
+  const handleCategory = (value) => {
+    setCategory(value.value);
   };
 
   const handleSaveEdit = async (e) => {
@@ -108,6 +114,8 @@ const EditDigital = ({ product, refetch }) => {
         callToAction: callToAction,
         url: url,
         free: free,
+        marketplace: marketplace,
+        category: category,
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
@@ -167,8 +175,12 @@ const EditDigital = ({ product, refetch }) => {
       url={url}
       free={free}
       setFree={setFree}
+      marketplace={marketplace}
+      setMarketplace={setMarketplace}
+      category={category}
       handleAction={handleAction}
       handleType={handleType}
+      handleCategory={handleCategory}
     />
   );
 };

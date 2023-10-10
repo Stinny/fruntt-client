@@ -42,6 +42,8 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         callToAction,
         url,
         free,
+        marketplace,
+        category,
       }) => ({
         url: `/products/editdigital/${productId}`,
         method: 'POST',
@@ -61,6 +63,8 @@ export const productsApiSlice = apiSlice.injectEndpoints({
           callToAction: callToAction,
           url: url,
           free: free,
+          marketplace: marketplace,
+          category: category,
         },
       }),
     }),
