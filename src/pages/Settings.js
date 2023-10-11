@@ -16,7 +16,6 @@ import BusinessInfo from '../components/Settings/BusinessInfo';
 import { isMobile } from 'react-device-detect';
 import SellerProfile from '../components/Settings/SellerProfile';
 import DeleteAccount from '../components/Settings/DeleteAccount';
-import { IoStorefrontOutline } from 'react-icons/io5';
 
 const Settings = () => {
   const {

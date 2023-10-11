@@ -51,6 +51,7 @@ import { ToastContainer } from 'react-toastify';
 import Marketplace from './pages/Marketplace';
 import Library from './pages/Dashboard/Library';
 import Customers from './pages/Dashboard/Customers';
+import PasswordChange from './pages/PasswordChange';
 
 function App() {
   return (
@@ -92,6 +93,11 @@ function App() {
                 <Route path='dashboard/orders' element={<Orders />} />
 
                 <Route path='dashboard/description' element={<Description />} />
+
+                <Route
+                  path='dashboard/password/change'
+                  element={<PasswordChange />}
+                />
 
                 <Route
                   path='dashboard/orders/:orderId'

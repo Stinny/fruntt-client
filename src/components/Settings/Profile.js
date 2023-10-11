@@ -1,14 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 import { useUpdateAccountInfoMutation } from '../../api/authApiSlice';
 import { isMobile } from 'react-device-detect';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import ReactCountryFlag from 'react-country-flag';
+import { BsPersonLock } from 'react-icons/bs';
+import { AiFillLock } from 'react-icons/ai';
 
 const Profile = ({ user, refetch }) => {
-  const [firstName, setFirstName] = useState(user?.firstName);
-  const [lastName, setLastName] = useState(user?.lastName);
   const [country, setCountry] = useState(user?.country);
   const [zip, setZip] = useState(user?.zipcode);
   const [email, setEmail] = useState(user?.email);
@@ -146,12 +147,21 @@ const Profile = ({ user, refetch }) => {
       ) : (
         <div className='flex justify-between items-center w-full border-b p-2'>
           <p className='text-lg font-medium'>Account Details</p>
-          <button
-            className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
-            onClick={openModal}
-          >
-            Edit
-          </button>
+          <div className='flex items-center'>
+            <Link
+              to='/dashboard/password/change'
+              className='flex items-center justify-center rounded w-44 bg-stone-800 text-white h-8 mr-1'
+            >
+              Change Password
+              <AiFillLock className='ml-1' />
+            </Link>
+            <button
+              className='border-2 rounded w-20 h-8 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white'
+              onClick={openModal}
+            >
+              Edit
+            </button>
+          </div>
         </div>
       )}
 
