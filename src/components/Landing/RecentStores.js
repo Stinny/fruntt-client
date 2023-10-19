@@ -11,23 +11,24 @@ const RecentStores = ({ stores, isLoading, isSuccess, refetch }) => {
     content = isMobile ? (
       <div className='w-full p-4 bg-stone-800 flex flex-col justify-center items-center mb-32 mt-24'>
         <div className='h-10 w-full'></div>
-        <p className='text-white font-medium text-lg mb-4'>
-          Recent storefronts
-        </p>
+        <p className='text-white font-medium text-lg mb-4'>Recent Stores</p>
 
-        <div className='mx-auto flex items-center'>
+        <div className='mx-auto flex flex-col items-center'>
           {stores.map((store, index) => (
             <div
               key={index}
-              className='mx-auto bg-white rounded drop-shadow-lg flex flex-col p-2'
+              className='mx-auto bg-white rounded drop-shadow-lg flex flex-col p-2 mt-2'
             >
               <div className='flex items-center'>
                 <Avatar src={store?.image} />
                 <div className='flex flex-col border-l pl-2 ml-2'>
                   <p className='font-medium text-lg'>{store?.name}</p>
                   <p className='text-sm'>{store?.bio}</p>
-                  <p className='font-medium text-sm'>
-                    {store?.numOfProducts} products |{' '}
+                  <p className='font-medium text-sm mt-1'>
+                    {store?.numOfProducts == 1
+                      ? `${store?.numOfProducts} product`
+                      : `${store?.numOfProducts} products`}{' '}
+                    |{' '}
                     {store?.numOfSales == 1
                       ? `${store?.numOfSales} sale`
                       : `${store?.numOfSales} sales`}
@@ -39,7 +40,7 @@ const RecentStores = ({ stores, isLoading, isSuccess, refetch }) => {
                 target='_blank'
                 className='border-stone-800 border-2 w-full h-10 text-md text-stone-800 rounded flex justify-center items-center mt-2 hover:bg-stone-800 hover:text-white'
               >
-                View Storefront
+                View Store
               </a>
             </div>
           ))}
@@ -49,23 +50,24 @@ const RecentStores = ({ stores, isLoading, isSuccess, refetch }) => {
     ) : (
       <div className='w-full p-4 bg-stone-800 flex flex-col justify-center items-center mb-32 mt-24'>
         <div className='h-10 w-full'></div>
-        <p className='text-white font-medium text-lg mb-4'>
-          Recent storefronts
-        </p>
+        <p className='text-white font-medium text-lg mb-4'>Recent Stores</p>
 
         <div className='mx-auto flex items-center'>
           {stores.map((store, index) => (
             <div
               key={index}
-              className='mx-auto w-96 bg-white rounded border drop-shadow-lg flex flex-col p-2'
+              className='mx-auto w-96 bg-white rounded border drop-shadow-lg flex flex-col p-2 ml-2'
             >
               <div className='flex items-center'>
                 <Avatar src={store?.image} />
                 <div className='flex flex-col border-l pl-2 ml-2'>
                   <p className='font-medium text-lg'>{store?.name}</p>
                   <p className='text-sm'>{store?.bio}</p>
-                  <p className='font-medium text-sm'>
-                    {store?.numOfProducts} products |{' '}
+                  <p className='font-medium text-sm mt-1'>
+                    {store?.numOfProducts == 1
+                      ? `${store?.numOfProducts} product`
+                      : `${store?.numOfProducts} products`}{' '}
+                    |{' '}
                     {store?.numOfSales == 1
                       ? `${store?.numOfSales} sale`
                       : `${store?.numOfSales} sales`}
@@ -77,7 +79,7 @@ const RecentStores = ({ stores, isLoading, isSuccess, refetch }) => {
                 target='_blank'
                 className='border-stone-800 border-2 w-full h-10 text-md text-stone-800 rounded flex justify-center items-center mt-2 hover:bg-stone-800 hover:text-white'
               >
-                View Storefront
+                View Store
               </a>
             </div>
           ))}

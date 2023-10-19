@@ -51,8 +51,11 @@ const DesktopForm = ({
   addingProduct,
   setFree,
   free,
+  marketplace,
+  setMarketplace,
   handleType,
   handleAction,
+  handleCategory,
 }) => {
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
@@ -68,6 +71,17 @@ const DesktopForm = ({
     { value: 'buy', label: 'Buy Now' },
     { value: 'want', label: 'I want this!' },
     { value: 'get', label: 'Get Now' },
+  ];
+
+  const categories = [
+    { value: 'business', label: 'Business & Finance' },
+    { value: 'design', label: 'Design' },
+    { value: 'software', label: 'Software Development' },
+    { value: 'drawing', label: 'Drawing & Painting' },
+    { value: 'writing', label: 'Writing' },
+    { value: 'education', label: 'Education' },
+    { value: 'self', label: 'Self Improvement' },
+    { value: 'other', label: 'Other' },
   ];
 
   return (
@@ -403,8 +417,61 @@ const DesktopForm = ({
         </TabPanel>
 
         <TabPanel>
-          <div className='h-screen flex items-center justify-center border rounded w-full shadow-lg'>
-            <p className='text-stone-800 text-md'>Marketplace coming soon!</p>
+          <div className='h-screen flex flex-col border rounded w-full shadow-lg p-2 bg-white'>
+            <div className='flex items-center'>
+              <p className='text-2xl font-medium'>Marketplace</p>
+              <Tooltip
+                title={
+                  <p className='text-lg'>
+                    This allows you to list your product in our marketplace.
+                  </p>
+                }
+                className='ml-2 text-lg'
+                placement='right-end'
+              >
+                <button type='button' disabled>
+                  <AiOutlineInfoCircle />
+                </button>
+              </Tooltip>
+            </div>
+            <p className='text-stone-800 text-lg mt-6'>
+              List your product in our marketplace for other creators and
+              customers to discover.
+            </p>
+            <FormControlLabel
+              label='Publish to marketplace'
+              control={
+                <Switch
+                  checked={marketplace}
+                  onChange={(e) => setMarketplace(e.target.checked)}
+                />
+              }
+              className='mt-2'
+            />
+            <p className='text-stone-800 mt-2'>Product category</p>
+            <Select
+              options={categories}
+              onChange={handleCategory}
+              placeholder='Category'
+              menuPortalTarget={document.body}
+              menuPosition={'fixed'}
+              isSearchable={false}
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  borderColor: 'rgb(229 231 235)',
+                  borderWidth: 2,
+                  '&:hover': {
+                    borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                  },
+                  boxShadow: 'none',
+                  zIndex: 99999,
+                  position: 'relative',
+                }),
+                menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+              }}
+              className='mt-1 w-64'
+            />
           </div>
         </TabPanel>
       </Tabs>

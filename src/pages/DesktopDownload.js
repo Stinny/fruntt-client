@@ -170,7 +170,7 @@ const DesktopDownload = ({
           <p className='font-medium mt-4'>Delivered to:</p>
           <p className='text-xl mt-2'>{orderAndStore?.order?.email}</p>
 
-          <p className='font-medium mt-4'>Title:</p>
+          <p className='font-medium mt-4'>Item:</p>
           <p className='text-xl mt-2'>{orderAndStore?.order?.item?.title}</p>
         </div>
 

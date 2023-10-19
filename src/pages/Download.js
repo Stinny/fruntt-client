@@ -91,7 +91,7 @@ const Download = () => {
   return (
     <>
       <Navbar />
-      <div className='max-w-6xl mx-auto h-screen'>{content}</div>
+      <div className='max-w-6xl mx-auto h-fit'>{content}</div>
       <Footer />
     </>
   );

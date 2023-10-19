@@ -37,6 +37,8 @@ const AddDigitalProd = () => {
   const [info, setInfo] = useState('');
   const [url, setUrl] = useState('');
   const [free, setFree] = useState(false);
+  const [marketplace, setMarketplace] = useState(false);
+  const [category, setCategory] = useState('');
   const [addingProduct, setAddingProduct] = useState(false);
 
   const [addDigitalProduct, result] = useAddDigitalProductMutation();
@@ -47,6 +49,10 @@ const AddDigitalProd = () => {
 
   const handleAction = (value) => {
     setCallToAction(value.value);
+  };
+
+  const handleCategory = (value) => {
+    setCategory(value.value);
   };
 
   const handleCancel = () => {
@@ -121,6 +127,8 @@ const AddDigitalProd = () => {
           info: hasInfo ? info : '',
           url: url,
           free: free,
+          marketplace: marketplace,
+          category: category,
         }).unwrap();
 
         if (addDigitalProductReq.msg === 'Product added') {
@@ -226,8 +234,11 @@ const AddDigitalProd = () => {
               addingProduct={addingProduct}
               setFree={setFree}
               free={free}
+              marketplace={marketplace}
+              setMarketplace={setMarketplace}
               handleAction={handleAction}
               handleType={handleType}
+              handleCategory={handleCategory}
             />
           )}
         </div>

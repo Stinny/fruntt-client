@@ -1,13 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 import { useUpdateAccountInfoMutation } from '../../api/authApiSlice';
 import { isMobile } from 'react-device-detect';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
+import ReactCountryFlag from 'react-country-flag';
+import { BsPersonLock } from 'react-icons/bs';
+import { AiFillLock } from 'react-icons/ai';
 
 const Profile = ({ user, refetch }) => {
-  const [firstName, setFirstName] = useState(user?.firstName);
-  const [lastName, setLastName] = useState(user?.lastName);
   const [country, setCountry] = useState(user?.country);
   const [zip, setZip] = useState(user?.zipcode);
   const [email, setEmail] = useState(user?.email);
@@ -89,6 +91,7 @@ const Profile = ({ user, refetch }) => {
             options={options}
             onChange={handleCountry}
             className='w-full h-10 text-sm'
+            value={country}
             styles={{
               control: (baseStyles, state) => ({
                 ...baseStyles,
@@ -109,7 +112,7 @@ const Profile = ({ user, refetch }) => {
 
           <input
             type='text'
-            className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-300 w-full rounded p-2'
+            className='border-2 text-sm border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-300 w-full rounded p-2'
             placeholder='ZIP'
             onChange={(e) => setZip(e.target.value)}
             value={zip}
@@ -144,12 +147,21 @@ const Profile = ({ user, refetch }) => {
       ) : (
         <div className='flex justify-between items-center w-full border-b p-2'>
           <p className='text-lg font-medium'>Account Details</p>
-          <button
-            className='border-2 rounded w-20 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
-            onClick={openModal}
-          >
-            Edit
-          </button>
+          <div className='flex items-center'>
+            <Link
+              to='/dashboard/password/change'
+              className='flex items-center justify-center rounded w-44 bg-stone-800 text-white h-8 mr-1'
+            >
+              Change Password
+              <AiFillLock className='ml-1' />
+            </Link>
+            <button
+              className='border-2 rounded w-20 h-8 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white'
+              onClick={openModal}
+            >
+              Edit
+            </button>
+          </div>
         </div>
       )}
 
@@ -162,19 +174,26 @@ const Profile = ({ user, refetch }) => {
         </div>
       ) : (
         <>
-          <div className='w-11/12 mx-auto flex justify-between p-4'>
-            <div className='text-left'>
-              <p className='text-lg font-medium mt-2'>Account email</p>
-            </div>
-            <div className='text-right'>
-              <p className='text-xl'>{user?.email}</p>
-            </div>
+          <div className='flex flex-col pl-4'>
+            <p className='text-sm font-medium mt-2'>Account email</p>
+            <p className='text-lg'>{user?.email}</p>
           </div>
           {user?.zipcode ? (
-            ''
+            <div className='flex flex-col pl-4'>
+              <p className='text-sm font-medium mt-2'>Location</p>
+
+              <div className='flex items-center'>
+                <ReactCountryFlag
+                  countryCode={user?.country?.value}
+                  className='mr-1'
+                />
+                <p className='text-lg'>{user?.country?.label}</p>
+              </div>
+              <p className='text-lg'>{user?.zipcode}</p>
+            </div>
           ) : (
             <div className='rounded h-32 flex bg-gray-50 w-11/12 items-center justify-center mx-auto'>
-              <p className='text-sm'>Finishing adding account info</p>
+              <p className='text-sm'>Finish adding account info</p>
             </div>
           )}
         </>

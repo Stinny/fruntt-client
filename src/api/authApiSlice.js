@@ -79,11 +79,13 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     updateAccountInfo: builder.mutation({
-      query: ({ email }) => ({
+      query: ({ email, country, zip }) => ({
         url: '/auth/updateaccountinfo',
         method: 'POST',
         body: {
           email: email,
+          country: country,
+          zipcode: zip,
         },
       }),
     }),
@@ -183,6 +185,16 @@ export const authApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    changePassword: builder.mutation({
+      query: ({ newPassword, oldPassword }) => ({
+        url: '/auth/password/change',
+        method: 'POST',
+        body: {
+          newPassword: newPassword,
+          oldPassword: oldPassword,
+        },
+      }),
+    }),
   }),
 });
 
@@ -208,4 +220,5 @@ export const {
   useLazyGetTwitterAuthUrlQuery,
   useTwitterLoginMutation,
   useTwitterRegisterMutation,
+  useChangePasswordMutation,
 } = authApiSlice;

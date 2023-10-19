@@ -123,34 +123,34 @@ const MobileDownload = ({
         <div className='w-full flex flex-col'>
           <p className='font-medium mt-2 mb-1'>What you got:</p>
           {orderAndStore?.order?.item?.digitalType === 'video' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-8/12 h-10'>
-              <p>Video Course</p>
-              <MdOutlineVideoLibrary className='ml-2 text-2xl' />
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+              <p className='text-sm'>Video Course</p>
+              <MdOutlineVideoLibrary className='ml-2 text-xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'ebook' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-8/12 h-10'>
-              <p>E-Book</p>
-              <HiOutlineBookOpen className='ml-2 text-2xl' />
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+              <p className='text-sm'>E-Book</p>
+              <HiOutlineBookOpen className='ml-2 text-xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'audio' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-8/12 h-10'>
-              <p>Audio</p>
-              <BsFillMicFill className='ml-2 text-2xl' />
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+              <p className='text-sm'>Audio</p>
+              <BsFillMicFill className='ml-2 text-xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'other' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-8/12 h-10'>
-              <p>Digital Media</p>
-              <MdOutlinePermMedia className='ml-2 text-2xl' />
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+              <p className='text-sm'>Digital Media</p>
+              <MdOutlinePermMedia className='ml-2 text-xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'template' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
-              <p>Template</p>
-              <HiOutlineTemplate className='ml-2 text-2xl' />
+            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+              <p className='text-sm'>Template</p>
+              <HiOutlineTemplate className='ml-2 text-xl' />
             </div>
           ) : (
-            <div className='flex items-center justify-center border-2 border-slate-800  rounded w-4/12 h-10'>
-              <p>Art</p>
-              <BsPalette className='ml-2 text-2xl' />
+            <div className='flex items-center justify-center border-2 border-slate-800  rounded w-44 h-8'>
+              <p className='text-sm'>Art</p>
+              <BsPalette className='ml-2 text-xl' />
             </div>
           )}
           <p className='font-medium mt-4'>Store you purchased from:</p>
@@ -164,7 +164,7 @@ const MobileDownload = ({
           <p className='font-medium mt-4'>Delivered to:</p>
           <p className='text-lg mt-1'>{orderAndStore?.order?.email}</p>
 
-          <p className='font-medium mt-4'>Title:</p>
+          <p className='font-medium mt-4'>Item:</p>
           <p className='text-lg mt-1'>{orderAndStore?.order?.item?.title}</p>
         </div>
 

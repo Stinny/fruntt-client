@@ -300,9 +300,7 @@ const DashHome = () => {
           <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 ml-4 relative border'>
             <Tooltip
               title={
-                <p className='text-lg'>
-                  Percentage of customers who visit and make a purchase
-                </p>
+                <p className='text-lg'>Total number of unique customers</p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
               placement='right-end'
@@ -321,7 +319,7 @@ const DashHome = () => {
             <Tooltip
               title={
                 <p className='text-lg'>
-                  Percentage of customers who visit and make a purchase
+                  Percentage of viewers who make a purchase
                 </p>
               }
               className='ml-2 text-lg absolute right-0 mr-2'
@@ -340,7 +338,7 @@ const DashHome = () => {
 
         <div className='w-full mt-4 h-28 bg-white border rounded drop-shadow-md flex flex-col p-2'>
           <p className='text-xl font-medium text-slate-800'>
-            Is your storefront ready for customers?
+            Is your store ready for customers?
           </p>
 
           <div className='w-full flex justify-between mt-2'>

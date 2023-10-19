@@ -96,19 +96,19 @@ const DesktopOrders = ({ orders }) => {
                 <td>{<ElapsedTimeOrDate orderDate={order?.placedOn} />}</td>
                 <td className='w-12'>
                   {order?.paid ? (
-                    <MdOutlineAttachMoney className='text-2xl' />
+                    <MdOutlineAttachMoney className='text-xl' />
                   ) : (
                     ''
                   )}
                 </td>
 
                 <td className='w-12'>
-                  {order?.viewed ? <AiOutlineEye className='text-2xl' /> : ''}
+                  {order?.viewed ? <AiOutlineEye className='text-xl' /> : ''}
                 </td>
 
                 <td className='w-12'>
                   {order?.reviewed ? (
-                    <BiMessageSquareDetail className='text-2xl' />
+                    <BiMessageSquareDetail className='text-xl' />
                   ) : (
                     ''
                   )}
