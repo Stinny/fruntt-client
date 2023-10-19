@@ -338,7 +338,7 @@ const DashHome = () => {
 
         <div className='w-full mt-4 h-28 bg-white border rounded drop-shadow-md flex flex-col p-2'>
           <p className='text-xl font-medium text-slate-800'>
-            Is your storefront ready for customers?
+            Is your store ready for customers?
           </p>
 
           <div className='w-full flex justify-between mt-2'>

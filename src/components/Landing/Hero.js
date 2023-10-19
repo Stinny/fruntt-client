@@ -65,8 +65,8 @@ const Hero = () => {
           </p>
           <div className='flex items-center mt-6'>
             <Link to='/signup' className='flex w-56'>
-              <button className='rounded text-stone-800 text-sm w-full h-10 border-stone-800 border-2 hover:bg-stone-800 hover:text-white flex items-center justify-center'>
-                Open Storefront
+              <button className='rounded bg-white text-stone-800 text-sm w-full h-10 border-stone-800 border-2 shadow-md hover:bg-stone-800 hover:text-white flex items-center justify-center'>
+                Open Store
               </button>
             </Link>
 
@@ -75,7 +75,7 @@ const Hero = () => {
                 backgroundColor: 'rgb(15, 20, 25)',
                 borderColor: 'rgb(15, 20, 25)',
               }}
-              className='w-56 h-10 rounded flex items-center justify-center text-white ml-1 border-2'
+              className='w-56 h-10 rounded flex items-center justify-center text-white ml-1 shadow-md border-2'
               type='button'
               onClick={handleTwitterSignup}
             >
@@ -122,14 +122,14 @@ const Hero = () => {
               {currentWord}.
             </p>
           </div>
-          <p className='text-xl mt-6'>
+          <p className='text-xl mt-10'>
             Create and sell any digital product to your audience and keep 99% of
             what you earn after payment processing fees.
           </p>
-          <div className='flex items-center mt-6'>
+          <div className='flex items-center mt-10'>
             <Link to='/signup' className='flex w-56'>
-              <button className='rounded text-stone-800 w-full h-10 border-stone-800 border-2 hover:bg-stone-800 hover:text-white flex items-center justify-center'>
-                Open Storefront
+              <button className='rounded text-stone-800 w-full h-10 border-stone-800 border-2 hover:bg-stone-800 hover:text-white flex items-center shadow-md bg-white justify-center'>
+                Open Store
               </button>
             </Link>
 
@@ -138,7 +138,7 @@ const Hero = () => {
                 backgroundColor: 'rgb(15, 20, 25)',
                 borderColor: 'rgb(15, 20, 25)',
               }}
-              className='w-56 h-10 rounded flex items-center justify-center text-white ml-1 border-2'
+              className='w-56 h-10 rounded flex items-center justify-center text-white ml-1 border-2 shadow-md'
               type='button'
               onClick={handleTwitterSignup}
             >
@@ -151,21 +151,21 @@ const Hero = () => {
 
         <div className='flex flex-col w-3/6 rounded shadow-lg border'>
           <div className='flex'>
-            <div className='w-3/6 bg-stone-800 text-white flex justify-center items-center h-32 rounded-tl'>
+            <div className='w-3/6 bg-stone-800 text-white flex justify-center items-center h-36 rounded-tl'>
               <p className='flex justify-center items-center h-32 font-medium text-2xl'>
                 99%
               </p>
             </div>
-            <div className='w-3/6 bg-white h-32 rounded-tr flex items-center justify-center'>
+            <div className='w-3/6 bg-white h-36 rounded-tr flex items-center justify-center'>
               <img src={imgOne} className='w-44' />
             </div>
           </div>
 
           <div className='flex'>
-            <div className='w-3/6 bg-white h-32 flex items-center justify-center rounded-bl'>
+            <div className='w-3/6 bg-white h-36 flex items-center justify-center rounded-bl'>
               <img src={imgTwo} className='w-44' />
             </div>
-            <div className='w-3/6 bg-stone-800 flex justify-center items-center h-32 text-white'>
+            <div className='w-3/6 bg-stone-800 flex justify-center items-center h-36 text-white'>
               <p className='text-2xl font-medium'>99%</p>
             </div>
           </div>

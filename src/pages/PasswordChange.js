@@ -11,25 +11,37 @@ const PasswordChange = () => {
   const navigate = useNavigate();
   const [newPass, setNewPass] = useState('');
   const [oldPass, setOldPass] = useState('');
+  const [changingPassword, setChangingPassword] = useState(false);
 
   const [changePassword, result] = useChangePasswordMutation();
 
   const handleChangePassword = async (e) => {
     e.preventDefault();
+
+    setChangingPassword(true);
     try {
       const changePassReq = await changePassword({
         newPassword: newPass,
         oldPassword: oldPass,
       }).unwrap();
 
+      console.log(changePassReq);
+
       if (changePassReq === 'Password changed') {
         toast.success('Password changed!', {
           style: { color: 'rgb(28 25 23)' },
         });
+        setChangingPassword(false);
         navigate('/settings');
+      } else if (changePassReq === 'Invalid password') {
+        toast.error('Password invalid!', {
+          style: { color: 'rgb(28 25 23)' },
+        });
+        setChangingPassword(false);
       }
     } catch (err) {
       console.log(err);
+      setChangingPassword(false);
     }
   };
 
@@ -42,7 +54,7 @@ const PasswordChange = () => {
           <div className='flex flex-col w-full'>
             <p className='text-3xl font-medium'>Change Password</p>
 
-            <div className='rounded w-full drop-shadow-lg bg-white border h-screen mt-2 p-1'>
+            <div className='rounded w-full drop-shadow-lg bg-white border h-screen mt-2 p-2'>
               <p className='text-stone-800 text-md'>
                 Use the form below to change your password for your Fruntt
                 account.
@@ -68,6 +80,7 @@ const PasswordChange = () => {
                 />
                 <button
                   type='submit'
+                  disabled={changingPassword}
                   className='w-72 h-10 border-2 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 rounded mt-2'
                 >
                   Change Password
