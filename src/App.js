@@ -52,6 +52,7 @@ import Marketplace from './pages/Marketplace';
 import Library from './pages/Dashboard/Library';
 import Customers from './pages/Dashboard/Customers';
 import PasswordChange from './pages/PasswordChange';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -60,6 +61,8 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<NoAuth />}>
+            <Route path='*' element={<NotFound />} />
+
             <Route index element={<Home />} />
 
             <Route path='privacy' element={<Privacy />} />
