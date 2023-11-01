@@ -148,7 +148,7 @@ const Login = () => {
           <input
             type='email'
             placeholder='Email'
-            className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
+            className='border-2 border-gray-200 hover:border-gray-300 w-full outline outline-0 rounded mt-4 p-2'
             autoFocus
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -156,17 +156,17 @@ const Login = () => {
           <input
             type='password'
             placeholder='Password'
-            className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
+            className='border-2 border-gray-200 hover:border-gray-300 outline-0 outline w-full rounded mt-4 p-2'
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className='w-full flex justify-between mt-2'>
             <Link to='/signup'>
-              <p className='text-sm text-slate-400 hover:text-stone-800 font-medium'>
-                Don't have a storefront yet?
+              <p className='text-sm text-stone-800 font-medium'>
+                Don't have a store yet?
               </p>
             </Link>
             <Link to='/reset/password'>
-              <p className='text-sm text-slate-400 hover:text-stone-800 font-medium'>
+              <p className='text-sm text-stone-800 font-medium'>
                 Forgot your password?
               </p>
             </Link>

@@ -85,7 +85,7 @@ const Feedback = () => {
               className='flex flex-col w-full mx-auto border rounded bg-white p-2 drop-shadow-md mt-2'
               onSubmit={handleAddFeedBack}
             >
-              <p className='font-medium mb-2 text-gray-400'>
+              <p className='font-medium mb-2 text-stone-800'>
                 Leave feedback on:
               </p>
               <select
@@ -104,7 +104,7 @@ const Feedback = () => {
               </select>
 
               <textarea
-                className='h-32 w-full border-2 rounded p-2 mt-2 outline outline-0 focus:border-gray-400'
+                className='h-32 w-full border-2 rounded p-2 mt-2 outline outline-0 border-gray-200 hover:border-gray-300'
                 placeholder='Enter feedback...'
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
@@ -124,7 +124,7 @@ const Feedback = () => {
                 type='submit'
                 className='w-full h-14 border-2 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 rounded mt-4'
               >
-                Submit feedback
+                Submit Feedback
               </button>
             </form>
           </div>

@@ -58,14 +58,14 @@ const LoginMobile = ({
         <input
           type='email'
           placeholder='Email'
-          className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
+          className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 w-full rounded mt-4 p-2'
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type='password'
           placeholder='Password'
-          className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
+          className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 w-full rounded mt-4 p-2'
           onChange={(e) => setPassword(e.target.value)}
         />
         <div className='w-full flex justify-between mt-2'>

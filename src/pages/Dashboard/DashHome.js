@@ -161,7 +161,7 @@ const DashHome = () => {
         {!currentUser.stripeOnboard && (
           <Alert severity='error' className='mb-2 w-full'>
             <p>
-              Connect to payment gateway in{' '}
+              Connect a Stripe account in{' '}
               <Link to='/settings' className='text-red-900 font-semibold'>
                 settings
               </Link>{' '}
