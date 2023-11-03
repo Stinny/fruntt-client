@@ -89,7 +89,7 @@ const DesktopForm = ({
       <div className='flex justify-between'>
         <h2 className='text-3xl font-medium'>New digital product</h2>
         <FormControlLabel
-          label='Publish to storefront'
+          label='Publish to store'
           control={
             <Switch
               checked={published}

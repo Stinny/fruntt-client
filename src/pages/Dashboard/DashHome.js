@@ -113,11 +113,12 @@ const DashHome = () => {
 
   useEffect(() => {
     refetch();
+    refetchUser();
   }, []);
 
-  useEffect(() => {
-    refetch();
-  }, [currentStoreID]);
+  // useEffect(() => {
+  //   refetch();
+  // }, [currentStoreID]);
 
   let content;
 

@@ -9,11 +9,12 @@ import {
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import ReactPaginate from 'react-paginate';
+import { BiSmile } from 'react-icons/bi';
 
 //mui
 import { Rating } from '@mui/material';
 
-const Desktop = ({ products, refetch, handleFilterChange, filter }) => {
+const Desktop = ({ products, handleFilterChange, filter }) => {
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 9;
 
@@ -35,14 +36,25 @@ const Desktop = ({ products, refetch, handleFilterChange, filter }) => {
 
   return (
     <div>
-      <div className='w-full rounded border drop-shadow-lg bg-white p-4 mb-4'>
+      <div className='bg-stone-800 text-sm rounded-tr rounded-tl h-10 flex items-center justify-center'>
+        <p className='text-white'>
+          Pay us only 1% of sales after processing fees{' '}
+        </p>
+        <BiSmile className='ml-1 text-white text-xl' />
+      </div>
+      <div className='w-full rounded-br rounded-bl border drop-shadow-lg bg-white p-4 mb-4'>
         <p className='text-3xl font-medium text-stone-800'>Marketplace</p>
         <p className='text-stone-800 text-lg mt-2'>
           This marketplace is only the beginning. Currently we will just list
           all products available. As we grow, the marketplace will reflect based
-          on various product insights. We also aim to be very friendly to new
-          creators and products. Get your store open and products listed!
+          on various product insights. We aim to be very friendly to new
+          creators and products and our goal is to help creators earn{' '}
+          <span className='font-bold'>MORE</span>. Get your store open and
+          products listed!
         </p>
+        {/* <p className='mt-4 text-stone-800 text-lg font-bold'>
+          {products.length} products and growing
+        </p> */}
         <Link to='/signup'>
           <button className='border-2 font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded w-36 h-10 mt-4'>
             Open Store

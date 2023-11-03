@@ -181,7 +181,7 @@ const EditDesktop = ({
           <h2 className='text-3xl font-medium'>Edit your digital product</h2>
 
           <FormControlLabel
-            label='Publish to storefront'
+            label='Publish to store'
             control={
               <Switch
                 checked={published}

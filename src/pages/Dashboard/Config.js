@@ -67,7 +67,9 @@ const Config = () => {
         currentUser.store.url = `https://${name}.fruntt.com`;
         const newUser = JSON.stringify(currentUser);
         Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
-        toast.success('Storefront name has been changed!');
+        toast.success('Store name updated!', {
+          style: { color: 'rgb(28 25 23)' },
+        });
         closeModal();
       } else if (addLogoReq?.msg === 'Name in use') {
         setChangingName(false);
