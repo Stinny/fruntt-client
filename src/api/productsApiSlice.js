@@ -6,6 +6,9 @@ export const productsApiSlice = apiSlice.injectEndpoints({
     getProducts: builder.query({
       query: ({ storeId }) => `/products/client/${storeId}`,
     }),
+    getMarketProducts: builder.query({
+      query: ({ filter }) => `/products/market/${filter}`,
+    }),
     getProduct: builder.query({
       query: ({ productId }) => `/products/${productId}`,
     }),
@@ -155,4 +158,5 @@ export const {
   useGetFilesQuery,
   useDeleteFileMutation,
   useAddDescriptionMutation,
+  useGetMarketProductsQuery,
 } = productsApiSlice;

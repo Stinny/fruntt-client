@@ -12,6 +12,7 @@ import {
 import { BsPalette, BsBookmarkHeart, BsGear, BsPeople } from 'react-icons/bs';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { VscFeedback } from 'react-icons/vsc';
+import { HiOutlineBuildingStorefront } from 'react-icons/hi2';
 
 const Topbar = () => {
   //for changing nav links according to the page
@@ -129,6 +130,20 @@ const Topbar = () => {
             >
               <BsBookmarkHeart className='mr-1' />
               Library
+            </button>
+          </NavLink>
+
+          <NavLink to='/marketplace' className='mt-2'>
+            <button
+              className={
+                path === '/marketplace' || path === '/marketplace'
+                  ? activeLink
+                  : notActiveLink
+              }
+              bookmark
+            >
+              <HiOutlineBuildingStorefront className='mr-1' />
+              Marketplace
             </button>
           </NavLink>
           <div className='flex flex-col border-b'>

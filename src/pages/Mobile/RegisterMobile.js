@@ -118,11 +118,11 @@ const RegisterMobile = ({
             disabled={isLoading}
             className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded mt-4'
           >
-            Open storefront
+            Open Store
           </button>
           <div className='mt-2 flex w-full'>
             <Link to='/login'>
-              <p className='text-xs self-start text-gray-400 hover:text-stone-800 font-medium'>
+              <p className='text-xs self-start text-stone-800 font-medium'>
                 Already have a store? Login here.
               </p>
             </Link>

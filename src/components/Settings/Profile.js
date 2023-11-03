@@ -192,8 +192,14 @@ const Profile = ({ user, refetch }) => {
               <p className='text-lg'>{user?.zipcode}</p>
             </div>
           ) : (
-            <div className='rounded h-32 flex bg-gray-50 w-11/12 items-center justify-center mx-auto'>
-              <p className='text-sm'>Finish adding account info</p>
+            <div className='rounded h-32 flex flex-col bg-gray-50 w-11/12 items-center justify-center mx-auto mt-4'>
+              <p className='text-sm'>Finish adding account details</p>
+              <button
+                className='border-2 rounded w-16 h-8 mt-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white text-sm'
+                onClick={openModal}
+              >
+                Add
+              </button>
             </div>
           )}
         </>

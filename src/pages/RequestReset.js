@@ -104,9 +104,9 @@ const RequestReset = () => {
         ) : (
           <div className='flex flex-col p-2 border rounded drop-shadow-md w-8/12 mx-auto mt-32 bg-white'>
             <p className='font-medium text-stone-800 text-3xl'>
-              Oops, you forgot your password
+              Oops! You forgot your password.
             </p>
-            <p className='font-medium text-gray-400 text-xl mt-2'>
+            <p className='font-medium text-stone-800 text-xl mt-2'>
               Enter your email below to receive a link to reset your password
             </p>
 
@@ -119,7 +119,7 @@ const RequestReset = () => {
               <input
                 type='email'
                 placeholder='Enter email'
-                className='border-2 border-slate-200 hover:border-slate-300 focus:outline focus:outline-1 focus:outline-slate-300 w-full rounded mt-4 p-2'
+                className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 w-full rounded mt-4 p-2'
                 autoFocus
                 onChange={(e) => setEmail(e.target.value)}
               />
