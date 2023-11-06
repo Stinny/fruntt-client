@@ -5,6 +5,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { IoStorefrontOutline } from 'react-icons/io5';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { HiMenu } from 'react-icons/hi';
+import { BiMoneyWithdraw, BiPackage } from 'react-icons/bi';
+import { MdOutlineSell } from 'react-icons/md';
 import { BsDiscord } from 'react-icons/bs';
 import HelpModal from '../components/HelpModal';
 import { useLazyGetStorefrontByIDQuery } from '../api/storefrontApiSlice';
@@ -122,7 +124,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
               disabled
               type='button'
             >
-              + Add Product
+              + New Product
             </button>
           </Link>
 
@@ -180,12 +182,15 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
         <div className='flex flex-col w-full h-full mx-auto items-center'>
           <Link
             to='/marketplace'
-            className='text-2xl font-medium mt-20 border-b-2'
+            className='text-2xl font-medium mt-20 flex items-center'
           >
-            Buy
+            Buy <MdOutlineSell className='ml-2' />
           </Link>
-          <Link to='/signup' className='text-2xl font-medium mt-20 border-b-2'>
-            Sell
+          <Link
+            to='/signup'
+            className='text-2xl font-medium mt-20 flex items-center'
+          >
+            Sell <BiMoneyWithdraw className='ml-2' />
           </Link>
 
           {/* <a
