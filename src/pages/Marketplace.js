@@ -58,7 +58,7 @@ const Marketplace = () => {
   return (
     <>
       <Navbar />
-      <div className={marketClass}>{content}</div>
+      <div>{content}</div>
       <Footer />
     </>
   );

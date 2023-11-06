@@ -162,7 +162,7 @@ const Register = () => {
         <div className='flex flex-col mx-auto items-center justify-center w-full'>
           <p className='text-3xl font-medium text-center'>Ready to sell?</p>
           <p className='text-stone-800 font-medium mb-4 text-center text-lg mt-1'>
-            Open your storefront, be ready to sell in minutes.
+            Open your store, be ready to sell in minutes.
           </p>
 
           {error && (

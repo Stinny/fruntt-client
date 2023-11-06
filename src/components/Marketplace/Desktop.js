@@ -10,11 +10,16 @@ import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import ReactPaginate from 'react-paginate';
 import { BiSmile } from 'react-icons/bi';
+import Cookies from 'js-cookie';
 
 //mui
 import { Rating } from '@mui/material';
 
 const Desktop = ({ products, handleFilterChange, filter }) => {
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
+
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 9;
 
@@ -34,8 +39,12 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
   const notActiveLink =
     'text-md font-medium w-full h-8 hover:bg-stone-800 hover:text-white rounded text-stone-800 flex items-center justify-center ml-2';
 
+  const marketClass = currentUser
+    ? `max-w-7xl mx-auto h-fit mt-2`
+    : `max-w-7xl mx-auto h-fit mt-24`;
+
   return (
-    <div>
+    <div className={marketClass}>
       <div className='bg-stone-800 text-sm rounded-tr rounded-tl h-10 flex items-center justify-center'>
         <p className='text-white'>
           Pay us only 1% of sales after processing fees{' '}

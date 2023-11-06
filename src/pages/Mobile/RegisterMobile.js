@@ -47,7 +47,7 @@ const RegisterMobile = ({
       <div className='flex flex-col w-full mx-auto'>
         <p className='text-2xl font-medium text-center'>Ready to sell?</p>
         <p className='text-stone-800 font-medium mb-4 text-center mt-2'>
-          Open your storefront, be ready to sell in minutes.
+          Open your store, be ready to sell in minutes.
         </p>
 
         {error && (

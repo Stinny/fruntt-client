@@ -86,6 +86,18 @@ html {
   /* Add any additional styles you want */
 }
 
+@media (max-width: 767px) {
+  .previous,
+  .next {
+    padding: 4px;
+  }
+  .notActivePage,
+  .activePage,
+  .breakLink {
+    padding: 4px; /* Smaller padding for mobile devices */
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
