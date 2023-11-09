@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import ReactPaginate from 'react-paginate';
+import { BsPeople } from 'react-icons/bs';
 
 const DesktopCustomers = ({ customers }) => {
   //stuff for pagination//
@@ -21,7 +22,10 @@ const DesktopCustomers = ({ customers }) => {
   return customers.length > 0 ? (
     <div className='w-full mx-auto h-full'>
       <div className='w-full flex justify-between'>
-        <h2 className='text-3xl font-medium'>Your Customers</h2>
+        <div className='flex items-center justify-center rounded bg-stone-800 p-2'>
+          <BsPeople className='text-white' />
+          <p className='text-xl text-white ml-2'>Customers</p>
+        </div>
         <div className='flex justify-between'>
           <input
             placeholder='Coming soon!'

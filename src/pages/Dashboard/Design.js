@@ -11,7 +11,7 @@ import moment from 'moment';
 import { isMobile } from 'react-device-detect';
 import DesignPreview from '../DesignPreview';
 import DesignMobile from '../Mobile/Dashboard/DesignMobile';
-import Cookies from 'js-cookie';
+import { BsPalette } from 'react-icons/bs';
 
 const Design = () => {
   const currentStoreID = useSelector((state) => state.user.selectedStore);
@@ -181,7 +181,11 @@ const Design = () => {
           <div className='w-full mx-auto'>
             <div className='flex justify-between items-center p-2'>
               <div className='flex flex-col'>
-                <h2 className='text-2xl font-medium'>Storefront design</h2>
+                {/* <h2 className='text-2xl font-medium'>Storefront design</h2> */}
+                <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+                  <BsPalette className='text-white text-xl' />
+                  <p className='text-xl text-white ml-2'>Design</p>
+                </div>
                 <p>
                   Page last designed on{' '}
                   {moment(storefront?.lastEdited).format('MMM D, YYYY')}
@@ -197,9 +201,13 @@ const Design = () => {
           </div>
         ) : (
           <div className='w-9/12 mx-auto p-10 h-screen overflow-y-scroll bg-gray-50'>
-            <div className='flex justify-between items-center p-2'>
+            <div className='flex justify-between items-center'>
               <div className='flex flex-col'>
-                <h2 className='text-3xl font-medium'>Storefront design</h2>
+                {/* <h2 className='text-3xl font-medium'>Storefront design</h2> */}
+                <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+                  <BsPalette className='text-white text-xl' />
+                  <p className='text-xl text-white ml-2'>Design</p>
+                </div>
                 <p className='mt-2'>
                   Last designed on{' '}
                   {moment(storefront?.lastEdited).format('MMM D, YYYY')}
@@ -210,7 +218,7 @@ const Design = () => {
                 target='_blank'
                 className='flex items-center mt-6'
               >
-                <p className='font-medium text-xl'>Live storefront</p>
+                <p className='font-medium text-xl'>Live store</p>
                 <BsArrowRightShort className='text-2xl font-medium' />
               </a>
               <Link to='/dashboard/design/edit'>

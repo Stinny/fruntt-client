@@ -53,6 +53,7 @@ import Library from './pages/Dashboard/Library';
 import Customers from './pages/Dashboard/Customers';
 import PasswordChange from './pages/PasswordChange';
 import NotFound from './pages/NotFound';
+import EditProfile from './pages/EditProfile';
 
 function App() {
   return (
@@ -96,6 +97,11 @@ function App() {
                 <Route path='dashboard/orders' element={<Orders />} />
 
                 <Route path='dashboard/description' element={<Description />} />
+
+                <Route
+                  path='dashboard/edit/profile'
+                  element={<EditProfile />}
+                />
 
                 <Route
                   path='dashboard/password/change'

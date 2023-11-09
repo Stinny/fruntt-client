@@ -85,7 +85,7 @@ const DesktopForm = ({
   ];
 
   return (
-    <div className='w-full p-4'>
+    <div className='w-full'>
       <div className='flex justify-between'>
         <h2 className='text-3xl font-medium'>New digital product</h2>
         <FormControlLabel

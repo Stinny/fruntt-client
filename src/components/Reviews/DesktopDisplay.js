@@ -5,6 +5,7 @@ import ReactPaginate from 'react-paginate';
 
 //mui
 import Rating from '@mui/material/Rating';
+import { BiMessageSquareDetail } from 'react-icons/bi';
 
 const DesktopDisplay = ({ reviews }) => {
   const [itemOffset, setItemOffset] = useState(0);
@@ -26,7 +27,10 @@ const DesktopDisplay = ({ reviews }) => {
   return (
     <div>
       <div className='w-full flex justify-between items-center'>
-        <h2 className='text-3xl font-medium'>Your Reviews</h2>
+        <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+          <BiMessageSquareDetail className='text-white text-xl' />
+          <p className='text-xl text-white ml-2'>Reviews</p>
+        </div>
         <div className='flex justify-between'>
           <input
             placeholder='Coming soon!'

@@ -10,6 +10,7 @@ import {
 import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import ReactPaginate from 'react-paginate';
+import { BiPackage } from 'react-icons/bi';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -31,6 +32,8 @@ const ProductsDesktop = ({ product }) => {
     const newOffset = (event.selected * itemsPerPage) % product.length;
 
     setItemOffset(newOffset);
+
+    window.scroll(0, 0);
   };
   //end of pagination stuff
 
@@ -53,7 +56,10 @@ const ProductsDesktop = ({ product }) => {
   return product.length ? (
     <div className='w-full p-10'>
       <div className='w-full flex justify-between items-center'>
-        <p className='text-3xl font-medium'>Your products</p>
+        <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+          <BiPackage className='text-white text-xl' />
+          <p className='text-xl text-white ml-2'>Products</p>
+        </div>
 
         <div className='flex items-center'>
           <p className='text-stone-800 font-medium text-lg'>

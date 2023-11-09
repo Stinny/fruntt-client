@@ -13,7 +13,7 @@ import { BiSmile } from 'react-icons/bi';
 import Cookies from 'js-cookie';
 
 //mui
-import { Rating } from '@mui/material';
+import { Avatar, Rating } from '@mui/material';
 
 const Desktop = ({ products, handleFilterChange, filter }) => {
   const currentUser = Cookies.get('currentUser')
@@ -32,12 +32,14 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
     const newOffset = (event.selected * itemsPerPage) % products.length;
 
     setItemOffset(newOffset);
+
+    window.scrollTo(0, 0);
   };
 
   const activeLink =
-    'text-md h-8 font-medium text-white w-full rounded bg-stone-800 flex items-center justify-center ml-2';
+    'text-md h-8 font-medium text-white w-44 rounded bg-stone-800 flex items-center justify-center ml-2';
   const notActiveLink =
-    'text-md font-medium w-full h-8 hover:bg-stone-800 hover:text-white rounded text-stone-800 flex items-center justify-center ml-2';
+    'text-md font-medium w-44 h-8 bg-gray-100 hover:bg-stone-800 hover:text-white rounded text-stone-800 flex items-center justify-center ml-2';
 
   const marketClass = currentUser
     ? `max-w-7xl mx-auto h-fit mt-2`
@@ -54,12 +56,9 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
       <div className='w-full rounded-br rounded-bl border drop-shadow-lg bg-white p-4 mb-4'>
         <p className='text-3xl font-medium text-stone-800'>Marketplace</p>
         <p className='text-stone-800 text-lg mt-2'>
-          This marketplace is only the beginning. Currently we will just list
-          all products available. As we grow, the marketplace will reflect based
-          on various product insights. We aim to be very friendly to new
-          creators and products and our goal is to help creators earn{' '}
-          <span className='font-bold'>MORE</span>. Get your store open and
-          products listed!
+          A place for creators to earn
+          <span className='font-bold'> MORE</span>. Discover the latest products
+          and creators. Get your store open and products listed!
         </p>
         {/* <p className='mt-4 text-stone-800 text-lg font-bold'>
           {products.length} products and growing
@@ -152,6 +151,20 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
                   </p>
                 </div>
 
+                <div className='absolute bottom-0 ml-2 mb-2'>
+                  <a
+                    href={product?.storeUrl}
+                    className='flex items-center'
+                    target='_blank'
+                  >
+                    <Avatar
+                      src={product?.userPicture}
+                      sx={{ width: 32, height: 32 }}
+                    />
+                    <p className='ml-1'>{product?.userName}</p>
+                  </a>
+                </div>
+
                 <div className='w-full flex-col p-4'>
                   <div className='w-full h-40 pb-2'>
                     <img
@@ -161,32 +174,32 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
                   </div>
                   <div className='mb-2 mt-1'>
                     {product?.digitalType === 'video' ? (
-                      <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
+                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
                         <p className='text-sm'>Video Course</p>
                         <MdOutlineVideoLibrary className='ml-2 text-xl' />
                       </div>
                     ) : product?.digitalType === 'ebook' ? (
-                      <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
+                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
                         <p className='text-sm'>E-Book</p>
                         <HiOutlineBookOpen className='ml-2 text-xl' />
                       </div>
                     ) : product?.digitalType === 'audio' ? (
-                      <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
+                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
                         <p className='text-sm'>Audio</p>
                         <BsFillMicFill className='ml-2 text-xl' />
                       </div>
                     ) : product?.digitalType === 'other' ? (
-                      <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
-                        <p className='text-sm'> Digital Media</p>
+                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
+                        <p className='text-sm'>Other</p>
                         <MdOutlinePermMedia className='ml-2 text-xl' />
                       </div>
                     ) : product?.digitalType === 'template' ? (
-                      <div className='flex items-center justify-center border-2 border-stone-800 rounded w-40 h-8 mt-2'>
+                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8 mt-2'>
                         <p className='text-sm'>Template</p>
                         <HiOutlineTemplate className='ml-2 text-xl' />
                       </div>
                     ) : (
-                      <div className='flex items-center justify-center border-2 border-slate-800  rounded w-40 h-8'>
+                      <div className='flex items-center justify-center bg-gray-100  rounded w-40 h-8'>
                         <p className='text-sm'>Art</p>
                         <BsPalette className='ml-2 text-xl' />
                       </div>

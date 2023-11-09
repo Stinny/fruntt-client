@@ -27,6 +27,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
   const [menuH, setH] = useState('h-0');
   const [menuDisplay, setDisplay] = useState('none');
   const [opacity, setOpactity] = useState('opacity-0');
+  const [close, setClose] = useState(false);
 
   const [getStorefrontByID, result] = useLazyGetStorefrontByIDQuery();
 
@@ -152,8 +153,22 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
     </>
   ) : (
     <>
-      <nav className='w-full h-16 border-b shadow bg-white fixed top-0 left-0 right-0 z-50'>
-        <div className='w-11/12 h-full mx-auto flex justify-between items-center'>
+      <nav className='w-full border-b shadow bg-white fixed top-0 left-0 right-0 z-50'>
+        {close ? (
+          ''
+        ) : (
+          <div className='w-full h-8 bg-stone-800 flex items-center justify-center'>
+            {' '}
+            <p className='text-sm text-white'>
+              We recommend to use in a desktop browser
+            </p>
+            <AiOutlineCloseCircle
+              className='ml-4 text-white'
+              onClick={(e) => setClose(true)}
+            />
+          </div>
+        )}
+        <div className='w-11/12 h-16 mx-auto flex justify-between items-center'>
           <div className='text-2xl h-full flex justify-center items-center'>
             <Link to='/' className='h-full flex justify-center items-center'>
               <IoStorefrontOutline className='text-stone-800 font-bold' />

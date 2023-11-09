@@ -9,6 +9,8 @@ import { isMobile } from 'react-device-detect';
 import { setSelectedStoreUrl } from '../../redux/userRedux';
 import { useAddLogoMutation } from '../../api/storefrontApiSlice';
 import { toast } from 'react-toastify';
+import { AiOutlineTool } from 'react-icons/ai';
+
 //mui
 import Alert from '@mui/material/Alert';
 
@@ -137,9 +139,12 @@ const Config = () => {
         <Topbar />
 
         <div className='w-9/12 p-10 mx-auto h-screen bg-gray-50'>
-          <p className='font-medium text-3xl text-stone-800'>
-            Storefront Configuration
-          </p>
+          <div className='flex justify-between'>
+            <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+              <AiOutlineTool className='text-white text-xl' />
+              <p className='text-xl text-white ml-2'>Configuration</p>
+            </div>
+          </div>
           <div className='w-full bg-white border rounded drop-shadow-lg mt-2 p-2'>
             <div className='w-full border-b p-2 flex justify-between items-center'>
               <p className='font-medium'>Storefront Name</p>
