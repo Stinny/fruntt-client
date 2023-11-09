@@ -13,7 +13,7 @@ import { BiSmile } from 'react-icons/bi';
 import Cookies from 'js-cookie';
 
 //mui
-import { Avatar, Rating } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
 
 const Desktop = ({ products, handleFilterChange, filter }) => {
   const currentUser = Cookies.get('currentUser')

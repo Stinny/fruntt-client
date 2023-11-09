@@ -11,6 +11,9 @@ import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import ReactPaginate from 'react-paginate';
 import { BiSmile } from 'react-icons/bi';
 
+//mui
+import Avatar from '@mui/material/Avatar';
+
 const Mobile = ({ products, handleFilterChange, filter }) => {
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 5;
@@ -87,6 +90,20 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
                           maximumFractionDigits: 0,
                         })}`}
                   </p>
+                </div>
+
+                <div className='absolute bottom-0 ml-2 mb-2'>
+                  <a
+                    href={product?.storeUrl}
+                    className='flex items-center'
+                    target='_blank'
+                  >
+                    <Avatar
+                      src={product?.userPicture}
+                      sx={{ width: 22, height: 22 }}
+                    />
+                    <p className='ml-1 text-sm'>{product?.userName}</p>
+                  </a>
                 </div>
 
                 <div className='w-full flex-col p-4'>
