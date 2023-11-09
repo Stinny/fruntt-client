@@ -5,7 +5,7 @@ import img from '../../media/noOrders.svg';
 import ReactPaginate from 'react-paginate';
 import { AiOutlineLink, AiOutlineEye } from 'react-icons/ai';
 import { BiPackage, BiMessageSquareDetail } from 'react-icons/bi';
-import { MdOutlineAttachMoney } from 'react-icons/md';
+import { MdOutlineAttachMoney, MdShoppingCart } from 'react-icons/md';
 
 const DesktopOrders = ({ orders }) => {
   //stuff for pagination//
@@ -60,7 +60,10 @@ const DesktopOrders = ({ orders }) => {
   return orders.length > 0 ? (
     <div>
       <div className='w-full flex justify-between'>
-        <h2 className='text-3xl font-medium'>Your Orders</h2>
+        <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+          <MdShoppingCart className='text-white text-xl' />
+          <p className='text-xl text-white ml-2'>Orders</p>
+        </div>
         <div className='flex justify-between'>
           <input
             placeholder='Coming soon!'
