@@ -45,7 +45,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
         <BiSmile className='ml-1 text-white text-xl' />
       </div>
       <div className='w-full rounded-bl rounded-br border drop-shadow-lg bg-white p-4 mb-4'>
-        <p className='text-lg font-medium text-stone-800'>Marketplace</p>
+        <p className='text-lg font-medium text-stone-800'>Fruntt Marketplace</p>
         <p className='text-stone-800 text-sm mt-2'>
           A place for creators to earn
           <span className='font-bold'> MORE</span>. Discover the latest products
