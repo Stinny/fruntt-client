@@ -48,7 +48,7 @@ const Hero = () => {
   };
 
   return isMobile ? (
-    <div className='h-fit flex flex-col w-full mt-20 p-2'>
+    <div className='h-fit flex flex-col w-full mt-24 p-2'>
       <div className='flex flex-col'>
         <div className='flex flex-col text-left w-full'>
           <p className='font-medium text-2xl'>
@@ -70,7 +70,13 @@ const Hero = () => {
               </button>
             </Link>
 
-            <button
+            <Link to='/marketplace' className='flex w-56 ml-1'>
+              <button className='rounded text-white w-full h-10 text-sm border-stone-800 border-2 bg-stone-800 flex items-center shadow-md justify-center'>
+                Browse Products
+              </button>
+            </Link>
+
+            {/* <button
               style={{
                 backgroundColor: 'rgb(15, 20, 25)',
                 borderColor: 'rgb(15, 20, 25)',
@@ -81,7 +87,7 @@ const Hero = () => {
             >
               <p className='text-sm mr-2'>Connect with</p>
               <img src={imgThree} className='w-4 h-4' />
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -133,7 +139,13 @@ const Hero = () => {
               </button>
             </Link>
 
-            <button
+            <Link to='/marketplace' className='flex w-56 ml-1'>
+              <button className='rounded text-white w-full h-10 border-stone-800 border-2 bg-stone-800 flex items-center shadow-md justify-center'>
+                Browse Products
+              </button>
+            </Link>
+
+            {/* <button
               style={{
                 backgroundColor: 'rgb(15, 20, 25)',
                 borderColor: 'rgb(15, 20, 25)',
@@ -142,10 +154,10 @@ const Hero = () => {
               type='button'
               onClick={handleTwitterSignup}
             >
-              {/* <AiOutlineTwitter className='text-2xl mr-2' /> */}
+              
               <p className='mr-2'>Connect with</p>
               <img src={imgThree} className='w-4 h-4' />
-            </button>
+            </button> */}
           </div>
         </div>
 

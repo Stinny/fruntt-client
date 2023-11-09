@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import {
   AiOutlineInstagram,
@@ -278,10 +279,12 @@ const SellerProfile = ({ user, refetch }) => {
         ) : (
           <div className='flex justify-between items-center w-full'>
             <p className='text-md font-medium text-slate-800'>Seller profile</p>
-            <AiOutlineEdit
-              onClick={openModal}
-              className='text-stone-800 text-xl hover:cursor-pointer'
-            />
+            <Link to='/dashboard/edit/profile'>
+              <AiOutlineEdit
+                onClick={openModal}
+                className='text-stone-800 text-xl hover:cursor-pointer'
+              />
+            </Link>
           </div>
         )}
 

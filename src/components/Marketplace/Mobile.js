@@ -24,6 +24,8 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
     const newOffset = (event.selected * itemsPerPage) % products.length;
 
     setItemOffset(newOffset);
+
+    window.scrollTo(0, 0);
   };
 
   const activeLink =
@@ -33,7 +35,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
 
   return (
     <div className='p-2'>
-      <div className='bg-stone-800 text-sm rounded-tr rounded-tl h-10 flex items-center justify-center mt-16'>
+      <div className='bg-stone-800 text-sm rounded-tr rounded-tl h-10 flex items-center justify-center mt-24'>
         <p className='text-white'>
           Pay us only 1% of sales after processing fees{' '}
         </p>
@@ -42,12 +44,9 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
       <div className='w-full rounded-bl rounded-br border drop-shadow-lg bg-white p-4 mb-4'>
         <p className='text-lg font-medium text-stone-800'>Marketplace</p>
         <p className='text-stone-800 text-sm mt-2'>
-          This marketplace is only the beginning. Currently we will just list
-          all products available. As we grow, the marketplace will reflect based
-          on various product insights. We aim to be very friendly to new
-          creators and products and our goal is to help creators earn{' '}
-          <span className='font-bold'>MORE</span>. Get your store open and
-          products listed!
+          A place for creators to earn
+          <span className='font-bold'> MORE</span>. Discover the latest products
+          and creators. Get your store open and products listed!
         </p>
         {/* <p className='mt-4 text-stone-800 text-lg font-bold'>
           {products.length} products and growing
@@ -99,32 +98,32 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
                   </div>
                   <div className='mb-2 mt-1'>
                     {product?.digitalType === 'video' ? (
-                      <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
+                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
                         <p className='text-sm'>Video Course</p>
                         <MdOutlineVideoLibrary className='ml-2 text-xl' />
                       </div>
                     ) : product?.digitalType === 'ebook' ? (
-                      <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
+                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
                         <p className='text-sm'>E-Book</p>
                         <HiOutlineBookOpen className='ml-2 text-xl' />
                       </div>
                     ) : product?.digitalType === 'audio' ? (
-                      <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
+                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
                         <p className='text-sm'>Audio</p>
                         <BsFillMicFill className='ml-2 text-xl' />
                       </div>
                     ) : product?.digitalType === 'other' ? (
-                      <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
-                        <p className='text-sm'> Digital Media</p>
+                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
+                        <p className='text-sm'>Other</p>
                         <MdOutlinePermMedia className='ml-2 text-xl' />
                       </div>
                     ) : product?.digitalType === 'template' ? (
-                      <div className='flex items-center justify-center border-2 border-stone-800 rounded w-40 h-8 mt-2'>
+                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8 mt-2'>
                         <p className='text-sm'>Template</p>
                         <HiOutlineTemplate className='ml-2 text-xl' />
                       </div>
                     ) : (
-                      <div className='flex items-center justify-center border-2 border-slate-800  rounded w-40 h-8'>
+                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
                         <p className='text-sm'>Art</p>
                         <BsPalette className='ml-2 text-xl' />
                       </div>
