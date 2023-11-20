@@ -92,7 +92,7 @@ const DesignDetail = ({
 
               {products.length > 0 ? (
                 <div
-                  className='p-10 border rounded mt-10 bg-inherit drop-shadow-lg'
+                  className='p-10 border rounded mt-10 bg-inherit drop-shadow-lg max-w-6xl mx-auto'
                   style={{ borderColor: borderColor, backgroundColor: cardBG }}
                 >
                   <div
@@ -260,17 +260,17 @@ const DesignDetail = ({
                           className='w-full border-b'
                           style={{ borderColor: borderColor }}
                         >
-                          <p className='text-lg' style={{ color: headerColor }}>
+                          <p className='text-sm' style={{ color: headerColor }}>
                             Description
                           </p>
                         </div>
                         {selectedProduct?.item?.info === '' ? (
                           <div className='w-full h-44 mt-4 rounded flex justify-center items-center bg-gray-100'>
                             <p
-                              className='font-medium text-md'
+                              className='font-medium text-sm'
                               style={{ color: pageText }}
                             >
-                              No description had been added!
+                              No description
                             </p>
                           </div>
                         ) : (
@@ -294,7 +294,7 @@ const DesignDetail = ({
                           className='w-full border-b mt-4'
                           style={{ borderColor: borderColor }}
                         >
-                          <p className='text-lg' style={{ color: headerColor }}>
+                          <p className='text-sm' style={{ color: headerColor }}>
                             Reviews
                           </p>
                         </div>
@@ -350,10 +350,10 @@ const DesignDetail = ({
                             className='w-full h-32 mt-4 rounded flex justify-center items-center'
                           >
                             <p
-                              className='font-medium text-lg'
+                              className='font-medium text-sm'
                               style={{ color: pageText }}
                             >
-                              Item has not been reviewed!
+                              No reviews
                             </p>
                           </div>
                         )}
@@ -372,10 +372,10 @@ const DesignDetail = ({
                   >
                     <div className='h-60'></div>
                     <p
-                      className='font-medium text-lg text-stone-800'
+                      className='font-medium text-sm text-stone-800'
                       style={{ color: pageText }}
                     >
-                      This storefront is empty
+                      This store is empty
                     </p>
                     <Link
                       to='/dashboard/item'

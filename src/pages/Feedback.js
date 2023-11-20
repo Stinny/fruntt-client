@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAddFeedbackMutation } from '../api/feedbackApiSlice';
 import { BsArrowRightShort } from 'react-icons/bs';
 import { isMobile } from 'react-device-detect';
+import { VscFeedback } from 'react-icons/vsc';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -62,12 +63,10 @@ const Feedback = () => {
           <div className='w-9/12 mx-auto h-screen p-10 bg-gray-50'>
             <div className='flex justify-between items-center'>
               <div className='flex flex-col'>
-                <p className='font-medium text-3xl text-slate-800'>
-                  Leave feedback
-                </p>
-                <p className='font-medium text-stone-800'>
-                  We listen closely to all feedback!
-                </p>
+                <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+                  <VscFeedback className='text-white text-xl' />
+                  <p className='text-xl text-white ml-2'>Feedback</p>
+                </div>
               </div>
             </div>
 

@@ -16,6 +16,7 @@ import BusinessInfo from '../components/Settings/BusinessInfo';
 import { isMobile } from 'react-device-detect';
 import SellerProfile from '../components/Settings/SellerProfile';
 import DeleteAccount from '../components/Settings/DeleteAccount';
+import { BsGear } from 'react-icons/bs';
 
 const Settings = () => {
   const {
@@ -42,7 +43,10 @@ const Settings = () => {
         {isMobile ? (
           <div className='border-b-2 pb-2'>
             <div className='flex justify-between items-center w-full'>
-              <h2 className='text-3xl font-medium'>Settings</h2>
+              <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+                <BsGear className='text-white text-xl' />
+                <p className='text-xl text-white ml-2'>Settings</p>
+              </div>
 
               <Link
                 to='/dashboard'
@@ -56,7 +60,10 @@ const Settings = () => {
         ) : (
           <div className='pb-4'>
             <div className='flex justify-between w-full items-center'>
-              <h2 className='text-3xl font-medium'>Settings</h2>
+              <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+                <BsGear className='text-white text-xl' />
+                <p className='text-xl text-white ml-2'>Settings</p>
+              </div>
             </div>
           </div>
         )}

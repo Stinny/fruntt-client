@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import TopbarMobile from './TopbarMobile';
-import { AiFillHome, AiOutlineTool } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineTool } from 'react-icons/ai';
 import {
   BiPackage,
   BiMessageSquareDetail,
@@ -29,13 +29,13 @@ const Topbar = () => {
   ) : (
     <div className='w-3/12 mx-auto'>
       <div className='w-full h-full mx-auto flex flex-col border-r bg-white p-2 relative'>
-        <p className='text-stone-800 text-sm'>Storefront</p>
-        <div className='border-b flex flex-col pb-2 mt-2'>
+        <p className='text-stone-800 text-sm'>Store</p>
+        <div className='border-b flex flex-col pb-2'>
           <NavLink to='/dashboard' className='mt-2'>
             <button
               className={path === '/dashboard' ? activeLink : notActiveLink}
             >
-              <AiFillHome className='mr-1' />
+              <AiOutlineHome className='mr-1' />
               Home
             </button>
           </NavLink>

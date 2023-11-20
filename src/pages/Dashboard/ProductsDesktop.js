@@ -11,6 +11,7 @@ import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import ReactPaginate from 'react-paginate';
 import { BiPackage } from 'react-icons/bi';
+import { IoMdAdd } from 'react-icons/io';
 
 //mui
 import Switch from '@mui/material/Switch';
@@ -68,10 +69,10 @@ const ProductsDesktop = ({ product }) => {
               : `${product.length} product`}
           </p>
           <Link
-            className='rounded-lg h-8 w-8 text-stone-800 border-stone-800 border-2 flex items-center justify-center text-xl ml-4 font-medium hover:text-white hover:bg-stone-800 pb-1'
+            className='rounded-lg h-8 w-8 text-stone-800 border-stone-800 border-2 flex items-center justify-center text-lg ml-4 font-medium hover:text-white hover:bg-stone-800'
             to='/dashboard/item/digital'
           >
-            +
+            <IoMdAdd />
           </Link>
         </div>
       </div>
@@ -106,32 +107,32 @@ const ProductsDesktop = ({ product }) => {
               </a>
 
               {prod?.digitalType === 'video' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
                   <p className='text-sm'>Video Course</p>
                   <MdOutlineVideoLibrary className='ml-2 text-md' />
                 </div>
               ) : prod?.digitalType === 'ebook' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
                   <p className='text-sm'>E-Book</p>
                   <HiOutlineBookOpen className='ml-2 text-md' />
                 </div>
               ) : prod?.digitalType === 'audio' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
                   <p className='text-sm'>Audio</p>
                   <BsFillMicFill className='ml-2 text-md' />
                 </div>
               ) : prod?.digitalType === 'template' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
                   <p className='text-sm'>Template</p>
                   <HiOutlineTemplate className='ml-2 text-md' />
                 </div>
               ) : prod?.digitalType === 'other' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
                   <p className='text-sm'>Digital Media</p>
                   <MdOutlinePermMedia className='ml-2 text-md' />
                 </div>
               ) : (
-                <div className='flex items-center justify-center border-2 border-slate-800  rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
+                <div className='flex items-center justify-center bg-gray-100 text-stone-800  rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
                   <p className='text-sm'>Art</p>
                   <BsPalette className='ml-2 text-md' />
                 </div>
