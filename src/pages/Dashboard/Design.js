@@ -39,7 +39,11 @@ const Design = () => {
       <DesignMobile storefront={storefront} />
     ) : (
       <div className='w-full mx-auto flex flex-col'>
-        <div className='flex w-full bg-white border drop-shadow-md rounded mt-4 mb-2'>
+        <p className='mt-2'>
+          Last designed on{' '}
+          {moment(storefront?.lastEdited).format('MMM D, YYYY')}
+        </p>
+        <div className='flex w-full bg-white border drop-shadow-md rounded mb-2'>
           <div className='w-full flex flex-col items-center p-2 mx-auto'>
             <p className='text-lg font-medium mb-1'>Page</p>
             <div
@@ -208,19 +212,15 @@ const Design = () => {
                   <BsPalette className='text-white text-xl' />
                   <p className='text-xl text-white ml-2'>Design</p>
                 </div>
-                <p className='mt-2'>
-                  Last designed on{' '}
-                  {moment(storefront?.lastEdited).format('MMM D, YYYY')}
-                </p>
               </div>
-              <a
+              {/* <a
                 href={storefront?.url}
                 target='_blank'
                 className='flex items-center mt-6'
               >
                 <p className='font-medium text-xl'>Live store</p>
                 <BsArrowRightShort className='text-2xl font-medium' />
-              </a>
+              </a> */}
               <Link to='/dashboard/design/edit'>
                 <button className='w-40 h-10 rounded border-stone-800 border-2 hover:bg-stone-800 hover:text-white'>
                   EDIT

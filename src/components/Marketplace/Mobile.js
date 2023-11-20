@@ -32,9 +32,9 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
   };
 
   const activeLink =
-    'text-md h-8 font-medium text-white w-full rounded bg-stone-800 flex items-center justify-center ml-2';
+    'text-sm font-medium text-white rounded bg-stone-800 flex items-center justify-center ml-2 w-24 p-1';
   const notActiveLink =
-    'text-md font-medium w-full h-8 hover:bg-stone-800 hover:text-white rounded text-stone-800 flex items-center justify-center ml-2';
+    'text-sm font-medium bg-gray-100 w-24 p-1 hover:bg-stone-800 hover:text-white rounded text-stone-800 flex items-center justify-center ml-2';
 
   return (
     <div className='p-2'>
@@ -59,6 +59,56 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
             Open Store
           </button>
         </Link>
+      </div>
+
+      <div className='w-full rounded bg-white drop-shadow-lg mb-4 grid grid-cols-3 gap-2 p-2'>
+        <button
+          className={filter === 'all' ? activeLink : notActiveLink}
+          type='button'
+          onClick={(e) => handleFilterChange('all')}
+        >
+          All
+        </button>
+
+        <button
+          className={filter === 'template' ? activeLink : notActiveLink}
+          type='button'
+          onClick={(e) => handleFilterChange('template')}
+        >
+          Templates <HiOutlineTemplate className='ml-1' />
+        </button>
+
+        <button
+          className={filter === 'ebook' ? activeLink : notActiveLink}
+          type='button'
+          onClick={(e) => handleFilterChange('ebook')}
+        >
+          E-Books <HiOutlineBookOpen className='ml-1' />
+        </button>
+
+        <button
+          className={filter === 'art' ? activeLink : notActiveLink}
+          type='button'
+          onClick={(e) => handleFilterChange('art')}
+        >
+          Art <BsPalette className='ml-1' />
+        </button>
+
+        <button
+          className={filter === 'video' ? activeLink : notActiveLink}
+          type='button'
+          onClick={(e) => handleFilterChange('video')}
+        >
+          Courses <MdOutlineVideoLibrary className='ml-1' />
+        </button>
+
+        <button
+          className={filter === 'other' ? activeLink : notActiveLink}
+          type='button'
+          onClick={(e) => handleFilterChange('other')}
+        >
+          Other <MdOutlinePermMedia className='ml-1' />
+        </button>
       </div>
 
       {currentItems.length > 0 ? (
