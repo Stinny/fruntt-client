@@ -13,22 +13,27 @@ import { BsPalette, BsBookmarkHeart, BsGear, BsPeople } from 'react-icons/bs';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { VscFeedback } from 'react-icons/vsc';
 import { HiOutlineBuildingStorefront } from 'react-icons/hi2';
+import Cookies from 'js-cookie';
 
 const Topbar = () => {
   //for changing nav links according to the page
   const path = window.location.pathname;
   const activeLink =
-    'text-md h-8 font-medium text-white w-full rounded bg-stone-800 flex items-center pl-2';
+    'text-md h-10 font-medium text-white w-full rounded bg-stone-800 flex items-center pl-2';
   const notActiveLink =
-    'text-md font-medium w-full h-8 hover:bg-stone-800 hover:text-white rounded text-stone-800 flex items-center pl-2';
+    'text-md font-medium w-full h-10 hover:bg-gray-100 rounded text-stone-800 flex items-center pl-2';
 
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
+
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
 
   return isMobile ? (
     <TopbarMobile />
   ) : (
     <div className='w-3/12 mx-auto'>
-      <div className='w-full h-full mx-auto flex flex-col border-r bg-white p-2 relative'>
+      <div className='w-full h-full mx-auto flex flex-col border-r bg-white p-6 relative'>
         <p className='text-stone-800 text-sm'>Store</p>
         <div className='border-b flex flex-col pb-2'>
           <NavLink to='/dashboard' className='mt-2'>
@@ -105,7 +110,7 @@ const Topbar = () => {
             </button>
           </NavLink>
 
-          <NavLink to='/dashboard/config' className='mt-2'>
+          {/* <NavLink to='/dashboard/config' className='mt-2'>
             <button
               className={
                 path === '/dashboard/config' ? activeLink : notActiveLink
@@ -114,7 +119,7 @@ const Topbar = () => {
               <AiOutlineTool className='mr-1' />
               Config
             </button>
-          </NavLink>
+          </NavLink> */}
         </div>
 
         <div className='flex flex-col mt-2'>
@@ -172,11 +177,11 @@ const Topbar = () => {
           <div className='flex items-center mt-2 bg-white'>
             <p className='text-md text-stone-800'>Your store:</p>
             <a
-              href={currentStoreUrl}
+              href={currentUser?.store?.url}
               className='flex justify-center items-center text-md text-stone-800 font-medium ml-2'
               target='_blank'
             >
-              {currentStoreUrl}
+              {currentUser?.store?.url}
             </a>
             <BiLinkExternal className='ml-1' />
           </div>

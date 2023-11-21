@@ -183,11 +183,11 @@ const DashHome = () => {
           <div className='flex items-center p-2 bg-white rounded border drop-shadow-md'>
             <p className='text-md text-stone-800 font-medium'>Your store:</p>
             <a
-              href={currentStoreUrl}
+              href={currentUser?.store?.url}
               className='flex justify-center items-center text-md text-stone-800 font-medium ml-2'
               target='_blank'
             >
-              {currentStoreUrl}
+              {currentUser?.store?.url}
             </a>
             <BiLinkExternal className='ml-1' />
           </div>

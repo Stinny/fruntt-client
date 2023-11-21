@@ -40,7 +40,7 @@ html {
 /* Style the "Previous" and "Next" buttons */
 .previous,
 .next {
-  padding: 10px;
+  padding: 6px;
   margin: 5px;
   background-color: transparent;
   color: rgb(41 37 36);
@@ -51,7 +51,7 @@ html {
 
 /* Style the page number buttons */
 .notActivePage {
-  padding: 10px;
+  padding: 6px;
   margin: 5px;
   background-color: transparent;
   color: rgb(41 37 36);
@@ -62,7 +62,7 @@ html {
 
 /* Style the active page button */
 .activePage {
-  padding: 10px;
+  padding: 6px;
   margin: 5px;
   background-color: rgb(41 37 36);
   color: #fff;
@@ -72,7 +72,7 @@ html {
 }
 
 .breakLink {
-  padding: 10px;
+  padding: 6px;
   margin: 5px;
   background-color: transparent;
   color: rgb(41 37 36);

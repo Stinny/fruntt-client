@@ -38,115 +38,165 @@ const Design = () => {
     content = isMobile ? (
       <DesignMobile storefront={storefront} />
     ) : (
-      <div className='w-full mx-auto flex flex-col'>
-        <p className='mt-2'>
+      <div className='w-full mx-auto flex'>
+        {/* <p className='mt-2'>
           Last designed on{' '}
           {moment(storefront?.lastEdited).format('MMM D, YYYY')}
-        </p>
-        <div className='flex w-full bg-white border drop-shadow-md rounded mb-2'>
-          <div className='w-full flex flex-col items-center p-2 mx-auto'>
-            <p className='text-lg font-medium mb-1'>Page</p>
-            <div
-              className='w-14 h-14 border border-stone-800 rounded shadow-lg'
-              style={{ backgroundColor: storefront?.style?.pageBackground }}
-            ></div>
-            <p className='text-sm font-medium mt-1'>
-              {storefront?.style?.pageBackground}
-            </p>
-          </div>
-
-          <div className='w-full flex flex-col items-center p-2 mx-auto'>
-            <p className='text-lg font-medium mb-1'>Card</p>
-            <div
-              className='w-14 h-14 border border-stone-800 rounded shadow-lg'
-              style={{ backgroundColor: storefront?.style?.cardBackground }}
-            ></div>
-            <p className='text-sm font-medium mt-1'>
-              {storefront?.style?.cardBackground}
-            </p>
-          </div>
-
-          <div className='w-full flex flex-col items-center p-2 mx-auto'>
-            <p
-              className={
-                storefront?.style?.buttonStyle === 'filled'
-                  ? `text-lg font-medium mb-1 underline underline-offset-2`
-                  : `text-lg font-medium mb-1`
-              }
-            >
-              Button
-            </p>
-            <div
-              className='w-14 h-14 border rounded border-stone-800 shadow-lg'
-              style={{ backgroundColor: storefront?.style?.buttonColor }}
-            ></div>
-            <p className='text-sm font-medium mt-1'>
-              {storefront?.style?.buttonColor}
-            </p>
-          </div>
-
-          <div className='w-full flex flex-col p-2 mx-auto items-center'>
-            <p className='text-lg font-medium mb-1'>Button text</p>
-            <div
-              className='w-14 h-14 border border-stone-800 rounded shadow-lg'
-              style={{ backgroundColor: storefront?.style?.buttonTextColor }}
-            ></div>
-            <p className='text-sm font-medium mt-1'>
-              {storefront?.style?.buttonTextColor}
-            </p>
-          </div>
-
-          <div className='w-full flex flex-col items-center p-2 mx-auto'>
-            <p className='text-lg font-medium mb-1'>Borders</p>
-            <div
-              className='w-14 h-14 border border-stone-800 rounded shadow-lg'
-              style={{ backgroundColor: storefront?.style?.borderColor }}
-            ></div>
-            <p className='text-sm font-medium mt-1'>
-              {storefront?.style?.borderColor}
-            </p>
-          </div>
-
-          <div className='w-full flex flex-col items-center p-2 mx-auto'>
-            <p className='text-lg font-medium mb-1'>Headers</p>
-            <div
-              className='w-14 h-14 border border-stone-800 rounded shadow-lg'
-              style={{ backgroundColor: storefront?.style?.headerColor }}
-            ></div>
-            <p className='text-sm font-medium mt-1'>
-              {storefront?.style?.headerColor}
-            </p>
-          </div>
-
-          {storefront?.hideQuestions ? (
-            ''
-          ) : (
-            <div className='w-full flex flex-col items-center p-2 mx-auto'>
-              <p className='text-lg font-medium mb-1'>Price</p>
-              <div
-                className='w-14 h-14 border border-stone-800 rounded shadow-lg'
-                style={{ backgroundColor: storefront?.style?.price }}
-              ></div>
-              <p className='text-sm font-medium mt-1'>
-                {storefront?.style?.price}
-              </p>
+        </p> */}
+        <div className='mr-2 w-2/12'>
+          <div className='w-full flex flex-col bg-white border drop-shadow-lg rounded p-2'>
+            <div className='flex flex-col w-full'>
+              <p className='text-sm font-medium mb-1'>Page</p>
+              <div className='flex rounded bg-gray-100 h-10 w-full'>
+                <div className='w-9/12 flex items-center justify-center'>
+                  <p className='text-sm font-medium mt-1'>
+                    {storefront?.style?.pageBackground}
+                  </p>
+                </div>
+                <div className='p-1 w-3/12'>
+                  <div
+                    className='w-full h-full rounded border'
+                    style={{
+                      backgroundColor: storefront?.style?.pageBackground,
+                    }}
+                  ></div>
+                </div>
+              </div>
             </div>
-          )}
 
-          {storefront?.hideReviews ? (
-            ''
-          ) : (
-            <div className='w-full flex flex-col p-2 mx-auto items-center'>
-              <p className='text-lg font-medium mb-1'>Reviews</p>
-              <div
-                className='w-14 h-14 border border-stone-800 rounded shadow-lg'
-                style={{ backgroundColor: storefront?.style?.reviewBackground }}
-              ></div>
-              <p className='text-sm font-medium mt-1'>
-                {storefront?.style?.reviewBackground}
-              </p>
+            <div className='flex flex-col w-full'>
+              <p className='text-sm font-medium mb-1'>Card</p>
+              <div className='flex rounded bg-gray-100 h-10 w-full'>
+                <div className='w-9/12 flex items-center justify-center'>
+                  <p className='text-sm font-medium mt-1'>
+                    {storefront?.style?.cardBackground}
+                  </p>
+                </div>
+                <div className='p-1 w-3/12'>
+                  <div
+                    className='w-full h-full rounded border'
+                    style={{
+                      backgroundColor: storefront?.style?.cardBackground,
+                    }}
+                  ></div>
+                </div>
+              </div>
             </div>
-          )}
+
+            <div className='flex flex-col w-full'>
+              <p
+                className={
+                  storefront?.style?.buttonStyle === 'filled'
+                    ? `text-sm font-medium mb-1 underline underline-offset-2`
+                    : `text-sm font-medium mb-1`
+                }
+              >
+                Button
+              </p>
+              <div className='flex rounded bg-gray-100 h-10 w-full'>
+                <div className='w-9/12 flex items-center justify-center'>
+                  <p className='text-sm font-medium mt-1'>
+                    {storefront?.style?.buttonColor}
+                  </p>
+                </div>
+                <div className='p-1 w-3/12'>
+                  <div
+                    className='w-full h-full rounded border'
+                    style={{ backgroundColor: storefront?.style?.buttonColor }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <div className='flex flex-col w-full'>
+              <p className='text-sm font-medium mb-1'>Button text</p>
+              <div className='flex rounded bg-gray-100 h-10 w-full'>
+                <div className='w-9/12 flex items-center justify-center'>
+                  <p className='text-sm font-medium mt-1'>
+                    {storefront?.style?.buttonTextColor}
+                  </p>
+                </div>
+                <div className='p-1 w-3/12'>
+                  <div
+                    className='w-full h-full rounded border'
+                    style={{
+                      backgroundColor: storefront?.style?.buttonTextColor,
+                    }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <div className='flex flex-col w-full'>
+              <p className='text-sm font-medium mb-1'>Borders</p>
+              <div className='flex rounded bg-gray-100 h-10 w-full'>
+                <div className='w-9/12 flex items-center justify-center'>
+                  <p className='text-sm font-medium mt-1'>
+                    {storefront?.style?.borderColor}
+                  </p>
+                </div>
+                <div className='p-1 w-3/12'>
+                  <div
+                    className='w-full h-full rounded border'
+                    style={{ backgroundColor: storefront?.style?.borderColor }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <div className='flex flex-col w-full'>
+              <p className='text-sm font-medium mb-1'>Headers</p>
+              <div className='flex rounded bg-gray-100 h-10 w-full'>
+                <div className='w-9/12 flex items-center justify-center'>
+                  <p className='text-sm font-medium mt-1'>
+                    {storefront?.style?.headerColor}
+                  </p>
+                </div>
+                <div className='p-1 w-3/12'>
+                  <div
+                    className='w-full h-full rounded border'
+                    style={{ backgroundColor: storefront?.style?.headerColor }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <div className='flex flex-col w-full'>
+              <p className='text-sm font-medium mb-1'>Price</p>
+              <div className='flex rounded bg-gray-100 h-10 w-full'>
+                <div className='w-9/12 flex items-center justify-center'>
+                  <p className='text-sm font-medium mt-1'>
+                    {storefront?.style?.price}
+                  </p>
+                </div>
+                <div className='p-1 w-3/12'>
+                  <div
+                    className='w-full h-full rounded border'
+                    style={{ backgroundColor: storefront?.style?.price }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <div className='flex flex-col w-full'>
+              <p className='text-sm font-medium mb-1'>Reviews</p>
+              <div className='flex rounded bg-gray-100 h-10 w-full'>
+                <div className='w-9/12 flex items-center justify-center'>
+                  <p className='text-sm font-medium mt-1'>
+                    {storefront?.style?.reviewBackground}
+                  </p>
+                </div>
+                <div className='p-1 w-3/12'>
+                  <div
+                    className='w-full h-full rounded border'
+                    style={{
+                      backgroundColor: storefront?.style?.reviewBackground,
+                    }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <DesignPreview
@@ -205,7 +255,7 @@ const Design = () => {
           </div>
         ) : (
           <div className='w-9/12 mx-auto p-10 h-screen overflow-y-scroll bg-gray-50'>
-            <div className='flex justify-between items-center'>
+            <div className='flex justify-between items-center mb-2'>
               <div className='flex flex-col'>
                 {/* <h2 className='text-3xl font-medium'>Storefront design</h2> */}
                 <div className='flex items-center justify-center bg-stone-800 rounded p-2'>

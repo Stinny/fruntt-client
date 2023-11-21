@@ -54,6 +54,7 @@ import Customers from './pages/Dashboard/Customers';
 import PasswordChange from './pages/PasswordChange';
 import NotFound from './pages/NotFound';
 import EditProfile from './pages/EditProfile';
+import NameChange from './pages/NameChange';
 
 function App() {
   return (
@@ -107,6 +108,8 @@ function App() {
                   path='dashboard/password/change'
                   element={<PasswordChange />}
                 />
+
+                <Route path='dashboard/name/change' element={<NameChange />} />
 
                 <Route
                   path='dashboard/orders/:orderId'

@@ -66,8 +66,8 @@ const HomeDetail = ({
           borderColor: borderColor,
         }}
       >
-        <p className='font-medium text-xl'>My Digital Products</p>
-        <p className='text-lg'>
+        <p className='font-medium text-md'>My Digital Products</p>
+        <p className='text-sm'>
           {products.length == 1
             ? `${products.length} product`
             : `${products.length} products`}
