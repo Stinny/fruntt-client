@@ -98,19 +98,19 @@ const TwitterAuth = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (oauth_token && oauth_verifier && twitterAuthType === 'login') {
-  //     loginWithTwitter();
-  //   } else if (
-  //     oauth_token &&
-  //     oauth_verifier &&
-  //     twitterAuthType === 'register'
-  //   ) {
-  //     handleTwitterSignup();
-  //   } else {
-  //     navigate('/');
-  //   }
-  // }, [oauth_token, oauth_verifier]);
+  useEffect(() => {
+    if (oauth_token && oauth_verifier && twitterAuthType === 'login') {
+      loginWithTwitter();
+    } else if (
+      oauth_token &&
+      oauth_verifier &&
+      twitterAuthType === 'register'
+    ) {
+      handleTwitterSignup();
+    } else {
+      navigate('/');
+    }
+  }, [oauth_token, oauth_verifier]);
 
   return (
     <>
