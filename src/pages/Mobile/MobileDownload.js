@@ -50,7 +50,7 @@ const MobileDownload = ({
 
   return (
     <div className='mx-auto p-2 mt-14'>
-      <div className='w-full border-b-2 mt-6 flex flex-col'>
+      <div className='w-full border-b-2 mt-10 flex flex-col'>
         {currentUser ? (
           <Link
             to='/dashboard/library'
@@ -60,19 +60,21 @@ const MobileDownload = ({
             Back to library
           </Link>
         ) : (
-          <Link to='/signup' className='text-stone-800 flex items-center'>
-            <BsArrowLeftShort className='text-2xl' />
+          <Link
+            to='/signup'
+            className='text-stone-800 flex items-center text-sm'
+          >
+            <BsArrowLeftShort className='text-xl' />
             Create account
           </Link>
         )}
-        <p className='text-2xl font-medium'>Your Recent Digital Purchase</p>
+        <p className='text-lg text-stone-800'>Your Digital Purchase</p>
         <p className='text-sm text-stone-800'>
           This will always be accessible from the email below.
         </p>
       </div>
 
-      <div className='w-full mt-4 flex justify-between items-center pb-2'>
-        <p className='font-medium text-stone-800 text-xl'>Purchase details</p>
+      <div className='w-full mt-4 flex justify-end items-center'>
         <button
           type='button'
           className='border-2 rounded border-stone-800 h-8 w-32 text-stone-800 hover:bg-stone-800 hover:text-white'
@@ -119,53 +121,66 @@ const MobileDownload = ({
       ) : (
         ''
       )}
-      <div className='flex flex-col mt-2 w-full border rounded mx-auto p-2 drop-shadow-md bg-white'>
+      <div className='w-full mx-auto'>
+        <p className='text-stone-800 text-sm'>Details</p>
+      </div>
+      <div className='flex flex-col w-full border rounded mx-auto p-2 drop-shadow-md bg-white'>
         <div className='w-full flex flex-col'>
-          <p className='font-medium mt-2 mb-1'>What you got:</p>
+          <p className='font-medium mt-2 mb-1 text-stone-800 text-sm'>
+            What you got:
+          </p>
           {orderAndStore?.order?.item?.digitalType === 'video' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+            <div className='flex items-center justify-center text-stone-800 bg-gray-100 rounded w-44 h-8'>
               <p className='text-sm'>Video Course</p>
               <MdOutlineVideoLibrary className='ml-2 text-xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'ebook' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+            <div className='flex items-center justify-center text-stone-800 bg-gray-100 rounded w-44 h-8'>
               <p className='text-sm'>E-Book</p>
               <HiOutlineBookOpen className='ml-2 text-xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'audio' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+            <div className='flex items-center justify-center text-stone-800 bg-gray-100 rounded w-44 h-8'>
               <p className='text-sm'>Audio</p>
               <BsFillMicFill className='ml-2 text-xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'other' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+            <div className='flex items-center justify-center text-stone-800 bg-gray-100 rounded w-44 h-8'>
               <p className='text-sm'>Digital Media</p>
               <MdOutlinePermMedia className='ml-2 text-xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'template' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+            <div className='flex items-center justify-center text-stone-800 bg-gray-100 rounded w-44 h-8'>
               <p className='text-sm'>Template</p>
               <HiOutlineTemplate className='ml-2 text-xl' />
             </div>
           ) : (
-            <div className='flex items-center justify-center border-2 border-slate-800  rounded w-44 h-8'>
+            <div className='flex items-center justify-center text-stone-800 bg-gray-100  rounded w-44 h-8'>
               <p className='text-sm'>Art</p>
               <BsPalette className='ml-2 text-xl' />
             </div>
           )}
-          <p className='font-medium mt-4'>Store you purchased from:</p>
+          <p className='text-stone-800 text-sm mt-4'>
+            Store you purchased from:
+          </p>
           <a
             href={orderAndStore?.store?.url}
-            className='text-lg text-slate-800 underline mt-1'
+            className='text-md text-slate-800 underline mt-1'
             target='_blank'
           >
             {orderAndStore?.store?.url}
           </a>
-          <p className='font-medium mt-4'>Delivered to:</p>
-          <p className='text-lg mt-1'>{orderAndStore?.order?.email}</p>
+          <p className='text-stone-800 text-sm mt-4'>Delivered to:</p>
+          <p className='text-md text-stone-800 mt-1'>
+            {orderAndStore?.order?.email}
+          </p>
 
-          <p className='font-medium mt-4'>Item:</p>
-          <p className='text-lg mt-1'>{orderAndStore?.order?.item?.title}</p>
+          <p className='text-stone-800 text-sm mt-4'>Item:</p>
+          <p className='text-md text-stone-800 mt-1'>
+            {orderAndStore?.order?.item?.title}
+          </p>
+          <p className='font-medium text-sm mt-4'>Total:</p>
+          <p className='text-lg mt-1'>${orderAndStore?.order?.total}</p>
         </div>
 
         <div className='w-full flex justify-end mt-4'>
@@ -175,15 +190,19 @@ const MobileDownload = ({
           />
         </div>
       </div>
-      <div className='w-full mt-4'>
-        <p className='font-medium text-stone-800 text-xl'>Content included</p>
-      </div>
-      <div className='w-full mx-auto mt-4'>
-        <p className='text-stone-800'>Files</p>
-      </div>
-      <div className='p-2 flex flex-wrap w-full mx-auto border bg-white rounded drop-shadow-md'>
-        {orderAndStore?.order?.item?.files.length ? (
-          orderAndStore?.order?.item?.files?.map((file, index) => (
+
+      {orderAndStore?.order?.item?.files?.length ? (
+        <div className='w-full mx-auto mt-4'>
+          <p className='text-stone-800 text-sm'>Files</p>
+        </div>
+      ) : (
+        ''
+      )}
+
+      {orderAndStore?.order?.item?.files.length ? (
+        <div className='p-2 flex flex-wrap w-full mx-auto border bg-white rounded drop-shadow-md'>
+          {' '}
+          {orderAndStore?.order?.item?.files?.map((file, index) => (
             <div className='w-full flex items-center justify-between border-b mt-2'>
               <div className='w-4/12'>
                 <p className='font-medium text-md text-stone-800'>
@@ -201,17 +220,14 @@ const MobileDownload = ({
                 </a>
               </div>
             </div>
-          ))
-        ) : (
-          <div className='mx-auto w-full'>
-            <p className='text-stone-800 text-center font-medium'>
-              No files included
-            </p>
-          </div>
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        ''
+      )}
+
       <div className='w-full mx-auto mt-4'>
-        <p className='text-stone-800'>Content</p>
+        <p className='text-stone-800 text-sm'>Content</p>
       </div>
       <div className='p-2 w-full mx-auto border rounded drop-shadow-md bg-white'>
         {orderAndStore?.order?.item?.content === '' ? (

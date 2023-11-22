@@ -50,9 +50,15 @@ const DesktopDownload = ({
 
   return (
     <div className='mx-auto'>
-      <div className='w-full border-b-2 mt-20 flex justify-between items-center'>
+      <div
+        className={`w-full border-b-2 ${
+          currentUser ? 'mt-10' : 'mt-20'
+        } flex justify-between items-center`}
+      >
         <div className='flex flex-col'>
-          <p className='text-2xl font-medium'>Your Recent Digital Purchase</p>
+          <p className='text-2xl font-medium text-stone-800'>
+            Your Digital Purchase
+          </p>
           <p className='text-md text-stone-800'>
             This will always be accessible from the email address below.
           </p>
@@ -122,56 +128,58 @@ const DesktopDownload = ({
       ) : (
         ''
       )}
-      <div className='wfull mt-4 mx-auto'>
-        <p className='font-medium text-slate-800 text-xl'>Purchase details</p>
+      <div className='w-full mx-auto mt-4'>
+        <p className='text-stone-800'>Details</p>
       </div>
-      <div className='flex justify-between items-center mt-2 w-full mx-auto border rounded bg-white drop-shadow-lg p-2'>
+      <div className='flex justify-between items-center w-full mx-auto border rounded bg-white drop-shadow-lg p-4'>
         <div className='w-6/12 flex flex-col'>
-          <p className='font-medium mt-2 mb-2'>What you got:</p>
+          {/* <p className='font-medium mt-2 mb-2'>What you got:</p> */}
           {orderAndStore?.order?.item?.digitalType === 'video' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-4/12 h-10'>
+            <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-4/12 h-10'>
               <p>Video Course</p>
               <MdOutlineVideoLibrary className='ml-2 text-2xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'ebook' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-4/12 h-10'>
+            <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-4/12 h-10'>
               <p>E-Book</p>
               <HiOutlineBookOpen className='ml-2 text-2xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'audio' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-4/12 h-10'>
+            <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-4/12 h-10'>
               <p>Audio</p>
               <BsFillMicFill className='ml-2 text-2xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'template' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-8 mt-2'>
+            <div className='flex items-center justify-center text-stone-800 bg-gray-100 rounded w-5/12 h-8 mt-2'>
               <p>Template</p>
               <HiOutlineTemplate className='ml-2 text-2xl' />
             </div>
           ) : orderAndStore?.order?.item?.digitalType === 'other' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-4/12 h-10'>
+            <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-4/12 h-10'>
               <p>Digital Media</p>
               <MdOutlinePermMedia className='ml-2 text-2xl' />
             </div>
           ) : (
-            <div className='flex items-center justify-center border-2 border-slate-800  rounded w-4/12 h-10'>
+            <div className='flex items-center justify-center bg-gray-100 text-stone-800  rounded w-4/12 h-10'>
               <p>Art</p>
               <BsPalette className='ml-2 text-2xl' />
             </div>
           )}
-          <p className='font-medium mt-4'>Store you purchased from:</p>
+          <p className='font-medium text-sm mt-4'>Store you purchased from:</p>
           <a
             href={orderAndStore?.store?.url}
-            className='text-xl text-slate-800 underline'
+            className='text-md text-slate-800 underline'
             target='_blank'
           >
             {orderAndStore?.store?.url}
           </a>
-          <p className='font-medium mt-4'>Delivered to:</p>
-          <p className='text-xl mt-2'>{orderAndStore?.order?.email}</p>
+          <p className='font-medium text-sm mt-4'>Delivered to:</p>
+          <p className='text-md mt-1'>{orderAndStore?.order?.email}</p>
 
-          <p className='font-medium mt-4'>Item:</p>
-          <p className='text-xl mt-2'>{orderAndStore?.order?.item?.title}</p>
+          <p className='font-medium text-sm mt-4'>Item:</p>
+          <p className='text-md mt-1'>{orderAndStore?.order?.item?.title}</p>
+          <p className='font-medium text-sm mt-4'>Total:</p>
+          <p className='text-lg mt-1'>${orderAndStore?.order?.total}</p>
         </div>
 
         <div className='w-6/12 flex justify-end'>
@@ -181,15 +189,18 @@ const DesktopDownload = ({
           />
         </div>
       </div>
-      <div className='w-full mx-auto mt-4'>
-        <p className='font-medium text-slate-800 text-xl'>Content included</p>
-      </div>
-      <div className=' w-full mx-auto mt-4'>
-        <p className='text-stone-800'>Files</p>
-      </div>
-      <div className='p-4 flex flex-wrap w-full mx-auto border rounded drop-shadow-lg bg-white'>
-        {orderAndStore?.order?.item?.files.length ? (
-          orderAndStore?.order?.item?.files?.map((file, index) => (
+
+      {orderAndStore?.order?.item?.files.length ? (
+        <div className=' w-full mx-auto mt-4'>
+          <p className='text-stone-800'>Files</p>
+        </div>
+      ) : (
+        ''
+      )}
+      {orderAndStore?.order?.item?.files.length ? (
+        <div className='p-4 flex flex-wrap w-full mx-auto border rounded drop-shadow-lg bg-white'>
+          {' '}
+          {orderAndStore?.order?.item?.files?.map((file, index) => (
             <div className='w-full flex items-center justify-between border-b mt-2'>
               <div className='w-4/12'>
                 <p className='font-medium text-lg'>{file?.name}</p>
@@ -205,19 +216,16 @@ const DesktopDownload = ({
                 </a>
               </div>
             </div>
-          ))
-        ) : (
-          <div className='mx-auto w-full'>
-            <p className='text-stone-800 text-center font-medium'>
-              No files included
-            </p>
-          </div>
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        ''
+      )}
+
       <div className='w-full mx-auto mt-4'>
         <p className='text-stone-800'>Content</p>
       </div>
-      <div className='p-4 w-full mx-auto border rounded bg-white drop-shadow-lg'>
+      <div className='p-4 w-full mx-auto border rounded bg-white drop-shadow-lg mb-56'>
         {orderAndStore?.order?.item?.content === '' ? (
           <p>No additional content added</p>
         ) : (
