@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import DesignPreview from '../../pages/DesignPreview';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
+import { BsPalette } from 'react-icons/bs';
 
 const DesignForm = ({ storefront, currentUser }) => {
   const navigate = useNavigate();
@@ -39,6 +40,16 @@ const DesignForm = ({ storefront, currentUser }) => {
   const [reviewBackground, setReviewBackground] = useState(
     storefront?.style?.reviewBackground
   );
+
+  //displays for color picker
+  const [showPage, setShowPage] = useState(false);
+  const [showCard, setShowCard] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const [showButtonText, setShowButtonText] = useState(false);
+  const [showPrice, setShowPrice] = useState(false);
+  const [showReview, setShowReview] = useState(false);
+  const [showBorders, setShowBorders] = useState(false);
+  const [showHeaders, setShowHeaders] = useState(false);
   const [editStyles, result] = useEditStylesMutation();
 
   const handleBtnStyle = (e) => {
@@ -81,144 +92,250 @@ const DesignForm = ({ storefront, currentUser }) => {
 
   const designForm = () => {
     return (
-      <form className='w-full mx-auto'>
-        <div className='p-4 w-full mx-auto scroll-smooth overflow-x-scroll flex'>
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Page</p>
-
-            <HexColorPicker
-              color={pageBG}
-              onChange={setPageBG}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={pageBG}
-              onChange={setPageBG}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-          </div>
-
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Card</p>
-
-            <HexColorPicker
-              color={cardBG}
-              onChange={setCardBG}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={cardBG}
-              onChange={setCardBG}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-          </div>
-          {/* 
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Page text</p>
-
-            <HexColorPicker
-              color={pageText}
-              onChange={setPageText}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={pageText}
-              onChange={setPageText}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-          </div> */}
-
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Button</p>
-            <HexColorPicker
-              color={buttonColor}
-              onChange={setButtonColor}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={buttonColor}
-              onChange={setButtonColor}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-            <p className='text-sm'>Style</p>
-            <select
-              value={buttonStyle}
-              className='mt-2 mb-2 transparent h-10 bg-transparent border-2 rounded'
-              onChange={handleBtnStyle}
+      <form className='w-2/12 mr-2'>
+        <div className='p-2 border rounded w-full mx-auto flex flex-col bg-white drop-shadow-lg mr-2'>
+          <div className='flex flex-col w-full'>
+            <p className='text-sm font-medium mb-1'>Page</p>
+            <div
+              className='flex rounded bg-gray-100 h-10 w-full hover:cursor-pointer hover:bg-gray-200'
+              onClick={(e) => setShowPage(!showPage)}
             >
-              <option value='filled'>Filled</option>
-              <option value='outlined'>Outlined</option>
-            </select>
+              <div className='w-9/12 flex items-center justify-center'>
+                <p className='text-sm font-medium mt-1'>{pageBG}</p>
+              </div>
+              <div className='p-1 w-3/12'>
+                <div
+                  className='w-full h-full rounded border'
+                  style={{ backgroundColor: pageBG }}
+                ></div>
+              </div>
+            </div>
           </div>
-
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Button text</p>
-
-            <HexColorPicker
-              color={buttonTextColor}
-              onChange={setButtonTextColor}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={buttonTextColor}
-              onChange={setButtonTextColor}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-          </div>
-
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Borders</p>
-
-            <HexColorPicker
-              color={borders}
-              onChange={setBorders}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={borders}
-              onChange={setBorders}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-          </div>
-
-          <div className='w-full flex flex-col p-2 border-b mx-auto'>
-            <p className='text-lg font-medium mb-2'>Headers</p>
-
-            <HexColorPicker
-              color={header}
-              onChange={setHeader}
-              style={{ width: '200px', height: '75px' }}
-            />
-            <p className='text-gray-400 mr-2'>Hex value:</p>
-            <HexColorInput
-              color={header}
-              onChange={setHeader}
-              prefixed
-              className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
-            />
-          </div>
-          {storefront?.hideQuestions ? (
-            ''
-          ) : (
+          {showPage && (
             <div className='w-full flex flex-col p-2 border-b mx-auto'>
-              <p className='text-lg font-medium mb-2'>Price</p>
+              <HexColorPicker
+                color={pageBG}
+                onChange={setPageBG}
+                style={{ width: '150px', height: '75px' }}
+              />
+              <p className='text-gray-400 mr-2'>Hex value:</p>
+              <HexColorInput
+                color={pageBG}
+                onChange={setPageBG}
+                prefixed
+                className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+              />
+            </div>
+          )}
 
+          <div className='flex flex-col w-full'>
+            <p className='text-sm font-medium mb-1'>Card</p>
+            <div
+              className='flex rounded bg-gray-100 h-10 w-full hover:cursor-pointer hover:bg-gray-200'
+              onClick={(e) => setShowCard(!showCard)}
+            >
+              <div className='w-9/12 flex items-center justify-center'>
+                <p className='text-sm font-medium mt-1'>{cardBG}</p>
+              </div>
+              <div className='p-1 w-3/12'>
+                <div
+                  className='w-full h-full rounded border'
+                  style={{ backgroundColor: cardBG }}
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          {showCard && (
+            <div className='w-full flex flex-col p-2 border-b mx-auto'>
+              <HexColorPicker
+                color={cardBG}
+                onChange={setCardBG}
+                style={{ width: '150px', height: '75px' }}
+              />
+              <p className='text-gray-400 mr-2'>Hex value:</p>
+              <HexColorInput
+                color={cardBG}
+                onChange={setCardBG}
+                prefixed
+                className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+              />
+            </div>
+          )}
+
+          <div className='flex flex-col w-full'>
+            <p className='text-sm font-medium mb-1'>Button</p>
+            <div
+              className='flex rounded bg-gray-100 h-10 w-full hover:cursor-pointer hover:bg-gray-200'
+              onClick={(e) => setShowButton(!showButton)}
+            >
+              <div className='w-9/12 flex items-center justify-center'>
+                <p className='text-sm font-medium mt-1'>{buttonColor}</p>
+              </div>
+              <div className='p-1 w-3/12'>
+                <div
+                  className='w-full h-full rounded border'
+                  style={{ backgroundColor: buttonColor }}
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          {showButton && (
+            <div className='w-full flex flex-col p-2 border-b mx-auto'>
+              <HexColorPicker
+                color={buttonColor}
+                onChange={setButtonColor}
+                style={{ width: '150px', height: '75px' }}
+              />
+              <p className='text-gray-400 mr-2'>Hex value:</p>
+              <HexColorInput
+                color={buttonColor}
+                onChange={setButtonColor}
+                prefixed
+                className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+              />
+              <p className='text-sm'>Style</p>
+              <select
+                value={buttonStyle}
+                className='mt-2 mb-2 transparent h-10 bg-transparent border-2 rounded'
+                onChange={handleBtnStyle}
+              >
+                <option value='filled'>Filled</option>
+                <option value='outlined'>Outlined</option>
+              </select>
+            </div>
+          )}
+
+          <div className='flex flex-col w-full'>
+            <p className='text-sm font-medium mb-1'>Button text</p>
+            <div
+              className='flex rounded bg-gray-100 h-10 w-full hover:cursor-pointer hover:bg-gray-200'
+              onClick={(e) => setShowButtonText(!showButtonText)}
+            >
+              <div className='w-9/12 flex items-center justify-center'>
+                <p className='text-sm font-medium mt-1'>{buttonTextColor}</p>
+              </div>
+              <div className='p-1 w-3/12'>
+                <div
+                  className='w-full h-full rounded border'
+                  style={{ backgroundColor: buttonTextColor }}
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          {showButtonText && (
+            <div className='w-full flex flex-col p-2 border-b mx-auto'>
+              <HexColorPicker
+                color={buttonTextColor}
+                onChange={setButtonTextColor}
+                style={{ width: '150px', height: '75px' }}
+              />
+              <p className='text-gray-400 mr-2'>Hex value:</p>
+              <HexColorInput
+                color={buttonTextColor}
+                onChange={setButtonTextColor}
+                prefixed
+                className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+              />
+            </div>
+          )}
+
+          <div className='flex flex-col w-full'>
+            <p className='text-sm font-medium mb-1'>Borders</p>
+            <div
+              className='flex rounded bg-gray-100 h-10 w-full hover:cursor-pointer hover:bg-gray-200'
+              onClick={(e) => setShowBorders(!showBorders)}
+            >
+              <div className='w-9/12 flex items-center justify-center'>
+                <p className='text-sm font-medium mt-1'>{borders}</p>
+              </div>
+              <div className='p-1 w-3/12'>
+                <div
+                  className='w-full h-full rounded border'
+                  style={{ backgroundColor: borders }}
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          {showBorders && (
+            <div className='w-full flex flex-col p-2 border-b mx-auto'>
+              <HexColorPicker
+                color={borders}
+                onChange={setBorders}
+                style={{ width: '150px', height: '75px' }}
+              />
+              <p className='text-gray-400 mr-2'>Hex value:</p>
+              <HexColorInput
+                color={borders}
+                onChange={setBorders}
+                prefixed
+                className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+              />
+            </div>
+          )}
+
+          <div className='flex flex-col w-full'>
+            <p className='text-sm font-medium mb-1'>Headers</p>
+            <div
+              className='flex rounded bg-gray-100 h-10 w-full hover:cursor-pointer hover:bg-gray-200'
+              onClick={(e) => setShowHeaders(!showHeaders)}
+            >
+              <div className='w-9/12 flex items-center justify-center'>
+                <p className='text-sm font-medium mt-1'>{header}</p>
+              </div>
+              <div className='p-1 w-3/12'>
+                <div
+                  className='w-full h-full rounded border'
+                  style={{ backgroundColor: header }}
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          {showHeaders && (
+            <div className='w-full flex flex-col p-2 border-b mx-auto'>
+              <HexColorPicker
+                color={header}
+                onChange={setHeader}
+                style={{ width: '150px', height: '75px' }}
+              />
+              <p className='text-gray-400 mr-2'>Hex value:</p>
+              <HexColorInput
+                color={header}
+                onChange={setHeader}
+                prefixed
+                className='w-28 h-10 border-2 rounded mr-4 p-2 focus:outline focus:border-gray-400 focus:outline-0'
+              />
+            </div>
+          )}
+
+          <div className='flex flex-col w-full'>
+            <p className='text-sm font-medium mb-1'>Price</p>
+            <div
+              className='flex rounded bg-gray-100 h-10 w-full hover:cursor-pointer hover:bg-gray-200'
+              onClick={(e) => setShowPrice(!showPrice)}
+            >
+              <div className='w-9/12 flex items-center justify-center'>
+                <p className='text-sm font-medium mt-1'>{price}</p>
+              </div>
+              <div className='p-1 w-3/12'>
+                <div
+                  className='w-full h-full rounded border'
+                  style={{ backgroundColor: price }}
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          {showPrice && (
+            <div className='w-full flex flex-col p-2 border-b mx-auto'>
               <HexColorPicker
                 color={price}
                 onChange={setPrice}
-                style={{ width: '200px', height: '75px' }}
+                style={{ width: '150px', height: '75px' }}
               />
               <p className='text-gray-400 mr-2'>Hex value:</p>
               <HexColorInput
@@ -230,16 +347,30 @@ const DesignForm = ({ storefront, currentUser }) => {
             </div>
           )}
 
-          {storefront?.hideReviews ? (
-            ''
-          ) : (
-            <div className='w-full flex flex-col p-2 border-b mx-auto'>
-              <p className='text-lg font-medium mb-2'>Reviews</p>
+          <div className='flex flex-col w-full'>
+            <p className='text-sm font-medium mb-1'>Reviews</p>
+            <div
+              className='flex rounded bg-gray-100 h-10 w-full hover:cursor-pointer hover:bg-gray-200'
+              onClick={(e) => setShowReview(!showReview)}
+            >
+              <div className='w-9/12 flex items-center justify-center'>
+                <p className='text-sm font-medium mt-1'>{reviewBackground}</p>
+              </div>
+              <div className='p-1 w-3/12'>
+                <div
+                  className='w-full h-full rounded border'
+                  style={{ backgroundColor: reviewBackground }}
+                ></div>
+              </div>
+            </div>
+          </div>
 
+          {showReview && (
+            <div className='w-full flex flex-col p-2 border-b mx-auto'>
               <HexColorPicker
                 color={reviewBackground}
                 onChange={setReviewBackground}
-                style={{ width: '200px', height: '75px' }}
+                style={{ width: '150px', height: '75px' }}
               />
               <p className='text-gray-400 mr-2'>Hex value:</p>
               <HexColorInput
@@ -257,8 +388,12 @@ const DesignForm = ({ storefront, currentUser }) => {
 
   return (
     <div className='w-full mx-auto'>
-      <div className='flex justify-between items-center p-2'>
-        <h2 className='text-3xl font-medium'>Design your storefront</h2>
+      <div className='flex justify-between items-center'>
+        {/* <h2 className='text-3xl font-medium'>Design your storefront</h2> */}
+        <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+          <BsPalette className='text-white text-xl' />
+          <p className='text-xl text-white ml-2'>Design your store</p>
+        </div>
 
         <div className='flex'>
           <button
@@ -276,7 +411,7 @@ const DesignForm = ({ storefront, currentUser }) => {
         </div>
       </div>
 
-      <div className='flex flex-col'>
+      <div className='flex mt-2'>
         {designForm()}
         <DesignPreview
           pageBG={pageBG}

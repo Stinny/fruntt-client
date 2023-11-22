@@ -12,7 +12,7 @@ import Footer from '../components/Footer';
 import { AiFillTwitterSquare } from 'react-icons/ai';
 import { IoStorefrontOutline } from 'react-icons/io5';
 import { BsArrowRightShort } from 'react-icons/bs';
-
+import img from '../media/xlogoblack.png';
 //mui
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -98,19 +98,19 @@ const TwitterAuth = () => {
     }
   };
 
-  useEffect(() => {
-    if (oauth_token && oauth_verifier && twitterAuthType === 'login') {
-      loginWithTwitter();
-    } else if (
-      oauth_token &&
-      oauth_verifier &&
-      twitterAuthType === 'register'
-    ) {
-      handleTwitterSignup();
-    } else {
-      navigate('/');
-    }
-  }, [oauth_token, oauth_verifier]);
+  // useEffect(() => {
+  //   if (oauth_token && oauth_verifier && twitterAuthType === 'login') {
+  //     loginWithTwitter();
+  //   } else if (
+  //     oauth_token &&
+  //     oauth_verifier &&
+  //     twitterAuthType === 'register'
+  //   ) {
+  //     handleTwitterSignup();
+  //   } else {
+  //     navigate('/');
+  //   }
+  // }, [oauth_token, oauth_verifier]);
 
   return (
     <>
@@ -145,15 +145,16 @@ const TwitterAuth = () => {
           ''
         )} */}
 
-        <div className='w-96 border-2 rounded p-2 flex flex-col items-center mx-auto mt-32'>
-          <div className='flex items-center'>
-            <AiFillTwitterSquare className='text-5xl text-blue-400' />{' '}
+        <div className='w-96 border-2 rounded p-4 flex flex-col items-center mx-auto mt-32 bg-white drop-shadow-lg'>
+          <CircularProgress className='' />
+          <div className='flex items-center mt-4'>
+            <img src={img} className='w-6' />{' '}
             <BsArrowRightShort className='text-2xl ml-2 mr-2' />
-            <IoStorefrontOutline className='text-5xl text-stone-800' />
+            <IoStorefrontOutline className='text-4xl text-stone-800' />
           </div>
-          <CircularProgress className='mt-10' />
-          <p className='text-stone-800 mt-10 text-lg font-medium'>
-            Authenticating with your Twitter account!
+
+          <p className='text-stone-800 mt-4 text-lg font-medium'>
+            Authenticating with your X account!
           </p>
         </div>
       </div>

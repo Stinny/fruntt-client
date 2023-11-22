@@ -39,7 +39,7 @@ const DesktopCustomers = ({ customers }) => {
         <p className='text-stone-800 font-medium text-lg'>
           {customers.length > 1
             ? `${customers.length} customers`
-            : `${customers.length} customers`}
+            : `${customers.length} customer`}
         </p>
       </div>
 

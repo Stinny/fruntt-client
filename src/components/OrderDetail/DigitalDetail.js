@@ -67,27 +67,27 @@ const DigitalDetail = ({ order }) => {
                 className='rounded  mb-2'
               />
               {order?.item?.digitalType === 'video' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-44 h-8'>
                   <p className='text-sm'>Video Course</p>
                   <MdOutlineVideoLibrary className='ml-2 text-xl' />
                 </div>
               ) : order?.item?.digitalType === 'ebook' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-44 h-8'>
                   <p className='text-sm'>E-Book</p>
                   <HiOutlineBookOpen className='ml-2 text-xl' />
                 </div>
               ) : order?.item?.digitalType === 'audio' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-44 h-8'>
                   <p className='text-sm'>Audio</p>
                   <BsFillMicFill className='ml-2 text-xl' />
                 </div>
               ) : order?.item?.digitalType === 'other' ? (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-44 h-8'>
                   <p className='text-sm'>Digital Media</p>
                   <MdOutlinePermMedia className='ml-2 text-xl' />
                 </div>
               ) : (
-                <div className='flex items-center justify-center border-2 border-slate-800 rounded w-44 h-8'>
+                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-44 h-8'>
                   <p className='text-sm'>Art</p>
                   <BsPalette className='ml-2 text-xl' />
                 </div>
