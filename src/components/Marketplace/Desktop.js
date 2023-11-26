@@ -131,12 +131,12 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
               target='_blank'
             >
               <div className='border drop-shadow-lg flex w-full mb-4 rounded relative h-96 bg-white'>
-                <div className='absolute bottom-0 right-0 font-medium text-2xl border-l border-t rounded-tl p-2'>
+                <div className='absolute bottom-0 right-0 font-medium bg-gray-100 mb-1 mr-1 rounded-tl p-2'>
                   <p
                     className={
                       product?.item?.free
-                        ? 'font-medium text-xl'
-                        : 'font-medium text-2xl'
+                        ? 'font-medium text-lg'
+                        : 'font-medium text-lg'
                     }
                   >
                     {product?.free
@@ -208,7 +208,7 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
                     )}
                   </div>
 
-                  <p className='font-medium text-lg mb-1'>{product?.title}</p>
+                  <p className='font-bold text-lg mb-1'>{product?.title}</p>
                   <p className='text-md mb-2'>{product?.description}</p>
                 </div>
 
