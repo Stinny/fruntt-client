@@ -44,7 +44,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
         </p>
         <BiSmile className='ml-1 text-white text-xl' />
       </div>
-      <div className='w-full rounded-bl rounded-br border drop-shadow-lg bg-white p-4 mb-4'>
+      <div className='w-full rounded-bl rounded-br border border-t-0 drop-shadow-lg bg-white p-4 mb-4'>
         <p className='text-lg font-medium text-stone-800'>Fruntt Marketplace</p>
         <p className='text-stone-800 text-sm mt-2'>
           A place for creators to earn
@@ -120,12 +120,12 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
               target='_blank'
             >
               <div className='border drop-shadow-lg flex w-full mb-4 rounded relative h-96 bg-white'>
-                <div className='absolute bottom-0 right-0 font-medium text-2xl border-l border-t rounded-tl p-2'>
+                <div className='absolute bottom-0 right-0 mb-1 mr-1 bg-gray-100 rounded-tl p-2'>
                   <p
                     className={
                       product?.item?.free
-                        ? 'font-medium text-xl'
-                        : 'font-medium text-2xl'
+                        ? 'font-medium text-lg text-stone-800'
+                        : 'font-medium text-lg text-stone-800'
                     }
                   >
                     {product?.free
@@ -197,7 +197,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
                     )}
                   </div>
 
-                  <p className='font-medium text-lg mb-1'>{product?.title}</p>
+                  <p className='font-bold text-lg mb-1'>{product?.title}</p>
                   <p className='text-md mb-2'>{product?.description}</p>
                 </div>
 
