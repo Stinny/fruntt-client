@@ -49,12 +49,12 @@ const Home = () => {
             gettingProducts={gettingProducts}
             gotProducts={gotProducts}
           />
-          <RecentStores
+          {/* <RecentStores
             stores={stores}
             isLoading={isLoading}
             isSuccess={isSuccess}
             refetch={refetch}
-          />
+          /> */}
           <Email />
           {/* <Banner />
           <HowSell />
