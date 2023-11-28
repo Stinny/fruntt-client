@@ -32,9 +32,7 @@ const ProductMobile = ({ product }) => {
   const noItem = (
     <div className='h-screen mx-auto border drop-shadow-md bg-white rounded w-11/12 flex flex-col justify-center items-center mt-4'>
       <p className='text-xl font-medium'>You have not added a product yet!</p>
-      <p className='text-gray-400 text-lg w-full mt-4 text-center'>
-        Add any kind of files and digital content
-      </p>
+
       <div className='flex w-11/12 mt-4 items-center'>
         <Link to='/dashboard/item/digital' className='w-full mx-auto'>
           <div className='w-52 mx-auto flex justify-center items-center border-2 rounded border-stone-800 p-2 h-14 hover:bg-stone-800 hover:text-white pl-8 pr-8 mt-2'>
@@ -48,10 +46,10 @@ const ProductMobile = ({ product }) => {
   return product ? (
     <div className='w-full p-2'>
       <div className='w-full flex justify-between items-center'>
-        <h2 className='text-xl font-medium'>Your products</h2>
+        <h2 className='text-md font-medium'>Your products</h2>
 
         <div className='flex items-center'>
-          <p className='text-stone-800 font-medium text-lg'>{product.length}</p>
+          <p className='text-stone-800 font-medium text-md'>{product.length}</p>
           <Link
             className='rounded-lg h-8 w-8 text-stone-800 border-stone-800 border-2 flex items-center justify-center text-xl ml-4 font-medium hover:text-white hover:bg-stone-800 pb-1'
             to='/dashboard/item/digital'

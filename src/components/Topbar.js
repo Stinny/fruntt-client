@@ -30,7 +30,8 @@ const Topbar = () => {
     : null;
 
   return isMobile ? (
-    <TopbarMobile />
+    // <TopbarMobile />
+    ''
   ) : (
     <div className='w-3/12 mx-auto'>
       <div className='w-full h-full mx-auto flex flex-col border-r bg-white p-6 relative'>
