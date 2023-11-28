@@ -13,12 +13,12 @@ import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-const DashHomeMobile = ({ stats, currentUser }) => {
+const DashHomeMobile = ({ stats, currentUser, dataView }) => {
   //holds the url of the page being viewed
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
   return (
     <>
-      <div className='w-full p-2 flex flex-col'>
+      <div className='w-full p-2 flex flex-col mt-20'>
         {!currentUser.stripeOnboard && (
           <Alert severity='error' className='mt-2 w-full mx-auto'>
             <p>
@@ -60,7 +60,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
         <p className='text-sm text-stone-800 font-medium'>Live store:</p>
         <a
           href={currentStoreUrl}
-          className='flex justify-center items-center text-md text-stone-800 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
+          className='flex justify-center items-center text-sm text-stone-800 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
           target='_blank'
         >
           {currentStoreUrl}
@@ -68,33 +68,40 @@ const DashHomeMobile = ({ stats, currentUser }) => {
       </div>
 
       <div className='flex flex-col items-center w-full p-2'>
+        <div className='bg-white border rounded drop-shadow-md w-full p-2 h-28 mb-2'>
+          <Tooltip
+            title={
+              <p className='text-lg'>Total revenue your store has generated</p>
+            }
+            className='ml-2 text-lg absolute right-0 mr-2'
+            placement='right-end'
+          >
+            <button>
+              <AiOutlineInfoCircle />
+            </button>
+          </Tooltip>
+          <p className='text-sm text-stone-800'>Revenue</p>
+          <p className='text-2xl font-medium text-slate-800 mt-2'>
+            $
+            {stats?.revenue > 0
+              ? stats?.revenue.toLocaleString('en-US', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })
+              : '0'}
+          </p>
+          {/* <p className='mt-1 text-sm font-medium'>
+            {dataView === 'today'
+              ? 'In the past 24 hours'
+              : dataView === 'seven'
+              ? 'In the past 7 days'
+              : dataView === 'thirty'
+              ? 'In the past 30 days'
+              : 'Since you opened your store'}
+          </p> */}
+        </div>
         <div className='w-full flex'>
           <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded p-2 relative'>
-            <Tooltip
-              title={
-                <p className='text-lg'>Total revenue your page has generated</p>
-              }
-              className='ml-2 text-lg absolute right-0 mr-2'
-              placement='bottom'
-              enterTouchDelay={10}
-            >
-              <button>
-                <AiOutlineInfoCircle />
-              </button>
-            </Tooltip>
-            <p className='text-md font-medium'>Revenue</p>
-            <p className='text-2xl font-medium mt-1'>
-              $
-              {stats?.revenue > 0
-                ? stats?.revenue.toLocaleString('en-US', {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  })
-                : '0'}
-            </p>
-          </div>
-
-          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded p-2 relative ml-2'>
             <Tooltip
               title={
                 <p className='text-lg'>Total sales your store has generated</p>
@@ -107,13 +114,11 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-md font-medium'>Sales</p>
+            <p className='text-sm font-medium'>Orders</p>
             <p className='text-2xl font-medium mt-1'>{stats?.numOfOrders}</p>
           </div>
-        </div>
 
-        <div className='w-full flex'>
-          <div className='drop-shadow-md w-6/12 h-28 mt-2 bg-white border rounded p-2 relative'>
+          <div className='drop-shadow-md w-6/12 h-28 ml-2 bg-white border rounded p-2 relative'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -128,8 +133,29 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-md font-medium'>Views</p>
+            <p className='text-sm'>Views</p>
             <p className='text-2xl font-medium mt-1'>{stats?.visits}</p>
+          </div>
+        </div>
+
+        <div className='w-full flex'>
+          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded p-2 relative mt-2'>
+            <Tooltip
+              title={
+                <p className='text-lg'>Total revenue your page has generated</p>
+              }
+              className='ml-2 text-lg absolute right-0 mr-2'
+              placement='bottom'
+              enterTouchDelay={10}
+            >
+              <button>
+                <AiOutlineInfoCircle />
+              </button>
+            </Tooltip>
+            <p className='text-sm font-medium'>Customers</p>
+            <p className='text-2xl font-medium mt-1'>
+              {stats?.numberOfCustomers > 0 ? stats?.numberOfCustomers : '0'}
+            </p>
           </div>
 
           <div className='drop-shadow-md w-6/12 h-28 mt-2 ml-2 bg-white border rounded p-2 relative'>
@@ -147,7 +173,7 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                 <AiOutlineInfoCircle />
               </button>
             </Tooltip>
-            <p className='text-md font-medium'>Conversion rate</p>
+            <p className='text-sm font-medium'>Conversion rate</p>
             <p className='text-2xl font-medium mt-1'>
               {stats?.conversion > 0 ? stats?.conversion.toFixed(1) : '0'}%
             </p>
@@ -211,8 +237,8 @@ const DashHomeMobile = ({ stats, currentUser }) => {
 
       <div className='w-full p-2'>
         <div className='w-full mx-auto bg-white border rounded drop-shadow-md flex flex-col p-2'>
-          <p className='text-xl font-medium text-slate-800'>
-            Is your storefront ready for customers?
+          <p className='text-md font-medium text-stone-800'>
+            Is your store ready for customers?
           </p>
 
           <div className='w-full flex flex-col mt-2'>
@@ -257,14 +283,14 @@ const DashHomeMobile = ({ stats, currentUser }) => {
                   disabled
                 />
               }
-              label='Design your page'
+              label='Design your store'
             />
           </div>
         </div>
 
         <div className='h-72 w-full flex flex-col items-center justify-center rounded border drop-shadow-md bg-white mt-4'>
           <GoGraph className='text-4xl text-gray-300' />
-          <p className='font-medium text-stone-800 mt-2'>
+          <p className='font-medium text-stone-800 mt-2 text-sm'>
             Mobile graph coming soon
           </p>
         </div>

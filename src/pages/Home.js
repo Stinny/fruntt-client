@@ -16,6 +16,7 @@ import Fee from '../components/Landing/Fee';
 import FAQS from '../components/Landing/FAQS';
 import RecentStores from '../components/Landing/RecentStores';
 import { useGetFeaturedStoresQuery } from '../api/storefrontApiSlice';
+import { useGetFeaturedProductsQuery } from '../api/productsApiSlice';
 
 const Home = () => {
   const currentUser = Cookies.get('currentUser')
@@ -29,6 +30,12 @@ const Home = () => {
     refetch,
   } = useGetFeaturedStoresQuery();
 
+  const {
+    data: products,
+    isLoading: gettingProducts,
+    isSuccess: gotProducts,
+  } = useGetFeaturedProductsQuery();
+
   if (currentUser) return <Navigate to='/dashboard' />;
 
   return (
@@ -37,7 +44,11 @@ const Home = () => {
 
       <div className='mx-auto h-fit max-w-8xl'>
         <div className='w-full mx-auto h-full flex flex-col items-center'>
-          <Hero />
+          <Hero
+            products={products}
+            gettingProducts={gettingProducts}
+            gotProducts={gotProducts}
+          />
           <RecentStores
             stores={stores}
             isLoading={isLoading}

@@ -12,8 +12,9 @@ import imgThree from '../../media/xlogowhite.png';
 import Features from './Features';
 import Email from './Email';
 import Pricing from './Pricing';
+import Products from './Products';
 
-const Hero = () => {
+const Hero = ({ products, gettingProducts, gotProducts }) => {
   const [getTwitterAuthUrl, result] = useLazyGetTwitterAuthUrlQuery();
   const words = ['templates', 'content', 'e-books', 'code', 'courses', 'art'];
   const [wordIndex, setWordIndex] = useState(0);
@@ -113,6 +114,11 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <Products
+        products={products}
+        gettingProducts={gettingProducts}
+        gotProducts={gotProducts}
+      />
       <Features />
       <Pricing />
     </div>
@@ -183,6 +189,11 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <Products
+        products={products}
+        gettingProducts={gettingProducts}
+        gotProducts={gotProducts}
+      />
       <Features />
       <Pricing />
     </div>

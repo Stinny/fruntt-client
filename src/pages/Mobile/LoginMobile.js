@@ -51,7 +51,7 @@ const LoginMobile = ({
           type='button'
           onClick={handleTwitterLogin}
         >
-          <p className='mr-2'>Log in with</p>
+          <p className='mr-2 text-sm'>Log in with</p>
           <img src={img} className='w-4 h-4' />
         </button>
         <p className='font-medium text-lg text-stone-800 mt-2'>OR</p>
@@ -83,9 +83,9 @@ const LoginMobile = ({
 
         <button
           disabled={isLoading}
-          className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded mt-4'
+          className='h-10 w-full text-sm border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded mt-4'
         >
-          Go to my storefront
+          Go to my store
         </button>
       </form>
     </div>

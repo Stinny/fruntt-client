@@ -55,14 +55,16 @@ const EditItem = () => {
     );
   }
 
+  const styles = isMobile
+    ? 'w-full mx-auto h-screen p-2 overflow-y-scroll bg-gray-50'
+    : 'w-9/12 mx-auto h-screen p-10 overflow-y-scroll bg-gray-50';
+
   return (
     <>
       <Navbar />
       <div className='flex'>
         <Topbar />
-        <div className='w-9/12 mx-auto h-screen p-10 overflow-y-scroll bg-gray-50'>
-          {content}
-        </div>
+        <div className={styles}>{content}</div>
       </div>
       <Footer />
     </>

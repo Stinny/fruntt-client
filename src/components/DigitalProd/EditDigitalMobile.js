@@ -15,6 +15,7 @@ import 'react-quill/dist/quill.snow.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { useSelector } from 'react-redux';
+import Select from 'react-select';
 
 //filepond
 import { FilePond } from 'react-filepond';
@@ -51,6 +52,47 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
+
+  const typeOptions = [
+    { value: 'video', label: 'Course' },
+    { value: 'art', label: 'Art' },
+    { value: 'ebook', label: 'E-Book' },
+    { value: 'template', label: 'Template' },
+    { value: 'other', label: 'Other' },
+  ];
+
+  const actionOptions = [
+    { value: 'buy', label: 'Buy Now' },
+    { value: 'want', label: 'I want this!' },
+    { value: 'get', label: 'Get Now' },
+  ];
+
+  const categories = [
+    { value: 'business', label: 'Business & Finance' },
+    { value: 'design', label: 'Design' },
+    { value: 'software', label: 'Software Development' },
+    { value: 'drawing', label: 'Drawing & Painting' },
+    { value: 'writing', label: 'Writing' },
+    { value: 'education', label: 'Education' },
+    { value: 'self', label: 'Self Improvement' },
+    { value: 'other', label: 'Other' },
+  ];
+
+  const formattedTypeValue = typeOptions.find(
+    (option) => option.value === digitalType
+  );
+
+  const formattedActionValue = actionOptions.find(
+    (option) => option.value === callToAction
+  );
+
+  const handleType = (value) => {
+    setDigitalType(value.value);
+  };
+
+  const handleAction = (value) => {
+    setCallToAction(value.value);
+  };
 
   const handleSaveEdit = async (e) => {
     e.preventDefault();
@@ -132,7 +174,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
   };
 
   return (
-    <div className='w-full p-2'>
+    <div className='w-full p-2 mt-16'>
       <div className='mb-2'>
         <h2 className='text-xl font-medium'>Edit your digital product</h2>
       </div>
@@ -166,10 +208,10 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
 
             <div className='flex flex-col w-full mt-2'>
               <div className='flex flex-col w-full pb-12'>
-                <p className='text-gray-400'>Product Type</p>
-                <select
+                <p className='text-stone-800 text-sm'>Type</p>
+                {/* <select
                   onChange={(e) => setDigitalType(e.target.value)}
-                  className='w-full h-14 rounded p-2'
+                  className='w-full mt-1 h-14 rounded p-2'
                   value={digitalType}
                 >
                   <option value='video'>Video Course</option>
@@ -178,12 +220,36 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                   <option value='podcast'>Audio</option>
                   <option value='template'>Template</option>
                   <option value='other'>Other Digital Media</option>
-                </select>
+                </select> */}
 
-                <p className='text-gray-400 mt-4'>Product Title</p>
+                <Select
+                  options={typeOptions}
+                  onChange={handleType}
+                  value={formattedTypeValue}
+                  menuPortalTarget={document.body}
+                  menuPosition={'fixed'}
+                  isSearchable={false}
+                  styles={{
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderColor: 'rgb(229 231 235)',
+                      borderWidth: 2,
+                      '&:hover': {
+                        borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                      },
+                      boxShadow: 'none',
+                      zIndex: 99999,
+                      position: 'relative',
+                    }),
+                    menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+                  }}
+                  className='mt-1'
+                />
+
+                <p className='text-stone-800 text-sm mt-4'>Title</p>
                 <input
                   type='text'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                  className='border-2 border-slate-200 mt-1 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   maxLength={50}
@@ -192,10 +258,12 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                   <p className='text-sm text-gray-400'>{title.length}/50</p>
                 </div>
 
-                <p className='text-gray-400 mt-4'>Product Summary (optional)</p>
+                <p className='text-stone-800 text-sm mt-4'>
+                  Summary (optional)
+                </p>
                 <textarea
                   type='text'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white h-28'
+                  className='border-2 mt-1 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white h-28'
                   placeholder='Description'
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
@@ -207,7 +275,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                   </p>
                 </div>
 
-                <p className='text-gray-400 mt-4'>Product Price</p>
+                <p className='text-stone-800 text-sm mt-4'>Price</p>
                 <div className='flex items-center'>
                   <div className='mr-4'>
                     <p className='text-xl font-medium'>$</p>
@@ -280,8 +348,8 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                   className='mt-2'
                 />
 
-                <p className='text-gray-400 mt-2'>Call to action</p>
-                <select
+                <p className='text-stone-800 text-sm mt-2'>Call to action</p>
+                {/* <select
                   onChange={(e) => setCallToAction(e.target.value)}
                   className='w-full h-14 rounded p-2 mt-1'
                   value={callToAction}
@@ -289,9 +357,32 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                   <option value='buy'>Buy Now</option>
                   <option value='want'>I want this!</option>
                   <option value='get'>Get Now</option>
-                </select>
+                </select> */}
+                <Select
+                  options={actionOptions}
+                  onChange={handleAction}
+                  value={formattedActionValue}
+                  menuPortalTarget={document.body}
+                  menuPosition={'fixed'}
+                  isSearchable={false}
+                  styles={{
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      borderColor: 'rgb(229 231 235)',
+                      borderWidth: 2,
+                      '&:hover': {
+                        borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                      },
+                      boxShadow: 'none',
+                      zIndex: 99999,
+                      position: 'relative',
+                    }),
+                    menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+                  }}
+                  className='mt-1'
+                />
 
-                <p className='text-gray-400 mt-2'>URL</p>
+                <p className='text-stone-800 text-sm mt-2'>URL</p>
                 <div className='flex items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2 w-full'>
                   <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
                   <input
@@ -302,11 +393,11 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                   />
                 </div>
 
-                <p className='text-gray-400 mt-2'>Description</p>
+                <p className='text-stone-800 text-sm mt-2'>Description</p>
                 <ReactQuill
                   value={info}
                   onChange={setInfo}
-                  className='h-60 mt-1'
+                  className='h-60 mt-1 mb-10'
                   placeholder='Start typing description here...'
                 />
               </div>
@@ -360,9 +451,9 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
               />
             </div>
 
-            <div className='w-full border rounded mt-6'>
+            <div className='w-full rounded mt-6'>
               <ReactQuill
-                className='h-60'
+                className='h-60 mb-10'
                 value={productContent}
                 onChange={setProductContent}
                 placeholder='Start typing here'
