@@ -46,12 +46,11 @@ const ProductMobile = ({ product }) => {
   return product ? (
     <div className='w-full p-2'>
       <div className='w-full flex justify-between items-center'>
-        <h2 className='text-md font-medium'>Your products</h2>
+        <p className='text-md font-medium'>Products</p>
 
         <div className='flex items-center'>
-          <p className='text-stone-800 font-medium text-md'>{product.length}</p>
           <Link
-            className='rounded-lg h-8 w-8 text-stone-800 border-stone-800 border-2 flex items-center justify-center text-xl ml-4 font-medium hover:text-white hover:bg-stone-800 pb-1'
+            className='rounded-lg h-6 w-6 text-stone-800 border-stone-800 border-2 flex items-center justify-center text-md ml-4 font-medium hover:text-white hover:bg-stone-800 pb-1'
             to='/dashboard/item/digital'
           >
             +
@@ -75,26 +74,6 @@ const ProductMobile = ({ product }) => {
               >
                 {`${currentStoreUrl}/${prod?.url}`}
               </a>
-
-              <div className='flex mt-4'>
-                <FormControlLabel
-                  label='Published'
-                  control={
-                    <Switch checked={prod?.published} disabled size='small' />
-                  }
-                />
-                <FormControlLabel
-                  label='Marketplace'
-                  control={
-                    <Switch
-                      checked={prod?.marketplace}
-                      disabled
-                      size='small'
-                      className='ml-2'
-                    />
-                  }
-                />
-              </div>
             </div>
 
             <Link to={`/dashboard/item/edit/${prod?._id}`}>
