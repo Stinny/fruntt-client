@@ -28,9 +28,9 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
 
   const path = window.location.pathname;
   const activeLink =
-    'text-md h-10 font-medium text-white w-full rounded bg-stone-800 flex items-center pl-2';
+    'text-sm h-8 font-medium text-white w-full rounded bg-stone-800 flex items-center pl-2 mt-1';
   const notActiveLink =
-    'text-md font-medium w-full h-10 hover:bg-gray-100 rounded text-stone-800 flex items-center pl-2';
+    'text-sm font-medium w-full h-8 hover:bg-gray-100 rounded text-stone-800 flex items-center pl-2 mt-1';
 
   //holds the url of the page being viewed
   const selectedStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
@@ -127,11 +127,11 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
         </div>
       </nav>
       <div
-        className={`fixed z-50 ${menuW} ${menuH} bg-white`}
+        className={`fixed h-screen z-50 ${menuW} ${menuH} bg-white`}
         style={{ display: menuDisplay }}
       >
         <button className='text-red-400 font-medium absolute top-0 right-0 mr-4 mt-4'>
-          <AiOutlineCloseCircle className='text-3xl' onClick={closeMenu} />
+          <AiOutlineCloseCircle className='text-2xl' onClick={closeMenu} />
         </button>
 
         {/* <div className='flex flex-col w-10/12 mx-auto items-center mt-20'>
@@ -165,7 +165,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
             Logout
           </button>
         </div> */}
-        <div className='w-full h-full mx-auto flex flex-col mt-10 bg-white p-4'>
+        <div className='w-full h-full mx-auto flex flex-col bg-white p-4'>
           <p className='text-stone-800 text-sm'>Store</p>
           <div className='border-b flex flex-col pb-2'>
             <NavLink to='/dashboard' className='mt-2'>
