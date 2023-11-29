@@ -68,7 +68,7 @@ const DashHomeMobile = ({ stats, currentUser, dataView }) => {
       </div>
 
       <div className='flex flex-col items-center w-full p-2'>
-        <div className='bg-white border rounded drop-shadow-md w-full p-2 h-28 mb-2'>
+        <div className='bg-white border rounded drop-shadow-md w-full p-2 h-28 mb-2 relative'>
           <Tooltip
             title={
               <p className='text-lg'>Total revenue your store has generated</p>
