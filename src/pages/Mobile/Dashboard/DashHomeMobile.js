@@ -90,15 +90,6 @@ const DashHomeMobile = ({ stats, currentUser, dataView }) => {
                 })
               : '0'}
           </p>
-          {/* <p className='mt-1 text-sm font-medium'>
-            {dataView === 'today'
-              ? 'In the past 24 hours'
-              : dataView === 'seven'
-              ? 'In the past 7 days'
-              : dataView === 'thirty'
-              ? 'In the past 30 days'
-              : 'Since you opened your store'}
-          </p> */}
         </div>
         <div className='w-full flex'>
           <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded p-2 relative'>
@@ -181,60 +172,6 @@ const DashHomeMobile = ({ stats, currentUser, dataView }) => {
         </div>
       </div>
 
-      {/* <div className='w-full flex flex-col items-center mx-auto p-2'>
-        {/* <div className='w-full drop-shadow-md rounded-md h-40 bg-white border p-2'>
-          <p className='text-xl font-medium'>Orders</p>
-          {stats?.numOfUnfulfilledOrders ? (
-            <p className='text-2xl font-medium mt-2'>
-              {stats?.numOfUnfulfilledOrders > 1
-                ? `You have ${stats?.numOfUnfulfilledOrders} unfulfilled orders`
-                : `You have ${stats?.numOfUnfulfilledOrders} unfulfilled order`}
-            </p>
-          ) : (
-            <p className='text-2xl font-medium mt-2'>
-              You have no recent orders
-            </p>
-          )}
-          <Link to='/dashboard/orders' className='mt-2'>
-            <div className='flex items-center'>
-              <p>View orders</p>
-              <BsArrowRightShort />
-            </div>
-          </Link>
-        </div> 
-
-       <div className='w-full p-2 drop-shadow-md mx-auto rounded-md bg-white border h-40 flex flex-col justify-center mt-2'>
-          <div className='w-full mx-auto'>
-            <p className='font-medium text-lg'>Quick navigation</p>
-          </div>
-          <div className='w-full flex mx-auto justify-between items-center'>
-            <Link to='/dashboard/item' className='w-6/12 h-12'>
-              <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
-                Product
-              </button>
-            </Link>
-            <Link to='/dashboard/content' className='w-6/12 h-12 ml-2'>
-              <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
-                Content
-              </button>
-            </Link>
-          </div>
-
-          <div className='w-full flex mx-auto justify-between items-center mt-2'>
-            <Link to='/dashboard/design' className='w-6/12 h-12'>
-              <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
-                Design
-              </button>
-            </Link>
-            <Link to='/dashboard/orders' className='w-6/12 h-12 ml-2'>
-              <button className='w-full h-full border-2 border-slate-800 rounded hover:bg-slate-800 hover:text-white'>
-                Orders
-              </button>
-            </Link>
-          </div>
-        </div> 
-      </div> */}
-
       <div className='w-full p-2'>
         <div className='w-full mx-auto bg-white border rounded drop-shadow-md flex flex-col p-2'>
           <p className='text-md font-medium text-stone-800'>
@@ -248,6 +185,7 @@ const DashHomeMobile = ({ stats, currentUser, dataView }) => {
                   checked={currentUser?.emailConfirmed}
                   color='default'
                   disabled
+                  size='small'
                 />
               }
               label='Confirm your email'
@@ -259,6 +197,7 @@ const DashHomeMobile = ({ stats, currentUser, dataView }) => {
                   checked={currentUser?.stripeOnboard}
                   color='default'
                   disabled
+                  size='small'
                 />
               }
               label='Connect to payment gateway'
@@ -270,6 +209,7 @@ const DashHomeMobile = ({ stats, currentUser, dataView }) => {
                   checked={currentUser?.store?.productAdded}
                   color='default'
                   disabled
+                  size='small'
                 />
               }
               label='Add a product'
@@ -281,6 +221,7 @@ const DashHomeMobile = ({ stats, currentUser, dataView }) => {
                   checked={currentUser?.store?.designAdded}
                   color='default'
                   disabled
+                  size='small'
                 />
               }
               label='Design your store'
@@ -289,8 +230,8 @@ const DashHomeMobile = ({ stats, currentUser, dataView }) => {
         </div>
 
         <div className='h-72 w-full flex flex-col items-center justify-center rounded border drop-shadow-md bg-white mt-4'>
-          <GoGraph className='text-4xl text-gray-300' />
-          <p className='font-medium text-stone-800 mt-2 text-sm'>
+          <GoGraph className='text-3xl text-stone-800' />
+          <p className='text-stone-800 mt-2 text-sm'>
             Mobile graph coming soon
           </p>
         </div>
