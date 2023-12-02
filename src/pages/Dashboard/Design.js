@@ -232,27 +232,7 @@ const Design = () => {
       <div className='flex'>
         <Topbar />
         {isMobile ? (
-          <div className='w-full mx-auto'>
-            <div className='flex justify-between items-center p-2'>
-              <div className='flex flex-col'>
-                {/* <h2 className='text-2xl font-medium'>Storefront design</h2> */}
-                <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
-                  <BsPalette className='text-white text-xl' />
-                  <p className='text-xl text-white ml-2'>Design</p>
-                </div>
-                <p>
-                  Page last designed on{' '}
-                  {moment(storefront?.lastEdited).format('MMM D, YYYY')}
-                </p>
-              </div>
-              <Link to='/dashboard/design/edit'>
-                <button className='w-20 text-sm h-10 rounded border-slate-800 border-2 hover:bg-slate-800 hover:text-white'>
-                  EDIT
-                </button>
-              </Link>
-            </div>
-            {content}
-          </div>
+          <div className='w-full h-screen p-2 mx-auto mt-16'>{content}</div>
         ) : (
           <div className='w-9/12 mx-auto p-10 h-screen overflow-y-scroll bg-gray-50'>
             <div className='flex justify-between items-center mb-2'>

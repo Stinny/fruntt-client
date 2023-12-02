@@ -4,6 +4,7 @@ import moment from 'moment';
 import { BiPackage } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
+import { AiOutlineEdit } from 'react-icons/ai';
 
 //mui
 import Chip from '@mui/material/Chip';
@@ -15,7 +16,7 @@ const ProductMobile = ({ product }) => {
 
   //stuff for pagination
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
 
   const endOffset = itemOffset + itemsPerPage;
 
@@ -46,15 +47,9 @@ const ProductMobile = ({ product }) => {
   return product ? (
     <div className='w-full p-2'>
       <div className='w-full flex justify-between items-center'>
-        <p className='text-md font-medium'>Products</p>
-
-        <div className='flex items-center'>
-          <Link
-            className='rounded-lg h-6 w-6 text-stone-800 border-stone-800 border-2 flex items-center justify-center text-md ml-4 font-medium hover:text-white hover:bg-stone-800 pb-1'
-            to='/dashboard/item/digital'
-          >
-            +
-          </Link>
+        <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+          <BiPackage className='text-white text-xl' />
+          <p className='text-md text-white ml-2'>Products</p>
         </div>
       </div>
 
@@ -62,9 +57,13 @@ const ProductMobile = ({ product }) => {
         {currentItems.map((prod) => (
           <div className='border rounded bg-white drop-shadow-md relative flex mt-4'>
             <div className='w-full border-l pl-4 flex flex-col p-2'>
-              <p className='text-lg font-medium mb-4'>
-                {prod?.title} - $
-                {prod?.payChoice ? `${prod?.price}+` : prod?.price}
+              <p className='text-md font-medium mb-4'>
+                {prod?.title} - {}
+                {prod?.free
+                  ? 'FREE'
+                  : prod?.payChoice
+                  ? `$${prod?.price}+`
+                  : `$${prod?.price}`}
               </p>
 
               <a
@@ -76,32 +75,40 @@ const ProductMobile = ({ product }) => {
               </a>
             </div>
 
-            <Link to={`/dashboard/item/edit/${prod?._id}`}>
-              <button className='absolute border-2 h-8 w-16 text-sm border-stone-800 text-stone-800 rounded right-0 bottom-0 mb-2 mr-2 hover:text-white hover:bg-stone-800'>
+            <Link
+              to={`/dashboard/item/edit/${prod?._id}`}
+              className='absolute bottom-0 right-0 mb-1 mr-1'
+            >
+              {/* <button className='absolute border-2 h-8 w-16 text-sm border-stone-800 text-stone-800 rounded right-0 bottom-0 mb-2 mr-2 hover:text-white hover:bg-stone-800'>
                 Edit
-              </button>
+              </button> */}
+              <AiOutlineEdit className=' text-stone-800' />
             </Link>
           </div>
         ))}
       </div>
 
-      <div className='w-full flex justify-end mx-auto mt-6'>
-        <div className=''>
-          <ReactPaginate
-            breakLabel='...'
-            nextLabel='Next'
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={3}
-            pageCount={pageCount}
-            previousLabel='Prev'
-            renderOnZeroPageCount={null}
-            className='flex items-center'
-            activeLinkClassName='activePage'
-            pageLinkClassName='notActivePage'
-            breakLinkClassName='breakLink'
-          />
+      {product.length > 10 ? (
+        <div className='w-full flex justify-end mx-auto mt-6'>
+          <div className=''>
+            <ReactPaginate
+              breakLabel='...'
+              nextLabel='Next'
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={3}
+              pageCount={pageCount}
+              previousLabel='Prev'
+              renderOnZeroPageCount={null}
+              className='flex items-center'
+              activeLinkClassName='activePage'
+              pageLinkClassName='notActivePage'
+              breakLinkClassName='breakLink'
+            />
+          </div>
         </div>
-      </div>
+      ) : (
+        ''
+      )}
     </div>
   ) : (
     noItem

@@ -162,12 +162,16 @@ const AddDigitalProd = () => {
     callToAction,
   ]);
 
+  const styles = isMobile
+    ? 'w-full mx-auto h-fit bg-gray-50 p-2 mt-16'
+    : 'w-9/12 mx-auto h-screen bg-gray-50 p-10 overflow-y-scroll';
+
   return (
     <>
       <Navbar />
       <div className='flex'>
         <Topbar />
-        <div className='w-9/12 mx-auto h-screen bg-gray-50 p-10 overflow-y-scroll'>
+        <div className={styles}>
           {isMobile ? (
             <MobileForm
               handleAddProduct={handleAddProduct}
@@ -197,6 +201,13 @@ const AddDigitalProd = () => {
               setUrl={setUrl}
               url={url}
               addingProduct={addingProduct}
+              setFree={setFree}
+              free={free}
+              marketplace={marketplace}
+              setMarketplace={setMarketplace}
+              handleAction={handleAction}
+              handleType={handleType}
+              handleCategory={handleCategory}
             />
           ) : (
             <DesktopForm

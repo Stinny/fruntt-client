@@ -5,7 +5,7 @@ import DesignPreviewMobile from './DesignPreviewMobile';
 const DesignMobile = ({ storefront }) => {
   return (
     <>
-      <div className='p-2'>
+      {/* <div className='p-2'>
         <div className='flex w-full h-32 overflow-x-scroll bg-white border rounded drop-shadow-md'>
           <div className='w-24 flex flex-col items-center p-2 mx-auto'>
             <p className='text-md font-medium mb-1'>Page</p>
@@ -97,7 +97,12 @@ const DesignMobile = ({ storefront }) => {
         storefront={storefront}
         faqBackground={storefront?.style?.faqBackground}
         reviewBackground={storefront?.style?.reviewBackground}
-      />
+      /> */}
+      <div className='flex items-center justify-center rounded h-full w-full p-4 mx-auto border bg-white drop-shadow-md'>
+        <p className='text-sm text-center text-stone-800'>
+          Designing your store is only available in a desktop browser
+        </p>
+      </div>
     </>
   );
 };

@@ -307,7 +307,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
               </button>
             </Link>
             <button
-              className='w-full p-2 border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 text-sm mt-2'
+              className='w-full p-1 border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 text-sm mt-2'
               onClick={handleLogout}
             >
               Logout
