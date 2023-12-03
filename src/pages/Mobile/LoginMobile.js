@@ -42,19 +42,6 @@ const LoginMobile = ({
         onSubmit={handleLogin}
         className='flex flex-col w-full items-center bg-white p-2 rounded border-2 drop-shadow-md mt-2 mb-44'
       >
-        <button
-          style={{
-            backgroundColor: 'rgb(15, 20, 25)',
-            borderColor: 'rgb(15, 20, 25)',
-          }}
-          className='w-full h-10 rounded flex items-center justify-center text-white'
-          type='button'
-          onClick={handleTwitterLogin}
-        >
-          <p className='mr-2 text-sm'>Log in with</p>
-          <img src={img} className='w-4 h-4' />
-        </button>
-        <p className='font-medium text-lg text-stone-800 mt-2'>OR</p>
         <input
           type='email'
           placeholder='Email'
@@ -68,18 +55,6 @@ const LoginMobile = ({
           className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 w-full rounded mt-4 p-2'
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div className='w-full flex justify-between mt-2'>
-          <Link to='/signup'>
-            <p className='text-xs text-slate-400 hover:text-stone-800 font-medium'>
-              Don't have a store yet?
-            </p>
-          </Link>
-          <Link to='/reset/password'>
-            <p className='text-xs text-slate-400 hover:text-stone-800 font-medium'>
-              Forgot your password?
-            </p>
-          </Link>
-        </div>
 
         <button
           disabled={isLoading}
@@ -87,6 +62,31 @@ const LoginMobile = ({
         >
           Go to my store
         </button>
+        <p className='font-medium text-md text-stone-800 mt-2'>OR</p>
+        <button
+          style={{
+            backgroundColor: 'rgb(15, 20, 25)',
+            borderColor: 'rgb(15, 20, 25)',
+          }}
+          className='w-full h-10 rounded mt-2 flex items-center justify-center text-white'
+          type='button'
+          onClick={handleTwitterLogin}
+        >
+          <p className='mr-2 text-sm'>Log in with</p>
+          <img src={img} className='w-4 h-4' />
+        </button>
+        <div className='w-full flex justify-between mt-2'>
+          <Link to='/signup'>
+            <p className='text-xs text-stone-800 hover:text-stone-800 font-medium'>
+              Don't have a store yet?
+            </p>
+          </Link>
+          <Link to='/reset/password'>
+            <p className='text-xs text-stone-800 hover:text-stone-800 font-medium'>
+              Forgot your password?
+            </p>
+          </Link>
+        </div>
       </form>
     </div>
   );

@@ -16,6 +16,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
+import { toast } from 'react-toastify';
 
 //filepond
 import { FilePond } from 'react-filepond';
@@ -49,6 +50,9 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
   const [suggestedPrice, setSuggestedPrice] = useState(product?.suggestedPrice);
   const [url, setUrl] = useState(product?.url);
   const [info, setInfo] = useState(product?.info);
+  const [free, setFree] = useState(product?.free);
+  const [marketplace, setMarketplace] = useState(product?.marketplace);
+  const [category, setCategory] = useState(product?.category);
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
@@ -86,12 +90,18 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
     (option) => option.value === callToAction
   );
 
+  const formattedCategory = categories.find((cat) => cat.value === category);
+
   const handleType = (value) => {
     setDigitalType(value.value);
   };
 
   const handleAction = (value) => {
     setCallToAction(value.value);
+  };
+
+  const handleCategory = (value) => {
+    setCategory(value.value);
   };
 
   const handleSaveEdit = async (e) => {
@@ -153,10 +163,14 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
         callToAction: callToAction,
         url: url,
         info: info,
+        marketplace: marketplace,
+        free: free,
+        category: category,
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
         refetch();
+        toast.success('Product saved!', { style: { color: 'rgb(28 25 23)' } });
         navigate('/dashboard/item');
       }
     } catch (err) {
@@ -181,46 +195,28 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
 
       <Tabs>
         <TabList>
-          <Tab>Details</Tab>
-          <Tab>Content</Tab>
+          <Tab>
+            <span className='text-sm'>Details</span>
+          </Tab>
+          <Tab>
+            <span className='text-sm'>Content</span>
+          </Tab>
+
+          <Tab>
+            <span className='text-sm'>Marketplace</span>
+          </Tab>
         </TabList>
 
         <TabPanel>
           <form className='w-full border rounded bg-white drop-shadow-md p-2'>
             {error && <Alert severity='error'>{error}</Alert>}
             <div className='flex items-center'>
-              <p className='text-xl font-medium'>Details</p>
-              <Tooltip
-                title={
-                  <p className='text-lg'>
-                    Product details help your customers know what they are
-                    buying.
-                  </p>
-                }
-                className='ml-2 text-lg'
-                placement='right-end'
-              >
-                <button type='button' disabled>
-                  <AiOutlineInfoCircle />
-                </button>
-              </Tooltip>
+              <p className='text-md font-medium'>Details</p>
             </div>
 
             <div className='flex flex-col w-full mt-2'>
               <div className='flex flex-col w-full pb-12'>
                 <p className='text-stone-800 text-sm'>Type</p>
-                {/* <select
-                  onChange={(e) => setDigitalType(e.target.value)}
-                  className='w-full mt-1 h-14 rounded p-2'
-                  value={digitalType}
-                >
-                  <option value='video'>Video Course</option>
-                  <option value='printable'>Art</option>
-                  <option value='ebook'>E-Book</option>
-                  <option value='podcast'>Audio</option>
-                  <option value='template'>Template</option>
-                  <option value='other'>Other Digital Media</option>
-                </select> */}
 
                 <Select
                   options={typeOptions}
@@ -243,13 +239,13 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                     }),
                     menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
                   }}
-                  className='mt-1'
+                  className=''
                 />
 
                 <p className='text-stone-800 text-sm mt-4'>Title</p>
                 <input
                   type='text'
-                  className='border-2 border-slate-200 mt-1 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   maxLength={50}
@@ -263,7 +259,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                 </p>
                 <textarea
                   type='text'
-                  className='border-2 mt-1 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white h-28'
+                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white h-28'
                   placeholder='Description'
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
@@ -287,21 +283,40 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                     onChange={(e) => setPrice(e.target.value)}
                   />
                 </div>
-                <FormControlLabel
-                  label='Let customers pay what they want'
-                  control={
-                    <Switch
-                      checked={payChoice}
-                      onChange={(e) => setPayChoice(e.target.checked)}
-                    />
-                  }
-                  className='mt-2'
-                />
+                {free ? (
+                  ''
+                ) : (
+                  <FormControlLabel
+                    label='Let customers pay what they want'
+                    control={
+                      <Switch
+                        checked={payChoice}
+                        onChange={(e) => setPayChoice(e.target.checked)}
+                      />
+                    }
+                    className='mt-2'
+                  />
+                )}
+
+                {payChoice ? (
+                  ''
+                ) : (
+                  <FormControlLabel
+                    label='Free product'
+                    control={
+                      <Switch
+                        checked={free}
+                        onChange={(e) => setFree(e.target.checked)}
+                      />
+                    }
+                    className='mt-2'
+                  />
+                )}
 
                 {payChoice ? (
                   <div className='flex items-center'>
                     <div className='flex flex-col w-6/12'>
-                      <p className='text-gray-400'>Minimum price</p>
+                      <p className='text-stone-900 text-sm'>Minimum price</p>
                       <input
                         type='number'
                         className='border-2 border-slate-200 w-full rounded p-2 outline outline-0 bg-white'
@@ -316,7 +331,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                       />
                     </div>
                     <div className='flex flex-col w-6/12 ml-2'>
-                      <p className='text-gray-400'>Suggested price</p>
+                      <p className='text-stone-800 text-sm'>Suggested price</p>
                       <input
                         className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
                         onChange={(e) => setSuggestedPrice(e.target.value)}
@@ -338,7 +353,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                 />
 
                 <FormControlLabel
-                  label='Publish to storefront'
+                  label='Publish to store'
                   control={
                     <Switch
                       checked={published}
@@ -349,15 +364,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                 />
 
                 <p className='text-stone-800 text-sm mt-2'>Call to action</p>
-                {/* <select
-                  onChange={(e) => setCallToAction(e.target.value)}
-                  className='w-full h-14 rounded p-2 mt-1'
-                  value={callToAction}
-                >
-                  <option value='buy'>Buy Now</option>
-                  <option value='want'>I want this!</option>
-                  <option value='get'>Get Now</option>
-                </select> */}
+
                 <Select
                   options={actionOptions}
                   onChange={handleAction}
@@ -383,10 +390,10 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                 />
 
                 <p className='text-stone-800 text-sm mt-2'>URL</p>
-                <div className='flex items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2 w-full'>
-                  <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
+                <div className='flex items-center border-2 rounded border-gray-200 hover:border-gray-300 p-2 w-full'>
+                  <span className='underline underline-offset-2 text-sm font-medium'>{`${currentStoreUrl}/`}</span>
                   <input
-                    className='bg-white outline outline-0 w-40'
+                    className='bg-white outline outline-0 w-full text-sm'
                     placeholder='ProductName'
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
@@ -408,29 +415,12 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
         <TabPanel>
           <div className='w-full bg-white drop-shadow-md border rounded p-2 pb-12'>
             <div className='flex items-center'>
-              <p className='text-xl font-medium'>Edit Content</p>
-              <Tooltip
-                title={
-                  <p className='text-lg'>
-                    Images, zip files, PDFs, video, etc..
-                  </p>
-                }
-                className='ml-2 text-lg'
-                placement='right-end'
-              >
-                <button type='button' disabled>
-                  <AiOutlineInfoCircle />
-                </button>
-              </Tooltip>
+              <p className='text-md font-medium'>Content</p>
             </div>
-            <p className='text-gray-400 font-medium mb-4'>
+            <p className='text-stone-800 text-sm mb-4'>
               All content and files are available to customers immediately after
               purchase
             </p>
-
-            <div className='flex flex-col'>
-              <p className='text-gray-400 mt-4'>Files currently added</p>
-            </div>
 
             <Files
               productId={productId}
@@ -459,6 +449,51 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                 placeholder='Start typing here'
               />
             </div>
+          </div>
+        </TabPanel>
+
+        <TabPanel>
+          <div className='h-screen flex flex-col border rounded w-full shadow-lg bg-white p-2'>
+            <div className='flex items-center'>
+              <p className='text-md text-stone-800'>Marketplace</p>
+            </div>
+            <p className='text-stone-800 text-sm mt-1'>
+              List your product in our marketplace for other creators and
+              customers to discover.
+            </p>
+            <FormControlLabel
+              label='Publish to marketplace'
+              control={
+                <Switch
+                  checked={marketplace}
+                  onChange={(e) => setMarketplace(e.target.checked)}
+                />
+              }
+              className='mt-2'
+            />
+            <p className='text-stone-800 text-sm mt-2'>Product category</p>
+            <Select
+              options={categories}
+              onChange={handleCategory}
+              value={formattedCategory}
+              menuPortalTarget={document.body}
+              menuPosition={'fixed'}
+              isSearchable={false}
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  borderColor: 'rgb(229 231 235)',
+                  borderWidth: 2,
+                  '&:hover': {
+                    borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                  },
+                  boxShadow: 'none',
+                  position: 'relative',
+                }),
+                menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
+              }}
+              className='mt-1 w-64'
+            />
           </div>
         </TabPanel>
       </Tabs>

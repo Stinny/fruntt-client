@@ -410,7 +410,7 @@ const DashHome = () => {
   }
 
   const styles = isMobile
-    ? 'w-full mx-auto h-screen overflow-y-scroll p-2 bg-gray-50'
+    ? 'w-full mx-auto h-fit p-2 bg-gray-50'
     : 'w-9/12 mx-auto h-screen overflow-y-scroll p-10 bg-gray-50';
 
   return (

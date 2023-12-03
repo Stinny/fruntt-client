@@ -38,18 +38,16 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
 
   return (
     <div className='p-2'>
-      <div className='bg-stone-800 text-sm rounded-tr rounded-tl h-10 flex items-center justify-center mt-24'>
+      {/* <div className='bg-stone-800 text-sm rounded-tr rounded-tl h-10 flex items-center justify-center mt-24'>
         <p className='text-white'>
           Pay us only 1% of sales after processing fees{' '}
         </p>
         <BiSmile className='ml-1 text-white text-xl' />
-      </div>
-      <div className='w-full rounded-bl rounded-br border border-t-0 drop-shadow-lg bg-white p-4 mb-4'>
+      </div> */}
+      <div className='w-full rounded border drop-shadow-lg bg-white p-4 mb-4 mt-24'>
         <p className='text-lg font-medium text-stone-800'>Fruntt Marketplace</p>
         <p className='text-stone-800 text-sm mt-2'>
-          A place for creators to earn
-          <span className='font-bold'> MORE</span>. Discover the latest products
-          and creators. Get your store open and products listed!
+          Browse the latest Notion templates from your favorite creators.
         </p>
         {/* <p className='mt-4 text-stone-800 text-lg font-bold'>
           {products.length} products and growing
@@ -61,7 +59,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
         </Link>
       </div>
 
-      <div className='w-full rounded bg-white drop-shadow-lg mb-4 grid grid-cols-3 gap-2 p-2'>
+      {/* <div className='w-full rounded bg-white drop-shadow-lg mb-4 grid grid-cols-3 gap-2 p-2'>
         <button
           className={filter === 'all' ? activeLink : notActiveLink}
           type='button'
@@ -109,7 +107,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
         >
           Other <MdOutlinePermMedia className='ml-1' />
         </button>
-      </div>
+      </div> */}
 
       {currentItems.length > 0 ? (
         <div className='w-full flex flex-col'>
@@ -119,7 +117,10 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
               className='w-full'
               target='_blank'
             >
-              <div className='border drop-shadow-lg flex w-full mb-4 rounded relative h-96 bg-white'>
+              <div
+                className='border drop-shadow-lg flex w-full mb-4 rounded relative bg-white'
+                style={{ height: '350px' }}
+              >
                 <div className='absolute bottom-0 right-0 mb-1 mr-1 bg-gray-100 rounded-tl p-2'>
                   <p
                     className={
@@ -157,13 +158,13 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
                 </div>
 
                 <div className='w-full flex-col p-4'>
-                  <div className='w-full h-40 pb-2'>
+                  <div className='w-full h-44 pb-2'>
                     <img
                       src={product?.coverImage?.url}
                       className='object-cover w-full h-full rounded'
                     />
                   </div>
-                  <div className='mb-2 mt-1'>
+                  {/* <div className='mb-2 mt-1'>
                     {product?.digitalType === 'video' ? (
                       <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
                         <p className='text-sm'>Video Course</p>
@@ -195,7 +196,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
                         <BsPalette className='ml-2 text-xl' />
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   <p className='font-bold text-lg mb-1'>{product?.title}</p>
                   <p className='text-md mb-2'>{product?.description}</p>

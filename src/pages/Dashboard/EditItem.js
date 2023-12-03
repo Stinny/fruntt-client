@@ -9,8 +9,7 @@ import { productSlice } from '../../redux/productRedux';
 import { isMobile } from 'react-device-detect';
 import EditDigital from './EditDigital';
 import Spinner from '../../components/Spinner';
-import EditItemForm from '../../components/Forms/EditItemForm';
-import EditItemFormMobile from '../../components/Forms/EditItemFormMobile';
+import EditDigitalMobile from '../../components/DigitalProd/EditDigitalMobile';
 
 const EditItem = () => {
   const { productId } = useParams();
@@ -39,7 +38,7 @@ const EditItem = () => {
     content = (
       <div className='w-full'>
         {isMobile ? (
-          <EditItemFormMobile
+          <EditDigitalMobile
             product={product}
             productId={productId}
             refetch={refetch}

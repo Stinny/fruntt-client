@@ -105,11 +105,8 @@ const Files = ({ productId, product, refetchProduct }) => {
       </div>
     ))
   ) : (
-    <div className='w-full rounded border-2 flex flex-col items-center justify-center'>
+    <div className='w-full rounded h-12 text-sm border-2 flex flex-col items-center justify-center'>
       <p>No files added</p>
-      <p className='text-gray-400'>
-        Add files to include in this digital purchase
-      </p>
     </div>
   );
 
