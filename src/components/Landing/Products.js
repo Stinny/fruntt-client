@@ -30,7 +30,7 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
   } else if (gotProducts) {
     content = isMobile ? (
       <div className='w-full flex flex-col items-center mt-44 mb-20'>
-        <p className='text-lg font-medium'>Recommended Products</p>
+        <p className='text-lg font-medium'>Recommended Templates</p>
 
         <div className='w-full flex flex-col mt-6'>
           {products.map((product) => (
