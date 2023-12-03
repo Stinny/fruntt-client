@@ -39,7 +39,10 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
               className='w-full'
               target='_blank'
             >
-              <div className='border drop-shadow-lg flex w-full mb-4 rounded relative h-96 bg-white'>
+              <div
+                className='border drop-shadow-lg flex w-full mb-4 rounded relative bg-white'
+                style={{ height: '350px' }}
+              >
                 <div className='absolute bottom-0 right-0 mb-1 mr-1 bg-gray-100 rounded-tl p-2'>
                   <p
                     className={
@@ -77,13 +80,13 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
                 </div>
 
                 <div className='w-full flex-col p-4'>
-                  <div className='w-full h-40 pb-2'>
+                  <div className='w-full h-44 pb-2'>
                     <img
                       src={product?.coverImage?.url}
                       className='object-cover w-full h-full rounded'
                     />
                   </div>
-                  <div className='mb-2 mt-1'>
+                  {/* <div className='mb-2 mt-1'>
                     {product?.digitalType === 'video' ? (
                       <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
                         <p className='text-sm'>Video Course</p>
@@ -115,7 +118,7 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
                         <BsPalette className='ml-2 text-xl' />
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   <p className='font-bold text-lg mb-1'>{product?.title}</p>
                   <p className='text-md mb-2'>{product?.description}</p>
@@ -127,7 +130,7 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
       </div>
     ) : (
       <div className='max-w-7xl flex flex-col items-center mt-44'>
-        <p className='text-lg font-medium'>Recommended Products</p>
+        <p className='text-lg font-medium'>Recommended Templates</p>
 
         <div className='w-full grid grid-cols-3 gap-4 mt-6'>
           {products.map((product) => (
@@ -136,7 +139,10 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
               className='w-full'
               target='_blank'
             >
-              <div className='border drop-shadow-lg flex w-full mb-4 rounded relative h-96 bg-white'>
+              <div
+                className='border drop-shadow-lg flex w-full mb-4 rounded relative bg-white'
+                style={{ height: '350px' }}
+              >
                 <div className='absolute bottom-0 right-0 font-medium bg-gray-100 mb-1 mr-1 rounded-tl p-2'>
                   <p
                     className={
@@ -174,13 +180,13 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
                 </div>
 
                 <div className='w-full flex-col p-4'>
-                  <div className='w-full h-40 pb-2'>
+                  <div className='w-full h-48 pb-2'>
                     <img
                       src={product?.coverImage?.url}
                       className='object-cover w-full h-full rounded'
                     />
                   </div>
-                  <div className='mb-2 mt-1'>
+                  {/* <div className='mb-2 mt-1'>
                     {product?.digitalType === 'video' ? (
                       <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
                         <p className='text-sm'>Video Course</p>
@@ -212,7 +218,7 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
                         <BsPalette className='ml-2 text-xl' />
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   <p className='font-bold text-lg mb-1'>{product?.title}</p>
                   <p className='text-md mb-2'>{product?.description}</p>

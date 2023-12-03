@@ -66,19 +66,6 @@ const RegisterMobile = ({
           onSubmit={handleSignup}
           className='flex flex-col items-center w-full bg-white p-2 rounded border-2 drop-shadow-md'
         >
-          <button
-            style={{
-              backgroundColor: 'rgb(15, 20, 25)',
-              borderColor: 'rgb(15, 20, 25)',
-            }}
-            className='w-full h-10 rounded flex items-center justify-center text-white'
-            type='button'
-            onClick={handleTwitterSignup}
-          >
-            <p className='mr-2'>Connect with</p>
-            <img src={img} className='w-4 h-4' />
-          </button>
-          <p className='font-medium text-lg text-stone-800 mt-2'>OR</p>
           <input
             type='email'
             placeholder='Email'
@@ -119,6 +106,19 @@ const RegisterMobile = ({
             className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded mt-4'
           >
             Open Store
+          </button>
+          <p className='font-medium text-md text-stone-800 mt-2'>OR</p>
+          <button
+            style={{
+              backgroundColor: 'rgb(15, 20, 25)',
+              borderColor: 'rgb(15, 20, 25)',
+            }}
+            className='w-full h-10 mt-2 rounded flex items-center justify-center text-white'
+            type='button'
+            onClick={handleTwitterSignup}
+          >
+            <p className='mr-2'>Connect with</p>
+            <img src={img} className='w-4 h-4' />
           </button>
           <div className='mt-2 flex w-full'>
             <Link to='/login'>

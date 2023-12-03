@@ -132,19 +132,6 @@ const Login = () => {
           onSubmit={handleLogin}
           className='flex flex-col items-center w-full bg-white p-2 rounded border-2 drop-shadow-md mt-2'
         >
-          <button
-            style={{
-              backgroundColor: 'rgb(15, 20, 25)',
-              borderColor: 'rgb(15, 20, 25)',
-            }}
-            className='w-full h-10 rounded flex items-center justify-center text-white'
-            type='button'
-            onClick={handleTwitterLogin}
-          >
-            <p className='mr-2'>Log in with</p>
-            <img src={img} className='w-4 h-4' />
-          </button>
-          <p className='font-medium text-lg text-stone-800 mt-2'>OR</p>
           <input
             type='email'
             placeholder='Email'
@@ -159,6 +146,26 @@ const Login = () => {
             className='border-2 border-gray-200 hover:border-gray-300 outline-0 outline w-full rounded mt-4 p-2'
             onChange={(e) => setPassword(e.target.value)}
           />
+
+          <button
+            disabled={isLoading}
+            className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-lg mt-4'
+          >
+            Go to my store
+          </button>
+          <p className='text-md text-stone-800 mt-2'>OR</p>
+          <button
+            style={{
+              backgroundColor: 'rgb(15, 20, 25)',
+              borderColor: 'rgb(15, 20, 25)',
+            }}
+            className='w-full h-10 rounded flex items-center justify-center text-white mt-2'
+            type='button'
+            onClick={handleTwitterLogin}
+          >
+            <p className='mr-2'>Log in with</p>
+            <img src={img} className='w-4 h-4' />
+          </button>
           <div className='w-full flex justify-between mt-2'>
             <Link to='/signup'>
               <p className='text-sm text-stone-800 font-medium'>
@@ -171,13 +178,6 @@ const Login = () => {
               </p>
             </Link>
           </div>
-
-          <button
-            disabled={isLoading}
-            className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-lg mt-4'
-          >
-            Go to my storefront
-          </button>
         </form>
       </div>
     );

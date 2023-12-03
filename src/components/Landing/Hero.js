@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BsChevronDoubleDown } from 'react-icons/bs';
+import { FaChevronDown } from 'react-icons/fa';
 import { isMobile } from 'react-device-detect';
 import PageSamp from './PageSamp';
 import { AiOutlineTwitter, AiOutlineLinkedin } from 'react-icons/ai';
@@ -52,18 +52,23 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
     <div className='h-fit flex flex-col w-full mt-24 p-2'>
       <div className='flex flex-col'>
         <div className='flex flex-col text-left w-full'>
-          <p className='font-medium text-2xl'>
+          <p className='font-medium text-xl'>
             Most affordable way to sell your
           </p>
           <div>
-            <p className='text-white bg-stone-800 rounded p-1 font-medium text-2xl inline-block'>
-              {currentWord}.
+            <p className='text-white bg-stone-800 rounded p-1 font-medium text-xl inline-block'>
+              Notion templates.
             </p>
           </div>
           <p className='text-lg mt-6'>
-            Create and sell any digital product to your audience and keep 99% of
-            what you earn after payment processing fees.
+            Sell any Notion template to your customers without worrying about{' '}
+            <span className='font-bold'>high</span> payout fees.
           </p>
+
+          <a href='#pricing' className='text-stone-800 mt-4 flex items-center'>
+            See pricing{' '}
+            <FaChevronDown className='ml-2 text-stone-800 text-sm' />
+          </a>
           <div className='flex items-center mt-6'>
             <Link to='/signup' className='flex w-56'>
               <button className='rounded bg-white text-stone-800 text-sm w-full h-10 border-stone-800 border-2 shadow-md hover:bg-stone-800 hover:text-white flex items-center justify-center'>
@@ -73,7 +78,7 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
 
             <Link to='/marketplace' className='flex w-56 ml-1'>
               <button className='rounded text-white w-full h-10 text-sm border-stone-800 border-2 bg-stone-800 flex items-center shadow-md justify-center'>
-                Browse Products
+                Browse Templates
               </button>
             </Link>
 
@@ -96,7 +101,7 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
           <div className='flex'>
             <div className='w-3/6 bg-stone-800 text-white flex justify-center items-center h-32 rounded-tl'>
               <p className='flex justify-center items-center h-32 font-medium text-2xl'>
-                99%
+                $
               </p>
             </div>
             <div className='w-3/6 bg-white h-32 rounded-tr flex items-center justify-center'>
@@ -109,7 +114,7 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
               <img src={imgTwo} className='w-44' />
             </div>
             <div className='w-3/6 bg-stone-800 flex justify-center items-center h-32 text-white'>
-              <p className='text-2xl font-medium'>99%</p>
+              <p className='text-2xl font-medium'>$</p>
             </div>
           </div>
         </div>
@@ -131,13 +136,19 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
           </p>
           <div>
             <p className='text-white bg-stone-800 rounded p-1 font-medium text-3xl inline-block'>
-              {currentWord}.
+              Notion templates.
             </p>
           </div>
           <p className='text-xl mt-10'>
-            Create and sell any digital product to your audience and keep 99% of
-            what you earn after payment processing fees.
+            {/* Create and sell any digital product to your audience and keep 99% of
+            what you earn after payment processing fees. */}
+            Sell any Notion template to your customers without worrying about{' '}
+            <span className='font-bold'>high</span> payout fees.
           </p>
+          <a href='#pricing' className='text-stone-800 mt-4 flex items-center'>
+            See pricing{' '}
+            <FaChevronDown className='ml-2 text-stone-800 text-sm' />
+          </a>
           <div className='flex items-center mt-10'>
             <Link to='/signup' className='flex w-56'>
               <button className='rounded text-stone-800 w-full h-10 border-stone-800 border-2 hover:bg-stone-800 hover:text-white flex items-center shadow-md bg-white justify-center'>
@@ -147,7 +158,7 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
 
             <Link to='/marketplace' className='flex w-56 ml-1'>
               <button className='rounded text-white w-full h-10 border-stone-800 border-2 bg-stone-800 flex items-center shadow-md justify-center'>
-                Browse Products
+                Browse Templates
               </button>
             </Link>
 
@@ -170,8 +181,8 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
         <div className='flex flex-col w-3/6 rounded shadow-lg border'>
           <div className='flex'>
             <div className='w-3/6 bg-stone-800 text-white flex justify-center items-center h-36 rounded-tl'>
-              <p className='flex justify-center items-center h-32 font-medium text-2xl'>
-                99%
+              <p className='flex justify-center items-center h-32 font-medium text-3xl'>
+                $
               </p>
             </div>
             <div className='w-3/6 bg-white h-36 rounded-tr flex items-center justify-center'>
@@ -184,7 +195,7 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
               <img src={imgTwo} className='w-44' />
             </div>
             <div className='w-3/6 bg-stone-800 flex justify-center items-center h-36 text-white'>
-              <p className='text-2xl font-medium'>99%</p>
+              <p className='text-3xl font-medium'>$</p>
             </div>
           </div>
         </div>
