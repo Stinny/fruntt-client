@@ -65,7 +65,7 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
             <span className='font-bold'>high</span> payout fees.
           </p>
 
-          <a href='#pricing' className='text-stone-800 mt-4 flex items-center'>
+          <a href='#pricing' className='text-stone-800 mt-6 flex items-center'>
             See pricing{' '}
             <FaChevronDown className='ml-2 text-stone-800 text-sm' />
           </a>
@@ -145,7 +145,7 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
             Sell any Notion template to your customers without worrying about{' '}
             <span className='font-bold'>high</span> payout fees.
           </p>
-          <a href='#pricing' className='text-stone-800 mt-4 flex items-center'>
+          <a href='#pricing' className='text-stone-800 mt-6 flex items-center'>
             See pricing{' '}
             <FaChevronDown className='ml-2 text-stone-800 text-sm' />
           </a>
