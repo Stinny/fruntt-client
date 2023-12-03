@@ -52,17 +52,16 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
     <div className='h-fit flex flex-col w-full mt-24 p-2'>
       <div className='flex flex-col'>
         <div className='flex flex-col text-left w-full'>
-          <p className='font-medium text-xl'>
-            Most affordable way to sell your
-          </p>
+          <p className='font-bold text-xl'>Most affordable way to sell your</p>
           <div>
-            <p className='text-white bg-stone-800 rounded p-1 font-medium text-xl inline-block'>
+            <p className='text-white bg-stone-800 rounded p-1 font-bold text-xl inline-block'>
               Notion templates.
             </p>
           </div>
           <p className='text-lg mt-6'>
-            Sell any Notion template to your customers without worrying about{' '}
-            <span className='font-bold'>high</span> payout fees.
+            Sell any Notion template to your customers{' '}
+            <span className='font-bold'>without</span> worrying about high
+            payout fees.
           </p>
 
           <a href='#pricing' className='text-stone-800 mt-6 flex items-center'>
@@ -131,19 +130,18 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
     <div className='h-fit flex flex-col max-w-7xl mt-44'>
       <div className='flex items-center justify-between'>
         <div className='flex flex-col text-left w-3/6 mr-32'>
-          <p className='font-medium text-3xl'>
-            Most affordable way to sell your
-          </p>
+          <p className='font-bold text-3xl'>Most affordable way to sell your</p>
           <div>
-            <p className='text-white bg-stone-800 rounded p-1 font-medium text-3xl inline-block'>
+            <p className='text-white bg-stone-800 rounded p-1 font-bold text-3xl inline-block'>
               Notion templates.
             </p>
           </div>
           <p className='text-xl mt-10'>
             {/* Create and sell any digital product to your audience and keep 99% of
             what you earn after payment processing fees. */}
-            Sell any Notion template to your customers without worrying about{' '}
-            <span className='font-bold'>high</span> payout fees.
+            Sell any Notion template to your customers{' '}
+            <span className='font-bold'>without</span> worrying about high
+            payout fees.
           </p>
           <a href='#pricing' className='text-stone-800 mt-6 flex items-center'>
             See pricing{' '}
