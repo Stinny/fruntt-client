@@ -150,6 +150,8 @@ const DashHome = () => {
         currentUser={currentUser}
         stats={stats}
         dataView={dataView}
+        refetchUser={refetchUser}
+        user={user}
       />
     ) : (
       <>
