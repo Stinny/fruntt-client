@@ -97,9 +97,9 @@ const Features = () => {
         </div>
 
         <div className='w-48 h-48 bg-white rounded border shadow-lg flex flex-col p-4'>
-          <MdCloudDownload className='text-3xl' />
+          <HiOutlineTemplate className='text-3xl' />
 
-          <p className='font-medium mt-4'>Unlimited Template</p>
+          <p className='font-medium mt-4'>Unlimited Templates</p>
           <p className='mt-2 text-sm'>
             Create and sell as many templates as you like.
           </p>
