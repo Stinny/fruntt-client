@@ -35,7 +35,7 @@ const Email = () => {
   }, [email]);
 
   return isMobile ? (
-    <div className='max-w-7xl mx-auto flex flex-col items-center mb-16'>
+    <div className='max-w-7xl mx-auto flex flex-col items-center mb-16 mt-44'>
       <p className='font-medium text-stone-800 text-xl'>
         Stay connected with us!
       </p>
@@ -67,7 +67,7 @@ const Email = () => {
       <p className='text-stone-800 mt-4'>We respect your privacy</p>
     </div>
   ) : (
-    <div className='max-w-7xl mx-auto flex flex-col items-center mb-16'>
+    <div className='max-w-7xl mx-auto flex flex-col items-center mb-16 mt-44'>
       <p className='font-medium text-stone-800 text-2xl'>
         Stay connected with us!
       </p>

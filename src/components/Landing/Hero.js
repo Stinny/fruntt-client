@@ -49,7 +49,7 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
   };
 
   return isMobile ? (
-    <div className='h-fit flex flex-col w-full mt-24 p-2'>
+    <div className='h-fit flex flex-col w-full mt-24 p-4'>
       <div className='flex flex-col'>
         <div className='flex flex-col text-left w-full'>
           <p className='font-bold text-xl'>Most affordable way to sell your</p>
