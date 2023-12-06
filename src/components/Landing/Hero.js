@@ -58,13 +58,15 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
               Notion templates.
             </p>
           </div>
-          <p className='text-lg mt-6'>
-            Sell any Notion template to your customers{' '}
-            <span className='font-bold'>without</span> worrying about high
-            payout fees.
+          <p className='text-md mt-6'>
+            Stop worrying about high payout fees and focus more on your
+            earnings.
           </p>
 
-          <a href='#pricing' className='text-stone-800 mt-6 flex items-center'>
+          <a
+            href='#pricing'
+            className='text-stone-800 mt-6 flex items-center text-sm'
+          >
             See pricing{' '}
             <FaChevronDown className='ml-2 text-stone-800 text-sm' />
           </a>
@@ -136,12 +138,15 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
               Notion templates.
             </p>
           </div>
-          <p className='text-xl mt-10'>
-            {/* Create and sell any digital product to your audience and keep 99% of
-            what you earn after payment processing fees. */}
+          {/* <p className='text-xl mt-10'>
+            
             Sell any Notion template to your customers{' '}
             <span className='font-bold'>without</span> worrying about high
             payout fees.
+          </p> */}
+          <p className='text-xl mt-6'>
+            Stop worrying about high payout fees and focus more on your
+            earnings.
           </p>
           <a href='#pricing' className='text-stone-800 mt-6 flex items-center'>
             See pricing{' '}
