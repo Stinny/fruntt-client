@@ -5,6 +5,8 @@ import Topbar from '../components/Topbar';
 import { useGetUpdatedUserQuery } from '../api/authApiSlice';
 import Spinner from '../components/Spinner';
 import EditProfileDesktop from './Dashboard/EditProfileDesktop';
+import { isMobile } from 'react-device-detect';
+import EditProfileMobile from './Mobile/EditProfileMobile';
 
 const EditProfile = () => {
   const {
@@ -20,16 +22,23 @@ const EditProfile = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    content = <EditProfileDesktop user={user} />;
+    content = isMobile ? (
+      <EditProfileMobile user={user} />
+    ) : (
+      <EditProfileDesktop user={user} />
+    );
   }
+
+  const styles = isMobile
+    ? 'w-full mx-auto p-2 h-fit mt-16'
+    : 'w-9/12 mx-auto p-10 h-screen overflow-y-scroll';
+
   return (
     <>
       <Navbar />
       <div className='flex'>
         <Topbar />
-        <div className='w-9/12 mx-auto p-10 h-screen overflow-y-scroll'>
-          {content}
-        </div>
+        <div className={styles}>{content}</div>
       </div>
       <Footer />
     </>

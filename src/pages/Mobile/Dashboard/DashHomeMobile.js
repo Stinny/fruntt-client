@@ -6,6 +6,7 @@ import { BsArrowRightShort } from 'react-icons/bs';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { GoGraph } from 'react-icons/go';
+import SellerProfile from '../../../components/Settings/SellerProfile';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -13,7 +14,13 @@ import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-const DashHomeMobile = ({ stats, currentUser, dataView }) => {
+const DashHomeMobile = ({
+  stats,
+  currentUser,
+  dataView,
+  user,
+  refetchUser,
+}) => {
   //holds the url of the page being viewed
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
   return (
@@ -31,7 +38,7 @@ const DashHomeMobile = ({ stats, currentUser, dataView }) => {
           </Alert>
         )}
 
-        {!currentUser.firstName ||
+        {!currentUser.name ||
         !currentUser?.sellerProfile?.bio ||
         !currentUser?.sellerProfile?.picture?.url ? (
           <Alert severity='error' className='mt-2 w-full mx-auto'>
@@ -68,7 +75,10 @@ const DashHomeMobile = ({ stats, currentUser, dataView }) => {
       </div>
 
       <div className='flex flex-col items-center w-full p-2'>
-        <div className='bg-white border rounded drop-shadow-md w-full p-2 h-28 mb-2 relative'>
+        <div className='bg-white border rounded drop-shadow-md w-full p-2'>
+          <SellerProfile user={user} refetch={refetchUser} />
+        </div>
+        <div className='bg-white mt-2 border rounded drop-shadow-md w-full p-2 h-28 mb-2 relative'>
           <Tooltip
             title={
               <p className='text-lg'>Total revenue your store has generated</p>

@@ -3,6 +3,7 @@ import { BsStripe } from 'react-icons/bs';
 import { GrStripe } from 'react-icons/gr';
 import { IoDesktopOutline, IoColorPaletteOutline } from 'react-icons/io5';
 import { MdCloudDownload } from 'react-icons/md';
+import { HiOutlineTemplate } from 'react-icons/hi';
 
 //mui
 import StoreIcon from '@mui/icons-material/Store';
@@ -48,9 +49,9 @@ const Features = () => {
         </div>
 
         <div className='w-full h-36 mt-4 bg-white rounded border shadow-lg flex flex-col p-4'>
-          <MdCloudDownload className='text-3xl' />
+          <HiOutlineTemplate className='text-3xl' />
 
-          <p className='font-medium mt-4'>Unlimited Products</p>
+          <p className='font-medium mt-4'>Templates</p>
           <p className='mt-2 text-sm'>
             Create and sell as many products as you like.
           </p>
@@ -74,7 +75,7 @@ const Features = () => {
           <StoreIcon style={{ fontSize: '36px' }} />
           <p className='font-medium mt-4'>Marketplace</p>
           <p className='mt-2 text-sm'>
-            List your products in our marketplace and gain access to another
+            List your templates in our marketplace and gain access to another
             sales channel.
           </p>
         </div>
@@ -91,16 +92,16 @@ const Features = () => {
           <IoColorPaletteOutline className='text-3xl' />
           <p className='font-medium mt-4'>Customization</p>
           <p className='mt-2 text-sm'>
-            Customize and design your storefront from a pallet of colors.
+            Customize and design your store from a pallet of colors.
           </p>
         </div>
 
         <div className='w-48 h-48 bg-white rounded border shadow-lg flex flex-col p-4'>
           <MdCloudDownload className='text-3xl' />
 
-          <p className='font-medium mt-4'>Unlimited Products</p>
+          <p className='font-medium mt-4'>Unlimited Template</p>
           <p className='mt-2 text-sm'>
-            Create and sell as many products as you like.
+            Create and sell as many templates as you like.
           </p>
         </div>
       </div>

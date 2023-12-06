@@ -502,14 +502,14 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
         <button
           type='button'
           onClick={handleSaveEdit}
-          className='border-2 rounded h-14 w-full text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white mt-4'
+          className='border-2 rounded h-12 w-full text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white text-sm'
         >
           SAVE
         </button>
         <button
           type='button'
           onClick={handleDelete}
-          className='border-2 rounded h-8 w-full text-red-400 border-red-400 hover:bg-red-400 hover:text-white mt-2'
+          className='border-2 rounded h-8 w-full text-red-400 border-red-400 hover:bg-red-400 hover:text-white mt-2 text-sm'
         >
           DELETE
         </button>
