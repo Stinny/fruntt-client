@@ -28,7 +28,7 @@ const Pricing = () => {
         </p>
       </div> */}
 
-      <div className='flex flex-col w-96 mt-6'>
+      <div className='flex flex-col w-full mt-6'>
         <div className='w-full h-10 bg-white drop-shadow-lg rounded flex items-center justify-center'>
           <p className='text-stone-800 text-sm text-center'>
             Pay only $1 or 50¢ / sale
