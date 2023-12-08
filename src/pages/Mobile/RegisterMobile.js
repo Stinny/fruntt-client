@@ -43,7 +43,7 @@ const RegisterMobile = ({
   }, []);
 
   return (
-    <div className='flex flex-col mx-auto w-full p-2 items-center justify-center h-full'>
+    <div className='flex flex-col mx-auto w-full p-4 items-center justify-center h-full'>
       <div className='flex flex-col w-full mx-auto'>
         <p className='text-2xl font-medium text-center'>Ready to sell?</p>
         <p className='text-stone-800 font-medium mb-4 text-center mt-2'>
@@ -64,7 +64,7 @@ const RegisterMobile = ({
 
         <form
           onSubmit={handleSignup}
-          className='flex flex-col items-center w-full bg-white p-2 rounded border-2 drop-shadow-md'
+          className='flex flex-col items-center w-full bg-white p-2 rounded drop-shadow-md'
         >
           <input
             type='email'
@@ -83,7 +83,7 @@ const RegisterMobile = ({
           <div className='flex w-full items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2'>
             <input
               className='bg-white outline outline-0'
-              placeholder='StoreName'
+              placeholder='Store'
               onChange={(e) => setStoreName(e.target.value)}
             />
             <span className='font-medium'>.fruntt.com</span>

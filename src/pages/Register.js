@@ -179,7 +179,7 @@ const Register = () => {
 
           <form
             onSubmit={handleSignup}
-            className='flex flex-col items-center w-full bg-white p-2 rounded border-2 drop-shadow-md'
+            className='flex flex-col items-center w-full bg-white p-2 rounded drop-shadow-md'
           >
             <input
               type='email'
@@ -215,7 +215,7 @@ const Register = () => {
             <div className='flex w-full items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2'>
               <input
                 className='bg-white outline outline-0'
-                placeholder='StoreName'
+                placeholder='Store'
                 onChange={(e) => setStoreName(e.target.value)}
               />
               <span className='font-medium'>.fruntt.com</span>

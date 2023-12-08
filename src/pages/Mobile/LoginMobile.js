@@ -15,7 +15,7 @@ const LoginMobile = ({
   state,
 }) => {
   return (
-    <div className='flex flex-col mx-auto w-full p-2 mt-20'>
+    <div className='flex flex-col mx-auto w-full p-4 mt-20'>
       <div className='w-full flex flex-col items-center'>
         <h2 className='text-2xl font-medium'>Login</h2>
         <p className='text-stone-800 font-medium text-center mt-2'>
@@ -40,7 +40,7 @@ const LoginMobile = ({
       )}
       <form
         onSubmit={handleLogin}
-        className='flex flex-col w-full items-center bg-white p-2 rounded border-2 drop-shadow-md mt-2 mb-44'
+        className='flex flex-col w-full items-center bg-white p-2 rounded drop-shadow-md mt-2 mb-44'
       >
         <input
           type='email'
