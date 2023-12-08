@@ -130,7 +130,7 @@ const Login = () => {
         )}
         <form
           onSubmit={handleLogin}
-          className='flex flex-col items-center w-full bg-white p-2 rounded border-2 drop-shadow-md mt-2'
+          className='flex flex-col items-center w-full bg-white p-2 rounded drop-shadow-md mt-2'
         >
           <input
             type='email'

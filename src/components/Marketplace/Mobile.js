@@ -37,7 +37,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
     'text-sm font-medium bg-gray-100 w-24 p-1 hover:bg-stone-800 hover:text-white rounded text-stone-800 flex items-center justify-center ml-2';
 
   return (
-    <div className='p-2'>
+    <div className='p-4'>
       {/* <div className='bg-stone-800 text-sm rounded-tr rounded-tl h-10 flex items-center justify-center mt-24'>
         <p className='text-white'>
           Pay us only 1% of sales after processing fees{' '}
