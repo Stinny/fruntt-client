@@ -55,12 +55,16 @@ const Orders = () => {
     );
   }
 
+  const styles = isMobile
+    ? 'w-full mt-16 mx-auto h-fit p-2 bg-gray-50'
+    : 'w-9/12 mx-auto h-screen p-10 bg-gray-50';
+
   return (
     <>
       <Navbar />
       <div className='flex'>
         <Topbar />
-        <div className='w-9/12 mx-auto h-screen p-10 bg-gray-50'>{content}</div>
+        <div className={styles}>{content}</div>
       </div>
       <Footer />
     </>

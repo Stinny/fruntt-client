@@ -134,7 +134,7 @@ const DesktopDownload = ({
       <div className='flex justify-between items-center w-full mx-auto border rounded bg-white drop-shadow-lg p-4'>
         <div className='w-6/12 flex flex-col'>
           {/* <p className='font-medium mt-2 mb-2'>What you got:</p> */}
-          {orderAndStore?.order?.item?.digitalType === 'video' ? (
+          {/* {orderAndStore?.order?.item?.digitalType === 'video' ? (
             <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-4/12 h-10'>
               <p>Video Course</p>
               <MdOutlineVideoLibrary className='ml-2 text-2xl' />
@@ -164,7 +164,7 @@ const DesktopDownload = ({
               <p>Art</p>
               <BsPalette className='ml-2 text-2xl' />
             </div>
-          )}
+          )} */}
           <p className='font-medium text-sm mt-4'>Store you purchased from:</p>
           <a
             href={orderAndStore?.store?.url}
@@ -176,7 +176,7 @@ const DesktopDownload = ({
           <p className='font-medium text-sm mt-4'>Delivered to:</p>
           <p className='text-md mt-1'>{orderAndStore?.order?.email}</p>
 
-          <p className='font-medium text-sm mt-4'>Item:</p>
+          <p className='font-medium text-sm mt-4'>Template:</p>
           <p className='text-md mt-1'>{orderAndStore?.order?.item?.title}</p>
           <p className='font-medium text-sm mt-4'>Total:</p>
           <p className='text-lg mt-1'>${orderAndStore?.order?.total}</p>
