@@ -25,7 +25,7 @@ const DashHomeMobile = ({
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
   return (
     <>
-      <div className='w-full p-2 flex flex-col mt-20'>
+      <div className='w-full p-2 flex flex-col mt-14'>
         {!currentUser.stripeOnboard && (
           <Alert severity='error' className='mt-2 w-full mx-auto'>
             <p>
@@ -75,10 +75,10 @@ const DashHomeMobile = ({
       </div>
 
       <div className='flex flex-col items-center w-full p-2'>
-        <div className='bg-white border rounded drop-shadow-md w-full p-2'>
+        <div className='bg-white border rounded-md drop-shadow-md w-full p-2'>
           <SellerProfile user={user} refetch={refetchUser} />
         </div>
-        <div className='bg-white mt-2 border rounded drop-shadow-md w-full p-2 h-28 mb-2 relative'>
+        <div className='bg-white mt-2 border rounded-md drop-shadow-md w-full p-2 h-28 mb-2 relative'>
           <Tooltip
             title={
               <p className='text-lg'>Total revenue your store has generated</p>
@@ -102,7 +102,7 @@ const DashHomeMobile = ({
           </p>
         </div>
         <div className='w-full flex'>
-          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded p-2 relative'>
+          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded-md p-2 relative'>
             <Tooltip
               title={
                 <p className='text-lg'>Total sales your store has generated</p>
@@ -119,7 +119,7 @@ const DashHomeMobile = ({
             <p className='text-2xl font-medium mt-1'>{stats?.numOfOrders}</p>
           </div>
 
-          <div className='drop-shadow-md w-6/12 h-28 ml-2 bg-white border rounded p-2 relative'>
+          <div className='drop-shadow-md w-6/12 h-28 ml-2 bg-white border rounded-md p-2 relative'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -140,7 +140,7 @@ const DashHomeMobile = ({
         </div>
 
         <div className='w-full flex'>
-          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded p-2 relative mt-2'>
+          <div className='drop-shadow-md w-6/12 h-28 bg-white border rounded-md p-2 relative mt-2'>
             <Tooltip
               title={
                 <p className='text-lg'>Total revenue your page has generated</p>
@@ -159,7 +159,7 @@ const DashHomeMobile = ({
             </p>
           </div>
 
-          <div className='drop-shadow-md w-6/12 h-28 mt-2 ml-2 bg-white border rounded p-2 relative'>
+          <div className='drop-shadow-md w-6/12 h-28 mt-2 ml-2 bg-white border rounded-md p-2 relative'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -183,7 +183,7 @@ const DashHomeMobile = ({
       </div>
 
       <div className='w-full p-2'>
-        <div className='w-full mx-auto bg-white border rounded drop-shadow-md flex flex-col p-2'>
+        <div className='w-full mx-auto bg-white border rounded-md drop-shadow-md flex flex-col p-2'>
           <p className='text-md font-medium text-stone-800'>
             Is your store ready for customers?
           </p>
@@ -239,7 +239,7 @@ const DashHomeMobile = ({
           </div>
         </div>
 
-        <div className='h-72 w-full flex flex-col items-center justify-center rounded border drop-shadow-md bg-white mt-4'>
+        <div className='h-72 w-full flex flex-col items-center justify-center rounded-md border drop-shadow-md bg-white mt-4'>
           <GoGraph className='text-3xl text-stone-800' />
           <p className='text-stone-800 mt-2 text-sm'>
             Mobile graph coming soon

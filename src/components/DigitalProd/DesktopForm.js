@@ -87,7 +87,7 @@ const DesktopForm = ({
   return (
     <div className='w-full'>
       <div className='flex justify-between'>
-        <h2 className='text-3xl font-medium'>New digital product</h2>
+        <h2 className='text-3xl font-medium'>New Template</h2>
         <FormControlLabel
           label='Publish to store'
           control={
@@ -155,7 +155,7 @@ const DesktopForm = ({
             </div>
             <div className='flex items-center justify-between w-full mt-2'>
               <div className='flex flex-col w-6/12'>
-                <p className='text-stone-800'>Type</p>
+                {/* <p className='text-stone-800'>Type</p>
                 <Select
                   options={typeOptions}
                   onChange={handleType}
@@ -178,7 +178,7 @@ const DesktopForm = ({
                     menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
                   }}
                   className='mt-1'
-                />
+                /> */}
                 {/* <select
                   onChange={(e) => setDigitalType(e.target.value)}
                   className='w-full h-14 rounded p-2 mt-1'
@@ -236,12 +236,11 @@ const DesktopForm = ({
                     value={price}
                   />
                 </div>
-
                 {payChoice ? (
                   ''
                 ) : (
                   <FormControlLabel
-                    label='Free product'
+                    label='Free template'
                     control={
                       <Switch
                         checked={free}
@@ -356,7 +355,7 @@ const DesktopForm = ({
                   <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
                   <input
                     className='bg-white outline outline-0'
-                    placeholder='YourProductName'
+                    placeholder='TemplateName'
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                   />
@@ -423,7 +422,7 @@ const DesktopForm = ({
               <Tooltip
                 title={
                   <p className='text-lg'>
-                    This allows you to list your product in our marketplace.
+                    This allows you to list your template in our marketplace.
                   </p>
                 }
                 className='ml-2 text-lg'
@@ -435,7 +434,7 @@ const DesktopForm = ({
               </Tooltip>
             </div>
             <p className='text-stone-800 text-lg mt-6'>
-              List your product in our marketplace for other creators and
+              List your template in our marketplace for other creators and
               customers to discover.
             </p>
             <FormControlLabel
@@ -448,7 +447,7 @@ const DesktopForm = ({
               }
               className='mt-2'
             />
-            <p className='text-stone-800 mt-2'>Product category</p>
+            <p className='text-stone-800 mt-2'>Template category</p>
             <Select
               options={categories}
               onChange={handleCategory}

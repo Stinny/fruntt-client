@@ -41,20 +41,12 @@ const Settings = () => {
     content = (
       <div className='w-full'>
         {isMobile ? (
-          <div className='border-b-2 pb-2'>
+          <div className='mb-1'>
             <div className='flex justify-between items-center w-full'>
               <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
                 <BsGear className='text-white text-xl' />
-                <p className='text-xl text-white ml-2'>Settings</p>
+                <p className='text-sm text-white ml-2'>Settings</p>
               </div>
-
-              <Link
-                to='/dashboard'
-                className='flex justify-center items-center text-gray-400 hover:text-gray-500'
-              >
-                <p>Back to dashboard</p>{' '}
-                <BsArrowRightShort className='text-xl' />
-              </Link>
             </div>
           </div>
         ) : (
@@ -124,15 +116,16 @@ const Settings = () => {
       </div>
     );
   }
+  const styles = isMobile
+    ? 'w-full mx-auto p-2 bg-gray-50 h-fit mt-16'
+    : 'w-10/12 mx-auto p-20 bg-gray-50 h-screen overflow-y-scroll';
 
   return (
     <>
       <Navbar />
       <div className='flex'>
         <Topbar />
-        <div className='w-9/12 mx-auto p-10 bg-gray-50 h-screen overflow-y-scroll'>
-          {content}
-        </div>
+        <div className={styles}>{content}</div>
       </div>
       <Footer />
     </>

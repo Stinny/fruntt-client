@@ -8,6 +8,8 @@ import Cookies from 'js-cookie';
 import { useGetCustomersQuery } from '../../api/customersApiSlice';
 import Spinner from '../../components/Spinner';
 import DesktopCustomers from '../../components/Customers/DesktopCustomers';
+import { isMobile } from 'react-device-detect';
+import MobileCustomers from '../../components/Customers/MobileCustomers';
 
 const Customers = () => {
   const currentUser = Cookies.get('currentUser')
@@ -30,15 +32,23 @@ const Customers = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    content = <DesktopCustomers customers={customers} />;
+    content = isMobile ? (
+      <MobileCustomers customers={customers} />
+    ) : (
+      <DesktopCustomers customers={customers} />
+    );
   }
+
+  const styles = isMobile
+    ? 'h-fit w-full p-2 bg-gray-50'
+    : 'h-screen w-10/12 p-20 bg-gray-50 mx-auto';
 
   return (
     <>
       <Navbar />
       <div className='flex'>
         <Topbar />
-        <div className='h-screen w-9/12 p-10 bg-gray-50'>{content}</div>
+        <div className={styles}>{content}</div>
       </div>
       <Footer />
     </>

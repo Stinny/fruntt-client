@@ -216,7 +216,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
 
             <div className='flex flex-col w-full mt-2'>
               <div className='flex flex-col w-full pb-12'>
-                <p className='text-stone-800 text-sm'>Type</p>
+                {/* <p className='text-stone-800 text-sm'>Type</p>
 
                 <Select
                   options={typeOptions}
@@ -240,7 +240,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                     menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
                   }}
                   className=''
-                />
+                /> */}
 
                 <p className='text-stone-800 text-sm mt-4'>Title</p>
                 <input
@@ -302,14 +302,14 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                   ''
                 ) : (
                   <FormControlLabel
-                    label='Free product'
+                    label='Free template'
                     control={
                       <Switch
                         checked={free}
                         onChange={(e) => setFree(e.target.checked)}
                       />
                     }
-                    className='mt-2'
+                    className='mt-2 mb-2'
                   />
                 )}
 
@@ -394,7 +394,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                   <span className='underline underline-offset-2 text-sm font-medium'>{`${currentStoreUrl}/`}</span>
                   <input
                     className='bg-white outline outline-0 w-full text-sm'
-                    placeholder='ProductName'
+                    placeholder='TemplateName'
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                   />
@@ -458,7 +458,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
               <p className='text-md text-stone-800'>Marketplace</p>
             </div>
             <p className='text-stone-800 text-sm mt-1'>
-              List your product in our marketplace for other creators and
+              List your template in our marketplace for other creators and
               customers to discover.
             </p>
             <FormControlLabel
@@ -471,7 +471,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
               }
               className='mt-2'
             />
-            <p className='text-stone-800 text-sm mt-2'>Product category</p>
+            <p className='text-stone-800 text-sm mt-2'>Template category</p>
             <Select
               options={categories}
               onChange={handleCategory}

@@ -13,15 +13,16 @@ import { BsPalette, BsBookmarkHeart, BsGear, BsPeople } from 'react-icons/bs';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { VscFeedback } from 'react-icons/vsc';
 import { HiOutlineBuildingStorefront } from 'react-icons/hi2';
+import { HiOutlineTemplate } from 'react-icons/hi';
 import Cookies from 'js-cookie';
 
 const Topbar = () => {
   //for changing nav links according to the page
   const path = window.location.pathname;
   const activeLink =
-    'text-md h-10 font-medium text-white w-full rounded bg-stone-800 flex items-center pl-2';
+    'text-md h-10 font-medium text-white w-full rounded-md bg-stone-800 flex items-center pl-2';
   const notActiveLink =
-    'text-md font-medium w-full h-10 hover:bg-gray-100 rounded text-stone-800 flex items-center pl-2';
+    'text-md font-medium w-full h-10 hover:bg-gray-100 rounded-md text-stone-800 flex items-center pl-2';
 
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
@@ -33,8 +34,8 @@ const Topbar = () => {
     // <TopbarMobile />
     ''
   ) : (
-    <div className='w-3/12 mx-auto'>
-      <div className='w-full h-full mx-auto flex flex-col border-r bg-white p-6 relative'>
+    <div className='w-2/12'>
+      <div className='w-full h-full flex flex-col border-r bg-white p-4 relative'>
         <p className='text-stone-800 text-sm'>Store</p>
         <div className='border-b flex flex-col pb-2'>
           <NavLink to='/dashboard' className='mt-2'>
@@ -56,8 +57,8 @@ const Topbar = () => {
                   : notActiveLink
               }
             >
-              <BiPackage className='mr-1' />
-              Products
+              <HiOutlineTemplate className='mr-1' />
+              Templates
             </button>
           </NavLink>
 
@@ -171,21 +172,20 @@ const Topbar = () => {
             </NavLink>
           </div>
           <Link to='/dashboard/item/digital' className='w-full mt-2'>
-            <button className='border-2 w-full font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded p-2 flex items-center justify-center'>
-              New Product <BiPackage className='ml-1' />
+            <button className='border-2 w-full font-medium text-stone-800 text-sm border-stone-800 hover:bg-stone-800 hover:text-white rounded-md p-2 flex items-center justify-center'>
+              New Template <HiOutlineTemplate className='ml-1' />
             </button>
           </Link>
-          <div className='flex items-center mt-2 bg-white'>
-            <p className='text-md text-stone-800'>Your store:</p>
-            <a
-              href={currentUser?.store?.url}
-              className='flex justify-center items-center text-md text-stone-800 font-medium ml-2'
-              target='_blank'
-            >
-              {currentUser?.store?.url}
-            </a>
-            <BiLinkExternal className='ml-1' />
-          </div>
+          <a
+            href={currentUser?.store?.url}
+            className='flex justify-center items-center text-sm text-stone-800 font-medium ml-2'
+            target='_blank'
+          >
+            <div className='flex items-center justify-center mt-2 bg-gray-100 rounded-md p-1 w-full'>
+              Your Store
+              <BiLinkExternal className='ml-1' />
+            </div>
+          </a>
         </div>
       </div>
     </div>

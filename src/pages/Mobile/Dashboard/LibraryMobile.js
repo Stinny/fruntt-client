@@ -10,6 +10,9 @@ import { HiOutlineBookOpen, HiOutlineTemplate } from 'react-icons/hi';
 import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import ReactPaginate from 'react-paginate';
 
+//mui
+import Avatar from '@mui/material/Avatar';
+
 const LibraryMobile = ({ orders }) => {
   //stuff for pagination
   const [itemOffset, setItemOffset] = useState(0);
@@ -30,8 +33,8 @@ const LibraryMobile = ({ orders }) => {
   //end of pagination stuff
 
   return orders.length ? (
-    <div className='mx-auto w-full'>
-      <div className='w-full mx-auto flex flex-col p-2'>
+    <div className='mx-auto w-full mt-2'>
+      <div className='w-full mx-auto flex flex-col'>
         <div className='w-full flex justify-between items-center'>
           <p className='text-md font-medium'>Your library</p>
 
@@ -46,8 +49,8 @@ const LibraryMobile = ({ orders }) => {
         <div className='flex flex-col'>
           {currentOrders.map((order) => (
             <Link to={`/order/${order?._id}`}>
-              <div className='border rounded bg-white drop-shadow-md relative flex flex-col mt-2 p-2'>
-                {order?.item?.digitalType === 'video' ? (
+              <div className='border rounded-md bg-white drop-shadow-md relative flex flex-col mt-2 p-2'>
+                {/* {order?.item?.digitalType === 'video' ? (
                   <div className='flex items-center justify-center text-stone-800 bg-gray-100 rounded w-36 h-8  mr-2 mt-2'>
                     <p className='text-sm'>Video Course</p>
                     <MdOutlineVideoLibrary className='ml-2 text-md' />
@@ -77,10 +80,23 @@ const LibraryMobile = ({ orders }) => {
                     <p className='text-sm'>Art</p>
                     <BsPalette className='ml-2 text-md' />
                   </div>
-                )}
+                )} */}
                 <p className='text-md font-bold mt-2'>{order?.item?.title}</p>
 
                 <p className='text-sm mt-2'>{order?.item?.description}</p>
+                <div className='mt-2'>
+                  <a
+                    href={order?.item?.storeUrl}
+                    className='flex items-center'
+                    target='_blank'
+                  >
+                    <Avatar
+                      src={order?.item?.userPicture}
+                      sx={{ width: 22, height: 22 }}
+                    />
+                    <p className='ml-1 text-sm'>{order?.item?.userName}</p>
+                  </a>
+                </div>
               </div>
             </Link>
           ))}

@@ -53,7 +53,7 @@ const Features = () => {
 
           <p className='font-medium mt-4'>Templates</p>
           <p className='mt-2 text-sm'>
-            Create and sell as many products as you like.
+            Create and sell as many templates as you like.
           </p>
         </div>
       </div>

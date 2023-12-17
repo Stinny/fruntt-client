@@ -66,7 +66,7 @@ const OrdersMobile = ({ orders, cols }) => {
       <div className='w-full flex justify-between items-center'>
         <div className='flex items-center justify- bg-stone-800 rounded p-2'>
           <MdShoppingCart className='text-white text-lg' />
-          <p className='text-md text-white ml-2'>Orders</p>
+          <p className='text-sm text-white ml-2'>Orders</p>
         </div>
 
         <p className='text-stone-800 font-medium text-sm'>
@@ -79,7 +79,7 @@ const OrdersMobile = ({ orders, cols }) => {
       <div className='w-full mx-auto mt-2'>
         {currentOrders.map((order, index) => (
           <Link to={`/dashboard/orders/${order?._id}`}>
-            <div className='relative flex flex-col mt-2 border drop-shadow-md bg-white rounded h-24 p-2'>
+            <div className='relative flex flex-col mt-2 border drop-shadow-md bg-white rounded-md h-24 p-2'>
               {/* <Link to={`/dashboard/orders/${order?._id}`} className='flex'>
               {order._id}
               <AiOutlineLink />
@@ -89,9 +89,10 @@ const OrdersMobile = ({ orders, cols }) => {
               <p className='absolute bottom-0 left-0 ml-2 mb-2 text-sm'>
                 {<ElapsedTimeOrDate orderDate={order?.placedOn} />}
               </p>
-              <p className='absolute bottom-0 right-0 mr-2 mb-2 text-md'>
-                ${order?.total?.toFixed(2)}
-              </p>
+
+              <div className='absolute bottom-0 right-0 mr-2 mb-2 p-1 bg-gray-100 rounded'>
+                <p className='text-md'>${order?.total?.toFixed(2)}</p>
+              </div>
             </div>
           </Link>
         ))}

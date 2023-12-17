@@ -22,7 +22,7 @@ const DesktopCustomers = ({ customers }) => {
   return customers.length > 0 ? (
     <div className='w-full mx-auto h-full'>
       <div className='w-full flex justify-between'>
-        <div className='flex items-center justify-center rounded bg-stone-800 p-2'>
+        <div className='flex items-center justify-center rounded-md bg-stone-800 p-2'>
           <BsPeople className='text-white' />
           <p className='text-xl text-white ml-2'>Customers</p>
         </div>

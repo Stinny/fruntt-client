@@ -145,11 +145,11 @@ const EditDesktop = ({
       >
         <div className='w-11/12 mx-auto'>
           <p className='text-lg font-medium text-slate-800 mb-4 border-b'>
-            Delete Product
+            Delete Template
           </p>
 
           <p className='text-xl mt-2 mb-2'>
-            Are you sure you want to delete this product?
+            Are you sure you want to delete this template?
           </p>
 
           {error && (
@@ -164,7 +164,7 @@ const EditDesktop = ({
             onClick={handleDelete}
             className='h-14 w-full border-red-400 text-red-400 border-2 rounded mt-2 hover:bg-red-400 hover:text-white'
           >
-            {deletingProduct ? 'Deleting product...' : 'Yes, delete product'}
+            {deletingProduct ? 'Deleting template...' : 'Yes, delete template'}
           </button>
 
           <button
@@ -178,7 +178,7 @@ const EditDesktop = ({
       </Modal>
       <div className='w-full'>
         <div className='mb-1 flex justify-between p-2'>
-          <h2 className='text-3xl font-medium'>Edit your digital product</h2>
+          <h2 className='text-3xl font-medium'>Edit your template</h2>
 
           <FormControlLabel
             label='Publish to store'
@@ -241,7 +241,7 @@ const EditDesktop = ({
               </div>
               <div className='flex justify-between w-full mt-2'>
                 <div className='flex flex-col w-6/12'>
-                  <p className='text-stone-800'>Type</p>
+                  {/* <p className='text-stone-800'>Type</p>
                   <Select
                     options={typeOptions}
                     onChange={handleType}
@@ -264,7 +264,7 @@ const EditDesktop = ({
                       menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
                     }}
                     className='mt-1'
-                  />
+                  /> */}
                   {/* <select
                     onChange={(e) => setDigitalType(e.target.value)}
                     className='w-full h-14 rounded p-2 mt-1'
@@ -323,7 +323,7 @@ const EditDesktop = ({
                     ''
                   ) : (
                     <FormControlLabel
-                      label='Free product'
+                      label='Free template'
                       control={
                         <Switch
                           checked={free}
@@ -440,7 +440,7 @@ const EditDesktop = ({
                     <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
                     <input
                       className='bg-white outline outline-0'
-                      placeholder='YourProductName'
+                      placeholder='TemplateName'
                       value={url}
                       onChange={(e) => setUrl(e.target.value)}
                     />

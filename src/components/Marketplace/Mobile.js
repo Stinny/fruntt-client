@@ -44,7 +44,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
         </p>
         <BiSmile className='ml-1 text-white text-xl' />
       </div> */}
-      <div className='w-full rounded border drop-shadow-lg bg-white p-4 mb-4 mt-24'>
+      <div className='w-full rounded-md border drop-shadow-lg bg-white p-4 mb-4 mt-16'>
         <p className='text-lg font-medium text-stone-800'>Fruntt Marketplace</p>
         <p className='text-stone-800 text-sm mt-2'>
           Browse the latest Notion templates from your favorite creators.
@@ -118,10 +118,10 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
               target='_blank'
             >
               <div
-                className='border drop-shadow-lg flex w-full mb-4 rounded relative bg-white'
+                className='border drop-shadow-lg flex w-full mb-4 rounded-md relative bg-white'
                 style={{ height: '350px' }}
               >
-                <div className='absolute bottom-0 right-0 mb-1 mr-1 bg-gray-100 rounded-tl p-2'>
+                <div className='absolute bottom-0 right-0 mb-1 mr-1 bg-gray-100 rounded-tl-md rounded-br-md p-2'>
                   <p
                     className={
                       product?.item?.free
@@ -161,7 +161,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
                   <div className='w-full h-44 pb-2'>
                     <img
                       src={product?.coverImage?.url}
-                      className='object-cover w-full h-full rounded'
+                      className='object-cover w-full h-full rounded-md'
                     />
                   </div>
                   {/* <div className='mb-2 mt-1'>
