@@ -27,7 +27,7 @@ const DesktopDisplay = ({ reviews }) => {
   return (
     <div>
       <div className='w-full flex justify-between items-center'>
-        <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+        <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
           <BiMessageSquareDetail className='text-white text-xl' />
           <p className='text-xl text-white ml-2'>Reviews</p>
         </div>

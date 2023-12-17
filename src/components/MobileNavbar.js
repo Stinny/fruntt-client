@@ -22,15 +22,16 @@ import { BsPalette, BsBookmarkHeart, BsGear, BsPeople } from 'react-icons/bs';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { VscFeedback } from 'react-icons/vsc';
 import { HiOutlineBuildingStorefront } from 'react-icons/hi2';
+import { HiOutlineTemplate } from 'react-icons/hi';
 
 const MobileNavbar = ({ currentUser, handleLogout }) => {
   const dispatch = useDispatch();
 
   const path = window.location.pathname;
   const activeLink =
-    'text-sm h-8 font-medium text-white w-full rounded bg-stone-800 flex items-center pl-2 mt-1';
+    'text-sm h-8 font-medium text-white w-full rounded-md bg-stone-800 flex items-center pl-2 mt-1';
   const notActiveLink =
-    'text-sm font-medium w-full h-8 hover:bg-gray-100 rounded text-stone-800 flex items-center pl-2 mt-1';
+    'text-sm font-medium w-full h-8 hover:bg-gray-100 rounded-md text-stone-800 flex items-center pl-2 mt-1';
 
   //holds the url of the page being viewed
   const selectedStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
@@ -134,37 +135,6 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
           <AiOutlineCloseCircle className='text-2xl' onClick={closeMenu} />
         </button>
 
-        {/* <div className='flex flex-col w-10/12 mx-auto items-center mt-20'>
-          <Link to='/dashboard/item/digital' className='w-10/12 mx-auto'>
-            <button
-              className='w-full mx-auto h-12 border-2 rounded border-stone-800 text-white bg-stone-800 text-xl mt-20 shadow-lg'
-              disabled
-              type='button'
-            >
-              + New Product
-            </button>
-          </Link>
-
-          <Link
-            to='/settings'
-            className='text-2xl font-medium mt-10 border-b-2'
-          >
-            Settings
-          </Link>
-          <Link
-            to='/feedback'
-            className='text-2xl font-medium mt-10 border-b-2'
-          >
-            Give feedback
-          </Link>
-
-          <button
-            className='w-10/12 h-14 border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 text-xl mt-20 shadow-lg'
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        </div> */}
         <div className='w-full h-full mx-auto flex flex-col bg-white p-4'>
           <p className='text-stone-800 text-sm'>Store</p>
           <div className='border-b flex flex-col pb-2'>
@@ -187,8 +157,8 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
                     : notActiveLink
                 }
               >
-                <BiPackage className='mr-1' />
-                Products
+                <HiOutlineTemplate className='mr-1' />
+                Templates
               </button>
             </NavLink>
 
@@ -302,12 +272,12 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
               </NavLink>
             </div>
             <Link to='/dashboard/item/digital' className='w-full mt-2'>
-              <button className='border-2 w-full font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white text-sm rounded p-2 flex items-center justify-center'>
-                New Product <BiPackage className='ml-1' />
+              <button className='border-2 w-full font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white text-sm rounded-md p-2 flex items-center justify-center'>
+                New Template <HiOutlineTemplate className='ml-1' />
               </button>
             </Link>
             <button
-              className='w-full p-1 border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 text-sm mt-2'
+              className='w-full p-1 border-2 rounded-md border-gray-100 bg-gray-100 text-stone-800 hover:text-white hover:bg-stone-800 text-sm mt-2'
               onClick={handleLogout}
             >
               Logout

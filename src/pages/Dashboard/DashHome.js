@@ -186,7 +186,7 @@ const DashHome = () => {
           </Alert>
         )}
         <div className='flex justify-between mb-4'>
-          <div className='flex items-center p-2 bg-white rounded border drop-shadow-md'>
+          <div className='flex items-center p-2 bg-white rounded-md border drop-shadow-md'>
             <p className='text-md text-stone-800 font-medium'>Your store:</p>
             <a
               href={currentUser?.store?.url}
@@ -197,7 +197,7 @@ const DashHome = () => {
             </a>
             <BiLinkExternal className='ml-1' />
           </div>
-          <div className='flex items-center p-2 bg-white rounded border drop-shadow-md'>
+          <div className='flex items-center p-2 bg-white rounded-md border drop-shadow-md'>
             <p className='font-medium text-stone-800 mr-2 text-md'>Filter:</p>
             <Select
               options={viewOptions}
@@ -226,10 +226,10 @@ const DashHome = () => {
         </div>
 
         <div className='flex justify-between items-center w-full mb-4'>
-          <div className='bg-white border rounded drop-shadow-md w-8/12 p-2 h-36'>
+          <div className='bg-white border rounded-md drop-shadow-md w-8/12 p-2 h-36'>
             <SellerProfile user={user} refetch={refetchUser} />
           </div>
-          <div className='bg-white border rounded drop-shadow-md w-4/12 ml-2 p-2 h-36'>
+          <div className='bg-white border rounded-md drop-shadow-md w-4/12 ml-2 p-2 h-36'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -266,7 +266,7 @@ const DashHome = () => {
         </div>
 
         <div className='flex justify-between'>
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 relative border'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>Total sales your page has generated</p>
@@ -284,7 +284,7 @@ const DashHome = () => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 ml-4 relative border'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -304,7 +304,7 @@ const DashHome = () => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 ml-4 relative border'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>Total number of unique customers</p>
@@ -322,7 +322,7 @@ const DashHome = () => {
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded p-2 ml-4 relative border'>
+          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
             <Tooltip
               title={
                 <p className='text-lg'>
@@ -343,7 +343,7 @@ const DashHome = () => {
           </div>
         </div>
 
-        <div className='w-full mt-4 h-28 bg-white border rounded drop-shadow-md flex flex-col p-2'>
+        <div className='w-full mt-4 h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2'>
           <p className='text-xl font-medium text-slate-800'>
             Is your store ready for customers?
           </p>
@@ -395,7 +395,7 @@ const DashHome = () => {
           </div>
         </div>
 
-        <div className='w-full border rounded mt-4 bg-white drop-shadow-md h-96 flex items-center justify-center'>
+        <div className='w-full border rounded-md mt-4 bg-white drop-shadow-md h-96 flex items-center justify-center'>
           {stats?.numOfOrders > 0 ? (
             <Line options={options} data={data} />
           ) : (
@@ -413,7 +413,7 @@ const DashHome = () => {
 
   const styles = isMobile
     ? 'w-full mx-auto h-fit p-2 bg-gray-50'
-    : 'w-9/12 mx-auto h-screen overflow-y-scroll p-10 bg-gray-50';
+    : 'w-10/12 mx-auto h-screen overflow-y-scroll p-20 bg-gray-50';
 
   return (
     <>

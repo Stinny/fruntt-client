@@ -11,6 +11,9 @@ import { BsFillMicFill, BsPalette } from 'react-icons/bs';
 import ReactPaginate from 'react-paginate';
 import { BsBookmarkHeart } from 'react-icons/bs';
 
+//mui
+import Avatar from '@mui/material/Avatar';
+
 const LibraryDesktop = ({ orders }) => {
   //stuff for pagination
   const [itemOffset, setItemOffset] = useState(0);
@@ -32,7 +35,7 @@ const LibraryDesktop = ({ orders }) => {
     <div className='mx-auto w-full'>
       <div className='w-full mx-auto flex flex-col'>
         <div className='w-full flex justify-between items-center'>
-          <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+          <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
             <BsBookmarkHeart className='text-white text-xl' />
             <p className='text-xl text-white ml-2'>Library</p>
           </div>
@@ -48,7 +51,7 @@ const LibraryDesktop = ({ orders }) => {
         <div className='flex flex-col'>
           {currentOrders.map((order) => (
             <Link to={`/order/${order?._id}`}>
-              <div className='border rounded bg-white drop-shadow-md relative flex mt-4'>
+              <div className='border rounded-md bg-white drop-shadow-md relative flex mt-4'>
                 <img
                   src={order?.item?.coverImage?.url}
                   className='rounded-tl rounded-bl w-2/12 h-32 object-cover'
@@ -61,7 +64,21 @@ const LibraryDesktop = ({ orders }) => {
 
                   <p className='text-lg mb-4'>{order?.item?.description}</p>
 
-                  {order?.item?.digitalType === 'video' ? (
+                  <div className='mt-2'>
+                    <a
+                      href={order?.item?.storeUrl}
+                      className='flex items-center'
+                      target='_blank'
+                    >
+                      <Avatar
+                        src={order?.item?.userPicture}
+                        sx={{ width: 22, height: 22 }}
+                      />
+                      <p className='ml-1 text-sm'>{order?.item?.userName}</p>
+                    </a>
+                  </div>
+
+                  {/* {order?.item?.digitalType === 'video' ? (
                     <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
                       <p className='text-sm'>Video Course</p>
                       <MdOutlineVideoLibrary className='ml-2 text-md' />
@@ -91,7 +108,7 @@ const LibraryDesktop = ({ orders }) => {
                       <p className='text-sm'>Art</p>
                       <BsPalette className='ml-2 text-md' />
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </Link>

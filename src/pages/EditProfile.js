@@ -31,7 +31,7 @@ const EditProfile = () => {
 
   const styles = isMobile
     ? 'w-full mx-auto p-2 h-fit mt-16'
-    : 'w-9/12 mx-auto p-10 h-screen overflow-y-scroll';
+    : 'w-10/12 mx-auto p-20 h-screen overflow-y-scroll';
 
   return (
     <>

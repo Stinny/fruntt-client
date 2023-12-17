@@ -66,7 +66,7 @@ const DigitalDetail = ({ order }) => {
                 src={order?.item?.coverImage?.url}
                 className='rounded  mb-2'
               />
-              {order?.item?.digitalType === 'video' ? (
+              {/* {order?.item?.digitalType === 'video' ? (
                 <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-44 h-8'>
                   <p className='text-sm'>Video Course</p>
                   <MdOutlineVideoLibrary className='ml-2 text-xl' />
@@ -91,7 +91,7 @@ const DigitalDetail = ({ order }) => {
                   <p className='text-sm'>Art</p>
                   <BsPalette className='ml-2 text-xl' />
                 </div>
-              )}
+              )} */}
 
               <p className='text-stone-800 font-medium text-lg mt-2'>
                 {order?.item?.title}

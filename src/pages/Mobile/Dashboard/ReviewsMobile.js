@@ -5,6 +5,7 @@ import moment from 'moment';
 import { BiMailSend } from 'react-icons/bi';
 import { AiOutlineSearch } from 'react-icons/ai';
 import ReactPaginate from 'react-paginate';
+import { BiMessageSquareDetail } from 'react-icons/bi';
 
 //mui
 import Rating from '@mui/material/Rating';
@@ -25,9 +26,12 @@ const ReviewsMobile = ({ reviews }) => {
   };
 
   return reviews.length > 0 ? (
-    <div className='p-2'>
+    <div className=''>
       <div className='w-full flex justify-between items-center'>
-        <h2 className='text-xl font-medium'>Your Reviews</h2>
+        <div className='flex items-center justify- bg-stone-800 rounded p-2'>
+          <BiMessageSquareDetail className='text-white text-lg' />
+          <p className='text-sm text-white ml-2'>Reviews</p>
+        </div>
 
         <p className='text-stone-800 font-medium text-sm'>
           {reviews.length > 1
@@ -39,7 +43,7 @@ const ReviewsMobile = ({ reviews }) => {
       <div className='w-full mx-auto'>
         {currentItems.map((review) => (
           <Link to={`/dashboard/orders/${review?.orderId}`}>
-            <div className='flex flex-col p-4 rounded mt-2 relative bg-white drop-shadow-md border'>
+            <div className='flex flex-col p-4 rounded-md mt-2 relative bg-white drop-shadow-md border'>
               <div className='absolute right-0 mr-2'></div>
               <div className='flex w-full items-center'>
                 <p className='text-md'>{review?.name}</p>

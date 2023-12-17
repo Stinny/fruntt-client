@@ -57,16 +57,16 @@ const ProductsDesktop = ({ product }) => {
   return product.length ? (
     <div className='w-full p-10'>
       <div className='w-full flex justify-between items-center'>
-        <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
-          <BiPackage className='text-white text-xl' />
-          <p className='text-xl text-white ml-2'>Products</p>
+        <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
+          <HiOutlineTemplate className='text-white text-xl' />
+          <p className='text-xl text-white ml-2'>Templates</p>
         </div>
 
         <div className='flex items-center'>
           <p className='text-stone-800 font-medium text-lg'>
             {product.length > 1
-              ? `${product.length} products`
-              : `${product.length} product`}
+              ? `${product.length} templates`
+              : `${product.length} template`}
           </p>
           <Link
             className='rounded-lg h-8 w-8 text-stone-800 border-stone-800 border-2 flex items-center justify-center text-lg ml-4 font-medium hover:text-white hover:bg-stone-800'
@@ -82,7 +82,7 @@ const ProductsDesktop = ({ product }) => {
         // style={{ height: '500px' }}
       >
         {currentItems.map((prod) => (
-          <div className='border rounded bg-white drop-shadow-md relative flex mt-4'>
+          <div className='border rounded-md bg-white drop-shadow-md relative flex mt-4'>
             <img
               src={prod?.coverImage?.url}
               className='rounded-tl rounded-bl w-2/12 h-32 object-cover'
@@ -105,7 +105,14 @@ const ProductsDesktop = ({ product }) => {
               >
                 {`${currentStoreUrl}/${prod?.url}`}
               </a>
-
+              <div className='absolute bottom-0 right-0 mb-2 mr-2 rounded bg-gray-100 text-sm p-2'>
+                <p>
+                  {prod.numberOfSales > 1
+                    ? `${prod.numberOfSales} sales`
+                    : `${prod.numberOfSales} sale`}{' '}
+                </p>
+              </div>
+              {/* 
               {prod?.digitalType === 'video' ? (
                 <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
                   <p className='text-sm'>Video Course</p>
@@ -136,7 +143,7 @@ const ProductsDesktop = ({ product }) => {
                   <p className='text-sm'>Art</p>
                   <BsPalette className='ml-2 text-md' />
                 </div>
-              )}
+              )} */}
               <div className='flex mt-4'>
                 <FormControlLabel
                   label='Published'
@@ -170,7 +177,7 @@ const ProductsDesktop = ({ product }) => {
             </div>
 
             <Link to={`/dashboard/item/edit/${prod?._id}`}>
-              <button className='absolute border-2 h-8 w-16 text-sm border-stone-800 text-stone-800 rounded right-0 bottom-0 mb-2 mr-2 hover:text-white hover:bg-stone-800'>
+              <button className='absolute border-2 h-8 w-16 text-sm border-stone-800 text-stone-800 rounded right-0 top-0 mt-2 mr-2 hover:text-white hover:bg-stone-800'>
                 Edit
               </button>
             </Link>

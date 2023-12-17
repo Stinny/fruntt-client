@@ -4,6 +4,7 @@ import { AiFillHome } from 'react-icons/ai';
 import { BiPackage, BiMessageSquareDetail } from 'react-icons/bi';
 import { BsPalette, BsBookmarkHeart, BsGear, BsPeople } from 'react-icons/bs';
 import { MdOutlineShoppingCart } from 'react-icons/md';
+import { HiOutlineTemplate } from 'react-icons/hi';
 
 const TopbarMobile = () => {
   const path = window.location.pathname;
@@ -37,8 +38,8 @@ const TopbarMobile = () => {
                   : notActiveLink
               }
             >
-              <BiPackage className='mr-1' />
-              Products
+              <HiOutlineTemplate className='mr-1' />
+              Templates
             </button>
           </NavLink>
 

@@ -126,7 +126,7 @@ const MobileDownload = ({
       </div>
       <div className='flex flex-col w-full border rounded mx-auto p-2 drop-shadow-md bg-white'>
         <div className='w-full flex flex-col'>
-          <p className='font-medium mt-2 mb-1 text-stone-800 text-sm'>
+          {/* <p className='font-medium mt-2 mb-1 text-stone-800 text-sm'>
             What you got:
           </p>
           {orderAndStore?.order?.item?.digitalType === 'video' ? (
@@ -159,7 +159,7 @@ const MobileDownload = ({
               <p className='text-sm'>Art</p>
               <BsPalette className='ml-2 text-xl' />
             </div>
-          )}
+          )} */}
           <p className='text-stone-800 text-sm mt-4'>
             Store you purchased from:
           </p>
@@ -175,7 +175,7 @@ const MobileDownload = ({
             {orderAndStore?.order?.email}
           </p>
 
-          <p className='text-stone-800 text-sm mt-4'>Item:</p>
+          <p className='text-stone-800 text-sm mt-4'>Template:</p>
           <p className='text-md text-stone-800 mt-1'>
             {orderAndStore?.order?.item?.title}
           </p>

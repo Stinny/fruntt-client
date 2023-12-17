@@ -15,9 +15,9 @@ const FeedbackMobile = ({ handleAddFeedBack }) => {
   const [error, setError] = useState('');
 
   return (
-    <div className='max-w-7xl mx-auto mt-4 h-screen'>
+    <div className='max-w-7xl mx-auto mt-16 h-screen'>
       <div className='flex flex-col p-2'>
-        <div className='border-b-2 flex justify-between'>
+        <div className='flex justify-between'>
           <p className='font-medium text-xl text-slate-800'>Leave feedback</p>
 
           <Link

@@ -60,7 +60,7 @@ const DesktopOrders = ({ orders }) => {
   return orders.length > 0 ? (
     <div>
       <div className='w-full flex justify-between'>
-        <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+        <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
           <MdShoppingCart className='text-white text-xl' />
           <p className='text-xl text-white ml-2'>Orders</p>
         </div>
@@ -117,7 +117,11 @@ const DesktopOrders = ({ orders }) => {
                   )}
                 </td>
 
-                <td>${order?.total?.toFixed(2)}</td>
+                <td>
+                  <div className='rounded p-1 bg-gray-100 flex items-center justify-center'>
+                    ${order?.total?.toFixed(2)}
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>
