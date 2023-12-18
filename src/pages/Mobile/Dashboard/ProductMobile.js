@@ -54,9 +54,9 @@ const ProductMobile = ({ product }) => {
         </div>
 
         <p className='text-stone-800 font-medium text-sm'>
-          {product.length > 1
-            ? `${product.length} templates`
-            : `${product.length} template`}
+          {product.length == 1
+            ? `${product.length} template`
+            : `${product.length} templates`}
         </p>
       </div>
 
@@ -95,9 +95,9 @@ const ProductMobile = ({ product }) => {
 
             <div className='absolute bottom-0 right-0 mb-2 mr-2 rounded bg-gray-100 text-xs p-1'>
               <p>
-                {prod.numberOfSales > 1
-                  ? `${prod.numberOfSales} sales`
-                  : `${prod.numberOfSales} sale`}{' '}
+                {prod.numberOfSales == 1
+                  ? `${prod.numberOfSales} sale`
+                  : `${prod.numberOfSales} sales`}{' '}
               </p>
             </div>
           </div>

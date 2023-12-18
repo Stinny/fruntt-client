@@ -28,9 +28,9 @@ const MobileCustomers = ({ customers }) => {
         </div>
 
         <p className='text-stone-800 font-medium text-sm'>
-          {customers.length > 1
-            ? `${customers.length} customers`
-            : `${customers.length} customer`}
+          {customers.length == 1
+            ? `${customers.length} customer`
+            : `${customers.length} customers`}
         </p>
       </div>
 
