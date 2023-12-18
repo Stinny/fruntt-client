@@ -70,9 +70,9 @@ const OrdersMobile = ({ orders, cols }) => {
         </div>
 
         <p className='text-stone-800 font-medium text-sm'>
-          {orders.length > 1
-            ? `${orders.length} orders`
-            : `${orders.length} order`}
+          {orders.length == 1
+            ? `${orders.length} order`
+            : `${orders.length} orders`}
         </p>
       </div>
 
@@ -90,7 +90,7 @@ const OrdersMobile = ({ orders, cols }) => {
                 {<ElapsedTimeOrDate orderDate={order?.placedOn} />}
               </p>
 
-              <div className='absolute bottom-0 right-0 mr-2 mb-2 p-1 bg-gray-100 rounded'>
+              <div className='absolute bottom-0 right-0 mr-2 mb-2 p-1 bg-gray-100 rounded text-sm'>
                 <p className='text-md'>${order?.total?.toFixed(2)}</p>
               </div>
             </div>
