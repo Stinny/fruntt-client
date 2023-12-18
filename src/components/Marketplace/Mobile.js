@@ -44,7 +44,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
         </p>
         <BiSmile className='ml-1 text-white text-xl' />
       </div> */}
-      <div className='w-full rounded-md border drop-shadow-lg bg-white p-4 mb-4 mt-16'>
+      <div className='w-full rounded-md border drop-shadow-lg bg-white p-4 mb-4 mt-24'>
         <p className='text-lg font-medium text-stone-800'>Fruntt Marketplace</p>
         <p className='text-stone-800 text-sm mt-2'>
           Browse the latest Notion templates from your favorite creators.

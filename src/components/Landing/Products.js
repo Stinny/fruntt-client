@@ -40,10 +40,10 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
               target='_blank'
             >
               <div
-                className='border drop-shadow-lg flex w-full mb-4 rounded relative bg-white'
+                className='border drop-shadow-lg flex w-full mb-4 rounded-md relative bg-white'
                 style={{ height: '350px' }}
               >
-                <div className='absolute bottom-0 right-0 mb-1 mr-1 bg-gray-100 rounded-tl p-2'>
+                <div className='absolute bottom-0 right-0 mb-1 mr-1 bg-gray-100 rounded-br-md p-2'>
                   <p
                     className={
                       product?.item?.free
@@ -83,7 +83,7 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
                   <div className='w-full h-44 pb-2'>
                     <img
                       src={product?.coverImage?.url}
-                      className='object-cover w-full h-full rounded'
+                      className='object-cover w-full h-full rounded-md'
                     />
                   </div>
                   {/* <div className='mb-2 mt-1'>
@@ -140,10 +140,10 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
               target='_blank'
             >
               <div
-                className='border drop-shadow-lg flex w-full mb-4 rounded relative bg-white'
+                className='border drop-shadow-lg flex w-full mb-4 rounded-md relative bg-white'
                 style={{ height: '350px' }}
               >
-                <div className='absolute bottom-0 right-0 font-medium bg-gray-100 mb-1 mr-1 rounded-tl p-2'>
+                <div className='absolute bottom-0 right-0 font-medium bg-gray-100 mb-1 mr-1 rounded-br-md p-2'>
                   <p
                     className={
                       product?.item?.free
@@ -183,7 +183,7 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
                   <div className='w-full h-48 pb-2'>
                     <img
                       src={product?.coverImage?.url}
-                      className='object-cover w-full h-full rounded'
+                      className='object-cover w-full h-full rounded-md'
                     />
                   </div>
                   {/* <div className='mb-2 mt-1'>

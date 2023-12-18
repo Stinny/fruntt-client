@@ -268,24 +268,24 @@ const Navbar = () => {
             <BiMoneyWithdraw className='text-2xl text-stone-800' />
           </Link> */}
 
-          <div className='flex border-2 border-stone-800 rounded p-1'>
+          <div className='flex border-2 border-stone-800 rounded-md p-1'>
             <Link
               to='/marketplace'
-              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded'
+              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded-md'
             >
               <p className='font-medium'>Buy</p>
               <MdOutlineSell className='text-xl' />
             </Link>
             <Link
               to='/signup'
-              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded'
+              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded-md'
             >
               <p className='font-medium'>Sell</p>
               <BiMoneyWithdraw className='text-xl' />
             </Link>
             <Link
               to='/login'
-              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded'
+              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded-md'
             >
               <p className='font-medium'>Login</p>
               <IoStorefrontOutline className='text-xl' />

@@ -53,7 +53,7 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
         </p>
         <BiSmile className='ml-1 text-white text-xl' />
       </div> */}
-      <div className='w-full rounded-br rounded-bl border drop-shadow-lg bg-white p-4 mb-4'>
+      <div className='w-full rounded-md rounded-bl border drop-shadow-lg bg-white p-4 mb-4'>
         <p className='text-3xl font-medium text-stone-800'>
           Fruntt Marketplace
         </p>
@@ -130,10 +130,10 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
               target='_blank'
             >
               <div
-                className='border drop-shadow-lg flex w-full mb-4 rounded relative bg-white'
+                className='border drop-shadow-lg flex w-full mb-4 rounded-md relative bg-white'
                 style={{ height: '350px' }}
               >
-                <div className='absolute bottom-0 right-0 font-medium bg-gray-100 mb-1 mr-1 rounded-tl p-2'>
+                <div className='absolute bottom-0 right-0 font-medium bg-gray-100 mb-1 mr-1 rounded-br-md p-2'>
                   <p
                     className={
                       product?.item?.free
@@ -173,7 +173,7 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
                   <div className='w-full h-48 pb-2'>
                     <img
                       src={product?.coverImage?.url}
-                      className='object-cover w-full h-full rounded'
+                      className='object-cover w-full h-full rounded-md'
                     />
                   </div>
                   {/* <div className='mb-2 mt-1'>

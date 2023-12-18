@@ -365,7 +365,7 @@ const MobileNavbar = ({ currentUser, handleLogout }) => {
           </a> */}
 
           <Link to='/login' className='w-full flex justify-center mt-20'>
-            <button className='w-10/12 h-14 border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 text-xl'>
+            <button className='w-10/12 h-14 border-2 rounded-md border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 text-xl'>
               Login
             </button>
           </Link>
