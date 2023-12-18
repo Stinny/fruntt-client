@@ -36,7 +36,7 @@ const MobileCustomers = ({ customers }) => {
 
       <div className='w-full mx-auto mt-2'>
         {currentCustomers.map((customer, index) => (
-          <div className='flex flex-col rounded-md bg-white drop-shadow-md relative mt-2 p-2'>
+          <div className='flex flex-col rounded-md border bg-white drop-shadow-md relative mt-2 p-2'>
             <div className='absolute rounded bottom-0 right-0 mr-2 mb-2 p-1 bg-gray-100'>
               <p className='text-xs text-stone-800'>
                 {customer?.numberOfOrders === 1
@@ -45,7 +45,7 @@ const MobileCustomers = ({ customers }) => {
               </p>
             </div>
 
-            <p className='text-stone-800 text-md font-bold'>
+            <p className='text-stone-800 text-sm font-bold'>
               {customer?.email}
             </p>
 

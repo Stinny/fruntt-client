@@ -86,7 +86,7 @@ const MobileForm = ({
   return (
     <div className='w-full p-2'>
       <div className='mb-2 p-2'>
-        <h2 className='text-xl font-medium'>New digital product</h2>
+        <h2 className='text-xl font-medium'>New Template</h2>
       </div>
 
       {error && (
@@ -109,14 +109,14 @@ const MobileForm = ({
         </TabList>
 
         <TabPanel>
-          <form className='w-full border rounded bg-white drop-shadow-md p-2 pb-12'>
+          <form className='w-full border rounded-md bg-white drop-shadow-md p-2 pb-12'>
             <div className='flex items-center'>
               <p className='text-md'>Details</p>
             </div>
 
             <div className='flex flex-col w-full mt-2'>
               <div className='flex flex-col w-full'>
-                <p className='text-stone-800 text-sm'>Type</p>
+                {/* <p className='text-stone-800 text-sm'>Type</p>
 
                 <Select
                   options={typeOptions}
@@ -139,7 +139,7 @@ const MobileForm = ({
                     menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
                   }}
                   className=''
-                />
+                /> */}
                 <p className='text-stone-800 text-sm mt-2'>Title</p>
                 <input
                   type='text'
@@ -195,7 +195,7 @@ const MobileForm = ({
                   ''
                 ) : (
                   <FormControlLabel
-                    label='Free product'
+                    label='Free template'
                     control={
                       <Switch
                         checked={free}
@@ -285,7 +285,7 @@ const MobileForm = ({
                 <span className='underline underline-offset-2 text-sm'>{`${currentStoreUrl}/`}</span>
                 <input
                   className='bg-white outline outline-0 w-full text-sm'
-                  placeholder='ProductName'
+                  placeholder='TemplateName'
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                 />
@@ -314,7 +314,7 @@ const MobileForm = ({
         </TabPanel>
 
         <TabPanel>
-          <div className='pb-12 border rounded bg-white drop-shadow-md p-2 w-full'>
+          <div className='pb-12 border rounded-md bg-white drop-shadow-md p-2 w-full'>
             <div className='flex items-center'>
               <p className='text-md'>Content</p>
             </div>
@@ -344,12 +344,12 @@ const MobileForm = ({
         </TabPanel>
 
         <TabPanel>
-          <div className='h-screen flex flex-col border rounded w-full shadow-lg bg-white p-2'>
+          <div className='h-screen flex flex-col border rounded-md w-full shadow-lg bg-white p-2'>
             <div className='flex items-center'>
               <p className='text-md text-stone-800'>Marketplace</p>
             </div>
             <p className='text-stone-800 text-sm mt-1'>
-              List your product in our marketplace for other creators and
+              List your template in our marketplace for other creators and
               customers to discover.
             </p>
             <FormControlLabel
@@ -362,7 +362,7 @@ const MobileForm = ({
               }
               className='mt-2'
             />
-            <p className='text-stone-800 text-sm mt-2'>Product category</p>
+            <p className='text-stone-800 text-sm mt-2'>Template category</p>
             <Select
               options={categories}
               onChange={handleCategory}
@@ -388,19 +388,19 @@ const MobileForm = ({
         </TabPanel>
       </Tabs>
 
-      <div className='w-full bg-white p-2 rounded border drop-shadow-md flex flex-col mt-2'>
+      <div className='w-full bg-white p-2 rounded-md border drop-shadow-md flex flex-col mt-2'>
         <button
           type='button'
           onClick={handleAddProduct}
           disabled={addingProduct}
-          className='border-2 rounded h-14 w-full text-slate-800 border-slate-800 hover:bg-slate-800 hover:text-white mt-4'
+          className='border-2 rounded h-12 text-sm w-full text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white mt-4'
         >
-          {addingProduct ? 'ADDING...' : '+ ADD PRODUCT'}
+          {addingProduct ? 'ADDING...' : '+ ADD TEMPLATE'}
         </button>
         <button
           type='button'
           onClick={handleCancel}
-          className='border-2 rounded h-8 w-full text-red-400 border-red-400 hover:bg-red-400 hover:text-white mt-2'
+          className='border-2 rounded h-8 w-full text-sm text-red-400 border-red-400 hover:bg-red-400 hover:text-white mt-2'
         >
           CANCEL
         </button>

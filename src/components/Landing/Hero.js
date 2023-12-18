@@ -54,7 +54,7 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
         <div className='flex flex-col text-left w-full'>
           <p className='font-bold text-xl'>Most affordable way to sell your</p>
           <div>
-            <p className='text-white bg-stone-800 rounded p-1 font-bold text-xl inline-block'>
+            <p className='text-white bg-stone-800 rounded-md p-1 font-bold text-xl inline-block'>
               Notion templates.
             </p>
           </div>
@@ -72,13 +72,13 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
           </a>
           <div className='flex items-center mt-6'>
             <Link to='/signup' className='flex w-56'>
-              <button className='rounded bg-white text-stone-800 text-sm w-full h-10 border-stone-800 border-2 shadow-md hover:bg-stone-800 hover:text-white flex items-center justify-center'>
+              <button className='rounded-md bg-white text-stone-800 text-sm w-full h-10 border-stone-800 border-2 shadow-md hover:bg-stone-800 hover:text-white flex items-center justify-center'>
                 Open Store
               </button>
             </Link>
 
             <Link to='/marketplace' className='flex w-56 ml-1'>
-              <button className='rounded text-white w-full h-10 text-sm border-stone-800 border-2 bg-stone-800 flex items-center shadow-md justify-center'>
+              <button className='rounded-md text-white w-full h-10 text-sm border-stone-800 border-2 bg-stone-800 flex items-center shadow-md justify-center'>
                 Browse Templates
               </button>
             </Link>
@@ -98,9 +98,9 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
           </div>
         </div>
 
-        <div className='flex flex-col w-full rounded shadow-lg border mt-10'>
+        <div className='flex flex-col w-full rounded-md shadow-lg border mt-10'>
           <div className='flex'>
-            <div className='w-3/6 bg-stone-800 text-white flex justify-center items-center h-32 rounded-tl'>
+            <div className='w-3/6 bg-stone-800 text-white flex justify-center items-center h-32 rounded-tl-md'>
               <p className='flex justify-center items-center h-32 font-medium text-2xl'>
                 $
               </p>
@@ -111,10 +111,10 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
           </div>
 
           <div className='flex'>
-            <div className='w-3/6 bg-white h-32 flex items-center justify-center rounded-bl'>
+            <div className='w-3/6 bg-white h-32 flex items-center justify-center rounded-bl-md'>
               <img src={imgTwo} className='w-44' />
             </div>
-            <div className='w-3/6 bg-stone-800 flex justify-center items-center h-32 text-white'>
+            <div className='w-3/6 bg-stone-800 flex justify-center items-center rounded-br-md h-32 text-white'>
               <p className='text-2xl font-medium'>$</p>
             </div>
           </div>
@@ -134,7 +134,7 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
         <div className='flex flex-col text-left w-3/6 mr-32'>
           <p className='font-bold text-3xl'>Most affordable way to sell your</p>
           <div>
-            <p className='text-white bg-stone-800 rounded p-1 font-bold text-3xl inline-block'>
+            <p className='text-white bg-stone-800 rounded-md p-1 font-bold text-3xl inline-block'>
               Notion templates.
             </p>
           </div>
@@ -154,13 +154,13 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
           </a>
           <div className='flex items-center mt-10'>
             <Link to='/signup' className='flex w-56'>
-              <button className='rounded text-stone-800 w-full h-10 border-stone-800 border-2 hover:bg-stone-800 hover:text-white flex items-center shadow-md bg-white justify-center'>
+              <button className='rounded-md text-stone-800 w-full h-10 border-stone-800 border-2 hover:bg-stone-800 hover:text-white flex items-center shadow-md bg-white justify-center'>
                 Open Store
               </button>
             </Link>
 
             <Link to='/marketplace' className='flex w-56 ml-1'>
-              <button className='rounded text-white w-full h-10 border-stone-800 border-2 bg-stone-800 flex items-center shadow-md justify-center'>
+              <button className='rounded-md text-white w-full h-10 border-stone-800 border-2 bg-stone-800 flex items-center shadow-md justify-center'>
                 Browse Templates
               </button>
             </Link>
@@ -181,23 +181,23 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
           </div>
         </div>
 
-        <div className='flex flex-col w-3/6 rounded shadow-lg border'>
+        <div className='flex flex-col w-3/6 shadow-lg rounded-md border'>
           <div className='flex'>
-            <div className='w-3/6 bg-stone-800 text-white flex justify-center items-center h-36 rounded-tl'>
+            <div className='w-3/6 bg-stone-800 text-white flex justify-center items-center h-36 rounded-tl-md'>
               <p className='flex justify-center items-center h-32 font-medium text-3xl'>
                 $
               </p>
             </div>
-            <div className='w-3/6 bg-white h-36 rounded-tr flex items-center justify-center'>
+            <div className='w-3/6 bg-white h-36 rounded-tr-md flex items-center justify-center'>
               <img src={imgOne} className='w-44' />
             </div>
           </div>
 
           <div className='flex'>
-            <div className='w-3/6 bg-white h-36 flex items-center justify-center rounded-bl'>
+            <div className='w-3/6 bg-white h-36 flex items-center justify-center rounded-bl-md'>
               <img src={imgTwo} className='w-44' />
             </div>
-            <div className='w-3/6 bg-stone-800 flex justify-center items-center h-36 text-white'>
+            <div className='w-3/6 bg-stone-800 flex justify-center rounded-br-md items-center h-36 text-white'>
               <p className='text-3xl font-medium'>$</p>
             </div>
           </div>

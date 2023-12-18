@@ -64,23 +64,23 @@ const RegisterMobile = ({
 
         <form
           onSubmit={handleSignup}
-          className='flex flex-col items-center w-full bg-white p-2 rounded drop-shadow-md'
+          className='flex flex-col items-center w-full bg-white p-2 rounded-md drop-shadow-md'
         >
           <input
             type='email'
             placeholder='Email'
-            className='border-2 border-gray-200  hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded p-2 mt-2'
+            className='border-2 border-gray-200  hover:border-gray-400 focus:outline focus:outline-1 focus:outline-gray-300 w-full rounded-md p-2 mt-2'
             onChange={(e) => setEmail(e.target.value)}
           />
 
           <input
             type='password'
             placeholder='Password'
-            className='border-2 border-gray-200 focus:outline focus:outline-1  focus:outline-gray-400 hover:border-gray-300 w-full rounded p-2 mt-2'
+            className='border-2 border-gray-200 focus:outline focus:outline-1  focus:outline-gray-400 hover:border-gray-300 w-full rounded-md p-2 mt-2'
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <div className='flex w-full items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2'>
+          <div className='flex w-full items-center border-2 rounded-md mt-1 border-gray-200 hover:border-gray-300 p-2'>
             <input
               className='bg-white outline outline-0'
               placeholder='Store'
@@ -103,7 +103,7 @@ const RegisterMobile = ({
           <button
             type='submit'
             disabled={isLoading}
-            className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded mt-4'
+            className='h-11 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded-md mt-4'
           >
             Open Store
           </button>
@@ -113,7 +113,7 @@ const RegisterMobile = ({
               backgroundColor: 'rgb(15, 20, 25)',
               borderColor: 'rgb(15, 20, 25)',
             }}
-            className='w-full h-10 mt-2 rounded flex items-center justify-center text-white'
+            className='w-full h-10 mt-2 rounded-md flex items-center justify-center text-white'
             type='button'
             onClick={handleTwitterSignup}
           >

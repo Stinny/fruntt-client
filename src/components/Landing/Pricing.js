@@ -9,7 +9,7 @@ const Pricing = () => {
       <p className='text-lg font-medium'>Pricing</p>
 
       <div className='flex flex-col w-full mt-6'>
-        <div className='w-full h-10 bg-white drop-shadow-lg rounded flex items-center justify-center'>
+        <div className='w-full h-10 bg-white drop-shadow-lg rounded-md border flex items-center justify-center'>
           <p className='text-stone-800 text-sm text-center'>
             Pay only $1 or 50¢ / sale
           </p>
@@ -17,11 +17,11 @@ const Pricing = () => {
 
         <div className='flex justify-between w-full h-44 mt-2'>
           <div className='flex flex-col w-3/6 mr-2'>
-            <div className='bg-white drop-shadow-lg rounded border w-full h-2/6 flex justify-center items-center'>
+            <div className='bg-white drop-shadow-lg rounded-md border w-full h-2/6 flex justify-center items-center'>
               <p className='text-stone-800 text-sm'>Sales under $10</p>
               <IoIosArrowDown className='ml-2 text-xl' />
             </div>
-            <div className='bg-white drop-shadow-lg rounded border w-full h-4/6 mt-2 flex items-center justify-center'>
+            <div className='bg-white drop-shadow-lg rounded-md border w-full h-4/6 mt-2 flex items-center justify-center'>
               <div className='flex flex-col'>
                 <p className='text-xs text-gray-400 text-left'>Total:</p>
                 <p className='text-3xl text-stone-800 text-left mt-1'>$8</p>
@@ -30,21 +30,21 @@ const Pricing = () => {
             </div>
           </div>
           <div className='flex flex-col w-3/6'>
-            <div className='bg-white drop-shadow-lg rounded border w-full h-4/6 flex justify-center items-center'>
+            <div className='bg-white drop-shadow-lg rounded-md border w-full h-4/6 flex justify-center items-center'>
               <div className='flex flex-col'>
                 <p className='text-xs text-gray-400 text-left'>Total:</p>
                 <p className='text-3xl text-stone-800 text-left mt-1'>$56</p>
                 <p className='text-sm text-stone-800 mt-1'>You pay us $1</p>
               </div>
             </div>
-            <div className='bg-white drop-shadow-lg rounded border w-full h-2/6 mt-2 flex items-center justify-center'>
+            <div className='bg-white drop-shadow-lg rounded-md border w-full h-2/6 mt-2 flex items-center justify-center'>
               <p className='text-stone-800 text-sm'>Sales $10 or more</p>
               <IoIosArrowUp className='ml-2 text-xl' />
             </div>
           </div>
         </div>
 
-        <div className='w-full h-10 bg-white drop-shadow-lg border rounded flex items-center justify-center mt-2'>
+        <div className='w-full h-10 bg-white drop-shadow-lg border rounded-md flex items-center justify-center mt-2'>
           <p className='text-sm text-stone-800 flex items-center'>
             and (2.9% + 30 ¢) / sale goes to{' '}
             <span style={{ color: '#635bff' }}>
@@ -55,7 +55,7 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className='w-full h-24 bg-white drop-shadow-lg border rounded flex items-center justify-center mt-2 p-6'>
+        <div className='w-full h-24 bg-white drop-shadow-lg border rounded-md flex items-center justify-center mt-2 p-6'>
           <p className='text-stone-800 text-sm text-center'>
             Never pay us on a monthly basis, we get paid only when you do. We
             just take a mini cut of every sale.
@@ -88,7 +88,7 @@ const Pricing = () => {
       </div> */}
 
       <div className='flex flex-col w-96 mt-6'>
-        <div className='w-full h-10 bg-white drop-shadow-lg rounded flex items-center justify-center'>
+        <div className='w-full h-10 bg-white drop-shadow-lg border rounded-md flex items-center justify-center'>
           <p className='text-stone-800 text-sm text-center'>
             Pay only $1 or 50¢ / sale
           </p>
@@ -96,11 +96,11 @@ const Pricing = () => {
 
         <div className='flex justify-between w-full h-44 mt-2'>
           <div className='flex flex-col w-3/6 mr-2'>
-            <div className='bg-white drop-shadow-lg rounded border w-full h-2/6 flex justify-center items-center'>
+            <div className='bg-white drop-shadow-lg rounded-md border w-full h-2/6 flex justify-center items-center'>
               <p className='text-stone-800 text-sm'>Sales under $10</p>
               <IoIosArrowDown className='ml-2 text-xl' />
             </div>
-            <div className='bg-white drop-shadow-lg rounded border w-full h-4/6 mt-2 flex items-center justify-center'>
+            <div className='bg-white drop-shadow-lg rounded-md border w-full h-4/6 mt-2 flex items-center justify-center'>
               <div className='flex flex-col'>
                 <p className='text-xs text-gray-400 text-left'>Total:</p>
                 <p className='text-3xl text-stone-800 text-left mt-1'>$8</p>
@@ -109,21 +109,21 @@ const Pricing = () => {
             </div>
           </div>
           <div className='flex flex-col w-3/6'>
-            <div className='bg-white drop-shadow-lg rounded border w-full h-4/6 flex justify-center items-center'>
+            <div className='bg-white drop-shadow-lg rounded-md border w-full h-4/6 flex justify-center items-center'>
               <div className='flex flex-col'>
                 <p className='text-xs text-gray-400 text-left'>Total:</p>
                 <p className='text-3xl text-stone-800 text-left mt-1'>$56</p>
                 <p className='text-sm text-stone-800 mt-1'>You pay us $1</p>
               </div>
             </div>
-            <div className='bg-white drop-shadow-lg rounded border w-full h-2/6 mt-2 flex items-center justify-center'>
+            <div className='bg-white drop-shadow-lg rounded-md border w-full h-2/6 mt-2 flex items-center justify-center'>
               <p className='text-stone-800 text-sm'>Sales $10 or more</p>
               <IoIosArrowUp className='ml-2 text-xl' />
             </div>
           </div>
         </div>
 
-        <div className='w-full h-10 bg-white drop-shadow-lg border rounded flex items-center justify-center mt-2'>
+        <div className='w-full h-10 bg-white drop-shadow-lg border rounded-md flex items-center justify-center mt-2'>
           <p className='text-sm text-stone-800 flex items-center'>
             and (2.9% + 30 ¢) / sale goes to{' '}
             <span style={{ color: '#635bff' }}>
@@ -134,7 +134,7 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className='w-full h-24 bg-white drop-shadow-lg border rounded flex items-center justify-center mt-2 p-2'>
+        <div className='w-full h-24 bg-white drop-shadow-lg border rounded-md flex items-center justify-center mt-2 p-2'>
           <p className='text-stone-800 text-sm text-center'>
             Never pay us on a monthly basis, we get paid only when you do. We
             just take a mini cut of every sale.

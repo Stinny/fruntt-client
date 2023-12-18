@@ -25,7 +25,7 @@ const DashHomeMobile = ({
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
   return (
     <>
-      <div className='w-full p-2 flex flex-col mt-14'>
+      <div className='w-full flex flex-col mt-16'>
         {!currentUser.stripeOnboard && (
           <Alert severity='error' className='mt-2 w-full mx-auto'>
             <p>
@@ -63,18 +63,7 @@ const DashHomeMobile = ({
         )}
       </div>
 
-      <div className='flex pl-2'>
-        <p className='text-sm text-stone-800 font-medium'>Live store:</p>
-        <a
-          href={currentStoreUrl}
-          className='flex justify-center items-center text-sm text-stone-800 hover:text-slate-800 font-medium ml-2 underline underline-offset-4'
-          target='_blank'
-        >
-          {currentStoreUrl}
-        </a>
-      </div>
-
-      <div className='flex flex-col items-center w-full p-2'>
+      <div className='flex flex-col items-center w-full'>
         <div className='bg-white border rounded-md drop-shadow-md w-full p-2'>
           <SellerProfile user={user} refetch={refetchUser} />
         </div>
@@ -182,7 +171,7 @@ const DashHomeMobile = ({
         </div>
       </div>
 
-      <div className='w-full p-2'>
+      <div className='w-full mt-2'>
         <div className='w-full mx-auto bg-white border rounded-md drop-shadow-md flex flex-col p-2'>
           <p className='text-md font-medium text-stone-800'>
             Is your store ready for customers?
@@ -239,7 +228,7 @@ const DashHomeMobile = ({
           </div>
         </div>
 
-        <div className='h-72 w-full flex flex-col items-center justify-center rounded-md border drop-shadow-md bg-white mt-4'>
+        <div className='h-72 w-full flex flex-col items-center justify-center rounded-md border drop-shadow-md bg-white mt-2'>
           <GoGraph className='text-3xl text-stone-800' />
           <p className='text-stone-800 mt-2 text-sm'>
             Mobile graph coming soon

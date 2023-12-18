@@ -45,20 +45,20 @@ const LoginMobile = ({
         <input
           type='email'
           placeholder='Email'
-          className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 w-full rounded mt-4 p-2'
+          className='border-2 text-sm border-gray-200 hover:border-gray-300 outline outline-0 w-full rounded-md mt-4 p-2'
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type='password'
           placeholder='Password'
-          className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 w-full rounded mt-4 p-2'
+          className='border-2 border-gray-200 text-sm hover:border-gray-300 outline outline-0 w-full rounded-md mt-4 p-2'
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <button
           disabled={isLoading}
-          className='h-10 w-full text-sm border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded mt-4'
+          className='h-10 w-full text-sm border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded-md mt-4'
         >
           Go to my store
         </button>
@@ -68,7 +68,7 @@ const LoginMobile = ({
             backgroundColor: 'rgb(15, 20, 25)',
             borderColor: 'rgb(15, 20, 25)',
           }}
-          className='w-full h-10 rounded mt-2 flex items-center justify-center text-white'
+          className='w-full h-10 rounded-md mt-2 flex items-center justify-center text-white'
           type='button'
           onClick={handleTwitterLogin}
         >
