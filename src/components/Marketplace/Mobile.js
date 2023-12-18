@@ -121,7 +121,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
                 className='border drop-shadow-lg flex w-full mb-4 rounded-md relative bg-white'
                 style={{ height: '350px' }}
               >
-                <div className='absolute bottom-0 right-0 mb-1 mr-1 bg-gray-100 rounded-tl-md rounded-br-md p-2'>
+                <div className='absolute bottom-0 right-0 mb-1 mr-1 bg-gray-100 rounded-br-md p-2'>
                   <p
                     className={
                       product?.item?.free
