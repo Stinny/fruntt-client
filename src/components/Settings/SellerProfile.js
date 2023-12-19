@@ -231,7 +231,9 @@ const SellerProfile = ({ user, refetch }) => {
                   <p className='font-medium text-xl'>
                     {user?.sellerProfile?.numberOfSales}
                   </p>
-                  <p className='text-sm'>sales</p>
+                  <p className='text-sm'>
+                    {user?.sellerProfile?.numberOfSales == 1 ? 'sale' : 'sales'}
+                  </p>
                 </div>
               </div>
             </div>
@@ -248,11 +250,11 @@ const SellerProfile = ({ user, refetch }) => {
               </div>
 
               <div className='flex flex-col w-5/12'>
-                <p className='text-xl font-medium text-stone-800'>
+                <p className='text-lg font-medium text-stone-800'>
                   {user?.name ? user?.name : '{Your Name}'}
                 </p>
 
-                <p className='text-stone-800'>
+                <p className='text-stone-800 text-sm'>
                   {user?.sellerProfile?.bio
                     ? user?.sellerProfile?.bio
                     : 'This is your bio, it is empty.'}
@@ -263,7 +265,9 @@ const SellerProfile = ({ user, refetch }) => {
                 <p className='font-medium text-2xl'>
                   {user?.sellerProfile?.numberOfSales}
                 </p>
-                <p className='text-stone-800 text-sm'>sales</p>
+                <p className='text-stone-800 text-sm'>
+                  {user?.sellerProfile?.numberOfSales == 1 ? 'sale' : 'sales'}
+                </p>
               </div>
 
               <div className='flex items-center w-4/12 ml-6'>
