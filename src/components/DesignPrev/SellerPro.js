@@ -77,7 +77,7 @@ const SellerPro = ({
                   color: pageText,
                 }}
               >
-                My other products:
+                My templates:
               </p>
               <select
                 onChange={handleSelectedProduct}
@@ -160,7 +160,7 @@ const SellerPro = ({
           </div>
           <div className='flex flex-col items-center mr-2'>
             <p
-              className='font-medium text-3xl'
+              className='font-medium text-2xl'
               style={{
                 color: pageText,
               }}
@@ -174,7 +174,7 @@ const SellerPro = ({
                 color: pageText,
               }}
             >
-              Total sales
+              Sales
             </p>
           </div>
         </div>
@@ -203,21 +203,11 @@ const SellerPro = ({
           className='flex flex-col w-4/12 border-l-2 pl-2'
           style={{ borderColor: borderColor }}
         >
-          <p
-            className='text-xl font-medium'
-            style={{
-              color: pageText,
-            }}
-          >
+          <p className='text-lg font-medium'>
             {currentUser?.name ? currentUser?.name : '{Your Name}'}
           </p>
 
-          <p
-            style={{
-              color: pageText,
-            }}
-            className='text-lg'
-          >
+          <p className='text-sm'>
             {currentUser?.sellerProfile?.bio
               ? currentUser?.sellerProfile?.bio
               : 'This is your bio'}
@@ -235,7 +225,7 @@ const SellerPro = ({
 
         <div className='flex flex-col w-3/12'>
           <p className='font-medium text-md' style={{ color: pageText }}>
-            My products:
+            My templates:
           </p>
           <select
             onChange={handleSelectedProduct}

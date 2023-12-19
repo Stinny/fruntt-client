@@ -178,7 +178,7 @@ const Topbar = () => {
           </Link>
           <a
             href={currentUser?.store?.url}
-            className='flex justify-center items-center text-sm text-stone-800 font-medium ml-2'
+            className='flex justify-center items-center text-sm text-stone-800 font-medium w-full'
             target='_blank'
           >
             <div className='flex items-center justify-center mt-2 bg-gray-100 rounded-md p-1 w-full'>
