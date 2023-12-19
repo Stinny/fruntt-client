@@ -47,7 +47,7 @@ const Design = () => {
           <div className='w-full flex flex-col bg-white border drop-shadow-lg rounded p-2'>
             <div className='flex flex-col w-full'>
               <p className='text-sm font-medium mb-1'>Page</p>
-              <div className='flex rounded bg-gray-100 h-10 w-full'>
+              <div className='flex rounded-md bg-gray-100 h-10 w-full'>
                 <div className='w-9/12 flex items-center justify-center'>
                   <p className='text-sm font-medium mt-1'>
                     {storefront?.style?.pageBackground}
@@ -55,7 +55,7 @@ const Design = () => {
                 </div>
                 <div className='p-1 w-3/12'>
                   <div
-                    className='w-full h-full rounded border'
+                    className='w-full h-full rounded-md border'
                     style={{
                       backgroundColor: storefront?.style?.pageBackground,
                     }}
@@ -64,9 +64,9 @@ const Design = () => {
               </div>
             </div>
 
-            <div className='flex flex-col w-full'>
+            <div className='flex flex-col w-full mt-1'>
               <p className='text-sm font-medium mb-1'>Card</p>
-              <div className='flex rounded bg-gray-100 h-10 w-full'>
+              <div className='flex rounded-md bg-gray-100 h-10 w-full'>
                 <div className='w-9/12 flex items-center justify-center'>
                   <p className='text-sm font-medium mt-1'>
                     {storefront?.style?.cardBackground}
@@ -74,7 +74,7 @@ const Design = () => {
                 </div>
                 <div className='p-1 w-3/12'>
                   <div
-                    className='w-full h-full rounded border'
+                    className='w-full h-full rounded-md border'
                     style={{
                       backgroundColor: storefront?.style?.cardBackground,
                     }}
@@ -83,7 +83,7 @@ const Design = () => {
               </div>
             </div>
 
-            <div className='flex flex-col w-full'>
+            <div className='flex flex-col w-full mt-1'>
               <p
                 className={
                   storefront?.style?.buttonStyle === 'filled'
@@ -93,7 +93,7 @@ const Design = () => {
               >
                 Button
               </p>
-              <div className='flex rounded bg-gray-100 h-10 w-full'>
+              <div className='flex rounded-md bg-gray-100 h-10 w-full'>
                 <div className='w-9/12 flex items-center justify-center'>
                   <p className='text-sm font-medium mt-1'>
                     {storefront?.style?.buttonColor}
@@ -101,16 +101,16 @@ const Design = () => {
                 </div>
                 <div className='p-1 w-3/12'>
                   <div
-                    className='w-full h-full rounded border'
+                    className='w-full h-full rounded-md border'
                     style={{ backgroundColor: storefront?.style?.buttonColor }}
                   ></div>
                 </div>
               </div>
             </div>
 
-            <div className='flex flex-col w-full'>
+            <div className='flex flex-col w-full mt-1'>
               <p className='text-sm font-medium mb-1'>Button text</p>
-              <div className='flex rounded bg-gray-100 h-10 w-full'>
+              <div className='flex rounded-md bg-gray-100 h-10 w-full'>
                 <div className='w-9/12 flex items-center justify-center'>
                   <p className='text-sm font-medium mt-1'>
                     {storefront?.style?.buttonTextColor}
@@ -118,7 +118,7 @@ const Design = () => {
                 </div>
                 <div className='p-1 w-3/12'>
                   <div
-                    className='w-full h-full rounded border'
+                    className='w-full h-full rounded-md border'
                     style={{
                       backgroundColor: storefront?.style?.buttonTextColor,
                     }}
@@ -127,9 +127,9 @@ const Design = () => {
               </div>
             </div>
 
-            <div className='flex flex-col w-full'>
+            <div className='flex flex-col w-full mt-1'>
               <p className='text-sm font-medium mb-1'>Borders</p>
-              <div className='flex rounded bg-gray-100 h-10 w-full'>
+              <div className='flex rounded-md bg-gray-100 h-10 w-full'>
                 <div className='w-9/12 flex items-center justify-center'>
                   <p className='text-sm font-medium mt-1'>
                     {storefront?.style?.borderColor}
@@ -137,16 +137,16 @@ const Design = () => {
                 </div>
                 <div className='p-1 w-3/12'>
                   <div
-                    className='w-full h-full rounded border'
+                    className='w-full h-full rounded-md border'
                     style={{ backgroundColor: storefront?.style?.borderColor }}
                   ></div>
                 </div>
               </div>
             </div>
 
-            <div className='flex flex-col w-full'>
+            <div className='flex flex-col w-full mt-1'>
               <p className='text-sm font-medium mb-1'>Headers</p>
-              <div className='flex rounded bg-gray-100 h-10 w-full'>
+              <div className='flex rounded-md bg-gray-100 h-10 w-full'>
                 <div className='w-9/12 flex items-center justify-center'>
                   <p className='text-sm font-medium mt-1'>
                     {storefront?.style?.headerColor}
@@ -154,16 +154,16 @@ const Design = () => {
                 </div>
                 <div className='p-1 w-3/12'>
                   <div
-                    className='w-full h-full rounded border'
+                    className='w-full h-full rounded-md border'
                     style={{ backgroundColor: storefront?.style?.headerColor }}
                   ></div>
                 </div>
               </div>
             </div>
 
-            <div className='flex flex-col w-full'>
+            <div className='flex flex-col w-full mt-1'>
               <p className='text-sm font-medium mb-1'>Price</p>
-              <div className='flex rounded bg-gray-100 h-10 w-full'>
+              <div className='flex rounded-md bg-gray-100 h-10 w-full'>
                 <div className='w-9/12 flex items-center justify-center'>
                   <p className='text-sm font-medium mt-1'>
                     {storefront?.style?.price}
@@ -171,16 +171,16 @@ const Design = () => {
                 </div>
                 <div className='p-1 w-3/12'>
                   <div
-                    className='w-full h-full rounded border'
+                    className='w-full h-full rounded-l-md border'
                     style={{ backgroundColor: storefront?.style?.price }}
                   ></div>
                 </div>
               </div>
             </div>
 
-            <div className='flex flex-col w-full'>
+            <div className='flex flex-col w-full mt-1'>
               <p className='text-sm font-medium mb-1'>Reviews</p>
-              <div className='flex rounded bg-gray-100 h-10 w-full'>
+              <div className='flex rounded-md bg-gray-100 h-10 w-full'>
                 <div className='w-9/12 flex items-center justify-center'>
                   <p className='text-sm font-medium mt-1'>
                     {storefront?.style?.reviewBackground}
@@ -188,7 +188,7 @@ const Design = () => {
                 </div>
                 <div className='p-1 w-3/12'>
                   <div
-                    className='w-full h-full rounded border'
+                    className='w-full h-full rounded-md border'
                     style={{
                       backgroundColor: storefront?.style?.reviewBackground,
                     }}
@@ -238,19 +238,12 @@ const Design = () => {
             <div className='flex justify-between items-center mb-2'>
               <div className='flex flex-col'>
                 {/* <h2 className='text-3xl font-medium'>Storefront design</h2> */}
-                <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+                <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
                   <BsPalette className='text-white text-xl' />
                   <p className='text-xl text-white ml-2'>Design</p>
                 </div>
               </div>
-              {/* <a
-                href={storefront?.url}
-                target='_blank'
-                className='flex items-center mt-6'
-              >
-                <p className='font-medium text-xl'>Live store</p>
-                <BsArrowRightShort className='text-2xl font-medium' />
-              </a> */}
+
               <Link to='/dashboard/design/edit'>
                 <button className='w-40 h-10 rounded border-stone-800 border-2 hover:bg-stone-800 hover:text-white'>
                   EDIT

@@ -176,39 +176,6 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
                       className='object-cover w-full h-full rounded-md'
                     />
                   </div>
-                  {/* <div className='mb-2 mt-1'>
-                    {product?.digitalType === 'video' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>Video Course</p>
-                        <MdOutlineVideoLibrary className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'ebook' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>E-Book</p>
-                        <HiOutlineBookOpen className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'audio' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>Audio</p>
-                        <BsFillMicFill className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'other' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>Other</p>
-                        <MdOutlinePermMedia className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'template' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8 mt-2'>
-                        <p className='text-sm'>Template</p>
-                        <HiOutlineTemplate className='ml-2 text-xl' />
-                      </div>
-                    ) : (
-                      <div className='flex items-center justify-center bg-gray-100  rounded w-40 h-8'>
-                        <p className='text-sm'>Art</p>
-                        <BsPalette className='ml-2 text-xl' />
-                      </div>
-                    )}
-                  </div> */}
 
                   <p className='font-bold text-lg mb-1'>{product?.title}</p>
                   <p className='text-md mb-2'>{product?.description}</p>

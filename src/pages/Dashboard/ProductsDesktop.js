@@ -83,12 +83,14 @@ const ProductsDesktop = ({ product }) => {
       >
         {currentItems.map((prod) => (
           <div className='border rounded-md bg-white drop-shadow-md relative flex mt-4'>
-            <img
-              src={prod?.coverImage?.url}
-              className='rounded-tl rounded-bl w-2/12 h-32 object-cover'
-            />
+            <div className='w-2/12 h-full p-2'>
+              <img
+                src={prod?.coverImage?.url}
+                className='rounded-md w-full h-32 object-cover'
+              />
+            </div>
 
-            <div className='w-10/12 border-l pl-4 flex flex-col p-2'>
+            <div className='w-10/12 pl-4 flex flex-col p-2'>
               <p className='text-xl font-medium mb-4'>
                 {prod?.title} - {}
                 {prod?.free

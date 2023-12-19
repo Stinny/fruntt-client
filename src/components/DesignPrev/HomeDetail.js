@@ -66,28 +66,29 @@ const HomeDetail = ({
           borderColor: borderColor,
         }}
       >
-        <p className='font-medium text-md'>My Digital Products</p>
+        <p className='font-medium text-md'>My Templates</p>
         <p className='text-sm'>
           {products.length == 1
-            ? `${products.length} product`
-            : `${products.length} products`}
+            ? `${products.length} template`
+            : `${products.length} templates`}
         </p>
       </div>
 
       <div className='mx-auto max-w-6xl grid grid-cols-3 gap-4'>
         {currentProducts.map((product) => (
           <div
-            className='border drop-shadow-lg flex w-full mb-4 rounded relative h-96'
+            className='border drop-shadow-lg flex w-full mb-4 rounded-md relative'
             style={{
               backgroundColor: cardBG,
               borderColor: borderColor,
+              height: '350px',
             }}
           >
             <div
-              className='absolute bottom-0 right-0 font-medium text-2xl border-l border-t rounded-tl p-2'
-              style={{ borderColor: borderColor, backgroundColor: price }}
+              className='absolute bottom-0 right-0 mr-1 mb-1 rounded-br-md p-2'
+              style={{ backgroundColor: price }}
             >
-              <p className='font-medium text-2xl'>
+              <p className='font-medium text-lg'>
                 $
                 {product?.item?.payChoice
                   ? `${product?.item?.price?.toLocaleString('en-US', {
@@ -105,44 +106,11 @@ const HomeDetail = ({
               <div className='w-full h-40 pb-2'>
                 <img
                   src={product?.item?.coverImage?.url}
-                  className='object-cover w-full h-full rounded'
+                  className='object-cover w-full h-full rounded-md'
                 />
               </div>
-              <div className='mb-2 mt-1'>
-                {product?.item?.digitalType === 'video' ? (
-                  <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
-                    <p className='text-sm'>Video Course</p>
-                    <MdOutlineVideoLibrary className='ml-2 text-xl' />
-                  </div>
-                ) : product?.item?.digitalType === 'ebook' ? (
-                  <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
-                    <p className='text-sm'>E-Book</p>
-                    <HiOutlineBookOpen className='ml-2 text-xl' />
-                  </div>
-                ) : product?.item?.digitalType === 'audio' ? (
-                  <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
-                    <p className='text-sm'>Audio</p>
-                    <BsFillMicFill className='ml-2 text-xl' />
-                  </div>
-                ) : product?.item?.digitalType === 'other' ? (
-                  <div className='flex items-center justify-center border-2 border-slate-800 rounded w-40 h-8'>
-                    <p className='text-sm'> Digital Media</p>
-                    <MdOutlinePermMedia className='ml-2 text-xl' />
-                  </div>
-                ) : product?.item?.digitalType === 'template' ? (
-                  <div className='flex items-center justify-center border-2 border-stone-800 rounded w-40 h-8 mt-2'>
-                    <p className='text-sm'>Template</p>
-                    <HiOutlineTemplate className='ml-2 text-xl' />
-                  </div>
-                ) : (
-                  <div className='flex items-center justify-center border-2 border-slate-800  rounded w-40 h-8'>
-                    <p className='text-sm'>Art</p>
-                    <BsPalette className='ml-2 text-xl' />
-                  </div>
-                )}
-              </div>
 
-              <p className='font-medium text-lg mb-1'>{product?.item?.title}</p>
+              <p className='font-bold text-lg mb-1'>{product?.item?.title}</p>
               <p className='text-md mb-2'>{product?.item?.description}</p>
             </div>
 
