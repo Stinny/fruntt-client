@@ -41,6 +41,8 @@ const AddDigitalProd = () => {
   const [category, setCategory] = useState('');
   const [addingProduct, setAddingProduct] = useState(false);
 
+  const [emptyFields, setEmptyFields] = useState([]);
+
   const [addDigitalProduct, result] = useAddDigitalProductMutation();
 
   const handleType = (value) => {
@@ -75,6 +77,19 @@ const AddDigitalProd = () => {
     //try to upload cover image and all files first
     //if request is success
     //send request to create product
+
+    const emptyFieldList = [];
+    if (!title.trim()) {
+      emptyFieldList.push('field1');
+    }
+    if (!url.trim()) {
+      emptyFieldList.push('field2');
+    }
+    if (!callToAction.trim()) {
+      emptyFieldList.push('field3');
+    }
+
+    setEmptyFields(emptyFieldList);
 
     if (!title || !url) {
       setError('Please fill out all fields to complete your product');
@@ -151,6 +166,7 @@ const AddDigitalProd = () => {
 
   useEffect(() => {
     setError('');
+    setEmptyFields([]);
   }, [
     title,
     description,
@@ -250,6 +266,7 @@ const AddDigitalProd = () => {
               handleAction={handleAction}
               handleType={handleType}
               handleCategory={handleCategory}
+              emptyFields={emptyFields}
             />
           )}
         </div>

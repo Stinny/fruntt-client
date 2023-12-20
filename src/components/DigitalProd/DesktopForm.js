@@ -56,6 +56,7 @@ const DesktopForm = ({
   handleType,
   handleAction,
   handleCategory,
+  emptyFields,
 }) => {
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
@@ -133,7 +134,7 @@ const DesktopForm = ({
 
         <TabPanel>
           <form
-            className='w-full border rounded bg-white drop-shadow-md p-2 pb-12'
+            className='w-full border rounded-md bg-white drop-shadow-md p-2 pb-12'
             onSubmit={handleAddProduct}
           >
             <div className='flex items-center'>
@@ -155,49 +156,14 @@ const DesktopForm = ({
             </div>
             <div className='flex items-center justify-between w-full mt-2'>
               <div className='flex flex-col w-6/12'>
-                {/* <p className='text-stone-800'>Type</p>
-                <Select
-                  options={typeOptions}
-                  onChange={handleType}
-                  placeholder='Product type'
-                  menuPortalTarget={document.body}
-                  menuPosition={'fixed'}
-                  isSearchable={false}
-                  styles={{
-                    control: (baseStyles, state) => ({
-                      ...baseStyles,
-                      borderColor: 'rgb(229 231 235)',
-                      borderWidth: 2,
-                      '&:hover': {
-                        borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
-                      },
-                      boxShadow: 'none',
-                      zIndex: 99999,
-                      position: 'relative',
-                    }),
-                    menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
-                  }}
-                  className='mt-1'
-                /> */}
-                {/* <select
-                  onChange={(e) => setDigitalType(e.target.value)}
-                  className='w-full h-14 rounded p-2 mt-1'
-                  value={digitalType}
-                >
-                  <option disabled selected hidden value=''>
-                    Select product type
-                  </option>
-                  <option value='video'>Video Course</option>
-                  <option value='art'>Art</option>
-                  <option value='ebook'>E-Book</option>
-                  <option value='audio'>Audio</option>
-                  <option value='template'>Template</option>
-                  <option value='other'>Other Digital Media</option>
-                </select> */}
                 <p className='text-stone-800 mt-4'>Title</p>
                 <input
                   type='text'
-                  className='border-2 border-gray-200 hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
+                  className={`border-2 ${
+                    emptyFields.includes('field1')
+                      ? 'border-red-300'
+                      : 'border-gray-200'
+                  } hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1`}
                   placeholder='Title'
                   onChange={(e) => setTitle(e.target.value)}
                   value={title}
@@ -336,7 +302,9 @@ const DesktopForm = ({
                   styles={{
                     control: (baseStyles, state) => ({
                       ...baseStyles,
-                      borderColor: 'rgb(229 231 235)',
+                      borderColor: emptyFields.includes('field3')
+                        ? 'border-red-300'
+                        : 'rgb(229 231 235)',
                       borderWidth: 2,
                       '&:hover': {
                         borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
@@ -351,7 +319,13 @@ const DesktopForm = ({
                 />
 
                 <p className='text-stone-800 mt-2'>URL</p>
-                <div className='flex items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2'>
+                <div
+                  className={`flex items-center border-2 rounded mt-1 ${
+                    emptyFields.includes('field2')
+                      ? 'border-red-300'
+                      : 'border-gray-200'
+                  } hover:border-gray-300 p-2`}
+                >
                   <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
                   <input
                     className='bg-white outline outline-0'
