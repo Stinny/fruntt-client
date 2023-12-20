@@ -220,7 +220,9 @@ const SellerPro = ({
               ? currentUser?.sellerProfile.numberOfSales
               : '0'}{' '}
           </p>
-          <p className='text-md'>sales</p>
+          <p className='text-md'>
+            {currentUser?.sellerProfile?.numberOfSales == 1 ? 'sale' : 'sales'}
+          </p>
         </div>
 
         <div className='flex flex-col w-3/12'>
