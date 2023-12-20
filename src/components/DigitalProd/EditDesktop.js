@@ -241,43 +241,6 @@ const EditDesktop = ({
               </div>
               <div className='flex justify-between w-full mt-2'>
                 <div className='flex flex-col w-6/12'>
-                  {/* <p className='text-stone-800'>Type</p>
-                  <Select
-                    options={typeOptions}
-                    onChange={handleType}
-                    value={formattedTypeValue}
-                    menuPortalTarget={document.body}
-                    menuPosition={'fixed'}
-                    isSearchable={false}
-                    styles={{
-                      control: (baseStyles, state) => ({
-                        ...baseStyles,
-                        borderColor: 'rgb(229 231 235)',
-                        borderWidth: 2,
-                        '&:hover': {
-                          borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
-                        },
-                        boxShadow: 'none',
-                        zIndex: 99999,
-                        position: 'relative',
-                      }),
-                      menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
-                    }}
-                    className='mt-1'
-                  /> */}
-                  {/* <select
-                    onChange={(e) => setDigitalType(e.target.value)}
-                    className='w-full h-14 rounded p-2 mt-1'
-                    value={digitalType}
-                  >
-                    <option value='video'>Video Course</option>
-                    <option value='art'>Art</option>
-                    <option value='ebook'>E-Book</option>
-                    <option value='audio'>Audio</option>
-                    <option value='template'>Template</option>
-                    <option value='other'>Other Digital Media</option>
-                  </select> */}
-
                   <p className='text-stone-800 mt-2'>Title</p>
                   <input
                     type='text'

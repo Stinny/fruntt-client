@@ -76,7 +76,7 @@ const AddDigitalProd = () => {
     //if request is success
     //send request to create product
 
-    if (!title || !digitalType || !url) {
+    if (!title || !url) {
       setError('Please fill out all fields to complete your product');
       setAddingProduct(false);
       return;
@@ -164,7 +164,7 @@ const AddDigitalProd = () => {
 
   const styles = isMobile
     ? 'w-full mx-auto h-fit bg-gray-50 p-2 mt-16'
-    : 'w-9/12 mx-auto h-screen bg-gray-50 p-10 overflow-y-scroll';
+    : 'w-10/12 mx-auto h-screen bg-gray-50 p-20 overflow-y-scroll';
 
   return (
     <>
