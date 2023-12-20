@@ -56,7 +56,7 @@ const EditItem = () => {
 
   const styles = isMobile
     ? 'w-full mx-auto h-screen p-2 overflow-y-scroll bg-gray-50'
-    : 'w-9/12 mx-auto h-screen p-10 overflow-y-scroll bg-gray-50';
+    : 'w-10/12 mx-auto h-screen p-20 overflow-y-scroll bg-gray-50';
 
   return (
     <>
