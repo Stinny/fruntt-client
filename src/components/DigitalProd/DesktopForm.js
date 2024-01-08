@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { HiOutlineTemplate } from 'react-icons/hi';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -87,8 +88,12 @@ const DesktopForm = ({
 
   return (
     <div className='w-full'>
-      <div className='flex justify-between'>
-        <h2 className='text-3xl font-medium'>New Template</h2>
+      <div className='flex justify-between items-center mb-2'>
+        <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
+          <HiOutlineTemplate className='text-white text-xl' />
+          <p className='text-sm text-white ml-2'>New Template</p>
+        </div>
+
         <FormControlLabel
           label='Publish to store'
           control={
@@ -102,7 +107,7 @@ const DesktopForm = ({
 
         <div className='flex'>
           <button
-            className='w-32 h-10 rounded border-red-400 text-red-400 border-2 mr-2 hover:text-white hover:bg-red-400 text-sm'
+            className='w-32 h-10 rounded border-red-400 text-red-400 border-2 mr-2 hover:text-white hover:bg-red-400 text-sm focus:border-red-400'
             onClick={handleCancel}
             type='button'
           >
@@ -162,8 +167,8 @@ const DesktopForm = ({
                   className={`border-2 ${
                     emptyFields.includes('field1')
                       ? 'border-red-300'
-                      : 'border-gray-200'
-                  } hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1`}
+                      : 'border-gray-100'
+                  } hover:border-gray-200 bg-gray-100 hover:bg-gray-200 w-full rounded p-2 outline outline-0  mt-1`}
                   placeholder='Title'
                   onChange={(e) => setTitle(e.target.value)}
                   value={title}
@@ -176,7 +181,7 @@ const DesktopForm = ({
                 <p className='text-stone-800 mt-2'>Summary (optional)</p>
                 <textarea
                   type='text'
-                  className='border-2 border-gray-200 hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
+                  className='border-2 border-gray-100 hover:border-gray-200 hover:bg-gray-200 w-full rounded p-2 outline outline-0 bg-gray-100 mt-1'
                   placeholder='Summary'
                   onChange={(e) => setDescription(e.target.value)}
                   value={description}
@@ -195,11 +200,15 @@ const DesktopForm = ({
                   </div>
                   <input
                     type='number'
-                    className='border-2 border-gray-200 hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
+                    className={`border-2 ${
+                      emptyFields.includes('field4')
+                        ? 'border-red-300'
+                        : 'border-gray-100'
+                    } hover:border-gray-200 hover:bg-gray-200 w-full rounded p-2 outline outline-0 bg-gray-100 mt-1`}
                     placeholder={payChoice ? '$9+' : '$9'}
+                    value={price}
                     step={1}
                     onChange={(e) => setPrice(e.target.value)}
-                    value={price}
                   />
                 </div>
                 {payChoice ? (
@@ -242,7 +251,7 @@ const DesktopForm = ({
 
                         <input
                           type='number'
-                          className='border-2 border-gray-200 hover:border-gray-300 w-11/12 rounded p-2 outline outline-0 bg-white mt-1'
+                          className='border-2 border-gray-100 hover:border-gray-200 hover:bg-gray-200 w-11/12 rounded p-2 outline outline-0 bg-gray-100 mt-1'
                           step={1}
                           placeholder='$9+'
                           value={price}
@@ -263,7 +272,7 @@ const DesktopForm = ({
                           <p className='text-xl font-medium'>$</p>
                         </div>
                         <input
-                          className='border-2 text-gray-600 border-gray-200 hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
+                          className='border-2 text-gray-600 border-gray-100 hover:border-gray-200 hover:bg-gray-200 w-full rounded p-2 outline outline-0 bg-gray-100 mt-1'
                           onChange={(e) => setSuggestedPrice(e.target.value)}
                           value={suggestedPrice}
                           placeholder='$9+'
@@ -323,12 +332,12 @@ const DesktopForm = ({
                   className={`flex items-center border-2 rounded mt-1 ${
                     emptyFields.includes('field2')
                       ? 'border-red-300'
-                      : 'border-gray-200'
-                  } hover:border-gray-300 p-2`}
+                      : 'border-gray-100'
+                  } hover:border-gray-200 hover:bg-gray-200 bg-gray-100 p-2`}
                 >
                   <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
                   <input
-                    className='bg-white outline outline-0'
+                    className='bg-gray-100 hover:bg-gray-200 outline outline-0'
                     placeholder='TemplateName'
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
@@ -341,7 +350,7 @@ const DesktopForm = ({
             <ReactQuill
               value={info}
               onChange={setInfo}
-              className='h-72'
+              className='h-72 bg-gray-100'
               placeholder='Start typing description here...'
             />
           </form>
@@ -367,7 +376,7 @@ const DesktopForm = ({
               </Tooltip>
             </div>
             <p className='text-stone-800 font-medium mb-4'>
-              Add any files and content you want to include in the digital
+              Add any files and content you want to include in the template
               purchase. All content and files are available to customers
               immediately after purchase.
             </p>

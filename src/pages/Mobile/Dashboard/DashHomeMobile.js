@@ -211,7 +211,7 @@ const DashHomeMobile = ({
                   size='small'
                 />
               }
-              label='Add a product'
+              label='Add a template'
             />
 
             <FormControlLabel

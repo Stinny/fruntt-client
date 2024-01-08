@@ -59,10 +59,10 @@ const DesktopOrders = ({ orders }) => {
 
   return orders.length > 0 ? (
     <div>
-      <div className='w-full flex justify-between'>
+      <div className='w-full flex justify-between items-center'>
         <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
           <MdShoppingCart className='text-white text-xl' />
-          <p className='text-xl text-white ml-2'>Orders</p>
+          <p className='text-md text-white ml-2'>Orders</p>
         </div>
         <div className='flex justify-between'>
           <input
@@ -74,7 +74,7 @@ const DesktopOrders = ({ orders }) => {
           </button>
         </div>
 
-        <p className='text-stone-800 font-medium text-lg'>
+        <p className='text-stone-800 font-medium text-sm'>
           {orders.length > 1
             ? `${orders.length} orders`
             : `${orders.length} order`}
@@ -117,7 +117,7 @@ const DesktopOrders = ({ orders }) => {
                   )}
                 </td>
 
-                <td>
+                <td className='p-1'>
                   <div className='rounded p-1 bg-gray-100 flex items-center justify-center'>
                     ${order?.total?.toFixed(2)}
                   </div>

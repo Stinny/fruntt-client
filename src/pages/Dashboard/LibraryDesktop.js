@@ -37,11 +37,11 @@ const LibraryDesktop = ({ orders }) => {
         <div className='w-full flex justify-between items-center'>
           <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
             <BsBookmarkHeart className='text-white text-xl' />
-            <p className='text-xl text-white ml-2'>Library</p>
+            <p className='text-md text-white ml-2'>Library</p>
           </div>
 
           <div className='flex items-center'>
-            <p className='text-stone-800 font-medium text-lg'>
+            <p className='text-stone-800 font-medium text-sm'>
               {orders.length > 1
                 ? `${orders.length} purchases`
                 : `${orders.length} purchase`}
@@ -52,12 +52,14 @@ const LibraryDesktop = ({ orders }) => {
           {currentOrders.map((order) => (
             <Link to={`/order/${order?._id}`}>
               <div className='border rounded-md bg-white drop-shadow-md relative flex mt-4'>
-                <img
-                  src={order?.item?.coverImage?.url}
-                  className='rounded-tl rounded-bl w-2/12 h-32 object-cover'
-                />
+                <div className='w-2/12 h-full p-2'>
+                  <img
+                    src={order?.item?.coverImage?.url}
+                    className='rounded-md w-full h-32 object-cover'
+                  />
+                </div>
 
-                <div className='w-10/12 border-l pl-4 flex flex-col p-2'>
+                <div className='w-10/12 pl-4 flex flex-col p-2'>
                   <p className='text-xl font-medium mb-2'>
                     {order?.item?.title}
                   </p>
@@ -77,38 +79,6 @@ const LibraryDesktop = ({ orders }) => {
                       <p className='ml-1 text-sm'>{order?.item?.userName}</p>
                     </a>
                   </div>
-
-                  {/* {order?.item?.digitalType === 'video' ? (
-                    <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                      <p className='text-sm'>Video Course</p>
-                      <MdOutlineVideoLibrary className='ml-2 text-md' />
-                    </div>
-                  ) : order?.item?.digitalType === 'ebook' ? (
-                    <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                      <p className='text-sm'>E-Book</p>
-                      <HiOutlineBookOpen className='ml-2 text-md' />
-                    </div>
-                  ) : order?.item?.digitalType === 'audio' ? (
-                    <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                      <p className='text-sm'>Audio</p>
-                      <BsFillMicFill className='ml-2 text-md' />
-                    </div>
-                  ) : order?.item?.digitalType === 'template' ? (
-                    <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                      <p className='text-sm'>Template</p>
-                      <HiOutlineTemplate className='ml-2 text-md' />
-                    </div>
-                  ) : order?.item?.digitalType === 'other' ? (
-                    <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                      <p className='text-sm'>Digital Media</p>
-                      <MdOutlinePermMedia className='ml-2 text-md' />
-                    </div>
-                  ) : (
-                    <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                      <p className='text-sm'>Art</p>
-                      <BsPalette className='ml-2 text-md' />
-                    </div>
-                  )} */}
                 </div>
               </div>
             </Link>

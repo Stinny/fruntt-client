@@ -21,6 +21,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
+import { HiOutlineTemplate } from 'react-icons/hi';
 
 const EditDesktop = ({
   handleDelete,
@@ -177,8 +178,11 @@ const EditDesktop = ({
         </div>
       </Modal>
       <div className='w-full'>
-        <div className='mb-1 flex justify-between p-2'>
-          <h2 className='text-3xl font-medium'>Edit your template</h2>
+        <div className='mb-2 flex justify-between items-center'>
+          <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
+            <HiOutlineTemplate className='text-white text-xl' />
+            <p className='text-md text-white ml-2'>Edit Template</p>
+          </div>
 
           <FormControlLabel
             label='Publish to store'

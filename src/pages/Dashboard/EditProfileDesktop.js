@@ -111,7 +111,11 @@ const EditProfileDesktop = ({ user, refetch }) => {
                 onChange={(e) => setName(e.target.value)}
                 value={name}
                 placeholder='Name'
+                maxLength={35}
               />
+            </div>
+            <div className='w-full flex justify-end'>
+              <p className='text-sm text-gray-400'>{name.length}/35</p>
             </div>
             <p className='font-medium mt-2'>Bio</p>
             <textarea

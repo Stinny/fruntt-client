@@ -80,41 +80,11 @@ const MobileDigitalDetail = ({ order }) => {
             />
             <p className='text-md text-stone-800'>{order?.country?.label}</p>
           </div>
-          {/* <p className='text-stone-800 font-medium mt-4 mb-2 text-sm'>Type</p>
-          {order?.item?.digitalType === 'video' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-10 mt-2'>
-              <p>Video Course</p>
-              <MdOutlineVideoLibrary className='ml-2 text-2xl' />
-            </div>
-          ) : order?.item?.digitalType === 'ebook' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-10'>
-              <p>E-Book</p>
-              <HiOutlineBookOpen className='ml-2 text-2xl' />
-            </div>
-          ) : order?.item?.digitalType === 'audio' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-10'>
-              <p>Audio</p>
-              <BsFillMicFill className='ml-2 text-2xl' />
-            </div>
-          ) : order?.item?.digitalType === 'other' ? (
-            <div className='flex items-center justify-center border-2 border-slate-800 rounded w-5/12 h-10'>
-              <p>Digital Media</p>
-              <MdOutlinePermMedia className='ml-2 text-2xl' />
-            </div>
-          ) : (
-            <div className='flex items-center justify-center border-2 border-slate-800  rounded w-5/12 h-10'>
-              <p>Art</p>
-              <BsPalette className='ml-2 text-2xl' />
-            </div>
-          )} */}
           <p className='text-stone-800 font-medium mt-4 text-sm'>Template</p>
           <p className='text-stone-800 font-medium text-lg'>
             {order?.item?.title}
           </p>
-          <img
-            src={order?.item?.coverImage?.url}
-            className='w-full rounded mt-4'
-          />
+
           <div className='mt-2'>
             {order?.reviewed ? (
               <>
@@ -134,7 +104,7 @@ const MobileDigitalDetail = ({ order }) => {
                 </div>
               </>
             ) : (
-              <div className='w-full h-32 rounded bg-gray-100 flex items-center justify-center mt-1'>
+              <div className='w-full h-32 rounded bg-gray-100 flex items-center justify-center mt-1 text-sm'>
                 <p>No review</p>
               </div>
             )}

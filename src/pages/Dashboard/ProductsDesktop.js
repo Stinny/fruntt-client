@@ -40,26 +40,23 @@ const ProductsDesktop = ({ product }) => {
 
   const noItem = (
     <div className='h-full border rounded bg-white drop-shadow-lg w-full flex flex-col justify-center items-center'>
-      <h2 className='text-2xl font-medium text-stone-800'>
-        You have no products
-      </h2>
+      <p className='text-md font-medium text-stone-800'>No templates</p>
 
-      <div className='flex w-11/12 mt-6 items-center'>
-        <Link to='/dashboard/item/digital' className='w-full mx-auto'>
-          <div className='w-32 mx-auto flex justify-center items-center border-2 rounded border-stone-800 p-2 h-10 hover:bg-stone-800 hover:text-white pl-8 pr-8 mt-2'>
-            <p className='font-medium text-md text-center'>+ Add</p>
-          </div>
-        </Link>
-      </div>
+      <Link
+        to='/dashboard/item/digital'
+        className='border-2 text-sm rounded border-stone-800 text-stone-800 w-36 h-8 hover:bg-stone-800 hover:text-white mt-6 flex items-center justify-center'
+      >
+        + Add template
+      </Link>
     </div>
   );
 
   return product.length ? (
-    <div className='w-full p-10'>
+    <div className='w-full'>
       <div className='w-full flex justify-between items-center'>
         <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
           <HiOutlineTemplate className='text-white text-xl' />
-          <p className='text-xl text-white ml-2'>Templates</p>
+          <p className='text-md text-white ml-2'>Templates</p>
         </div>
 
         <div className='flex items-center'>
@@ -114,38 +111,7 @@ const ProductsDesktop = ({ product }) => {
                     : `${prod.numberOfSales} sales`}{' '}
                 </p>
               </div>
-              {/* 
-              {prod?.digitalType === 'video' ? (
-                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>Video Course</p>
-                  <MdOutlineVideoLibrary className='ml-2 text-md' />
-                </div>
-              ) : prod?.digitalType === 'ebook' ? (
-                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>E-Book</p>
-                  <HiOutlineBookOpen className='ml-2 text-md' />
-                </div>
-              ) : prod?.digitalType === 'audio' ? (
-                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>Audio</p>
-                  <BsFillMicFill className='ml-2 text-md' />
-                </div>
-              ) : prod?.digitalType === 'template' ? (
-                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>Template</p>
-                  <HiOutlineTemplate className='ml-2 text-md' />
-                </div>
-              ) : prod?.digitalType === 'other' ? (
-                <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>Digital Media</p>
-                  <MdOutlinePermMedia className='ml-2 text-md' />
-                </div>
-              ) : (
-                <div className='flex items-center justify-center bg-gray-100 text-stone-800  rounded w-36 h-8 absolute top-0 right-0 mr-2 mt-2'>
-                  <p className='text-sm'>Art</p>
-                  <BsPalette className='ml-2 text-md' />
-                </div>
-              )} */}
+
               <div className='flex mt-4'>
                 <FormControlLabel
                   label='Published'
@@ -209,7 +175,7 @@ const ProductsDesktop = ({ product }) => {
       )}
     </div>
   ) : (
-    <div className='p-10 h-full'>{noItem}</div>
+    <div className='h-full'>{noItem}</div>
   );
 };
 

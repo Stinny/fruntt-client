@@ -135,7 +135,7 @@ const Login = () => {
           <input
             type='email'
             placeholder='Email'
-            className='border-2 border-gray-200 hover:border-gray-300 w-full outline outline-0 rounded mt-4 p-2'
+            className='border-2 border-gray-100 bg-gray-100 text-stone-800 hover:border-gray-200 hover:bg-gray-200 w-full outline outline-0 rounded mt-4 p-2'
             autoFocus
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -143,13 +143,13 @@ const Login = () => {
           <input
             type='password'
             placeholder='Password'
-            className='border-2 border-gray-200 hover:border-gray-300 outline-0 outline w-full rounded mt-4 p-2'
+            className='border-2 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 outline-0 outline w-full rounded mt-4 p-2'
             onChange={(e) => setPassword(e.target.value)}
           />
 
           <button
             disabled={isLoading}
-            className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-lg mt-4'
+            className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-sm mt-4'
           >
             Go to my store
           </button>
@@ -159,7 +159,7 @@ const Login = () => {
               backgroundColor: 'rgb(15, 20, 25)',
               borderColor: 'rgb(15, 20, 25)',
             }}
-            className='w-full h-10 rounded flex items-center justify-center text-white mt-2'
+            className='w-full h-10 text-sm rounded flex items-center justify-center text-white mt-2'
             type='button'
             onClick={handleTwitterLogin}
           >

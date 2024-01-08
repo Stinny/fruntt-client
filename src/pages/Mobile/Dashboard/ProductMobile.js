@@ -33,19 +33,18 @@ const ProductMobile = ({ product }) => {
 
   const noItem = (
     <div className='h-screen mx-auto border drop-shadow-md bg-white rounded w-11/12 flex flex-col justify-center items-center mt-4'>
-      <p className='text-xl font-medium'>You have not added a product yet!</p>
+      <p className='text-md font-medium'>No templates</p>
 
-      <div className='flex w-11/12 mt-4 items-center'>
-        <Link to='/dashboard/item/digital' className='w-full mx-auto'>
-          <div className='w-52 mx-auto flex justify-center items-center border-2 rounded border-stone-800 p-2 h-14 hover:bg-stone-800 hover:text-white pl-8 pr-8 mt-2'>
-            <p className='font-medium text-lg text-center'>+ Add product</p>
-          </div>
-        </Link>
-      </div>
+      <Link
+        to='/dashboard/item/digital'
+        className='border-2 text-sm rounded border-stone-800 text-stone-800 w-36 h-8 hover:bg-stone-800 hover:text-white mt-6 flex items-center justify-center'
+      >
+        + Add template
+      </Link>
     </div>
   );
 
-  return product ? (
+  return product.length ? (
     <div className='w-full p-2'>
       <div className='w-full flex justify-between items-center'>
         <div className='flex items-center justify-center bg-stone-800 rounded p-2'>

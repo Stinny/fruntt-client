@@ -92,7 +92,7 @@ const AddDigitalProd = () => {
     setEmptyFields(emptyFieldList);
 
     if (!title || !url) {
-      setError('Please fill out all fields to complete your product');
+      setError('Please fill out all required fields to complete your template');
       setAddingProduct(false);
       return;
     }
@@ -180,7 +180,7 @@ const AddDigitalProd = () => {
 
   const styles = isMobile
     ? 'w-full mx-auto h-fit bg-gray-50 p-2 mt-16'
-    : 'w-10/12 mx-auto h-screen bg-gray-50 p-20 overflow-y-scroll';
+    : 'w-10/12 mx-auto h-screen bg-gray-50 pt-10 pb-10 pl-32 pr-32 overflow-y-scroll';
 
   return (
     <>
