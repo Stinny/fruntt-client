@@ -45,11 +45,8 @@ const CoverImage = ({
   } else if (isSuccess) {
     content = coverImage?.url ? (
       <>
-        <p className='text-stone-800 mb-1'>Current cover image</p>
-        <img
-          src={coverImage?.url}
-          className='rounded w-10/12 h-32 object-cover'
-        />
+        <p className='text-stone-800 mb-1 text-sm'>Current cover image</p>
+        <img src={coverImage?.url} className='rounded w-72 object-fill' />
         <button
           type='button'
           onClick={(e) =>
@@ -69,8 +66,9 @@ const CoverImage = ({
         <p className='text-lg font-medium text-slate-800 text-center h-8'>
           Upload a new cover image
         </p>
-        <p className='text-gray-400 font-medium text-center'>
-          This will be the image your customers will see
+        <p className='text-gray-400 font-medium text-center text-sm'>
+          This will be the image your customers will see (recommended size
+          1280x720)
         </p>
 
         <FilePond

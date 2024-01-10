@@ -143,7 +143,7 @@ const Login = () => {
           <input
             type='password'
             placeholder='Password'
-            className='border-2 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 outline-0 outline w-full rounded mt-4 p-2'
+            className='border-2 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 outline-0 outline w-full rounded mt-2 p-2'
             onChange={(e) => setPassword(e.target.value)}
           />
 

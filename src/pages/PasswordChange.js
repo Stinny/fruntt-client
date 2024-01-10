@@ -65,7 +65,7 @@ const PasswordChange = () => {
               >
                 <input
                   type='password'
-                  className='w-72 border-2 text-sm border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-300 rounded p-2'
+                  className='w-72 border-2 text-sm border-gray-100 hover:border-gray-200 hover:bg-gray-200 bg-gray-100 outline outline-0  rounded p-2'
                   placeholder='Old password'
                   onChange={(e) => setOldPass(e.target.value)}
                   value={oldPass}
@@ -73,7 +73,7 @@ const PasswordChange = () => {
 
                 <input
                   type='password'
-                  className='w-72 border-2 text-sm border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-300 rounded p-2 mt-2'
+                  className='w-72 border-2 text-sm border-gray-100 hover:border-gray-200 hover:bg-gray-200 bg-gray-100 outline outline-0 rounded p-2 mt-2'
                   placeholder='New password'
                   onChange={(e) => setNewPass(e.target.value)}
                   value={newPass}
@@ -81,7 +81,7 @@ const PasswordChange = () => {
                 <button
                   type='submit'
                   disabled={changingPassword}
-                  className='w-72 h-10 border-2 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 rounded mt-2'
+                  className='w-72 h-10 border-2 border-stone-800 text-stone-800 text-sm hover:text-white hover:bg-stone-800 rounded mt-2'
                 >
                   Change Password
                 </button>

@@ -289,8 +289,9 @@ const DesktopForm = ({
                 <p className='text-lg font-medium text-slate-800 text-center'>
                   Upload a cover image
                 </p>
-                <p className='text-gray-400 font-medium text-center'>
-                  This will be the image your customers will see
+                <p className='text-gray-400 font-medium text-center text-sm'>
+                  This will be the image your customers will see (recommended
+                  size 1280x720)
                 </p>
 
                 <FilePond
@@ -313,11 +314,14 @@ const DesktopForm = ({
                       ...baseStyles,
                       borderColor: emptyFields.includes('field3')
                         ? 'border-red-300'
-                        : 'rgb(229 231 235)',
+                        : 'rgb(243 244 246)',
+                      borderRadius: 6,
                       borderWidth: 2,
                       '&:hover': {
-                        borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                        borderColor: 'rgb(229 231 235)', // Keep the same border color on hover
+                        backgroundColor: 'rgb(229 231 235)',
                       },
+                      backgroundColor: 'rgb(243 244 246)',
                       boxShadow: 'none',
                       zIndex: 99999,
                       position: 'relative',
@@ -350,7 +354,7 @@ const DesktopForm = ({
             <ReactQuill
               value={info}
               onChange={setInfo}
-              className='h-72 bg-gray-100'
+              className='h-80'
               placeholder='Start typing description here...'
             />
           </form>
@@ -441,10 +445,12 @@ const DesktopForm = ({
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
-                  borderColor: 'rgb(229 231 235)',
+                  borderColor: 'rgb(243 244 246)',
+                  backgroundColor: 'rgb(243 244 246)',
                   borderWidth: 2,
                   '&:hover': {
-                    borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                    borderColor: 'rgb(229 231 235)', // Keep the same border color on hover
+                    backgroundColor: 'rgb(229 231 235)',
                   },
                   boxShadow: 'none',
                   zIndex: 99999,
