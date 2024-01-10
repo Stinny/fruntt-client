@@ -35,7 +35,7 @@ const Library = () => {
 
   const styles = isMobile
     ? 'mx-auto w-full p-2 bg-gray-50 h-screen mt-14'
-    : 'mx-auto w-9/12 p-10 bg-gray-50 h-screen';
+    : 'mx-auto w-10/12 pt-10 pb-10 pl-32 pr-32 bg-gray-50 overflow-y-scroll';
 
   return (
     <>

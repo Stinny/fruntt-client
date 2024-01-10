@@ -21,6 +21,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
+import { HiOutlineTemplate } from 'react-icons/hi';
 
 const EditDesktop = ({
   handleDelete,
@@ -177,8 +178,11 @@ const EditDesktop = ({
         </div>
       </Modal>
       <div className='w-full'>
-        <div className='mb-1 flex justify-between p-2'>
-          <h2 className='text-3xl font-medium'>Edit your template</h2>
+        <div className='mb-2 flex justify-between items-center'>
+          <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
+            <HiOutlineTemplate className='text-white text-xl' />
+            <p className='text-md text-white ml-2'>Edit Template</p>
+          </div>
 
           <FormControlLabel
             label='Publish to store'
@@ -244,7 +248,7 @@ const EditDesktop = ({
                   <p className='text-stone-800 mt-2'>Title</p>
                   <input
                     type='text'
-                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
+                    className='border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 w-full rounded p-2 outline outline-0 mt-1'
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     maxLength={50}
@@ -256,7 +260,7 @@ const EditDesktop = ({
                   <p className='text-stone-800 mt-2'>Summary (optional)</p>
                   <textarea
                     type='text'
-                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
+                    className='border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 w-full rounded p-2 outline outline-0  mt-1'
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     maxLength={75}
@@ -276,7 +280,7 @@ const EditDesktop = ({
                       type='number'
                       step={1}
                       min={0}
-                      className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white mt-1'
+                      className='border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 w-full rounded p-2 outline outline-0 mt-1'
                       value={price}
                       onChange={(e) => setPrice(e.target.value)}
                     />
@@ -322,7 +326,7 @@ const EditDesktop = ({
                           </div>
                           <input
                             type='number'
-                            className='border-2 border-slate-200 w-11/12 rounded p-2 outline outline-0 bg-white'
+                            className='border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 w-11/12 rounded p-2 outline outline-0'
                             step={1}
                             placeholder='$9+'
                             value={price}
@@ -343,7 +347,7 @@ const EditDesktop = ({
                             <p className='text-xl font-medium'>$</p>
                           </div>
                           <input
-                            className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                            className='border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 w-full rounded p-2 outline outline-0'
                             onChange={(e) => setSuggestedPrice(e.target.value)}
                             placeholder='$9+'
                             value={suggestedPrice}
@@ -375,10 +379,12 @@ const EditDesktop = ({
                     styles={{
                       control: (baseStyles, state) => ({
                         ...baseStyles,
-                        borderColor: 'rgb(229 231 235)',
+                        borderColor: 'rgb(243 244 246)',
+                        backgroundColor: 'rgb(243 244 246)',
                         borderWidth: 2,
                         '&:hover': {
-                          borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                          borderColor: 'rgb(229 231 235)', // Keep the same border color on hover
+                          backgroundColor: 'rgb(229 231 235)',
                         },
                         boxShadow: 'none',
                         zIndex: 99999,
@@ -399,10 +405,10 @@ const EditDesktop = ({
                   </select> */}
 
                   <p className='text-stone-800 mt-2'>URL</p>
-                  <div className='flex items-center border-2 p-2 rounded border-gray-200 hover:border-gray-300 mt-1'>
+                  <div className='flex items-center border-2 p-2 rounded border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 mt-1'>
                     <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
                     <input
-                      className='bg-white outline outline-0'
+                      className='outline outline-0 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200'
                       placeholder='TemplateName'
                       value={url}
                       onChange={(e) => setUrl(e.target.value)}
@@ -515,10 +521,12 @@ const EditDesktop = ({
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
-                    borderColor: 'rgb(229 231 235)',
+                    borderColor: 'rgb(243 244 246)',
+                    backgroundColor: 'rgb(243 244 246)',
                     borderWidth: 2,
                     '&:hover': {
-                      borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                      borderColor: 'rgb(229 231 235)', // Keep the same border color on hover
+                      backgroundColor: 'rgb(229 231 235)',
                     },
                     boxShadow: 'none',
                     zIndex: 99999,

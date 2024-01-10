@@ -98,6 +98,11 @@ html {
   }
 }
 
+.filepond--drop-label {
+  background-color: rgb(243 244 246) !important;
+  border-radius: 10px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

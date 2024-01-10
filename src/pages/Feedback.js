@@ -60,12 +60,12 @@ const Feedback = () => {
         {isMobile ? (
           <FeedbackMobile handleAddFeedBack={handleAddFeedBack} />
         ) : (
-          <div className='w-9/12 mx-auto h-screen p-10 bg-gray-50'>
+          <div className='w-10/12 mx-auto h-screen pt-10 pb-10 pl-32 pr-32 bg-gray-50'>
             <div className='flex justify-between items-center'>
               <div className='flex flex-col'>
-                <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+                <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
                   <VscFeedback className='text-white text-xl' />
-                  <p className='text-xl text-white ml-2'>Feedback</p>
+                  <p className='text-md text-white ml-2'>Feedback</p>
                 </div>
               </div>
             </div>

@@ -319,7 +319,7 @@ const MobileForm = ({
               <p className='text-md'>Content</p>
             </div>
             <p className='text-stone-800 text-sm mb-4'>
-              Add any files and content you want to include in the digital
+              Add any files and content you want to include in the template
               purchase. All content and files are available to customers
               immediately after purchase.
             </p>

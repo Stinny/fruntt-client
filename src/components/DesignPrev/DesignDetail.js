@@ -372,16 +372,16 @@ const DesignDetail = ({
                   >
                     <div className='h-60'></div>
                     <p
-                      className='font-medium text-sm text-stone-800'
+                      className='font-medium text-md text-stone-800'
                       style={{ color: pageText }}
                     >
-                      This store is empty
+                      Your store is empty
                     </p>
                     <Link
-                      to='/dashboard/item'
-                      className='border-2 rounded border-stone-800 text-stone-800 w-36 h-10 hover:bg-stone-800 hover:text-white mt-2 flex items-center justify-center'
+                      to='/dashboard/item/digital'
+                      className='border-2 text-sm rounded border-stone-800 text-stone-800 w-36 h-8 hover:bg-stone-800 hover:text-white mt-6 flex items-center justify-center'
                     >
-                      + Add product
+                      + Add template
                     </Link>
                     <div className='h-60'></div>
                   </div>

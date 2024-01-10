@@ -184,7 +184,7 @@ const Register = () => {
             <input
               type='email'
               placeholder='Email'
-              className='border-2 border-gray-200 hover:border-gray-300 focus:border-gray-300 outline outline-0 w-full rounded p-2 mt-2'
+              className='border-2 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 outline outline-0 w-full rounded-md p-2 mt-2'
               onChange={(e) => setEmail(e.target.value)}
               autoFocus
             />
@@ -192,29 +192,13 @@ const Register = () => {
             <input
               type='password'
               placeholder='Password'
-              className='border-2 border-gray-200 outline outline-0 hover:border-gray-300 focus:border-gray-300 w-full rounded p-2 mt-2'
+              className='border-2  outline outline-0 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 w-full rounded-md p-2 mt-2'
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            {/* <div className='w-full mt-2'>
-              <p className='font-medium border-b'>
-                Give your storefront a name
-              </p>
-            </div> */}
-
-            {/* <div className='flex w-full '>
+            <div className='flex w-full items-center border-2 rounded-md mt-2 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 p-2'>
               <input
-                type='text'
-                placeholder='Page name'
-                className='w-5/6 border-2 h-10  p-2 mt-2'
-                onChange={(e) => setStoreName(e.target.value)}
-              />
-              <span className='font-medium text-xl mt-6'>.fruntt.com</span>
-            </div> */}
-
-            <div className='flex w-full items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2'>
-              <input
-                className='bg-white outline outline-0'
+                className=' outline outline-0 bg-gray-100 hover:bg-gray-200 h-full'
                 placeholder='Store'
                 onChange={(e) => setStoreName(e.target.value)}
               />
@@ -224,7 +208,7 @@ const Register = () => {
             <button
               type='submit'
               disabled={isLoading}
-              className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-lg mt-4'
+              className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded-md text-sm mt-4'
             >
               Open Store
             </button>
@@ -234,7 +218,7 @@ const Register = () => {
                 backgroundColor: 'rgb(15, 20, 25)',
                 borderColor: 'rgb(15, 20, 25)',
               }}
-              className='w-full h-10 mt-2 rounded flex items-center justify-center text-white'
+              className='w-full h-10 text-sm mt-2 rounded-md flex items-center justify-center text-white'
               type='button'
               onClick={handleTwitterSignup}
             >

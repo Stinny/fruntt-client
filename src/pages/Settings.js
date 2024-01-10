@@ -52,9 +52,9 @@ const Settings = () => {
         ) : (
           <div className='pb-4'>
             <div className='flex justify-between w-full items-center'>
-              <div className='flex items-center justify-center bg-stone-800 rounded p-2'>
+              <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
                 <BsGear className='text-white text-xl' />
-                <p className='text-xl text-white ml-2'>Settings</p>
+                <p className='text-md text-white ml-2'>Settings</p>
               </div>
             </div>
           </div>
@@ -93,10 +93,11 @@ const Settings = () => {
 
           <div className='w-full mt-4'>
             <div className='flex flex-col w-full border-b p-2'>
-              <p className='text-lg font-medium'>Payments</p>
+              <p className='text-lg font-medium'>Payments & Payouts</p>
               <p className=' font-medium text-stone-800 mt-1'>
-                You are paid immediately after a successful purchase. You keep
-                99% of what you make after processing fees (2.9% + 30¢ / sale).
+                You are paid immediately after a successful purchase. Sales
+                under $10, you pay $0.50/sale. Sales $10 and over, you pay
+                $1/sale + (2.9% + 30¢ / sale).
               </p>
             </div>
             <Payments refetch={refetch} />
@@ -107,7 +108,7 @@ const Settings = () => {
               <p className='text-lg font-medium'>Delete account</p>
               <p className='text-stone-800 font-medium mt-1'>
                 Deleting your account will delete all data from our servers
-                (pages, orders, products, etc..)
+                (store, orders, templates, etc..)
               </p>
             </div>
             <DeleteAccount user={user} refetch={refetch} />
@@ -118,7 +119,7 @@ const Settings = () => {
   }
   const styles = isMobile
     ? 'w-full mx-auto p-2 bg-gray-50 h-fit mt-16'
-    : 'w-10/12 mx-auto p-20 bg-gray-50 h-screen overflow-y-scroll';
+    : 'w-10/12 mx-auto pt-10 pb-10 pl-32 pr-32 bg-gray-50 h-screen overflow-y-scroll';
 
   return (
     <>

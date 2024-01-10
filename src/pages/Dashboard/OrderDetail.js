@@ -36,56 +36,16 @@ const OrderDetail = () => {
     orderId,
   });
 
-  //gets the shipping rates
-  const {
-    data: rates,
-    isLoading: gettingRates,
-    isSuccess: gotRates,
-    refetch: refetchRates,
-  } = useGetShippingRatesQuery({
-    orderId,
-  });
-
-  const [labelModaIsOpen, setLabelModalIsOpen] = useState(false);
-  const [fulfillModalIsOpen, setFulfillModalIsOpen] = useState(false);
-
-  function openLabelModal() {
-    setLabelModalIsOpen(true);
-  }
-
-  function closeLabelModal() {
-    setLabelModalIsOpen(false);
-  }
-
-  function openFulfillModal() {
-    setFulfillModalIsOpen(true);
-  }
-
-  function closeFulfillModal() {
-    setFulfillModalIsOpen(false);
-  }
-
   useEffect(() => {
     refetch();
   }, []);
 
   let content;
-  if (isLoading || gettingRates) {
+  if (isLoading) {
     content = <Spinner />;
-  } else if (isSuccess && gotRates) {
+  } else if (isSuccess) {
     content = isMobile ? (
-      <OrderDetailMobile
-        order={order}
-        closeFulfillModal={closeFulfillModal}
-        openFulfillModal={openFulfillModal}
-        closeLabelModal={closeLabelModal}
-        openLabelModal={openLabelModal}
-        rates={rates}
-        refetch={refetch}
-        refetchRates={refetchRates}
-        labelModaIsOpen={labelModaIsOpen}
-        fulfillModalIsOpen={fulfillModalIsOpen}
-      />
+      <OrderDetailMobile order={order} refetch={refetch} />
     ) : (
       <DigitalDetail order={order} />
     );
@@ -93,7 +53,7 @@ const OrderDetail = () => {
 
   const styles = isMobile
     ? 'w-full mx-auto h-fit p-2 bg-gray-50'
-    : 'w-9/12 mx-auto h-screen p-10 bg-gray-50';
+    : 'w-10/12 mx-auto h-screen p-20 bg-gray-50';
 
   return (
     <>

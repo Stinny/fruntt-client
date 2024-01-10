@@ -119,7 +119,7 @@ const EditDigital = ({ product, refetch }) => {
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
-        toast.success('Product saved!', { style: { color: 'rgb(28 25 23)' } });
+        toast.success('Template saved!', { style: { color: 'rgb(28 25 23)' } });
         refetch();
         navigate('/dashboard/item');
       }
@@ -132,7 +132,7 @@ const EditDigital = ({ product, refetch }) => {
     const deleteItemReq = await deleteProduct(product._id).unwrap();
 
     if (deleteItemReq === 'Item deleted') {
-      toast.error('Product deleted!', { style: { color: 'rgb(28 25 23)' } });
+      toast.error('Template deleted!', { style: { color: 'rgb(28 25 23)' } });
       navigate('/dashboard/item');
     } else {
       setError('There was an error deleting your product');

@@ -45,14 +45,14 @@ const LoginMobile = ({
         <input
           type='email'
           placeholder='Email'
-          className='border-2 text-sm border-gray-200 hover:border-gray-300 outline outline-0 w-full rounded-md mt-4 p-2'
+          className='border-2 text-sm border-gray-100 hover:border-gray-200 bg-gray-100 hover:bg-gray-200 outline outline-0 w-full rounded-md mt-4 p-2'
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type='password'
           placeholder='Password'
-          className='border-2 border-gray-200 text-sm hover:border-gray-300 outline outline-0 w-full rounded-md mt-4 p-2'
+          className='border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 text-sm hover:border-gray-200 outline outline-0 w-full rounded-md mt-4 p-2'
           onChange={(e) => setPassword(e.target.value)}
         />
 

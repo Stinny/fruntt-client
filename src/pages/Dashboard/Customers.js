@@ -41,7 +41,7 @@ const Customers = () => {
 
   const styles = isMobile
     ? 'h-fit w-full p-2 bg-gray-50'
-    : 'h-screen w-10/12 p-20 bg-gray-50 mx-auto';
+    : 'h-screen w-10/12 pt-10 pb-10 pl-32 pr-32 bg-gray-50 mx-auto';
 
   return (
     <>

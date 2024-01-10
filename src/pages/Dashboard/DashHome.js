@@ -379,7 +379,7 @@ const DashHome = () => {
                   disabled
                 />
               }
-              label='Add a product'
+              label='Add a template'
             />
 
             <FormControlLabel
@@ -413,7 +413,7 @@ const DashHome = () => {
 
   const styles = isMobile
     ? 'w-full mx-auto h-fit p-2 bg-gray-50'
-    : 'w-10/12 mx-auto h-screen overflow-y-scroll p-20 bg-gray-50';
+    : 'w-10/12 mx-auto h-screen overflow-y-scroll pt-10 pb-10 pl-32 pr-32 bg-gray-50';
 
   return (
     <>
