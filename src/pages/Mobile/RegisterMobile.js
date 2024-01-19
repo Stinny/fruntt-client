@@ -69,18 +69,18 @@ const RegisterMobile = ({
           <input
             type='email'
             placeholder='Email'
-            className='border-2 border-gray-100  hover:border-gray-200 bg-gray-100 focus:outline text-sm focus:outline-1 hover:bg-gray-200 w-full rounded-md p-2 mt-2'
+            className='border-2 border-gray-100  hover:border-gray-200 bg-gray-100  text-sm outline outline-0 hover:bg-gray-200 w-full rounded-md p-2 mt-2'
             onChange={(e) => setEmail(e.target.value)}
           />
 
           <input
             type='password'
             placeholder='Password'
-            className='border-2 border-gray-100 focus:outline bg-gray-100 focus:outline-1 text-sm focus:outline-gray-400 hover:border-gray-200 hover:bg-gray-200 w-full rounded-md p-2 mt-2'
+            className='border-2 border-gray-100  bg-gray-100 outline outline-0 text-sm focus:outline-gray-400 hover:border-gray-200 hover:bg-gray-200 w-full rounded-md p-2 mt-2'
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <div className='flex w-full items-center border-2 rounded-md mt-1 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 p-2'>
+          <div className='flex w-full items-center border-2 rounded-md mt-1 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 p-2 outline outline-0'>
             <input
               className='bg-gray-100 outline outline-0 text-sm'
               placeholder='Store'

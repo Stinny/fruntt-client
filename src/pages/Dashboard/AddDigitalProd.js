@@ -105,13 +105,17 @@ const AddDigitalProd = () => {
     try {
       if (image.length) {
         const imageToUpload = new FormData();
-        imageToUpload.append('productImages', image[0].file);
+        for (var x = 0; x < image.length; x++) {
+          imageToUpload.append('productImages', image[x]);
+        }
         const imageDataReq = await uploadImageRequest.post(
           '/products/imageupload',
           imageToUpload
         );
         coverPicUrl = imageDataReq.data[0].url;
         coverPicKey = imageDataReq.data[0].key;
+
+        console.log(imageDataReq.data);
 
         if (files.length) {
           const filesToUpload = new FormData();

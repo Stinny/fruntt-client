@@ -59,56 +59,6 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
         </Link>
       </div>
 
-      {/* <div className='w-full rounded bg-white drop-shadow-lg mb-4 grid grid-cols-3 gap-2 p-2'>
-        <button
-          className={filter === 'all' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('all')}
-        >
-          All
-        </button>
-
-        <button
-          className={filter === 'template' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('template')}
-        >
-          Templates <HiOutlineTemplate className='ml-1' />
-        </button>
-
-        <button
-          className={filter === 'ebook' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('ebook')}
-        >
-          E-Books <HiOutlineBookOpen className='ml-1' />
-        </button>
-
-        <button
-          className={filter === 'art' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('art')}
-        >
-          Art <BsPalette className='ml-1' />
-        </button>
-
-        <button
-          className={filter === 'video' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('video')}
-        >
-          Courses <MdOutlineVideoLibrary className='ml-1' />
-        </button>
-
-        <button
-          className={filter === 'other' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('other')}
-        >
-          Other <MdOutlinePermMedia className='ml-1' />
-        </button>
-      </div> */}
-
       {currentItems.length > 0 ? (
         <div className='w-full flex flex-col'>
           {currentItems.map((product) => (
@@ -161,45 +111,12 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
                   <div className='w-full h-44 pb-2'>
                     <img
                       src={product?.coverImage?.url}
-                      className='object-cover w-full h-full rounded-md'
+                      className='object-fill w-full h-full rounded-md'
                     />
                   </div>
-                  {/* <div className='mb-2 mt-1'>
-                    {product?.digitalType === 'video' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>Video Course</p>
-                        <MdOutlineVideoLibrary className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'ebook' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>E-Book</p>
-                        <HiOutlineBookOpen className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'audio' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>Audio</p>
-                        <BsFillMicFill className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'other' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>Other</p>
-                        <MdOutlinePermMedia className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'template' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8 mt-2'>
-                        <p className='text-sm'>Template</p>
-                        <HiOutlineTemplate className='ml-2 text-xl' />
-                      </div>
-                    ) : (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>Art</p>
-                        <BsPalette className='ml-2 text-xl' />
-                      </div>
-                    )}
-                  </div> */}
 
                   <p className='font-bold text-lg mb-1'>{product?.title}</p>
-                  <p className='text-md mb-2'>{product?.description}</p>
+                  <p className='text-sm mb-2'>{product?.description}</p>
                 </div>
 
                 {/* <div className='absolute bottom-0 ml-2 mb-2'>
@@ -221,7 +138,7 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
         </div>
       ) : (
         <div className='w-full bg-white drop-shadow-lg border rounded h-screen flex items-center justify-center mb-10'>
-          <p className='text-stone-800 text-sm'>No products available</p>
+          <p className='text-stone-800 text-sm'>No templates available</p>
         </div>
       )}
 
