@@ -61,7 +61,10 @@ const Features = () => {
   ) : (
     <div className='max-w-7xl flex flex-col items-center mt-44'>
       <p className='text-xl font-bold'>Features</p>
-      <div className='w-full flex items-center justify-between mt-6'>
+      <div
+        className='w-full flex items-center justify-between mt-6'
+        id='pricing'
+      >
         <div className='w-48 h-48 bg-white rounded-md border shadow-lg flex flex-col p-4'>
           <BsStripe className='text-3xl' />
           <p className='font-medium mt-4'>Secure Payments</p>
