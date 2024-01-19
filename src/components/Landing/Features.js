@@ -12,7 +12,7 @@ import { isMobile } from 'react-device-detect';
 const Features = () => {
   return isMobile ? (
     <div className='w-full flex flex-col items-center mt-44 mb-20'>
-      <p className='text-lg font-medium'>Features</p>
+      <p className='text-lg font-bold'>Features</p>
       <div className='w-full flex flex-col items-center mt-6'>
         <div className='w-full h-36 bg-white rounded border shadow-lg flex flex-col p-4'>
           <BsStripe className='text-3xl' />

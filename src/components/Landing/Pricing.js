@@ -6,59 +6,44 @@ import { BsStripe } from 'react-icons/bs';
 const Pricing = () => {
   return isMobile ? (
     <div className='w-full flex flex-col items-center mt-44 mb-20' id='pricing'>
-      <p className='text-lg font-medium'>Pricing</p>
+      <p className='text-lg font-bold'>Pricing</p>
 
-      <div className='flex flex-col w-full mt-6'>
-        <div className='w-full h-10 bg-white drop-shadow-lg rounded-md border flex items-center justify-center'>
-          <p className='text-stone-800 text-sm text-center'>
-            Pay only $1 or 50¢ / sale
-          </p>
-        </div>
+      <div className='flex flex-col mt-4'>
+        <p className='text-center text-sm'>
+          Never pay us on a monthly basis. We get paid only when you do, with a
+          mini cut of every sale
+        </p>
 
-        <div className='flex justify-between w-full h-44 mt-2'>
-          <div className='flex flex-col w-3/6 mr-2'>
-            <div className='bg-white drop-shadow-lg rounded-md border w-full h-2/6 flex justify-center items-center'>
-              <p className='text-stone-800 text-sm'>Sales under $10</p>
-              <IoIosArrowDown className='ml-2 text-xl' />
-            </div>
-            <div className='bg-white drop-shadow-lg rounded-md border w-full h-4/6 mt-2 flex items-center justify-center'>
-              <div className='flex flex-col'>
-                <p className='text-xs text-gray-400 text-left'>Total:</p>
-                <p className='text-3xl text-stone-800 text-left mt-1'>$8</p>
-                <p className='text-sm text-stone-800 mt-1'>You pay us 50¢</p>
-              </div>
+        <div className='flex flex-col items-center mt-4'>
+          <div className='w-full h-40 bg-white rounded-md border drop-shadow-lg flex flex-col items-center justify-center p-4'>
+            <p className='font-bold text-3xl text-stone-800'>$0.5</p>
+            <div className='border-t-2 mt-2'>
+              <p className='mt-2 text-sm'>
+                fee on sales <span className='font-bold'>under $10</span>
+              </p>
             </div>
           </div>
-          <div className='flex flex-col w-3/6'>
-            <div className='bg-white drop-shadow-lg rounded-md border w-full h-4/6 flex justify-center items-center'>
-              <div className='flex flex-col'>
-                <p className='text-xs text-gray-400 text-left'>Total:</p>
-                <p className='text-3xl text-stone-800 text-left mt-1'>$56</p>
-                <p className='text-sm text-stone-800 mt-1'>You pay us $1</p>
-              </div>
-            </div>
-            <div className='bg-white drop-shadow-lg rounded-md border w-full h-2/6 mt-2 flex items-center justify-center'>
-              <p className='text-stone-800 text-sm'>Sales $10 or more</p>
-              <IoIosArrowUp className='ml-2 text-xl' />
+          <div className='w-full h-40 bg-white rounded-md border drop-shadow-lg flex flex-col items-center justify-center p-4 mt-2'>
+            <p className='font-bold text-3xl text-stone-800'>$1</p>
+            <div className='border-t-2 mt-2'>
+              <p className='mt-2 text-sm'>
+                fee on sales <span className='font-bold'>$10 and over</span>
+              </p>
             </div>
           </div>
         </div>
-
         <div className='w-full h-10 bg-white drop-shadow-lg border rounded-md flex items-center justify-center mt-2'>
           <p className='text-sm text-stone-800 flex items-center'>
-            and (2.9% + 30 ¢) / sale goes to{' '}
-            <span style={{ color: '#635bff' }}>
-              <a href='https://stripe.com' target='_blank'>
+            with additional 2.9% + 30 ¢ / sale fee by{' '}
+            <span className='underline underline-offset-2 ml-1'>
+              {/* <a href='https://stripe.com' target='_blank'>
                 <BsStripe className='text-xl ml-1' />
+              </a> */}
+              <a href='https://stripe.com' target='_blank'>
+                {' '}
+                Stripe
               </a>
             </span>{' '}
-          </p>
-        </div>
-
-        <div className='w-full h-24 bg-white drop-shadow-lg border rounded-md flex items-center justify-center mt-2 p-6'>
-          <p className='text-stone-800 text-sm text-center'>
-            Never pay us on a monthly basis, we get paid only when you do. We
-            just take a mini cut of every sale.
           </p>
         </div>
       </div>
