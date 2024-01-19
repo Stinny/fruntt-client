@@ -5,7 +5,7 @@ import { BsStripe } from 'react-icons/bs';
 
 const Pricing = () => {
   return isMobile ? (
-    <div className='w-full flex flex-col items-center mt-44 mb-20' id='pricing'>
+    <div className='w-full flex flex-col items-center mt-44 mb-20'>
       <p className='text-lg font-bold'>Pricing</p>
 
       <div className='flex flex-col mt-4'>
