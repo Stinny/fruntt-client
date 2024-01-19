@@ -49,7 +49,7 @@ const Pricing = () => {
       </div>
     </div>
   ) : (
-    <div className='w-full flex flex-col items-center mt-44 mb-20' id='pricing'>
+    <div className='w-full flex flex-col items-center mt-44 mb-20'>
       <p className='text-xl font-bold'>Pricing</p>
 
       {/* <div className='rounded bg-white border drop-shadow-lg flex flex-col p-10 items-center mt-6'>
