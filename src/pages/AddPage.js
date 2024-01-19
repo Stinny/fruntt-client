@@ -97,14 +97,14 @@ const AddPage = () => {
                 className=' text-lg font-medium border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 h-14 mt-4 w-full'
                 disabled={addingPage}
               >
-                {addingPage ? 'Launching page...' : 'Launch product page'}
+                {addingPage ? 'Launching store...' : 'Open Store'}
               </button>
 
               <Link
                 to='/dashboard'
                 className=' text-lg font-medium border-2 rounded border-gray-400 text-gray-400 hover:text-white hover:bg-gray-400 h-10 mt-4 w-full flex items-center justify-center'
               >
-                Back to dashboard
+                Dashboard
               </Link>
             </form>
           </div>

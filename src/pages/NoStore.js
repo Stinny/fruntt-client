@@ -114,12 +114,12 @@ const NoStore = () => {
           </div>
         ) : (
           <div className='mx-auto border bg-white drop-shadow-md rounded flex flex-col items-center p-10 w-8/12 mt-44'>
-            <p className='text-2xl font-medium text-stone-800 text-center'>
-              You have no storefront!
+            <p className='text-lg font-medium text-stone-800 text-center'>
+              You have no store!
             </p>
-            <p className='text-lg text-stone-800 mt-6 w-96 text-center'>
-              When you are ready to sell a digital product, launch your
-              storefront below. You will be ready to sell in minutes.
+            <p className='text-md text-stone-800 mt-6 w-96 text-center'>
+              When you are ready to sell a template, launch your store below.
+              You will be ready to sell in minutes.
             </p>
 
             {error && (
@@ -131,9 +131,9 @@ const NoStore = () => {
               className='flex flex-col mt-4 w-6/12'
               onSubmit={handleAddPage}
             >
-              <div className='flex w-full items-center border-2 rounded mt-1 border-gray-200 hover:border-gray-300 p-2'>
+              <div className='flex w-full items-center border-2 rounded mt-1 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 p-2'>
                 <input
-                  className='bg-white outline outline-0'
+                  className='outline outline-0 bg-gray-100 hover:bg-gray-200'
                   placeholder='Enter store name'
                   onChange={(e) => setPageName(e.target.value)}
                 />
@@ -141,10 +141,10 @@ const NoStore = () => {
               </div>
               <button
                 type='submit'
-                className=' text-lg font-medium border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 h-14 mt-6 w-full'
+                className=' text-md font-medium border-2 rounded border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 h-14 mt-6 w-full'
                 disabled={addingPage}
               >
-                {addingPage ? 'Launching storefront...' : 'Open Storefront'}
+                {addingPage ? 'Launching store...' : 'Open Store'}
               </button>
             </form>
           </div>

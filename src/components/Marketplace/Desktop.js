@@ -173,12 +173,12 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
                   <div className='w-full h-48 pb-2'>
                     <img
                       src={product?.coverImage?.url}
-                      className='object-cover w-full h-full rounded-md'
+                      className='object-fill w-full h-full rounded-md'
                     />
                   </div>
 
                   <p className='font-bold text-lg mb-1'>{product?.title}</p>
-                  <p className='text-md mb-2'>{product?.description}</p>
+                  <p className='text-sm mb-2'>{product?.description}</p>
                 </div>
 
                 {/* <div className='absolute bottom-0 ml-2 mb-2'>

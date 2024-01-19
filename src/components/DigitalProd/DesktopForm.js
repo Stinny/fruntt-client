@@ -298,8 +298,12 @@ const DesktopForm = ({
                   files={image}
                   imageResizeTargetWidth={200}
                   name='productImages'
-                  onupdatefiles={(file) => setImage(file)}
+                  // onupdatefiles={(file) => setImage(file)}
                   instantUpload={false}
+                  allowMultiple
+                  onupdatefiles={(fileItems) => {
+                    setImage(fileItems.map((fileItem) => fileItem.file));
+                  }}
                 />
                 <p className='text-stone-800'>Call to action</p>
                 <Select
