@@ -140,7 +140,7 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
                   >
                     <Avatar
                       src={product?.userPicture}
-                      sx={{ width: 32, height: 32 }}
+                      sx={{ width: 28, height: 28 }}
                     />
                     <p className='ml-1'>{product?.userName}</p>
                   </a>

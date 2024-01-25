@@ -83,15 +83,15 @@ const Email = () => {
       )}
       <form onSubmit={handleSignup} className='flex flex-col mt-6 w-full'>
         <input
-          className='h-10 border-2 rounded p-2 outline outline-0 hover:border-gray-400 focus:border-gray-400'
+          className='h-10 border-2 rounded p-2 outline outline-0 hover:border-gray-200 bg-gray-100 border-gray-100 hover:bg-gray-200'
           type='email'
-          placeholder='Enter your email'
+          placeholder='Enter email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <button
           type='submit'
-          className='h-10 border-stone-800 border-2 rounded-md w-full font-medium hover:text-white hover:bg-stone-800 mt-2'
+          className='h-10 border-stone-800 border-2 rounded-md w-full font-medium hover:text-white hover:bg-stone-800 mt-2 text-sm'
         >
           SUBSCRIBE
         </button>

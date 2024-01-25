@@ -42,8 +42,8 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
     'text-md font-medium w-44 h-8 bg-gray-100 hover:bg-stone-800 hover:text-white rounded text-stone-800 flex items-center justify-center ml-2';
 
   const marketClass = currentUser
-    ? `max-w-7xl mx-auto h-fit mt-2`
-    : `max-w-7xl mx-auto h-fit mt-24`;
+    ? `max-w-6xl mx-auto h-fit mt-2`
+    : `max-w-6xl mx-auto h-fit mt-24`;
 
   return (
     <div className={marketClass}>
@@ -163,7 +163,7 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
                   >
                     <Avatar
                       src={product?.userPicture}
-                      sx={{ width: 32, height: 32 }}
+                      sx={{ width: 28, height: 28 }}
                     />
                     <p className='ml-1'>{product?.userName}</p>
                   </a>

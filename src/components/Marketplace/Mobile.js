@@ -118,20 +118,6 @@ const Mobile = ({ products, handleFilterChange, filter }) => {
                   <p className='font-bold text-lg mb-1'>{product?.title}</p>
                   <p className='text-sm mb-2'>{product?.description}</p>
                 </div>
-
-                {/* <div className='absolute bottom-0 ml-2 mb-2'>
-                <Rating
-                  value={product?.totalRating}
-                  readOnly
-                  precision={0.5}
-                  size='medium'
-                />
-                <p>{product.numberOfSales} sales</p>
-              </div> */}
-
-                {/* <div className='w-3/12 flex items-center justify-center p-4'>
-          <img className='rounded' src={product?.item?.coverImage?.url} />
-        </div> */}
               </div>
             </a>
           ))}
