@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { isMobile } from 'react-device-detect';
 import { useDeleteAccountMutation } from '../../api/authApiSlice';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 //mui
 import Alert from '@mui/material/Alert';
@@ -27,6 +28,9 @@ const DeleteAccount = () => {
 
       if (deleteAccountReq === 'Account deleted') {
         setDeletingAccount(false);
+        toast.success('Account deleted!', {
+          style: { color: 'rgb(28 25 23)' },
+        });
         handleLogutUser(navigate);
       } else {
         setError('There was an error');

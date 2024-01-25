@@ -32,6 +32,8 @@ const EditProfileDesktop = ({ user, refetch }) => {
   const [link, setLink] = useState(user?.sellerProfile?.link);
   const [profilePic, setProfilePic] = useState([]);
 
+  console.log(name);
+
   const [updateSellerProfile, result] = useUpdateSellerProfileMutation();
 
   const handleUpdateProfile = async (e) => {
@@ -107,7 +109,7 @@ const EditProfileDesktop = ({ user, refetch }) => {
             <div className='flex items-center w-full mt-1'>
               <input
                 type='text'
-                className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-full rounded p-2'
+                className='border-2 border-gray-100 hover:border-gray-200 bg-gray-100 hover:bg-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2'
                 onChange={(e) => setName(e.target.value)}
                 value={name}
                 placeholder='Name'
@@ -119,8 +121,8 @@ const EditProfileDesktop = ({ user, refetch }) => {
             </div>
             <p className='font-medium mt-2'>Bio</p>
             <textarea
-              placeholder='A little about you, your brand, or what you sell...'
-              className='w-full h-24 border-2 border-gray-300 hover:border-gray-400 rounded outline outline-0 p-2 mt-1'
+              placeholder='What do you create'
+              className='w-full h-24 border-2 bg-gray-100 border-gray-100 hover:border-gray-200 hover:bg-gray-200 rounded-md focus:bg-gray-200 focus:border-gray-200 outline outline-0 p-2 mt-1'
               onChange={(e) => setBio(e.target.value)}
               value={bio}
               maxLength={100}
@@ -143,7 +145,7 @@ const EditProfileDesktop = ({ user, refetch }) => {
                 <AiOutlineFacebook className='text-4xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
                   placeholder='https://www.facebook.com/youraccount'
                   onChange={(e) => setFacebook(e.target.value)}
                   value={facebook}
@@ -154,7 +156,7 @@ const EditProfileDesktop = ({ user, refetch }) => {
                 <AiOutlineInstagram className='text-4xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 hover:bg-gray-200 bg-gray-100 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
                   placeholder='https://www.instagram.com/youraccount'
                   onChange={(e) => setInstagram(e.target.value)}
                   value={instagram}
@@ -165,7 +167,7 @@ const EditProfileDesktop = ({ user, refetch }) => {
                 <AiOutlineYoutube className='text-4xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 hover:bg-gray-200 bg-gray-100 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
                   placeholder='https://www.youtube.com/youraccount'
                   onChange={(e) => setYoutube(e.target.value)}
                   value={youtube}
@@ -176,7 +178,7 @@ const EditProfileDesktop = ({ user, refetch }) => {
                 <AiOutlineTwitter className='text-4xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 hover:bg-gray-200 bg-gray-100 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
                   placeholder='https://www.twitter.com/youraccount'
                   onChange={(e) => setTwitter(e.target.value)}
                   value={twitter}
@@ -187,7 +189,7 @@ const EditProfileDesktop = ({ user, refetch }) => {
                 <AiOutlineLinkedin className='text-4xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 hover:bg-gray-200 bg-gray-100 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
                   placeholder='https://www.linkedin.com/youraccount'
                   onChange={(e) => setLinkedin(e.target.value)}
                   value={linkedin}
@@ -198,7 +200,7 @@ const EditProfileDesktop = ({ user, refetch }) => {
                 <FaTiktok className='text-4xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 hover:bg-gray-200 bg-gray-100 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
                   placeholder='https://www.tiktok.com/youraccount'
                   onChange={(e) => setTiktok(e.target.value)}
                   value={tiktok}
@@ -209,7 +211,7 @@ const EditProfileDesktop = ({ user, refetch }) => {
                 <AiOutlineLink className='text-4xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-300 hover:border-gray-400 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
                   placeholder='https://www.YourLink.com/'
                   onChange={(e) => setLink(e.target.value)}
                   value={link}

@@ -20,9 +20,9 @@ const Topbar = () => {
   //for changing nav links according to the page
   const path = window.location.pathname;
   const activeLink =
-    'text-md h-10 font-medium text-white w-full rounded-md bg-stone-800 flex items-center pl-2';
+    'text-md h-10 font-medium text-white w-full rounded-md bg-stone-800 flex items-center pl-2 outline outline-0';
   const notActiveLink =
-    'text-md font-medium w-full h-10 hover:bg-gray-100 rounded-md text-stone-800 flex items-center pl-2';
+    'text-md font-medium w-full h-10 hover:bg-gray-100 rounded-md text-stone-800 flex items-center pl-2 outline outline-0';
 
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 

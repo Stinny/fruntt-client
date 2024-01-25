@@ -42,7 +42,7 @@ const Home = () => {
     <>
       <Navbar />
 
-      <div className='mx-auto h-fit max-w-8xl'>
+      <div className='mx-auto h-fit max-w-6xl'>
         <div className='w-full mx-auto h-full flex flex-col items-center'>
           <Hero
             products={products}

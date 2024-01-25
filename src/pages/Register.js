@@ -184,7 +184,7 @@ const Register = () => {
             <input
               type='email'
               placeholder='Email'
-              className='border-2 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 outline outline-0 w-full rounded-md p-2 mt-2'
+              className='border-2 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2 mt-2'
               onChange={(e) => setEmail(e.target.value)}
               autoFocus
             />
@@ -192,11 +192,11 @@ const Register = () => {
             <input
               type='password'
               placeholder='Password'
-              className='border-2  outline outline-0 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 w-full rounded-md p-2 mt-2'
+              className='border-2  outline outline-0 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2 mt-2'
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <div className='flex w-full items-center border-2 rounded-md mt-2 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 p-2'>
+            <div className='flex w-full items-center border-2 rounded-md mt-2 border-gray-100 bg-gray-100 hover:border-gray-200 focus:bg-gray-200 focus:border-gray-200 hover:bg-gray-200 p-2'>
               <input
                 className=' outline outline-0 bg-gray-100 hover:bg-gray-200 h-full'
                 placeholder='Store'
