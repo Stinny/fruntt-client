@@ -53,10 +53,11 @@ const EditDigital = ({ product, refetch }) => {
     e.preventDefault();
 
     let uploadedFiles = [];
+    let uploadedImages = [];
     let newCoverImageUrl = '';
     let newCoverImageKey = '';
 
-    if (product.coverImage.url === '' && !image.length) {
+    if (!product.coverImages.length && !image.length) {
       setError('Please upload a cover image');
       return;
     }
@@ -75,13 +76,17 @@ const EditDigital = ({ product, refetch }) => {
       //first try to upload new coverImage if one exists
       if (image.length) {
         const imageToUpload = new FormData();
-        imageToUpload.append('productImages', image[0].file);
+        // imageToUpload.append('productImages', image[0].file);
+        for (var x = 0; x < image.length; x++) {
+          imageToUpload.append('productImages', image[x]);
+        }
         const imageDataReq = await uploadImageRequest.post(
           '/products/imageupload',
           imageToUpload
         );
-        newCoverImageUrl = imageDataReq.data[0].url;
-        newCoverImageKey = imageDataReq.data[0].key;
+        // newCoverImageUrl = imageDataReq.data[0].url;
+        // newCoverImageKey = imageDataReq.data[0].key;
+        uploadedImages = imageDataReq.data;
       }
 
       //then try to upload any new files if they exist
@@ -104,6 +109,7 @@ const EditDigital = ({ product, refetch }) => {
         published: published,
         coverImageUrl: newCoverImageUrl,
         coverImageKey: newCoverImageKey,
+        coverImage: uploadedImages,
         files: uploadedFiles,
         productId: product?._id,
         digitalType: digitalType,
@@ -124,6 +130,7 @@ const EditDigital = ({ product, refetch }) => {
         navigate('/dashboard/item');
       }
     } catch (err) {
+      console.log(err);
       setError('There was an error');
     }
   };

@@ -133,7 +133,7 @@ const AddDigitalProd = () => {
           title,
           description,
           price,
-          coverImage: imageDataReq.data,
+          coverImage: imageDataReq?.data,
           files: uploadedFiles,
           storeId: currentStoreID,
           published: published,

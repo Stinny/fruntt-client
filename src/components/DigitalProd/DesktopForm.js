@@ -301,6 +301,7 @@ const DesktopForm = ({
                   // onupdatefiles={(file) => setImage(file)}
                   instantUpload={false}
                   allowMultiple
+                  maxFiles={5}
                   onupdatefiles={(fileItems) => {
                     setImage(fileItems.map((fileItem) => fileItem.file));
                   }}
