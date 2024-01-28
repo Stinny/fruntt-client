@@ -108,6 +108,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
     e.preventDefault();
 
     let uploadedFiles = [];
+    let uploadedImages = [];
     let newCoverImageUrl = '';
     let newCoverImageKey = '';
 
@@ -124,13 +125,23 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
       //first try to upload new coverImage if one exists
       if (image.length) {
         const imageToUpload = new FormData();
-        imageToUpload.append('productImages', image[0].file);
+        // imageToUpload.append('productImages', image[0].file);
+        // const imageDataReq = await uploadImageRequest.post(
+        //   '/products/imageupload',
+        //   imageToUpload
+        // );
+        // newCoverImageUrl = imageDataReq.data[0].url;
+        // newCoverImageKey = imageDataReq.data[0].key;
+        for (var x = 0; x < image.length; x++) {
+          imageToUpload.append('productImages', image[x]);
+        }
         const imageDataReq = await uploadImageRequest.post(
           '/products/imageupload',
           imageToUpload
         );
-        newCoverImageUrl = imageDataReq.data[0].url;
-        newCoverImageKey = imageDataReq.data[0].key;
+        // newCoverImageUrl = imageDataReq.data[0].url;
+        // newCoverImageKey = imageDataReq.data[0].key;
+        uploadedImages = imageDataReq.data;
       }
 
       //then try to upload any new files if they exist
@@ -153,6 +164,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
         published: published,
         coverImageUrl: newCoverImageUrl,
         coverImageKey: newCoverImageKey,
+        coverImage: uploadedImages,
         files: uploadedFiles,
         productId: product?._id,
         digitalType: digitalType,
@@ -245,7 +257,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                 <p className='text-stone-800 text-sm mt-4'>Title</p>
                 <input
                   type='text'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                  className='border-2 text-sm border-gray-100 hover:border-gray-200 w-full rounded-md p-2 outline outline-0 bg-gray-100'
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   maxLength={50}
@@ -259,7 +271,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                 </p>
                 <textarea
                   type='text'
-                  className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white h-28'
+                  className='border-2 text-sm border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 w-full rounded-md p-2 outline outline-0 h-28'
                   placeholder='Description'
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
@@ -278,7 +290,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                   </div>
                   <input
                     type='number'
-                    className='border-2 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                    className='border-2 border-gray-100 hover:border-gray-200 w-full rounded-md text-sm p-2 outline outline-0 bg-gray-100'
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                   />
@@ -314,12 +326,12 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                 )}
 
                 {payChoice ? (
-                  <div className='flex items-center'>
+                  <div className='flex items-center mb-2'>
                     <div className='flex flex-col w-6/12'>
                       <p className='text-stone-900 text-sm'>Minimum price</p>
                       <input
                         type='number'
-                        className='border-2 border-slate-200 w-full rounded p-2 outline outline-0 bg-white'
+                        className='border-2 border-gray-100 w-full rounded-md p-2 outline outline-0 bg-gray-100 text-sm'
                         step={1}
                         placeholder='$9+'
                         value={price}
@@ -333,7 +345,7 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                     <div className='flex flex-col w-6/12 ml-2'>
                       <p className='text-stone-800 text-sm'>Suggested price</p>
                       <input
-                        className='border-2 text-gray-400 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                        className='border-2 text-sm text-gray-400 border-gray-100 hover:border-gray-200 hover:bg-gray-200 w-full rounded-md p-2 outline outline-0 bg-gray-100'
                         onChange={(e) => setSuggestedPrice(e.target.value)}
                         placeholder='$9+'
                         value={suggestedPrice}
@@ -375,11 +387,14 @@ const EditDigitalMobile = ({ product, productId, refetch }) => {
                   styles={{
                     control: (baseStyles, state) => ({
                       ...baseStyles,
-                      borderColor: 'rgb(229 231 235)',
+                      borderColor: 'rgb(243 244 246)',
                       borderWidth: 2,
+
                       '&:hover': {
-                        borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                        borderColor: 'rgb(229 231 235)', // Keep the same border color on hover
+                        backgroundColor: 'rgb(229 231 235)',
                       },
+                      backgroundColor: 'rgb(243 244 246)',
                       boxShadow: 'none',
                       zIndex: 99999,
                       position: 'relative',

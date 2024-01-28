@@ -82,7 +82,11 @@ const ProductsDesktop = ({ product }) => {
           <div className='border rounded-md bg-white drop-shadow-md relative flex mt-4'>
             <div className='w-2/12 h-full p-2'>
               <img
-                src={prod?.coverImage?.url}
+                src={
+                  prod?.coverImages.length
+                    ? prod?.coverImages[0]?.url
+                    : prod?.coverImage?.url
+                }
                 className='rounded-md w-full h-32 object-cover'
               />
             </div>

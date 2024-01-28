@@ -155,7 +155,7 @@ const SellerProfile = ({ user, refetch }) => {
         {isMobile ? (
           <div className='w-full mx-auto p-2'>
             <div className='w-full flex flex-col mx-auto'>
-              <div className='flex justify-between items-center'>
+              <div className='flex items-center'>
                 <Avatar
                   sx={{ width: 40, height: 40 }}
                   src={user?.sellerProfile?.picture?.url}

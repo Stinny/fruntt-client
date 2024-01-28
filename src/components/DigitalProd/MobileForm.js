@@ -143,7 +143,7 @@ const MobileForm = ({
                 <p className='text-stone-800 text-sm mt-2'>Title</p>
                 <input
                   type='text'
-                  className='border-2 text-sm border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
+                  className='border-2 text-sm border-gray-100 hover:border-gray-200 bg-gray-100 hover:bg-gray-200 w-full rounded-md p-2 outline outline-0'
                   placeholder='Title'
                   onChange={(e) => setTitle(e.target.value)}
                   maxLength={50}
@@ -155,7 +155,7 @@ const MobileForm = ({
                 <p className='text-stone-800 text-sm mt-2'>Summary(optional)</p>
                 <textarea
                   type='text'
-                  className='h-28 tex-sm border-2 border-gray-200 hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white'
+                  className='h-28 tex-sm border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 w-full rounded-md p-2 outline outline-0'
                   placeholder='Description'
                   onChange={(e) => setDescription(e.target.value)}
                   maxLength={75}
@@ -167,12 +167,12 @@ const MobileForm = ({
                 </div>
 
                 <p className='text-stone-800 text-sm mt-2'>Price</p>
-                <div className='flex items-center'>
+                <div className='flex items-center mb-1'>
                   <p className='mr-2 font-medium text-xl'>$</p>
                   <input
                     type='number'
                     step={1}
-                    className='border-2 border-gray-200 hover:border-gray-300 w-full text-sm rounded p-2 outline outline-0 bg-white'
+                    className='border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 w-full text-sm rounded-md p-2 outline outline-0'
                     placeholder={payChoice ? '$9+' : '$9'}
                     onChange={(e) => setPrice(e.target.value)}
                   />
@@ -211,7 +211,7 @@ const MobileForm = ({
                       <p className='text-stone-800 text-sm'>Minimum price</p>
                       <input
                         type='number'
-                        className='border-2 text-sm border-gray-200 w-full rounded p-2 outline outline-0 bg-white'
+                        className='border-2 text-sm border-gray-100 hover:bg-gray-200 hover:border-gray-200 w-full rounded-md p-2 outline outline-0 bg-gray-100'
                         step={1}
                         placeholder='$9+'
                         value={price}
@@ -225,7 +225,7 @@ const MobileForm = ({
                     <div className='flex flex-col w-6/12 ml-2'>
                       <p className='text-stone-800 text-sm'>Suggested price</p>
                       <input
-                        className='border-2 border-gray-200 text-sm hover:border-gray-300 w-full rounded p-2 outline outline-0 bg-white'
+                        className='border-2 border-gray-100 bg-gray-100 text-sm hover:bg-gray-200 hover:border-gray-200 w-full rounded-md p-2 outline outline-0'
                         onChange={(e) => setSuggestedPrice(e.target.value)}
                         placeholder='$9+'
                       />
@@ -236,16 +236,20 @@ const MobileForm = ({
                 )}
               </div>
 
-              <div className='w-full flex flex-col p-2 mt-2'>
+              <div className='w-full flex flex-col mt-2'>
                 <p className='text-sm font-medium text-stone-800 text-center'>
-                  Upload a cover image
+                  Upload cover images
                 </p>
 
                 <FilePond
                   file={image}
                   imageResizeTargetWidth={200}
                   name='productImages'
-                  onupdatefiles={(file) => setImage(file)}
+                  allowMultiple
+                  maxFiles={5}
+                  onupdatefiles={(fileItems) => {
+                    setImage(fileItems.map((fileItem) => fileItem.file));
+                  }}
                 />
               </div>
               <p className='text-stone-800 text-sm mt-2'>Call to action</p>
@@ -267,11 +271,14 @@ const MobileForm = ({
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
-                    borderColor: 'rgb(229 231 235)',
+                    borderColor: 'rgb(243 244 246)',
                     borderWidth: 2,
+
                     '&:hover': {
-                      borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                      borderColor: 'rgb(229 231 235)', // Keep the same border color on hover
+                      backgroundColor: 'rgb(229 231 235)',
                     },
+                    backgroundColor: 'rgb(243 244 246)',
                     boxShadow: 'none',
                     zIndex: 99999,
                     position: 'relative',

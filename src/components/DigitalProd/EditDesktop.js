@@ -360,7 +360,7 @@ const EditDesktop = ({
                   )}
                 </div>
 
-                <div className='border-2 rounded w-6/12 ml-4 flex flex-col justify-center p-2'>
+                <div className='border-2 rounded w-6/12 ml-4 flex flex-col p-2'>
                   <CoverImage
                     product={product}
                     productId={product._id}
