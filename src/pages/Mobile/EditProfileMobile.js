@@ -91,7 +91,7 @@ const EditProfileMobile = ({ user }) => {
             <div className='flex items-center w-full mt-1'>
               <input
                 type='text'
-                className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-400 w-full rounded p-2'
+                className='border-2 border-gray-100 bg-gray-100 text-sm outline outline-0 focus:border-gray-200 focus:bg-gray-200 w-full rounded-md p-2'
                 onChange={(e) => setName(e.target.value)}
                 value={name}
                 placeholder='Name'
@@ -100,7 +100,7 @@ const EditProfileMobile = ({ user }) => {
             <p className='text-stone-800 text-sm mt-2'>Bio</p>
             <textarea
               placeholder='A little about you, your brand, or what you sell...'
-              className='w-full h-24 border-2 border-gray-200 hover:border-gray-300 rounded outline outline-0 p-2 mt-1'
+              className='w-full h-24 border-2 border-gray-100 bg-gray-100 text-sm rounded-md outline outline-0 p-2 mt-1'
               onChange={(e) => setBio(e.target.value)}
               value={bio}
               maxLength={100}
@@ -123,7 +123,7 @@ const EditProfileMobile = ({ user }) => {
                 <AiOutlineFacebook className='text-2xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 bg-gray-100 outline outline-0 w-10/12 rounded-md p-2 text-sm'
                   placeholder='https://www.facebook.com/youraccount'
                   onChange={(e) => setFacebook(e.target.value)}
                   value={facebook}
@@ -134,7 +134,7 @@ const EditProfileMobile = ({ user }) => {
                 <AiOutlineInstagram className='text-2xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 bg-gray-100 outline outline-0 w-10/12 rounded-md p-2 text-sm'
                   placeholder='https://www.instagram.com/youraccount'
                   onChange={(e) => setInstagram(e.target.value)}
                   value={instagram}
@@ -145,7 +145,7 @@ const EditProfileMobile = ({ user }) => {
                 <AiOutlineYoutube className='text-2xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 bg-gray-100 outline outline-0 w-10/12 rounded-md p-2 text-sm'
                   placeholder='https://www.youtube.com/youraccount'
                   onChange={(e) => setYoutube(e.target.value)}
                   value={youtube}
@@ -156,7 +156,7 @@ const EditProfileMobile = ({ user }) => {
                 <AiOutlineTwitter className='text-2xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 bg-gray-100 outline outline-0 w-10/12 rounded-md p-2 text-sm'
                   placeholder='https://www.twitter.com/youraccount'
                   onChange={(e) => setTwitter(e.target.value)}
                   value={twitter}
@@ -167,7 +167,7 @@ const EditProfileMobile = ({ user }) => {
                 <AiOutlineLinkedin className='text-2xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 bg-gray-100 outline outline-0 w-10/12 rounded-md p-2 text-sm'
                   placeholder='https://www.linkedin.com/youraccount'
                   onChange={(e) => setLinkedin(e.target.value)}
                   value={linkedin}
@@ -178,7 +178,7 @@ const EditProfileMobile = ({ user }) => {
                 <FaTiktok className='text-2xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 bg-gray-100 outline outline-0  w-10/12 rounded-md p-2 text-sm'
                   placeholder='https://www.tiktok.com/youraccount'
                   onChange={(e) => setTiktok(e.target.value)}
                   value={tiktok}
@@ -189,7 +189,7 @@ const EditProfileMobile = ({ user }) => {
                 <AiOutlineLink className='text-2xl' />
                 <input
                   type='text'
-                  className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-400 w-10/12 rounded p-2'
+                  className='border-2 border-gray-100 bg-gray-100 outline outline-0 w-10/12 rounded-md p-2 text-sm'
                   placeholder='https://www.YourLink.com/'
                   onChange={(e) => setLink(e.target.value)}
                   value={link}

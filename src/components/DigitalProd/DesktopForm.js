@@ -286,12 +286,12 @@ const DesktopForm = ({
               </div>
 
               <div className='border-2 rounded w-6/12 ml-4 flex flex-col p-2'>
-                <p className='text-lg font-medium text-slate-800 text-center'>
-                  Upload a cover image
+                <p className='text-lg font-medium text-stone-800 text-center'>
+                  Upload cover images
                 </p>
-                <p className='text-gray-400 font-medium text-center text-sm'>
-                  This will be the image your customers will see (recommended
-                  size 1280x720)
+                <p className='text-stone-800 font-medium text-center text-sm'>
+                  Select up to 5 images one by one or by holding
+                  CTRL(recommended size 1280x720)
                 </p>
 
                 <FilePond

@@ -112,8 +112,8 @@ const AddDigitalProd = () => {
           '/products/imageupload',
           imageToUpload
         );
-        coverPicUrl = imageDataReq.data[0].url;
-        coverPicKey = imageDataReq.data[0].key;
+        // coverPicUrl = imageDataReq.data[0].url;
+        // coverPicKey = imageDataReq.data[0].key;
 
         console.log(imageDataReq.data);
 

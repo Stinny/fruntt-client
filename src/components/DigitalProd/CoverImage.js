@@ -62,8 +62,8 @@ const CoverImage = ({
         >
           Delete & upload new cover image
         </button> */}
-        <p className='text-sm'>{coverImage.length}/5 images</p>
-        <div className='grid grid-cols-4 gap-2 mb-1'>
+        <p className='text-sm'>{coverImage.length}/5 images uploaded</p>
+        <div className='grid grid-cols-4 gap-2 mb-1 mt-1'>
           {coverImage.map((image, index) => (
             <div key={index} className='relative'>
               <img
@@ -108,11 +108,12 @@ const CoverImage = ({
       </>
     ) : (
       <>
-        <p className='text-lg font-medium text-slate-800 text-center h-8'>
+        <p className='text-lg font-medium text-stone-800 text-center h-8'>
           Upload new cover images
         </p>
-        <p className='text-gray-400 font-medium text-center text-sm'>
-          You can select up to five images, hold ctrl(recommended size 1280x720)
+        <p className='text-stone-800 font-medium text-center text-sm'>
+          Select up to 5 images one by one or by holding CTRL(recommended size
+          1280x720)
         </p>
 
         <FilePond
