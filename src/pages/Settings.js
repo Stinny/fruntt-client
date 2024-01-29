@@ -94,10 +94,9 @@ const Settings = () => {
           <div className='w-full mt-4'>
             <div className='flex flex-col w-full border-b p-2'>
               <p className='text-lg font-medium'>Payments & Payouts</p>
-              <p className=' font-medium text-stone-800 mt-1'>
-                You are paid immediately after a successful purchase. Sales
-                under $10, you pay $0.50/sale. Sales $10 and over, you pay
-                $1/sale + (2.9% + 30¢ / sale).
+              <p className='text-sm font-medium text-stone-800 mt-1'>
+                Sales under $10, you pay $0.50/sale. Sales $10 and over, you pay
+                $1/sale.
               </p>
             </div>
             <Payments refetch={refetch} />
@@ -106,7 +105,7 @@ const Settings = () => {
           <div className='w-full mt-10'>
             <div className='flex flex-col w-full border-b p-2'>
               <p className='text-lg font-medium'>Delete account</p>
-              <p className='text-stone-800 font-medium mt-1'>
+              <p className='text-stone-800 text-sm mt-1'>
                 Deleting your account will delete all data from our servers
                 (store, orders, templates, etc..)
               </p>
