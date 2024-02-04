@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   useLazyGetOnboardUrlQuery,
   useDisconnectStripeMutation,
@@ -8,6 +9,8 @@ import { FaPaypal, FaStripeS } from 'react-icons/fa';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import Cookies from 'js-cookie';
 import { isMobile } from 'react-device-detect';
+import { BiSolidBank } from 'react-icons/bi';
+import { BsStripe } from 'react-icons/bs';
 
 //mui
 import CircularProgress from '@mui/material/CircularProgress';
@@ -77,13 +80,28 @@ const Payments = ({ refetch }) => {
         <CircularProgress className='mt-4 mx-auto' />
       </div>
     ) : (
-      <a
-        href={result?.data?.url}
-        className='w-full h-20 flex items-center justify-center bg-purple-500 border-2 border-purple-600 hover:bg-purple-600 text-white rounded text-md mt-4 p-2'
-      >
-        Connect to Stripe
-        <FaStripeS className='text-2xl ml-4' />
-      </a>
+      <div className='flex items-center justify-between'>
+        <Link
+          to='/dashboard/bank'
+          className='h-16 w-6/12 bg-gray-100 rounded-md flex items-center justify-center hover:bg-gray-200'
+        >
+          <BiSolidBank className='mr-2 text-2xl' />
+          <div className='flex flex-col'>
+            <p className='font-bold'>Bank</p>
+            <p className='text-xs'>Be paid out to a bank account</p>
+          </div>
+        </Link>
+        <a
+          href={result?.data?.url}
+          className='w-6/12 ml-2 h-16 flex items-center justify-center bg-gray-100 rounded-md p-2 hover:bg-gray-200'
+        >
+          <BsStripe className='text-2xl mr-2' />
+          <div className='flex flex-col'>
+            <p className='font-bold'>Stripe</p>
+            <p className='text-xs'>Be paid out to a Stripe account</p>
+          </div>
+        </a>
+      </div>
     );
   } else if (currentUser.stripeOnboard) {
     content = connectedToStripe;

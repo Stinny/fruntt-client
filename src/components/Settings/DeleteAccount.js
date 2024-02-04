@@ -125,7 +125,7 @@ const DeleteAccount = () => {
             type='button'
             disabled={deletingAccount}
             onClick={openModal}
-            className='w-full h-14 border-2 border-red-400 text-red-400 text-xl font-medium hover:bg-red-400 hover:text-white rounded'
+            className='w-full h-14 border-2 border-red-400 text-red-400 text-sm font-medium hover:bg-red-400 hover:text-white rounded-md'
           >
             {deletingAccount ? 'Deleting account...' : 'Delete account'}
           </button>
