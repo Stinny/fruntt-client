@@ -81,8 +81,8 @@ const Payments = ({ refetch }) => {
       </div>
     ) : (
       <div className='flex items-center justify-between'>
-        <div
-          to='/#'
+        <Link
+          to='/dashboard/bank'
           className='h-16 w-6/12 bg-gray-100 rounded-md flex items-center justify-center hover:bg-gray-200'
         >
           <BiSolidBank className='mr-2 text-2xl' />
@@ -90,7 +90,7 @@ const Payments = ({ refetch }) => {
             <p className='font-bold'>Bank</p>
             <p className='text-xs'>Be paid out to a bank account</p>
           </div>
-        </div>
+        </Link>
         <a
           href={result?.data?.url}
           className='w-6/12 ml-2 h-16 flex items-center justify-center bg-gray-100 rounded-md p-2 hover:bg-gray-200'

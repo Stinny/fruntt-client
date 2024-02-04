@@ -55,6 +55,7 @@ import PasswordChange from './pages/PasswordChange';
 import NotFound from './pages/NotFound';
 import EditProfile from './pages/EditProfile';
 import NameChange from './pages/NameChange';
+import AddBank from './pages/AddBank';
 
 function App() {
   return (
@@ -110,6 +111,8 @@ function App() {
                 />
 
                 <Route path='dashboard/name/change' element={<NameChange />} />
+
+                <Route path='dashboard/bank' element={<AddBank />} />
 
                 <Route
                   path='dashboard/orders/:orderId'
