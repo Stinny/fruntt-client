@@ -177,8 +177,12 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
                     />
                   </div>
 
-                  <p className='font-bold text-lg mb-1'>{product?.title}</p>
-                  <p className='text-sm mb-2'>{product?.description}</p>
+                  <p className='font-bold text-lg mb-1 text-stone-800'>
+                    {product?.title}
+                  </p>
+                  <p className='text-sm mb-2 text-stone-600'>
+                    {product?.description}
+                  </p>
                 </div>
 
                 {/* <div className='absolute bottom-0 ml-2 mb-2'>

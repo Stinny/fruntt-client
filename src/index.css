@@ -4,7 +4,7 @@ html {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(249 250 251);
+  background-color: #fff;
 }
 
 @layer base {
@@ -101,6 +101,10 @@ html {
 .filepond--drop-label {
   background-color: rgb(243 244 246) !important;
   border-radius: 10px;
+}
+
+input {
+  outline: none !important;
 }
 
 @tailwind base;

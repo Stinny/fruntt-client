@@ -157,12 +157,12 @@ const Register = () => {
     ) : (
       <div
         className='mx-auto h-full flex items-center justify-center'
-        style={{ width: '450px' }}
+        style={{ width: '400px' }}
       >
         <div className='flex flex-col mx-auto items-center justify-center w-full'>
           <p className='text-3xl font-medium text-center'>Ready to sell?</p>
-          <p className='text-stone-800 font-medium mb-4 text-center text-lg mt-1'>
-            Open your store, be ready to sell in minutes.
+          <p className='text-stone-600 font-medium mb-4 text-center text-sm'>
+            Signup and list your templates in minutes.
           </p>
 
           {error && (
@@ -179,20 +179,19 @@ const Register = () => {
 
           <form
             onSubmit={handleSignup}
-            className='flex flex-col items-center w-full bg-white p-2 rounded drop-shadow-md'
+            className='flex flex-col items-center w-full bg-white p-2 rounded-md border border-gray-200'
           >
             <input
               type='email'
               placeholder='Email'
-              className='border-2 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2 mt-2'
+              className='border text-sm border-gray-200 bg-gray-50 hover:border-gray-200 hover:bg-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2 mt-2'
               onChange={(e) => setEmail(e.target.value)}
-              autoFocus
             />
 
             <input
               type='password'
               placeholder='Password'
-              className='border-2  outline outline-0 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2 mt-2'
+              className='border text-sm  outline outline-0 border-gray-200 bg-gray-50 hover:border-gray-200 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2 mt-2'
               onChange={(e) => setPassword(e.target.value)}
             />
 
@@ -208,17 +207,17 @@ const Register = () => {
             <button
               type='submit'
               disabled={isLoading}
-              className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded-md text-sm mt-4'
+              className='h-8 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded-md text-sm mt-4'
             >
-              Open Store
+              Signup
             </button>
-            <p className='text-md text-stone-800 mt-2'>OR</p>
+            <p className='text-sm text-stone-800 mt-2'>OR</p>
             <button
               style={{
                 backgroundColor: 'rgb(15, 20, 25)',
                 borderColor: 'rgb(15, 20, 25)',
               }}
-              className='w-full h-10 text-sm mt-2 rounded-md flex items-center justify-center text-white'
+              className='w-full h-8 text-sm mt-2 rounded-md flex items-center justify-center text-white'
               type='button'
               onClick={handleTwitterSignup}
             >
@@ -227,7 +226,7 @@ const Register = () => {
             </button>
             <div className='mt-2 flex w-full'>
               <Link to='/login'>
-                <p className='text-sm self-start text-stone-800 font-medium'>
+                <p className='text-sm self-start text-stone-600'>
                   Already have a store? Login here.
                 </p>
               </Link>
