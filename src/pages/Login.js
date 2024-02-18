@@ -104,11 +104,11 @@ const Login = () => {
     ) : (
       <div
         className='flex flex-col items-center mx-auto justify-center h-full'
-        style={{ width: '450px' }}
+        style={{ width: '400px' }}
       >
         <div className='w-full flex flex-col items-center'>
           <h2 className='text-3xl font-medium text-stone-800'>Login</h2>
-          <p className='text-stone-800 font-medium text-center text-lg'>
+          <p className='text-stone-600 text-center text-sm'>
             Welcome back! Please enter details below.
           </p>
         </div>
@@ -130,36 +130,35 @@ const Login = () => {
         )}
         <form
           onSubmit={handleLogin}
-          className='flex flex-col items-center w-full bg-white p-2 rounded drop-shadow-md mt-2'
+          className='flex flex-col items-center w-full bg-white p-2 rounded-md border border-gray-200 mt-2'
         >
           <input
             type='email'
             placeholder='Email'
-            className='border-2 border-gray-100 bg-gray-100 text-stone-800 hover:border-gray-200 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 w-full outline outline-0 rounded mt-4 p-2'
-            autoFocus
+            className='border text-sm border-gray-200 bg-gray-50 text-stone-800 hover:bg-gray-200 focus:bg-gray-200 0 w-full outline outline-0 rounded-md mt-4 p-2'
             onChange={(e) => setEmail(e.target.value)}
           />
 
           <input
             type='password'
             placeholder='Password'
-            className='border-2 border-gray-100 bg-gray-100 hover:border-gray-200 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 outline-0 outline w-full rounded mt-2 p-2'
+            className='border text-sm border-gray-200 bg-gray-50 hover:bg-gray-200 focus:bg-gray-200 outline-0 outline w-full rounded-md mt-2 p-2'
             onChange={(e) => setPassword(e.target.value)}
           />
 
           <button
             disabled={isLoading}
-            className='h-10 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded text-sm mt-4'
+            className='h-8 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded-md text-sm mt-4'
           >
-            Go to my store
+            Login
           </button>
-          <p className='text-md text-stone-800 mt-2'>OR</p>
+          <p className='text-sm text-stone-800 mt-2'>OR</p>
           <button
             style={{
               backgroundColor: 'rgb(15, 20, 25)',
               borderColor: 'rgb(15, 20, 25)',
             }}
-            className='w-full h-10 text-sm rounded flex items-center justify-center text-white mt-2'
+            className='w-full h-8 text-sm rounded-md flex items-center justify-center text-white mt-2'
             type='button'
             onClick={handleTwitterLogin}
           >
@@ -168,14 +167,12 @@ const Login = () => {
           </button>
           <div className='w-full flex justify-between mt-2'>
             <Link to='/signup'>
-              <p className='text-sm text-stone-800 font-medium'>
-                Don't have a store yet?
+              <p className='text-sm text-stone-600'>
+                Don't have an account yet?
               </p>
             </Link>
             <Link to='/reset/password'>
-              <p className='text-sm text-stone-800 font-medium'>
-                Forgot your password?
-              </p>
+              <p className='text-sm text-stone-600'>Forgot your password?</p>
             </Link>
           </div>
         </form>

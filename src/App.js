@@ -56,6 +56,7 @@ import NotFound from './pages/NotFound';
 import EditProfile from './pages/EditProfile';
 import NameChange from './pages/NameChange';
 import AddBank from './pages/AddBank';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -71,6 +72,8 @@ function App() {
             <Route path='privacy' element={<Privacy />} />
 
             <Route path='tos' element={<TOS />} />
+
+            <Route path='contact' element={<Contact />} />
 
             <Route path='pricing' element={<Pricing />} />
 

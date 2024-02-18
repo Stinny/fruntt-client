@@ -242,7 +242,7 @@ const Navbar = () => {
       </div>
     </nav>
   ) : (
-    <nav className='w-full h-16 border-b shadow bg-white fixed top-0 left-0 right-0 z-50'>
+    <nav className='w-full h-16 border-b border-gray-200 bg-white fixed top-0 left-0 right-0 z-50'>
       <div className='max-w-6xl h-full mx-auto flex justify-between items-center'>
         {/* logo section */}
         <div className='text-2xl h-full flex justify-center items-center'>

@@ -82,13 +82,14 @@ const Payments = ({ refetch }) => {
     ) : (
       <div className='flex items-center justify-between'>
         <Link
-          to='/dashboard/bank'
+          to='/settings'
           className='h-16 w-6/12 bg-gray-100 rounded-md flex items-center justify-center hover:bg-gray-200'
         >
           <BiSolidBank className='mr-2 text-2xl' />
           <div className='flex flex-col'>
             <p className='font-bold'>Bank</p>
             <p className='text-xs'>Be paid out to a bank account</p>
+            <p className='text-xs'>COMING SOON</p>
           </div>
         </Link>
         <a

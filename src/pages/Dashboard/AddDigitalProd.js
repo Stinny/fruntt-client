@@ -115,8 +115,6 @@ const AddDigitalProd = () => {
         // coverPicUrl = imageDataReq.data[0].url;
         // coverPicKey = imageDataReq.data[0].key;
 
-        console.log(imageDataReq.data);
-
         if (files.length) {
           const filesToUpload = new FormData();
           for (var x = 0; x < files.length; x++) {
