@@ -69,46 +69,57 @@ const Contact = () => {
             </Link>
           </div>
         ) : (
-          <form
-            onSubmit={handleSubmitForm}
-            style={{ width: '450px' }}
-            className='mx-auto border border-gray-200 rounded-md flex flex-col p-4 mt-2'
-          >
-            <p className='text-stone-800 text-sm'>Name</p>
-            <input
-              type='text'
-              className='border text-sm border-gray-200 hover:bg-gray-200 focus:bg-gray-200 w-full rounded-md p-2 outline-none bg-gray-50 mt-1'
-              placeholder='Name'
-              onChange={(e) => setName(e.target.value)}
-            />
-
-            <p className='text-stone-800 mt-4 text-sm'>Email</p>
-            <input
-              type='text'
-              className='border text-sm border-gray-200 focus:bg-gray-200 hover:bg-gray-200 w-full rounded-md p-2 outline outline-0 bg-gray-50 mt-1'
-              placeholder='Email'
-              onChange={(e) => setEmail(e.target.value)}
-            />
-
-            <p className='text-stone-800 mt-4 text-sm'>Message</p>
-            <textarea
-              type='text'
-              className='border text-sm border-gray-200 focus:bg-gray-200 hover:bg-gray-200 w-full rounded-md p-2 outline outline-0 bg-gray-50 mt-1 h-24'
-              placeholder='How can we help?'
-              onChange={(e) => setBody(e.target.value)}
-              maxLength={350}
-            />
-            <div className='w-full flex justify-end'>
-              <p className='text-xs text-stone-600'>{body.length}/350</p>
-            </div>
-            <button
-              type='submit'
-              className='w-full h-12 border-2 border-stone-800 text-stone-800 text-sm font-medium hover:bg-stone-800 hover:text-white rounded-md mt-4'
-              disabled={submitting}
+          <>
+            <form
+              onSubmit={handleSubmitForm}
+              style={{ width: '450px' }}
+              className='mx-auto border border-gray-200 rounded-md flex flex-col p-4 mt-2'
             >
-              {submitting ? 'Submitting...' : 'Submit'}
-            </button>
-          </form>
+              <p className='text-stone-800 text-sm'>Name</p>
+              <input
+                type='text'
+                className='border text-sm border-gray-200 hover:bg-gray-200 focus:bg-gray-200 w-full rounded-md p-2 outline-none bg-gray-50 mt-1'
+                placeholder='Name'
+                onChange={(e) => setName(e.target.value)}
+              />
+
+              <p className='text-stone-800 mt-4 text-sm'>Email</p>
+              <input
+                type='text'
+                className='border text-sm border-gray-200 focus:bg-gray-200 hover:bg-gray-200 w-full rounded-md p-2 outline outline-0 bg-gray-50 mt-1'
+                placeholder='Email'
+                onChange={(e) => setEmail(e.target.value)}
+              />
+
+              <p className='text-stone-800 mt-4 text-sm'>Message</p>
+              <textarea
+                type='text'
+                className='border text-sm border-gray-200 focus:bg-gray-200 hover:bg-gray-200 w-full rounded-md p-2 outline outline-0 bg-gray-50 mt-1 h-24'
+                placeholder='How can we help?'
+                onChange={(e) => setBody(e.target.value)}
+                maxLength={350}
+              />
+              <div className='w-full flex justify-end'>
+                <p className='text-xs text-stone-600'>{body.length}/350</p>
+              </div>
+              <button
+                type='submit'
+                className='w-full h-12 border-2 border-stone-800 text-stone-800 text-sm font-medium hover:bg-stone-800 hover:text-white rounded-md mt-4'
+                disabled={submitting}
+              >
+                {submitting ? 'Submitting...' : 'Submit'}
+              </button>
+            </form>
+            <div
+              style={{ width: '450px' }}
+              className='flex justify-start text-left w-full mt-1'
+            >
+              <p className='text-sm text-stone-600'>
+                Or email the creator:{' '}
+                <span className='font-bold'>justin@fruntt.com</span>
+              </p>
+            </div>
+          </>
         )}
       </div>
       <Footer />
