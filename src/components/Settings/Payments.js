@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import {
   useLazyGetOnboardUrlQuery,
   useDisconnectStripeMutation,
+  useLazyGetBankUrlQuery,
 } from '../../api/authApiSlice';
 import { FaPaypal, FaStripeS } from 'react-icons/fa';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
@@ -24,20 +25,35 @@ const Payments = ({ refetch }) => {
   const aToken = Cookies.get('aToken');
   const [onboardUrl, setOnboardUrl] = useState('');
   const [gettingUrl, setGettingUrl] = useState(false);
+  const [gettingBankLink, setGettingBankLink] = useState(false);
 
   const [getOnboardUrl, result] = useLazyGetOnboardUrlQuery();
+  const [getBankUrl, res] = useLazyGetBankUrlQuery();
+
   const [disconnectStripe, { isLoading, isSuccess }] =
     useDisconnectStripeMutation();
 
-  useEffect(() => {
-    const fetchOnboardUrl = async () => {
-      setGettingUrl(true);
-      const urlReq = await getOnboardUrl().unwrap();
-      setGettingUrl(false);
-    };
+  // useEffect(() => {
+  //   const fetchOnboardUrl = async () => {
+  //     setGettingUrl(true);
+  //     const urlReq = await getOnboardUrl().unwrap();
+  //     setGettingUrl(false);
+  //   };
 
-    if (!currentUser.stripeOnboard) fetchOnboardUrl();
-  }, []);
+  //   if (!currentUser.stripeOnboard) fetchOnboardUrl();
+  // }, []);
+
+  const getStripeUrl = async () => {
+    setGettingUrl(true);
+    const urlReq = await getOnboardUrl().unwrap();
+    window.location.href = urlReq.url;
+  };
+
+  const getBankLink = async () => {
+    setGettingBankLink(true);
+    const urlReq = await getBankUrl().unwrap();
+    window.location.href = urlReq.url;
+  };
 
   const handleDisconnectStripe = async () => {
     const respon = await disconnectStripe().unwrap();
@@ -73,44 +89,56 @@ const Payments = ({ refetch }) => {
     </>
   );
 
-  let content;
-  if (!currentUser.stripeOnboard) {
-    content = gettingUrl ? (
-      <div className='w-full flex items-center justify-center'>
-        <CircularProgress className='mt-4 mx-auto' />
-      </div>
-    ) : (
-      <div className='flex items-center justify-between'>
-        <Link
-          to='/settings'
-          className='h-16 w-6/12 bg-gray-100 rounded-md flex items-center justify-center hover:bg-gray-200'
-        >
-          <BiSolidBank className='mr-2 text-2xl' />
-          <div className='flex flex-col'>
-            <p className='font-bold'>Bank</p>
-            <p className='text-xs'>Be paid out to a bank account</p>
-            <p className='text-xs'>COMING SOON</p>
-          </div>
-        </Link>
-        <a
-          href={result?.data?.url}
-          className='w-6/12 ml-2 h-16 flex items-center justify-center bg-gray-100 rounded-md p-2 hover:bg-gray-200'
-        >
-          <BsStripe className='text-2xl mr-2' />
-          <div className='flex flex-col'>
-            <p className='font-bold'>Stripe</p>
-            <p className='text-xs'>Be paid out to a Stripe account</p>
-          </div>
-        </a>
-      </div>
-    );
-  } else if (currentUser.stripeOnboard) {
-    content = connectedToStripe;
-  }
-
   return (
     <div>
-      <div className='w-full p-4'>{content}</div>
+      <div className='w-full p-4'>
+        <div className='flex items-center w-6/12'>
+          <div className='p-4 w-3/6 border border-gray-200 rounded-md'>
+            <div className='flex flex-col'>
+              <div className='flex items-center'>
+                <BiSolidBank className='mr-1 text-xl text-stone-800' />
+                <p className='font-bold text-stone-800'>Bank</p>
+              </div>
+              <p className='text-xs text-stone-600 mt-1'>
+                Be paid out to a bank account
+              </p>
+              {gettingBankLink ? (
+                <CircularProgress className='mt-1' />
+              ) : (
+                <button
+                  type='button'
+                  className='text-sm bg-gray-200 text-stone-800 rounded-md w-24 p-1 mt-1'
+                  onClick={getBankLink}
+                >
+                  Connect
+                </button>
+              )}
+            </div>
+          </div>
+          <div className='ml-2 w-3/6 border border-gray-200 rounded-md p-4'>
+            <div className='flex flex-col'>
+              <div className='flex items-center'>
+                <BsStripe className='text-xl mr-1 text-stone-800' />
+                <p className='font-bold text-stone-800'>Stripe</p>
+              </div>
+              <p className='text-xs text-stone-600 mt-1'>
+                Be paid out to a Stripe account
+              </p>
+              {gettingUrl ? (
+                <CircularProgress className='mt-1' />
+              ) : (
+                <button
+                  type='button'
+                  className='text-sm bg-gray-200 text-stone-800 rounded-md w-24 p-1 mt-1'
+                  onClick={getStripeUrl}
+                >
+                  Connect
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

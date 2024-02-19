@@ -191,23 +191,34 @@ const Register = () => {
             <input
               type='password'
               placeholder='Password'
-              className='border text-sm  outline outline-0 border-gray-200 bg-gray-50 hover:border-gray-200 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2 mt-2'
+              className='border text-sm outline outline-0 border-gray-200 bg-gray-50 hover:border-gray-200 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2 mt-2'
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <div className='flex w-full items-center border-2 rounded-md mt-2 border-gray-100 bg-gray-100 hover:border-gray-200 focus:bg-gray-200 focus:border-gray-200 hover:bg-gray-200 p-2'>
+            {/* <div className='flex w-full items-center border-2 rounded-md mt-2 border-gray-100 bg-gray-100 hover:border-gray-200 focus:bg-gray-200 focus:border-gray-200 hover:bg-gray-200 p-2'>
               <input
                 className=' outline outline-0 bg-gray-100 hover:bg-gray-200 h-full'
                 placeholder='Store'
                 onChange={(e) => setStoreName(e.target.value)}
               />
               <span className='font-medium'>.fruntt.com</span>
+            </div> */}
+
+            <div className='flex w-full mt-2'>
+              <div className='rounded-tl-md rounded-bl-md bg-gray-50 border border-r-0 border-gray-200 flex items-center p-2 pr-1'>
+                <p className='text-sm'>fruntt.com/</p>
+              </div>
+              <input
+                type='text'
+                placeholder='Store'
+                className='border text-sm border-gray-200 bg-gray-50 focus:bg-gray-200 focus:border-gray-200 hover:bg-gray-200 rounded-tr-md rounded-br-md p-2 pl-1 flex-1'
+              />
             </div>
 
             <button
               type='submit'
               disabled={isLoading}
-              className='h-8 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded-md text-sm mt-4'
+              className='h-10 w-full border border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded-md text-sm mt-4'
             >
               Signup
             </button>
@@ -217,11 +228,11 @@ const Register = () => {
                 backgroundColor: 'rgb(15, 20, 25)',
                 borderColor: 'rgb(15, 20, 25)',
               }}
-              className='w-full h-8 text-sm mt-2 rounded-md flex items-center justify-center text-white'
+              className='w-full h-10 text-sm mt-2 rounded-md flex items-center justify-center text-white'
               type='button'
               onClick={handleTwitterSignup}
             >
-              <p className='mr-2'>Connect with</p>
+              <p className='mr-2'>Signup with</p>
               <img src={img} className='w-4 h-4' />
             </button>
             <div className='mt-2 flex w-full'>

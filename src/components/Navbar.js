@@ -245,11 +245,11 @@ const Navbar = () => {
     <nav className='w-full h-16 border-b border-gray-200 bg-white fixed top-0 left-0 right-0 z-50'>
       <div className='max-w-6xl h-full mx-auto flex justify-between items-center'>
         {/* logo section */}
-        <div className='text-2xl h-full flex justify-center items-center'>
+        <div className='h-full flex justify-center items-center'>
           <Link to='/' className='h-full flex justify-center items-center'>
-            <IoStorefrontOutline className='text-stone-800 font-bold' />
+            <IoStorefrontOutline className='text-stone-800 font-bold text-xl' />
             <p
-              className='font-black mt-1'
+              className='text-stone-800 font-bold mt-1 text-md'
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               Fruntt
@@ -268,27 +268,24 @@ const Navbar = () => {
             <BiMoneyWithdraw className='text-2xl text-stone-800' />
           </Link> */}
 
-          <div className='flex border-2 border-stone-800 rounded-md p-1'>
+          <div className='flex justify-between items-center w-52'>
             <Link
               to='/marketplace'
-              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded-md'
+              className='flex text-sm h-8 w-14 justify-center items-center hover:bg-gray-200 text-stone-800 rounded-md'
             >
               <p className='font-medium'>Buy</p>
-              <MdOutlineSell className='text-xl' />
             </Link>
             <Link
               to='/signup'
-              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded-md'
+              className='flex text-sm h-8 w-14 items-center justify-center hover:bg-gray-200 text-stone-800 rounded-md'
             >
               <p className='font-medium'>Sell</p>
-              <BiMoneyWithdraw className='text-xl' />
             </Link>
             <Link
               to='/login'
-              className='flex items-center hover:bg-stone-800 hover:text-white text-stone-800 p-2 rounded-md'
+              className='flex text-sm items-center justify-center bg-gray-200 text-stone-800 rounded-md h-8 w-14'
             >
               <p className='font-medium'>Login</p>
-              <IoStorefrontOutline className='text-xl' />
             </Link>
           </div>
 

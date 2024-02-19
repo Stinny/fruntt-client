@@ -103,8 +103,8 @@ html {
   border-radius: 10px;
 }
 
-input {
-  outline: none !important;
+*:focus {
+  --tw-ring-color: none !important;
 }
 
 @tailwind base;

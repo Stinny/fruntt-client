@@ -135,20 +135,20 @@ const Login = () => {
           <input
             type='email'
             placeholder='Email'
-            className='border text-sm border-gray-200 bg-gray-50 text-stone-800 hover:bg-gray-200 focus:bg-gray-200 0 w-full outline outline-0 rounded-md mt-4 p-2'
+            className='border text-sm border-gray-200 bg-gray-50 text-stone-800 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 0 w-full outline outline-0 rounded-md mt-4 p-2'
             onChange={(e) => setEmail(e.target.value)}
           />
 
           <input
             type='password'
             placeholder='Password'
-            className='border text-sm border-gray-200 bg-gray-50 hover:bg-gray-200 focus:bg-gray-200 outline-0 outline w-full rounded-md mt-2 p-2'
+            className='border text-sm border-gray-200 bg-gray-50 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 outline-0 outline w-full rounded-md mt-2 p-2'
             onChange={(e) => setPassword(e.target.value)}
           />
 
           <button
             disabled={isLoading}
-            className='h-8 w-full border-2 border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded-md text-sm mt-4'
+            className='h-10 w-full border border-stone-800 hover:bg-stone-800 hover:text-white text-stone-800 rounded-md text-sm mt-4'
           >
             Login
           </button>
@@ -158,11 +158,11 @@ const Login = () => {
               backgroundColor: 'rgb(15, 20, 25)',
               borderColor: 'rgb(15, 20, 25)',
             }}
-            className='w-full h-8 text-sm rounded-md flex items-center justify-center text-white mt-2'
+            className='w-full h-10 border text-sm rounded-md flex items-center justify-center text-white mt-2'
             type='button'
             onClick={handleTwitterLogin}
           >
-            <p className='mr-2'>Log in with</p>
+            <p className='mr-2'>Login with</p>
             <img src={img} className='w-4 h-4' />
           </button>
           <div className='w-full flex justify-between mt-2'>
