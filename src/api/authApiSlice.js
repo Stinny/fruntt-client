@@ -51,6 +51,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
     getBankUrl: builder.query({
       query: () => '/auth/bank/url',
     }),
+    getUpdateUrl: builder.query({
+      query: () => '/auth/update/url',
+    }),
     getTwitterAuthUrl: builder.query({
       query: ({ type }) => `/auth/twitter/${type}`,
     }),
@@ -276,6 +279,7 @@ export const {
   useRegisterMutation,
   useLazyGetOnboardUrlQuery,
   useLazyGetBankUrlQuery,
+  useLazyGetUpdateUrlQuery,
   useGetUpdatedUserQuery,
   useLazyGetUpdatedUserQuery,
   useDisconnectStripeMutation,

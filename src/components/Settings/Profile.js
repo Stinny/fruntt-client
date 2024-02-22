@@ -175,6 +175,8 @@ const Profile = ({ user, refetch }) => {
       ) : (
         <>
           <div className='flex flex-col pl-4'>
+            <p className='text-sm font-medium mt-2'>Account</p>
+            <p className='text-lg'>{user?._id}</p>
             <p className='text-sm font-medium mt-2'>Account email</p>
             <p className='text-lg'>{user?.email}</p>
           </div>

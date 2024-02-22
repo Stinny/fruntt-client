@@ -135,7 +135,7 @@ const Login = () => {
           <input
             type='email'
             placeholder='Email'
-            className='border text-sm border-gray-200 bg-gray-50 text-stone-800 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 0 w-full outline outline-0 rounded-md mt-4 p-2'
+            className='border text-sm border-gray-200 bg-gray-50 ring-0 focus:border-transparent text-stone-800 hover:bg-gray-200 focus:bg-gray-200 0 w-full outline outline-0 rounded-md mt-4 p-2'
             onChange={(e) => setEmail(e.target.value)}
           />
 
