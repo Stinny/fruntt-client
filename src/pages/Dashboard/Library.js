@@ -35,12 +35,12 @@ const Library = () => {
 
   const styles = isMobile
     ? 'mx-auto w-full p-2 bg-gray-50 h-screen mt-14'
-    : 'mx-auto w-10/12 pt-10 pb-10 pl-32 pr-32 bg-gray-50 overflow-y-scroll';
+    : 'mx-auto w-full bg-white overflow-y-scroll ml-2';
 
   return (
     <>
       <Navbar />
-      <div className='flex'>
+      <div className='flex mx-auto max-w-6xl'>
         <Topbar />
         <div className={styles}>{content}</div>
       </div>

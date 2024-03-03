@@ -69,7 +69,7 @@ const Contact = () => {
   return (
     <>
       <Navbar />
-      <div className='h-screen overflow-hidden bg-white flex flex-col items-center justify-center'>
+      <div className='h-screen overflow-hidden bg-white flex flex-col items-center'>
         {submitted ? (
           ''
         ) : (

@@ -69,6 +69,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
       }),
     }),
+    removeBank: builder.mutation({
+      query: () => ({
+        url: '/auth/bank/remove',
+        method: 'POST',
+      }),
+    }),
     addPaymentMethod: builder.mutation({
       query: ({ paymentMethodId }) => ({
         url: '/auth/addpayment',
@@ -301,4 +307,5 @@ export const {
   useChangePasswordMutation,
   useAddBankMutation,
   useSubmitMessageMutation,
+  useRemoveBankMutation,
 } = authApiSlice;

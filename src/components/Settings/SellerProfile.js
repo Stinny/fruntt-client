@@ -142,13 +142,7 @@ const SellerProfile = ({ user, refetch }) => {
           </div>
         ) : (
           <div className='flex justify-between items-center w-full'>
-            <p className='text-md font-medium text-slate-800'>Seller profile</p>
-            <Link to='/dashboard/edit/profile'>
-              <AiOutlineEdit
-                onClick={openModal}
-                className='text-stone-800 text-xl hover:cursor-pointer'
-              />
-            </Link>
+            <p className='text-sm text-stone-800'>Profile</p>
           </div>
         )}
 
@@ -157,9 +151,9 @@ const SellerProfile = ({ user, refetch }) => {
             <div className='w-full flex flex-col mx-auto'>
               <div className='flex items-center'>
                 <Avatar
-                  sx={{ width: 40, height: 40 }}
+                  sx={{ width: 32, height: 32 }}
                   src={user?.sellerProfile?.picture?.url}
-                  className='border border-stone-800'
+                  className='border border-gray-200'
                 />
                 <div className='flex flex-col ml-2 pl-2 border-l'>
                   <p className='text-lg font-medium'>
@@ -240,88 +234,103 @@ const SellerProfile = ({ user, refetch }) => {
           </div>
         ) : (
           <div className='w-full mx-auto mt-2'>
-            <div className='w-full flex justify-between items-center mx-auto'>
-              <div className='w-2/12 flex items-center justify-center'>
-                <Avatar
-                  sx={{ width: 45, height: 45 }}
-                  src={user?.sellerProfile?.picture?.url}
-                  className='border border-stone-800'
-                />
-              </div>
+            <div className='w-full flex justify-between items-center mx-auto' />
+            {user?.setup ? (
+              <>
+                <div className='w-2/12 flex items-center justify-center'>
+                  <Avatar
+                    sx={{ width: 36, height: 36 }}
+                    src={user?.sellerProfile?.picture?.url}
+                    className='border border-gray-200'
+                  />
+                </div>
 
-              <div className='flex flex-col w-5/12'>
-                <p className='text-lg font-medium text-stone-800'>
-                  {user?.name ? user?.name : '{Your Name}'}
-                </p>
+                <div className='flex flex-col w-5/12'>
+                  <p className='text-lg font-medium text-stone-800'>
+                    {user?.name ? user?.name : '{Your Name}'}
+                  </p>
 
+                  <p className='text-stone-800 text-sm'>
+                    {user?.sellerProfile?.bio
+                      ? user?.sellerProfile?.bio
+                      : 'This is your bio, it is empty.'}
+                  </p>
+                </div>
+
+                <div className='flex flex-col items-center w-1/12'>
+                  <p className='font-medium text-2xl'>
+                    {user?.sellerProfile?.numberOfSales}
+                  </p>
+                  <p className='text-stone-800 text-sm'>
+                    {user?.sellerProfile?.numberOfSales == 1 ? 'sale' : 'sales'}
+                  </p>
+                </div>
+
+                <div className='flex items-center w-4/12 ml-6'>
+                  {user?.sellerProfile?.facebook ? (
+                    <a href={user?.sellerProfile?.facebook} target='_blank'>
+                      <AiOutlineFacebook className='text-stone-800 text-2xl' />
+                    </a>
+                  ) : (
+                    <AiOutlineFacebook className='text-gray-200 text-2xl' />
+                  )}
+                  {user?.sellerProfile?.instagram ? (
+                    <a href={user?.sellerProfile?.instagram} target='_blank'>
+                      <AiOutlineInstagram className='text-stone-800 ml-2 text-2xl' />
+                    </a>
+                  ) : (
+                    <AiOutlineInstagram className='text-gray-200 ml-2 text-2xl' />
+                  )}
+                  {user?.sellerProfile?.twitter ? (
+                    <a href={user?.sellerProfile?.twitter} target='_blank'>
+                      <AiOutlineTwitter className='text-stone-800 ml-2 text-2xl' />
+                    </a>
+                  ) : (
+                    <AiOutlineTwitter className='text-gray-200 ml-2 text-2xl' />
+                  )}
+                  {user?.sellerProfile?.linkedin ? (
+                    <a href={user?.sellerProfile?.linkedin} target='_blank'>
+                      <AiOutlineLinkedin className='text-stone-800 ml-2 text-2xl' />
+                    </a>
+                  ) : (
+                    <AiOutlineLinkedin className='text-gray-200 ml-2 text-2xl' />
+                  )}
+                  {user?.sellerProfile?.youtube ? (
+                    <a href={user?.sellerProfile?.youtube} target='_blank'>
+                      <AiOutlineYoutube className='text-stone-800 ml-2 text-2xl' />
+                    </a>
+                  ) : (
+                    <AiOutlineYoutube className='text-gray-200 ml-2 text-2xl' />
+                  )}
+                  {user?.sellerProfile?.tiktok ? (
+                    <a href={user?.sellerProfile?.tiktok} target='_blank'>
+                      <FaTiktok className='text-stone-800 ml-2 text-2xl' />
+                    </a>
+                  ) : (
+                    <FaTiktok className='text-gray-200 ml-2 text-2xl' />
+                  )}
+                  {user?.sellerProfile?.link ? (
+                    <a href={user?.sellerProfile?.tiktok} target='_blank'>
+                      <AiOutlineLink className='text-stone-800 ml-2 text-2xl' />
+                    </a>
+                  ) : (
+                    <AiOutlineLink className='text-gray-200 ml-2 text-2xl' />
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className='flex flex-col items-center'>
                 <p className='text-stone-800 text-sm'>
-                  {user?.sellerProfile?.bio
-                    ? user?.sellerProfile?.bio
-                    : 'This is your bio, it is empty.'}
+                  Finish your account setup in settings
                 </p>
+                <Link
+                  to='/settings'
+                  className='flex w-24 items-center justify-center p-1 rounded-md bg-gray-200 text-stone-800 text-sm mt-1'
+                >
+                  Finish
+                </Link>
               </div>
-
-              <div className='flex flex-col items-center w-1/12'>
-                <p className='font-medium text-2xl'>
-                  {user?.sellerProfile?.numberOfSales}
-                </p>
-                <p className='text-stone-800 text-sm'>
-                  {user?.sellerProfile?.numberOfSales == 1 ? 'sale' : 'sales'}
-                </p>
-              </div>
-
-              <div className='flex items-center w-4/12 ml-6'>
-                {user?.sellerProfile?.facebook ? (
-                  <a href={user?.sellerProfile?.facebook} target='_blank'>
-                    <AiOutlineFacebook className='text-stone-800 text-2xl' />
-                  </a>
-                ) : (
-                  <AiOutlineFacebook className='text-gray-200 text-2xl' />
-                )}
-                {user?.sellerProfile?.instagram ? (
-                  <a href={user?.sellerProfile?.instagram} target='_blank'>
-                    <AiOutlineInstagram className='text-stone-800 ml-2 text-2xl' />
-                  </a>
-                ) : (
-                  <AiOutlineInstagram className='text-gray-200 ml-2 text-2xl' />
-                )}
-                {user?.sellerProfile?.twitter ? (
-                  <a href={user?.sellerProfile?.twitter} target='_blank'>
-                    <AiOutlineTwitter className='text-stone-800 ml-2 text-2xl' />
-                  </a>
-                ) : (
-                  <AiOutlineTwitter className='text-gray-200 ml-2 text-2xl' />
-                )}
-                {user?.sellerProfile?.linkedin ? (
-                  <a href={user?.sellerProfile?.linkedin} target='_blank'>
-                    <AiOutlineLinkedin className='text-stone-800 ml-2 text-2xl' />
-                  </a>
-                ) : (
-                  <AiOutlineLinkedin className='text-gray-200 ml-2 text-2xl' />
-                )}
-                {user?.sellerProfile?.youtube ? (
-                  <a href={user?.sellerProfile?.youtube} target='_blank'>
-                    <AiOutlineYoutube className='text-stone-800 ml-2 text-2xl' />
-                  </a>
-                ) : (
-                  <AiOutlineYoutube className='text-gray-200 ml-2 text-2xl' />
-                )}
-                {user?.sellerProfile?.tiktok ? (
-                  <a href={user?.sellerProfile?.tiktok} target='_blank'>
-                    <FaTiktok className='text-stone-800 ml-2 text-2xl' />
-                  </a>
-                ) : (
-                  <FaTiktok className='text-gray-200 ml-2 text-2xl' />
-                )}
-                {user?.sellerProfile?.link ? (
-                  <a href={user?.sellerProfile?.tiktok} target='_blank'>
-                    <AiOutlineLink className='text-stone-800 ml-2 text-2xl' />
-                  </a>
-                ) : (
-                  <AiOutlineLink className='text-gray-200 ml-2 text-2xl' />
-                )}
-              </div>
-            </div>
+            )}
           </div>
         )}
       </div>

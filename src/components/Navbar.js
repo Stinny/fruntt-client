@@ -4,6 +4,7 @@ import { MdOutlineNotificationsNone } from 'react-icons/md';
 import { FaBars } from 'react-icons/fa6';
 import { CgProfile } from 'react-icons/cg';
 import { IoStorefrontOutline } from 'react-icons/io5';
+import { IoMdHelpCircleOutline } from 'react-icons/io';
 import { MdOutlineSell } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import handleLogoutUser from '../utils/logout';
@@ -116,17 +117,17 @@ const Navbar = () => {
       handleOpenModal={handleOpenModal}
     />
   ) : currentUser ? (
-    <nav className='w-full h-16 border-b bg-white top-0 left-0 right-0 pr-4 pl-4'>
-      <div className='w-full h-full mx-auto flex justify-between items-center'>
+    <nav className='w-full h-16 border-b bg-white top-0 left-0 right-0 pr-4 pl-4 mb-8'>
+      <div className='max-w-6xl h-full mx-auto flex justify-between items-center'>
         {/* logo section */}
-        <div className='text-2xl h-full flex justify-center items-center'>
+        <div className='h-full flex justify-center items-center'>
           <Link
             to='/dashboard'
             className='h-full flex justify-center items-center'
           >
-            <IoStorefrontOutline className='text-stone-800 font-bold' />
+            <IoStorefrontOutline className='text-stone-800 font-bold text-xl' />
             <p
-              className='font-black text-stone-800 mt-1'
+              className='font-black text-stone-800 mt-1 text-md'
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               Fruntt
@@ -143,7 +144,7 @@ const Navbar = () => {
         </div> */}
 
         {/* links section */}
-        <div className='h-full flex items-center justify-between'>
+        <div className='h-full flex items-center justify-between w-24'>
           {/* <Link to='/feedback'>Give Feedback</Link> */}
 
           {/* <BiHelpCircle
@@ -151,17 +152,25 @@ const Navbar = () => {
             onClick={handleOpenModal}
           /> */}
 
-          <MdOutlineNotificationsNone className='text-2xl hover:cursor-pointer' />
+          <MdOutlineNotificationsNone className='text-xl hover:cursor-pointer' />
+
+          <Link to='/contact'>
+            <IoMdHelpCircleOutline className='text-xl hover:cursor-pointer' />
+          </Link>
 
           {/* <FaBars
             className='text-2xl hover:cursor-pointer ml-4'
             onClick={handleClick}
           /> */}
           <Avatar
-            src={currentUser?.sellerProfile?.picture?.url}
+            src={
+              currentUser?.sellerProfile?.picture?.url
+                ? currentUser?.sellerProfile?.picture?.url
+                : currentUser?.email
+            }
             onClick={handleClick}
-            sx={{ width: 32, height: 32 }}
-            className='ml-4 hover:cursor-pointer'
+            sx={{ width: 26, height: 26 }}
+            className='hover:cursor-pointer'
           />
           <Menu
             anchorEl={anchorEl}

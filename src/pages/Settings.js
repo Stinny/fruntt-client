@@ -60,7 +60,7 @@ const Settings = () => {
           </div>
         )}
 
-        <div className='rounded w-full drop-shadow-lg bg-white p-1 border'>
+        <div className='rounded-md w-full bg-white p-1 border border-gray-200'>
           {/* <div className='w-full mt-4'>
             <SellerProfile user={user} refetch={refetch} />
           </div> */}
@@ -118,12 +118,12 @@ const Settings = () => {
   }
   const styles = isMobile
     ? 'w-full mx-auto p-2 bg-gray-50 h-fit mt-16'
-    : 'w-10/12 mx-auto pt-10 pb-10 pl-32 pr-32 bg-gray-50 h-screen overflow-y-scroll';
+    : 'w-full mx-auto bg-white h-screen overflow-y-scroll ml-2';
 
   return (
     <>
       <Navbar />
-      <div className='flex'>
+      <div className='flex mx-auto max-w-6xl'>
         <Topbar />
         <div className={styles}>{content}</div>
       </div>

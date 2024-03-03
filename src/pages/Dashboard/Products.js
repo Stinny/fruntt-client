@@ -57,12 +57,12 @@ const Products = () => {
 
   const styles = isMobile
     ? 'w-full mx-auto h-screen bg-gray-50 mt-16'
-    : 'w-10/12 mx-auto h-screen bg-gray-50 pl-32 pr-32 pt-10 pb-10';
+    : 'w-full mx-auto h-screen bg-gray-50';
 
   return (
     <>
       <Navbar />
-      <div className='flex'>
+      <div className='flex mx-auto max-w-6xl'>
         <Topbar />
         <div className={styles}>{content}</div>
       </div>

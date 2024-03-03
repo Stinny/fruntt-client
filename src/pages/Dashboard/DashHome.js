@@ -17,9 +17,11 @@ import { Line, Bar } from 'react-chartjs-2';
 import { GoGraph } from 'react-icons/go';
 import Select from 'react-select';
 
+//flowbite
+import { Tooltip } from 'flowbite-react';
+
 //mui
 import Alert from '@mui/material/Alert';
-import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import SellerProfile from '../../components/Settings/SellerProfile';
@@ -155,50 +157,9 @@ const DashHome = () => {
       />
     ) : (
       <>
-        {!currentUser.name ||
-        !currentUser?.sellerProfile?.bio ||
-        !currentUser?.sellerProfile?.picture?.url ? (
-          <Alert severity='info' className='mt-2 mb-2 w-full'>
-            <p>Finish setting up your seller profile</p>
-          </Alert>
-        ) : (
-          ''
-        )}
-
-        {!currentUser.stripeOnboard && (
-          <Alert severity='error' className='mb-2 w-full'>
-            <p>
-              Connect a Stripe account in{' '}
-              <Link to='/settings' className='text-red-900 font-semibold'>
-                settings
-              </Link>{' '}
-              to enable paid purchases
-            </p>
-          </Alert>
-        )}
-
-        {!currentUser.emailConfirmed && (
-          <Alert severity='error' className='mb-2 w-full'>
-            <p>
-              Please check your email inbox to confirm your email address so you
-              can enable purchases
-            </p>
-          </Alert>
-        )}
-        <div className='flex justify-between mb-4'>
-          <div className='flex items-center p-2 bg-white rounded-md border drop-shadow-md'>
-            <p className='text-md text-stone-800 font-medium'>Your store:</p>
-            <a
-              href={currentUser?.store?.url}
-              className='flex justify-center items-center text-md text-stone-800 font-medium ml-2'
-              target='_blank'
-            >
-              {currentUser?.store?.url}
-            </a>
-            <BiLinkExternal className='ml-1' />
-          </div>
-          <div className='flex items-center p-2 bg-white rounded-md border drop-shadow-md'>
-            <p className='font-medium text-stone-800 mr-2 text-md'>Filter:</p>
+        <div className='flex mb-2'>
+          <div className='flex flex-col bg-white'>
+            <p className='font-medium text-stone-800 text-sm'>Filter:</p>
             <Select
               options={viewOptions}
               onChange={handleView}
@@ -210,10 +171,11 @@ const DashHome = () => {
                 control: (baseStyles, state) => ({
                   ...baseStyles,
                   borderColor: 'rgb(229 231 235)',
-                  borderWidth: 2,
+                  borderWidth: 1,
                   '&:hover': {
                     borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
                   },
+                  borderRadius: '.375rem',
                   boxShadow: 'none',
                   zIndex: 99999,
                   position: 'relative',
@@ -225,26 +187,21 @@ const DashHome = () => {
           </div>
         </div>
 
-        <div className='flex justify-between items-center w-full mb-4'>
-          <div className='bg-white border rounded-md drop-shadow-md w-8/12 p-2 h-36'>
+        <div className='flex justify-between items-center w-full'>
+          <div className='bg-white border border-gray-200 rounded-md w-8/12 p-2 h-32'>
             <SellerProfile user={user} refetch={refetchUser} />
           </div>
-          <div className='bg-white border rounded-md drop-shadow-md w-4/12 ml-2 p-2 h-36'>
-            <Tooltip
-              title={
-                <p className='text-lg'>
-                  Total revenue your store has generated
-                </p>
-              }
-              className='ml-2 text-lg absolute right-0 mr-2'
-              placement='right-end'
-            >
-              <button>
-                <AiOutlineInfoCircle />
-              </button>
-            </Tooltip>
-            <p className='text-md font-medium text-slate-800'>Revenue</p>
-            <p className='text-4xl font-medium text-slate-800 mt-2'>
+          <div className='bg-white border border-gray-200 rounded-md w-4/12 ml-2 p-2 h-32 relative'>
+            <div className='absolute right-0 mr-1'>
+              <Tooltip
+                content='Total revenue generated from sales'
+                style='light'
+              >
+                <AiOutlineInfoCircle className='text-sm' />
+              </Tooltip>
+            </div>
+            <p className='text-sm font-medium text-stone-800'>Revenue</p>
+            <p className='text-2xl font-medium text-slate-800 mt-2'>
               $
               {stats?.revenue > 0
                 ? stats?.revenue.toLocaleString('en-US', {
@@ -253,100 +210,86 @@ const DashHome = () => {
                   })
                 : '0'}
             </p>
-            <p className='mt-1 text-sm font-medium'>
+            <p className='mt-1 text-xs text-stone-600'>
               {dataView === 'today'
                 ? 'In the past 24 hours'
                 : dataView === 'seven'
                 ? 'In the past 7 days'
                 : dataView === 'thirty'
                 ? 'In the past 30 days'
-                : 'Since you opened your store'}
+                : 'Since you signed up'}
             </p>
           </div>
         </div>
 
-        <div className='flex justify-between'>
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 relative border'>
-            <Tooltip
-              title={
-                <p className='text-lg'>Total sales your page has generated</p>
-              }
-              className='ml-2 text-lg absolute right-0 mr-2'
-              placement='right-end'
-            >
-              <button>
-                <AiOutlineInfoCircle />
-              </button>
-            </Tooltip>
-            <p className='text-md font-medium text-slate-800'>Orders</p>
-            <p className='text-4xl mt-2 font-medium text-slate-800'>
+        <div className='flex justify-between mt-2'>
+          <div className='w-3/12 h-28 bg-white border-gray-200 rounded-md p-2 relative border'>
+            <div className='absolute right-0 mr-1'>
+              <Tooltip
+                content='Total number of orders'
+                style='light'
+                className='w-32'
+              >
+                <AiOutlineInfoCircle className='text-sm' />
+              </Tooltip>
+            </div>
+            <p className='text-sm font-medium text-slate-800'>Orders</p>
+            <p className='text-2xl mt-2 font-medium text-slate-800'>
               {stats?.numOfOrders}
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
-            <Tooltip
-              title={
-                <p className='text-lg'>
-                  Amount of users who have visted your page
-                </p>
-              }
-              className='ml-2 text-lg absolute right-0 mr-2'
-              placement='right-end'
-            >
-              <button>
-                <AiOutlineInfoCircle />
-              </button>
-            </Tooltip>
-            <p className='text-md font-medium text-slate-800'>Views</p>
-            <p className='text-4xl font-medium text-slate-800 mt-2'>
+          <div className='w-3/12 h-28 bg-white border-gray-200 rounded-md p-2 ml-2 relative border'>
+            <div className='absolute right-0 mr-1'>
+              <Tooltip
+                content='Total number of views'
+                style='light'
+                className='w-32'
+              >
+                <AiOutlineInfoCircle className='text-sm' />
+              </Tooltip>
+            </div>
+            <p className='text-sm font-medium text-slate-800'>Views</p>
+            <p className='text-2xl font-medium text-slate-800 mt-2'>
               {stats?.visits}
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
-            <Tooltip
-              title={
-                <p className='text-lg'>Total number of unique customers</p>
-              }
-              className='ml-2 text-lg absolute right-0 mr-2'
-              placement='right-end'
-            >
-              <button>
-                <AiOutlineInfoCircle />
-              </button>
-            </Tooltip>
-            <p className='text-md font-medium'>Customers</p>
-            <p className='text-4xl font-medium mt-2'>
+          <div className='border-gray-200 w-3/12 h-28 bg-white rounded-md p-2 ml-2 relative border'>
+            <div className='absolute right-0 mr-1'>
+              <Tooltip
+                content='Total number of customers'
+                style='light'
+                className='w-32'
+              >
+                <AiOutlineInfoCircle className='text-sm' />
+              </Tooltip>
+            </div>
+            <p className='text-sm font-medium'>Customers</p>
+            <p className='text-2xl font-medium mt-2'>
               {stats?.numberOfCustomers > 0 ? stats?.numberOfCustomers : '0'}
             </p>
           </div>
 
-          <div className='drop-shadow-md w-3/12 h-40 bg-white rounded-md p-2 ml-4 relative border'>
-            <Tooltip
-              title={
-                <p className='text-lg'>
-                  Percentage of viewers who make a purchase
-                </p>
-              }
-              className='ml-2 text-lg absolute right-0 mr-2'
-              placement='right-end'
-            >
-              <button>
-                <AiOutlineInfoCircle />
-              </button>
-            </Tooltip>
-            <p className='text-md font-medium'>Conversion rate</p>
-            <p className='text-4xl font-medium mt-2'>
+          <div className='border-gray-200 w-3/12 h-28 bg-white rounded-md p-2 ml-2 relative border'>
+            <div className='absolute right-0 mr-1'>
+              <Tooltip
+                content='Percentage of visitors who make a purchase'
+                style='light'
+                className='w-32'
+              >
+                <AiOutlineInfoCircle className='text-sm' />
+              </Tooltip>
+            </div>
+            <p className='text-sm font-medium'>Conversion rate</p>
+            <p className='text-2xl font-medium mt-2'>
               {stats?.conversion > 0 ? stats?.conversion.toFixed(0) : '0'}%
             </p>
           </div>
         </div>
 
-        <div className='w-full mt-4 h-28 bg-white border rounded-md drop-shadow-md flex flex-col p-2'>
-          <p className='text-xl font-medium text-slate-800'>
-            Is your store ready for customers?
-          </p>
+        <div className='w-full mt-2 bg-white border border-gray-200 rounded-md flex flex-col p-2'>
+          <p className='text-stone-800'>Are you ready for customers?</p>
 
           <div className='w-full flex justify-between mt-2'>
             <FormControlLabel
@@ -355,9 +298,10 @@ const DashHome = () => {
                   checked={currentUser?.emailConfirmed}
                   color='default'
                   disabled
+                  size='small'
                 />
               }
-              label='Confirm your email'
+              label='Confirm email'
             />
 
             <FormControlLabel
@@ -366,9 +310,10 @@ const DashHome = () => {
                   checked={currentUser?.stripeOnboard}
                   color='default'
                   disabled
+                  size='small'
                 />
               }
-              label='Connect to payment gateway'
+              label='Add payout option'
             />
 
             <FormControlLabel
@@ -377,9 +322,10 @@ const DashHome = () => {
                   checked={currentUser?.store?.productAdded}
                   color='default'
                   disabled
+                  size='small'
                 />
               }
-              label='Add a template'
+              label='Submit a template'
             />
 
             <FormControlLabel
@@ -388,15 +334,16 @@ const DashHome = () => {
                   checked={currentUser?.store?.designAdded}
                   color='default'
                   disabled
+                  size='small'
                 />
               }
-              label='Design your storefront'
+              label='Finish account setup'
             />
           </div>
         </div>
 
-        <div className='w-full border rounded-md mt-4 bg-white drop-shadow-md h-96 flex items-center justify-center'>
-          {stats?.numOfOrders > 0 ? (
+        <div className='w-full border border-gray-200 rounded-md mt-2 bg-white h-72 flex items-center justify-center'>
+          {/* {stats?.numOfOrders > 0 ? (
             <Line options={options} data={data} />
           ) : (
             <div className='h-72 w-full flex flex-col items-center justify-center'>
@@ -405,7 +352,11 @@ const DashHome = () => {
                 No orders have came in
               </p>
             </div>
-          )}
+          )} */}
+          <div className='h-72 w-full flex flex-col items-center justify-center'>
+            <p className=' text-stone-800 mt-1'>View all sales data here</p>
+            <p className='text-sm text-stone-600 mt-1'>Display coming soon</p>
+          </div>
         </div>
       </>
     );
@@ -413,12 +364,12 @@ const DashHome = () => {
 
   const styles = isMobile
     ? 'w-full mx-auto h-fit p-2 bg-gray-50'
-    : 'w-10/12 mx-auto h-screen overflow-y-scroll pt-10 pb-10 pl-32 pr-32 bg-gray-50';
+    : 'w-full mx-auto h-screen overflow-y-scroll bg-white ml-2';
 
   return (
     <>
       <Navbar />
-      <div className='flex'>
+      <div className='flex max-w-6xl mx-auto'>
         <Topbar />
         <div className={styles}>{content}</div>
       </div>

@@ -96,11 +96,14 @@ const DesktopCustomers = ({ customers }) => {
       )}
     </div>
   ) : (
-    <div className='w-full mx-auto h-full bg-white drop-shadow-lg border rounded flex flex-col items-center justify-center'>
-      <h2 className='text-2xl font-medium mb-4'>You have no customers</h2>
+    <div
+      className='w-full mx-auto bg-white border-gray-200 border rounded-md flex flex-col items-center justify-center'
+      style={{ height: '600px' }}
+    >
+      <p className='text-stone-800'>You have no customers</p>
 
-      <p className='text-stone-800 mt-4'>
-        Everytime a customer makes a purchase, their details will be seen here.
+      <p className='text-stone-600 mt-1 text-sm'>
+        All customer details can be seen here
       </p>
     </div>
   );

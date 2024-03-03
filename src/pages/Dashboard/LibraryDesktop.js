@@ -26,7 +26,6 @@ const LibraryDesktop = ({ orders }) => {
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % orders.length;
-
     setItemOffset(newOffset);
   };
   //end of pagination stuff
@@ -51,20 +50,20 @@ const LibraryDesktop = ({ orders }) => {
         <div className='flex flex-col'>
           {currentOrders.map((order) => (
             <Link to={`/order/${order?._id}`}>
-              <div className='border rounded-md bg-white drop-shadow-md relative flex mt-4'>
+              <div className='border border-gray-200 rounded-md bg-white relative flex mt-2'>
                 <div className='w-2/12 h-full p-2'>
                   <img
                     src={order?.item?.coverImage?.url}
-                    className='rounded-md w-full h-32 object-cover'
+                    className='rounded-md w-full h-20 object-cover'
                   />
                 </div>
 
                 <div className='w-10/12 pl-4 flex flex-col p-2'>
-                  <p className='text-xl font-medium mb-2'>
-                    {order?.item?.title}
-                  </p>
+                  <p className='text-stone-800 mb-1'>{order?.item?.title}</p>
 
-                  <p className='text-lg mb-4'>{order?.item?.description}</p>
+                  <p className='text-sm text-stone-600 mb-1'>
+                    {order?.item?.description}
+                  </p>
 
                   <div className='mt-2'>
                     <a
