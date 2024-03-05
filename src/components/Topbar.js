@@ -15,6 +15,15 @@ import { VscFeedback } from 'react-icons/vsc';
 import { HiOutlineBuildingStorefront } from 'react-icons/hi2';
 import { HiOutlineTemplate } from 'react-icons/hi';
 import Cookies from 'js-cookie';
+import {
+  Bookmark,
+  DollarSign,
+  Home,
+  Layout,
+  Settings,
+  ShoppingCart,
+  User,
+} from 'react-feather';
 
 //flowbite
 import { Badge, Sidebar } from 'flowbite-react';
@@ -23,15 +32,17 @@ const Topbar = () => {
   //for changing nav links according to the page
   const path = window.location.pathname;
   const activeLink =
-    'text-md h-10 font-medium text-white w-full rounded-md bg-stone-800 flex items-center pl-2 outline outline-0';
+    'text-sm h-10 font-medium text-stone-800 w-full rounded-md bg-gray-200 flex items-center pl-2 outline outline-0';
   const notActiveLink =
-    'text-md font-medium w-full h-10 hover:bg-gray-100 rounded-md text-stone-800 flex items-center pl-2 outline outline-0';
+    'text-md font-medium w-full h-10 hover:bg-gray-200 rounded-md text-stone-800 flex items-center pl-2 outline outline-0';
 
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
+
+  const tempIcon = <Layout size={20} />;
 
   return isMobile ? (
     // <TopbarMobile />
@@ -41,32 +52,96 @@ const Topbar = () => {
       <Sidebar.Items>
         <Sidebar.ItemGroup>
           <Link to='/dashboard'>
-            <Sidebar.Item icon={AiOutlineHome}>Home</Sidebar.Item>
+            <Sidebar.Item
+              icon={Home}
+              className={path === '/dashboard' ? activeLink : notActiveLink}
+            >
+              Home
+            </Sidebar.Item>
           </Link>
           <Link to='/dashboard/item'>
-            <Sidebar.Item icon={HiOutlineTemplate}>Templates</Sidebar.Item>
+            <Sidebar.Item
+              icon={Layout}
+              className={
+                path === '/dashboard/item' ||
+                path.startsWith('/dashboard/item/edit')
+                  ? activeLink
+                  : notActiveLink
+              }
+              style={{ marginTop: '1px' }}
+            >
+              Templates
+            </Sidebar.Item>
           </Link>
           <Link to='/dashboard/orders'>
-            <Sidebar.Item icon={MdOutlineShoppingCart} label='3'>
+            <Sidebar.Item
+              icon={ShoppingCart}
+              label='3'
+              className={
+                path === '/dashboard/orders' ||
+                path === '/dashboard/orders/:orderId'
+                  ? activeLink
+                  : notActiveLink
+              }
+              style={{ marginTop: '1px' }}
+            >
               Orders
             </Sidebar.Item>
           </Link>
           <Link to='/dashboard/customers'>
-            <Sidebar.Item icon={BsPeople}>Customers</Sidebar.Item>
+            <Sidebar.Item
+              icon={User}
+              className={
+                path === '/dashboard/customers' ? activeLink : notActiveLink
+              }
+              style={{ marginTop: '1px' }}
+            >
+              Customers
+            </Sidebar.Item>
+          </Link>
+
+          <Link to='/dashboard/library'>
+            <Sidebar.Item
+              icon={Bookmark}
+              className={
+                path === '/dashboard/library' || path === '/dashboard/library'
+                  ? activeLink
+                  : notActiveLink
+              }
+              style={{ marginTop: '1px' }}
+            >
+              Library
+            </Sidebar.Item>
           </Link>
         </Sidebar.ItemGroup>
 
         <Sidebar.ItemGroup>
-          <Link to='/dashboard/library'>
-            <Sidebar.Item icon={BsBookmarkHeart}>Library</Sidebar.Item>
+          <Link to='/marketplace'>
+            <Sidebar.Item
+              icon={DollarSign}
+              className={
+                path === '/dashboard/library' || path === '/dashboard/library'
+                  ? activeLink
+                  : notActiveLink
+              }
+              style={{ marginTop: '1px' }}
+            >
+              Marketplace
+            </Sidebar.Item>
           </Link>
           <Link to='/settings'>
-            <Sidebar.Item icon={BsGear}>Settings</Sidebar.Item>
+            <Sidebar.Item
+              icon={Settings}
+              className={path === '/settings' ? activeLink : notActiveLink}
+              style={{ marginTop: '1px' }}
+            >
+              Settings
+            </Sidebar.Item>
           </Link>
 
-          <Link to='/dashboard/item/digital' className='w-full mt-2'>
-            <button className='w-full text-stone-800 text-sm bg-gray-200 rounded-md p-1 flex items-center justify-center'>
-              New Template +
+          <Link to='/dashboard/item/digital' className='w-full'>
+            <button className='w-full text-stone-800 text-sm bg-gray-200 rounded-md p-1 flex items-center justify-center mt-1'>
+              New +
             </button>
           </Link>
         </Sidebar.ItemGroup>

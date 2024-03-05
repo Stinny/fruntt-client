@@ -56,8 +56,8 @@ const Products = () => {
   }
 
   const styles = isMobile
-    ? 'w-full mx-auto h-screen bg-gray-50 mt-16'
-    : 'w-full mx-auto h-screen bg-gray-50';
+    ? 'w-full mx-auto h-screen bg-white mt-16'
+    : 'w-full mx-auto h-screen bg-white ml-2';
 
   return (
     <>

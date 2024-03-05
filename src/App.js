@@ -57,7 +57,7 @@ import EditProfile from './pages/EditProfile';
 import NameChange from './pages/NameChange';
 import AddBank from './pages/AddBank';
 import Contact from './pages/Contact';
-import TemplateDetail from './pages/TemplateDetail';
+import TemplateDetail from './pages/TemplateDetail/TemplateDetail';
 
 function App() {
   return (
@@ -84,7 +84,7 @@ function App() {
 
             <Route path='marketplace' element={<Marketplace />} />
 
-            <Route path='t/:templateUrl' element={<TemplateDetail />} />
+            <Route path='t/:productUrl' element={<TemplateDetail />} />
 
             <Route path='auth/twitter' element={<TwitterAuth />} />
 

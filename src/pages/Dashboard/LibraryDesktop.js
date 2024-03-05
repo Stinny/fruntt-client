@@ -33,10 +33,10 @@ const LibraryDesktop = ({ orders }) => {
   return orders.length ? (
     <div className='mx-auto w-full'>
       <div className='w-full mx-auto flex flex-col'>
-        <div className='w-full flex justify-between items-center'>
-          <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
-            <BsBookmarkHeart className='text-white text-xl' />
-            <p className='text-md text-white ml-2'>Library</p>
+        <div className='w-full flex justify-between items-end'>
+          <div className='flex flex-col justify-center border border-gray-200 bg-white rounded-md p-2'>
+            <p className='text-md text-stone-800 font-bold'>Library</p>
+            <p className='text-sm text-stone-600'>View all your purchases</p>
           </div>
 
           <div className='flex items-center'>
@@ -61,7 +61,7 @@ const LibraryDesktop = ({ orders }) => {
                 <div className='w-10/12 pl-4 flex flex-col p-2'>
                   <p className='text-stone-800 mb-1'>{order?.item?.title}</p>
 
-                  <p className='text-sm text-stone-600 mb-1'>
+                  <p className='text-sm text-stone-600'>
                     {order?.item?.description}
                   </p>
 
@@ -73,9 +73,9 @@ const LibraryDesktop = ({ orders }) => {
                     >
                       <Avatar
                         src={order?.item?.userPicture}
-                        sx={{ width: 22, height: 22 }}
+                        sx={{ width: 20, height: 20 }}
                       />
-                      <p className='ml-1 text-sm'>{order?.item?.userName}</p>
+                      <p className='ml-1 text-xs'>{order?.item?.userName}</p>
                     </a>
                   </div>
                 </div>

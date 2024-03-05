@@ -20,6 +20,7 @@ import {
   setSelectedStoreUrl,
 } from '../redux/userRedux';
 import 'react-toastify/dist/ReactToastify.css';
+import { Bell, HelpCircle } from 'react-feather';
 
 //mui
 import Menu from '@mui/material/Menu';
@@ -127,7 +128,7 @@ const Navbar = () => {
           >
             <IoStorefrontOutline className='text-stone-800 font-bold text-xl' />
             <p
-              className='font-black text-stone-800 mt-1 text-md'
+              className='font-black text-stone-800 mt-2 text-md'
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               Fruntt
@@ -152,10 +153,10 @@ const Navbar = () => {
             onClick={handleOpenModal}
           /> */}
 
-          <MdOutlineNotificationsNone className='text-xl hover:cursor-pointer' />
+          <Bell className='hover:cursor-pointer' size={16} />
 
           <Link to='/contact'>
-            <IoMdHelpCircleOutline className='text-xl hover:cursor-pointer' />
+            <HelpCircle size={16} className='hover:cursor-pointer' />
           </Link>
 
           {/* <FaBars

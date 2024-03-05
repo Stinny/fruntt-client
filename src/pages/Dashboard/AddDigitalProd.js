@@ -182,12 +182,12 @@ const AddDigitalProd = () => {
 
   const styles = isMobile
     ? 'w-full mx-auto h-fit bg-gray-50 p-2 mt-16'
-    : 'w-10/12 mx-auto h-screen bg-gray-50 pt-10 pb-10 pl-32 pr-32 overflow-y-scroll';
+    : 'w-full mx-auto h-screen bg-white overflow-y-scroll';
 
   return (
     <>
       <Navbar />
-      <div className='flex'>
+      <div className='flex mx-auto max-w-6xl'>
         <Topbar />
         <div className={styles}>
           {isMobile ? (

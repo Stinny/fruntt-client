@@ -52,7 +52,6 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
-
     addProductReview: builder.mutation({
       query: ({ orderId, email, review, rating, name }) => ({
         url: `/orders/add/review`,
@@ -94,6 +93,19 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    createOrder: builder.mutation({
+      query: ({ total, item, qty, options, storeId }) => ({
+        url: '/orders/create/',
+        method: 'POST',
+        body: {
+          total: total,
+          item: item,
+          qty: qty,
+          storeId: storeId,
+          options: options,
+        },
+      }),
+    }),
   }),
 });
 
@@ -111,4 +123,5 @@ export const {
   useMarkAsViewedMutation,
   useGetReviewsQuery,
   useGetReviewQuery,
+  useCreateOrderMutation,
 } = ordersApiSlice;
