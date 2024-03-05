@@ -124,4 +124,5 @@ export const {
   useGetReviewsQuery,
   useGetReviewQuery,
   useCreateOrderMutation,
+  useLazyGetSingleOrderQuery,
 } = ordersApiSlice;

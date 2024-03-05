@@ -5,7 +5,11 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import Checkout from '../../components/Checkout/Checkout';
-import { useCreateOrderMutation } from '../../api/ordersApiSlice';
+import {
+  useCreateOrderMutation,
+  useGetSingleOrderQuery,
+  useLazyGetSingleOrderQuery,
+} from '../../api/ordersApiSlice';
 import Cookies from 'js-cookie';
 
 const Desktop = ({ product }) => {
@@ -16,6 +20,7 @@ const Desktop = ({ product }) => {
   const [readyForPayment, setReadyForPayment] = useState(false);
 
   const [createOrder, result] = useCreateOrderMutation();
+  const [getSingleOrder, { result: res }] = useLazyGetSingleOrderQuery();
   const [createdOrder, setCreatedOrder] = useState({});
 
   //to see if product info is empty or not
@@ -31,7 +36,13 @@ const Desktop = ({ product }) => {
     }
 
     if (orderId) {
-      setReadyForPayment(true);
+      try {
+        const getOrderReq = await getSingleOrder({ orderId: orderId }).unwrap();
+        setCreatedOrder(getOrderReq);
+        setReadyForPayment(true);
+      } catch (err) {
+        return;
+      }
     } else {
       try {
         const createOrderReq = await createOrder({

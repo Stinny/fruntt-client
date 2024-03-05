@@ -6,7 +6,12 @@ import CheckoutForm from './CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
-const Checkout = ({ order, setReadyForPayment, refetch }) => {
+const Checkout = ({
+  order,
+  setReadyForPayment,
+  handleResetCheckout,
+  refetch,
+}) => {
   // const { orderId } = useParams();
   //   const {
   //     data: order,
@@ -57,7 +62,11 @@ const Checkout = ({ order, setReadyForPayment, refetch }) => {
           <NoPayForm order={order} setReadyForPayment={setReadyForPayment} />
         ) : (
           <Elements stripe={stripeLoader} options={stripeOptions}>
-            <CheckoutForm order={order} refetch={refetch} />
+            <CheckoutForm
+              order={order}
+              refetch={refetch}
+              handleResetCheckout={handleResetCheckout}
+            />
           </Elements>
         )}
       </div>
