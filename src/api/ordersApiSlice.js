@@ -106,6 +106,16 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    updateOrder: builder.mutation({
+      query: ({ orderId, email, name }) => ({
+        url: `/orders/update/${orderId}`,
+        method: 'PUT',
+        body: {
+          email: email,
+          name: name,
+        },
+      }),
+    }),
   }),
 });
 
@@ -125,4 +135,5 @@ export const {
   useGetReviewQuery,
   useCreateOrderMutation,
   useLazyGetSingleOrderQuery,
+  useUpdateOrderMutation,
 } = ordersApiSlice;

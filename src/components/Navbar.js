@@ -153,10 +153,10 @@ const Navbar = () => {
             onClick={handleOpenModal}
           /> */}
 
-          <Bell className='hover:cursor-pointer' size={16} />
+          <Bell className='hover:cursor-pointer' size={18} />
 
           <Link to='/contact'>
-            <HelpCircle size={16} className='hover:cursor-pointer' />
+            <HelpCircle size={18} className='hover:cursor-pointer' />
           </Link>
 
           {/* <FaBars
@@ -252,8 +252,8 @@ const Navbar = () => {
       </div>
     </nav>
   ) : (
-    <nav className='w-full h-16 border-b border-gray-200 bg-white fixed top-0 left-0 right-0 z-50'>
-      <div className='max-w-6xl h-full mx-auto flex justify-between items-center'>
+    <nav className='w-full h-16 border-b border-gray-200 bg-white fixed top-0 left-0 right-0 z-50 mb-8'>
+      <div className='max-w-6xl h-full mx-auto flex justify-between items-center mb-8'>
         {/* logo section */}
         <div className='h-full flex justify-center items-center'>
           <Link to='/' className='h-full flex justify-center items-center'>

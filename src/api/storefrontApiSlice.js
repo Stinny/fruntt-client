@@ -11,6 +11,9 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
     getStorefrontByID: builder.query({
       query: ({ storeId }) => `/storefront/get/${storeId}`,
     }),
+    getStorefrontByURL: builder.query({
+      query: ({ storeUrl }) => `/storefront/s/${storeUrl}`,
+    }),
     getStoreStats: builder.query({
       query: ({ storeId, view }) => `/storefront/storestats/${storeId}/${view}`,
     }),
@@ -131,4 +134,5 @@ export const {
   useLazyGetStorefrontByIDQuery,
   useDeleteStoreMutation,
   useHideSectionsMutation,
+  useGetStorefrontByURLQuery,
 } = storefrontApiSlice;

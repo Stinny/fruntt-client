@@ -30,6 +30,10 @@ const Login = () => {
   const { state } = useLocation();
   const [login, { isLoading }] = useLoginMutation();
 
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
+
   //form state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -85,6 +89,16 @@ const Login = () => {
   useEffect(() => {
     setError('');
   }, [email, password]);
+
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
+  if (currentUser) return <Navigate to='/dashboard' />;
 
   let content;
 

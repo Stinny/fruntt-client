@@ -289,7 +289,7 @@ const DashHome = () => {
         </div>
 
         <div className='w-full mt-2 bg-white border border-gray-200 rounded-md flex flex-col p-2'>
-          <p className='text-stone-800'>Are you ready for customers?</p>
+          <p className='text-stone-800 text-sm'>Are you ready for customers?</p>
 
           <div className='w-full flex justify-between mt-2'>
             <FormControlLabel
@@ -298,10 +298,12 @@ const DashHome = () => {
                   checked={currentUser?.emailConfirmed}
                   color='default'
                   disabled
-                  size='small'
+                  size='xsmall'
                 />
               }
-              label='Confirm email'
+              label={
+                <span className='text-sm text-stone-600'>Confirm email</span>
+              }
             />
 
             <FormControlLabel
@@ -310,10 +312,14 @@ const DashHome = () => {
                   checked={currentUser?.stripeOnboard}
                   color='default'
                   disabled
-                  size='small'
+                  size='xsmall'
                 />
               }
-              label='Add payout option'
+              label={
+                <span className='text-sm text-stone-600'>
+                  Add payout option
+                </span>
+              }
             />
 
             <FormControlLabel
@@ -322,10 +328,12 @@ const DashHome = () => {
                   checked={currentUser?.store?.productAdded}
                   color='default'
                   disabled
-                  size='small'
+                  size='xsmall'
                 />
               }
-              label='Submit a template'
+              label={
+                <span className='text-sm text-stone-600'>Submit template</span>
+              }
             />
 
             <FormControlLabel
@@ -334,10 +342,14 @@ const DashHome = () => {
                   checked={currentUser?.store?.designAdded}
                   color='default'
                   disabled
-                  size='small'
+                  size='xsmall'
                 />
               }
-              label='Finish account setup'
+              label={
+                <span className='text-sm text-stone-600'>
+                  Finish account setup
+                </span>
+              }
             />
           </div>
         </div>

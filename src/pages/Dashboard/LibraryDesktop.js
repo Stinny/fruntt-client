@@ -58,37 +58,35 @@ const LibraryDesktop = ({ orders }) => {
                   />
                 </div>
 
-                <div className='w-10/12 pl-4 flex flex-col p-2'>
+                <div className='w-10/12 pl-4 flex flex-col items-start p-2'>
                   <p className='text-stone-800 mb-1'>{order?.item?.title}</p>
 
                   <p className='text-sm text-stone-600'>
                     {order?.item?.description}
                   </p>
 
-                  <div className='mt-2'>
-                    <a
-                      href={order?.item?.storeUrl}
-                      className='flex items-center'
-                      target='_blank'
-                    >
-                      <Avatar
-                        src={order?.item?.userPicture}
-                        sx={{ width: 20, height: 20 }}
-                      />
-                      <p className='ml-1 text-xs'>{order?.item?.userName}</p>
-                    </a>
-                  </div>
+                  <Link
+                    to={`/${order?.item?.storeUrl.match(/\/\/([^.]+)\./)?.[1]}`}
+                    className='flex items-center mt-1'
+                  >
+                    <Avatar
+                      src={order?.item?.userPicture}
+                      sx={{ width: 20, height: 20 }}
+                    />
+                    <p className='ml-1 text-xs'>{order?.item?.userName}</p>
+                  </Link>
                 </div>
               </div>
             </Link>
           ))}
-          <div className='w-full flex justify-end  mt-2'>
+          <div className='w-full flex justify-end mt-2'>
             <div className=''>
               <ReactPaginate
                 breakLabel='...'
                 nextLabel='Next'
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
+                marginPagesDisplayed={0}
+                pageRangeDisplayed={0}
                 pageCount={pageCount}
                 previousLabel='Prev'
                 renderOnZeroPageCount={null}
@@ -96,6 +94,7 @@ const LibraryDesktop = ({ orders }) => {
                 activeLinkClassName='activePage'
                 pageLinkClassName='notActivePage'
                 breakLinkClassName='breakLink'
+                disabledClassName='disabled'
               />
             </div>
           </div>
@@ -103,12 +102,18 @@ const LibraryDesktop = ({ orders }) => {
       </div>
     </div>
   ) : (
-    <div className='w-full h-screen mx-auto bg-white drop-shadow-lg border flex items-center justify-center'>
-      <div className='flex flex-col'>
-        <p className='text-xl font-medium text-stone-800'>
-          Your library is empty!
-        </p>
-      </div>
+    <div
+      className='flex flex-col border-gray-200 items-center justify-center rounded-md w-full border bg-white'
+      style={{ height: '600px' }}
+    >
+      <p className='text-stone-800'>Your library is empty</p>
+
+      <Link
+        to='/marketplace'
+        className='flex items-center justify-center bg-gray-200 text-sm text-stone-800 rounded-md pt-1 pb-1 pl-2 pr-2 mt-2'
+      >
+        Marketplace
+      </Link>
     </div>
   );
 };

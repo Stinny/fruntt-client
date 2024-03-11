@@ -14,6 +14,7 @@ import { BiSmile } from 'react-icons/bi';
 
 //mui
 import Avatar from '@mui/material/Avatar';
+import { Link } from 'react-router-dom';
 
 const Products = ({ products, gettingProducts, gotProducts }) => {
   //   const {
@@ -43,14 +44,8 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
                 className='border drop-shadow-lg flex w-full mb-4 rounded-md relative bg-white'
                 style={{ height: '350px' }}
               >
-                <div className='absolute bottom-0 right-0 mb-1 mr-1 bg-gray-100 rounded-br-md p-2'>
-                  <p
-                    className={
-                      product?.item?.free
-                        ? 'font-medium text-lg text-stone-800'
-                        : 'font-medium text-lg text-stone-800'
-                    }
-                  >
+                <div className='absolute bottom-0 right-0 mb-1 mr-1 bg-gray-200 rounded-md p-2'>
+                  <p className='text-sm text-stone-800'>
                     {product?.free
                       ? 'FREE'
                       : product?.payChoice
@@ -99,25 +94,15 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
       <div className='max-w-7xl flex flex-col items-center mt-44'>
         <p className='text-xl font-bold'>Recommended Templates</p>
 
-        <div className='w-full grid grid-cols-3 gap-4 mt-6'>
+        <div className='w-full grid grid-cols-4 gap-4 mt-6'>
           {products.map((product) => (
-            <a
-              href={`${product.storeUrl}/${product?.url}`}
-              className='w-full'
-              target='_blank'
-            >
+            <Link to={`/t/${product?.url}`} className='w-full'>
               <div
-                className='border drop-shadow-lg flex w-full mb-4 rounded-md relative bg-white'
-                style={{ height: '350px' }}
+                className='border border-gray-200 flex w-full mb-4 rounded-md relative bg-white'
+                style={{ height: '300px' }}
               >
-                <div className='absolute bottom-0 right-0 font-medium bg-gray-100 mb-1 mr-1 rounded-br-md p-2'>
-                  <p
-                    className={
-                      product?.item?.free
-                        ? 'font-medium text-lg'
-                        : 'font-medium text-lg'
-                    }
-                  >
+                <div className='absolute bottom-0 right-0 bg-gray-200 mb-1 mr-1 rounded-md p-1 pl-2 pr-2'>
+                  <p className='text-sm text-stone-800'>
                     {product?.free
                       ? 'FREE'
                       : product?.payChoice
@@ -140,55 +125,24 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
                   >
                     <Avatar
                       src={product?.userPicture}
-                      sx={{ width: 28, height: 28 }}
+                      sx={{ width: 22, height: 22 }}
                     />
-                    <p className='ml-1'>{product?.userName}</p>
+                    {/* <p className='ml-1'>{product?.userName}</p> */}
                   </a>
                 </div>
 
-                <div className='w-full flex-col p-4'>
-                  <div className='w-full h-48 pb-2'>
+                <div className='w-full flex-col p-2'>
+                  <div className='w-full h-32 pb-2'>
                     <img
                       src={product?.coverImage?.url}
                       className='object-fill w-full h-full rounded-md'
                     />
                   </div>
-                  {/* <div className='mb-2 mt-1'>
-                    {product?.digitalType === 'video' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>Video Course</p>
-                        <MdOutlineVideoLibrary className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'ebook' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>E-Book</p>
-                        <HiOutlineBookOpen className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'audio' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>Audio</p>
-                        <BsFillMicFill className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'other' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8'>
-                        <p className='text-sm'>Other</p>
-                        <MdOutlinePermMedia className='ml-2 text-xl' />
-                      </div>
-                    ) : product?.digitalType === 'template' ? (
-                      <div className='flex items-center justify-center bg-gray-100 rounded w-40 h-8 mt-2'>
-                        <p className='text-sm'>Template</p>
-                        <HiOutlineTemplate className='ml-2 text-xl' />
-                      </div>
-                    ) : (
-                      <div className='flex items-center justify-center bg-gray-100  rounded w-40 h-8'>
-                        <p className='text-sm'>Art</p>
-                        <BsPalette className='ml-2 text-xl' />
-                      </div>
-                    )}
-                  </div> */}
 
-                  <p className='font-bold text-lg mb-1'>{product?.title}</p>
-                  <p className='text-sm mb-2'>{product?.description}</p>
+                  <p className='text-sm mb-1'>{product?.title}</p>
+                  <p className='text-sm text-stone-600'>
+                    {product?.description}
+                  </p>
                 </div>
 
                 {/* <div className='absolute bottom-0 ml-2 mb-2'>
@@ -205,7 +159,7 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
           <img className='rounded' src={product?.item?.coverImage?.url} />
         </div> */}
               </div>
-            </a>
+            </Link>
           ))}
         </div>
         {/* <div className='w-full flex items-center justify-between mt-6'>

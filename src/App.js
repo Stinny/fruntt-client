@@ -58,6 +58,7 @@ import NameChange from './pages/NameChange';
 import AddBank from './pages/AddBank';
 import Contact from './pages/Contact';
 import TemplateDetail from './pages/TemplateDetail/TemplateDetail';
+import Store from './pages/Store/Store';
 
 function App() {
   return (
@@ -85,6 +86,8 @@ function App() {
             <Route path='marketplace' element={<Marketplace />} />
 
             <Route path='t/:productUrl' element={<TemplateDetail />} />
+
+            <Route path=':storeUrl' element={<Store />} />
 
             <Route path='auth/twitter' element={<TwitterAuth />} />
 

@@ -35,6 +35,10 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
+
   const [register, { isLoading }] = useRegisterMutation();
 
   //component state
@@ -129,6 +133,8 @@ const Register = () => {
     });
   }, []);
 
+  if (currentUser) return <Navigate to='/dashboard' />;
+
   let content;
 
   if (isLoading) {
@@ -194,15 +200,6 @@ const Register = () => {
               className='border text-sm outline outline-0 border-gray-200 bg-gray-50 hover:border-gray-200 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2 mt-2'
               onChange={(e) => setPassword(e.target.value)}
             />
-
-            {/* <div className='flex w-full items-center border-2 rounded-md mt-2 border-gray-100 bg-gray-100 hover:border-gray-200 focus:bg-gray-200 focus:border-gray-200 hover:bg-gray-200 p-2'>
-              <input
-                className=' outline outline-0 bg-gray-100 hover:bg-gray-200 h-full'
-                placeholder='Store'
-                onChange={(e) => setStoreName(e.target.value)}
-              />
-              <span className='font-medium'>.fruntt.com</span>
-            </div> */}
 
             <div className='flex w-full mt-2'>
               <div className='rounded-tl-md rounded-bl-md bg-gray-50 border border-r-0 border-gray-200 flex items-center p-2 pr-1'>

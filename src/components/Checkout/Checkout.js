@@ -11,6 +11,8 @@ const Checkout = ({
   setReadyForPayment,
   handleResetCheckout,
   refetch,
+  setError,
+  error,
 }) => {
   // const { orderId } = useParams();
   //   const {
@@ -30,6 +32,7 @@ const Checkout = ({
   const stripeOptions = {
     clientSecret: order?.clientId,
     appearance: {
+      labels: 'floating',
       theme: 'stripe',
       variables: {
         colorPrimary: '#fff',
@@ -38,7 +41,10 @@ const Checkout = ({
         colorDanger: '#df1b41',
         fontFamily: 'Ideal Sans, system-ui, sans-serif',
         fontSizeBase: '14px',
-        borderRadius: '5px',
+        borderRadius: '6px',
+        spacingUnit: '1px',
+        gridColumnSpacing: '8px',
+        gridRowSpacing: '8px',
       },
       rules: {
         '.Input': {
@@ -52,20 +58,37 @@ const Checkout = ({
           outline: 0,
           boxShadow: 'none',
         },
+        '.Input:hover': {
+          borderColor: 'rgb(229 231 235)',
+          backgroundColor: 'rgb(229 231 235)',
+          outline: 0,
+          boxShadow: 'none',
+        },
+        '.Label': {
+          color: '#757575',
+        },
       },
     },
   };
   return (
-    <div className='mx-auto md:ml-4'>
+    <div className='mx-auto'>
       <div>
         {order?.total == 0 ? (
-          <NoPayForm order={order} setReadyForPayment={setReadyForPayment} />
+          <NoPayForm
+            order={order}
+            setReadyForPayment={setReadyForPayment}
+            handleResetCheckout={handleResetCheckout}
+            error={error}
+            setError={setError}
+          />
         ) : (
           <Elements stripe={stripeLoader} options={stripeOptions}>
             <CheckoutForm
               order={order}
               refetch={refetch}
               handleResetCheckout={handleResetCheckout}
+              error={error}
+              setError={setError}
             />
           </Elements>
         )}

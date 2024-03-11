@@ -1,74 +1,107 @@
-import { PaymentElement } from '@stripe/react-stripe-js';
 import { Spinner } from 'flowbite-react';
 import React, { useState } from 'react';
-import { ChevronLeft } from 'react-feather';
+import { AlertCircle, ChevronLeft } from 'react-feather';
+import {
+  useStripe,
+  useElements,
+  PaymentElement,
+} from '@stripe/react-stripe-js';
+import { useUpdateOrderMutation } from '../../api/ordersApiSlice';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
-const CheckoutForm = ({ order, handleResetCheckout }) => {
+//flowbite
+import { Alert } from 'flowbite-react';
+
+const CheckoutForm = ({ order, handleResetCheckout, setError, error }) => {
+  const stripe = useStripe();
+  const elements = useElements();
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [placingOrder, setPlacingOrder] = useState(false);
   // const [updateOrderAmount, result] = useUpdateOrderAmountMutation();
-  // const [updateOrder, { isLoading }] = useUpdateOrderMutation();
+  const [updateOrder, { isLoading }] = useUpdateOrderMutation();
 
-  // const handleConfirmOrder = async (e) => {
-  //   e.preventDefault();
+  const handleConfirmOrder = async (e) => {
+    e.preventDefault();
 
-  //   if (!stripe || !elements) {
-  //     // Stripe.js has not yet loaded.
-  //     // Make sure to disable form submission until Stripe.js has loaded.
-  //     return;
-  //   }
+    if (!stripe || !elements) {
+      // Stripe.js has not yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
+    }
 
-  //   //make sure all fields are filled out
-  //   if (!email || !country || !name) {
-  //     setError('All feilds must be filled out');
-  //     return;
-  //   }
+    //make sure all fields are filled out
+    if (!email || !name) {
+      setError('All feilds must be filled out');
+      return;
+    }
 
-  //   try {
-  //     setPlacingOrder(true);
+    try {
+      setPlacingOrder(true);
 
-  //     const updatedOrderReq = await updateOrder({
-  //       orderId: order._id,
-  //       email: email.toLowerCase(),
-  //       country,
-  //       zip,
-  //       name,
-  //     }).unwrap();
+      const confirmRes = await stripe.confirmPayment({
+        elements,
+        confirmParams: {},
+        redirect: 'if_required',
+      });
 
-  //     //update the order on the server
-  //     if (updatedOrderReq.msg === 'Order updated') {
-  //       const result = await stripe.confirmCardPayment(order?.clientId, {
-  //         payment_method: {
-  //           card: elements.getElement(CardElement),
-  //         },
-  //       });
-  //       if (result.error) {
-  //         setError(result.error.message);
-  //         setPlacingOrder(false);
-  //       } else {
-  //         // The payment has been processed!
-  //         if (result.paymentIntent.status === 'succeeded') {
-  //           setPlacingOrder(false);
-  //           Cookies.remove('orderId');
-  //           navigate(`/order/success/`, {
-  //             state: { order: updatedOrderReq.order },
-  //           });
-  //         }
-  //       }
-  //     } else {
-  //       setPlacingOrder(false);
-  //       setError('There was an error');
-  //       return;
-  //     }
-  //   } catch (err) {
-  //     setPlacingOrder(false);
-  //     setError('There was an error');
-  //     return;
-  //   }
-  // };
+      if (confirmRes.error) {
+        setError(confirmRes.error.message);
+        setPlacingOrder(false);
+      } else {
+        // The payment has been processed!
+        if (confirmRes.paymentIntent.status === 'succeeded') {
+          const updatedOrderReq = await updateOrder({
+            orderId: order._id,
+            email: email.toLowerCase(),
+            name,
+          }).unwrap();
+
+          //update the order on the server
+          if (updatedOrderReq.msg === 'Order updated') {
+            setPlacingOrder(false);
+            Cookies.remove('orderId');
+            navigate(`/order/${order?._id}`);
+          }
+        }
+      }
+    } catch (err) {
+      setPlacingOrder(false);
+      setError('There was an error');
+      console.log(err);
+      return;
+    }
+  };
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleConfirmOrder} className='flex flex-col'>
+        {error ? (
+          <Alert color='failure' rounded icon={AlertCircle}>
+            {error}
+          </Alert>
+        ) : (
+          ''
+        )}
+        <p className='text-stone-800 text-sm'>Customer</p>
+        <div className='flex items-center mt-1'>
+          <input
+            type='email'
+            placeholder='Email'
+            className='border text-sm border-gray-200 bg-gray-50 ring-0 focus:border-transparent hover:bg-gray-200 focus:bg-gray-200 0 w-3/6 outline outline-0 rounded-md p-2'
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type='text'
+            placeholder='Name'
+            className='border text-sm border-gray-200 bg-gray-50 ring-0 focus:border-transparent hover:bg-gray-200 focus:bg-gray-200 0 w-3/6 outline outline-0 rounded-md p-2 ml-2'
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <p className='text-stone-800 text-sm mb-1 mt-2'>Payment</p>
         <PaymentElement />
         <div className='w-full flex items-center mt-2'>
           <button
@@ -80,9 +113,8 @@ const CheckoutForm = ({ order, handleResetCheckout }) => {
             <ChevronLeft size={16} />
           </button>
           <button
-            // disabled={placingOrder || !stripeOnboard}
-            // type='submit'
-
+            disabled={placingOrder}
+            type='submit'
             className='w-9/12 h-10 bg-gray-200 text-stone-800 text-sm rounded-md'
           >
             {placingOrder ? <Spinner /> : 'Get Now'}

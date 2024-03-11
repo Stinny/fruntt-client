@@ -26,7 +26,11 @@ const TemplateDetail = () => {
   if (isLoading) {
     content = <Spinner />;
   } else if (isSuccess) {
-    content = isMobile ? <Mobile /> : <Desktop product={product} />;
+    content = isMobile ? (
+      <Mobile />
+    ) : (
+      <Desktop product={product.product} rating={product.rating} />
+    );
   }
 
   const styles = isMobile

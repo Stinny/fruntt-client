@@ -164,7 +164,8 @@ const ProductsDesktop = ({ product }) => {
               breakLabel='...'
               nextLabel='Next'
               onPageChange={handlePageClick}
-              pageRangeDisplayed={3}
+              marginPagesDisplayed={0}
+              pageRangeDisplayed={0}
               pageCount={pageCount}
               previousLabel='Prev'
               renderOnZeroPageCount={null}
@@ -172,6 +173,7 @@ const ProductsDesktop = ({ product }) => {
               activeLinkClassName='activePage'
               pageLinkClassName='notActivePage'
               breakLinkClassName='breakLink'
+              disabledClassName='disabled'
             />
           </div>
         </div>

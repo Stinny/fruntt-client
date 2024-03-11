@@ -21,7 +21,7 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
     : null;
 
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 9;
+  const itemsPerPage = 12;
 
   const endOffset = itemOffset + itemsPerPage;
 
@@ -36,11 +36,6 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
     window.scrollTo(0, 0);
   };
 
-  const activeLink =
-    'text-md h-8 font-medium text-white w-44 rounded bg-stone-800 flex items-center justify-center ml-2';
-  const notActiveLink =
-    'text-md font-medium w-44 h-8 bg-gray-100 hover:bg-stone-800 hover:text-white rounded text-stone-800 flex items-center justify-center ml-2';
-
   const marketClass = currentUser
     ? `max-w-6xl mx-auto h-fit mt-2`
     : `max-w-6xl mx-auto h-fit mt-24`;
@@ -53,11 +48,9 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
         </p>
         <BiSmile className='ml-1 text-white text-xl' />
       </div> */}
-      <div className='w-full rounded-md rounded-bl border drop-shadow-lg bg-white p-4 mb-4'>
-        <p className='text-3xl font-medium text-stone-800'>
-          Fruntt Marketplace
-        </p>
-        <p className='text-stone-800 text-lg mt-2'>
+      <div className='w-full rounded-md border border-gray-200 bg-white p-4 mb-4'>
+        <p className=' text-stone-800'>Fruntt Marketplace</p>
+        <p className='text-stone-600 text-sm mt-2'>
           Browse the latest Notion templates from your favorite creators.
         </p>
 
@@ -65,82 +58,22 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
           {products.length} products and growing
         </p> */}
         <Link to='/signup'>
-          <button className='border-2 font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded w-36 h-10 mt-4'>
-            Open Store
+          <button className='text-stone-800 rounded-md text-sm p-1 pl-2 pr-2 bg-gray-200 mt-2'>
+            Submit Template
           </button>
         </Link>
       </div>
 
-      {/* <div className='w-full h-14 rounded bg-white drop-shadow-lg mb-4 flex items-center justify-between p-4'>
-        <button
-          className={filter === 'all' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('all')}
-        >
-          All
-        </button>
-
-        <button
-          className={filter === 'template' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('template')}
-        >
-          Templates <HiOutlineTemplate className='ml-1' />
-        </button>
-
-        <button
-          className={filter === 'ebook' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('ebook')}
-        >
-          E-Books <HiOutlineBookOpen className='ml-1' />
-        </button>
-
-        <button
-          className={filter === 'art' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('art')}
-        >
-          Art <BsPalette className='ml-1' />
-        </button>
-
-        <button
-          className={filter === 'video' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('video')}
-        >
-          Courses <MdOutlineVideoLibrary className='ml-1' />
-        </button>
-
-        <button
-          className={filter === 'other' ? activeLink : notActiveLink}
-          type='button'
-          onClick={(e) => handleFilterChange('other')}
-        >
-          Other <MdOutlinePermMedia className='ml-1' />
-        </button>
-      </div> */}
-
       {currentItems.length > 0 ? (
-        <div className='w-full grid grid-cols-3 gap-8'>
+        <div className='w-full grid grid-cols-4 gap-4'>
           {currentItems.map((product) => (
-            <a
-              href={`${product.storeUrl}/${product?.url}`}
-              className='w-full'
-              target='_blank'
-            >
+            <Link to={`/t/${product?.url}`} className='w-full'>
               <div
-                className='border drop-shadow-lg flex w-full mb-4 rounded-md relative bg-white'
-                style={{ height: '350px' }}
+                className='border border-gray-200 flex w-full mb-4 rounded-md relative bg-white'
+                style={{ height: '300px' }}
               >
-                <div className='absolute bottom-0 right-0 font-medium bg-gray-100 mb-1 mr-1 rounded-br-md p-2'>
-                  <p
-                    className={
-                      product?.item?.free
-                        ? 'font-medium text-lg'
-                        : 'font-medium text-lg'
-                    }
-                  >
+                <div className='absolute bottom-0 right-0 bg-gray-200 mb-1 mr-1 rounded-md p-1 pl-2 pr-2'>
+                  <p className='text-sm'>
                     {product?.free
                       ? 'FREE'
                       : product?.payChoice
@@ -156,31 +89,31 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
                 </div>
 
                 <div className='absolute bottom-0 ml-2 mb-2'>
-                  <a
-                    href={product?.storeUrl}
+                  <Link
+                    to={`/${product?.storeUrl.match(/\/\/([^.]+)\./)?.[1]}`}
                     className='flex items-center'
                     target='_blank'
                   >
                     <Avatar
                       src={product?.userPicture}
-                      sx={{ width: 28, height: 28 }}
+                      sx={{ width: 22, height: 22 }}
                     />
-                    <p className='ml-1'>{product?.userName}</p>
-                  </a>
+                    {/* <p className='ml-1 text-sm'>{product?.userName}</p> */}
+                  </Link>
                 </div>
 
-                <div className='w-full flex-col p-4'>
-                  <div className='w-full h-48 pb-2'>
+                <div className='w-full flex-col p-2'>
+                  <div className='w-full h-32 pb-2'>
                     <img
                       src={product?.coverImage?.url}
                       className='object-fill w-full h-full rounded-md'
                     />
                   </div>
 
-                  <p className='font-bold text-lg mb-1 text-stone-800'>
+                  <p className='text-sm mb-1 text-stone-800'>
                     {product?.title}
                   </p>
-                  <p className='text-sm mb-2 text-stone-600'>
+                  <p className='text-sm text-stone-600'>
                     {product?.description}
                   </p>
                 </div>
@@ -199,7 +132,7 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
           <img className='rounded' src={product?.item?.coverImage?.url} />
         </div> */}
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       ) : (
@@ -214,7 +147,8 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
               breakLabel='...'
               nextLabel='Next'
               onPageChange={handlePageClick}
-              pageRangeDisplayed={3}
+              marginPagesDisplayed={0}
+              pageRangeDisplayed={0}
               pageCount={pageCount}
               previousLabel='Prev'
               renderOnZeroPageCount={null}
@@ -222,6 +156,7 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
               activeLinkClassName='activePage'
               pageLinkClassName='notActivePage'
               breakLinkClassName='breakLink'
+              disabledClassName='disabled'
             />
           </div>
         </div>

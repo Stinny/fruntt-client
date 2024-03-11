@@ -18,7 +18,9 @@ import Cookies from 'js-cookie';
 //mui
 import Rating from '@mui/material/Rating';
 import Alert from '@mui/material/Alert';
+import Avatar from '@mui/material/Avatar';
 import { useMarkAsViewedMutation } from '../api/ordersApiSlice';
+import { Badge } from 'flowbite-react';
 
 const DesktopDownload = ({
   orderAndStore,
@@ -50,8 +52,8 @@ const DesktopDownload = ({
 
   return (
     <div className='mx-auto'>
-      <div
-        className={`w-full border-b-2 ${
+      {/* <div
+        className={`w-96 border-b-2 ${
           currentUser ? 'mt-10' : 'mt-20'
         } flex justify-between items-center`}
       >
@@ -85,7 +87,7 @@ const DesktopDownload = ({
         >
           {open ? 'Close review' : 'Leave a review'}
         </button>
-      </div>
+      </div> */}
       {open ? (
         <div className='w-full mt-4 mb-4 rounded mx-auto'>
           {orderAndStore?.order?.reviewed ? (
@@ -128,66 +130,48 @@ const DesktopDownload = ({
       ) : (
         ''
       )}
-      <div className='w-full mx-auto mt-4'>
-        <p className='text-stone-800'>Details</p>
-      </div>
-      <div className='flex justify-between items-center w-full mx-auto border rounded bg-white drop-shadow-lg p-4'>
-        <div className='w-6/12 flex flex-col'>
-          {/* <p className='font-medium mt-2 mb-2'>What you got:</p> */}
-          {/* {orderAndStore?.order?.item?.digitalType === 'video' ? (
-            <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-4/12 h-10'>
-              <p>Video Course</p>
-              <MdOutlineVideoLibrary className='ml-2 text-2xl' />
-            </div>
-          ) : orderAndStore?.order?.item?.digitalType === 'ebook' ? (
-            <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-4/12 h-10'>
-              <p>E-Book</p>
-              <HiOutlineBookOpen className='ml-2 text-2xl' />
-            </div>
-          ) : orderAndStore?.order?.item?.digitalType === 'audio' ? (
-            <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-4/12 h-10'>
-              <p>Audio</p>
-              <BsFillMicFill className='ml-2 text-2xl' />
-            </div>
-          ) : orderAndStore?.order?.item?.digitalType === 'template' ? (
-            <div className='flex items-center justify-center text-stone-800 bg-gray-100 rounded w-5/12 h-8 mt-2'>
-              <p>Template</p>
-              <HiOutlineTemplate className='ml-2 text-2xl' />
-            </div>
-          ) : orderAndStore?.order?.item?.digitalType === 'other' ? (
-            <div className='flex items-center justify-center bg-gray-100 text-stone-800 rounded w-4/12 h-10'>
-              <p>Digital Media</p>
-              <MdOutlinePermMedia className='ml-2 text-2xl' />
-            </div>
-          ) : (
-            <div className='flex items-center justify-center bg-gray-100 text-stone-800  rounded w-4/12 h-10'>
-              <p>Art</p>
-              <BsPalette className='ml-2 text-2xl' />
-            </div>
-          )} */}
-          <p className='font-medium text-sm mt-4'>Store you purchased from:</p>
-          <a
-            href={orderAndStore?.store?.url}
-            className='text-md text-slate-800 underline'
-            target='_blank'
-          >
-            {orderAndStore?.store?.url}
-          </a>
-          <p className='font-medium text-sm mt-4'>Delivered to:</p>
-          <p className='text-md mt-1'>{orderAndStore?.order?.email}</p>
-
-          <p className='font-medium text-sm mt-4'>Template:</p>
-          <p className='text-md mt-1'>{orderAndStore?.order?.item?.title}</p>
-          <p className='font-medium text-sm mt-4'>Total:</p>
-          <p className='text-lg mt-1'>${orderAndStore?.order?.total}</p>
-        </div>
-
-        <div className='w-6/12 flex justify-end'>
+      <div className='flex flex-col max-w-2xl mx-auto border border-gray-200 rounded-md bg-white p-4'>
+        <p className='text-stone-600 text-sm'>Template:</p>
+        <p className='text-md mt-1'>{orderAndStore?.order?.item?.title}</p>
+        <div className='w-full h-72 flex justify-end mt-1'>
           <img
             src={orderAndStore?.order?.item?.coverImage?.url}
-            className='border rounded w-9/12'
+            className='rounded-md w-full h-full object-fill'
           />
         </div>
+        <div className='flex w-full'>
+          <div className='w-full flex flex-col mt-4'>
+            <div className='w-full flex items-center justify-between'>
+              <p className='text-stone-600 text-sm'>Created by:</p>
+            </div>
+
+            <div className='flex items-center mt-2'>
+              <Avatar
+                src={orderAndStore?.order?.item?.userPicture}
+                sx={{ width: 22, height: 22 }}
+              />
+              <p className='ml-1 text-stone-800 text-sm'>
+                {orderAndStore?.order?.item?.userName}
+              </p>
+            </div>
+            <p className='text-stone-600 text-sm mt-4'>Delivered to:</p>
+            <p className='text-md mt-1'>{orderAndStore?.order?.email}</p>
+          </div>
+
+          <div className='w-full flex flex-col'>
+            <div className='border border-gray-200 rounded-md mt-4 p-2'>
+              <div className='w-full flex items-center justify-between'>
+                <p className='text-stone-600 text-sm'>Total:</p>
+                <Badge color='success'>Purchased</Badge>
+              </div>
+
+              <p className='text-md mt-2'>${orderAndStore?.order?.total}</p>
+            </div>
+          </div>
+        </div>
+        <button className='bg-gray-200 text-sm rounded-md text-stone-800 h-10 mt-4'>
+          View template
+        </button>
       </div>
 
       {orderAndStore?.order?.item?.files.length ? (
@@ -222,7 +206,7 @@ const DesktopDownload = ({
         ''
       )}
 
-      <div className='w-full mx-auto mt-4'>
+      {/* <div className='w-full mx-auto mt-4'>
         <p className='text-stone-800'>Content</p>
       </div>
       <div className='p-4 w-full mx-auto border rounded bg-white drop-shadow-lg mb-56'>
@@ -235,7 +219,7 @@ const DesktopDownload = ({
             theme={'bubble'}
           />
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
