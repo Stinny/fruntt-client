@@ -32,9 +32,9 @@ const Topbar = () => {
   //for changing nav links according to the page
   const path = window.location.pathname;
   const activeLink =
-    'text-sm h-10 font-medium text-stone-800 w-full rounded-md bg-gray-200 flex items-center pl-2 outline outline-0';
+    'text-sm h-8 font-medium text-stone-800 w-full rounded-md bg-gray-200 flex items-center pl-2 outline outline-0';
   const notActiveLink =
-    'text-sm font-medium w-full h-10 hover:bg-gray-200 rounded-md text-stone-800 flex items-center pl-2 outline outline-0';
+    'text-sm font-medium w-full h-8 hover:bg-gray-200 rounded-md text-stone-800 flex items-center pl-2 outline outline-0';
 
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
@@ -118,7 +118,6 @@ const Topbar = () => {
             <Sidebar.Item
               icon={DollarSign}
               className={path === '/marketplace' ? activeLink : notActiveLink}
-              style={{ marginTop: '1px' }}
             >
               Marketplace
             </Sidebar.Item>
@@ -132,9 +131,11 @@ const Topbar = () => {
               Settings
             </Sidebar.Item>
           </Link>
+        </Sidebar.ItemGroup>
 
+        <Sidebar.ItemGroup>
           <Link to='/dashboard/item/digital' className='w-full'>
-            <button className='w-full text-stone-800 text-sm bg-gray-200 rounded-md p-1 flex items-center justify-center mt-1'>
+            <button className='w-full text-stone-800 text-sm bg-gray-200 rounded-md p-1 flex items-center justify-center'>
               New +
             </button>
           </Link>

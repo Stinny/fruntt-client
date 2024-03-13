@@ -91,13 +91,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     updateAccountInfo: builder.mutation({
-      query: ({ email, country, zip }) => ({
+      query: ({ email, country }) => ({
         url: '/auth/updateaccountinfo',
         method: 'POST',
         body: {
           email: email,
           country: country,
-          zipcode: zip,
         },
       }),
     }),
@@ -114,6 +113,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         profilePicKey,
         linkedin,
         link,
+        medium,
       }) => ({
         url: '/auth/updatesellerprofile',
         method: 'POST',
@@ -127,6 +127,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
           tiktok: tiktok,
           linkedin: linkedin,
           link: link,
+          medium: medium,
           profilePicUrl: profilePicUrl,
           profilePicKey: profilePicKey,
         },

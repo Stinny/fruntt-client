@@ -6,6 +6,7 @@ import { isMobile } from 'react-device-detect';
 import Switch from '@mui/material/Switch';
 import { useUpdateNotificationsMutation } from '../../api/authApiSlice';
 import { toast } from 'react-toastify';
+import { Checkbox, FormControlLabel } from '@mui/material';
 
 const Notifications = ({ user, refetch }) => {
   const [sendUpdates, setSendUpdates] = useState(user?.sendUpdates);
@@ -16,6 +17,8 @@ const Notifications = ({ user, refetch }) => {
   const [sendItemOutOfStock, setSendItemOutOfStock] = useState(
     user?.sendItemOutOfStock
   );
+
+  const [edit, setEdit] = useState(false);
 
   const [updateNotifications, result] = useUpdateNotificationsMutation();
 
@@ -74,109 +77,163 @@ const Notifications = ({ user, refetch }) => {
   }
 
   return (
-    <>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={modalStyles}
-      >
-        <form onSubmit={handleSaveNotifications}>
-          <p className='text-xl font-medium mb-4 border-b'>Notifications</p>
-          <p className='text-stone-800'>Fruntt news & updates</p>
-          <Switch
-            checked={sendUpdates}
-            onChange={(e) => setSendUpdates(e.target.checked)}
-          />
+    <div className='w-full border border-gray-200 rounded-md p-4 flex flex-col'>
+      {edit ? (
+        <>
+          <div className='flex items-center justify-between w-full'>
+            <p className='text-sm text-stone-800'>Edit notifications</p>
 
-          <p className='text-stone-800 mt-2'>An order has been placed</p>
-          <Switch
-            checked={sendOrderPlaced}
-            onChange={(e) => setSendOrderPlaced(e.target.checked)}
-          />
+            <div className='flex items-center gap-2'>
+              <button
+                type='button'
+                className='hover:bg-red-200 text-stone-800 rounded-md p-1 pl-2 pr-2 text-xs'
+                onClick={(e) => setEdit(!edit)}
+              >
+                Cancel
+              </button>
+              <button
+                type='button'
+                className='bg-gray-200 text-stone-800 rounded-md p-1 pl-2 pr-2 text-xs'
+                onClick={handleSaveNotifications}
+              >
+                Save
+              </button>
+            </div>
+          </div>
 
-          <p className='text-stone-800 mt-2'>Customer leaves a review</p>
-          <Switch
-            checked={sendReviewCollected}
-            onChange={(e) => setSendReviewCollected(e.target.checked)}
-          />
+          <div className='flex flex-col gap-4 mt-2'>
+            <div className='w-full flex items-center justify-between'>
+              <div className='flex flex-col items-start'>
+                <p className='text-sm text-stone-800'>News & updates</p>
+                <p className='text-xs text-stone-600'>
+                  Receive emails about Fruntt news and updates
+                </p>
+              </div>
 
-          <button
-            type='button'
-            onClick={closeModal}
-            className='w-full h-10 border-2 border-red-500 text-red-400 hover:text-white hover:bg-red-400 rounded mt-4'
-          >
-            Cancel
-          </button>
-          <button
-            type='submit'
-            className='w-full h-14 border-2 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 rounded mt-4'
-          >
-            Save
-          </button>
-        </form>
-      </Modal>
-      {isMobile ? (
-        <div className='flex justify-between items-center w-full border-b p-2'>
-          <p className='text-lg font-medium'>Notifications</p>
-          <button
-            onClick={openModal}
-            className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
-          >
-            Edit
-          </button>
-        </div>
+              <Checkbox checked={user?.sendUpdates} size='small' />
+            </div>
+
+            <div className='w-full flex items-center justify-between'>
+              <div className='flex flex-col items-start'>
+                <p className='text-sm text-stone-800'>Sales</p>
+                <p className='text-xs text-stone-800'>
+                  Receive an email everytime you make a sale
+                </p>
+              </div>
+
+              <Checkbox checked={user?.sendOrderPlaced} size='small' />
+            </div>
+
+            <div className='w-full flex items-center justify-between'>
+              <div className='flex flex-col items-start'>
+                <p className='text-sm text-stone-800'>Customers</p>
+                <p className='text-xs text-stone-600'>
+                  Receive an email everytime a new customer is created
+                </p>
+              </div>
+
+              <Checkbox checked={user?.sendUpdates} size='small' />
+            </div>
+
+            <div className='w-full flex items-center justify-between'>
+              <div className='flex flex-col items-start'>
+                <p className='text-sm text-stone-800'>Reviews</p>
+                <p className='text-xs text-stone-600'>
+                  Receive an email everytime a review is submitted
+                </p>
+              </div>
+
+              <Checkbox checked={user?.sendReviewCollected} size='small' />
+            </div>
+          </div>
+        </>
       ) : (
-        <div className='flex justify-between items-center w-full border-b p-2'>
-          <p className='text-lg font-medium'>Notifications</p>
-          <button
-            onClick={openModal}
-            className='border-2 rounded w-20 h-8 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white'
-          >
-            Edit
-          </button>
-        </div>
+        <>
+          <div className='flex items-center justify-between w-full'>
+            <div className='flex flex-col'>
+              <p className='text-sm text-stone-800'>Notifications</p>
+            </div>
+
+            <button
+              type='button'
+              className='bg-gray-200 text-stone-800 rounded-md p-1 pl-2 pr-2 text-xs'
+              onClick={(e) => setEdit(!edit)}
+            >
+              Edit
+            </button>
+          </div>
+          <div className='flex flex-col gap-4 mt-2'>
+            <div className='w-full flex items-center justify-between'>
+              <div className='flex flex-col items-start'>
+                <p className='text-sm text-stone-800'>News & updates</p>
+                <p className='text-xs text-stone-600'>
+                  Receive emails about Fruntt news and updates
+                </p>
+              </div>
+
+              <Checkbox checked={user?.sendUpdates} disabled size='small' />
+            </div>
+
+            <div className='w-full flex items-center justify-between'>
+              <div className='flex flex-col items-start'>
+                <p className='text-sm text-stone-800'>Sales</p>
+                <p className='text-xs text-stone-800'>
+                  Receive an email everytime you make a sale
+                </p>
+              </div>
+
+              <Checkbox checked={user?.sendOrderPlaced} disabled size='small' />
+            </div>
+
+            <div className='w-full flex items-center justify-between'>
+              <div className='flex flex-col items-start'>
+                <p className='text-sm text-stone-800'>Customers</p>
+                <p className='text-xs text-stone-600'>
+                  Receive an email everytime a new customer is created
+                </p>
+              </div>
+
+              <Checkbox checked={user?.sendUpdates} disabled size='small' />
+            </div>
+
+            <div className='w-full flex items-center justify-between'>
+              <div className='flex flex-col items-start'>
+                <p className='text-sm text-stone-800'>Reviews</p>
+                <p className='text-xs text-stone-600'>
+                  Receive an email everytime a review is submitted
+                </p>
+              </div>
+
+              <Checkbox
+                checked={user?.sendReviewCollected}
+                disabled
+                size='small'
+              />
+            </div>
+          </div>
+        </>
       )}
-      {isMobile ? (
-        <div className='w-11/12 mx-auto flex justify-between items-center p-2'>
-          <div className='flex flex-col'>
-            <p className='text-lg font-medium'>Fruntt news & updates</p>
-            <p className='text-lg font-medium mt-4'>An order was placed</p>
-            <p className='text-lg font-medium mt-4'>Customer leaves a review</p>
-          </div>
+    </div>
 
-          <div className='flex flex-col'>
-            <Switch checked={user?.sendUpdates} disabled />
-            <Switch checked={user?.sendOrderPlaced} className='mt-4' disabled />
+    // <div className='w-11/12 mx-auto flex justify-between items-center p-4'>
+    //   <div className='flex flex-col'>
+    //     <p className='text-lg font-medium'>News</p>
+    //     <p className='text-lg font-medium mt-4'>An order was placed</p>
 
-            <Switch
-              checked={user?.sendReviewCollected}
-              className='mt-4'
-              disabled
-            />
-          </div>
-        </div>
-      ) : (
-        <div className='w-11/12 mx-auto flex justify-between items-center p-4'>
-          <div className='flex flex-col'>
-            <p className='text-lg font-medium'>Fruntt news & updates</p>
-            <p className='text-lg font-medium mt-4'>An order was placed</p>
+    //     <p className='text-lg font-medium mt-4'>Customer leaves a review</p>
+    //   </div>
 
-            <p className='text-lg font-medium mt-4'>Customer leaves a review</p>
-          </div>
+    //   <div className='flex flex-col'>
+    //     <Switch checked={user?.sendUpdates} disabled />
+    //     <Switch checked={user?.sendOrderPlaced} className='mt-4' disabled />
 
-          <div className='flex flex-col'>
-            <Switch checked={user?.sendUpdates} disabled />
-            <Switch checked={user?.sendOrderPlaced} className='mt-4' disabled />
-
-            <Switch
-              checked={user?.sendReviewCollected}
-              className='mt-4'
-              disabled
-            />
-          </div>
-        </div>
-      )}
-    </>
+    //     <Switch
+    //       checked={user?.sendReviewCollected}
+    //       className='mt-4'
+    //       disabled
+    //     />
+    //   </div>
+    // </div>
   );
 };
 

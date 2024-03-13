@@ -173,7 +173,7 @@ const DashHome = () => {
                   borderColor: 'rgb(229 231 235)',
                   borderWidth: 1,
                   '&:hover': {
-                    borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
+                    borderColor: 'rgb(229 231 235)', // Keep the same border color on hover
                   },
                   borderRadius: '.375rem',
                   boxShadow: 'none',

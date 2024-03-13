@@ -117,6 +117,18 @@ html {
   --tw-ring-color: none !important;
 }
 
+.react-tabs__tab {
+  font-size: 14px; /* Adjust the font size as needed */
+}
+
+.react-tabs__tab-list {
+  border-color: rgb(229 231 235) !important;
+}
+
+.react-tabs__tab--selected {
+  border-color: rgb(229 231 235) !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
