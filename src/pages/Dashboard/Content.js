@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import Footer from '../../components/Footer';
 import Topbar from '../../components/Topbar';
 import Navbar from '../../components/Navbar';
-import AddLogo from '../../components/Content/AddLogo';
 import FAQs from '../../components/Content/FAQs';
 import { useGetStorefrontQuery } from '../../api/storefrontApiSlice';
 import Spinner from '../../components/Spinner';
@@ -77,12 +76,6 @@ const Content = () => {
             )}
 
         <div className='w-full border rounded drop-shadow-md bg-white p-2'>
-          <AddLogo
-            storefront={storefront}
-            refetch={refetch}
-            setInfo={setInfo}
-          />
-
           <HideSections storefront={storefront} refetch={refetch} />
 
           <Description

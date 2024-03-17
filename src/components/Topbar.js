@@ -17,6 +17,7 @@ import { HiOutlineTemplate } from 'react-icons/hi';
 import Cookies from 'js-cookie';
 import {
   Bookmark,
+  CreditCard,
   DollarSign,
   Home,
   Layout,
@@ -59,16 +60,16 @@ const Topbar = () => {
               Home
             </Sidebar.Item>
           </Link>
-          <Link to='/dashboard/item'>
+          <Link to='/dashboard/templates'>
             <Sidebar.Item
               icon={Layout}
               className={
-                path === '/dashboard/item' ||
+                path === '/dashboard/templates' ||
                 path.startsWith('/dashboard/item/edit')
                   ? activeLink
                   : notActiveLink
               }
-              style={{ marginTop: '1px' }}
+              style={{ marginTop: '2px' }}
             >
               Templates
             </Sidebar.Item>
@@ -83,7 +84,7 @@ const Topbar = () => {
                   ? activeLink
                   : notActiveLink
               }
-              style={{ marginTop: '1px' }}
+              style={{ marginTop: '2px' }}
             >
               Orders
             </Sidebar.Item>
@@ -94,7 +95,7 @@ const Topbar = () => {
               className={
                 path === '/dashboard/customers' ? activeLink : notActiveLink
               }
-              style={{ marginTop: '1px' }}
+              style={{ marginTop: '2px' }}
             >
               Customers
             </Sidebar.Item>
@@ -106,7 +107,7 @@ const Topbar = () => {
               className={
                 path === '/dashboard/library' ? activeLink : notActiveLink
               }
-              style={{ marginTop: '1px' }}
+              style={{ marginTop: '2px' }}
             >
               Library
             </Sidebar.Item>
@@ -122,11 +123,22 @@ const Topbar = () => {
               Marketplace
             </Sidebar.Item>
           </Link>
+          <Link to='/dashboard/payouts'>
+            <Sidebar.Item
+              icon={CreditCard}
+              className={
+                path === '/dashboard/payouts' ? activeLink : notActiveLink
+              }
+              style={{ marginTop: '2px' }}
+            >
+              Payouts
+            </Sidebar.Item>
+          </Link>
           <Link to='/settings'>
             <Sidebar.Item
               icon={Settings}
               className={path === '/settings' ? activeLink : notActiveLink}
-              style={{ marginTop: '1px' }}
+              style={{ marginTop: '2px' }}
             >
               Settings
             </Sidebar.Item>
@@ -134,7 +146,7 @@ const Topbar = () => {
         </Sidebar.ItemGroup>
 
         <Sidebar.ItemGroup>
-          <Link to='/dashboard/item/digital' className='w-full'>
+          <Link to='/dashboard/new/template' className='w-full'>
             <button className='w-full text-stone-800 text-sm bg-gray-200 rounded-md p-1 flex items-center justify-center'>
               New +
             </button>
@@ -153,16 +165,10 @@ const Topbar = () => {
           <div className='mb-3 flex items-center'>
             <Badge color='failure'>Payouts disabled</Badge>
           </div>
-          <div className='mb-3 text-sm text-stone-800 dark:text-gray-400'>
+          <div className='text-xs text-stone-800 dark:text-gray-400'>
             You need to add a payout option in settings before you can submit a
-            template.
+            template to be published.
           </div>
-          <Link
-            className='text-sm text-stone-800 underline hover:text-cyan-800 dark:text-gray-400 dark:hover:text-gray-300'
-            to='/settings'
-          >
-            Settings
-          </Link>
         </Sidebar.CTA>
       )}
     </Sidebar>

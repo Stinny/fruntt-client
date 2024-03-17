@@ -150,7 +150,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     updateNotifications: builder.mutation({
       query: ({
         sendUpdates,
-        sendItemOutOfStock,
+        sendNewCustomer,
         sendOrderPlaced,
         sendReviewCollected,
       }) => ({
@@ -158,7 +158,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: {
           sendUpdates: sendUpdates,
-          sendItemOutOfStock: sendItemOutOfStock,
+          sendNewCustomer: sendNewCustomer,
           sendOrderPlaced: sendOrderPlaced,
           sendReviewCollected: sendReviewCollected,
         },

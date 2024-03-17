@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { isMobile } from 'react-device-detect';
+import { useUpdateNotificationsMutation } from '../../api/authApiSlice';
+import { toast } from 'react-toastify';
+
+//flowbite
+import { Checkbox as FlowCheck, Spinner } from 'flowbite-react';
 
 //mui
 import Switch from '@mui/material/Switch';
-import { useUpdateNotificationsMutation } from '../../api/authApiSlice';
-import { toast } from 'react-toastify';
 import { Checkbox, FormControlLabel } from '@mui/material';
 
-const Notifications = ({ user, refetch }) => {
+const Notifications = ({ user, refetch, isFetching }) => {
   const [sendUpdates, setSendUpdates] = useState(user?.sendUpdates);
   const [sendOrderPlaced, setSendOrderPlaced] = useState(user?.sendOrderPlaced);
   const [sendReviewCollected, setSendReviewCollected] = useState(
     user?.sendReviewCollected
   );
-  const [sendItemOutOfStock, setSendItemOutOfStock] = useState(
-    user?.sendItemOutOfStock
-  );
+  const [sendNewCustomer, setSendNewCustomer] = useState(user?.sendNewCustomer);
 
   const [edit, setEdit] = useState(false);
 
@@ -27,56 +28,25 @@ const Notifications = ({ user, refetch }) => {
     try {
       const updateNotificationsReq = await updateNotifications({
         sendUpdates,
-        sendItemOutOfStock,
         sendOrderPlaced,
         sendReviewCollected,
+        sendNewCustomer,
       }).unwrap();
       if (updateNotificationsReq === 'User updated') {
         toast.success('Notifications updated!');
         refetch();
-        closeModal();
+        setEdit(false);
       }
     } catch (err) {
       console.log('there was an error');
-      closeModal();
     }
   };
 
-  const modalStyles = isMobile
-    ? {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-          width: '90%',
-        },
-      }
-    : {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-          width: '500px',
-        },
-      };
-
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  return (
+  return isFetching ? (
+    <div className='w-full h-72 flex items-center justify-center'>
+      <Spinner />
+    </div>
+  ) : (
     <div className='w-full border border-gray-200 rounded-md p-4 flex flex-col'>
       {edit ? (
         <>
@@ -110,7 +80,10 @@ const Notifications = ({ user, refetch }) => {
                 </p>
               </div>
 
-              <Checkbox checked={user?.sendUpdates} size='small' />
+              <FlowCheck
+                checked={sendUpdates}
+                onChange={(e) => setSendUpdates(e.target.checked)}
+              />
             </div>
 
             <div className='w-full flex items-center justify-between'>
@@ -121,7 +94,10 @@ const Notifications = ({ user, refetch }) => {
                 </p>
               </div>
 
-              <Checkbox checked={user?.sendOrderPlaced} size='small' />
+              <FlowCheck
+                checked={sendOrderPlaced}
+                onChange={(e) => setSendOrderPlaced(e.target.checked)}
+              />
             </div>
 
             <div className='w-full flex items-center justify-between'>
@@ -132,7 +108,10 @@ const Notifications = ({ user, refetch }) => {
                 </p>
               </div>
 
-              <Checkbox checked={user?.sendUpdates} size='small' />
+              <FlowCheck
+                checked={sendNewCustomer}
+                onChange={(e) => setSendNewCustomer(e.target.checked)}
+              />
             </div>
 
             <div className='w-full flex items-center justify-between'>
@@ -143,7 +122,10 @@ const Notifications = ({ user, refetch }) => {
                 </p>
               </div>
 
-              <Checkbox checked={user?.sendReviewCollected} size='small' />
+              <FlowCheck
+                checked={sendReviewCollected}
+                onChange={(e) => setSendReviewCollected(e.target.checked)}
+              />
             </div>
           </div>
         </>
@@ -171,7 +153,7 @@ const Notifications = ({ user, refetch }) => {
                 </p>
               </div>
 
-              <Checkbox checked={user?.sendUpdates} disabled size='small' />
+              <FlowCheck checked={user?.sendUpdates} disabled color={'gray'} />
             </div>
 
             <div className='w-full flex items-center justify-between'>
@@ -182,7 +164,11 @@ const Notifications = ({ user, refetch }) => {
                 </p>
               </div>
 
-              <Checkbox checked={user?.sendOrderPlaced} disabled size='small' />
+              <FlowCheck
+                checked={user?.sendOrderPlaced}
+                disabled
+                color={'gray'}
+              />
             </div>
 
             <div className='w-full flex items-center justify-between'>
@@ -193,7 +179,11 @@ const Notifications = ({ user, refetch }) => {
                 </p>
               </div>
 
-              <Checkbox checked={user?.sendUpdates} disabled size='small' />
+              <FlowCheck
+                checked={user?.sendNewCustomer}
+                disabled
+                color={'gray'}
+              />
             </div>
 
             <div className='w-full flex items-center justify-between'>
@@ -204,36 +194,16 @@ const Notifications = ({ user, refetch }) => {
                 </p>
               </div>
 
-              <Checkbox
+              <FlowCheck
                 checked={user?.sendReviewCollected}
                 disabled
-                size='small'
+                color={'gray'}
               />
             </div>
           </div>
         </>
       )}
     </div>
-
-    // <div className='w-11/12 mx-auto flex justify-between items-center p-4'>
-    //   <div className='flex flex-col'>
-    //     <p className='text-lg font-medium'>News</p>
-    //     <p className='text-lg font-medium mt-4'>An order was placed</p>
-
-    //     <p className='text-lg font-medium mt-4'>Customer leaves a review</p>
-    //   </div>
-
-    //   <div className='flex flex-col'>
-    //     <Switch checked={user?.sendUpdates} disabled />
-    //     <Switch checked={user?.sendOrderPlaced} className='mt-4' disabled />
-
-    //     <Switch
-    //       checked={user?.sendReviewCollected}
-    //       className='mt-4'
-    //       disabled
-    //     />
-    //   </div>
-    // </div>
   );
 };
 

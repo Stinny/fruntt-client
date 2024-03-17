@@ -67,7 +67,7 @@ const Settings = () => {
         </TabPanel>
 
         <TabPanel>
-          <Page user={user} />
+          <Page user={user} refetch={refetch} isFetching={isFetching} />
         </TabPanel>
 
         <TabPanel>

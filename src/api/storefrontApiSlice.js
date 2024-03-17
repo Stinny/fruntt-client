@@ -60,12 +60,23 @@ export const storefrontApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
-    addLogo: builder.mutation({
-      query: ({ storeId, name }) => ({
-        url: `/storefront/addlogo/${storeId}`,
+    updatePage: builder.mutation({
+      query: ({ storeId, pageName, filtering, sales }) => ({
+        url: `/storefront/update/${storeId}`,
         method: 'POST',
         body: {
-          name: name,
+          pageName: pageName,
+          filtering: filtering,
+          sales: sales,
+        },
+      }),
+    }),
+    checkPage: builder.mutation({
+      query: ({ pageName }) => ({
+        url: `/storefront/checkname`,
+        method: 'POST',
+        body: {
+          pageName: pageName,
         },
       }),
     }),
@@ -126,7 +137,7 @@ export const {
   useGetStorefrontQuery,
   useGetFeaturedStoresQuery,
   useEditStylesMutation,
-  useAddLogoMutation,
+  useUpdatePageMutation,
   useDeleteLogoMutation,
   useAddSocialsMutation,
   useGetStoreStatsQuery,
@@ -135,4 +146,5 @@ export const {
   useDeleteStoreMutation,
   useHideSectionsMutation,
   useGetStorefrontByURLQuery,
+  useCheckPageMutation,
 } = storefrontApiSlice;

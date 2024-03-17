@@ -94,7 +94,10 @@ const Profile = ({ user, refetch, isFetching }) => {
         ) : (
           <>
             <div className='flex items-center justify-between w-full'>
-              <p className='text-sm text-stone-800'>Account</p>
+              <div className='flex flex-col items-start'>
+                <p className='text-sm text-stone-800'>Account</p>
+                <p className='text-xs text-stone-600'>{`ID: ${user?._id}`}</p>
+              </div>
 
               <button
                 type='button'
@@ -150,7 +153,7 @@ const Profile = ({ user, refetch, isFetching }) => {
               <div className='flex flex-col'>
                 <p className='text-sm text-stone-800'>Profile</p>
                 <p className='text-xs text-stone-600'>
-                  This is visible on your page
+                  This is visible to customers who visit your page
                 </p>
               </div>
 

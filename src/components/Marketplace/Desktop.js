@@ -65,15 +65,15 @@ const Desktop = ({ products, handleFilterChange, filter }) => {
       </div>
 
       {currentItems.length > 0 ? (
-        <div className='w-full grid grid-cols-4 gap-4'>
+        <div className='w-full grid grid-cols-4 gap-6'>
           {currentItems.map((product) => (
             <Link to={`/t/${product?.url}`} className='w-full'>
               <div
-                className='border border-gray-200 flex w-full mb-4 rounded-md relative bg-white'
+                className='border border-gray-200 flex w-full rounded-md relative bg-white'
                 style={{ height: '300px' }}
               >
                 <div className='absolute bottom-0 right-0 bg-gray-200 mb-1 mr-1 rounded-md p-1 pl-2 pr-2'>
-                  <p className='text-sm'>
+                  <p className='text-xs'>
                     {product?.free
                       ? 'FREE'
                       : product?.payChoice

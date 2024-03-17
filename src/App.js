@@ -54,11 +54,11 @@ import Customers from './pages/Dashboard/Customers';
 import PasswordChange from './pages/PasswordChange';
 import NotFound from './pages/NotFound';
 import EditProfile from './pages/EditProfile';
-import NameChange from './pages/NameChange';
 import AddBank from './pages/AddBank';
 import Contact from './pages/Contact';
 import TemplateDetail from './pages/TemplateDetail/TemplateDetail';
 import Store from './pages/Store/Store';
+import Payouts from './pages/Payouts/Payouts';
 
 function App() {
   return (
@@ -103,7 +103,7 @@ function App() {
               <Route element={<UserHasNoPage />}>
                 <Route path='dashboard' element={<DashHome />} />
 
-                <Route path='dashboard/item' element={<Products />} />
+                <Route path='dashboard/templates' element={<Products />} />
 
                 <Route path='dashboard/orders' element={<Orders />} />
 
@@ -118,8 +118,6 @@ function App() {
                   path='dashboard/password/change'
                   element={<PasswordChange />}
                 />
-
-                <Route path='dashboard/name/change' element={<NameChange />} />
 
                 <Route path='dashboard/bank' element={<AddBank />} />
 
@@ -137,6 +135,8 @@ function App() {
 
                 <Route path='dashboard/customers' element={<Customers />} />
 
+                <Route path='dashboard/payouts' element={<Payouts />} />
+
                 <Route path='dashboard/config' element={<Config />} />
 
                 <Route path='dashboard/design' element={<Design />} />
@@ -153,7 +153,7 @@ function App() {
                 />
 
                 <Route
-                  path='dashboard/item/digital'
+                  path='dashboard/new/template'
                   element={<AddDigitalProd />}
                 />
 

@@ -40,14 +40,19 @@ const ProductsDesktop = ({ product }) => {
   //end of pagination stuff
 
   const noItem = (
-    <div className='h-full border rounded bg-white drop-shadow-lg w-full flex flex-col justify-center items-center'>
-      <p className='text-md font-medium text-stone-800'>No templates</p>
-
+    <div
+      className='flex flex-col border-gray-200 items-center justify-center rounded-md w-full border bg-white'
+      style={{ height: '600px' }}
+    >
+      <p className='text-stone-800'>No templates</p>
+      <p className='text-stone-600 text-xs mt-1'>
+        Add, save, and publish templates you want to sell
+      </p>
       <Link
-        to='/dashboard/item/digital'
-        className='border-2 text-sm rounded border-stone-800 text-stone-800 w-36 h-8 hover:bg-stone-800 hover:text-white mt-6 flex items-center justify-center'
+        to='/dashboard/new/template'
+        className='flex items-center justify-center bg-gray-200 text-xs text-stone-800 rounded-md pt-1 pb-1 pl-2 pr-2 mt-2'
       >
-        + Add template
+        Add Template
       </Link>
     </div>
   );
@@ -57,7 +62,7 @@ const ProductsDesktop = ({ product }) => {
       <div className='w-full flex justify-between items-end'>
         <div className='flex flex-col justify-center bg-white rounded-md border border-gray-200 p-2'>
           <p className='text-md text-stone-800 font-bold'>Templates</p>
-          <p className='text-sm text-stone-600'>View all your listings</p>
+          <p className='text-sm text-stone-600'>View all templates</p>
         </div>
 
         <div className='flex items-center'>
@@ -68,7 +73,7 @@ const ProductsDesktop = ({ product }) => {
           </p>
           <Link
             className='rounded-lg h-8 w-8 text-stone-800 flex items-center justify-center text-lg ml-4 font-medium bg-gray-200'
-            to='/dashboard/item/digital'
+            to='/dashboard/new/template'
           >
             <IoMdAdd />
           </Link>
@@ -182,7 +187,7 @@ const ProductsDesktop = ({ product }) => {
       )}
     </div>
   ) : (
-    <div className='h-full'>{noItem}</div>
+    <div className='h-'>{noItem}</div>
   );
 };
 

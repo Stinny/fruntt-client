@@ -16,6 +16,8 @@ import {
 import { FaMediumM, FaTiktok } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { Instagram, Link, Youtube } from 'react-feather';
+import { FileInput } from 'flowbite-react';
+import { Avatar } from '@mui/material';
 
 const EditProfile = ({ user, setEditPro, editPro, refetch }) => {
   //form
@@ -44,11 +46,12 @@ const EditProfile = ({ user, setEditPro, editPro, refetch }) => {
       //if files were added, upload to server and update profile pic url/key variables
       if (profilePic.length) {
         const image = new FormData();
-        image.append('productImages', profilePic[0].file);
+        image.append('productImages', profilePic[0]);
         const imageDataReq = await uploadImageRequest.post(
           '/products/imageupload',
           image
         );
+        console.log(imageDataReq);
         profilePicUrl = imageDataReq.data[0].url;
         profilePicKey = imageDataReq.data[0].key;
       }
@@ -78,7 +81,9 @@ const EditProfile = ({ user, setEditPro, editPro, refetch }) => {
       } else {
         return;
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -104,23 +109,38 @@ const EditProfile = ({ user, setEditPro, editPro, refetch }) => {
         </div>
       </div>
       <form className='flex flex-col gap-2'>
-        <input
-          type='text'
-          className='border border-gray-200 w-full bg-gray-50 hover:border-gray-200 focus:bg-gray-200 hover:bg-gray-200 focus:border-gray-200 rounded-md p-2 text-sm'
-          placeholder='Name'
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-        />
-        <div className='flex flex-col relative'>
-          <textarea
-            placeholder='Bio'
-            className='border border-gray-200 w-full bg-gray-50 hover:border-gray-200 focus:bg-gray-200 hover:bg-gray-200 focus:border-gray-200 rounded-md p-2 text-sm resize-none h-24'
-            value={bio}
-            maxLength={100}
-            onChange={(e) => setBio(e.target.value)}
-          />
-          <div className='w-full flex justify-end'>
-            <p className='text-xs text-stone-600'>{bio.length}/100</p>
+        <div className='w-full flex gap-2'>
+          <div className='flex flex-col gap-2 items-start w-3/6'>
+            <input
+              type='text'
+              className='border border-gray-200 w-full bg-gray-50 hover:border-gray-200 focus:bg-gray-200 hover:bg-gray-200 focus:border-gray-200 rounded-md p-2 text-sm'
+              placeholder='Name'
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+            <div className='flex items-center gap-2'>
+              <Avatar
+                sx={{ width: 32, height: 32 }}
+                src={user?.sellerProfile?.picture?.url}
+                className='border border-gray-200'
+              />
+              <FileInput
+                className='focus:border-gray-200 focus:ring-gray-200 hover:border-gray-200'
+                onChange={(e) => setProfilePic(e.target.files)}
+              />
+            </div>
+          </div>
+          <div className='flex flex-col w-3/6'>
+            <textarea
+              placeholder='Bio'
+              className='border border-gray-200 w-full bg-gray-50 hover:border-gray-200 focus:bg-gray-200 hover:bg-gray-200 focus:border-gray-200 rounded-md p-2 text-sm resize-none h-18'
+              value={bio}
+              maxLength={100}
+              onChange={(e) => setBio(e.target.value)}
+            />
+            <div className='w-full flex justify-end'>
+              <p className='text-xs text-stone-600'>{bio.length}/100</p>
+            </div>
           </div>
         </div>
 

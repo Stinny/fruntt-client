@@ -7,7 +7,6 @@ import Cookies from 'js-cookie';
 import Modal from 'react-modal';
 import { isMobile } from 'react-device-detect';
 import { setSelectedStoreUrl } from '../../redux/userRedux';
-import { useAddLogoMutation } from '../../api/storefrontApiSlice';
 import { toast } from 'react-toastify';
 import { AiOutlineTool } from 'react-icons/ai';
 
@@ -25,8 +24,6 @@ const Config = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [error, setError] = useState('');
   const [changingName, setChangingName] = useState(false);
-
-  const [addLogo, result] = useAddLogoMutation();
 
   const modalStyles = isMobile
     ? {
@@ -55,35 +52,35 @@ const Config = () => {
   const handleChangeName = async (e) => {
     e.preventDefault();
 
-    try {
-      setChangingName(true);
-      const addLogoReq = await addLogo({
-        storeId: currentUser?.store?._id,
-        name: name,
-      }).unwrap();
+    // try {
+    //   setChangingName(true);
+    //   const addLogoReq = await addLogo({
+    //     storeId: currentUser?.store?._id,
+    //     name: name,
+    //   }).unwrap();
 
-      if (addLogoReq?.msg === 'Name changed') {
-        setChangingName(false);
-        dispatch(setSelectedStoreUrl(`https://${name}.fruntt.com`));
-        currentUser.store.name = name;
-        currentUser.store.url = `https://${name}.fruntt.com`;
-        const newUser = JSON.stringify(currentUser);
-        Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
-        toast.success('Store name updated!', {
-          style: { color: 'rgb(28 25 23)' },
-        });
-        closeModal();
-      } else if (addLogoReq?.msg === 'Name in use') {
-        setChangingName(false);
-        setError('Sorry that name is taken!');
-      } else {
-        setChangingName(false);
-        return;
-      }
-    } catch (err) {
-      setChangingName(false);
-      setError('There was a server error');
-    }
+    //   if (addLogoReq?.msg === 'Name changed') {
+    //     setChangingName(false);
+    //     dispatch(setSelectedStoreUrl(`https://${name}.fruntt.com`));
+    //     currentUser.store.name = name;
+    //     currentUser.store.url = `https://${name}.fruntt.com`;
+    //     const newUser = JSON.stringify(currentUser);
+    //     Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
+    //     toast.success('Store name updated!', {
+    //       style: { color: 'rgb(28 25 23)' },
+    //     });
+    //     closeModal();
+    //   } else if (addLogoReq?.msg === 'Name in use') {
+    //     setChangingName(false);
+    //     setError('Sorry that name is taken!');
+    //   } else {
+    //     setChangingName(false);
+    //     return;
+    //   }
+    // } catch (err) {
+    //   setChangingName(false);
+    //   setError('There was a server error');
+    // }
   };
 
   function openModal() {

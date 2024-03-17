@@ -20,14 +20,13 @@ import {
   setSelectedStoreUrl,
 } from '../redux/userRedux';
 import 'react-toastify/dist/ReactToastify.css';
-import { Bell, HelpCircle } from 'react-feather';
+import { Bell, HelpCircle, Settings } from 'react-feather';
 
 //mui
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
-import Settings from '@mui/icons-material/Settings';
 import Dashboard from '@mui/icons-material/Dashboard';
 import Logout from '@mui/icons-material/Logout';
 import Avatar from '@mui/material/Avatar';
@@ -118,17 +117,14 @@ const Navbar = () => {
       handleOpenModal={handleOpenModal}
     />
   ) : currentUser ? (
-    <nav className='w-full h-16 border-b bg-white top-0 left-0 right-0 pr-4 pl-4 mb-8'>
-      <div className='max-w-6xl h-full mx-auto flex justify-between items-center'>
+    <nav className='w-full bg-white top-0 left-0 right-0 mb-8'>
+      <div className='max-w-6xl h-full mx-auto flex justify-between items-center border border-gray-200 rounded-md mt-8 p-2'>
         {/* logo section */}
-        <div className='h-full flex justify-center items-center'>
-          <Link
-            to='/dashboard'
-            className='h-full flex justify-center items-center'
-          >
+        <div>
+          <Link to='/dashboard' className='h-full flex'>
             <IoStorefrontOutline className='text-stone-800 font-bold text-xl' />
             <p
-              className='font-black text-stone-800 mt-2 text-md'
+              className='font-black text-stone-800 text-md mt-1'
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               Fruntt
@@ -183,7 +179,8 @@ const Navbar = () => {
               elevation: 0,
               sx: {
                 overflow: 'visible',
-                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                backgroundColor: 'rgb(249 250 251)',
+                // filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                 mt: 1.5,
                 '& .MuiAvatar-root': {
                   width: 32,
@@ -216,31 +213,16 @@ const Navbar = () => {
               </div>
             </MenuItem>
             <Divider />
-            <Link to='/dashboard'>
-              <MenuItem>
-                <ListItemIcon>
-                  <Dashboard fontSize='small' />
-                </ListItemIcon>
-                Dashboard
-              </MenuItem>
-            </Link>
 
             <Link to='/settings'>
               <MenuItem>
                 <ListItemIcon>
-                  <Settings fontSize='small' />
+                  <Settings size={18} />
                 </ListItemIcon>
                 Settings
               </MenuItem>
             </Link>
-            <Link to='/feedback'>
-              <MenuItem>
-                <ListItemIcon>
-                  <VscFeedback />
-                </ListItemIcon>
-                Feedback
-              </MenuItem>
-            </Link>
+
             <MenuItem onClick={handleLogout}>
               <ListItemIcon>
                 <Logout fontSize='small' />

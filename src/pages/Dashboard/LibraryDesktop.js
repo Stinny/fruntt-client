@@ -110,7 +110,7 @@ const LibraryDesktop = ({ orders }) => {
 
       <Link
         to='/marketplace'
-        className='flex items-center justify-center bg-gray-200 text-sm text-stone-800 rounded-md pt-1 pb-1 pl-2 pr-2 mt-2'
+        className='flex items-center justify-center bg-gray-200 text-xs text-stone-800 rounded-md pt-1 pb-1 pl-2 pr-2 mt-2'
       >
         Marketplace
       </Link>
