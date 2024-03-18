@@ -20,7 +20,7 @@ const Footer = () => {
   return isMobile ? (
     <MobileFooter />
   ) : (
-    <footer className='w-full h-16 border-t border-gray-200 flex mt-10'>
+    <footer className='w-full h-16 flex mt-10'>
       {currentUser ? (
         <div className='w-full mx-auto'>
           <div className='max-w-6xl mx-auto h-full flex justify-between items-center'>

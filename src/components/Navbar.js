@@ -234,20 +234,19 @@ const Navbar = () => {
       </div>
     </nav>
   ) : (
-    <nav className='w-full h-16 border-b border-gray-200 bg-white fixed top-0 left-0 right-0 z-50 mb-8'>
-      <div className='max-w-6xl h-full mx-auto flex justify-between items-center mb-8'>
+    <nav className='w-full bg-white fixed top-0 z-50'>
+      <div className='max-w-6xl mx-auto flex justify-between items-center border border-gray-200 rounded-md p-2 mt-8'>
         {/* logo section */}
-        <div className='h-full flex justify-center items-center'>
-          <Link to='/' className='h-full flex justify-center items-center'>
-            <IoStorefrontOutline className='text-stone-800 font-bold text-xl' />
-            <p
-              className='text-stone-800 font-bold mt-1 text-md'
-              style={{ fontFamily: 'Inter, sans-serif' }}
-            >
-              Fruntt
-            </p>
-          </Link>
-        </div>
+
+        <Link to='/' className='h-full flex'>
+          <IoStorefrontOutline className='text-stone-800 font-bold text-xl' />
+          <p
+            className='text-stone-800 font-black mt-1 text-md'
+            style={{ fontFamily: 'Inter, sans-serif' }}
+          >
+            Fruntt
+          </p>
+        </Link>
 
         {/* links section */}
         <div className='h-full flex items-center justify-between'>
@@ -260,32 +259,26 @@ const Navbar = () => {
             <BiMoneyWithdraw className='text-2xl text-stone-800' />
           </Link> */}
 
-          <div className='flex justify-between items-center w-52'>
+          <div className='flex gap-2 items-center'>
             <Link
               to='/marketplace'
-              className='flex text-sm h-8 w-14 justify-center items-center hover:bg-gray-200 text-stone-800 rounded-md'
+              className='flex text-xs p-1 pl-2 pr-2 justify-center items-center hover:bg-gray-200 text-stone-800 rounded-md'
             >
               <p className='font-medium'>Buy</p>
             </Link>
             <Link
               to='/signup'
-              className='flex text-sm h-8 w-14 items-center justify-center hover:bg-gray-200 text-stone-800 rounded-md'
+              className='flex text-xs p-1 pl-2 pr-2 items-center justify-center hover:bg-gray-200 text-stone-800 rounded-md'
             >
               <p className='font-medium'>Sell</p>
             </Link>
             <Link
               to='/login'
-              className='flex text-sm items-center justify-center bg-gray-200 text-stone-800 rounded-md h-8 w-14'
+              className='flex text-xs items-center justify-center bg-gray-200 text-stone-800 rounded-md p-1 pl-2 pr-2'
             >
               <p className='font-medium'>Login</p>
             </Link>
           </div>
-
-          {/* <Link to='/login'>
-            <button className='border-2 font-medium text-stone-800 border-stone-800 hover:bg-stone-800 hover:text-white rounded w-20 h-10 ml-20'>
-              Login
-            </button>
-          </Link> */}
         </div>
       </div>
     </nav>

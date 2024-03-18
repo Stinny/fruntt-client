@@ -39,34 +39,22 @@ const Home = () => {
   if (currentUser) return <Navigate to='/dashboard' />;
 
   return (
-    <>
+    <div className='h-screen mx-auto'>
       <Navbar />
 
-      <div className='mx-auto h-fit max-w-6xl'>
-        <div className='w-full mx-auto h-full flex flex-col items-center'>
+      <div className='mx-auto max-w-6xl flex flex-col'>
+        <div className='w-full mx-auto flex flex-col items-center flex-grow'>
           <Hero
             products={products}
             gettingProducts={gettingProducts}
             gotProducts={gotProducts}
           />
-          {/* <RecentStores
-            stores={stores}
-            isLoading={isLoading}
-            isSuccess={isSuccess}
-            refetch={refetch}
-          /> */}
-          <Email />
-          {/* <Banner />
-          <HowSell />
-          <FAQS />
-          <Fee />
-          <PHunt />
-          <Email /> */}
+          {/* <Email /> */}
         </div>
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

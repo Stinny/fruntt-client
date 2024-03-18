@@ -129,12 +129,14 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
       <Pricing />
     </div>
   ) : (
-    <div className='h-fit flex flex-col max-w-7xl mt-44'>
-      <div className='flex items-center justify-between'>
-        <div className='flex flex-col text-left w-3/6 mr-32'>
-          <p className='font-bold text-3xl'>Most affordable way to sell your</p>
-          <div>
-            <p className='text-white bg-stone-800 rounded-md p-1 font-bold text-3xl inline-block'>
+    <div className='flex flex-col max-w-7xl mt-44'>
+      <div className='flex items-center justify-between gap-24'>
+        <div className='flex flex-col gap-6 text-left w-3/6'>
+          <div className='flex flex-col items-start text-left'>
+            <p className='font-bold text-2xl text-stone-800'>
+              Cheapest and easiest way to sell your
+            </p>
+            <p className='text-white bg-stone-800 rounded-md p-1 font-bold text-2xl inline-block'>
               Notion templates.
             </p>
           </div>
@@ -144,23 +146,19 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
             <span className='font-bold'>without</span> worrying about high
             payout fees.
           </p> */}
-          <p className='text-xl mt-6'>
-            Stop worrying about high payout fees and focus more on your
-            earnings.
+          <p className='text-md text-stone-600'>
+            We remove the complexity and high payout fees when it's time to sell
+            your Notion template.
           </p>
-          <a href='#pricing' className='text-stone-800 mt-6 flex items-center'>
-            See pricing{' '}
-            <FaChevronDown className='ml-2 text-stone-800 text-sm' />
-          </a>
-          <div className='flex items-center mt-10'>
-            <Link to='/signup' className='flex w-56'>
-              <button className='rounded-md text-stone-800 w-full h-10 border-stone-800 border-2 hover:bg-stone-800 hover:text-white flex items-center shadow-md bg-white justify-center'>
-                Open Store
+          <div className='flex items-center gap-4'>
+            <Link to='/signup'>
+              <button className='rounded-md text-stone-800 bg-gray-200 text-sm p-2'>
+                Start Selling
               </button>
             </Link>
 
-            <Link to='/marketplace' className='flex w-56 ml-1'>
-              <button className='rounded-md text-white w-full h-10 border-stone-800 border-2 bg-stone-800 flex items-center shadow-md justify-center'>
+            <Link to='/marketplace'>
+              <button className='rounded-md text-stone-800 bg-gray-200 text-sm p-2'>
                 Browse Templates
               </button>
             </Link>
@@ -183,21 +181,21 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
 
         <div className='flex flex-col w-3/6 shadow-lg rounded-md border'>
           <div className='flex'>
-            <div className='w-3/6 bg-stone-800 text-white flex justify-center items-center h-36 rounded-tl-md'>
+            <div className='w-3/6 bg-stone-800 text-white flex justify-center items-center h-32 rounded-tl-md'>
               <p className='flex justify-center items-center h-32 font-medium text-3xl'>
                 $
               </p>
             </div>
-            <div className='w-3/6 bg-white h-36 rounded-tr-md flex items-center justify-center'>
+            <div className='w-3/6 bg-white h-32 rounded-tr-md flex items-center justify-center'>
               <img src={imgOne} className='w-44' />
             </div>
           </div>
 
           <div className='flex'>
-            <div className='w-3/6 bg-white h-36 flex items-center justify-center rounded-bl-md'>
+            <div className='w-3/6 bg-white h-32 flex items-center justify-center rounded-bl-md'>
               <img src={imgTwo} className='w-44' />
             </div>
-            <div className='w-3/6 bg-stone-800 flex justify-center rounded-br-md items-center h-36 text-white'>
+            <div className='w-3/6 bg-stone-800 flex justify-center rounded-br-md items-center h-32 text-white'>
               <p className='text-3xl font-medium'>$</p>
             </div>
           </div>
@@ -208,8 +206,8 @@ const Hero = ({ products, gettingProducts, gotProducts }) => {
         gettingProducts={gettingProducts}
         gotProducts={gotProducts}
       />
-      <Features />
-      <Pricing />
+      {/* <Features />
+      <Pricing /> */}
     </div>
   );
 };

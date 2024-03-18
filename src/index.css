@@ -46,7 +46,7 @@ html {
   color: rgb(41 37 36);
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 /* Style the page number buttons */
@@ -57,6 +57,7 @@ html {
   color: rgb(41 37 36);
   border: 2px solid #000;
   border-radius: 5px;
+  font-size: 12px;
 }
 
 .disabled {
@@ -65,7 +66,7 @@ html {
   background-color: rgb(229 231 235);
   color: rgb(41 37 36);
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 12px;
   opacity: 0.4;
 }
 

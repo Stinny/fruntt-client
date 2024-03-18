@@ -21,11 +21,10 @@ import { Badge, Spinner, Tooltip } from 'flowbite-react';
 import { ChevronDown, ChevronUp } from 'react-feather';
 
 const Payments = ({ refetch }) => {
-  const dispatch = useDispatch();
-
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
+
   const aToken = Cookies.get('aToken');
   const [onboardUrl, setOnboardUrl] = useState('');
   const [gettingUrl, setGettingUrl] = useState(false);
