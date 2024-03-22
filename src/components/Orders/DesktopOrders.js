@@ -10,7 +10,7 @@ import { MdOutlineAttachMoney, MdShoppingCart } from 'react-icons/md';
 const DesktopOrders = ({ orders }) => {
   //stuff for pagination//
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 15;
+  const itemsPerPage = 12;
 
   const endOffset = itemOffset + itemsPerPage;
   const currentOrders = orders.slice(itemOffset, endOffset);
@@ -37,17 +37,17 @@ const DesktopOrders = ({ orders }) => {
       displayText = `${Math.floor(secondsElapsed)} seconds ago`;
     } else if (minutesElapsed < 60) {
       displayText =
-        Math.floor(minutesElapsed) == 1
+        Math.floor(minutesElapsed) === 1
           ? `${Math.floor(minutesElapsed)} minute ago`
           : `${Math.floor(minutesElapsed)} minutes ago`;
     } else if (hoursElapsed < 24) {
       displayText =
-        Math.floor(hoursElapsed) == 1
+        Math.floor(hoursElapsed) === 1
           ? `${Math.floor(hoursElapsed)} hour ago`
           : `${Math.floor(hoursElapsed)} hours ago`;
     } else if (daysElapsed < 3) {
       displayText =
-        Math.floor(daysElapsed) == 1
+        Math.floor(daysElapsed) === 1
           ? `${Math.floor(daysElapsed)} day ago`
           : `${Math.floor(daysElapsed)} days ago`;
     } else {
@@ -58,76 +58,46 @@ const DesktopOrders = ({ orders }) => {
   };
 
   return orders.length > 0 ? (
-    <div>
-      <div className='w-full flex justify-between items-center'>
-        <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
-          <MdShoppingCart className='text-white text-xl' />
-          <p className='text-md text-white ml-2'>Orders</p>
-        </div>
-        <div className='flex justify-between'>
-          <input
-            placeholder='Coming soon!'
-            className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-          />
-          <button className='border-2 rounded w-20 ml-2  h-10 border-stone-800 text-slate-800'>
-            Search
-          </button>
+    <div className='flex flex-col gap-2'>
+      <div className='w-full flex justify-between items-end'>
+        <div className='flex flex-col border border-gray-200 rounded-md p-2'>
+          <p className='text-sm text-stone-800'>Orders</p>
+          <p className='text-xs text-stone-600'>View all your orders</p>
         </div>
 
-        <p className='text-stone-800 font-medium text-sm'>
+        <p className='text-stone-600 font-medium text-xs'>
           {orders.length > 1
             ? `${orders.length} orders`
             : `${orders.length} order`}
         </p>
       </div>
 
-      <div className='w-full mx-auto mt-2'>
-        <table className='w-full rounded-md bg-white border drop-shadow-lg p-2'>
-          <tbody>
-            {currentOrders.map((order, index) => (
-              <tr className='text-left text-sm border-b'>
-                <td className='p-3'>
-                  <Link
-                    to={`/dashboard/orders/${order?._id}`}
-                    className='flex items-center justify-center'
-                  >
-                    {order._id}
-                    <AiOutlineLink />
-                  </Link>
-                </td>
-                <td>{order?.email}</td>
-                <td>{<ElapsedTimeOrDate orderDate={order?.placedOn} />}</td>
-                <td className='w-12'>
-                  {order?.paid ? (
-                    <MdOutlineAttachMoney className='text-xl' />
-                  ) : (
-                    ''
-                  )}
-                </td>
+      <div className='flex flex-col gap-2'>
+        {currentOrders.map((order, index) => (
+          <div className='flex items-center w-full border border-gray-200 rounded-md p-2'>
+            <div className='w-3/12 flex justify-start'>
+              <p className='text-sm text-stone-800'>{order?._id}</p>
+            </div>
 
-                <td className='w-12'>
-                  {order?.viewed ? <AiOutlineEye className='text-xl' /> : ''}
-                </td>
+            <div className='w-3/12 flex justify-center'>
+              <p className='text-sm text-stone-800'>{order?.email}</p>
+            </div>
 
-                <td className='w-12'>
-                  {order?.reviewed ? (
-                    <BiMessageSquareDetail className='text-xl' />
-                  ) : (
-                    ''
-                  )}
-                </td>
+            <div className='w-3/12 flex justify-center'>
+              <p className='text-sm text-stone-800'>
+                <ElapsedTimeOrDate orderDate={order?.placedOn} />
+              </p>
+            </div>
 
-                <td className='p-1'>
-                  <div className='rounded p-1 bg-gray-100 flex items-center justify-center'>
-                    ${order?.total?.toFixed(2)}
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            <div className='w-3/12 flex justify-end'>
+              <div className='rounded-md p-1 pl-2 pr-2 bg-gray-200 flex items-center justify-center text-xs'>
+                ${order?.total}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-      {orders.length > 15 ? (
+      {orders.length > 12 ? (
         <div className='w-full flex justify-end mx-auto mt-2'>
           <div className=''>
             <ReactPaginate

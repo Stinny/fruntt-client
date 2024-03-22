@@ -42,7 +42,14 @@ const Payouts = () => {
   let content;
 
   if (isLoading || gettingBalance) {
-    content = <Spinner />;
+    content = (
+      <div
+        className='w-full flex items-center justify-center border border-gray-200 rounded-md'
+        style={{ height: '600px' }}
+      >
+        <Spinner />
+      </div>
+    );
   } else if (isSuccess) {
     content = isMobile ? '' : <Desktop payouts={payouts} balance={balance} />;
   }

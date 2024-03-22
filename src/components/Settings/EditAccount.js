@@ -39,7 +39,10 @@ const EditAccount = ({ user, refetch, edit, setEdit }) => {
   return (
     <div className='w-full flex-col'>
       <div className='flex items-center justify-between w-full mb-2'>
-        <p className='text-sm text-stone-800'>Edit account</p>
+        <div className='flex flex-col items-start'>
+          <p className='text-sm text-stone-800'>Edit ccount</p>
+          <p className='text-xs text-stone-600'>{`ID: ${user?._id}`}</p>
+        </div>
 
         <div className='flex items-center gap-2'>
           <button

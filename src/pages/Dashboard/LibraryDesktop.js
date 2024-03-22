@@ -32,25 +32,25 @@ const LibraryDesktop = ({ orders }) => {
 
   return orders.length ? (
     <div className='mx-auto w-full'>
-      <div className='w-full mx-auto flex flex-col'>
+      <div className='w-full mx-auto flex flex-col gap-2'>
         <div className='w-full flex justify-between items-end'>
           <div className='flex flex-col justify-center border border-gray-200 bg-white rounded-md p-2'>
-            <p className='text-md text-stone-800 font-bold'>Library</p>
-            <p className='text-sm text-stone-600'>View all your purchases</p>
+            <p className='text-sm text-stone-800'>Library</p>
+            <p className='text-xs text-stone-600'>View all your purchases</p>
           </div>
 
           <div className='flex items-center'>
-            <p className='text-stone-800 font-medium text-sm'>
+            <p className='text-stone-600 text-xs'>
               {orders.length > 1
                 ? `${orders.length} purchases`
                 : `${orders.length} purchase`}
             </p>
           </div>
         </div>
-        <div className='flex flex-col'>
+        <div className='flex flex-col gap-2'>
           {currentOrders.map((order) => (
             <Link to={`/order/${order?._id}`}>
-              <div className='border border-gray-200 rounded-md bg-white relative flex mt-2'>
+              <div className='border border-gray-200 rounded-md bg-white relative flex'>
                 <div className='w-2/12 h-full p-2'>
                   <img
                     src={order?.item?.coverImage?.url}
@@ -79,25 +79,27 @@ const LibraryDesktop = ({ orders }) => {
               </div>
             </Link>
           ))}
-          <div className='w-full flex justify-end mt-2'>
-            <div className=''>
-              <ReactPaginate
-                breakLabel='...'
-                nextLabel='Next'
-                onPageChange={handlePageClick}
-                marginPagesDisplayed={0}
-                pageRangeDisplayed={0}
-                pageCount={pageCount}
-                previousLabel='Prev'
-                renderOnZeroPageCount={null}
-                className='flex items-center'
-                activeLinkClassName='activePage'
-                pageLinkClassName='notActivePage'
-                breakLinkClassName='breakLink'
-                disabledClassName='disabled'
-              />
+          {orders.length > 5 && (
+            <div className='w-full flex justify-end mt-2'>
+              <div className=''>
+                <ReactPaginate
+                  breakLabel='...'
+                  nextLabel='Next'
+                  onPageChange={handlePageClick}
+                  marginPagesDisplayed={0}
+                  pageRangeDisplayed={0}
+                  pageCount={pageCount}
+                  previousLabel='Prev'
+                  renderOnZeroPageCount={null}
+                  className='flex items-center'
+                  activeLinkClassName='activePage'
+                  pageLinkClassName='notActivePage'
+                  breakLinkClassName='breakLink'
+                  disabledClassName='disabled'
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

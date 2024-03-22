@@ -6,7 +6,7 @@ import { BsPeople } from 'react-icons/bs';
 const DesktopCustomers = ({ customers }) => {
   //stuff for pagination//
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 15;
+  const itemsPerPage = 12;
 
   const endOffset = itemOffset + itemsPerPage;
   const currentCustomers = customers.slice(itemOffset, endOffset);
@@ -20,60 +20,47 @@ const DesktopCustomers = ({ customers }) => {
   //pagination stuff ends here//
 
   return customers.length > 0 ? (
-    <div className='w-full mx-auto h-full'>
-      <div className='w-full flex justify-between items-center'>
-        <div className='flex items-center justify-center rounded-md bg-stone-800 p-2'>
-          <BsPeople className='text-white' />
-          <p className='text-md text-white ml-2'>Customers</p>
-        </div>
-        <div className='flex justify-between'>
-          <input
-            placeholder='Coming soon!'
-            className='border-2 h-10 border-slate-200 hover:border-slate-300 w-full rounded p-2 outline outline-0 bg-white'
-          />
-          <button className='border-2 rounded w-20 ml-2  h-10 border-stone-800 text-slate-800'>
-            Search
-          </button>
+    <div className='w-full mx-auto h-full flex flex-col gap-2'>
+      <div className='w-full flex justify-between items-end'>
+        <div className='flex flex-col items-start rounded-md border border-gray-200 p-2'>
+          <p className='text-sm text-stone-800'>Customers</p>
+          <p className='text-xs text-stone-600'>View all your customers</p>
         </div>
 
-        <p className='text-stone-800 font-medium text-sm'>
+        <p className='text-stone-600 font-medium text-xs'>
           {customers.length > 1
             ? `${customers.length} customers`
             : `${customers.length} customer`}
         </p>
       </div>
 
-      <div className='w-full mx-auto mt-2'>
-        <table className='w-full rounded-md bg-white border drop-shadow-lg p-2'>
-          <tbody>
-            {currentCustomers.map((customer, index) => (
-              <tr className='text-left text-md border-b'>
-                <td className='p-3 flex items-center justify-center'>
-                  {customer?.email}
-                </td>
-                <td>{customer?.name}</td>
-                <td>
-                  <div className='flex items-center'>
-                    <ReactCountryFlag
-                      countryCode={customer?.country?.value}
-                      className='mr-1'
-                    />
-                    <p>{customer?.country?.label}</p>
-                  </div>
-                </td>
-                <td className='flex justify-end p-1'>
-                  <div className='rounded w-32 p-1 bg-gray-100 flex items-center justify-center text-md'>
-                    {customer?.numberOfOrders === 1
-                      ? `${customer?.numberOfOrders} order`
-                      : `${customer?.numberOfOrders} orders`}
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className='flex flex-col gap-2'>
+        {currentCustomers.map((customer, index) => (
+          <div className='flex items-center w-full border border-gray-200 rounded-md p-2'>
+            <div className='w-3/12 flex justify-start'>
+              <p className='text-sm text-stone-800'>{customer?.email}</p>
+            </div>
+
+            <div className='w-3/12 flex items-center'>
+              <p className='text-sm text-stone-800'>{customer?.name}</p>
+            </div>
+
+            <div className='flex items-center w-3/12'>
+              <ReactCountryFlag countryCode='us' className='mr-1' />
+              <p className='text-sm text-stone-800'>United States</p>
+            </div>
+            <div className='w-3/12 flex justify-end'>
+              <div className='rounded-md p-1 pl-2 pr-2 bg-gray-200 flex items-center justify-center text-xs'>
+                {customer?.numberOfOrders === 1
+                  ? `${customer?.numberOfOrders} order`
+                  : `${customer?.numberOfOrders} orders`}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-      {customers.length > 15 ? (
+
+      {customers.length > 12 ? (
         <div className='w-full flex justify-end mx-auto mt-2'>
           <div className=''>
             <ReactPaginate

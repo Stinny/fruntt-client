@@ -1,18 +1,106 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import { Badge } from 'flowbite-react';
 import StripeAmount from '../../utils/StripeAmount';
+import moment from 'moment';
+import ReactPaginate from 'react-paginate';
 
 const Desktop = ({ payouts, balance }) => {
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
 
+  //stuff for pagination
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 5;
+
+  const endOffset = itemOffset + itemsPerPage;
+
+  const currentPayouts = payouts.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(payouts.length / itemsPerPage);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % payouts.length;
+    setItemOffset(newOffset);
+  };
+  //end of pagination stuff
+
+  const ElapsedTimeOrDate = ({ payoutDate }) => {
+    const now = new Date();
+    const duration = moment.duration(moment(now).diff(moment(payoutDate)));
+    const secondsElapsed = duration.asSeconds();
+    const minutesElapsed = duration.asMinutes();
+    const hoursElapsed = duration.asHours();
+    const daysElapsed = duration.asDays();
+
+    let displayText = '';
+
+    if (secondsElapsed < 60) {
+      displayText = `${Math.floor(secondsElapsed)} seconds ago`;
+    } else if (minutesElapsed < 60) {
+      displayText =
+        Math.floor(minutesElapsed) === 1
+          ? `${Math.floor(minutesElapsed)} minute ago`
+          : `${Math.floor(minutesElapsed)} minutes ago`;
+    } else if (hoursElapsed < 24) {
+      displayText =
+        Math.floor(hoursElapsed) === 1
+          ? `${Math.floor(hoursElapsed)} hour ago`
+          : `${Math.floor(hoursElapsed)} hours ago`;
+    } else if (daysElapsed < 3) {
+      displayText =
+        Math.floor(daysElapsed) === 1
+          ? `${Math.floor(daysElapsed)} day ago`
+          : `${Math.floor(daysElapsed)} days ago`;
+    } else {
+      displayText = `${moment(payoutDate).format('MMM D, YYYY')}`;
+    }
+
+    return <span>{displayText}</span>;
+  };
+
+  const DisplayBadge = ({ status }) => {
+    switch (status) {
+      case 'paid':
+        return (
+          <Badge color='success' size='xs'>
+            Paid
+          </Badge>
+        );
+      case 'failed':
+        return (
+          <Badge color='failure' size='xs'>
+            Failed
+          </Badge>
+        );
+      case 'cancelled':
+        return (
+          <Badge color='failure' size='xs'>
+            cancelled
+          </Badge>
+        );
+      case 'pending':
+        return (
+          <Badge color='warning' size='xs'>
+            Pending
+          </Badge>
+        );
+      case 'in_transit':
+        return (
+          <Badge color='warning' size='xs'>
+            In Transit
+          </Badge>
+        );
+      default:
+        break;
+    }
+  };
+
   console.log(balance);
   console.log(currentUser?.stripeId);
   return (
     <div className='flex flex-col gap-2'>
-      <div className='w-full flex flex-col items-start border border-gray-200 rounded-md p-2 relative'>
+      <div className='w-full flex flex-col items-start border border-gray-200 rounded-md p-4 relative'>
         {!currentUser?.bankAdded &&
           !currentUser?.stripeOnboard &&
           !currentUser?.bankPending &&
@@ -112,16 +200,57 @@ const Desktop = ({ payouts, balance }) => {
           </div>
         )}
       </div>
-      {payouts.length ? (
-        <div
-          className='flex flex-col border-gray-200 items-center justify-center rounded-md w-full border bg-white'
-          style={{ height: '600px' }}
-        >
-          <div className='flex flex-col items-center gap-2'>
-            <p className='text-stone-800 text-sm'>
-              Payouts will be displayed here
+      {payouts.length && (
+        <div className='w-full flex justify-end items-center'>
+          <div className='flex items-center'>
+            <p className='text-stone-600 text-xs'>
+              {payouts.length > 1
+                ? `${payouts.length} payments`
+                : `${payouts.length} payment`}
             </p>
           </div>
+        </div>
+      )}
+      {payouts.length ? (
+        <div className='flex flex-col w-full bg-white gap-2'>
+          {currentPayouts.map((payout) => (
+            <div className='flex justify-between items-center border border-gray-200 rounded-md p-4'>
+              <div className='flex flex-col items-start'>
+                <DisplayBadge status={payout?.status} />
+                <p className='text-stone-800 text-sm'>{payout?.payoutId}</p>
+                <p className='text-stone-600 text-xs'>
+                  <ElapsedTimeOrDate payoutDate={payout?.paidOn} />
+                </p>
+              </div>
+              <button
+                disabled
+                className='p-2 bg-gray-200 text-stone-800 text-xs rounded-md'
+              >
+                <StripeAmount amount={payout?.amount} />
+              </button>
+            </div>
+          ))}
+          {payouts.length > 5 && (
+            <div className='w-full flex justify-end mt-2'>
+              <div className=''>
+                <ReactPaginate
+                  breakLabel='...'
+                  nextLabel='Next'
+                  onPageChange={handlePageClick}
+                  marginPagesDisplayed={0}
+                  pageRangeDisplayed={0}
+                  pageCount={pageCount}
+                  previousLabel='Prev'
+                  renderOnZeroPageCount={null}
+                  className='flex items-center'
+                  activeLinkClassName='activePage'
+                  pageLinkClassName='notActivePage'
+                  breakLinkClassName='breakLink'
+                  disabledClassName='disabled'
+                />
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <div
