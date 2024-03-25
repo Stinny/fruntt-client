@@ -23,6 +23,7 @@ const EditDigital = ({ product, refetch }) => {
   const [image, setImage] = useState([]);
   const [files, setFiles] = useState([]);
   const [published, setPublished] = useState(product?.published);
+  const [inReview, setInReview] = useState(product?.inReview);
   const [digitalType, setDigitalType] = useState(product?.digitalType);
   const [link, setLink] = useState(product?.link);
   const [callToAction, setCallToAction] = useState(product?.callToAction);
@@ -32,6 +33,9 @@ const EditDigital = ({ product, refetch }) => {
   const [free, setFree] = useState(product?.free);
   const [marketplace, setMarketplace] = useState(product?.marketplace);
   const [category, setCategory] = useState(product?.category);
+  const [dupLink, setDupLink] = useState(product?.templateLink);
+  const [updatingProduct, setUpdatingProduct] = useState(false);
+  const [emptyFields, setEmptyFields] = useState([]);
 
   const [updateDigitalProduct, result] = useUpdateDigitalProductMutation();
   const [deleteProduct, deleteProductResult] = useDeleteProductMutation();
@@ -52,6 +56,8 @@ const EditDigital = ({ product, refetch }) => {
   const handleSaveEdit = async (e) => {
     e.preventDefault();
 
+    setUpdatingProduct(true);
+
     let uploadedFiles = [];
     let uploadedImages = [];
     let newCoverImageUrl = '';
@@ -64,6 +70,7 @@ const EditDigital = ({ product, refetch }) => {
 
     if (!title) {
       setError('Please fill in all fields');
+      setUpdatingProduct(false);
       return;
     }
 
@@ -122,15 +129,18 @@ const EditDigital = ({ product, refetch }) => {
         free: free,
         marketplace: marketplace,
         category: category,
+        dupLink: dupLink,
       }).unwrap();
 
       if (editProductReq === 'Product updated') {
         toast.success('Template saved!', { style: { color: 'rgb(28 25 23)' } });
         refetch();
-        navigate('/dashboard/item');
+        setUpdatingProduct(false);
+        navigate('/dashboard/templates');
       }
     } catch (err) {
       console.log(err);
+      setUpdatingProduct(false);
       setError('There was an error');
     }
   };
@@ -161,8 +171,10 @@ const EditDigital = ({ product, refetch }) => {
       price={price}
       setPrice={setPrice}
       setImage={setImage}
+      image={image}
       setFiles={setFiles}
       published={published}
+      inReview={inReview}
       setPublished={setPublished}
       handleDelete={handleDelete}
       handleSaveEdit={handleSaveEdit}
@@ -188,6 +200,10 @@ const EditDigital = ({ product, refetch }) => {
       handleAction={handleAction}
       handleType={handleType}
       handleCategory={handleCategory}
+      updatingProduct={updatingProduct}
+      emptyFields={emptyFields}
+      dupLink={dupLink}
+      setDupLink={setDupLink}
     />
   );
 };

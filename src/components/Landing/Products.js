@@ -91,7 +91,7 @@ const Products = ({ products, gettingProducts, gotProducts }) => {
         </div>
       </div>
     ) : (
-      <div className='max-w-7xl flex flex-col items-start mt-24'>
+      <div className='max-w-7xl flex flex-col items-start'>
         <p className='text-stone-600 text-sm'>Recommended Templates</p>
 
         <div className='w-full grid grid-cols-4 gap-4 mt-2'>

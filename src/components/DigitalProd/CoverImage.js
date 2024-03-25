@@ -4,6 +4,7 @@ import {
   useDeleteItemImageMutation,
 } from '../../api/productsApiSlice';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { Trash } from 'react-feather';
 
 //filepond
 import { FilePond } from 'react-filepond';
@@ -44,26 +45,12 @@ const CoverImage = ({
   if (isLoading) {
     content = <p>...Loading</p>;
   } else if (isSuccess) {
-    console.log(coverImage);
     content = coverImage.length ? (
       <>
-        {/* <p className='text-stone-800 mb-1 text-sm'>Current cover image</p>
-        <img src={coverImage[0]?.url} className='rounded w-72 object-fill' />
-        <button
-          type='button'
-          onClick={(e) =>
-            handleDeleteCoverImage({
-              productId: product._id,
-              imgId: '',
-              key: product?.coverImage?.key,
-            })
-          }
-          className='w-full h-8 border-2 rounded border-red-400 text-red-400 hover:text-white hover:bg-red-400 mt-2'
-        >
-          Delete & upload new cover image
-        </button> */}
-        <p className='text-sm'>{coverImage.length}/5 images uploaded</p>
-        <div className='grid grid-cols-4 gap-2 mb-1 mt-1'>
+        <p className='text-xs text-stone-600'>
+          {coverImage.length}/5 images uploaded
+        </p>
+        <div className='grid grid-cols-5 gap-2 mb-1 mt-1'>
           {coverImage.map((image, index) => (
             <div key={index} className='relative'>
               <img
@@ -80,9 +67,9 @@ const CoverImage = ({
                     key: image?.key,
                   })
                 }
-                className='absolute top-1 right-1 bg-white text-red-500 px-1 py-1 rounded-full'
+                className='absolute top-1 right-1 bg-white text-stone-800 font-bold px-1 py-1 rounded-full'
               >
-                <AiOutlineCloseCircle />
+                <Trash size={14} />
               </button>
             </div>
           ))}

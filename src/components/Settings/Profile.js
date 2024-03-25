@@ -6,21 +6,10 @@ import { isMobile } from 'react-device-detect';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import ReactCountryFlag from 'react-country-flag';
-import { BsPersonLock } from 'react-icons/bs';
-import { AiFillLock } from 'react-icons/ai';
 import { Instagram, Lock, Youtube, Link as FLink } from 'react-feather';
 import EditAccount from './EditAccount';
 import { Spinner } from 'flowbite-react';
 import EditProfile from './EditProfile';
-import {
-  AiOutlineInstagram,
-  AiOutlineYoutube,
-  AiOutlineFacebook,
-  AiOutlineTwitter,
-  AiOutlineLinkedin,
-  AiOutlineLink,
-  AiOutlineEdit,
-} from 'react-icons/ai';
 import { FaMediumM, FaTiktok } from 'react-icons/fa';
 
 //mui
@@ -38,42 +27,6 @@ const Profile = ({ user, refetch, isFetching }) => {
   const [deleteAcc, setDeleteAcc] = useState(false);
 
   const options = useMemo(() => countryList().getData(), []);
-
-  const [updateAccountInfo, result] = useUpdateAccountInfoMutation();
-
-  const modalStyles = isMobile
-    ? {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-          width: '90%',
-        },
-      }
-    : {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-          width: '500px',
-        },
-      };
-
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
 
   return isFetching ? (
     <div className='w-full h-96 flex items-center justify-center'>
@@ -120,7 +73,7 @@ const Profile = ({ user, refetch, isFetching }) => {
                 <input
                   type='text'
                   className='border text-sm bg-gray-50 border-gray-50 rounded-tl-md rounded-bl-md p-2 flex-1'
-                  value={user?.country?.label}
+                  value={`${user?.country?.label} - ${user?.currency?.symbol}(${user?.currency?.code})`}
                   disabled
                 />
                 <div className='rounded-tr-md rounded-br-md bg-gray-50 border border-l-0 border-gray-50 flex items-center justify-center p-1 pr-2'>
@@ -186,7 +139,7 @@ const Profile = ({ user, refetch, isFetching }) => {
                         <FaXTwitter className='text-stone-800 text-md' />
                       </a>
                     ) : (
-                      <AiOutlineTwitter className='text-gray-200 text-md' />
+                      <FaXTwitter className='text-gray-200 text-md' />
                     )}
 
                     {user?.sellerProfile?.instagram ? (
@@ -263,148 +216,6 @@ const Profile = ({ user, refetch, isFetching }) => {
       </div>
     </div>
   );
-
-  //   return (
-  //     <>
-  //       {/* <Modal
-  //         isOpen={modalIsOpen}
-  //         onRequestClose={closeModal}
-  //         style={modalStyles}
-  //       >
-  //         <form onSubmit={handleSaveAccountInfo}>
-  //           <p className='text-xl font-medium mb-4 border-b'>Account Details</p>
-  //           <p className='text-md font-medium mt-2'>Email</p>
-
-  //           <input
-  //             type='text'
-  //             className='border-2 border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-300 w-full rounded p-2'
-  //             placeholder='Last name'
-  //             onChange={(e) => setEmail(e.target.value)}
-  //             value={email}
-  //           />
-
-  //           <p className='text-md font-medium mt-2'>Country</p>
-  //           <Select
-  //             options={options}
-  //             onChange={handleCountry}
-  //             className='w-full h-10 text-sm'
-  //             value={country}
-  //             styles={{
-  //               control: (baseStyles, state) => ({
-  //                 ...baseStyles,
-  //                 borderColor: 'rgb(229 231 235)',
-  //                 '&:hover': {
-  //                   borderColor: 'rgb(209 213 219)', // Keep the same border color on hover
-  //                 },
-  //                 boxShadow: 'none',
-  //                 borderWidth: 2,
-  //                 zIndex: 99999,
-  //                 position: 'relative',
-  //               }),
-  //               menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
-  //             }}
-  //           />
-
-  //           <p className='text-md font-medium mt-2'>Zipcode</p>
-
-  //           <input
-  //             type='text'
-  //             className='border-2 text-sm border-gray-200 hover:border-gray-300 outline outline-0 focus:border-gray-300 w-full rounded p-2'
-  //             placeholder='ZIP'
-  //             onChange={(e) => setZip(e.target.value)}
-  //             value={zip}
-  //           />
-
-  //           <button
-  //             type='button'
-  //             onClick={closeModal}
-  //             className='w-full h-10 border-2 border-red-500 text-red-400 rounded mt-4 hover:text-white hover:bg-red-400'
-  //           >
-  //             Cancel
-  //           </button>
-  //           <button
-  //             type='submit'
-  //             className='w-full h-14 border-2 border-stone-800 text-stone-800 hover:text-white hover:bg-stone-800 rounded mt-4'
-  //           >
-  //             Save
-  //           </button>
-  //         </form>
-  //       </Modal> */}
-  //       {/*
-  //       {isMobile ? (
-  //         <div className='flex justify-between items-center w-full border-b p-2'>
-  //           <p className='text-lg font-medium'>Account Details</p>
-  //           <button
-  //             className='border-2 rounded w-16 h-8 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white'
-  //             onClick={openModal}
-  //           >
-  //             Edit
-  //           </button>
-  //         </div>
-  //       ) : (
-  //         <div className='flex justify-between items-center w-full border-b p-2'>
-  //           <p className='text-lg font-medium'>Account Details</p>
-  //           <div className='flex items-center'>
-  //             <Link
-  //               to='/dashboard/password/change'
-  //               className='flex items-center justify-center rounded w-44 bg-stone-800 text-white h-8 mr-1'
-  //             >
-  //               Change Password//mui
-  // import Avatar from '@mui/material/Avatar';
-  //             </Link>
-  //             <button
-  //               className='border-2 rounded w-20 h-8 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white'
-  //               onClick={openModal}
-  //             >
-  //               Edit
-  //             </button>
-  //           </div>
-  //         </div>
-  //       )} */}
-
-  //       {/* {isMobile ? (
-  //         <div className='w-11/12 mx-auto flex flex-col p-2'>
-  //           <p className='text-lg font-medium mt-2 text-gray-400'>
-  //             Account email
-  //           </p>
-  //           <p className='text-xl mt-2'>{user?.email}</p>
-  //         </div>
-  //       ) : (
-  //         <>
-  //           <div className='flex flex-col pl-4'>
-  //             <p className='text-sm font-medium mt-2'>Account</p>
-  //             <p className='text-lg'>{user?._id}</p>
-  //             <p className='text-sm font-medium mt-2'>Account email</p>
-  //             <p className='text-lg'>{user?.email}</p>
-  //           </div>
-  //           {user?.zipcode ? (
-  //             <div className='flex flex-col pl-4'>
-  //               <p className='text-sm font-medium mt-2'>Location</p>
-
-  //               <div className='flex items-center'>
-  //                 <ReactCountryFlag
-  //                   countryCode={user?.country?.value}
-  //                   className='mr-1'
-  //                 />
-  //                 <p className='text-lg'>{user?.country?.label}</p>
-  //               </div>
-  //               <p className='text-lg'>{user?.zipcode}</p>
-  //             </div>
-  //           ) : (
-  //             <div className='rounded h-32 flex flex-col bg-gray-100 w-11/12 items-center justify-center mx-auto mt-4'>
-  //               <p className='text-sm'>Finish adding account details</p>
-  //               <button
-  //                 className='border-2 rounded w-16 h-8 mt-2 border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white text-sm'
-  //                 onClick={openModal}
-  //               >
-  //                 Add
-  //               </button>
-  //             </div>
-  //           )}
-  //         </>
-  //       )} */}
-  //     </>
-  //   );
 };
 
 export default Profile;

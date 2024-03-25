@@ -43,7 +43,37 @@ const Topbar = () => {
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
 
-  const tempIcon = <Layout size={20} />;
+  const homeIcon = () => {
+    return <Home size={18} />;
+  };
+
+  const tempIcon = () => {
+    return <Layout size={18} />;
+  };
+
+  const ordersIcon = () => {
+    return <ShoppingCart size={18} />;
+  };
+
+  const custIcon = () => {
+    return <User size={18} />;
+  };
+
+  const payIcon = () => {
+    return <CreditCard size={18} />;
+  };
+
+  const libIcon = () => {
+    return <Bookmark size={18} />;
+  };
+
+  const markIcon = () => {
+    return <DollarSign size={18} />;
+  };
+
+  const settingsIcon = () => {
+    return <Settings size={18} />;
+  };
 
   return isMobile ? (
     // <TopbarMobile />
@@ -54,7 +84,7 @@ const Topbar = () => {
         <Sidebar.ItemGroup>
           <Link to='/dashboard'>
             <Sidebar.Item
-              icon={Home}
+              icon={homeIcon}
               className={path === '/dashboard' ? activeLink : notActiveLink}
             >
               Home
@@ -62,7 +92,7 @@ const Topbar = () => {
           </Link>
           <Link to='/dashboard/templates'>
             <Sidebar.Item
-              icon={Layout}
+              icon={tempIcon}
               className={
                 path === '/dashboard/templates' ||
                 path.startsWith('/dashboard/item/edit')
@@ -76,8 +106,8 @@ const Topbar = () => {
           </Link>
           <Link to='/dashboard/orders'>
             <Sidebar.Item
-              icon={ShoppingCart}
-              label='3'
+              icon={ordersIcon}
+              // label='3'
               className={
                 path === '/dashboard/orders' ||
                 path === '/dashboard/orders/:orderId'
@@ -91,7 +121,7 @@ const Topbar = () => {
           </Link>
           <Link to='/dashboard/customers'>
             <Sidebar.Item
-              icon={User}
+              icon={custIcon}
               className={
                 path === '/dashboard/customers' ? activeLink : notActiveLink
               }
@@ -103,7 +133,7 @@ const Topbar = () => {
 
           <Link to='/dashboard/library'>
             <Sidebar.Item
-              icon={Bookmark}
+              icon={libIcon}
               className={
                 path === '/dashboard/library' ? activeLink : notActiveLink
               }
@@ -117,7 +147,7 @@ const Topbar = () => {
         <Sidebar.ItemGroup>
           <Link to='/marketplace'>
             <Sidebar.Item
-              icon={DollarSign}
+              icon={markIcon}
               className={path === '/marketplace' ? activeLink : notActiveLink}
             >
               Marketplace
@@ -125,7 +155,7 @@ const Topbar = () => {
           </Link>
           <Link to='/dashboard/payouts'>
             <Sidebar.Item
-              icon={CreditCard}
+              icon={payIcon}
               className={
                 path === '/dashboard/payouts' ? activeLink : notActiveLink
               }
@@ -136,7 +166,7 @@ const Topbar = () => {
           </Link>
           <Link to='/settings'>
             <Sidebar.Item
-              icon={Settings}
+              icon={settingsIcon}
               className={path === '/settings' ? activeLink : notActiveLink}
               style={{ marginTop: '2px' }}
             >
@@ -152,7 +182,12 @@ const Topbar = () => {
             </button>
           </Link>
 
-          <Link to={`/${currentUser?.store?.name}`} className='w-full'>
+          <Link
+            to={`/${currentUser?.store?.name}`}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='w-full'
+          >
             <button className='w-full text-stone-800 text-sm bg-gray-200 rounded-md p-1 flex items-center justify-center mt-1'>
               Your Page
             </button>
@@ -166,167 +201,12 @@ const Topbar = () => {
             <Badge color='failure'>Payouts disabled</Badge>
           </div>
           <div className='text-xs text-stone-800 dark:text-gray-400'>
-            You need to add a payout option in settings before you can submit a
-            template to be published.
+            You need to connect to a payout option in settings before you can
+            submit a template to be published.
           </div>
         </Sidebar.CTA>
       )}
     </Sidebar>
-    // <div className='w-2/12'>
-    //   <div className='w-full h-full flex flex-col border-r bg-white p-4 relative'>
-    //     <p className='text-stone-800 text-sm'>Store</p>
-    //     <div className='border-b flex flex-col pb-2'>
-    //       <NavLink to='/dashboard' className='mt-2'>
-    //         <button
-    //           className={path === '/dashboard' ? activeLink : notActiveLink}
-    //         >
-    //           <AiOutlineHome className='mr-1' />
-    //           Home
-    //         </button>
-    //       </NavLink>
-
-    //       <NavLink to='/dashboard/item' className='mt-2'>
-    //         <button
-    //           className={
-    //             path === '/dashboard/item' ||
-    //             path === '/dashboard/item/import' ||
-    //             path.startsWith('/dashboard/item/edit')
-    //               ? activeLink
-    //               : notActiveLink
-    //           }
-    //         >
-    //           <HiOutlineTemplate className='mr-1' />
-    //           Templates
-    //         </button>
-    //       </NavLink>
-
-    //       <NavLink to='/dashboard/design' className='mt-2'>
-    //         <button
-    //           className={
-    //             path === '/dashboard/design' ||
-    //             path === '/dashboard/design/edit'
-    //               ? activeLink
-    //               : notActiveLink
-    //           }
-    //         >
-    //           <BsPalette className='mr-1' />
-    //           Design
-    //         </button>
-    //       </NavLink>
-
-    //       <NavLink to='/dashboard/orders' className='mt-2'>
-    //         <button
-    //           className={
-    //             path === '/dashboard/orders' ||
-    //             path === '/dashboard/orders/:orderId'
-    //               ? activeLink
-    //               : notActiveLink
-    //           }
-    //         >
-    //           <MdOutlineShoppingCart classsName='mr-1' />
-    //           Orders
-    //         </button>
-    //       </NavLink>
-
-    //       <NavLink to='/dashboard/reviews' className='mt-2'>
-    //         <button
-    //           className={
-    //             path === '/dashboard/reviews' ? activeLink : notActiveLink
-    //           }
-    //         >
-    //           <BiMessageSquareDetail className='mr-1' />
-    //           Reviews
-    //         </button>
-    //       </NavLink>
-
-    //       <NavLink to='/dashboard/customers' className='mt-2'>
-    //         <button
-    //           className={
-    //             path === '/dashboard/customers' ? activeLink : notActiveLink
-    //           }
-    //         >
-    //           <BsPeople className='mr-1' />
-    //           Customers
-    //         </button>
-    //       </NavLink>
-
-    //       {/* <NavLink to='/dashboard/config' className='mt-2'>
-    //         <button
-    //           className={
-    //             path === '/dashboard/config' ? activeLink : notActiveLink
-    //           }
-    //         >
-    //           <AiOutlineTool className='mr-1' />
-    //           Config
-    //         </button>
-    //       </NavLink> */}
-    //     </div>
-
-    //     <div className='flex flex-col mt-2'>
-    //       <p className='text-sm text-stone-800'>Account</p>
-    //       <NavLink to='/dashboard/library' className='mt-2'>
-    //         <button
-    //           className={
-    //             path === '/dashboard/library' || path === '/dashboard/library'
-    //               ? activeLink
-    //               : notActiveLink
-    //           }
-    //           bookmark
-    //         >
-    //           <BsBookmarkHeart className='mr-1' />
-    //           Library
-    //         </button>
-    //       </NavLink>
-
-    //       <NavLink to='/marketplace' className='mt-2'>
-    //         <button
-    //           className={
-    //             path === '/marketplace' || path === '/marketplace'
-    //               ? activeLink
-    //               : notActiveLink
-    //           }
-    //           bookmark
-    //         >
-    //           <HiOutlineBuildingStorefront className='mr-1' />
-    //           Marketplace
-    //         </button>
-    //       </NavLink>
-    //       <div className='flex flex-col border-b'>
-    //         <NavLink to='/settings' className='mt-2'>
-    //           <button
-    //             className={path === '/settings' ? activeLink : notActiveLink}
-    //           >
-    //             <BsGear className='mr-1' />
-    //             Settings
-    //           </button>
-    //         </NavLink>
-    //         <NavLink to='/feedback' className='mt-2 mb-2'>
-    //           <button
-    //             className={path === '/feedback' ? activeLink : notActiveLink}
-    //           >
-    //             <VscFeedback className='mr-1' />
-    //             Feedback
-    //           </button>
-    //         </NavLink>
-    //       </div>
-    //       <Link to='/dashboard/item/digital' className='w-full mt-2'>
-    //         <button className='border-2 w-full font-medium text-stone-800 text-sm border-stone-800 hover:bg-stone-800 hover:text-white rounded-md p-2 flex items-center justify-center'>
-    //           New Template <HiOutlineTemplate className='ml-1' />
-    //         </button>
-    //       </Link>
-    //       <a
-    //         href={currentUser?.store?.url}
-    //         className='flex justify-center items-center text-sm text-stone-800 font-medium w-full'
-    //         target='_blank'
-    //       >
-    //         <div className='flex items-center justify-center mt-2 bg-gray-100 rounded-md p-1 w-full'>
-    //           Your Store
-    //           <BiLinkExternal className='ml-1' />
-    //         </div>
-    //       </a>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 

@@ -124,9 +124,9 @@ const DesktopOrders = ({ orders }) => {
       className='flex flex-col border-gray-200 items-center justify-center rounded-md w-full border bg-white'
       style={{ height: '600px' }}
     >
-      <p className='text-stone-800'>You have no orders</p>
+      <p className='text-stone-800 text-sm'>No orders</p>
 
-      <p className='text-stone-600 mt-1 text-sm'>
+      <p className='text-stone-600 text-xs'>
         View all incoming orders from customers
       </p>
     </div>

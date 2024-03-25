@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { HiOutlineTemplate } from 'react-icons/hi';
@@ -9,7 +9,6 @@ import 'react-tabs/style/react-tabs.css';
 import Select from 'react-select';
 
 //mui
-import Tooltip from '@mui/material/Tooltip';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Alert from '@mui/material/Alert';
@@ -18,6 +17,9 @@ import Alert from '@mui/material/Alert';
 import { FilePond } from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import { Checkbox, Spinner, Tooltip } from 'flowbite-react';
+import { ChevronUp } from 'react-feather';
+import { Link } from 'react-router-dom';
 
 const DesktopForm = ({
   handleAddProduct,
@@ -58,8 +60,12 @@ const DesktopForm = ({
   handleAction,
   handleCategory,
   emptyFields,
+  setDupLink,
 }) => {
   const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
+
+  const [addDescription, setAddDescription] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   const typeOptions = [
     { value: 'video', label: 'Course' },
@@ -86,388 +92,373 @@ const DesktopForm = ({
     { value: 'other', label: 'Other' },
   ];
 
+  const handleFree = () => {
+    setFree(!free);
+    setPrice(0);
+  };
+
   return (
-    <div className='w-full'>
-      <div className='flex justify-between items-center mb-2'>
-        <div className='flex items-center justify-center bg-stone-800 rounded-md p-2'>
-          <HiOutlineTemplate className='text-white text-xl' />
-          <p className='text-sm text-white ml-2'>New Template</p>
-        </div>
-
-        <FormControlLabel
-          label='Publish to store'
-          control={
-            <Switch
-              checked={published}
-              onChange={(e) => setPublished(e.target.checked)}
-            />
-          }
-          className='mt-2'
-        />
-
-        <div className='flex'>
-          <button
-            className='w-32 h-10 rounded border-red-400 text-red-400 border-2 mr-2 hover:text-white hover:bg-red-400 text-sm focus:border-red-400'
-            onClick={handleCancel}
-            type='button'
-          >
-            CANCEL
-          </button>
-          <button
-            className='w-32 h-10 rounded border-stone-800 border-2 hover:text-white hover:bg-stone-800 text-stone-800 text-sm'
-            onClick={handleAddProduct}
-            type='button'
-            disabled={addingProduct}
-          >
-            {addingProduct ? 'ADDING...' : '+ ADD'}
-          </button>
-        </div>
-      </div>
-
+    <div className='w-full flex flex-col gap-2'>
       {error && (
         <Alert severity='error' className='mb-2'>
           {error}
         </Alert>
       )}
+      <div className='flex items-center justify-between w-full border border-gray-200 rounded-md p-4'>
+        <div className='flex flex-col items-start'>
+          <p className='text-sm text-stone-800'>List new template</p>
+        </div>
 
-      <Tabs>
-        <TabList>
-          <Tab>Details</Tab>
-          <Tab>Content</Tab>
-          <Tab>Marketplace</Tab>
-        </TabList>
-
-        <TabPanel>
-          <form
-            className='w-full border rounded-md bg-white drop-shadow-md p-2 pb-12'
-            onSubmit={handleAddProduct}
+        <div className='flex items-center gap-2'>
+          <Tooltip
+            content='Put your template into review to be published for sales'
+            style='light'
           >
-            <div className='flex items-center'>
-              <p className='text-2xl font-medium'>Details</p>
-              <Tooltip
-                title={
-                  <p className='text-lg'>
-                    This is the information your customers will see before
-                    buying the product
-                  </p>
-                }
-                className='ml-2 text-lg'
-                placement='right-end'
-              >
-                <button type='button' disabled>
-                  <AiOutlineInfoCircle />
-                </button>
-              </Tooltip>
+            <div className='flex items-center gap-2'>
+              <Checkbox onChange={(e) => setPublished(e.target.checked)} />
+              <p className='text-xs text-stone-800'>Publish</p>
             </div>
-            <div className='flex items-center justify-between w-full mt-2'>
-              <div className='flex flex-col w-6/12'>
-                <p className='text-stone-800 mt-4'>Title</p>
-                <input
-                  type='text'
-                  className={`border-2 ${
-                    emptyFields.includes('field1')
-                      ? 'border-red-300'
-                      : 'border-gray-100'
-                  } hover:border-gray-200 bg-gray-100 hover:bg-gray-200 w-full rounded p-2 outline outline-0  mt-1`}
-                  placeholder='Title'
-                  onChange={(e) => setTitle(e.target.value)}
-                  value={title}
-                  maxLength={50}
-                />
-                <div className='w-full flex justify-end'>
-                  <p className='text-sm text-gray-400'>{title.length}/50</p>
-                </div>
+          </Tooltip>
+          <Link
+            to='/dashboard/templates'
+            className='hover:bg-red-200 text-stone-800 rounded-md p-1 pl-2 pr-2 text-xs'
+          >
+            Cancel
+          </Link>
+          <button
+            type='button'
+            className='bg-gray-200 text-stone-800 rounded-md p-1 pl-2 pr-2 text-xs'
+            onClick={handleAddProduct}
+            disabled={addingProduct}
+          >
+            Save
+          </button>
+        </div>
+      </div>
 
-                <p className='text-stone-800 mt-2'>Summary (optional)</p>
-                <textarea
-                  type='text'
-                  className='border-2 border-gray-100 hover:border-gray-200 hover:bg-gray-200 w-full rounded p-2 outline outline-0 bg-gray-100 mt-1'
-                  placeholder='Summary'
-                  onChange={(e) => setDescription(e.target.value)}
-                  value={description}
-                  maxLength={75}
-                />
-                <div className='w-full flex justify-end'>
-                  <p className='text-sm text-gray-400'>
-                    {description.length}/75
-                  </p>
-                </div>
+      {addingProduct ? (
+        <div className='w-full rounded-md border border-gray-200 flex items-center justify-center h-96'>
+          <Spinner />
+        </div>
+      ) : (
+        <Tabs>
+          <TabList>
+            <Tab>Details</Tab>
+            <Tab>Media</Tab>
+            <Tab>Content</Tab>
+          </TabList>
 
-                <p className='text-stone-800 mt-2'>Price</p>
-                <div className='flex items-center'>
-                  <div className='mr-4'>
-                    <p className='text-xl font-medium'>$</p>
+          <TabPanel>
+            <form className='w-full flex flex-col gap-4 border border-gray-200 rounded-md bg-white p-4'>
+              <div className='flex items-start w-full gap-4'>
+                <div className='flex flex-col gap-4 w-6/12'>
+                  <div className='flex flex-col w-full'>
+                    <div className='flex justify-between w-full'>
+                      <p className='text-stone-600 text-xs'>Title</p>
+                      <p className='text-xs text-stone-600'>
+                        {title.length}/50
+                      </p>
+                    </div>
+                    <input
+                      type='text'
+                      className={`border ${
+                        emptyFields.includes('field1')
+                          ? 'border-red-300'
+                          : 'border-gray-200'
+                      } hover:border-gray-200 bg-gray-50 text-sm focus:bg-gray-200 focus:border-gray-200 hover:bg-gray-200 w-full rounded-md p-2 outline outline-0`}
+                      placeholder='Title'
+                      onChange={(e) => setTitle(e.target.value)}
+                      value={title}
+                      maxLength={50}
+                    />
                   </div>
-                  <input
-                    type='number'
-                    className={`border-2 ${
-                      emptyFields.includes('field4')
-                        ? 'border-red-300'
-                        : 'border-gray-100'
-                    } hover:border-gray-200 hover:bg-gray-200 w-full rounded p-2 outline outline-0 bg-gray-100 mt-1`}
-                    placeholder={payChoice ? '$9+' : '$9'}
-                    value={price}
-                    step={1}
-                    onChange={(e) => setPrice(e.target.value)}
-                  />
+
+                  <div className='flex flex-col w-full'>
+                    <div className='flex w-full justify-between'>
+                      <p className='text-stone-600 text-xs'>
+                        Summary (optional)
+                      </p>
+                      <div>
+                        <p className='text-xs text-stone-600'>
+                          {description.length}/75
+                        </p>
+                      </div>
+                    </div>
+                    <textarea
+                      type='text'
+                      className='border border-gray-200 hover:border-gray-200 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2 bg-gray-50 resize-none text-sm'
+                      placeholder='Summary'
+                      onChange={(e) => setDescription(e.target.value)}
+                      value={description}
+                      maxLength={75}
+                    />
+                  </div>
+
+                  <div className='flex flex-col w-full'>
+                    <p className='text-stone-600 text-xs'>Link</p>
+                    <div className='flex w-full'>
+                      <div className='rounded-tl-md rounded-bl-md bg-gray-50 border border-r-0 border-gray-200 flex items-center p-2 pr-1'>
+                        <p className='text-sm'>fruntt.com/t/</p>
+                      </div>
+                      <input
+                        type='text'
+                        placeholder='Link'
+                        className='border text-sm border-gray-200 bg-gray-50 focus:bg-gray-200 focus:border-gray-200 hover:bg-gray-200 rounded-tr-md rounded-br-md p-2 pl-1 flex-1'
+                        onChange={(e) => setUrl(e.target.value)}
+                      />
+                    </div>
+                  </div>
                 </div>
-                {payChoice ? (
-                  ''
-                ) : (
-                  <FormControlLabel
-                    label='Free template'
-                    control={
-                      <Switch
-                        checked={free}
-                        onChange={(e) => setFree(e.target.checked)}
-                      />
-                    }
-                    className='mt-2'
-                  />
-                )}
-                {free ? (
-                  ''
-                ) : (
-                  <FormControlLabel
-                    label='Let customers pay what they want'
-                    control={
-                      <Switch
-                        checked={payChoice}
-                        onChange={(e) => setPayChoice(e.target.checked)}
-                      />
-                    }
-                    className='mt-2'
-                  />
-                )}
 
-                {payChoice ? (
-                  <div className='flex items-center'>
-                    <div className='flex flex-col w-6/12'>
-                      <p className='text-stone-800'>Minimum price</p>
-                      <div className='flex items-center w-full'>
-                        <div className='w-1/12'>
-                          <p className='text-xl font-medium'>$</p>
+                <div className='w-6/12 flex flex-col gap-4 items-start'>
+                  <div className='flex flex-col w-full'>
+                    <p className='text-stone-600 text-xs'>Call to action</p>
+                    <Select
+                      options={actionOptions}
+                      onChange={handleAction}
+                      placeholder='Call to action'
+                      menuPortalTarget={document.body}
+                      menuPosition={'fixed'}
+                      isSearchable={false}
+                      styles={{
+                        control: (baseStyles, state) => ({
+                          ...baseStyles,
+                          borderColor: 'rgb(229 231 235)',
+                          backgroundColor: 'rgb(249 250 251)',
+                          borderWidth: 1,
+                          '&:hover': {
+                            backgroundColor: 'rgb(229 231 235)', // Keep the same border color on hover
+                          },
+                          '&:focus': {
+                            backgroundColor: 'rgb(229 231 235)', // Keep the same border color on hover
+                          },
+                          fontSize: '14px',
+                          borderRadius: '.375rem',
+                          boxShadow: 'none',
+                          zIndex: 99999,
+                          position: 'relative',
+                        }),
+                        menuPortal: (provided) => ({
+                          ...provided,
+                          zIndex: 9999,
+                          fontSize: '14px',
+                        }),
+                      }}
+                      className='w-full'
+                    />
+                  </div>
+                  <div className='flex flex-col w-full'>
+                    <p className='text-stone-600 text-xs'>Price</p>
+                    <div className='flex w-full items-start'>
+                      <div className='rounded-tl-md rounded-bl-md bg-gray-50 border border-r-0 border-gray-200 flex items-center p-2 pr-1'>
+                        <p className='text-sm'>$</p>
+                      </div>
+                      <input
+                        type='number'
+                        className={`border ${
+                          emptyFields.includes('field4')
+                            ? 'border-red-300'
+                            : 'border-gray-200'
+                        } hover:border-gray-200 hover:bg-gray-200 w-full text-sm rounded-tr-md rounded-br-md p-2 bg-gray-50 flex-1 focus:bg-gray-200 focus:border-gray-200`}
+                        placeholder={payChoice ? '$9+' : '$9'}
+                        value={price}
+                        step={1}
+                        onChange={(e) => setPrice(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className='flex flex-col gap-4 items-start'>
+                    {payChoice ? (
+                      ''
+                    ) : (
+                      <div className='flex items-center gap-2'>
+                        <Checkbox onChange={handleFree} />
+                        <p className='text-sm text-stone-600'>Free template</p>
+                      </div>
+                    )}
+                    {free ? (
+                      ''
+                    ) : (
+                      <div className='flex items-center gap-2'>
+                        <Checkbox
+                          onChange={(e) => setPayChoice(e.target.checked)}
+                        />
+                        <p className='text-sm text-stone-600'>
+                          Customer sets price
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {payChoice ? (
+                    <div className='flex items-center'>
+                      <div className='flex flex-col w-6/12'>
+                        <p className='text-stone-600 text-xs'>Minimum</p>
+                        <div className='flex w-full items-start'>
+                          <div className='rounded-tl-md rounded-bl-md bg-gray-50 border border-r-0 border-gray-200 flex items-center p-2 pr-1'>
+                            <p className='text-sm'>$</p>
+                          </div>
+                          <input
+                            type='number'
+                            className={`border ${
+                              emptyFields.includes('field4')
+                                ? 'border-red-300'
+                                : 'border-gray-200'
+                            } hover:border-gray-200 hover:bg-gray-200 w-full text-sm rounded-tr-md rounded-br-md p-2 bg-gray-50 flex-1 focus:bg-gray-200 focus:border-gray-200`}
+                            placeholder={payChoice ? '$9+' : '$9'}
+                            value={price}
+                            step={1}
+                            onChange={(e) => setPrice(e.target.value)}
+                          />
                         </div>
-
+                      </div>
+                      <div className='flex flex-col w-6/12 ml-2'>
+                        <p className='text-stone-600 text-xs'>Suggested</p>
                         <input
                           type='number'
-                          className='border-2 border-gray-100 hover:border-gray-200 hover:bg-gray-200 w-11/12 rounded p-2 outline outline-0 bg-gray-100 mt-1'
+                          className={`border ${
+                            emptyFields.includes('field4')
+                              ? 'border-red-300'
+                              : 'border-gray-200'
+                          } hover:border-gray-200 hover:bg-gray-200 w-full text-sm rounded-md p-2 bg-gray-50 focus:bg-gray-200 focus:border-gray-200`}
+                          placeholder={payChoice ? '$9+' : '$9'}
                           step={1}
-                          placeholder='$9+'
-                          value={price}
-                          disabled
-                          style={{
-                            WebkitAppearance: 'none',
-                            MozAppearance: 'textfield',
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div className='flex flex-col w-6/12 ml-2'>
-                      <p className='text-stone-800'>
-                        Suggested price/placeholder
-                      </p>
-                      <div className='flex items-center w-full'>
-                        <div className='w-1/12'>
-                          <p className='text-xl font-medium'>$</p>
-                        </div>
-                        <input
-                          className='border-2 text-gray-600 border-gray-100 hover:border-gray-200 hover:bg-gray-200 w-full rounded p-2 outline outline-0 bg-gray-100 mt-1'
                           onChange={(e) => setSuggestedPrice(e.target.value)}
-                          value={suggestedPrice}
-                          placeholder='$9+'
                         />
                       </div>
                     </div>
-                  </div>
-                ) : (
-                  ''
-                )}
-              </div>
-
-              <div className='border-2 rounded w-6/12 ml-4 flex flex-col p-2'>
-                <p className='text-lg font-medium text-stone-800 text-center'>
-                  Upload cover images
-                </p>
-                <p className='text-stone-800 font-medium text-center text-sm'>
-                  Select up to 5 images one by one or by holding
-                  CTRL(recommended size 1280x720)
-                </p>
-
-                <FilePond
-                  files={image}
-                  imageResizeTargetWidth={200}
-                  name='productImages'
-                  // onupdatefiles={(file) => setImage(file)}
-                  instantUpload={false}
-                  allowMultiple
-                  maxFiles={5}
-                  onupdatefiles={(fileItems) => {
-                    setImage(fileItems.map((fileItem) => fileItem.file));
-                  }}
-                />
-                <p className='text-stone-800'>Call to action</p>
-                <Select
-                  options={actionOptions}
-                  onChange={handleAction}
-                  placeholder='Call to action'
-                  menuPortalTarget={document.body}
-                  menuPosition={'fixed'}
-                  isSearchable={false}
-                  styles={{
-                    control: (baseStyles, state) => ({
-                      ...baseStyles,
-                      borderColor: emptyFields.includes('field3')
-                        ? 'border-red-300'
-                        : 'rgb(243 244 246)',
-                      borderRadius: 6,
-                      borderWidth: 2,
-                      '&:hover': {
-                        borderColor: 'rgb(229 231 235)', // Keep the same border color on hover
-                        backgroundColor: 'rgb(229 231 235)',
-                      },
-                      backgroundColor: 'rgb(243 244 246)',
-                      boxShadow: 'none',
-                      zIndex: 99999,
-                      position: 'relative',
-                    }),
-                    menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
-                  }}
-                  className='mt-1'
-                />
-
-                <p className='text-stone-800 mt-2'>URL</p>
-                <div
-                  className={`flex items-center border-2 rounded mt-1 ${
-                    emptyFields.includes('field2')
-                      ? 'border-red-300'
-                      : 'border-gray-100'
-                  } hover:border-gray-200 hover:bg-gray-200 bg-gray-100 p-2`}
-                >
-                  <span className='underline underline-offset-2 font-medium'>{`${currentStoreUrl}/`}</span>
-                  <input
-                    className='bg-gray-100 hover:bg-gray-200 outline outline-0'
-                    placeholder='TemplateName'
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                  />
+                  ) : (
+                    ''
+                  )}
                 </div>
               </div>
-            </div>
 
-            <p className='text-stone-800 mt-2'>Description</p>
-            <ReactQuill
-              value={info}
-              onChange={setInfo}
-              className='h-80'
-              placeholder='Start typing description here...'
-            />
-          </form>
-        </TabPanel>
+              {addDescription ? (
+                <div className='flex flex-col gap-2 pb-10'>
+                  <div className='flex items-center justify-between w-full'>
+                    <p className='text-sm text-stone-800'>Add description</p>
 
-        <TabPanel>
-          <div className='border rounded bg-white drop-shadow-lg p-2 pb-12'>
-            <div className='flex items-center'>
-              <p className='text-2xl font-medium'>Content</p>
-              <Tooltip
-                title={
-                  <p className='text-lg'>
-                    This is the information customers will see after buying the
-                    product
+                    <div>
+                      <button
+                        type='button'
+                        className='hover:bg-red-200 text-stone-800 rounded-md p-1 pl-2 pr-2 text-xs'
+                        onClick={(e) => setAddDescription(!addDescription)}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                  <ReactQuill
+                    value={info}
+                    onChange={setInfo}
+                    className='h-80'
+                    placeholder='Start typing description here...'
+                  />
+                </div>
+              ) : (
+                <div className='flex flex-col items-center justify-center border border-gray-200 w-full rounded-md p-4'>
+                  <p className='text-stone-800 text-sm'>Description</p>
+                  <p className='text-stone-600 text-xs text-center w-80'>
+                    Tell potential customers a little more about your template.
+                    This is visible on your template detail page.
                   </p>
-                }
-                className='ml-2 text-lg'
-                placement='right-end'
-              >
-                <button type='button' disabled>
-                  <AiOutlineInfoCircle />
-                </button>
-              </Tooltip>
-            </div>
-            <p className='text-stone-800 font-medium mb-4'>
-              Add any files and content you want to include in the template
-              purchase. All content and files are available to customers
-              immediately after purchase.
-            </p>
-            <FilePond
-              files={files}
-              name='digitalProducts'
-              allowMultiple
-              onupdatefiles={(fileItems) => {
-                setFiles(fileItems.map((fileItem) => fileItem.file));
-              }}
-            />
+                  <button
+                    type='button'
+                    className='flex items-center justify-center bg-gray-200 text-xs text-stone-800 rounded-md pt-1 pb-1 pl-2 pr-2 mt-2'
+                    onClick={(e) => setAddDescription(!addDescription)}
+                  >
+                    Add Description
+                  </button>
+                </div>
+              )}
+            </form>
+          </TabPanel>
 
-            <ReactQuill
-              onChange={setProductContent}
-              value={productContent}
-              placeholder='Start typing here...'
-              className='h-96'
-            />
-          </div>
-        </TabPanel>
-
-        <TabPanel>
-          <div className='h-screen flex flex-col border rounded w-full shadow-lg p-2 bg-white'>
-            <div className='flex items-center'>
-              <p className='text-2xl font-medium'>Marketplace</p>
-              <Tooltip
-                title={
-                  <p className='text-lg'>
-                    This allows you to list your template in our marketplace.
-                  </p>
-                }
-                className='ml-2 text-lg'
-                placement='right-end'
-              >
-                <button type='button' disabled>
-                  <AiOutlineInfoCircle />
-                </button>
-              </Tooltip>
+          <TabPanel>
+            <div className='border border-gray-200 rounded-md bg-white p-4 flex flex-col gap-4'>
+              <div className='flex flex-col'>
+                <p className='text-sm text-stone-800 text-center'>
+                  Upload Images
+                </p>
+                <p className='text-stone-600 text-center text-xs'>
+                  These images will be visible on your template card and
+                  template detail page
+                </p>
+              </div>
+              <FilePond
+                files={image}
+                imageResizeTargetWidth={200}
+                name='productImages'
+                // onupdatefiles={(file) => setImage(file)}
+                instantUpload={false}
+                allowMultiple
+                maxFiles={5}
+                onupdatefiles={(fileItems) => {
+                  setImage(fileItems.map((fileItem) => fileItem.file));
+                }}
+              />
+              <div className='w-full'>
+                <p className='text-stone-600 text-xs'>{image.length}/5</p>
+              </div>
             </div>
-            <p className='text-stone-800 text-lg mt-6'>
-              List your template in our marketplace for other creators and
-              customers to discover.
-            </p>
-            <FormControlLabel
-              label='Publish to marketplace'
-              control={
-                <Switch
-                  checked={marketplace}
-                  onChange={(e) => setMarketplace(e.target.checked)}
+          </TabPanel>
+
+          <TabPanel>
+            <div className='flex flex-col gap-4 items-start border border-gray-200 rounded-md w-full p-4 bg-white'>
+              <div className='flex flex-col w-full'>
+                <div className='flex flex-col'>
+                  <p className='text-stone-600 text-xs'>Duplication link</p>
+                </div>
+                <input
+                  type='text'
+                  className={`border ${
+                    emptyFields.includes('field1')
+                      ? 'border-red-300'
+                      : 'border-gray-200'
+                  } hover:border-gray-200 bg-gray-50 text-sm focus:bg-gray-200 focus:border-gray-200 hover:bg-gray-200 w-full rounded-md p-2 outline outline-0`}
+                  placeholder='https://carbonated-hill-6bc.notion.site/43be8a4d9'
+                  onChange={(e) => setDupLink(e.target.value)}
                 />
-              }
-              className='mt-2'
-            />
-            <p className='text-stone-800 mt-2'>Template category</p>
-            <Select
-              options={categories}
-              onChange={handleCategory}
-              placeholder='Category'
-              menuPortalTarget={document.body}
-              menuPosition={'fixed'}
-              isSearchable={false}
-              styles={{
-                control: (baseStyles, state) => ({
-                  ...baseStyles,
-                  borderColor: 'rgb(243 244 246)',
-                  backgroundColor: 'rgb(243 244 246)',
-                  borderWidth: 2,
-                  '&:hover': {
-                    borderColor: 'rgb(229 231 235)', // Keep the same border color on hover
-                    backgroundColor: 'rgb(229 231 235)',
-                  },
-                  boxShadow: 'none',
-                  zIndex: 99999,
-                  position: 'relative',
-                }),
-                menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
-              }}
-              className='mt-1 w-64'
-            />
-          </div>
-        </TabPanel>
-      </Tabs>
+              </div>
+              <div className='flex flex-col items-start gap-2'>
+                <button
+                  type='button'
+                  onClick={(e) => setShowInfo(!showInfo)}
+                  className='flex items-end justify-center text-xs text-stone-600'
+                >
+                  {showInfo ? (
+                    <>
+                      Hide <ChevronUp size={16} className='ml-1' />
+                    </>
+                  ) : (
+                    <>Where do I get this?</>
+                  )}
+                </button>
+                {showInfo && (
+                  <div className='flex flex-col gap-2'>
+                    <p className='text-stone-600 text-xs w-80'>
+                      Once you have created and designed a template in Notion,
+                      you have the ability to share and publish it using the top
+                      right menu. After you publish it, a duplication link is
+                      created.
+                    </p>
+
+                    <a
+                      href='https://www.notion.so/help/public-pages-and-web-publishing'
+                      target='_blank'
+                      className='text-xs text-stone-800 underline-offset-1 underline'
+                    >
+                      {' '}
+                      View tutorial
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </TabPanel>
+        </Tabs>
+      )}
     </div>
   );
 };

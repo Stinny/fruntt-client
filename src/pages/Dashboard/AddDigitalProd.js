@@ -27,13 +27,14 @@ const AddDigitalProd = () => {
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState([]);
   const [files, setFiles] = useState([]);
-  const [published, setPublished] = useState(true);
+  const [published, setPublished] = useState(false);
   const [digitalType, setDigitalType] = useState('');
   const [link, setLink] = useState('');
   const [callToAction, setCallToAction] = useState('buy');
   const [payChoice, setPayChoice] = useState(false);
   const [suggestedPrice, setSuggestedPrice] = useState('');
   const [productContent, setProductContent] = useState('');
+  const [dupLink, setDupLink] = useState('');
   const [info, setInfo] = useState('');
   const [url, setUrl] = useState('');
   const [free, setFree] = useState(false);
@@ -146,6 +147,7 @@ const AddDigitalProd = () => {
           free: free,
           marketplace: marketplace,
           category: category,
+          dupLink: dupLink,
         }).unwrap();
 
         if (addDigitalProductReq.msg === 'Product added') {
@@ -156,7 +158,7 @@ const AddDigitalProd = () => {
             style: { color: 'rgb(28 25 23)' },
           });
           setAddingProduct(false);
-          navigate('/dashboard/item');
+          navigate('/dashboard/templates');
         }
       }
     } catch (err) {
@@ -182,7 +184,7 @@ const AddDigitalProd = () => {
 
   const styles = isMobile
     ? 'w-full mx-auto h-fit bg-gray-50 p-2 mt-16'
-    : 'w-full mx-auto h-screen bg-white overflow-y-scroll';
+    : 'w-full mx-auto h-screen bg-white ml-2';
 
   return (
     <>
@@ -269,6 +271,8 @@ const AddDigitalProd = () => {
               handleType={handleType}
               handleCategory={handleCategory}
               emptyFields={emptyFields}
+              dupLink={dupLink}
+              setDupLink={setDupLink}
             />
           )}
         </div>

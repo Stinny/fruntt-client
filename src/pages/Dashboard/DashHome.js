@@ -33,9 +33,6 @@ const DashHome = () => {
     : null;
 
   const [dataView, setDataView] = useState('seven');
-  const currentStoreID = useSelector((state) => state.user.selectedStore);
-  //holds the url of the page being viewed
-  const currentStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
 
   const viewOptions = [
     { value: 'today', label: 'Today' },
@@ -58,7 +55,7 @@ const DashHome = () => {
     isSuccess,
     refetch,
   } = useGetStoreStatsQuery({
-    storeId: currentStoreID,
+    storeId: currentUser?.store?._id,
     view: dataView,
   });
 
@@ -188,10 +185,10 @@ const DashHome = () => {
         </div>
 
         <div className='flex justify-between items-center w-full'>
-          <div className='bg-white border border-gray-200 rounded-md w-8/12 p-2 h-32'>
+          <div className='bg-white border border-gray-200 rounded-md w-8/12 p-2 h-28'>
             <SellerProfile user={user} refetch={refetchUser} />
           </div>
-          <div className='bg-white border border-gray-200 rounded-md w-4/12 ml-2 p-2 h-32 relative'>
+          <div className='bg-white border border-gray-200 rounded-md w-4/12 ml-2 p-2 h-28 relative'>
             <div className='absolute right-0 mr-1'>
               <Tooltip
                 content='Total revenue generated from sales'
@@ -200,8 +197,8 @@ const DashHome = () => {
                 <AiOutlineInfoCircle className='text-sm' />
               </Tooltip>
             </div>
-            <p className='text-sm font-medium text-stone-800'>Revenue</p>
-            <p className='text-2xl font-medium text-slate-800 mt-2'>
+            <p className='text-xs text-stone-600'>Revenue</p>
+            <p className='text-2xl font-medium text-slate-800 mt-1'>
               $
               {stats?.revenue > 0
                 ? stats?.revenue.toLocaleString('en-US', {
@@ -210,7 +207,7 @@ const DashHome = () => {
                   })
                 : '0'}
             </p>
-            <p className='mt-1 text-xs text-stone-600'>
+            <p className='text-xs text-stone-600'>
               {dataView === 'today'
                 ? 'In the past 24 hours'
                 : dataView === 'seven'
@@ -226,15 +223,15 @@ const DashHome = () => {
           <div className='w-3/12 h-28 bg-white border-gray-200 rounded-md p-2 relative border'>
             <div className='absolute right-0 mr-1'>
               <Tooltip
-                content='Total number of orders'
+                content='Total number of sales'
                 style='light'
                 className='w-32'
               >
                 <AiOutlineInfoCircle className='text-sm' />
               </Tooltip>
             </div>
-            <p className='text-sm font-medium text-slate-800'>Orders</p>
-            <p className='text-2xl mt-2 font-medium text-slate-800'>
+            <p className='text-xs text-stone-600'>Sales</p>
+            <p className='text-2xl mt-1 font-medium text-stone-800'>
               {stats?.numOfOrders}
             </p>
           </div>
@@ -249,8 +246,8 @@ const DashHome = () => {
                 <AiOutlineInfoCircle className='text-sm' />
               </Tooltip>
             </div>
-            <p className='text-sm font-medium text-slate-800'>Views</p>
-            <p className='text-2xl font-medium text-slate-800 mt-2'>
+            <p className='text-xs text-stone-600'>Views</p>
+            <p className='text-2xl font-medium text-slate-800 mt-1'>
               {stats?.visits}
             </p>
           </div>
@@ -265,8 +262,8 @@ const DashHome = () => {
                 <AiOutlineInfoCircle className='text-sm' />
               </Tooltip>
             </div>
-            <p className='text-sm font-medium'>Customers</p>
-            <p className='text-2xl font-medium mt-2'>
+            <p className='text-xs text-stone-600'>Customers</p>
+            <p className='text-2xl font-medium mt-1'>
               {stats?.numberOfCustomers > 0 ? stats?.numberOfCustomers : '0'}
             </p>
           </div>
@@ -281,8 +278,8 @@ const DashHome = () => {
                 <AiOutlineInfoCircle className='text-sm' />
               </Tooltip>
             </div>
-            <p className='text-sm font-medium'>Conversion rate</p>
-            <p className='text-2xl font-medium mt-2'>
+            <p className='text-xs text-stone-600'>Conversion rate</p>
+            <p className='text-2xl font-medium mt-1'>
               {stats?.conversion > 0 ? stats?.conversion.toFixed(0) : '0'}%
             </p>
           </div>
@@ -366,8 +363,8 @@ const DashHome = () => {
             </div>
           )} */}
           <div className='h-72 w-full flex flex-col items-center justify-center'>
-            <p className=' text-stone-800 mt-1'>View all sales data here</p>
-            <p className='text-sm text-stone-600 mt-1'>Display coming soon</p>
+            <p className=' text-stone-800 text-sm'>View all sales data here</p>
+            <p className='text-xs text-stone-600'>Display coming soon</p>
           </div>
         </div>
       </>

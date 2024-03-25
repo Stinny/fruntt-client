@@ -12,10 +12,10 @@ import { Spinner } from 'flowbite-react';
 
 const DeleteAccount = ({ setDeleteAcc, deleteAcc }) => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState('');
   const [deletingAccount, setDeletingAccount] = useState(false);
 
+  //hook to send delete account req
   const [deleteAccount, result] = useDeleteAccountMutation();
 
   const handleDeleteAccount = async (e) => {
@@ -25,7 +25,6 @@ const DeleteAccount = ({ setDeleteAcc, deleteAcc }) => {
 
     try {
       const deleteAccountReq = await deleteAccount().unwrap();
-      console.log(deleteAccountReq);
 
       if (deleteAccountReq === 'Account deleted') {
         setDeletingAccount(false);

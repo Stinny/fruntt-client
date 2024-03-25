@@ -1,16 +1,8 @@
 import { Avatar } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  AiOutlineInstagram,
-  AiOutlineYoutube,
-  AiOutlineFacebook,
-  AiOutlineTwitter,
-  AiOutlineLinkedin,
-  AiOutlineLink,
-  AiOutlineEdit,
-} from 'react-icons/ai';
-import { FaTiktok } from 'react-icons/fa';
+import { Instagram, Lock, Youtube, Link as FLink } from 'react-feather';
+import { FaMediumM } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import ReactPaginate from 'react-paginate';
 
@@ -43,10 +35,10 @@ const DesktopStore = ({ storeAndItems }) => {
           </div>
 
           <div className='flex flex-col items-start'>
-            <p className='text-stone-800 text-md'>
+            <p className='text-stone-800 text-sm'>
               {storeAndItems?.sellerProfile?.name}
             </p>
-            <p className='text-stone-600 text-sm mt-1 w-72'>
+            <p className='text-stone-600 text-xs w-96'>
               {storeAndItems?.sellerProfile?.bio}
             </p>
           </div>
@@ -54,13 +46,55 @@ const DesktopStore = ({ storeAndItems }) => {
 
         <div className='flex items-center gap-4'>
           <div className='flex flex-col items-center'>
-            <p className='text-stone-800 text-lg'>
+            <p className='text-stone-800 text-md'>
               {storeAndItems?.sellerProfile?.numberOfSales}
             </p>
-            <p className='text-sm text-stone-600'>sales</p>
+            <p className='text-xs text-stone-600'>sales</p>
           </div>
 
-          <div className='flex items-center'>
+          <div className='flex items-center gap-4'>
+            {storeAndItems?.sellerProfile?.twitter ? (
+              <a href={storeAndItems?.sellerProfile?.twitter} target='_blank'>
+                <FaXTwitter className='text-stone-800 text-md' />
+              </a>
+            ) : (
+              ''
+            )}
+
+            {storeAndItems?.sellerProfile?.instagram ? (
+              <a href={storeAndItems?.sellerProfile?.instagram} target='_blank'>
+                <Instagram size={17} className='text-stone-800' />
+              </a>
+            ) : (
+              ''
+            )}
+
+            {storeAndItems?.sellerProfile?.youtube ? (
+              <a href={storeAndItems?.sellerProfile?.youtube} target='_blank'>
+                <Youtube size={17} className='text-stone-800' />
+              </a>
+            ) : (
+              ''
+            )}
+
+            {storeAndItems?.sellerProfile?.medium ? (
+              <a href={storeAndItems?.sellerProfile?.medium} target='_blank'>
+                <FaMediumM className='text-stone-800 text-md' />
+              </a>
+            ) : (
+              ''
+            )}
+
+            {storeAndItems?.sellerProfile?.link ? (
+              <a href={storeAndItems?.sellerProfile?.tiktok} target='_blank'>
+                <FLink size={17} className='text-stone-800' />
+              </a>
+            ) : (
+              ''
+            )}
+          </div>
+
+          {/* <div className='flex items-center'>
             {storeAndItems?.sellerProfile?.facebook ? (
               <a href={storeAndItems?.sellerProfile?.facebook} target='_blank'>
                 <AiOutlineFacebook className='text-stone-800 text-2xl' />
@@ -80,7 +114,7 @@ const DesktopStore = ({ storeAndItems }) => {
                 <FaXTwitter className='text-stone-800 ml-2 text-xl' />
               </a>
             ) : (
-              <AiOutlineTwitter className='text-gray-200 ml-2 text-2xl' />
+              ''
             )}
             {storeAndItems?.sellerProfile?.linkedin ? (
               <a href={storeAndItems?.sellerProfile?.linkedin} target='_blank'>
@@ -110,7 +144,7 @@ const DesktopStore = ({ storeAndItems }) => {
             ) : (
               ''
             )}
-          </div>
+          </div> */}
         </div>
       </div>
 

@@ -87,11 +87,9 @@ const DesktopCustomers = ({ customers }) => {
       className='w-full mx-auto bg-white border-gray-200 border rounded-md flex flex-col items-center justify-center'
       style={{ height: '600px' }}
     >
-      <p className='text-stone-800'>You have no customers</p>
+      <p className='text-stone-800 text-sm'>No customers</p>
 
-      <p className='text-stone-600 mt-1 text-sm'>
-        All customer details can be seen here
-      </p>
+      <p className='text-stone-600 text-xs'>View all customer details here</p>
     </div>
   );
 };

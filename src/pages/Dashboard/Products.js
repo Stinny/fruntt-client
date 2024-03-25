@@ -25,7 +25,9 @@ import 'react-quill/dist/quill.bubble.css';
 import ProductsDesktop from './ProductsDesktop';
 
 const Products = () => {
-  const currentStoreID = useSelector((state) => state.user.selectedStore);
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
 
   const {
     data: product,
@@ -33,15 +35,11 @@ const Products = () => {
     isSuccess,
     isError,
     refetch,
-  } = useGetProductsQuery({ storeId: currentStoreID });
+  } = useGetProductsQuery({ storeId: currentUser?.store?._id });
 
   useEffect(() => {
     refetch();
   }, []);
-
-  useEffect(() => {
-    refetch();
-  }, [currentStoreID]);
 
   let content;
 

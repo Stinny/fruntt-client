@@ -6,7 +6,7 @@ import {
   useUpdatePageMutation,
 } from '../../api/storefrontApiSlice';
 import { toast } from 'react-toastify';
-import { XCircle } from 'react-feather';
+import { X, XCircle } from 'react-feather';
 
 const Page = ({ user, isFetching, refetch }) => {
   const [pageName, setPageName] = useState(user?.store?.name);
@@ -19,6 +19,11 @@ const Page = ({ user, isFetching, refetch }) => {
 
   const [updatePage, result] = useUpdatePageMutation();
   const [checkPage, { result: res }] = useCheckPageMutation();
+
+  const handleCancelEdit = () => {
+    setPageName(user?.store?.name);
+    setEdit(false);
+  };
 
   const handleUpdatePage = async (e) => {
     e.preventDefault();
@@ -70,7 +75,7 @@ const Page = ({ user, isFetching, refetch }) => {
       <Spinner />
     </div>
   ) : (
-    <div className='w-full border border-gray-200 rounded-md p-4 flex flex-col'>
+    <div className='w-full border border-gray-200 rounded-md p-4 flex flex-col gap-2'>
       {edit ? (
         <>
           <div className='flex items-center justify-between w-full'>
@@ -85,7 +90,7 @@ const Page = ({ user, isFetching, refetch }) => {
               <button
                 type='button'
                 className='hover:bg-red-200 text-stone-800 rounded-md p-1 pl-2 pr-2 text-xs'
-                onClick={(e) => setEdit(!edit)}
+                onClick={handleCancelEdit}
               >
                 Cancel
               </button>
@@ -100,17 +105,24 @@ const Page = ({ user, isFetching, refetch }) => {
             </div>
           </div>
 
-          <form className='flex flex-col items-start mt-2'>
-            {taken && <p className='text-xs text-red-500'>page name taken</p>}
+          <form className='flex flex-col items-start gap-2'>
+            {taken && (
+              <div className='w-96 flex items-center justify-start gap-2 border border-gray-200 rounded-md p-2'>
+                <X size={16} className='text-red-500' />
+                <p className='text-stone-800 text-xs'>Page name taken</p>
+              </div>
+            )}
             {error ? <Alert color='failure'>There was an error</Alert> : ''}
-            <input
-              type='text'
-              value={pageName}
-              onChange={(e) => setPageName(e.target.value)}
-              className='bg-gray-50 rounded-md text-sm border-gray-200 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 w-3/6'
-              placeholder='Page name'
-            />
-            <p className='text-xs text-stone-600'>{`fruntt.com/${pageName}`}</p>
+            <div className='flex flex-col w-full items-start'>
+              <input
+                type='text'
+                value={pageName}
+                onChange={(e) => setPageName(e.target.value)}
+                className='bg-gray-50 rounded-md text-sm border-gray-200 hover:bg-gray-200 focus:bg-gray-200 focus:border-gray-200 w-96'
+                placeholder='Page name'
+              />
+              <p className='text-xs text-stone-600'>{`fruntt.com/${pageName}`}</p>
+            </div>
           </form>
 
           <div className='flex flex-col gap-2 mt-4'>
@@ -154,11 +166,11 @@ const Page = ({ user, isFetching, refetch }) => {
             </button>
           </div>
 
-          <div className='flex flex-col items-start mt-2'>
+          <div className='flex flex-col items-start'>
             <input
               type='text'
               value={user?.store?.name}
-              className='bg-gray-50 rounded-md text-sm border-gray-50 w-3/6'
+              className='bg-gray-50 rounded-md text-sm border-gray-50 w-96'
               disabled
             />
             <p className='text-xs text-stone-600'>{`fruntt.com/${user?.store?.name}`}</p>

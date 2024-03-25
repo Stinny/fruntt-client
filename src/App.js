@@ -24,7 +24,6 @@ import Pricing from './pages/Pricing';
 import Marketing from './pages/Dashboard/Marketing';
 import Plans from './pages/Plans';
 import FreePlan from './pages/FreePlan';
-import UserHasNoPage from './UserHasNoPage';
 import PaidPlan from './pages/PaidPlan';
 import Products from './pages/Dashboard/Products';
 import EditDesign from './pages/Dashboard/EditDesign';
@@ -54,7 +53,6 @@ import Customers from './pages/Dashboard/Customers';
 import PasswordChange from './pages/PasswordChange';
 import NotFound from './pages/NotFound';
 import EditProfile from './pages/EditProfile';
-import AddBank from './pages/AddBank';
 import Contact from './pages/Contact';
 import TemplateDetail from './pages/TemplateDetail/TemplateDetail';
 import Store from './pages/Store/Store';
@@ -100,68 +98,63 @@ function App() {
             {/* routes require user to be logged in */}
             <Route element={<RequireAuth />}>
               <Route path='home' element={<NoStore />} />
-              <Route element={<UserHasNoPage />}>
-                <Route path='dashboard' element={<DashHome />} />
 
-                <Route path='dashboard/templates' element={<Products />} />
+              <Route path='dashboard' element={<DashHome />} />
 
-                <Route path='dashboard/orders' element={<Orders />} />
+              <Route path='dashboard/templates' element={<Products />} />
 
-                <Route path='dashboard/description' element={<Description />} />
+              <Route path='dashboard/orders' element={<Orders />} />
 
-                <Route
-                  path='dashboard/edit/profile'
-                  element={<EditProfile />}
-                />
+              <Route path='dashboard/description' element={<Description />} />
 
-                <Route
-                  path='dashboard/password/change'
-                  element={<PasswordChange />}
-                />
+              <Route path='dashboard/edit/profile' element={<EditProfile />} />
 
-                <Route path='dashboard/bank' element={<AddBank />} />
+              <Route
+                path='dashboard/password/change'
+                element={<PasswordChange />}
+              />
 
-                <Route
-                  path='dashboard/orders/:orderId'
-                  element={<OrderDetail />}
-                />
+              <Route
+                path='dashboard/orders/:orderId'
+                element={<OrderDetail />}
+              />
 
-                <Route path='dashboard/reviews' element={<Reviews />} />
+              <Route path='dashboard/reviews' element={<Reviews />} />
 
-                <Route
-                  path='dashboard/reviews/:reviewId'
-                  element={<CustomerDetail />}
-                />
+              <Route
+                path='dashboard/reviews/:reviewId'
+                element={<CustomerDetail />}
+              />
 
-                <Route path='dashboard/customers' element={<Customers />} />
+              <Route path='dashboard/customers' element={<Customers />} />
 
-                <Route path='dashboard/payouts' element={<Payouts />} />
+              <Route path='dashboard/payouts' element={<Payouts />} />
 
-                <Route path='dashboard/config' element={<Config />} />
+              <Route path='dashboard/config' element={<Config />} />
 
-                <Route path='dashboard/design' element={<Design />} />
+              <Route path='dashboard/design' element={<Design />} />
 
-                <Route path='dashboard/content' element={<Content />} />
+              <Route path='dashboard/content' element={<Content />} />
 
-                <Route path='dashboard/library' element={<Library />} />
+              <Route path='dashboard/library' element={<Library />} />
 
-                <Route path='dashboard/design/edit' element={<EditDesign />} />
+              <Route path='dashboard/design/edit' element={<EditDesign />} />
 
-                <Route
-                  path='dashboard/design/edit/preview'
-                  element={<DesignPreview />}
-                />
+              <Route
+                path='dashboard/design/edit/preview'
+                element={<DesignPreview />}
+              />
 
-                <Route
-                  path='dashboard/new/template'
-                  element={<AddDigitalProd />}
-                />
+              <Route
+                path='dashboard/new/template'
+                element={<AddDigitalProd />}
+              />
 
-                <Route
-                  path='dashboard/item/edit/:productId'
-                  element={<EditItem />}
-                />
-              </Route>
+              <Route
+                path='dashboard/item/edit/:productId'
+                element={<EditItem />}
+              />
+
               <Route path='dashboard/plans' element={<Plans />} />
               <Route path='dashboard/plans/free' element={<FreePlan />} />
               <Route path='dashboard/plans/paid' element={<PaidPlan />} />

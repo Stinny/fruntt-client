@@ -148,7 +148,7 @@ const Desktop = ({ payouts, balance }) => {
                 No payout option connected
               </p>
               <p className='text-stone-600 text-xs'>
-                You need to connect a payout option in settings
+                You need to connect to a payout option in settings
               </p>
             </div>
           )}
@@ -200,7 +200,7 @@ const Desktop = ({ payouts, balance }) => {
           </div>
         )}
       </div>
-      {payouts.length && (
+      {payouts.length > 0 && (
         <div className='w-full flex justify-end items-center'>
           <div className='flex items-center'>
             <p className='text-stone-600 text-xs'>

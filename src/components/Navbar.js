@@ -35,58 +35,14 @@ import Tooltip from '@mui/material/Tooltip';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  //holds the url of the page being viewed
-  const selectedStoreUrl = useSelector((state) => state.user.selectedStoreUrl);
-
-  const [isOpen, setIsOpen] = useState(false);
 
   const currentUser = Cookies.get('currentUser')
     ? JSON.parse(Cookies.get('currentUser'))
     : null;
 
-  const [pageInView, setPageInView] = useState(currentUser?.store?.url);
-
-  const [getStorefrontByID, result] = useLazyGetStorefrontByIDQuery();
-
-  const filteredStores = currentUser?.storeIds.filter(
-    (store) => store.url !== pageInView
-  );
-
-  useEffect(() => {
-    const getStore = async () => {
-      const selectedStore = currentUser?.storeIds.filter(
-        (store) => store.url === pageInView
-      );
-
-      dispatch(setSelectedStore(selectedStore[0].id));
-      dispatch(setSelectedStoreUrl(pageInView));
-
-      const storeReq = await getStorefrontByID({
-        storeId: selectedStore[0].id,
-      }).unwrap();
-
-      currentUser.store = storeReq.storefront;
-
-      const newUser = JSON.stringify(currentUser);
-      Cookies.set('currentUser', newUser, { sameSite: 'Lax' });
-    };
-
-    if (currentUser) getStore();
-  }, [pageInView]);
-
   //for dropdown
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -99,23 +55,8 @@ const Navbar = () => {
     handleLogoutUser(navigate); //logout function in utils
   };
 
-  useEffect(() => {
-    const firstTime = () => {
-      setTimeout(() => setIsOpen(true), 2.5 * 1000);
-      localStorage.setItem('firstTime', true);
-    };
-
-    const isFirstTime = localStorage.getItem('firstTime');
-
-    if (!isFirstTime && currentUser) firstTime();
-  }, []);
-
   return isMobile ? (
-    <MobileNavbar
-      currentUser={currentUser}
-      handleLogout={handleLogout}
-      handleOpenModal={handleOpenModal}
-    />
+    <MobileNavbar currentUser={currentUser} handleLogout={handleLogout} />
   ) : currentUser ? (
     <nav className='w-full bg-white top-0 left-0 right-0 mb-8'>
       <div className='max-w-6xl h-full mx-auto flex justify-between items-center border border-gray-200 rounded-md mt-8 p-2'>

@@ -14,6 +14,7 @@ import { isMobile } from 'react-device-detect';
 import { MdOutlineFileDownload } from 'react-icons/md';
 import { BiPackage } from 'react-icons/bi';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
+import Cookies from 'js-cookie';
 
 //mui
 import { DataGrid } from '@mui/x-data-grid';
@@ -21,7 +22,9 @@ import Stack from '@mui/material/Stack';
 import DesktopOrders from '../../components/Orders/DesktopOrders';
 
 const Orders = () => {
-  const currentStoreID = useSelector((state) => state.user.selectedStore);
+  const currentUser = Cookies.get('currentUser')
+    ? JSON.parse(Cookies.get('currentUser'))
+    : null;
 
   const [tableView, setTableView] = useState('all');
   const {
@@ -30,15 +33,11 @@ const Orders = () => {
     isSuccess,
     isError,
     refetch,
-  } = useGetStoreOrdersQuery({ storeId: currentStoreID });
+  } = useGetStoreOrdersQuery({ storeId: currentUser?.store?._id });
 
   useEffect(() => {
     refetch();
   }, []);
-
-  useEffect(() => {
-    refetch();
-  }, [currentStoreID]);
 
   let content;
   if (isLoading) {

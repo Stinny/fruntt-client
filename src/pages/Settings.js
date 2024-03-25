@@ -6,23 +6,15 @@ import Footer from '../components/Footer';
 import Topbar from '../components/Topbar';
 import Payments from '../components/Settings/Payments';
 import Profile from '../components/Settings/Profile';
-import Billing from '../components/Settings/Billing';
 import Cookies from 'js-cookie';
-import { BsArrowRightShort } from 'react-icons/bs';
 import { useGetUpdatedUserQuery } from '../api/authApiSlice';
 import Spinner from '../components/Spinner';
 import Notifications from '../components/Settings/Notifications';
-import BusinessInfo from '../components/Settings/BusinessInfo';
 import { isMobile } from 'react-device-detect';
-import SellerProfile from '../components/Settings/SellerProfile';
-import DeleteAccount from '../components/Settings/DeleteAccount';
-import { BsGear } from 'react-icons/bs';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Page from '../components/Settings/Page';
-
-//fowbite
-// import { Tabs } from 'flowbite-react';
+import Setup from '../components/Settings/Setup';
 
 const Settings = () => {
   const {
@@ -45,7 +37,7 @@ const Settings = () => {
   } else if (isSuccess) {
     const updatedUser = JSON.stringify(user);
     Cookies.set('currentUser', updatedUser, { sameSite: 'Lax' });
-    content = (
+    content = user?.setup ? (
       <Tabs>
         <TabList>
           <Tab>Account</Tab>
@@ -74,21 +66,8 @@ const Settings = () => {
           <Payments refetch={refetch} />
         </TabPanel>
       </Tabs>
-
-      // <Tabs aria-label='Default tabs' style='default'>
-      //   <Tabs.Item active title='Account' className='text-stone-800'>
-      //     <Profile user={user} refetch={refetch} isFetching={isFetching} />
-      //   </Tabs.Item>
-      //   <Tabs.Item title='Notifications'>
-      //     <Notifications user={user} refetch={refetch} />
-      //   </Tabs.Item>
-      //   <Tabs.Item title='Page'>
-      //     <Page user={user} />
-      //   </Tabs.Item>
-      //   <Tabs.Item title='Payments'>
-      //     <Payments refetch={refetch} />
-      //   </Tabs.Item>
-      // </Tabs>
+    ) : (
+      <Setup refetch={refetch} />
     );
   }
   const styles = isMobile

@@ -34,8 +34,21 @@ const EditProfile = ({ user, setEditPro, editPro, refetch }) => {
   const [link, setLink] = useState(user?.sellerProfile?.link);
   const [medium, setMedium] = useState(user?.sellerProfile?.medium);
   const [profilePic, setProfilePic] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const [updateSellerProfile, result] = useUpdateSellerProfileMutation();
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setProfilePic(e.target.files);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
@@ -121,12 +134,17 @@ const EditProfile = ({ user, setEditPro, editPro, refetch }) => {
             <div className='flex items-center gap-2'>
               <Avatar
                 sx={{ width: 32, height: 32 }}
-                src={user?.sellerProfile?.picture?.url}
+                src={
+                  selectedImage
+                    ? selectedImage
+                    : user?.sellerProfile?.picture?.url
+                }
                 className='border border-gray-200'
               />
               <FileInput
                 className='focus:border-gray-200 focus:ring-gray-200 hover:border-gray-200'
-                onChange={(e) => setProfilePic(e.target.files)}
+                onChange={handleImageChange}
+                sizing='sm'
               />
             </div>
           </div>
@@ -209,124 +227,6 @@ const EditProfile = ({ user, setEditPro, editPro, refetch }) => {
           />
         </div>
       </form>
-      {/* <div className='w-full h-full drop-shadow-lg bg-white rounded mt-4'>
-        <form className='flex flex-col w-6/12 p-2'>
-          <p className='font-medium'>Name</p>
-
-          <div className='flex items-center w-full mt-1'>
-            <input
-              type='text'
-              className='border-2 border-gray-100 hover:border-gray-200 bg-gray-100 hover:bg-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-full rounded-md p-2'
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-              placeholder='Name'
-              maxLength={35}
-            />
-          </div>
-          <div className='w-full flex justify-end'>
-            <p className='text-sm text-gray-400'>{name.length}/35</p>
-          </div>
-          <p className='font-medium mt-2'>Bio</p>
-          <textarea
-            placeholder='What do you create'
-            className='w-full h-24 border-2 bg-gray-100 border-gray-100 hover:border-gray-200 hover:bg-gray-200 rounded-md focus:bg-gray-200 focus:border-gray-200 outline outline-0 p-2 mt-1'
-            onChange={(e) => setBio(e.target.value)}
-            value={bio}
-            maxLength={100}
-          />
-          <div className='w-full flex justify-end'>
-            <p className='text-sm text-gray-400'>{bio.length}/100</p>
-          </div>
-          <p className='text-stone-800 mt-2'>New profile image</p>
-          <FilePond
-            file={profilePic}
-            imageResizeTargetWidth={200}
-            allowReorder={true}
-            name='productImages'
-            onupdatefiles={(file) => setProfilePic(file)}
-          />
-          <p className='font-medium mt-2 text-stone-800'>Links</p>
-
-          <div className='flex flex-col'>
-            <div className='w-full flex justify-between items-center'>
-              <AiOutlineFacebook className='text-4xl' />
-              <input
-                type='text'
-                className='border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
-                placeholder='https://www.facebook.com/youraccount'
-                onChange={(e) => setFacebook(e.target.value)}
-                value={facebook}
-              />
-            </div>
-
-            <div className='w-full flex justify-between items-center mt-2'>
-              <AiOutlineInstagram className='text-4xl' />
-              <input
-                type='text'
-                className='border-2 border-gray-100 hover:bg-gray-200 bg-gray-100 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
-                placeholder='https://www.instagram.com/youraccount'
-                onChange={(e) => setInstagram(e.target.value)}
-                value={instagram}
-              />
-            </div>
-
-            <div className='w-full flex justify-between items-center mt-2'>
-              <AiOutlineYoutube className='text-4xl' />
-              <input
-                type='text'
-                className='border-2 border-gray-100 hover:bg-gray-200 bg-gray-100 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
-                placeholder='https://www.youtube.com/youraccount'
-                onChange={(e) => setYoutube(e.target.value)}
-                value={youtube}
-              />
-            </div>
-
-            <div className='w-full flex justify-between items-center mt-2'>
-              <AiOutlineTwitter className='text-4xl' />
-              <input
-                type='text'
-                className='border-2 border-gray-100 hover:bg-gray-200 bg-gray-100 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
-                placeholder='https://www.twitter.com/youraccount'
-                onChange={(e) => setTwitter(e.target.value)}
-                value={twitter}
-              />
-            </div>
-
-            <div className='w-full flex justify-between items-center mt-2'>
-              <AiOutlineLinkedin className='text-4xl' />
-              <input
-                type='text'
-                className='border-2 border-gray-100 hover:bg-gray-200 bg-gray-100 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
-                placeholder='https://www.linkedin.com/youraccount'
-                onChange={(e) => setLinkedin(e.target.value)}
-                value={linkedin}
-              />
-            </div>
-
-            <div className='w-full flex justify-between items-center mt-2'>
-              <FaTiktok className='text-4xl' />
-              <input
-                type='text'
-                className='border-2 border-gray-100 hover:bg-gray-200 bg-gray-100 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
-                placeholder='https://www.tiktok.com/youraccount'
-                onChange={(e) => setTiktok(e.target.value)}
-                value={tiktok}
-              />
-            </div>
-
-            <div className='w-full flex justify-between items-center mt-2'>
-              <AiOutlineLink className='text-4xl' />
-              <input
-                type='text'
-                className='border-2 border-gray-100 bg-gray-100 hover:bg-gray-200 hover:border-gray-200 outline outline-0 focus:bg-gray-200 focus:border-gray-200 w-10/12 rounded-md p-2'
-                placeholder='https://www.YourLink.com/'
-                onChange={(e) => setLink(e.target.value)}
-                value={link}
-              />
-            </div>
-          </div>
-        </form>
-      </div> */}
     </div>
   );
 };

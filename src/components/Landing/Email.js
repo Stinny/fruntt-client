@@ -34,11 +34,8 @@ const Email = () => {
     setError('');
   }, [email]);
 
-  return isMobile ? (
-    <div className='max-w-7xl mx-auto flex flex-col items-center mb-16 mt-44'>
-      <p className='font-medium text-stone-800 text-xl'>
-        Stay connected with us!
-      </p>
+  return (
+    <div className='flex flex-col items-center gap-1'>
       {success && (
         <Alert severity='success' className='w-full mt-2'>
           {success}
@@ -49,54 +46,26 @@ const Email = () => {
           {error}
         </Alert>
       )}
-      <form onSubmit={handleSignup} className='flex flex-col mt-6 w-full'>
+      <form onSubmit={handleSignup} className='w-full flex gap-2'>
         <input
-          className='h-10 border-2 rounded p-2 outline outline-0 hover:border-gray-400 focus:border-gray-400 text-sm'
+          className='h-8 w-9/12 text-xs border border-gray-200 rounded-md p-2 hover:border-gray-200 bg-gray-50 hover:bg-gray-200 focus:border-gray-200 focus:bg-gray-200'
           type='email'
-          placeholder='Enter your email'
+          placeholder='Email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <button
           type='submit'
-          className='h-10 text-sm border-stone-800 border-2 rounded-md w-full font-medium hover:text-white hover:bg-stone-800 mt-2'
+          className='h-8 border-gray-200 border rounded-md bg-gray-200 text-xs w-3/12'
         >
-          SUBSCRIBE
+          Subscribe
         </button>
       </form>
-      <p className='text-stone-800 mt-4'>We respect your privacy</p>
-    </div>
-  ) : (
-    <div className='max-w-7xl mx-auto flex flex-col items-center mb-16 mt-44'>
-      <p className='font-medium text-stone-800 text-2xl'>
-        Stay connected with us!
-      </p>
-      {success && (
-        <Alert severity='success' className='w-full mt-2'>
-          {success}
-        </Alert>
-      )}
-      {error && (
-        <Alert severity='error' className='w-full mt-2'>
-          {error}
-        </Alert>
-      )}
-      <form onSubmit={handleSignup} className='flex flex-col mt-6 w-full'>
-        <input
-          className='h-10 border-2 rounded p-2 outline outline-0 hover:border-gray-200 bg-gray-100 border-gray-100 hover:bg-gray-200'
-          type='email'
-          placeholder='Enter email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button
-          type='submit'
-          className='h-10 border-stone-800 border-2 rounded-md w-full font-medium hover:text-white hover:bg-stone-800 mt-2 text-sm'
-        >
-          SUBSCRIBE
-        </button>
-      </form>
-      <p className='text-stone-800 mt-4'>We respect your privacy</p>
+      <div className='w-full'>
+        <p className='text-stone-600 text-xs'>
+          Subscribe to recieve the latest updates
+        </p>
+      </div>
     </div>
   );
 };
